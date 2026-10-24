@@ -1,120 +1,190 @@
-# Chaski · pitch strategy (draft 1, Sat Oct 24 11:10 PT)
+# Chaski · pitch playbook (draft 2, Sat Oct 24 11:50 PT)
 
-> Draft built from what we already have in the repo. Two inputs will change it: the interview with Freddy's mother
-> (17:00 PT) and Ricardo's baseline numbers. Web research on winning pitches lands in `research/pitch-research.md`
-> and gets folded in. **Every number below has its source next to it. Never say one on stage that isn't here.**
+> **We have 3:00 to pitch + 2:00 of questions** (Devpost 13.0, confirmed by the team). Built from what's in the repo
+> and the research in `research/pitch-research.md` (every source there). Two inputs still change it: the interview
+> with Freddy's mother (17:00 PT) and Ricardo's baseline numbers. **Never say a number on stage that isn't in §4.**
 
-## 1 · The format we're pitching into (verified)
+---
 
-| | What | Source |
+## 1 · What the research taught us (the short version)
+
+1. **Judges remember one thing per team.** Expo judges see ~10–30 tables and likely rank a personal top 3 (MLH's
+   model). Being memorable beats being complete. Our one thing: *Chaski refuses to say a dose it isn't sure it translated right.*
+2. **Every recent winner has the same five parts**: one named population · a lived/insider origin · one before→after
+   number · something concrete the user walks away with · privacy and safety said out loud. (EldaAI, Claude prize
+   12.0 · Expungo, social impact 12.0 · Peel, HackMIT 2026 · CrossBeam and TARA, Anthropic's own hackathon.)
+3. **Show it working early.** Judges' advice: a working flow on screen within ~40–90 s, one flow, one "oh, this is
+   possible now" moment. A feature tour loses.
+4. **Honesty reads as confidence.** "Judges can tell when you're talking around a feature that doesn't exist yet."
+   Say what's real, what's simulated, what doesn't work yet.
+5. **Harden the demo, don't gamble.** Pre-load what can stall, cut what's flaky (the 12.0 winner removed a whole
+   feature so the demo looked reliable), hotspot instead of venue Wi-Fi, recorded fallback that you *call* a recording.
+6. **Domain insiders beat coders** at Anthropic's hackathons. Our insider is Freddy's mother, the nurse. Use her.
+7. **Anthropic wrote our pitch for us.** Their 2026 Public Benefit Report: they're working so Claude "performs well in
+   languages that are underrepresented in their training data", their standard is "make powerful AI affordable and
+   usable in every language and format", and they admit "we have not been active enough in collecting data to measure
+   the results." **Chaski is that sentence plus the measurement they say is missing.**
+8. **The video is a second pitch.** Devpost requires it, and some sponsors judge only from it.
+9. **Expect repeat visits** (12.0 had a final judging round; 13.0 hasn't said). Same quality on the 5th run.
+10. **The prize is real now**: "[Anthropic] Claude for Public Benefit", 1 winner, $5,000 Claude credits + 1 year of Max 20x + office hours. Opt in on Devpost.
+
+---
+
+## 2 · The format
+
+| | | |
 |---|---|---|
-| Where | Expo. Judges walk to our table, 10:30–12:30 Sunday. Table shared by 2–3 teams | hacker guide p.7 |
-| Length | Guide: **"prepare a two-minute pitch"**. Devpost: 3 min pitch + 2 min Q&A | guide p.7 · `research/tracks.md` |
-| Demo | **Live demo is required** to judge functionality | guide p.7 |
-| Team | **Both of us at the table the whole window**, or we aren't judged | guide p.7 |
-| Many visits | Different judges per track come separately (general, Anthropic, Cartesia, Microsoft). Same pitch, different emphasis | — |
+| When / where | Sun 10:30–12:30 at our table (shared by 2–3 teams). Table number after 9:00 | guide |
+| Time | **3:00 pitch + 2:00 Q&A** | Devpost |
+| Demo | Live, required. Plus a Devpost video | guide · Devpost |
+| Team | Both of us at the table the whole window or we're not judged | guide |
 
-**So we build three lengths of the same pitch:** a **30 s** hook for anyone walking by, the **2:00 core** (default),
-and a **3:00** version when a judge clearly has time. Q&A is where the technical depth lives.
+Three lengths of the same pitch: **30 s** (someone walking by, or a judge short on time) · **3:00** (default) ·
+**2:00** cut (Cartesia's rubric asks for 2-min demo-first, and any judge who says "we're running late").
 
-**New since Friday (`research/pitch-research.md`):**
-- **The Anthropic prize is live on Devpost:** "[Anthropic] Claude for Public Benefit", 1 winner, $5,000 in Claude credits + 1 year of Claude Max 20x + office hours. **Opt into it on the submission.**
-- **Devpost requires a demo video**, and some sponsors judge only from it. The video is not a backup, it's a second pitch: it opens with the refusal moment.
-- No stage/finalist round is published for 13.0 (12.0 had one). Ask in #ask-directors.
-- **Anthropic's own 2026 Public Benefit Report** says they're working so Claude "performs well in languages that are underrepresented in their training data", lists "make powerful AI affordable and usable in every language and format" as a standard, and admits "we have not been active enough in collecting data to measure the results" ([PDF](https://www-cdn.anthropic.com/a9ceec76a54d28d27affffcdab6faf7c142cd587.pdf)). **Chaski is that sentence, with the measurement they say is missing.** For the Anthropic judge, say it in one line in B5.
+---
 
-## 2 · What each judge is scoring, and where in the pitch we hit it
+## 3 · What each judge needs to see
 
-| Judge | Criteria (verbatim headings) | Beat that answers it |
+| Judge | Their criteria | What we show them | Where |
+|---|---|---|---|
+| **Anthropic** (our main target) | Named community · real problem you lived · works Monday · thoughtful Claude, knowing where it fails | Pilpichaca + Mom · Claude auditing itself and refusing · the failure modes, said by us before they ask · the report quote | B1, B4, B6 |
+| **General** | Application · Intentionality · Functionality · Creativity · Technical complexity | The full two-way flow · the before→after chart · "every design choice has a reason" (why audit, why Chanka, why both roles) | B3–B5 |
+| **Cartesia** (25% each) | Problem & originality · Use of Cartesia · Execution · Impact & responsibility | Demo-first order (§6). Cartesia is the Spanish ears and voice; Quechua is ours because Cartesia doesn't support it. README lists features used + limits | §6 |
+| **Microsoft** | Customer understanding · measurable usefulness · path to production · responsible design · end-to-end | Mom's real case · what we log to measure impact · who adopts it on Monday | B6, Q&A |
+| **People-First** | General criteria | Same as general | — |
+
+**What impresses judges, in order of weight:**
+1. **The refusal moment, live.** The only thing no other team has. It's Anthropic's criterion 4 made visible.
+2. **A real before→after number on a voice the model never heard.** Turns "we fine-tuned" into evidence.
+3. **The insider.** Mom's voice or quote. Turns "a problem" into "her problem".
+4. **Both sides of the conversation work**: nurse in Spanish, patient in Quechua, each gets something on screen.
+5. **The take-home summary**: a concrete artifact the patient keeps (winners' pattern #4).
+6. **Saying the limits first.** Offline doesn't work yet, the Quechua UI was reviewed by one native speaker, etc.
+
+---
+
+## 4 · Numbers we're allowed to say
+
+**Lead with ★. Say at most two numbers in the 3:00.** The rest live in Q&A.
+
+| # | Number | Source | Use |
+|---|---|---|---|
+| **★** | **Huancavelica: ~206,000 people with Quechua as first language, 52 certified bilingual public servants in the whole region. One per ~4,000 people** | Census 2017 via UNICEF · El Peruano 16-Jul-2026 · our division (`research/problemas-lenguas-originarias.md`) | B2 |
+| ★★ | **Before → after**: Meta's speech model on Chanka, error rate X% → Y% on a speaker it never heard | Ricardo's frozen baseline. **Smoke test today: WER 38.5%, CER 10.7%** (small set, not the baseline) | B5. If Ricardo's number isn't ready, say the smoke test as "before" and *don't* claim an after |
+| 2 | Mom is the only Quechua-speaking nurse at the Pilpichaca health post | Freddy | B1 |
+| 3 | GPT-4 on real ER discharge instructions: at least one error in 16% (Spanish), 24% (Chinese), **56% (Russian)** of sets; worse as the language gets rarer | Kong et al. 2026, *BMJ Quality & Safety* | B2 or Q&A |
+| 4 | 3.7 M Peruvians have Quechua as first language (13.9%) | Census 2017 | Q&A "is it big?" |
+| 5 | Clinicians already fight this by hand with back-translation, pre-translated phrases and teach-back | Mehandru et al. 2022, FAccT | Q&A "why this design?" |
+| ✗ | ~~"2% of centers have interpreters"~~ — doesn't exist. The real figure is 126 of 8,441 facilities (1%) with intercultural **childbirth** adaptation | Salud con Lupa, Feb 2025 | Only if asked about childbirth |
+
+---
+
+## 5 · The 3:00 script (draft, English, ~430 words ≈ 3:00 at a calm pace)
+
+> `[brackets]` = stage direction or something we still need. Times are cumulative.
+
+**B1 · Hook (0:00–0:20) · Freddy**
+[Play Mom's recorded greeting in Quechua, 4 s — or Freddy says it.]
+"That's my mother. She's a nurse at the health post in Pilpichaca, in the Andes of Huancavelica, Peru, and she's the
+only person there who speaks Quechua — the language most of her patients grew up with."
+
+**B2 · Problem (0:20–0:45) · Freddy**
+"In the whole region there are 52 certified bilingual public servants for 206,000 Quechua speakers. One for every
+four thousand people. So when my mother is off shift, a grandmother gets a prescription explained in a language she
+doesn't speak. [Mom's real case, one sentence, from the 17:00 interview.] And 'just use ChatGPT' isn't safe: even in
+Russian, it got discharge instructions wrong more than half the time. Quechua barely exists in its training data."
+
+**B3 · Demo, the flow (0:45–1:35) · Freddy + Ricardo**
+"This is Chaski." [Phone toward the judge. Chaski the vicuña waves.] "The nurse speaks Spanish."
+[Freddy: *"Tome una pastilla cada ocho horas, después de comer."* While Chaski thinks:] "Right now Claude is
+cleaning up what she meant, translating it, and then translating it *back* without seeing the original, to check
+nothing changed." [Chaski speaks Quechua.]
+"Now the patient answers in Quechua." [Ricardo plays the family clip.] "Chaski detects it's Quechua, our fine-tuned
+model transcribes it, Claude corrects the transcript with the context of the consultation, and the nurse reads it in Spanish."
+
+**B4 · The moment (1:35–2:05) · Freddy**
+"Now watch what happens when it isn't sure." [The scripted dose sentence.] [Red block on screen.]
+"The dose didn't survive the round trip. So Chaski doesn't say it. It tells the nurse exactly which part didn't match.
+In a clinic, a confident wrong answer is worse than no answer. Chaski would rather stay quiet."
+
+**B5 · How it's built (2:05–2:35) · Ricardo**
+"Meta's open speech models are the ears and the mouth. Out of the box they get [X]% of Chanka words wrong. Our
+families in Huancavelica recorded [N] phrases last night, we fine-tuned on them, and on a voice the model had never
+heard it dropped to [Y]%. Claude is the brain: it corrects what the ears heard, audits every translation, and writes
+the summary at the end."
+
+**B6 · Close (2:35–3:00) · Freddy**
+[Show the summary screen.] "At the end the nurse gets a clinical note and the patient gets instructions to take home,
+in their language. It works for both sides — a nurse or a patient can open it. Anthropic says it wants Claude to work
+in languages left out of its training data, and admits it hasn't measured whether that's happening. We built that, and
+we measured it. Monday, it goes to my mother's health post."
+
+### The 30-second version
+"My mother is the only nurse who speaks Quechua at her health post in the Peruvian Andes. Chaski is the interpreter
+for when she's not there: the nurse speaks Spanish, the patient hears Quechua, and back. Claude checks every
+translation by translating it back blind — and if a dose doesn't match, Chaski refuses to say it. Want to see it?"
+
+---
+
+## 6 · The 2:00 demo-first cut (Cartesia, or a judge in a hurry)
+
+B3 (50 s) → B4 (25 s) → B2 in two sentences (15 s) → **for Cartesia:** "Cartesia is the Spanish side: it hears the
+nurse in under half a second [`/escuchar` 0.46 s, measured] and speaks to her [verify Sonic is wired before saying
+it]. It doesn't support Quechua, so that side is our own fine-tuned model." (15 s) → one limitation (10 s) → close (5 s).
+
+---
+
+## 7 · The demo, hardened
+
+**At the table:** iPhone with Chaski (TestFlight) on a stand facing the judge · laptop with the before→after chart and
+the demo video loaded · **phone hotspot, not venue Wi-Fi** · second phone with the Quechua patient clip · chargers.
+**Before each judge:** one warm-up turn so the models are hot.
+
+| Step | Risk | Mitigation |
 |---|---|---|
-| **Anthropic** · Claude for Public Benefit | Named community · real problem you lived · works on Monday · thoughtful Claude, knowing where it fails | Pilpichaca health post + Mom (B1) · the refusal moment (B4) · failure modes (Q&A) |
-| **General Cal Hacks** | Application · Intentionality · Functionality · Creativity · Technical complexity | Demo (B3–B4) · baseline → fine-tuned chart (B5) |
-| **Cartesia** (25% each) | Problem & originality · Use of Cartesia · Execution · Impact & responsibility. Wants **"2-minute, demo-first: one complete user flow, then a brief problem + how you built it"** | Run the **demo-first variant** (§6) for them. Say plainly: Cartesia is the Spanish voice and ears; Quechua is ours because Cartesia doesn't support it |
-| **Microsoft** · Built for the Real World | Customer understanding · measurable usefulness · path to production · responsible design · end-to-end | Mom's quotes · baseline numbers · "1812 hotline + MINSA" path (Q&A) |
-| **People-First Social Impact** | General criteria | Same as general |
+| Nurse turn | **Takes ~15 s today.** Dead air | Narrate over Chaski's "thinking" steps (it's in the script). Push the fast path: measure Haiku/Sonnet for this turn (D15) |
+| Patient answer | Loud hall, live mic | Pre-recorded family clip played next to the mic. Language detection already measured at 1.0 on Quechua |
+| The refusal | Has to happen every time | Pick the sentence in rehearsal, confirm it blocks **5/5** |
+| Summary | `/resumen` still missing on Ricardo's side | If it's not live by 18:00, cut it from the demo and show it on the video |
+| Anything breaks | — | One sentence: "the connection dropped, here's the recording from this morning", then the video. Never more than one sentence of apology |
 
-## 3 · The numbers (pick ONE to lead with)
+**Mom live (D18):** judging 10:30–12:30 PT = 12:30–14:30 Lima. A live video call in a loud hall is risky. Record her
+greeting + one sentence about her work at the 17:00 call, with her consent. If she can join live, it's a bonus.
 
-**Correction first:** the stat you remembered isn't about interpreters. It's **126 of 8,441 health facilities (1%)
-have intercultural childbirth adaptation** (Salud con Lupa, Feb 2025). True but narrow (childbirth only), so it's a
-backup, not the lead.
+---
 
-| # | Number | Source (in `research/problemas-lenguas-originarias.md`) | Use |
-|---|---|---|---|
-| **★** | **Huancavelica: ~206,000 people whose first language is Quechua · 52 certified bilingual public servants in the whole region. One for every ~4,000 people.** | Census 2017 via UNICEF · El Peruano, 16 Jul 2026 · our own division | **The lead number.** Concrete, local, shocking |
-| 2 | **My mother is the only Quechua-speaking nurse at the Pilpichaca health post.** | Freddy | The human version of ★. Say it right after |
-| 3 | GPT-4 translating real ER discharge instructions: **at least one error in 16% of sets in Spanish, 24% in Chinese, 56% in Russian**. Errors grow as the language gets rarer | Kong et al. 2026, *BMJ Quality & Safety* | Why "just use ChatGPT" is dangerous. Quechua is far rarer than Russian |
-| 4 | 3.7 M people in Peru have Quechua as first language (13.9%) | Census 2017 | Scale, for "is this big?" |
-| 5 | Meta's speech model, out of the box on Chanka: **WER 38.5%, CER 10.7%**, fails on Spanish loanwords | Ricardo, `ricardo-artifacts/reports/humo_wer.json` (smoke test, small set) | Today's "before". **Replace with the frozen baseline** once Ricardo has it |
-| 6 | Clinicians already fight language barriers by hand with **back-translation, pre-translated phrases and teach-back** | Mehandru et al. 2022, FAccT (20 clinicians) | Our design is that, automated. Great Q&A answer |
+## 8 · Q&A bank (both of us know these cold)
 
-**The "after" number is the one that wins the technical judges** (Peel pattern: a cheap measurement + one statistic).
-Ricardo's baseline vs fine-tuned, on a speaker the model never heard. Until it exists, we don't claim an improvement.
-
-## 4 · Story arc (2:00 core)
-
-| t | Beat | What happens | Who |
-|---|---|---|---|
-| 0:00 | **B1 · Hook** | Opens in Quechua (one line, 3 s), then: *"That's how my mother greets her patients. She's a nurse at the Pilpichaca health post in Huancavelica, Peru, and she's the only one there who speaks Quechua."* | Freddy |
-| 0:15 | **B2 · Problem** | ★ number. *"When she's off shift, a patient gets a prescription they can't read, explained in a language they don't speak. ChatGPT? Even in Russian, a big language, it got 56% of discharge instructions wrong somewhere. Quechua barely exists in its training data."* | Freddy |
-| 0:35 | **B3 · Demo, the flow** (judges' advice: working flow on screen by ~0:40) | Nurse speaks Spanish → Chaski says it in Quechua → patient answers in Quechua → nurse reads it in Spanish. Chaski the vicuña on screen shows listening / thinking | Freddy as nurse, Ricardo plays the patient audio |
-| 1:05 | **B4 · The moment** | A dosage that doesn't survive the audit. *"Claude translated it, translated it back blind, and the dose didn't match. So Chaski refuses to say it and tells the nurse."* Show the block on screen | Freddy |
-| 1:25 | **B5 · How it's built** | *"Meta's speech models are the ears and the mouth. We fine-tuned them on recordings from families in Huancavelica: errors went from X to Y on a voice it never heard. Claude is the brain: it corrects what the ears heard, audits every translation, and writes the summary the patient takes home."* | Ricardo (his work, his credibility) |
-| 1:45 | **B6 · Close** | *"Works for the nurse and for the patient. Next stop is my mother's health post on Monday."* Then the summary on screen | Freddy |
-
-**Rules for the script:**
-- One number on stage (★). Everything else is for questions.
-- Say "Chanka Quechua" once, then "Quechua".
-- Never claim something works that we haven't run on the phone that morning.
-- Ricardo speaks B5. Two voices make a team; judges score the team.
-
-## 5 · The demo, beat by beat
-
-**Setup at the table:** iPhone running Chaski (TestFlight) on a stand facing the judge · laptop showing the
-baseline → fine-tuned chart · Ricardo's service + tunnel up and tested at 10:15 · phone on charge.
-
-| Step | Input | What the judge sees | Risk → mitigation |
-|---|---|---|---|
-| 1 | Freddy (nurse) taps, says in Spanish: *"Tome una pastilla cada ocho horas, después de comer."* | Chaski "thinking" with its steps, then speaks Quechua, Quechua text on screen | **Nurse turn takes ~15 s today** (ui-ux measured). Dead air kills a 2-min pitch. → Narrate over the "thinking" steps; push for the fast path (D15: measure Haiku/Sonnet for this turn) |
-| 2 | Patient answers in Quechua: a pre-recorded clip by a family member (or Mom live) | Language detected as Quechua (1.0 confidence measured), Spanish text for the nurse | Live mic in a loud hall. → Play the clip from a second phone held near the mic, rehearsed |
-| 3 | The refusal: a scripted instruction whose dose fails the audit | Red block: "Chaski didn't say this", with the field that didn't match | Must be **deterministic**. → Pick the sentence at the rehearsal and confirm it blocks 5/5 times |
-| 4 | End the consultation | Summary: clinical note for the nurse, take-home instructions for the patient | `/resumen` route still missing on Ricardo's side |
-
-**Backups, in order:** (1) app in rehearsal mode on cached turns, (2) the demo video (Sunday 05:00) on the laptop, ready to play.
-Say *"here's the recording from this morning"*, never apologize for more than one sentence.
-
-**Mom on video (D18):** judging 10:30–12:30 PT = **12:30–14:30 Lima**, the window she might have. Live cameo is high
-risk in a hall. Recommend: record her saying the Quechua greeting + one sentence about her work at the 17:00 call
-(with her consent) and use it as the B1 opener. If she's free live, a 20-s video call is a bonus, not the plan.
-
-## 6 · The Cartesia variant (demo-first, as their rubric asks)
-
-B3 → B4 (the flow first, 60 s) → then B2 problem in 20 s → then *"Cartesia is the Spanish side: ink-whisper hears
-the nurse in 0.46 s and Sonic speaks to her [verify Sonic is wired in the app before saying it]. It doesn't speak Quechua, so that side is our own fine-tuned model."*
-→ limitations in one line. README must list the Cartesia features used and known limitations.
-
-## 7 · Q&A bank (both of us know these cold)
-
-| Question | Answer in one breath |
+| Question | One-breath answer |
 |---|---|
-| Why not Google Translate / ChatGPT? | Error rates grow as the language gets rarer (Kong 2026). And neither tells you when it's wrong. Ours checks itself and refuses |
-| What if the translation is wrong? | Blind back-translation + a code comparison of the critical facts (drug, dose, frequency). Any mismatch blocks the message and tells the nurse. Show it |
-| Where does Claude fail here? | Quechua is low-resource: Claude can sound fluent and be wrong. That's why it never speaks unchecked, never invents a dose, and a native nurse reviewed the glossary |
-| How do you know it improved? | A frozen test speaker the model never heard; same script before and after; WER/CER + facts lost in translation |
-| Data / consent? | Every recording with consent, family volunteers, no patient data. [Decide: are consultation audios stored? Say only what's true] |
-| Isn't this replacing interpreters? | There's one per ~4,000 people. It's for when nobody is there. The 1812 hotline exists but needs a staff member to call and wait |
-| Path to production / who pays? | Health posts under MINSA/SIS; regional health office (DIRESA Huancavelica) as first buyer; the 1812 line as a partner. **[needs Mom's interview]** |
-| Why Chanka specifically? | It's what Huancavelica and Ayacucho speak; models are trained on Southern/Cusco Quechua. No paper evaluates LLMs on Chanka (our Scopus/OpenAlex search) |
-| Offline? | Not yet: needs signal. Honest limitation; on-device models are the next step |
-| What did you build in 36 h? | iOS app, the audit, the voice service on a GPU, a data-collection site families used, fine-tuning + evaluation |
+| How do you know the Quechua is right? | Blind back-translation + a code check of drug, dose and frequency. And a native nurse reviewed the glossary and the screens |
+| What happens when it's wrong? | It refuses and tells the nurse which part failed. Show it |
+| Where does Claude fail here? | It can sound fluent in Quechua and be wrong. So it never speaks unchecked and never fills in a dose |
+| Why not Google Translate / ChatGPT? | Errors grow as the language gets rarer (Kong 2026), and neither tells you when it's wrong |
+| What does Claude do that plain MT can't? | Corrects the speech transcript with the consultation's context, audits itself, judges whether the patient understood, writes the summary |
+| How do you know it improved? | A frozen test speaker the model never heard, same script before and after |
+| Privacy / consent? | Recordings are from consenting family volunteers, no patient data. [Decide and say only what's true: are consultation audios stored?] |
+| Replacing interpreters? | There's one per ~4,000 people. It's for when nobody is there. The government's 1812 hotline needs staff to call and wait |
+| Who uses it Monday? How does it scale? | My mother's health post first. Then the regional health office (DIRESA Huancavelica). [Sharpen with the interview] |
+| How do you measure impact? | We log blocked translations, nurse corrections and repeat requests per consultation. [Confirm with the ui-ux session what the app logs] |
+| Offline? | Not yet, needs signal. Honest limitation, on-device is next |
+| Why Chanka? | It's Huancavelica and Ayacucho's Quechua; models are trained on Cusco Quechua. We found no paper evaluating LLMs on Chanka |
+| What did you build in 36 h? | iOS app · the audit · a GPU voice service · a data site the families used · fine-tuning + evaluation |
 
-## 8 · What we still need (owner · by when)
+---
+
+## 9 · What we still need (owner · by when)
 
 | Item | Owner | By |
 |---|---|---|
-| Frozen baseline + fine-tuned numbers (the "Y" in B5) | Ricardo | 19:00 |
-| A dose sentence that blocks deterministically | Freddy + ui-ux session | 15:00 |
-| Nurse turn under ~5 s, or a narration that covers it | ui-ux session + Ricardo (D15) | 16:00 |
-| Mom: a quote about a real case + the recorded greeting, with consent | Freddy, interview 17:00 | 18:00 |
-| The 30 s / 2:00 / 3:00 scripts rehearsed with a timer | Both | 22:00 |
-| Demo video | Freddy | Sun 05:00 |
+| Frozen baseline + fine-tuned numbers (X, Y, N) | Ricardo | 19:00 |
+| A dose sentence that blocks 5/5 | Freddy + ui-ux session | 15:00 |
+| Nurse turn under ~5 s, or rehearsed narration | ui-ux session + Ricardo (D15) | 16:00 |
+| `/resumen` and `/idioma` live | Ricardo | 18:00 |
+| Mom: a real case in one sentence + the recorded greeting, with consent | Freddy, 17:00 call | 18:00 |
+| Decide: are consultation audios stored? | Freddy | 18:00 |
+| Opt into Anthropic, People-First, Microsoft, Cartesia on Devpost | Freddy | 21:00 draft |
+| README: where Claude is used and why · Cartesia features · known limits · no keys | ui-ux session | 21:00 |
+| Rehearse 30 s / 3:00 / 2:00 with a timer, out loud, 3× each | Both | 22:00 |
+| Demo video, opening on the refusal moment | Freddy | Sun 05:00 |
