@@ -5,7 +5,10 @@
 
 ## 📍 Estado actual (act. 2026-10-23, Friday 18:30 PT)
 
-- **Phase:** ideation. Finalists A (Chanka interpreter for pregnant women) and C (fire last mile), scored
+- **Product chosen by Freddy (21:30 PT):** A + V2 → "Rimay" (working name), Chanka interpreter for pregnant
+  women at the Pilpichaca health post with prescription-photo reading. Product doc: `ideas/producto.md`;
+  evidence: `research/papers.md`. Architecture not written yet.
+- **Before that:** finalists A (Chanka interpreter for pregnant women) and C (fire last mile), scored
   with `ideas/criterios.md`; analysis in `ideas/decision.md`. Ricardo brings another idea; decided with him.
 - **Key fact (2026-10-23):** Freddy's parents speak Quechua; his mother is a nurse at a health post in
   Pilpichaca (Huancavelica), the only Quechua-speaking nurse there. Possible first user, reviewer and
