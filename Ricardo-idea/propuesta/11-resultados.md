@@ -87,3 +87,50 @@ En orden de lo que más probablemente cambie el resultado:
    corregida de extorsión por corredor, que es la cifra que nadie tiene.
 4. **Hawkes sobre el grafo**, que usa los tiempos exactos en vez de agregarlos por semana y no sufre
    igual la dispersión.
+
+## Segunda ronda: corregir el sesgo de registro no salva el modelo
+
+Se probaron las dos correcciones de la sección anterior (`validacion/06_sesgo_registro.py`,
+tabla en `reports/sesgo_registro.csv`). Prueba sobre 2023:
+
+| Configuración | AUC-PR | PAI@1% | PAI@5% | Tasa positiva del top 1% |
+|---|---|---|---|---|
+| **baseline: violencia en las últimas 4 semanas** | 0.0062 | **2.12** | **1.26** | 0.0059 |
+| Entrenar 2018–2022 (como estaba) | 0.0063 | 0.50 | 0.77 | 0.0032 |
+| Entrenar 2018–2022 + tasa de geocodificado | 0.0064 | 0.68 | 0.76 | 0.0056 |
+| Entrenar solo 2022, mismo régimen | 0.0063 | 0.68 | 0.74 | 0.0053 |
+| Entrenar solo 2022 + tasa de geocodificado | 0.0059 | 0.00 | 0.77 | 0.0000 |
+
+Ninguna corrección acerca el modelo al baseline. **La hipótesis del cambio de régimen no era la
+explicación**, o al menos corregirla así no recupera nada.
+
+### La causa real: la extorsión no anticipa la violencia a nivel de corredor
+
+Lift de cada predictor, año por año, sobre la etiqueta de las 4 semanas siguientes:
+
+| Año | Base | Lift de violencia previa | Lift de extorsión previa (12 sem) |
+|---|---|---|---|
+| 2018 | 0.0093 | **4.09** | 1.58 |
+| 2019 | 0.0081 | **4.02** | 1.49 |
+| 2020 | 0.0025 | 2.04 | 0.00 |
+| 2021 | 0.0036 | 2.81 | 0.92 |
+| 2022 | 0.0055 | 2.49 | 0.99 |
+| 2023 | 0.0055 | **3.04** | 0.96 |
+
+La violencia previa predice de forma estable (2.0× a 4.1×) en **todos** los años, incluido el
+entrenamiento. La extorsión previa tiene lift **≈ 1.0**: no aporta nada.
+
+Esto corrige la validación de `09-validaciones.md` §2, que dio 6.7× para la extorsión. Ese número se midió
+sobre celdas de ~110 m que mezclaban la colocación de todos los tipos de hecho; al pasar al corredor y
+separar el efecto de la violencia previa, la señal de la extorsión desaparece.
+
+**La premisa del proyecto —que la denuncia de extorsión anticipa la balacera— no se sostiene en estos
+datos.** El modelo pierde contra el baseline porque está diluyendo la única variable que sí informa entre
+quince que no informan.
+
+## Lo que se construyó en su lugar
+
+Una herramienta de analítica visual que muestra lo que sí es cierto: `viz/index.html`, en D3 v7, con el
+mapa de 7,804 corredores por tasa de extorsión por kilómetro, la serie mensual con filtro de rango, la
+ficha por corredor y la gráfica del derrumbe del geocodificado. Sin ninguna predicción, con el aviso de
+subregistro fijo en pantalla.
