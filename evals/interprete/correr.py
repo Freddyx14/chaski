@@ -148,7 +148,7 @@ def percentil(valores: list[float], p: float) -> float | None:
 
 
 def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critico: str | None = MODELO_CRITICO) -> dict:
-    filas, latencias, latencias_critico = [], [], []
+    filas, latencias, latencias_critico, latencias_turno = [], [], [], []
     for caso in casos:
         if simulado:
             client.caso = caso
@@ -167,13 +167,15 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
                 and caso["turno"]["idioma"] == "spa"):
             t1 = time.perf_counter()
             try:
-                v = critico.revisar(client, decision.texto_pulido, transcripcion=caso["turno"]["texto"],
-                                    modelo=modelo_critico).veredicto
-                critica = {"ok": v.ok, "motivo": v.motivo if v.ok else f"{v.capa}: {v.motivo}"}
+                rc = critico.revisar(client, decision.texto_pulido, transcripcion=caso["turno"]["texto"],
+                                     modelo=modelo_critico)
+                v = rc.veredicto
+                critica = {"ok": v.ok, "motivo": v.motivo if v.ok else f"{v.capa}: {v.motivo}", "ms_pasos": rc.ms}
             except Exception as e:
                 critica = {"ok": False, "motivo": f"error: {type(e).__name__}: {e}"}
             critica["ms"] = round((time.perf_counter() - t1) * 1000, 1)
             latencias_critico.append(critica["ms"])
+            latencias_turno.append(ms + critica["ms"])  # what the nurse waits: principal, then critic
         filas.append({"id": caso["id"], "categoria": caso["categoria"], "ms": round(ms, 1), "error": error,
                       "decision": decision.model_dump() if decision else None, "critico": critica, **ev})
         marca = "✓" if ev["ok"] and not ev["violaciones"] else "✗"
@@ -206,6 +208,10 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
             "dejo_pasar_violaciones": [f["id"] for f in revisadas if f["violaciones"] and f["critico"]["ok"]],
             "bloqueos_sin_violacion": [{"id": f["id"], "motivo": f["critico"]["motivo"]} for f in bloqueadas if not f["violaciones"]],
             "latencia_ms": {"p50": percentil(latencias_critico, 50), "p95": percentil(latencias_critico, 95)},
+            # principal + critic on the turns the critic checked: the wait of a turn that gets checked
+            "latencia_turno_ms": {"p50": percentil(latencias_turno, 50), "p95": percentil(latencias_turno, 95)},
+            "pasos": {"modelo_hechos": critico.MODELO_HECHOS or modelo_critico, "pensar": critico.PENSAR,
+                      "max_tokens": critico.MAX_TOKENS},
         },
         "casos": filas,
     }
@@ -262,6 +268,8 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  crítico {args.modelo_critico}: revisó {k['revisadas']}, bloqueó {k['bloqueadas']} "
               f"(atrapó {k['atrapo_violaciones']} con violación, {len(k['bloqueos_sin_violacion'])} sin violación, "
               f"dejó pasar {len(k['dejo_pasar_violaciones'])}) · p50 {k['latencia_ms']['p50']} ms · p95 {k['latencia_ms']['p95']} ms")
+        print(f"  turno revisado (principal + crítico): p50 {k['latencia_turno_ms']['p50']} ms · "
+              f"p95 {k['latencia_turno_ms']['p95']} ms")
     print(f"  → {ruta}")
     return 0
 

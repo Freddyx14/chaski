@@ -11,7 +11,14 @@ solo leen el formulario y llaman a una función. El crítico es **el mismo códi
 | `ANTHROPIC_API_KEY` | el cliente de Claude (se crea una sola vez, la primera vez que se usa) | obligatoria |
 | `CHASKI_MODELO_PRINCIPAL` | el intérprete (`decidir`) | `claude-opus-5` |
 | `CHASKI_MODELO_CRITICO` | el crítico | `claude-sonnet-5` (160/160 atrapados, 7,5 % de falsos bloqueos) |
+| `CHASKI_MODELO_HECHOS` | el crítico, solo la extracción de datos (paso mecánico) | vacía = el del crítico |
+| `CHASKI_PENSAR_HECHOS` | pensamiento de la extracción: `no`, `low`, `medium`, `high` o `modelo` | `no` |
+| `CHASKI_PENSAR_RETRADUCIR` | pensamiento de la retraducción ciega | `low` |
+| `CHASKI_PENSAR_AGREGADOS` | pensamiento del paso «qué agregó» | `low` |
 | `CHASKI_NLLB_URL` | tu NLLB; sin ella traduce Claude | vacía |
+
+Los `PENSAR` por defecto bajaron el crítico de p50 9 s a ~2-3 s sin perder atrapados (24-oct). `modelo` deja el
+pensamiento por defecto de Sonnet 5, que era el camino lento. Detalle en el docstring de `chaski/critico.py`.
 
 Los dos modelos se cambian sin tocar código. Cada respuesta trae `modelos: {principal, critico}`.
 
