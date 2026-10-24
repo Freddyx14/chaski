@@ -154,6 +154,18 @@ def corpus_audio(ruta: str):
     return FileResponse(p) if p.exists() else JSONResponse({"error": "no existe"}, 404)
 
 
+@aplicacion.post("/corpus/subir")
+async def corpus_subir(audio: UploadFile = File(...), persona: str = Form(...),
+                       bloque: str = Form("A"), esperadas: int = Form(0)):
+    """Nota de voz larga -> clips numerados listos para corregir."""
+    from servicio.corpus import recibir_nota
+    try:
+        return recibir_nota(persona, bloque, await audio.read(), audio.filename or "nota.ogg",
+                            esperadas=esperadas)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.post("/corpus/transcribir")
 def corpus_transcribir(ruta: str = Form(...)):
     from servicio.corpus import transcribir

@@ -48,6 +48,16 @@
       <b>tres</b> ajustes: reconocimiento, voz y traducción.</p>
   </div>
 
+  <div class="barra" style="background:var(--blanco);border:1px solid var(--linea);padding:12px 14px">
+    <label for="archivo" style="margin:0">Nota de voz</label>
+    <input id="nombrePersona" type="text" placeholder="p1" style="width:80px">
+    <select id="bloqueNuevo" style="width:auto"><option value="A">bloque A</option><option value="B">bloque B</option></select>
+    <input id="archivo" type="file" accept="audio/*,video/*" style="font-size:12px">
+    <input id="cuantas" type="number" min="0" placeholder="¿cuántas frases?" style="width:140px" title="cuántas frases trae esta nota; vacío = las que faltan">
+    <button id="subir" class="principal">Subir y partir</button>
+    <span class="cual" id="estadoSubida"></span>
+  </div>
+
   <div class="barra">
     <select id="persona"></select>
     <button id="transcribirTodo">Transcribir los que faltan</button>
@@ -98,6 +108,7 @@ function pintar() {
         ${c.revisado ? '· <span class="listo">revisado</span>' : ''}</span>
     </div>
     <audio id="audio" controls autoplay src="/corpus/audio?ruta=${encodeURIComponent(c.audio)}"></audio>
+    ${c.chanka_esperado ? `<p class="oido" style="border-color:var(--verde)"><b>Debería decir:</b> ${c.chanka_esperado}</p>` : ''}
     <p class="oido" id="oido">${c.transcripcion ? 'Guardado: ' + c.transcripcion : 'Sin transcribir todavía.'}</p>
     <div class="campo">
       <label for="texto">Cómo se escribe en chanka</label>
@@ -155,6 +166,32 @@ $('#transcribirTodo').onclick = async () => {
   }
   $('#transcribirTodo').disabled = false;
   pintar();
+};
+
+$('#subir').onclick = async () => {
+  const f = $('#archivo').files[0];
+  const quien = $('#nombrePersona').value.trim();
+  if (!f || !quien) { $('#estadoSubida').textContent = 'Falta el archivo o el identificador.'; return; }
+  $('#subir').disabled = true;
+  $('#estadoSubida').textContent = 'Convirtiendo y partiendo por los silencios…';
+  const cuerpo = new FormData();
+  cuerpo.append('audio', f, f.name);
+  cuerpo.append('persona', quien);
+  cuerpo.append('bloque', $('#bloqueNuevo').value);
+  cuerpo.append('esperadas', $('#cuantas').value || '0');
+  try {
+    const d = await (await fetch('/corpus/subir', {method:'POST', body:cuerpo})).json();
+    if (d.error) throw new Error(d.error);
+    $('#estadoSubida').innerHTML =
+      `${d.clips_nuevos} clips nuevos (del ${d.desde}) · ${Math.round(d.segundos)}s · ` +
+      `${d.clips_total} en total` +
+      (d.coincide ? ' · <span class="listo">coincide con lo esperado</span>'
+                  : ` · <b style="color:var(--rojo)">se esperaban ${d.esperadas}</b>, revisa antes de usarlo`);
+    const sel = $('#persona');
+    if (![...sel.options].some(o => o.value === quien)) sel.add(new Option(quien, quien));
+    sel.value = quien; persona = quien; await cargar();
+  } catch (e) { $('#estadoSubida').textContent = 'Falló: ' + e.message; }
+  finally { $('#subir').disabled = false; }
 };
 
 $('#exportar').onclick = async () => {

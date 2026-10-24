@@ -25,6 +25,81 @@ RAIZ = Path("datos/crudo")
 INSTANCIA = "http://127.0.0.1:8010"
 
 
+def referencias() -> dict:
+    """Lo que el cuadernillo dice que deberia haberse dicho, por numero.
+
+    Se MUESTRA al corregir, no se da por bueno: la persona pudo decir otra cosa,
+    y lo que manda es lo que de verdad se oye en el audio.
+    """
+    ruta = Path("datos/frases/frases.json")
+    if not ruta.exists():
+        return {}
+    d = json.loads(ruta.read_text(encoding="utf-8"))
+    salida = {}
+    for i, f in enumerate(d.get("verificadas", []), 1):
+        salida[i] = {"castellano": f["castellano"], "chanka_esperado": f["chanka"]}
+    base = len(d.get("verificadas", []))
+    for i, t in enumerate(d.get("clinicas_sin_traducir", []), base + 1):
+        salida[i] = {"castellano": t, "chanka_esperado": ""}
+    base += len(d.get("clinicas_sin_traducir", []))
+    for i, t in enumerate(d.get("medicamentos_y_prestamos", []), base + 1):
+        salida[i] = {"castellano": t, "chanka_esperado": ""}
+    return salida
+
+
+def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
+                 esperadas: int = 0) -> dict:
+    """Una nota de voz larga -> clips numerados + manifiesto, listos para corregir.
+
+    Si la persona ya mando notas antes, los clips nuevos SE AGREGAN y la
+    numeracion sigue donde quedo. Nadie manda 160 frases en un solo audio: van a
+    llegar en varias tandas, y renumerar desde 1 en cada una destruiria el
+    emparejamiento con el cuadernillo.
+    """
+    import subprocess
+    import tempfile
+
+    from voz.segmentar import mejor_particion, recortar
+    from voz.ingesta import convertir, duracion
+
+    carpeta = RAIZ / persona
+    carpeta.mkdir(parents=True, exist_ok=True)
+    crudo = tempfile.NamedTemporaryFile(suffix=Path(nombre).suffix or ".ogg", delete=False)
+    crudo.write(datos)
+    crudo.close()
+
+    previas = []
+    manifiesto = carpeta / "manifiesto.jsonl"
+    if manifiesto.exists():
+        previas = leer_manifiesto(manifiesto)
+    desde = max((g.numero for g in previas), default=0) + 1
+
+    completo = carpeta / f"completo_{desde:03d}.wav"
+    total = convertir(crudo.name, completo)
+    Path(crudo.name).unlink(missing_ok=True)
+
+    refs = referencias()
+    if not esperadas:
+        esperadas = max(len(refs) - desde + 1, 1)
+    trozos, diagnostico = mejor_particion(completo, total, esperadas)
+
+    grabaciones = list(previas)
+    for j, t in enumerate(trozos):
+        i = desde + j
+        destino = carpeta / f"{persona}_{bloque}_{i:03d}.wav"
+        recortar(completo, destino, t.inicio, t.largo)
+        ref = refs.get(i, {})
+        grabaciones.append(Grabacion(
+            persona=persona, bloque=bloque, numero=i, audio=str(destino),
+            transcripcion="", castellano=ref.get("castellano", ""),
+            segundos=round(t.largo, 2), consentimiento=False))
+    escribir_manifiesto(manifiesto, grabaciones,
+                        cabecera="sin revisar: falta transcripcion y consentimiento")
+    return {"persona": persona, "clips_nuevos": len(trozos), "clips_total": len(grabaciones),
+            "desde": desde, "segundos": total, "esperadas": esperadas,
+            "coincide": len(trozos) == esperadas, "umbral": diagnostico["umbral"]}
+
+
 def personas() -> list[str]:
     if not RAIZ.exists():
         return []
@@ -35,10 +110,13 @@ def clips(persona: str) -> list[dict]:
     manifiesto = RAIZ / persona / "manifiesto.jsonl"
     if not manifiesto.exists():
         return []
+    refs = referencias()
     salida = []
     for g in leer_manifiesto(manifiesto):
+        ref = refs.get(g.numero, {})
         salida.append({"nombre": g.nombre, "audio": g.audio, "numero": g.numero,
-                       "bloque": g.bloque, "castellano": g.castellano,
+                       "bloque": g.bloque, "castellano": g.castellano or ref.get("castellano", ""),
+                       "chanka_esperado": ref.get("chanka_esperado", ""),
                        "transcripcion": g.transcripcion, "segundos": g.segundos,
                        "consentimiento": g.consentimiento,
                        "revisado": bool(g.transcripcion.strip() and g.consentimiento)})
