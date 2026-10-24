@@ -58,3 +58,40 @@ Un JSON por número, en `reports/`. La página de resultados lee esos archivos y
 | `reports/traduccion.json` | sesión B | Claude contra Google Translate, calificado por la enfermera |
 | `reports/detector.json` | sesión B | Cuántos errores atrapa el detector de Freddy |
 | `reports/receta.json` | sesión B | Aciertos y tasa de abstención de la lectura de receta |
+
+## 5. Las otras dos firmas
+
+```python
+from voz.contrato import hablar, idioma, Audio, Idioma
+
+a: Audio = hablar("Mamáy, allillanmi")   # texto chanka -> audio
+a.ruta, a.segundos, a.frecuencia, a.modelo
+
+i: Idioma = idioma("turno_007.wav")      # audio -> que lengua es
+i.codigo      # "quy" o "spa", nunca otra cosa
+i.confianza   # 0.0 en la version falsa, a proposito
+```
+
+**Las versiones falsas son usables, no vacías:**
+
+- `hablar` devuelve `muestras/mms-tts-quy/todas.wav`, que es chanka real generado con
+  `facebook/mms-tts-quy`. No sintetiza el texto que se le pasa, pero suena, así que la app se arma y se
+  escucha completa antes de que exista el modelo servido.
+- `idioma` decide **por el nombre del archivo**: si lleva `spa` o `_es`, responde castellano; si no,
+  chanka. Es determinista a propósito, para que quien arme la app pruebe las dos ramas sin modelo.
+- **La confianza es 0.0 en las dos.** Ningún número de una versión falsa debe terminar en un reporte.
+
+## 6. Con qué se prueban
+
+`uv run python voz/muestras_prueba.py` arma `datos/prueba_minima/` sin descargar nada ni esperar a las
+familias: nueve audios de tres clases, que son las tres que el intérprete tiene que distinguir.
+
+| Clase | Cuántos | De dónde sale |
+|---|---|---|
+| `spa` | 5 | Frases clínicas reales (dosis, control, sangrado, fiebre) dichas con la voz del sistema de macOS |
+| `mix` | 3 | Castellano con palabras en quechua: «Mamáy, tome una pastilla cada ocho horas». Así se habla en la posta |
+| `quy` | 1 | Las cinco frases de `muestras/mms-tts-quy/todas.wav`, chanka real de MMS-TTS |
+
+Sirven para tres cosas antes de que exista un solo audio de la familia: probar `idioma()` con las tres
+clases, medir la espera por turno del ciclo completo, y tener un castellano de referencia. El caso `mix`
+es el que más importa: ningún clasificador de idioma lo resuelve bien, y es lo normal en una consulta.

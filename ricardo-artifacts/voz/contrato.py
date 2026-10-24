@@ -77,3 +77,59 @@ def entender(audio: str | Path) -> Transcripcion:
     decidir logica de producto; sirve solo para los reportes.
     """
     return Transcripcion(texto=TEXTO_FALSO, confianza=0.0, segundos=0.0, modelo="falso")
+
+
+# --- hablar: texto en chanka -> audio -------------------------------------
+
+
+@dataclass(frozen=True)
+class Audio:
+    ruta: str
+    segundos: float
+    frecuencia: int
+    modelo: str
+
+
+MUESTRA_CHANKA = "muestras/mms-tts-quy/todas.wav"
+
+
+def hablar(texto: str, destino: str | Path | None = None) -> Audio:
+    """Texto en chanka -> audio.
+
+    Version falsa: devuelve la muestra que ya existe en el repo, generada con
+    `facebook/mms-tts-quy`. No es sintesis del texto que se le pasa, pero SUENA
+    a chanka real, asi que la app se puede armar y escuchar completa antes de
+    que exista el modelo servido.
+    """
+    ruta = str(destino) if destino else MUESTRA_CHANKA
+    return Audio(ruta=ruta, segundos=0.0, frecuencia=16000, modelo="falso")
+
+
+# --- idioma: audio -> que lengua es ---------------------------------------
+
+IDIOMAS = ("quy", "spa")
+
+
+@dataclass(frozen=True)
+class Idioma:
+    codigo: str
+    confianza: float
+    modelo: str
+
+    def __post_init__(self) -> None:
+        if self.codigo not in IDIOMAS:
+            raise ValueError(f"idioma fuera del contrato: {self.codigo!r}; se espera quy o spa")
+
+
+def idioma(audio: str | Path) -> Idioma:
+    """Audio -> quechua chanka o castellano.
+
+    Version falsa y DETERMINISTA: decide por el nombre del archivo, para que
+    quien arme la app pueda probar las dos ramas sin modelo. Un archivo que
+    lleve `spa` o `_es` en el nombre se reporta como castellano; cualquier otro,
+    como chanka. La confianza es 0.0 a proposito: ningun numero de la version
+    falsa debe confundirse con una medicion.
+    """
+    nombre = Path(audio).name.lower()
+    codigo = "spa" if ("spa" in nombre or "_es" in nombre or nombre.startswith("es")) else "quy"
+    return Idioma(codigo=codigo, confianza=0.0, modelo="falso")

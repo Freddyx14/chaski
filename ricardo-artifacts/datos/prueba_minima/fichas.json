@@ -1,0 +1,56 @@
+[
+ {
+  "archivo": "spa_01.wav",
+  "idioma": "spa",
+  "texto": "Tome una pastilla cada ocho horas, después de comer",
+  "segundos": 3.49
+ },
+ {
+  "archivo": "spa_02.wav",
+  "idioma": "spa",
+  "texto": "Su próximo control es el lunes, venga en ayunas",
+  "segundos": 3.42
+ },
+ {
+  "archivo": "spa_03.wav",
+  "idioma": "spa",
+  "texto": "Si hay sangrado, venga a la posta de inmediato",
+  "segundos": 3.05
+ },
+ {
+  "archivo": "spa_04.wav",
+  "idioma": "spa",
+  "texto": "El bebé tiene fiebre de treinta y nueve grados",
+  "segundos": 2.73
+ },
+ {
+  "archivo": "spa_05.wav",
+  "idioma": "spa",
+  "texto": "No deje de tomar la pastilla aunque se sienta bien",
+  "segundos": 3.03
+ },
+ {
+  "archivo": "mix_01.wav",
+  "idioma": "mix",
+  "texto": "Mamáy, tome una pastilla cada ocho horas",
+  "segundos": 3.03
+ },
+ {
+  "archivo": "mix_02.wav",
+  "idioma": "mix",
+  "texto": "Taytáy, su control es el lunes",
+  "segundos": 2.3
+ },
+ {
+  "archivo": "mix_03.wav",
+  "idioma": "mix",
+  "texto": "Allinllanchu, ¿tiene dolor aquí?",
+  "segundos": 2.18
+ },
+ {
+  "archivo": "quy_todas.wav",
+  "idioma": "quy",
+  "texto": "¿Allinllanchu, mamáy? · ¿Imaynallam kachkanki, taytáy? · ¿Runasimita rimankichu, doctor? · Wawata suyarichkani, jefelláy · Mamáy, allillanmi",
+  "segundos": 15.84
+ }
+]
