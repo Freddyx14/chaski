@@ -1,0 +1,3817 @@
+{
+  "version": "2.18",
+  "children": [
+    {
+      "type": "frame",
+      "id": "vit0y",
+      "x": 0,
+      "y": 0,
+      "name": "Board D",
+      "width": 1590,
+      "fill": "$board",
+      "layout": "vertical",
+      "gap": 44,
+      "padding": 120,
+      "children": [
+        {
+          "type": "text",
+          "id": "pDTL8",
+          "name": "Option Title",
+          "fill": "$ink",
+          "content": "D · El motivo es la interfaz",
+          "fontFamily": "Inter",
+          "fontSize": 40,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "fXnsa",
+          "name": "Option Rationale",
+          "fill": "$ink-2",
+          "textGrowth": "fixed-width",
+          "width": 1200,
+          "content": "Los rombos y zigzags se vuelven los componentes: progreso, medidor de audio, etiquetas, divisores.",
+          "lineHeight": 1.45,
+          "fontFamily": "Inter",
+          "fontSize": 20
+        },
+        {
+          "type": "frame",
+          "id": "MmPRJ",
+          "name": "Screens Row",
+          "width": "fill_container",
+          "gap": 72,
+          "children": [
+            {
+              "type": "frame",
+              "id": "u8K0p4",
+              "name": "1 · Idioma Column",
+              "width": 402,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yFHrn",
+                  "name": "Label",
+                  "fill": "$ink-2",
+                  "content": "1 · Idioma",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "h56O1",
+                  "name": "Screen 1 Idioma",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 44,
+                  "stroke": "#D8D2CC",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "xrOso",
+                      "name": "Status Bar",
+                      "width": "fill_container",
+                      "height": 54,
+                      "padding": [
+                        0,
+                        26
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "cKy3D",
+                          "name": "Time",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "cjJ9j",
+                          "name": "Glyphs",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "H7DiUF",
+                              "name": "signal",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "signal",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "gMJMd",
+                              "name": "wifi",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "ao6so",
+                              "name": "battery-full",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gULiW",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 28,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "paPyN",
+                          "name": "Chaski Card",
+                          "width": 260,
+                          "height": 260,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "ref/chaski-presentarse.png",
+                            "mode": "fill"
+                          },
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "Y6Kwl1",
+                              "x": 0,
+                              "y": 0,
+                              "name": "nTL0",
+                              "fill": "#F6F4F1",
+                              "width": 54,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "VLFwx",
+                              "x": 206,
+                              "y": 0,
+                              "name": "nTR0",
+                              "fill": "#F6F4F1",
+                              "width": 54,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "eg927",
+                              "x": 0,
+                              "y": 242,
+                              "name": "nBL0",
+                              "fill": "#F6F4F1",
+                              "width": 54,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "s6fihj",
+                              "x": 206,
+                              "y": 242,
+                              "name": "nBR0",
+                              "fill": "#F6F4F1",
+                              "width": 54,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "oQd16",
+                              "x": 0,
+                              "y": 18,
+                              "name": "nTL1",
+                              "fill": "#F6F4F1",
+                              "width": 36,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "ZV71a",
+                              "x": 224,
+                              "y": 18,
+                              "name": "nTR1",
+                              "fill": "#F6F4F1",
+                              "width": 36,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "GYxsJ",
+                              "x": 0,
+                              "y": 224,
+                              "name": "nBL1",
+                              "fill": "#F6F4F1",
+                              "width": 36,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "ZN0jf",
+                              "x": 224,
+                              "y": 224,
+                              "name": "nBR1",
+                              "fill": "#F6F4F1",
+                              "width": 36,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "cFhV6",
+                              "x": 0,
+                              "y": 36,
+                              "name": "nTL2",
+                              "fill": "#F6F4F1",
+                              "width": 18,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "O9LJbN",
+                              "x": 242,
+                              "y": 36,
+                              "name": "nTR2",
+                              "fill": "#F6F4F1",
+                              "width": 18,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "B9U6Bv",
+                              "x": 0,
+                              "y": 206,
+                              "name": "nBL2",
+                              "fill": "#F6F4F1",
+                              "width": 18,
+                              "height": 18
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "OhdDR",
+                              "x": 242,
+                              "y": 206,
+                              "name": "nBR2",
+                              "fill": "#F6F4F1",
+                              "width": 18,
+                              "height": 18
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YHxgZ",
+                          "name": "Brand Block",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 14,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Bf5CS",
+                              "name": "Wordmark",
+                              "fill": "$ink",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Rimay",
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 34,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Ae6Nq",
+                              "name": "Progress Rombos",
+                              "gap": 12,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "l62ddP",
+                                  "name": "Step 1 Active",
+                                  "width": 25,
+                                  "height": 25,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "SNI8C",
+                                      "x": 10,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "UE5vN",
+                                      "x": 5,
+                                      "y": 5,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "OMsYf",
+                                      "x": 0,
+                                      "y": 10,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 25,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "kTx1n",
+                                      "x": 5,
+                                      "y": 15,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "azHle",
+                                      "x": 10,
+                                      "y": 20,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Wvg4U",
+                                      "x": 10,
+                                      "y": 5,
+                                      "name": "i1",
+                                      "fill": "$magenta",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "wwFk1",
+                                      "x": 5,
+                                      "y": 10,
+                                      "name": "i2",
+                                      "fill": "$magenta",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "p6JJv1",
+                                      "x": 10,
+                                      "y": 15,
+                                      "name": "i3",
+                                      "fill": "$magenta",
+                                      "width": 5,
+                                      "height": 5
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "HBeYk",
+                                  "name": "Step 2",
+                                  "width": 25,
+                                  "height": 25,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "lcJPZ",
+                                      "x": 10,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "krLy3",
+                                      "x": 5,
+                                      "y": 5,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "ItuJK",
+                                      "x": 0,
+                                      "y": 10,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 25,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "NzNpV",
+                                      "x": 5,
+                                      "y": 15,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "i26gO",
+                                      "x": 10,
+                                      "y": 20,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "jhx8u",
+                                      "x": 10,
+                                      "y": 5,
+                                      "name": "i1",
+                                      "fill": "$ground",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "mYdL2",
+                                      "x": 5,
+                                      "y": 10,
+                                      "name": "i2",
+                                      "fill": "$ground",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "v7tuyB",
+                                      "x": 10,
+                                      "y": 15,
+                                      "name": "i3",
+                                      "fill": "$ground",
+                                      "width": 5,
+                                      "height": 5
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "rT4yP",
+                                  "name": "Step 3",
+                                  "width": 25,
+                                  "height": 25,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "HZKF0",
+                                      "x": 10,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "F6ltp",
+                                      "x": 5,
+                                      "y": 5,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "t8fs3",
+                                      "x": 0,
+                                      "y": 10,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 25,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "WzQEf",
+                                      "x": 5,
+                                      "y": 15,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "sEgsS",
+                                      "x": 10,
+                                      "y": 20,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "oSCXs",
+                                      "x": 10,
+                                      "y": 5,
+                                      "name": "i1",
+                                      "fill": "$ground",
+                                      "width": 5,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "NDe4c",
+                                      "x": 5,
+                                      "y": 10,
+                                      "name": "i2",
+                                      "fill": "$ground",
+                                      "width": 15,
+                                      "height": 5
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "KItIk",
+                                      "x": 10,
+                                      "y": 15,
+                                      "name": "i3",
+                                      "fill": "$ground",
+                                      "width": 5,
+                                      "height": 5
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "U4gtH",
+                          "name": "Question Block",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "UfiBd",
+                              "name": "Q Castellano",
+                              "fill": "$ink",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "¿Qué idioma habla?",
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "kwICy",
+                              "name": "Q Quechua",
+                              "fill": "$cinnamon",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "¿Ima simitam rimanki?",
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "XKqyU",
+                          "name": "Options",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "iUJ0G",
+                              "name": "Option Castellano",
+                              "clip": true,
+                              "width": "fill_container",
+                              "height": 72,
+                              "fill": "$surface",
+                              "cornerRadius": 20,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "padding": [
+                                0,
+                                16,
+                                0,
+                                6
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "L2q3q",
+                                  "name": "Rombo Chain",
+                                  "width": 12,
+                                  "height": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "ADTIl",
+                                      "name": "link0",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "m6oBZ",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "KvRYn",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cobalt",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "Ptuqk",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "J3Ifz",
+                                      "name": "link1",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "DZnqj",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "q49Qce",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cobalt",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "rgSdT",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "vxHIa",
+                                      "name": "link2",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "SjaTH",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "E0T1l",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cobalt",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "MM60B",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "o2yQJ",
+                                      "name": "link3",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "e6dh98",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "eeUkS",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cobalt",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "Z2nHFW",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cobalt",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "w8mVO",
+                                  "name": "Text",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 2,
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "h1YUOF",
+                                      "name": "Title",
+                                      "fill": "$ink",
+                                      "content": "Castellano",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "JDSzU",
+                                  "name": "Chevron",
+                                  "width": 20,
+                                  "height": 20,
+                                  "icon": "chevron-right",
+                                  "library": "lucide",
+                                  "fill": "$ink-3"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "WlUBz",
+                              "name": "Option Runasimi",
+                              "clip": true,
+                              "width": "fill_container",
+                              "height": 72,
+                              "fill": "$surface",
+                              "cornerRadius": 20,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "padding": [
+                                0,
+                                16,
+                                0,
+                                6
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "XhTVk",
+                                  "name": "Rombo Chain",
+                                  "width": 12,
+                                  "height": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 4,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "IQhTg",
+                                      "name": "link0",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "CEEDb",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "mUkfA",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cinnamon",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "ifa2q",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "nulaw",
+                                      "name": "link1",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "qiXNj",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "Stpnb",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cinnamon",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "qkZiV",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "tBWm1",
+                                      "name": "link2",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "ej065",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "tC43U",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cinnamon",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "Mhzrh",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "y62byc",
+                                      "name": "link3",
+                                      "width": 12,
+                                      "height": 12,
+                                      "layout": "none",
+                                      "children": [
+                                        {
+                                          "type": "rectangle",
+                                          "id": "pTnFU",
+                                          "x": 4,
+                                          "y": 0,
+                                          "name": "t0",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "rqA5x",
+                                          "x": 0,
+                                          "y": 4,
+                                          "name": "t1",
+                                          "fill": "$cinnamon",
+                                          "width": 12,
+                                          "height": 4
+                                        },
+                                        {
+                                          "type": "rectangle",
+                                          "id": "oYTED",
+                                          "x": 4,
+                                          "y": 8,
+                                          "name": "t2",
+                                          "fill": "$cinnamon",
+                                          "width": 4,
+                                          "height": 4
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "i0RDk",
+                                  "name": "Text",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 2,
+                                  "padding": [
+                                    0,
+                                    16
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Wx9EP",
+                                      "name": "Title",
+                                      "fill": "$cinnamon",
+                                      "content": "Runasimi",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "bIXY8",
+                                      "name": "Sub",
+                                      "fill": "$ink-2",
+                                      "content": "Quechua chanka",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "y4H4g",
+                                  "name": "Chevron",
+                                  "width": 20,
+                                  "height": 20,
+                                  "icon": "chevron-right",
+                                  "library": "lucide",
+                                  "fill": "$ink-3"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "h0Kzni",
+                      "name": "Home Indicator Area",
+                      "width": "fill_container",
+                      "height": 34,
+                      "padding": [
+                        0,
+                        0,
+                        8,
+                        0
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "rBrsA",
+                          "name": "Home Indicator",
+                          "fill": "$ink",
+                          "width": 134,
+                          "height": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "lTGyg",
+              "name": "2 · Rimay habla Column",
+              "width": 402,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "GjQd1",
+                  "name": "Label",
+                  "fill": "$ink-2",
+                  "content": "2 · Rimay habla",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "eTaZH",
+                  "name": "Screen 2 Rimay Habla",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 44,
+                  "stroke": "#D8D2CC",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Wu79e",
+                      "name": "Status Bar",
+                      "width": "fill_container",
+                      "height": 54,
+                      "padding": [
+                        0,
+                        26
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "pt2du",
+                          "name": "Time",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "M4hw0N",
+                          "name": "Glyphs",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "yZVRy",
+                              "name": "signal",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "signal",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "twyqn",
+                              "name": "wifi",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "HGiIQ",
+                              "name": "battery-full",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "K2pQ3",
+                      "name": "Header",
+                      "width": "fill_container",
+                      "padding": [
+                        6,
+                        16,
+                        10,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "zxrDW",
+                          "name": "Title Block",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Do8dk",
+                              "name": "App Name",
+                              "fill": "$ink",
+                              "content": "Rimay",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "CfWfW",
+                              "name": "Session",
+                              "fill": "$ink-2",
+                              "content": "Consulta · 3:12",
+                              "fontFamily": "Inter",
+                              "fontSize": 13
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "l1Kax",
+                          "name": "Resumen Button",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "JFAef",
+                              "name": "Doc Icon",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "file-text",
+                              "library": "lucide",
+                              "fill": "$ink-2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YC4Kb",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 18,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ZmCZ7",
+                          "name": "Chaski Card",
+                          "width": 200,
+                          "height": 200,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "ref/chaski-hablando.png",
+                            "mode": "fill"
+                          },
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "x3aXBb",
+                              "x": 0,
+                              "y": 0,
+                              "name": "nTL0",
+                              "fill": "#F6F4F1",
+                              "width": 42,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "FR0vU",
+                              "x": 158,
+                              "y": 0,
+                              "name": "nTR0",
+                              "fill": "#F6F4F1",
+                              "width": 42,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "EGyco",
+                              "x": 0,
+                              "y": 186,
+                              "name": "nBL0",
+                              "fill": "#F6F4F1",
+                              "width": 42,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "qgjyL",
+                              "x": 158,
+                              "y": 186,
+                              "name": "nBR0",
+                              "fill": "#F6F4F1",
+                              "width": 42,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "pZYQH",
+                              "x": 0,
+                              "y": 14,
+                              "name": "nTL1",
+                              "fill": "#F6F4F1",
+                              "width": 28,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "XuHcV",
+                              "x": 172,
+                              "y": 14,
+                              "name": "nTR1",
+                              "fill": "#F6F4F1",
+                              "width": 28,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "ZTNnn",
+                              "x": 0,
+                              "y": 172,
+                              "name": "nBL1",
+                              "fill": "#F6F4F1",
+                              "width": 28,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "c9kwb",
+                              "x": 172,
+                              "y": 172,
+                              "name": "nBR1",
+                              "fill": "#F6F4F1",
+                              "width": 28,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "He5aF",
+                              "x": 0,
+                              "y": 28,
+                              "name": "nTL2",
+                              "fill": "#F6F4F1",
+                              "width": 14,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "R1cpIO",
+                              "x": 186,
+                              "y": 28,
+                              "name": "nTR2",
+                              "fill": "#F6F4F1",
+                              "width": 14,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "yUv5W",
+                              "x": 0,
+                              "y": 158,
+                              "name": "nBL2",
+                              "fill": "#F6F4F1",
+                              "width": 14,
+                              "height": 14
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "TRB3G",
+                              "x": 186,
+                              "y": 158,
+                              "name": "nBR2",
+                              "fill": "#F6F4F1",
+                              "width": 14,
+                              "height": 14
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "a4RAkz",
+                          "name": "Quechua Tag",
+                          "height": 28,
+                          "fill": "$cinnamon",
+                          "cornerRadius": 14,
+                          "gap": 8,
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "uPjnr",
+                              "name": "Tag Rombo",
+                              "width": 10,
+                              "height": 10,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "rectangle",
+                                  "id": "bwhj3",
+                                  "x": 4,
+                                  "y": 0,
+                                  "name": "o0",
+                                  "fill": "#FFFFFF",
+                                  "width": 2,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "YUCvF",
+                                  "x": 2,
+                                  "y": 2,
+                                  "name": "o1",
+                                  "fill": "#FFFFFF",
+                                  "width": 6,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "e0QMZZ",
+                                  "x": 0,
+                                  "y": 4,
+                                  "name": "o2",
+                                  "fill": "#FFFFFF",
+                                  "width": 10,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "igiWw",
+                                  "x": 2,
+                                  "y": 6,
+                                  "name": "o3",
+                                  "fill": "#FFFFFF",
+                                  "width": 6,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "Xencv",
+                                  "x": 4,
+                                  "y": 8,
+                                  "name": "o4",
+                                  "fill": "#FFFFFF",
+                                  "width": 2,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "B2lYjU",
+                                  "x": 4,
+                                  "y": 2,
+                                  "name": "i1",
+                                  "fill": "$yellow",
+                                  "width": 2,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "NH2Cg",
+                                  "x": 2,
+                                  "y": 4,
+                                  "name": "i2",
+                                  "fill": "$yellow",
+                                  "width": 6,
+                                  "height": 2
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "VEi2c",
+                                  "x": 4,
+                                  "y": 6,
+                                  "name": "i3",
+                                  "fill": "$yellow",
+                                  "width": 2,
+                                  "height": 2
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "lPan8",
+                              "name": "Tag Label",
+                              "fill": "#FFFFFF",
+                              "content": "Quechua chanka",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "G8zUm",
+                          "name": "Message Card",
+                          "width": "fill_container",
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "UI6As",
+                              "name": "Quechua Line",
+                              "fill": "$ink",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "[Indicación en quechua chanka]",
+                              "lineHeight": 1.25,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "path",
+                              "id": "PxIO3",
+                              "name": "Stepped Divider",
+                              "geometry": "M0 0h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4-4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z m4 0h4v4h-4z m4 4h4v4h-4z",
+                              "viewBox": [
+                                0,
+                                0,
+                                338,
+                                12
+                              ],
+                              "fill": "$border",
+                              "width": 338,
+                              "height": 12
+                            },
+                            {
+                              "type": "text",
+                              "id": "w7qj9k",
+                              "name": "Spanish Line",
+                              "fill": "$ink-2",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Tome una pastilla dos veces al día, en la mañana y en la noche, durante siete días.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 15
+                            },
+                            {
+                              "type": "text",
+                              "id": "YO27w",
+                              "name": "Spoken Note",
+                              "fill": "$ink-3",
+                              "content": "Rimay ya lo dijo en voz alta.",
+                              "fontFamily": "Inter",
+                              "fontSize": 13
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "KdDmJ",
+                          "name": "Audit Row",
+                          "width": "fill_container",
+                          "fill": "$ok-bg",
+                          "cornerRadius": 16,
+                          "layout": "vertical",
+                          "gap": 10,
+                          "padding": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "GPQJt",
+                              "name": "Audit Header",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "Afg4y",
+                                  "name": "Shield Check",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "shield-check",
+                                  "library": "lucide",
+                                  "fill": "$ok-ink"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "fpkV5",
+                                  "name": "Audit Title",
+                                  "fill": "$ok-ink",
+                                  "content": "Auditado antes de hablar",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "yaSzO",
+                              "name": "Audit Badges",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "thOwf",
+                                  "name": "Badge ✓ Medicamento",
+                                  "width": 106,
+                                  "height": 26,
+                                  "fill": "$surface",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Wgdvi",
+                                      "name": "Badge Label",
+                                      "fill": "$ok-ink",
+                                      "content": "✓ Medicamento",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "mOoUz",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "ClKct",
+                                      "layoutPosition": "absolute",
+                                      "x": 102,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "S3b1J8",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Xt37H",
+                                      "layoutPosition": "absolute",
+                                      "x": 102,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "V0ZOI",
+                                  "name": "Badge ✓ Dosis",
+                                  "width": 66,
+                                  "height": 26,
+                                  "fill": "$surface",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "dzr0z",
+                                      "name": "Badge Label",
+                                      "fill": "$ok-ink",
+                                      "content": "✓ Dosis",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "UCP3K",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "MYKMo",
+                                      "layoutPosition": "absolute",
+                                      "x": 62,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "opuac",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "uy2qp",
+                                      "layoutPosition": "absolute",
+                                      "x": 62,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "hLkUG",
+                                  "name": "Badge ✓ Horario",
+                                  "width": 82,
+                                  "height": 26,
+                                  "fill": "$surface",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "uHAf2",
+                                      "name": "Badge Label",
+                                      "fill": "$ok-ink",
+                                      "content": "✓ Horario",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "oi3q3",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "dY6en",
+                                      "layoutPosition": "absolute",
+                                      "x": 78,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Ozx6k",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Ord17",
+                                      "layoutPosition": "absolute",
+                                      "x": 78,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Yl5dQ",
+                                  "name": "Badge ✓ Días",
+                                  "width": 62,
+                                  "height": 26,
+                                  "fill": "$surface",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "VtJmQ",
+                                      "name": "Badge Label",
+                                      "fill": "$ok-ink",
+                                      "content": "✓ Días",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "500"
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "dJ4Uy",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "H3fij",
+                                      "layoutPosition": "absolute",
+                                      "x": 58,
+                                      "y": 0,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "U1MtN",
+                                      "layoutPosition": "absolute",
+                                      "x": 0,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r1aqi",
+                                      "layoutPosition": "absolute",
+                                      "x": 58,
+                                      "y": 22,
+                                      "name": "notch",
+                                      "fill": "$ok-bg",
+                                      "width": 4,
+                                      "height": 4
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qGl2X",
+                          "name": "Actions",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "ap3J6",
+                              "name": "Repetir Audio",
+                              "width": "fill_container",
+                              "height": 52,
+                              "fill": "$surface",
+                              "cornerRadius": 26,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "o0m8Gw",
+                                  "name": "Speaker",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "volume-2",
+                                  "library": "lucide",
+                                  "fill": "$teal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "VrLNa",
+                                  "name": "Label",
+                                  "fill": "$teal",
+                                  "content": "Repetir audio",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "T2VuA",
+                              "name": "Seguir",
+                              "width": "fill_container",
+                              "height": 52,
+                              "fill": "$teal",
+                              "cornerRadius": 26,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "ZJZ2k",
+                                  "name": "Mic",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "mic",
+                                  "library": "lucide",
+                                  "fill": "#FFFFFF"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "ZrUWg",
+                                  "name": "Label",
+                                  "fill": "#FFFFFF",
+                                  "content": "Seguir",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "c80tk3",
+                      "name": "Home Indicator Area",
+                      "width": "fill_container",
+                      "height": 34,
+                      "padding": [
+                        0,
+                        0,
+                        8,
+                        0
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "fD5HN",
+                          "name": "Home Indicator",
+                          "fill": "$ink",
+                          "width": 134,
+                          "height": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "PTaRx",
+              "name": "3 · Listo para hablar Column",
+              "width": 402,
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "o9KFMy",
+                  "name": "Label",
+                  "fill": "$ink-2",
+                  "content": "3 · Listo para hablar",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "WGSo7",
+                  "name": "Screen 3 Listo",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 44,
+                  "stroke": "#D8D2CC",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "blu5F",
+                      "name": "Status Bar",
+                      "width": "fill_container",
+                      "height": 54,
+                      "padding": [
+                        0,
+                        26
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "npbcW",
+                          "name": "Time",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Q7tB32",
+                          "name": "Glyphs",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "FbXyX",
+                              "name": "signal",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "signal",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "zIiVy",
+                              "name": "wifi",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "tiZvx",
+                              "name": "battery-full",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ZSJAr",
+                      "name": "Header",
+                      "width": "fill_container",
+                      "padding": [
+                        6,
+                        16,
+                        10,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "BE12D",
+                          "name": "Title Block",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "JDY9N",
+                              "name": "App Name",
+                              "fill": "$ink",
+                              "content": "Rimay",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Lhpdy",
+                              "name": "Session",
+                              "fill": "$ink-2",
+                              "content": "Consulta · 3:12",
+                              "fontFamily": "Inter",
+                              "fontSize": 13
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "e9ThoF",
+                          "name": "Resumen Button",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "GHKFZ",
+                              "name": "Doc Icon",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "file-text",
+                              "library": "lucide",
+                              "fill": "$ink-2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "pypLp",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "gap": 22,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MIfis",
+                          "name": "Chaski Card",
+                          "width": 240,
+                          "height": 240,
+                          "fill": {
+                            "type": "image",
+                            "enabled": true,
+                            "url": "ref/chaski-reposo.png",
+                            "mode": "fill"
+                          },
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "rectangle",
+                              "id": "ckRcS",
+                              "x": 0,
+                              "y": 0,
+                              "name": "nTL0",
+                              "fill": "#F6F4F1",
+                              "width": 48,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "V3RMS",
+                              "x": 192,
+                              "y": 0,
+                              "name": "nTR0",
+                              "fill": "#F6F4F1",
+                              "width": 48,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "v1nse",
+                              "x": 0,
+                              "y": 224,
+                              "name": "nBL0",
+                              "fill": "#F6F4F1",
+                              "width": 48,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "Ceaqp",
+                              "x": 192,
+                              "y": 224,
+                              "name": "nBR0",
+                              "fill": "#F6F4F1",
+                              "width": 48,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "mNSJG",
+                              "x": 0,
+                              "y": 16,
+                              "name": "nTL1",
+                              "fill": "#F6F4F1",
+                              "width": 32,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "fkR83",
+                              "x": 208,
+                              "y": 16,
+                              "name": "nTR1",
+                              "fill": "#F6F4F1",
+                              "width": 32,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "eWBbi",
+                              "x": 0,
+                              "y": 208,
+                              "name": "nBL1",
+                              "fill": "#F6F4F1",
+                              "width": 32,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "jkdyT",
+                              "x": 208,
+                              "y": 208,
+                              "name": "nBR1",
+                              "fill": "#F6F4F1",
+                              "width": 32,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "GdKZc",
+                              "x": 0,
+                              "y": 32,
+                              "name": "nTL2",
+                              "fill": "#F6F4F1",
+                              "width": 16,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "GQBhj",
+                              "x": 224,
+                              "y": 32,
+                              "name": "nTR2",
+                              "fill": "#F6F4F1",
+                              "width": 16,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "p9XAgk",
+                              "x": 0,
+                              "y": 192,
+                              "name": "nBL2",
+                              "fill": "#F6F4F1",
+                              "width": 16,
+                              "height": 16
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "qK5eQ",
+                              "x": 224,
+                              "y": 192,
+                              "name": "nBR2",
+                              "fill": "#F6F4F1",
+                              "width": 16,
+                              "height": 16
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "ROsT1",
+                          "name": "Idle Title",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Listo para interpretar",
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "IJnWQ",
+                          "name": "Idle Description",
+                          "fill": "$ink-2",
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "content": "Hable en castellano. Rimay se lo dirá en quechua al paciente y le avisará si algo no se entendió.",
+                          "lineHeight": 1.45,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 15
+                        },
+                        {
+                          "type": "frame",
+                          "id": "onskp",
+                          "name": "Mic Row",
+                          "width": "fill_container",
+                          "gap": 16,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "nOa4u",
+                              "name": "Receta Button",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "ZmSwR",
+                                  "name": "Octagon",
+                                  "width": 56,
+                                  "height": 56,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "polygon",
+                                      "polygonCount": 8,
+                                      "id": "cH7ve",
+                                      "x": 0,
+                                      "y": 0,
+                                      "name": "Stepped Shape",
+                                      "fill": "$surface",
+                                      "width": 56,
+                                      "height": 56,
+                                      "stroke": "$border",
+                                      "strokeWidth": 1
+                                    },
+                                    {
+                                      "type": "icon",
+                                      "id": "wt7G0",
+                                      "x": 18,
+                                      "y": 18,
+                                      "name": "camera",
+                                      "width": 20,
+                                      "height": 20,
+                                      "icon": "camera",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "PJ23s",
+                                  "name": "Label",
+                                  "fill": "$ink-2",
+                                  "content": "Receta",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "gJlfI",
+                              "name": "Mic Medallion",
+                              "width": 160,
+                              "height": 160,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "GHgFR",
+                                  "x": 72.5,
+                                  "y": 10.5,
+                                  "name": "Ring Rombo 1",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "rQZyy",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RVVYh",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "SOaRr",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "N0HNE",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "HL3cI",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "dbe2L",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RE7O5",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$turquoise",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "hiD6S",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "jHUrN",
+                                  "x": 103.5,
+                                  "y": 18.806424965364805,
+                                  "name": "Ring Rombo 2",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RQsIw",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "k1i2G",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "C92I8",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Q3wZ4",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RmPsQ",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "CbfZ0",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "b2mZkV",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$yellow",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "h1nzd",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "ickhI",
+                                  "x": 126.19357503463522,
+                                  "y": 41.5,
+                                  "name": "Ring Rombo 3",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "ONeIq",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "qrQRH",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Gcu8t",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "OT7UH",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "IxeuV",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "eDbY1",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "t97ozH",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$magenta",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "pCgGq",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "XQ7bZ",
+                                  "x": 134.5,
+                                  "y": 72.5,
+                                  "name": "Ring Rombo 4",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "N5QRaU",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RSi8J",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "jafiS",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "suoNj",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RjILR",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "IffhM",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "SOO6R",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$turquoise",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "C3baFr",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Jg36X",
+                                  "x": 126.19357503463522,
+                                  "y": 103.5,
+                                  "name": "Ring Rombo 5",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Vb4Vv",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "K9Cx2",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "uD29U",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "QWXCy",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "t7nSR",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "bsAva",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "rcW0b",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$yellow",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "A4wzR",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "D6GWxC",
+                                  "x": 103.5,
+                                  "y": 126.19357503463519,
+                                  "name": "Ring Rombo 6",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "G3j58D",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Uwqgk",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "RCx1F",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "I0edsG",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "DirGc",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "H1ggVO",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "YW9lU",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$magenta",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "T7lW0Y",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "ZxVn4",
+                                  "x": 72.5,
+                                  "y": 134.5,
+                                  "name": "Ring Rombo 7",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "KzvGz",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "fJo31",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "y1E1IS",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "NZAdH",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "LYuXO",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "b7Wamy",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "g3qvl",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$turquoise",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Cnls1",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "S2LtC",
+                                  "x": 41.500000000000014,
+                                  "y": 126.19357503463522,
+                                  "name": "Ring Rombo 8",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "uKdIG",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "enoD7",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "yI4bf",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Fof9O",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "sZ3jR",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "r5TvU",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Wid59",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$yellow",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "DMDV3",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "LEJiN",
+                                  "x": 18.806424965364798,
+                                  "y": 103.5,
+                                  "name": "Ring Rombo 9",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "ja2ZL",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "D5GOs",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Fck7w",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "MYFYF",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "v601t",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Sed8Q",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "d6wHYK",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$magenta",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "qV4ve",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "bq4Ix",
+                                  "x": 10.5,
+                                  "y": 72.50000000000001,
+                                  "name": "Ring Rombo 10",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "zwkdb",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "zBYNG",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "vdtBt",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "v1YZ7",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "VWsmz",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "vREhd",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "a8FRw5",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$turquoise",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "zXrj4",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$turquoise",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "v5FEG",
+                                  "x": 18.806424965364805,
+                                  "y": 41.49999999999999,
+                                  "name": "Ring Rombo 11",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "cFGNH",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "FKtaY",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "ge1kK",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Y10eZ",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "tMDz8",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "qcBqi",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "R5jct8",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$yellow",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "bZeya",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$yellow",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "t4h61",
+                                  "x": 41.49999999999997,
+                                  "y": 18.806424965364812,
+                                  "name": "Ring Rombo 12",
+                                  "width": 15,
+                                  "height": 15,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Ly1fs",
+                                      "x": 6,
+                                      "y": 0,
+                                      "name": "o0",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "P7PwPO",
+                                      "x": 3,
+                                      "y": 3,
+                                      "name": "o1",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Mv2jj",
+                                      "x": 0,
+                                      "y": 6,
+                                      "name": "o2",
+                                      "fill": "$thread",
+                                      "width": 15,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "HECvz",
+                                      "x": 3,
+                                      "y": 9,
+                                      "name": "o3",
+                                      "fill": "$thread",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "Z3BQK",
+                                      "x": 6,
+                                      "y": 12,
+                                      "name": "o4",
+                                      "fill": "$thread",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "UiFvB",
+                                      "x": 6,
+                                      "y": 3,
+                                      "name": "i1",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "C5Pui",
+                                      "x": 3,
+                                      "y": 6,
+                                      "name": "i2",
+                                      "fill": "$magenta",
+                                      "width": 9,
+                                      "height": 3
+                                    },
+                                    {
+                                      "type": "rectangle",
+                                      "id": "erq6N",
+                                      "x": 6,
+                                      "y": 9,
+                                      "name": "i3",
+                                      "fill": "$magenta",
+                                      "width": 3,
+                                      "height": 3
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "PhnUP",
+                                  "x": 32,
+                                  "y": 32,
+                                  "name": "Mic Button",
+                                  "width": 96,
+                                  "height": 96,
+                                  "fill": "$teal",
+                                  "cornerRadius": 48,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "TO1f0",
+                                      "name": "Mic",
+                                      "width": 36,
+                                      "height": 36,
+                                      "icon": "mic",
+                                      "library": "lucide",
+                                      "fill": "#FFFFFF"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "j9wd4",
+                              "name": "Resumen Button",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "T0sX9",
+                                  "name": "Octagon",
+                                  "width": 56,
+                                  "height": 56,
+                                  "layout": "none",
+                                  "children": [
+                                    {
+                                      "type": "polygon",
+                                      "polygonCount": 8,
+                                      "id": "pVczu",
+                                      "x": 0,
+                                      "y": 0,
+                                      "name": "Stepped Shape",
+                                      "fill": "$surface",
+                                      "width": 56,
+                                      "height": 56,
+                                      "stroke": "$border",
+                                      "strokeWidth": 1
+                                    },
+                                    {
+                                      "type": "icon",
+                                      "id": "bZ3Cl",
+                                      "x": 18,
+                                      "y": 18,
+                                      "name": "list-checks",
+                                      "width": 20,
+                                      "height": 20,
+                                      "icon": "list-checks",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "YnrFK",
+                                  "name": "Label",
+                                  "fill": "$ink-2",
+                                  "content": "Resumen",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "nCehX",
+                          "name": "Mic Hint",
+                          "fill": "$teal",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Toque para hablar",
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VhCB9",
+                          "name": "Direction Pill",
+                          "height": 32,
+                          "fill": "#ECEFEC",
+                          "cornerRadius": 16,
+                          "gap": 6,
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "wzkND",
+                              "name": "Swap",
+                              "width": 14,
+                              "height": 14,
+                              "icon": "arrow-left-right",
+                              "library": "lucide",
+                              "fill": "$ink-2"
+                            },
+                            {
+                              "type": "text",
+                              "id": "qtU1N",
+                              "name": "Direction Label",
+                              "fill": "$ink-2",
+                              "content": "Habla usted · castellano",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "qeCDy",
+                      "name": "Home Indicator Area",
+                      "width": "fill_container",
+                      "height": 34,
+                      "padding": [
+                        0,
+                        0,
+                        8,
+                        0
+                      ],
+                      "justifyContent": "center",
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "m8EjS",
+                          "name": "Home Indicator",
+                          "fill": "$ink",
+                          "width": 134,
+                          "height": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "ground": {
+      "type": "color",
+      "value": "#F6F4F1"
+    },
+    "surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E4DED8"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#18221F"
+    },
+    "ink-2": {
+      "type": "color",
+      "value": "#5B6A65"
+    },
+    "ink-3": {
+      "type": "color",
+      "value": "#6F7975"
+    },
+    "teal": {
+      "type": "color",
+      "value": "#0E6B64"
+    },
+    "teal-tint": {
+      "type": "color",
+      "value": "#DCEEEB"
+    },
+    "cinnamon": {
+      "type": "color",
+      "value": "#A85A2A"
+    },
+    "ok-bg": {
+      "type": "color",
+      "value": "#DDF2E3"
+    },
+    "ok-ink": {
+      "type": "color",
+      "value": "#1E7A3E"
+    },
+    "thread": {
+      "type": "color",
+      "value": "#1A1A1A"
+    },
+    "magenta": {
+      "type": "color",
+      "value": "#E4007C"
+    },
+    "yellow": {
+      "type": "color",
+      "value": "#FFC41F"
+    },
+    "turquoise": {
+      "type": "color",
+      "value": "#00A6B4"
+    },
+    "cobalt": {
+      "type": "color",
+      "value": "#2546B0"
+    },
+    "board": {
+      "type": "color",
+      "value": "#E9E6E1"
+    }
+  },
+  "fileToken": "d5457524-61c9-450f-b3b0-fa6121a6acea"
+}

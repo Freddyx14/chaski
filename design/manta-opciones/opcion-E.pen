@@ -1,0 +1,1910 @@
+{
+  "version": "2.18",
+  "children": [
+    {
+      "type": "frame",
+      "id": "iAW6A",
+      "x": 0,
+      "y": 0,
+      "name": "Board · Opcion E",
+      "fill": "#E9E6E1",
+      "layout": "vertical",
+      "gap": 40,
+      "padding": 120,
+      "children": [
+        {
+          "type": "text",
+          "id": "Q4GIj",
+          "name": "Titulo",
+          "fill": "$ink",
+          "content": "E · Fiesta",
+          "lineHeight": 1.2,
+          "fontFamily": "$font",
+          "fontSize": 40,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "LASh0",
+          "name": "Racional",
+          "fill": "$sec",
+          "textGrowth": "fixed-width",
+          "width": 1200,
+          "content": "Fondos de color de la manta con tarjetas blancas encima: cálido y festivo, sin perder la lectura.",
+          "lineHeight": 1.4,
+          "fontFamily": "$font",
+          "fontSize": 20
+        },
+        {
+          "type": "frame",
+          "id": "IH2P0",
+          "name": "Pantallas",
+          "gap": 72,
+          "children": [
+            {
+              "type": "frame",
+              "id": "ADly2",
+              "name": "Col 1 · Idioma",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "LfQ65",
+                  "name": "Label",
+                  "fill": "$sec",
+                  "content": "1 · Idioma",
+                  "fontFamily": "$font",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "jWlQL",
+                  "name": "Pantalla 1 · Idioma",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$groundA",
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "a4pTq",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Lattice rombos",
+                      "opacity": 0.65,
+                      "geometry": "M-71 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z",
+                      "viewBox": [
+                        0,
+                        0,
+                        402,
+                        874
+                      ],
+                      "fill": "$latticeA",
+                      "width": 402,
+                      "height": 874
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LPFTA",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Chrome",
+                      "width": 402,
+                      "height": 874,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "M3GoLW",
+                          "name": "Status bar",
+                          "width": "fill_container",
+                          "height": 54,
+                          "padding": [
+                            0,
+                            18
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "X9Z7AE",
+                              "name": "Hora",
+                              "fill": "$white",
+                              "content": "9:41",
+                              "fontFamily": "$font",
+                              "fontSize": 17,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "N0dLi",
+                              "name": "Glyphs",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "r0qYD",
+                                  "name": "signal",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "signal",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "dnboE",
+                                  "name": "wifi",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "wifi",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "n2FTnX",
+                                  "name": "battery-full",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "battery-full",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "UpHvu",
+                          "name": "Franja manta",
+                          "width": "fill_container",
+                          "height": 10,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "s80yUs",
+                              "name": "Hilo 0",
+                              "width": 38,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "EWDvj",
+                              "name": "Hilo 1",
+                              "width": 22,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "e8aGYA",
+                              "name": "Hilo 2",
+                              "width": 32,
+                              "height": "fill_container",
+                              "fill": "#12A150"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "gzjiD",
+                              "name": "Hilo 3",
+                              "width": 26,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "h077X",
+                              "name": "Hilo 4",
+                              "width": 18,
+                              "height": "fill_container",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "IFMbB",
+                              "name": "Hilo 5",
+                              "width": 28,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "hu6fH",
+                              "name": "Hilo 6",
+                              "width": 36,
+                              "height": "fill_container",
+                              "fill": "#8CC63F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "dl2ZK",
+                              "name": "Hilo 7",
+                              "width": 20,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "r1Y6zW",
+                              "name": "Hilo 8",
+                              "width": 42,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Q6rBh0",
+                              "name": "Hilo 9",
+                              "width": 16,
+                              "height": "fill_container",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DqGkg",
+                              "name": "Hilo 10",
+                              "width": 30,
+                              "height": "fill_container",
+                              "fill": "#12A150"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "v8Ok8o",
+                              "name": "Hilo 11",
+                              "width": 24,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "B8axr",
+                              "name": "Hilo 12",
+                              "width": 34,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "J1gjdm",
+                              "name": "Hilo 13",
+                              "width": 18,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "GFq0c",
+                              "name": "Hilo 14",
+                              "width": "fill_container",
+                              "height": "fill_container",
+                              "fill": "#8CC63F"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yykuR",
+                          "name": "Cuerpo",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 18,
+                          "padding": [
+                            20,
+                            16,
+                            34,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "U0IAj",
+                              "name": "Chaski marco",
+                              "width": "fill_container",
+                              "height": 332,
+                              "fill": "$white",
+                              "cornerRadius": 34,
+                              "padding": 6,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "i7snKO",
+                                  "name": "Chaski imagen",
+                                  "width": "fill_container",
+                                  "height": "fill_container",
+                                  "fill": {
+                                    "type": "image",
+                                    "enabled": true,
+                                    "url": "ref/chaski-presentarse.png",
+                                    "mode": "fill"
+                                  },
+                                  "cornerRadius": 28
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "n4Y6ko",
+                              "name": "Wordmark",
+                              "fill": "$white",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Rimay",
+                              "lineHeight": 1.2,
+                              "textAlign": "center",
+                              "fontFamily": "$font",
+                              "fontSize": 34,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Rs5VW",
+                              "name": "Tarjeta idioma",
+                              "width": "fill_container",
+                              "fill": "$white",
+                              "cornerRadius": 24,
+                              "layout": "vertical",
+                              "gap": 16,
+                              "padding": 20,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "jqjNz",
+                                  "name": "Pasos",
+                                  "width": "fill_container",
+                                  "height": 8,
+                                  "gap": 8,
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "iqtYI",
+                                      "name": "Paso 1",
+                                      "fill": "$teal",
+                                      "width": 8,
+                                      "height": 8
+                                    },
+                                    {
+                                      "type": "ellipse",
+                                      "id": "v5SnH",
+                                      "name": "Paso 2",
+                                      "fill": "$border",
+                                      "width": 8,
+                                      "height": 8
+                                    },
+                                    {
+                                      "type": "ellipse",
+                                      "id": "oVYxu",
+                                      "name": "Paso 3",
+                                      "fill": "$border",
+                                      "width": 8,
+                                      "height": 8
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "nzKEA",
+                                  "name": "Pregunta",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 6,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "c6ODnp",
+                                      "name": "Pregunta ES",
+                                      "fill": "$ink",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "¿Qué idioma habla?",
+                                      "lineHeight": 1.25,
+                                      "textAlign": "center",
+                                      "fontFamily": "$font",
+                                      "fontSize": 24,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "i8DRXW",
+                                      "name": "Pregunta QU",
+                                      "fill": "$cinnamon",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "¿Ima simitam rimanki?",
+                                      "lineHeight": 1.25,
+                                      "textAlign": "center",
+                                      "fontFamily": "$font",
+                                      "fontSize": 24,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "rLyai",
+                                  "name": "Opciones",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 12,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "LibiN",
+                                      "name": "Castellano",
+                                      "width": "fill_container",
+                                      "height": 72,
+                                      "fill": "$white",
+                                      "cornerRadius": 20,
+                                      "stroke": "$border",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
+                                      "padding": [
+                                        0,
+                                        18
+                                      ],
+                                      "justifyContent": "space_between",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "paGsG",
+                                          "name": "Texto",
+                                          "layout": "vertical",
+                                          "gap": 2,
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "Daer4",
+                                              "name": "Titulo",
+                                              "fill": "$ink",
+                                              "content": "Castellano",
+                                              "lineHeight": 1.25,
+                                              "fontFamily": "$font",
+                                              "fontSize": 20,
+                                              "fontWeight": "700"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "icon",
+                                          "id": "vnVZk",
+                                          "name": "Chevron",
+                                          "width": 22,
+                                          "height": 22,
+                                          "icon": "chevron-right",
+                                          "library": "lucide",
+                                          "fill": "$ter"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "YA5NG",
+                                      "name": "Runasimi",
+                                      "width": "fill_container",
+                                      "height": 72,
+                                      "fill": "$white",
+                                      "cornerRadius": 20,
+                                      "stroke": "$border",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
+                                      "padding": [
+                                        0,
+                                        18
+                                      ],
+                                      "justifyContent": "space_between",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "muXhw",
+                                          "name": "Texto",
+                                          "layout": "vertical",
+                                          "gap": 2,
+                                          "children": [
+                                            {
+                                              "type": "text",
+                                              "id": "jELsn",
+                                              "name": "Titulo",
+                                              "fill": "$cinnamon",
+                                              "content": "Runasimi",
+                                              "lineHeight": 1.25,
+                                              "fontFamily": "$font",
+                                              "fontSize": 20,
+                                              "fontWeight": "700"
+                                            },
+                                            {
+                                              "type": "text",
+                                              "id": "D4GIS6",
+                                              "name": "Sub",
+                                              "fill": "$sec",
+                                              "content": "Quechua chanka",
+                                              "lineHeight": 1.3,
+                                              "fontFamily": "$font",
+                                              "fontSize": 13
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "icon",
+                                          "id": "j5Vrf",
+                                          "name": "Chevron",
+                                          "width": 22,
+                                          "height": 22,
+                                          "icon": "chevron-right",
+                                          "library": "lucide",
+                                          "fill": "$ter"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "KoR8p",
+                      "layoutPosition": "absolute",
+                      "x": 134,
+                      "y": 861,
+                      "name": "Home indicator",
+                      "fill": "#FFFFFF",
+                      "width": 134,
+                      "height": 5
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "i0EuMR",
+              "name": "Col 2 · Rimay habla",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AqrJy",
+                  "name": "Label",
+                  "fill": "$sec",
+                  "content": "2 · Rimay habla",
+                  "fontFamily": "$font",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "g6LdzG",
+                  "name": "Pantalla 2 · Rimay habla",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$groundB",
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "hbn3U",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Lattice rombos",
+                      "opacity": 0.65,
+                      "geometry": "M-71 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z",
+                      "viewBox": [
+                        0,
+                        0,
+                        402,
+                        874
+                      ],
+                      "fill": "$latticeB",
+                      "width": 402,
+                      "height": 874
+                    },
+                    {
+                      "type": "frame",
+                      "id": "t0YV8Y",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Chrome",
+                      "width": 402,
+                      "height": 874,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "uXnFz",
+                          "name": "Status bar",
+                          "width": "fill_container",
+                          "height": 54,
+                          "padding": [
+                            0,
+                            18
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "m3N9Sj",
+                              "name": "Hora",
+                              "fill": "$white",
+                              "content": "9:41",
+                              "fontFamily": "$font",
+                              "fontSize": 17,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vA5Pp",
+                              "name": "Glyphs",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "n9k2v",
+                                  "name": "signal",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "signal",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "cStGE",
+                                  "name": "wifi",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "wifi",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "UZFCS",
+                                  "name": "battery-full",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "battery-full",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hlGrP",
+                          "name": "Franja manta",
+                          "width": "fill_container",
+                          "height": 10,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "XKco3",
+                              "name": "Hilo 0",
+                              "width": 38,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "BGfVp",
+                              "name": "Hilo 1",
+                              "width": 22,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Dunze",
+                              "name": "Hilo 2",
+                              "width": 32,
+                              "height": "fill_container",
+                              "fill": "#12A150"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "n4FCb",
+                              "name": "Hilo 3",
+                              "width": 26,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "XhYW0",
+                              "name": "Hilo 4",
+                              "width": 18,
+                              "height": "fill_container",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "iimIL",
+                              "name": "Hilo 5",
+                              "width": 28,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "mUjLn",
+                              "name": "Hilo 6",
+                              "width": 36,
+                              "height": "fill_container",
+                              "fill": "#8CC63F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "uKha2",
+                              "name": "Hilo 7",
+                              "width": 20,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "N6IFRO",
+                              "name": "Hilo 8",
+                              "width": 42,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ciLR7",
+                              "name": "Hilo 9",
+                              "width": 16,
+                              "height": "fill_container",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "EfWXj",
+                              "name": "Hilo 10",
+                              "width": 30,
+                              "height": "fill_container",
+                              "fill": "#12A150"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "KP1sV",
+                              "name": "Hilo 11",
+                              "width": 24,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "wCg0L",
+                              "name": "Hilo 12",
+                              "width": 34,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "KiFT3",
+                              "name": "Hilo 13",
+                              "width": 18,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "G4h1u3",
+                              "name": "Hilo 14",
+                              "width": "fill_container",
+                              "height": "fill_container",
+                              "fill": "#8CC63F"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "crTel",
+                          "name": "Cuerpo",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "gap": 16,
+                          "padding": [
+                            16,
+                            16,
+                            34,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "C49n46",
+                              "name": "Header",
+                              "width": "fill_container",
+                              "height": 44,
+                              "justifyContent": "space_between",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "jWXWm",
+                                  "name": "Titulo",
+                                  "layout": "vertical",
+                                  "gap": 2,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "s3pQO",
+                                      "name": "Rimay",
+                                      "fill": "$white",
+                                      "content": "Rimay",
+                                      "lineHeight": 1.25,
+                                      "fontFamily": "$font",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "HWyp5",
+                                      "name": "Consulta",
+                                      "opacity": 0.78,
+                                      "fill": "$white",
+                                      "content": "Consulta · 3:12",
+                                      "lineHeight": 1.3,
+                                      "fontFamily": "$font",
+                                      "fontSize": 13
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "t9tWAF",
+                                  "name": "Resumen",
+                                  "width": 40,
+                                  "height": 40,
+                                  "fill": "$white",
+                                  "cornerRadius": 20,
+                                  "stroke": "$border",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "w6wQE",
+                                      "name": "Doc",
+                                      "width": 20,
+                                      "height": 20,
+                                      "icon": "file-text",
+                                      "library": "lucide",
+                                      "fill": "$sec"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "A3U3S",
+                              "name": "Chaski fila",
+                              "width": "fill_container",
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "jOtf3",
+                                  "name": "Chaski marco",
+                                  "width": 212,
+                                  "height": 212,
+                                  "fill": "$white",
+                                  "cornerRadius": 34,
+                                  "padding": 6,
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "EOnih",
+                                      "name": "Chaski imagen",
+                                      "width": "fill_container",
+                                      "height": "fill_container",
+                                      "fill": {
+                                        "type": "image",
+                                        "enabled": true,
+                                        "url": "ref/chaski-hablando.png",
+                                        "mode": "fill"
+                                      },
+                                      "cornerRadius": 28
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "LsXFJ",
+                              "name": "Tag fila",
+                              "width": "fill_container",
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "EoyVt",
+                                  "name": "Tag quechua",
+                                  "height": 28,
+                                  "fill": "$cinnamon",
+                                  "cornerRadius": 14,
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "Q3RBds",
+                                      "name": "Runasimi",
+                                      "fill": "$white",
+                                      "content": "Runasimi",
+                                      "fontFamily": "$font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "pGiE0",
+                              "name": "Tarjeta mensaje",
+                              "width": "fill_container",
+                              "fill": "$white",
+                              "cornerRadius": 24,
+                              "layout": "vertical",
+                              "gap": 12,
+                              "padding": 18,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "nmI9M",
+                                  "name": "Quechua",
+                                  "fill": "$ink",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "[Indicación en quechua chanka]",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "$font",
+                                  "fontSize": 24,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "Q5aaZu",
+                                  "name": "Divisor",
+                                  "fill": "$border",
+                                  "width": "fill_container",
+                                  "height": 1
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "p2xiFv",
+                                  "name": "Castellano",
+                                  "fill": "$sec",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Tome una pastilla dos veces al día, en la mañana y en la noche, durante siete días.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "$font",
+                                  "fontSize": 15
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "QtDND",
+                                  "name": "Dicho",
+                                  "fill": "$ter",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Rimay ya lo dijo en voz alta.",
+                                  "lineHeight": 1.4,
+                                  "fontFamily": "$font",
+                                  "fontSize": 13
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "gsZ3j",
+                              "name": "Auditoria marco",
+                              "width": "fill_container",
+                              "fill": "$white",
+                              "cornerRadius": 24,
+                              "padding": 12,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "b0rFl",
+                                  "name": "Auditoria",
+                                  "width": "fill_container",
+                                  "fill": "$auditBg",
+                                  "cornerRadius": 16,
+                                  "gap": 10,
+                                  "padding": 14,
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "G6Sren",
+                                      "name": "Escudo",
+                                      "width": 20,
+                                      "height": 20,
+                                      "icon": "shield-check",
+                                      "library": "lucide",
+                                      "fill": "$auditInk"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "t441f",
+                                      "name": "Texto",
+                                      "width": "fill_container",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "V045Y",
+                                          "name": "Titulo",
+                                          "fill": "$auditInk",
+                                          "textGrowth": "fixed-width",
+                                          "width": "fill_container",
+                                          "content": "Auditado antes de hablar",
+                                          "lineHeight": 1.3,
+                                          "fontFamily": "$font",
+                                          "fontSize": 15,
+                                          "fontWeight": "600"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "LBd7z",
+                                          "name": "Checks",
+                                          "fill": "$auditInk",
+                                          "textGrowth": "fixed-width",
+                                          "width": "fill_container",
+                                          "content": "✓ Medicamento   ✓ Dosis   ✓ Horario   ✓ Días",
+                                          "lineHeight": 1.35,
+                                          "fontFamily": "$font",
+                                          "fontSize": 13,
+                                          "fontWeight": "500"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "N86y3d",
+                              "name": "Acciones",
+                              "width": "fill_container",
+                              "gap": 12,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "g09H33",
+                                  "name": "Repetir audio",
+                                  "width": "fill_container",
+                                  "height": 52,
+                                  "fill": "$white",
+                                  "cornerRadius": 26,
+                                  "gap": 8,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "nJR5J",
+                                      "name": "Altavoz",
+                                      "width": 20,
+                                      "height": 20,
+                                      "icon": "volume-2",
+                                      "library": "lucide",
+                                      "fill": "$teal"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "u1seoV",
+                                      "name": "Label",
+                                      "fill": "$teal",
+                                      "content": "Repetir audio",
+                                      "fontFamily": "$font",
+                                      "fontSize": 17,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "veH6O",
+                                  "name": "Seguir",
+                                  "width": "fill_container",
+                                  "height": 52,
+                                  "fill": "$teal",
+                                  "cornerRadius": 26,
+                                  "stroke": "$white",
+                                  "strokeWidth": 2,
+                                  "strokeAlignment": "inner",
+                                  "gap": 8,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "F2V8C",
+                                      "name": "Mic",
+                                      "width": 20,
+                                      "height": 20,
+                                      "icon": "mic",
+                                      "library": "lucide",
+                                      "fill": "$white"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "gm8qR",
+                                      "name": "Label",
+                                      "fill": "$white",
+                                      "content": "Seguir",
+                                      "fontFamily": "$font",
+                                      "fontSize": 17,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "szAlZ",
+                      "layoutPosition": "absolute",
+                      "x": 134,
+                      "y": 861,
+                      "name": "Home indicator",
+                      "fill": "#FFFFFF",
+                      "width": 134,
+                      "height": 5
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "yPk2I",
+              "name": "Col 3 · Listo para hablar",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ICKyz",
+                  "name": "Label",
+                  "fill": "$sec",
+                  "content": "3 · Listo para hablar",
+                  "fontFamily": "$font",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "eYQK4",
+                  "name": "Pantalla 3 · Listo para hablar",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$groundC",
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "DKGF8",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Lattice rombos",
+                      "opacity": 0.65,
+                      "geometry": "M-71 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-435 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m-493 44l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z m58 0l13-11 13 11-13 11z",
+                      "viewBox": [
+                        0,
+                        0,
+                        402,
+                        874
+                      ],
+                      "fill": "$latticeC",
+                      "width": 402,
+                      "height": 874
+                    },
+                    {
+                      "type": "frame",
+                      "id": "D2JCa",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Chrome",
+                      "width": 402,
+                      "height": 874,
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "lFxxQ",
+                          "name": "Status bar",
+                          "width": "fill_container",
+                          "height": 54,
+                          "padding": [
+                            0,
+                            18
+                          ],
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "sUcep",
+                              "name": "Hora",
+                              "fill": "$white",
+                              "content": "9:41",
+                              "fontFamily": "$font",
+                              "fontSize": 17,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "tOsuC",
+                              "name": "Glyphs",
+                              "gap": 6,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "a0SAb",
+                                  "name": "signal",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "signal",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "ic2CV",
+                                  "name": "wifi",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "wifi",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "fS9DS",
+                                  "name": "battery-full",
+                                  "width": 17,
+                                  "height": 17,
+                                  "icon": "battery-full",
+                                  "library": "lucide",
+                                  "fill": "$white"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "QACyu",
+                          "name": "Franja manta",
+                          "width": "fill_container",
+                          "height": 10,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "MHn2m",
+                              "name": "Hilo 0",
+                              "width": 38,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kixwL",
+                              "name": "Hilo 1",
+                              "width": 22,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "OmRJv",
+                              "name": "Hilo 2",
+                              "width": 32,
+                              "height": "fill_container",
+                              "fill": "#12A150"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "WOk38",
+                              "name": "Hilo 3",
+                              "width": 26,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "FHGxd",
+                              "name": "Hilo 4",
+                              "width": 18,
+                              "height": "fill_container",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "g2Uqb",
+                              "name": "Hilo 5",
+                              "width": 28,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "KPpeC",
+                              "name": "Hilo 6",
+                              "width": 36,
+                              "height": "fill_container",
+                              "fill": "#8CC63F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "gxq2o",
+                              "name": "Hilo 7",
+                              "width": 20,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Fan0X",
+                              "name": "Hilo 8",
+                              "width": 42,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fU9Yp",
+                              "name": "Hilo 9",
+                              "width": 16,
+                              "height": "fill_container",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "nVatQ",
+                              "name": "Hilo 10",
+                              "width": 30,
+                              "height": "fill_container",
+                              "fill": "#12A150"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Pyg4A",
+                              "name": "Hilo 11",
+                              "width": 24,
+                              "height": "fill_container",
+                              "fill": "#FFC41F"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "btXgG",
+                              "name": "Hilo 12",
+                              "width": 34,
+                              "height": "fill_container",
+                              "fill": "#00A6B4"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "a1VpWJ",
+                              "name": "Hilo 13",
+                              "width": 18,
+                              "height": "fill_container",
+                              "fill": "#F26B21"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "vBW60",
+                              "name": "Hilo 14",
+                              "width": "fill_container",
+                              "height": "fill_container",
+                              "fill": "#8CC63F"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "U6j7qO",
+                          "name": "Cuerpo",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "layout": "vertical",
+                          "padding": [
+                            16,
+                            16,
+                            40,
+                            16
+                          ],
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "My17J",
+                              "name": "Arriba",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 18,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "J7Fwj",
+                                  "name": "Header",
+                                  "width": "fill_container",
+                                  "height": 44,
+                                  "justifyContent": "space_between",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "AJZZY",
+                                      "name": "Titulo",
+                                      "layout": "vertical",
+                                      "gap": 2,
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "i48Krg",
+                                          "name": "Rimay",
+                                          "fill": "$white",
+                                          "content": "Rimay",
+                                          "lineHeight": 1.25,
+                                          "fontFamily": "$font",
+                                          "fontSize": 20,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "c39zP",
+                                          "name": "Consulta",
+                                          "opacity": 0.78,
+                                          "fill": "$white",
+                                          "content": "Consulta · 3:12",
+                                          "lineHeight": 1.3,
+                                          "fontFamily": "$font",
+                                          "fontSize": 13
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "KSNd2",
+                                      "name": "Resumen",
+                                      "width": 40,
+                                      "height": 40,
+                                      "fill": "$white",
+                                      "cornerRadius": 20,
+                                      "stroke": "$border",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
+                                      "justifyContent": "center",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "icon",
+                                          "id": "jdvPF",
+                                          "name": "Doc",
+                                          "width": 20,
+                                          "height": 20,
+                                          "icon": "file-text",
+                                          "library": "lucide",
+                                          "fill": "$sec"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "W84aA",
+                                  "name": "Chaski fila",
+                                  "width": "fill_container",
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "TtwGV",
+                                      "name": "Chaski marco",
+                                      "width": 252,
+                                      "height": 252,
+                                      "fill": "$white",
+                                      "cornerRadius": 34,
+                                      "padding": 6,
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "nGEYb",
+                                          "name": "Chaski imagen",
+                                          "width": "fill_container",
+                                          "height": "fill_container",
+                                          "fill": {
+                                            "type": "image",
+                                            "enabled": true,
+                                            "url": "ref/chaski-reposo.png",
+                                            "mode": "fill"
+                                          },
+                                          "cornerRadius": 28
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "J2744",
+                                  "name": "Estado",
+                                  "fill": "$white",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Listo para interpretar",
+                                  "lineHeight": 1.25,
+                                  "textAlign": "center",
+                                  "fontFamily": "$font",
+                                  "fontSize": 24,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "v5eOX",
+                                  "name": "Explicacion fila",
+                                  "width": "fill_container",
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "hHCcT",
+                                      "name": "Explicacion",
+                                      "opacity": 0.85,
+                                      "fill": "$white",
+                                      "textGrowth": "fixed-width",
+                                      "width": 300,
+                                      "content": "Hable en castellano. Rimay se lo dirá en quechua al paciente y le avisará si algo no se entendió.",
+                                      "lineHeight": 1.45,
+                                      "textAlign": "center",
+                                      "fontFamily": "$font",
+                                      "fontSize": 15
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "sxlNK",
+                              "name": "Abajo",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 14,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "S9S2d",
+                                  "name": "Controles",
+                                  "width": "fill_container",
+                                  "gap": 28,
+                                  "justifyContent": "center",
+                                  "children": [
+                                    {
+                                      "type": "frame",
+                                      "id": "b7c5HC",
+                                      "name": "Receta",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "padding": [
+                                        20,
+                                        0,
+                                        0,
+                                        0
+                                      ],
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "ONSfl",
+                                          "name": "Boton",
+                                          "width": 56,
+                                          "height": 56,
+                                          "fill": "$white",
+                                          "cornerRadius": 28,
+                                          "stroke": "$border",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "icon",
+                                              "id": "Swwul",
+                                              "name": "camera",
+                                              "width": 24,
+                                              "height": 24,
+                                              "icon": "camera",
+                                              "library": "lucide",
+                                              "fill": "$sec"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "zNhRl",
+                                          "name": "Label",
+                                          "fill": "$white",
+                                          "content": "Receta",
+                                          "lineHeight": 1.3,
+                                          "fontFamily": "$font",
+                                          "fontSize": 13,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "lkmGk",
+                                      "name": "Microfono",
+                                      "width": 96,
+                                      "height": 96,
+                                      "fill": "$teal",
+                                      "cornerRadius": 48,
+                                      "stroke": "$white",
+                                      "strokeWidth": 2,
+                                      "strokeAlignment": "inner",
+                                      "justifyContent": "center",
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "icon",
+                                          "id": "n0mpnf",
+                                          "name": "Mic",
+                                          "width": 36,
+                                          "height": 36,
+                                          "icon": "mic",
+                                          "library": "lucide",
+                                          "fill": "$white"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "VVHUj",
+                                      "name": "Resumen",
+                                      "layout": "vertical",
+                                      "gap": 6,
+                                      "padding": [
+                                        20,
+                                        0,
+                                        0,
+                                        0
+                                      ],
+                                      "alignItems": "center",
+                                      "children": [
+                                        {
+                                          "type": "frame",
+                                          "id": "XimFa",
+                                          "name": "Boton",
+                                          "width": 56,
+                                          "height": 56,
+                                          "fill": "$white",
+                                          "cornerRadius": 28,
+                                          "stroke": "$border",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
+                                          "justifyContent": "center",
+                                          "alignItems": "center",
+                                          "children": [
+                                            {
+                                              "type": "icon",
+                                              "id": "A7Awgp",
+                                              "name": "list-checks",
+                                              "width": 24,
+                                              "height": 24,
+                                              "icon": "list-checks",
+                                              "library": "lucide",
+                                              "fill": "$sec"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "Yv4YP",
+                                          "name": "Label",
+                                          "fill": "$white",
+                                          "content": "Resumen",
+                                          "lineHeight": 1.3,
+                                          "fontFamily": "$font",
+                                          "fontSize": 13,
+                                          "fontWeight": "600"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "zyWdK",
+                                  "name": "Toque para hablar",
+                                  "fill": "$white",
+                                  "content": "Toque para hablar",
+                                  "lineHeight": 1.3,
+                                  "fontFamily": "$font",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "goCht",
+                                  "name": "Pill idioma",
+                                  "height": 32,
+                                  "fill": "$castBg",
+                                  "cornerRadius": 16,
+                                  "gap": 6,
+                                  "padding": [
+                                    0,
+                                    12
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "gtEvd",
+                                      "name": "Swap",
+                                      "width": 15,
+                                      "height": 15,
+                                      "icon": "arrow-left-right",
+                                      "library": "lucide",
+                                      "fill": "$sec"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "D7Em1",
+                                      "name": "Label",
+                                      "fill": "$sec",
+                                      "content": "Habla usted · castellano",
+                                      "lineHeight": 1.3,
+                                      "fontFamily": "$font",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "lWLfE",
+                      "layoutPosition": "absolute",
+                      "x": 134,
+                      "y": 861,
+                      "name": "Home indicator",
+                      "fill": "#FFFFFF",
+                      "width": 134,
+                      "height": 5
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "ink": {
+      "type": "color",
+      "value": "#18221F"
+    },
+    "sec": {
+      "type": "color",
+      "value": "#5B6A65"
+    },
+    "ter": {
+      "type": "color",
+      "value": "#6F7975"
+    },
+    "teal": {
+      "type": "color",
+      "value": "#0E6B64"
+    },
+    "cinnamon": {
+      "type": "color",
+      "value": "#A85A2A"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E4DED8"
+    },
+    "white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "auditBg": {
+      "type": "color",
+      "value": "#DDF2E3"
+    },
+    "auditInk": {
+      "type": "color",
+      "value": "#1E7A3E"
+    },
+    "castBg": {
+      "type": "color",
+      "value": "#ECEFEC"
+    },
+    "groundA": {
+      "type": "color",
+      "value": "#B0005F"
+    },
+    "groundB": {
+      "type": "color",
+      "value": "#1F3A94"
+    },
+    "groundC": {
+      "type": "color",
+      "value": "#55216F"
+    },
+    "latticeA": {
+      "type": "color",
+      "value": "#D90075"
+    },
+    "latticeB": {
+      "type": "color",
+      "value": "#2647B6"
+    },
+    "latticeC": {
+      "type": "color",
+      "value": "#6D2A8E"
+    },
+    "font": {
+      "type": "string",
+      "value": "Inter"
+    }
+  },
+  "fileToken": "355541e1-c0be-4610-9816-883c1907ba73"
+}
