@@ -1,40 +1,35 @@
-Mensaje listo para mandar por WhatsApp junto con el PDF (frases_ambos.pdf).
-Copiar y pegar tal cual.
+Mensaje para mandar por WhatsApp junto con el PDF (frases_ambos.pdf).
+Copiar y pegar tal cual. Sigue el protocolo D25 del SOT: escribir y después grabar.
 
 ---
 
-Papá, te mando un PDF con frases. Necesito que me las digas EN QUECHUA y me las
-mandes como notas de voz.
+Papá, te mando un PDF. Es para una app que estamos haciendo para que en las
+postas de salud puedan hablar con los pacientes en quechua.
 
-Así se graba cada frase:
+Lo que escribas y grabes le enseña tres cosas a la app: a traducir del
+castellano al quechua en temas de salud, a entender el quechua hablado y a
+hablarlo.
 
-   dices el código  →  esperas un segundito  →  dices la frase en quechua
-   «ce uno»         →  ...                   →  (la frase en quechua)
+Son cuatro pasos por cada frase:
 
-El código va en castellano. La frase, solo en quechua.
+1. Lees la frase en castellano.
+2. La ESCRIBES en quechua en el espacio de la derecha, como la dirías tú en la
+   posta.
+3. Grabas una nota de voz: dices el NÚMERO en castellano y después lees en voz
+   alta EXACTAMENTE lo que escribiste. Una nota de voz por frase.
+4. Al final, le tomas una foto a cada hoja y me la mandas junto con los audios.
 
-Cómo mandarlas:
+Ejemplo. Ves «3 · Tómela con agua, no con té». Escribes la frase en quechua en
+el espacio. Grabas: «tres» y lees lo que escribiste.
 
-1. Busca un lugar callado. Cierra la ventana si hay ruido de la calle.
-2. El celular a un palmo de la boca, como para una nota de voz normal.
-3. En cada nota de voz graba entre 10 y 15 frases. No todas de una.
-4. Entre una frase y la siguiente, DESCANSA DOS SEGUNDOS. Cuenta «mil uno,
-   mil dos» en tu cabeza. Esa pausa es la que me deja separar cada frase.
-5. Si te equivocas, no borres la nota: di «otra vez», repite el código y la
-   frase, y sigue.
-6. Mándalas en orden y dime en qué código vas.
+Lo importante: lo que dices en el audio tiene que ser IGUAL a lo que escribiste.
 
-Los bloques del PDF:
+Si no sabes cómo se dice algo, sáltalo. Si no puedes escribirlo, grábalo igual
+y avísame.
 
-   C  frases de la posta
-   M  medicamentos y palabras del castellano
-   N  números, días y horarios
-   B  respuestas libres: ahí no hay frase que repetir, cuenta con tus palabras
-      lo que te pide cada línea, como si fueras el paciente
+Busca un lugar tranquilo y pon el celular cerca de la boca.
 
-Las del bloque M son palabras como «paracetamol» o «control»: dilas como las
-dice la gente en la posta, no como las leería un locutor de radio.
+Las partes 1 a 4 son unos 60 minutos. La parte 5 es solo si te queda tiempo:
+ahí ya está escrito en quechua, solo hay que leerlo.
 
-El bloque E del final es opcional, solo si te queda tiempo.
-
-No tienes que hacerlo todo hoy. Una nota de diez frases ya me sirve.
+No tienes que hacerlo todo hoy. Lo que alcances ya me sirve.

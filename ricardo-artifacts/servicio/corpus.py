@@ -26,38 +26,61 @@ RAIZ = Path("datos/crudo")
 INSTANCIA = "http://127.0.0.1:8010"
 
 
-BLOQUES_CUADERNILLO = {
-    "C": "clinicas_sin_traducir",
-    "M": "medicamentos_y_prestamos",
-    "N": "numeros_y_tiempos",
-    "B": "respuestas_libres",
-}
+# El cuadernillo numera corrido: 1, 2, 3... y la persona dice solo el numero.
+# Las partes son etiquetas de tramo, no prefijos del codigo.
+PARTES = [("C", "clinicas_sin_traducir"), ("M", "medicamentos_y_prestamos"),
+          ("N", "numeros_y_tiempos"), ("B", "respuestas_libres"),
+          ("E", "verificadas")]
+
+
+def _cuadernillo() -> dict:
+    ruta = Path("datos/frases/frases.json")
+    return json.loads(ruta.read_text(encoding="utf-8")) if ruta.exists() else {}
+
+
+def rangos() -> dict:
+    """Desde que numero hasta cual va cada parte, en el orden del cuadernillo."""
+    d, salida, n = _cuadernillo(), {}, 1
+    for letra, clave in PARTES:
+        cuantas = len(d.get(clave, []))
+        salida[letra] = (n, n + cuantas - 1) if cuantas else (n, n - 1)
+        n += cuantas
+    return salida
+
+
+def parte_de(numero: int) -> str:
+    for letra, (desde, hasta) in rangos().items():
+        if desde <= numero <= hasta:
+            return letra
+    return ""
 
 
 def referencias(bloque: str = "") -> dict:
-    """Lo que el cuadernillo dice que deberia haberse dicho, por (bloque, numero).
+    """Lo que el cuadernillo dice que deberia decirse, por NUMERO corrido.
 
-    Las claves siguen los codigos del cuadernillo de Freddy: C1, M5, N3, B2, E7.
     Se MUESTRA al corregir, no se da por bueno: la persona pudo decir otra cosa,
     y lo que manda es lo que de verdad se oye en el audio.
     """
-    ruta = Path("datos/frases/frases.json")
-    if not ruta.exists():
+    d = _cuadernillo()
+    if not d:
         return {}
-    d = json.loads(ruta.read_text(encoding="utf-8"))
-    salida: dict[tuple[str, int], dict] = {}
-    for letra, clave in BLOQUES_CUADERNILLO.items():
-        for i, t in enumerate(d.get(clave, []), 1):
-            salida[(letra, i)] = {"castellano": t, "chanka_esperado": ""}
-    for i, f in enumerate(d.get("verificadas", []), 1):
-        salida[("E", i)] = {"castellano": f["castellano"], "chanka_esperado": f["chanka"]}
+    salida: dict[int, dict] = {}
+    n = 1
+    for letra, clave in PARTES:
+        for x in d.get(clave, []):
+            if clave == "verificadas":
+                salida[n] = {"castellano": x["castellano"], "chanka_esperado": x["chanka"],
+                             "parte": letra}
+            else:
+                salida[n] = {"castellano": x, "chanka_esperado": "", "parte": letra}
+            n += 1
     if bloque:
-        return {k[1]: v for k, v in salida.items() if k[0] == bloque}
+        return {k: v for k, v in salida.items() if v["parte"] == bloque}
     return salida
 
 
 def cuantas(bloque: str) -> int:
-    """Cuantas frases trae ese bloque del cuadernillo."""
+    """Cuantas frases trae esa parte del cuadernillo."""
     return len(referencias(bloque))
 
 
@@ -121,9 +144,13 @@ def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
     total = convertir(crudo.name, completo)
     Path(crudo.name).unlink(missing_ok=True)
 
-    refs = referencias(bloque)
+    # La numeracion es corrida y la parte dice por donde empieza.
+    desde_parte, hasta_parte = rangos().get(bloque, (desde, desde))
+    if desde <= 1:
+        desde = desde_parte
     if not esperadas:
-        esperadas = max(len(refs) - desde + 1, 1)
+        esperadas = max(hasta_parte - desde + 1, 1)
+    refs = referencias()
     # Se busca el doble de trozos: cada frase llega como «codigo + frase».
     trozos, diagnostico = mejor_particion(completo, total, esperadas * 2)
     trozos, juntados = unir_codigo_con_frase(trozos)
@@ -163,7 +190,7 @@ def clips(persona: str) -> list[dict]:
         return []
     salida = []
     for g in leer_manifiesto(manifiesto):
-        ref = referencias(g.bloque).get(g.numero, {})
+        ref = referencias().get(g.numero, {})
         salida.append({"nombre": g.nombre, "audio": g.audio, "numero": g.numero,
                        "origen": g.origen, "inicio": g.inicio, "fin": g.fin,
                        "recortable": bool(g.origen and Path(g.origen).exists()),
@@ -239,16 +266,21 @@ NUMEROS_HABLADOS = {
 
 
 def leer_codigo(texto: str) -> tuple[str, int] | None:
-    """Saca «C1» de lo que se oye al principio del clip.
+    """Saca el numero que se dice al principio del clip.
 
-    Cartesia suele devolver ya «C1.» en cifra, pero tambien puede escribir
-    «ce uno». Se aceptan las dos formas, y solo al principio: un numero en
-    medio de la frase no es un codigo.
+    El cuadernillo numera corrido, asi que la persona dice «tres» o «veinte».
+    Se acepta tambien la forma vieja con letra («C1», «ce uno») por si quedan
+    audios de antes. Solo al principio: un numero en medio de la frase no es un
+    codigo. La parte (C, M, N, B, E) sale del rango del numero, no de la voz.
     """
     limpio = texto.strip().lower()
     cifra = re.match(r"^\s*([cmnbe])\s*[\.\-:]?\s*(\d{1,3})\b", limpio)
     if cifra:
         return cifra.group(1).upper(), int(cifra.group(2))
+    solo = re.match(r"^\s*(\d{1,3})\s*[\.\-:,)]", limpio) or re.match(r"^\s*(\d{1,3})\s+\D", limpio)
+    if solo:
+        n = int(solo.group(1))
+        return parte_de(n) or "C", n
     palabras = re.split(r"[\s,\.]+", limpio)[:3]
     if len(palabras) >= 2 and palabras[0] in LETRAS_HABLADAS:
         for p in palabras[1:]:
@@ -256,6 +288,9 @@ def leer_codigo(texto: str) -> tuple[str, int] | None:
                 return LETRAS_HABLADAS[palabras[0]], NUMEROS_HABLADOS[p]
             if p.isdigit():
                 return LETRAS_HABLADAS[palabras[0]], int(p)
+    if palabras and palabras[0] in NUMEROS_HABLADOS and len(palabras) > 1:
+        n = NUMEROS_HABLADOS[palabras[0]]
+        return parte_de(n) or "C", n
     return None
 
 
@@ -284,8 +319,7 @@ def recodificar(persona: str, numero_actual: int, bloque_actual: str,
         if g.bloque == bloque_actual and g.numero == numero_actual:
             g = Grabacion(persona=g.persona, bloque=bloque_nuevo, numero=numero_nuevo,
                           audio=g.audio, transcripcion=g.transcripcion,
-                          castellano=referencias(bloque_nuevo).get(numero_nuevo, {})
-                          .get("castellano", ""),
+                          castellano=referencias().get(numero_nuevo, {}).get("castellano", ""),
                           segundos=g.segundos, consentimiento=g.consentimiento)
         nuevas.append(g)
     escribir_manifiesto(manifiesto, nuevas, cabecera="identificadores revisados a mano")
