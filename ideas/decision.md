@@ -86,6 +86,16 @@ Freddy eligió.
 **Esto cambia a C si:** el sábado a las 10 AM no tenemos un hablante de chanka disponible para revisar las
 frases, o si la prueba de 1 hora de voz en quechua falla y el texto solo no alcanza para una demo convincente.
 
+## Actualización (21:10 PT) — lo que cambió con la respuesta de Freddy
+
+- **Estado:** A y C siguen en carrera. Ricardo trae otra idea; se define con él, y su idea se mide con la misma hoja (`criterios.md`).
+- **Dato nuevo, y cambia A:** los padres de Freddy hablan quechua. **Su mamá trabaja en una posta de Pilpichaca (Huancavelica) y es la única enfermera que habla quechua en su centro de salud.**
+  - **Criterio 2, problema real:** sube a 5. Ya no es una cifra nacional, es la mamá de Freddy siendo el único puente entre el idioma de sus pacientes y el centro de salud.
+  - **Criterio 1, comunidad:** la comunidad con nombre puede ser **las pacientes quechuahablantes de la posta de Pilpichaca**. Es lo más específico posible.
+  - **Factibilidad:** el hablante de chanka está resuelto, y además es alguien que conoce el vocabulario de una posta. Es también la primera usuaria posible el lunes, y la fuente del testimonio para el pitch.
+  - **A sube de 85 a ~91.** Lo único que sigue abierto es la prueba de voz en quechua.
+- **Cuidado:** lo que diga la mamá de Freddy entra al pitch como cita **solo con su permiso** y con sus palabras exactas.
+
 ## Lo primero que hay que hacer (si sale A)
 
 1. **Esta noche:** ¿quién habla chanka? Freddy, su familia, la familia de Ricardo, alguien del Slack de Cal Hacks.

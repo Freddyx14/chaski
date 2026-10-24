@@ -5,7 +5,11 @@
 
 ## 📍 Estado actual (act. 2026-10-23, Friday 18:30 PT)
 
-- **Phase:** ideation. Context loaded, research running, no idea chosen yet.
+- **Phase:** ideation. Finalists A (Chanka interpreter for pregnant women) and C (fire last mile), scored
+  with `ideas/criterios.md`; analysis in `ideas/decision.md`. Ricardo brings another idea; decided with him.
+- **Key fact (2026-10-23):** Freddy's parents speak Quechua; his mother is a nurse at a health post in
+  Pilpichaca (Huancavelica), the only Quechua-speaking nurse there. Possible first user, reviewer and
+  source of testimony (quote only with her permission).
 - **Next milestone:** pick ONE idea tonight (Friday) so Saturday is pure build.
 - **Hard deadline:** ✅ VERIFICADA — Devpost submission **Sunday 2026-10-25, 9:00 AM PT**. Judging 10:30–12:30, whole team at the table, live demo required, 2-minute pitch. Source: `context/hacker-guide-calhacks-13.md`.
 - **Recommended:** a Devpost draft by Saturday night (the guide says so).
