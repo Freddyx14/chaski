@@ -16,7 +16,7 @@
 - [ ] 07:30 · Primer build a TestFlight; plan B Expo en su iPhone (D14)
 - [ ] 08:30 · La app manda un audio a la VM y recibe texto (con Ricardo)
 - [ ] 09:00 · Cartesia: voz en castellano en la app (D16)
-- [ ] 10:00 · **Claude visión**: foto de la receta y de la caja → medicamento, dosis, frecuencia; cruce con lo que dijo la enfermera (F9, D19)
+- [~] 10:00 · **Claude visión** (banco de Ricardo listo, Haiku 4.5 en 2.3 s; falta en la app): foto de la receta y de la caja → medicamento, dosis, frecuencia; cruce con lo que dijo la enfermera (F9, D19)
 - [ ] 10:30 · Medir Opus 5, Sonnet 5 y Haiku 4.5: segundos por turno y errores atrapados (D15)
 - [ ] 12:30 · Workshop de Anthropic (agentes)
 - [ ] 13:30 · Entender a la enfermera, estilo Wispr Flow (F3)
@@ -39,8 +39,8 @@
 ## Ricardo
 
 ### Esta noche
-- [ ] La VM descarga y corre Omnilingual `quy`, `mms-lid-512` y `mms-tts-quy`
-- [ ] **Preguntas y frases que graban las familias**: lista final en castellano por tema, bloque A (frases de posta) y bloque B (respuestas libres), sobre `plan/recoleccion-de-voz.md`, y mandarla a Freddy para la familia
+- [x] La VM corre Omnilingual `quy` y `mms-lid-512` (medido: 49 ms detección, 1.7 s por 16 s de audio; GPU A10G 23 GB, no 40)
+- [x] **Preguntas y frases que graban las familias** (`ricardo-artifacts/datos/frases/*.pdf`, con 35 préstamos del castellano): lista final en castellano por tema, bloque A (frases de posta) y bloque B (respuestas libres), sobre `plan/recoleccion-de-voz.md`, y mandarla a Freddy para la familia
 
 ### Sábado
 - [ ] 07:30 · Recibir audios, convertir a 16 kHz mono, nombrar, separar al hablante de prueba
