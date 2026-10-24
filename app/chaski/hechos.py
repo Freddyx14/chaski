@@ -9,24 +9,46 @@ pregnancy. The vehicle of each medicine (what it is taken with: agua, leche, té
 live audit on 2026-10-24 approved «Unuwan upyaykuy, manan téwanchu» whose back-translation was «Bebe con
 uno, no con él»: the water was lost and nothing compared it. They are compared as counts or as
 code-normalised canonical values, never as free wording, so a legitimate paraphrase does not block.
+
+Three false blocks of the final eval (2026-10-24 15:49) are fixed here, in the extraction AND in code:
+  - strength is not quantity: «pastilla de 500 mg» is cantidad 1 (or unsaid) + concentración 500 mg;
+  - fasting is a timing, not a prohibition: «venga en ayunas» / «sin comer» → ayunas, never prohibiciones;
+  - a fraction is a quantity, not a name: «kuska tableta» / «media tableta» → cantidad 0.5, nombre ''.
 """
 from __future__ import annotations
 
 import unicodedata
 from typing import Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 Via = Literal["oral", "piel", "ojos", "oidos", "inyectable", "otra"]
 
 
 class Medicamento(BaseModel):
-    nombre: str = Field(description="Nombre del medicamento en minúsculas, sin marca si hay genérico. Ej: 'sulfato ferroso'")
-    cantidad: float | None = Field(description="Cuántas unidades por toma. Ej: 1 pastilla → 1. null si no se dice")
-    unidad: str | None = Field(description="Unidad de la toma en singular y minúsculas: 'pastilla', 'cucharada', 'ml', 'gota'. null si no se dice")
+    nombre: str = Field(description=(
+        "Nombre del medicamento en minúsculas, sin marca si hay genérico. Ej: 'sulfato ferroso'. Una fracción "
+        "(media, medio, mitad, kuska, chawpi, un cuarto, tercio) NUNCA es un nombre: es la cantidad. «Media tableta» "
+        "o «kuska tableta» → nombre ''"))
+    cantidad: float | None = Field(description=(
+        "Cuántas unidades se toman en cada toma (pastillas, cucharadas, gotas, ml). Ej: 'una pastilla' → 1, 'dos "
+        "cucharadas' → 2, 'media tableta' / 'kuska tableta' / 'chawpi' → 0.5, 'un cuarto' / 'tawa partemanta huk' → "
+        "0.25. NO es la concentración: en «pastilla de 500 mg» los 500 mg van en concentracion, no aquí. null si no "
+        "se dice cuántas"))
+    unidad: str | None = Field(description=(
+        "Unidad de la toma en singular y minúsculas: 'pastilla', 'cucharada', 'ml', 'gota'. Nunca 'mg' ni 'g': esas "
+        "son de la concentración. null si no se dice"))
+    concentracion: float | None = Field(default=None, description=(
+        "La concentración o potencia del medicamento, el número impreso en la caja: «pastilla de 500 mg» → 500, "
+        "«amoxicilina de 1 gramo» → 1. Es distinta de cantidad (cuántas pastillas por toma). null si no se dice"))
+    concentracion_unidad: str | None = Field(default=None, description=(
+        "Unidad de la concentración tal como se dice, en minúsculas: 'mg', 'g', 'mcg'. «quinientos miligramos» → "
+        "'mg'; «un gramo» → 'g'. null si no hay concentración"))
     cada_horas: float | None = Field(description="Cada cuántas horas se toma. 'una vez al día' → 24, 'tres veces al día' → 8. null si no se dice")
     dias: int | None = Field(description="Durante cuántos días. 'un mes' → 30, 'una semana' → 7. null si no se dice o si es indefinido")
-    momento: str | None = Field(description="Momento de la toma en pocas palabras: 'después del almuerzo', 'en ayunas'. null si no se dice")
+    momento: str | None = Field(description=(
+        "Momento de la toma en pocas palabras: 'después del almuerzo', 'en ayunas'. «en ayunas», «sin comer», «sin "
+        "desayunar» y «con el estómago vacío» son el mismo momento: escribe 'en ayunas'. null si no se dice"))
     via: Via | None = Field(default=None, description=(
         "Por dónde entra el medicamento: 'oral' (tomar, tragar, beber, por la boca, jarabe), 'piel' (untar, "
         "frotar, crema, pomada), 'ojos' (gotas en los ojos), 'oidos' (gotas en el oído), 'inyectable' "
@@ -39,6 +61,32 @@ class Medicamento(BaseModel):
         "'té'; «con la comida» → 'comida'. Si el texto dice otra cosa ('con uno', 'con él'), copia esa palabra "
         "tal cual, sin corregirla. Lo que se prohíbe («no con té») NO va aquí, va en prohibiciones. null si el "
         "texto no dice con qué se toma"))
+
+    @model_validator(mode="after")
+    def _normalizar(self):
+        """Code-side guards, so an extraction slip cannot become a false block (eval 2026-10-24 15:49)."""
+        # A fraction word is a quantity, never a name: «kuska» / «media tableta» → cantidad 0.5.
+        restantes, fraccion = [], None
+        for w in _norm(self.nombre).split():
+            if w in _FRACCIONES:
+                fraccion = _FRACCIONES[w]
+            elif w not in _RELLENO_FRACCION:
+                restantes.append(w)
+        if fraccion is not None:
+            resto = " ".join(restantes)
+            if not _generico(resto):
+                self.nombre = resto
+            else:
+                self.nombre = ""
+                if self.unidad is None and resto:
+                    self.unidad = resto
+            if self.cantidad is None or _mismo_numero(self.cantidad, 1):
+                self.cantidad = fraccion
+        # A strength unit in the dose (cantidad 500, unidad 'mg') is the strength, not the quantity.
+        if self.concentracion is None and self.cantidad is not None and _norm(self.unidad) in _MASA_A_MG:
+            self.concentracion, self.concentracion_unidad = self.cantidad, self.unidad
+            self.cantidad, self.unidad = None, None
+        return self
 
 
 class Hechos(BaseModel):
@@ -62,6 +110,24 @@ class Hechos(BaseModel):
     embarazo: bool | None = Field(default=None, description=(
         "true si el texto afirma que la paciente está embarazada, false si afirma que no lo está, "
         "null si no se dice. Una pregunta ('¿está embarazada?') es null"))
+    ayunas: bool | None = Field(default=None, description=(
+        "true si el texto pide venir o tomar algo en ayunas: «venga en ayunas», «sin comer», «sin desayunar», «con "
+        "el estómago vacío», «mana mikuspa». Ayunar es un MOMENTO, nunca una prohibición: no lo pongas en "
+        "prohibiciones. false si el texto pide lo contrario («venga después de comer», «tómelo con la comida»). "
+        "null si no se dice"))
+
+    @model_validator(mode="after")
+    def _ayunas_no_es_prohibicion(self):
+        """«no coma nada antes de venir» is the fasting timing, not a prohibition (eval 2026-10-24 15:49).
+
+        Real prohibitions about food («no coma grasa») name what is forbidden, so they are kept.
+        """
+        quedan = [p for p in self.prohibiciones if not es_prohibicion_de_ayuno(p)]
+        if len(quedan) != len(self.prohibiciones):
+            self.prohibiciones = quedan
+            if self.ayunas is None:
+                self.ayunas = True
+        return self
 
 
 class Diferencia(BaseModel):
@@ -83,6 +149,75 @@ _GENERICOS = {"", "pastilla", "pastillas", "tableta", "tabletas", "comprimido", 
               "remedio", "jarabe", "gotas"}
 # Unidades que son la misma cosa dicha de otra forma (falso bloqueo «tableta» vs «pastilla», 24-oct).
 _UNIDADES = {"tableta": "pastilla", "comprimido": "pastilla", "pastillas": "pastilla", "tabletas": "pastilla"}
+
+
+# Fractions said as a word (Spanish and Chanka: kuska / chawpi = half). Chanka list to be confirmed by the nurse.
+_FRACCIONES = {"media": 0.5, "medio": 0.5, "mitad": 0.5, "kuska": 0.5, "kuskan": 0.5, "chawpi": 0.5,
+               "chaupi": 0.5, "chawpin": 0.5, "cuarto": 0.25, "tercio": 1 / 3}
+_RELLENO_FRACCION = {"un", "una", "la", "el", "de", "nisqa", "nisqata"}
+# Strength units → factor to milligrams.
+_MASA_A_MG = {"mg": 1.0, "miligramo": 1.0, "miligramos": 1.0,
+              "g": 1000.0, "gr": 1000.0, "gramo": 1000.0, "gramos": 1000.0,
+              "mcg": 0.001, "ug": 0.001, "microgramo": 0.001, "microgramos": 0.001}
+
+
+def concentracion_mg(m: "Medicamento") -> float | None:
+    """The strength in mg: 1 g → 1000, 500 mg → 500. None if no strength or the unit is not a mass.
+
+    A strength with no unit is read as mg, the unit every tablet strength in the posta is said in.
+    """
+    if m.concentracion is None:
+        return None
+    factor = _MASA_A_MG.get(_norm(m.concentracion_unidad) or "mg")
+    return None if factor is None else m.concentracion * factor
+
+
+def _concentracion_canonica(m: "Medicamento") -> str:
+    """Comparable strength: '500 mg' for masses, else the raw value and unit (e.g. '5 %'). '' if none."""
+    if m.concentracion is None:
+        return ""
+    mg = concentracion_mg(m)
+    if mg is not None:
+        return f"{round(mg, 6):g} mg"
+    return f"{m.concentracion:g} {_norm(m.concentracion_unidad)}"
+
+
+# Fasting. A prohibition made only of eating words and filler («comer antes de venir», «desayunar»)
+# is the fasting timing; one that names something else («comer grasa», «tomar con té») is a real one.
+_COMER = {"comer", "desayunar", "ingerir", "probar", "alimentarse", "ayunar", "ayunas", "ayuno", "desayuno",
+          "comida", "alimento", "alimentos", "bocado"}
+_RELLENO_AYUNO = {"nada", "ningun", "ninguna", "algo", "antes", "de", "del", "la", "el", "su", "venir", "llegar",
+                  "cita", "analisis", "examen", "manana", "tomar", "estar", "hasta", "que", "sin", "en", "un", "ni"}
+
+
+def es_prohibicion_de_ayuno(prohibicion: str | None) -> bool:
+    ws = _norm(prohibicion).split()
+    return bool(ws) and any(w in _COMER for w in ws) and all(w in _COMER or w in _RELLENO_AYUNO for w in ws)
+
+
+_AYUNAS_PALABRAS = {"ayunas", "ayuna", "ayuno", "ayunar", "ayunando"}
+_AYUNAS_FRASES = ("sin comer", "sin desayunar", "sin probar", "sin alimento", "estomago vacio", "sin haber comido",
+                  "mana mikuspa")
+_COMIDA_PALABRAS = {"comer", "comida", "comidas", "comiendo", "desayuno", "desayunar", "almuerzo", "almorzar",
+                    "cena", "cenar", "alimento", "alimentos", "comido"}
+
+
+def momento_comida(momento: str | None) -> str | None:
+    """'en ayunas' / 'sin comer' → 'ayunas'; 'después de comer' / 'con el almuerzo' → 'comida'; else None."""
+    n = _norm(momento)
+    if not n:
+        return None
+    if _AYUNAS_PALABRAS & set(n.split()) or any(f in n for f in _AYUNAS_FRASES):
+        return "ayunas"
+    if _COMIDA_PALABRAS & set(n.split()):
+        return "comida"
+    return None
+
+
+def estado_ayunas(h: "Hechos") -> bool:
+    """Does this side say «en ayunas» anywhere: the flag, a fasting prohibition, or a medicine's momento?"""
+    return (h.ayunas is True or any(es_prohibicion_de_ayuno(p) for p in h.prohibiciones)
+            or any(momento_comida(m.momento) == "ayunas" for m in h.medicamentos))
 
 
 def _generico(nombre: str | None) -> bool:
@@ -241,7 +376,8 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
     B6: prohibitions by count, body parts and allergies as sets of canonical values, the route of
     each paired medicine when both sides state one, and pregnancy exactly. The vehicle of each paired
     medicine is compared canonically and also when it vanishes on one side; the vehicles named inside
-    the prohibitions are compared as a set.
+    the prohibitions are compared as a set. The strength of each paired medicine is compared exactly in
+    mg, and fasting («en ayunas» vs «después de comer») as a yes/no: the only part of 'momento' compared.
     """
     difs: list[Diferencia] = []
 
@@ -263,8 +399,20 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
         nombre = med.nombre if not _generico(med.nombre) else (otro.nombre if not _generico(otro.nombre) else "medicamento")
         for campo in ("cantidad", "cada_horas", "dias"):
             a, b = getattr(med, campo), getattr(otro, campo)
+            # «la pastilla» and «una pastilla» are the same dose: an unsaid quantity equals 1, nothing else.
+            if campo == "cantidad" and {a, b} <= {None, 1} and _unidad(med.unidad) == _unidad(otro.unidad):
+                continue
             if not _mismo_numero(a, b):
                 difs.append(Diferencia(campo=f"{nombre}.{campo}", original=str(a), retraducido=str(b)))
+        # Strength exactly, after g → mg: 500 mg vs 250 mg blocks, 1 g vs 1000 mg does not.
+        ca, cb = _concentracion_canonica(med), _concentracion_canonica(otro)
+        if ca != cb:
+            difs.append(Diferencia(campo=f"{nombre}.concentracion", original=ca or "None", retraducido=cb or "None"))
+        # «en ayunas» swapped for «después de comer» on the same medicine, when both sides state a timing.
+        # A timing lost or moved elsewhere is caught by the side-level fasting check below.
+        ma, mb = momento_comida(med.momento), momento_comida(otro.momento)
+        if ma and mb and ma != mb:
+            difs.append(Diferencia(campo=f"{nombre}.momento", original=str(med.momento), retraducido=str(otro.momento)))
         if _unidad(med.unidad) != _unidad(otro.unidad):
             difs.append(Diferencia(campo=f"{nombre}.unidad", original=str(med.unidad), retraducido=str(otro.unidad)))
         # A missing route is not a change: «tome» often implies oral and one side may leave it null.
@@ -297,6 +445,10 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
         if a != b:
             difs.append(Diferencia(campo=campo, original=", ".join(sorted(a)) or "(ninguna)",
                                    retraducido=", ".join(sorted(b)) or "(ninguna)"))
+    # Fasting is compared as a yes/no for the whole instruction, wherever the extraction put it.
+    if estado_ayunas(original) != estado_ayunas(retraducido):
+        difs.append(Diferencia(campo="ayunas", original=str(estado_ayunas(original)),
+                               retraducido=str(estado_ayunas(retraducido))))
     if original.embarazo != retraducido.embarazo:
         difs.append(Diferencia(campo="embarazo", original=str(original.embarazo), retraducido=str(retraducido.embarazo)))
 

@@ -52,7 +52,12 @@ class Resultado(BaseModel):
 
 SISTEMA_EXTRAER = (
     "Extraes los datos críticos de una indicación de salud dada en una posta del Perú. "
-    "Solo lo que el texto dice. Si un dato no está, va null o lista vacía. No completes nada por tu cuenta."
+    "Solo lo que el texto dice. Si un dato no está, va null o lista vacía. No completes nada por tu cuenta. "
+    "Tres reglas que se confunden: (1) la cantidad es cuántas unidades por toma (1 pastilla) y la concentración es "
+    "la potencia impresa (500 mg); «pastilla de quinientos miligramos» es concentración 500 mg, no cantidad 500. "
+    "(2) «en ayunas», «sin comer», «sin desayunar» son el momento 'en ayunas' (y ayunas = true), nunca una "
+    "prohibición; «no coma grasa» sí es prohibición. (3) Una fracción (media, mitad, kuska, chawpi, un cuarto) es "
+    "la cantidad (0.5, 0.25), nunca el nombre del medicamento."
 )
 
 SISTEMA_TRADUCIR = (

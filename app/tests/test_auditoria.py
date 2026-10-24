@@ -90,3 +90,54 @@ def test_decidir_prioriza_los_datos_criticos():
 
 def test_glosario_vacio_si_no_existe(tmp_path):
     assert auditoria.cargar_glosario(tmp_path / "no-existe.json") == []
+
+
+# The three false blocks of the final eval (chaski-2026-10-24-1549), end to end with a fake client.
+# Each pair is (facts of the original, facts of the back-translation) as the model could return them.
+def _hechos(meds=(), **kw):
+    return Hechos(medicamentos=list(meds), proxima_cita_en_dias=None, ir_ya_si=[], **kw)
+
+
+def _med(**kw):
+    base = dict(nombre="", cantidad=None, unidad=None, cada_horas=None, dias=None, momento=None)
+    base.update(kw)
+    return Medicamento(**base)
+
+
+CASOS_LIMPIOS = {
+    "Pastilla de quinientos miligramos": (
+        _hechos([_med(cantidad=1, unidad="pastilla", concentracion=500, concentracion_unidad="mg")]),
+        _hechos([_med(unidad="pastilla", concentracion=500, concentracion_unidad="miligramos")])),
+    "Venga en ayunas": (_hechos(ayunas=True), _hechos(prohibiciones=["comer"])),
+    "Media tableta": (_hechos([_med(cantidad=0.5, unidad="tableta")]),
+                      _hechos([_med(nombre="kuska", unidad="tableta")])),
+}
+CASOS_CAMBIADOS = {
+    "Pastilla de quinientos miligramos": _hechos([_med(unidad="pastilla", concentracion=250, concentracion_unidad="mg")]),
+    "Venga en ayunas": _hechos([_med(momento="después de comer")], ayunas=False),
+    "Media tableta": _hechos([_med(cantidad=1, unidad="tableta")]),
+}
+
+
+def _cola(original, retraducido):
+    return [original, Traduccion(quechua="(quechua)", terminos_inseguros=[]), Retraduccion(castellano="(castellano)"),
+            retraducido]
+
+
+@pytest.mark.parametrize("texto", list(CASOS_LIMPIOS))
+def test_falsos_bloqueos_del_eval_final_ya_pasan(texto):
+    original, retraducido = CASOS_LIMPIOS[texto]
+    r = auditar(FakeClient(_cola(original, retraducido)), texto, glosario=[])
+    assert r.enviar is True, r.motivo
+
+
+@pytest.mark.parametrize("texto", list(CASOS_CAMBIADOS))
+def test_cambio_real_en_esos_casos_sigue_bloqueando(texto):
+    original, _ = CASOS_LIMPIOS[texto]
+    r = auditar(FakeClient(_cola(original, CASOS_CAMBIADOS[texto])), texto, glosario=[])
+    assert r.enviar is False
+
+
+def test_extraccion_explica_las_tres_reglas():
+    for clave in ("concentración", "en ayunas", "kuska"):
+        assert clave in auditoria.SISTEMA_EXTRAER

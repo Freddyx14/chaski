@@ -22,7 +22,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from chaski.hechos import Hechos, comparar, emparejar
+from chaski.hechos import Hechos, comparar, concentracion_mg, emparejar
 
 NO_PUDE_VERIFICAR = "no pude verificar"
 
@@ -384,7 +384,8 @@ def terminos_fijos(texto_es: str, texto_quy: str, hechos: Hechos | None = None) 
         permitidos.update(range(NUMEROS_ES[rango.group(1)], NUMEROS_ES[rango.group(2)] + 1))
     if hechos is not None:
         for m in hechos.medicamentos:
-            permitidos.update(int(x) for x in (m.cantidad, m.cada_horas, m.dias) if x is not None and float(x).is_integer())
+            permitidos.update(int(x) for x in (m.cantidad, m.cada_horas, m.dias, m.concentracion, concentracion_mg(m))
+                              if x is not None and float(x).is_integer())
         if hechos.proxima_cita_en_dias is not None:
             permitidos.add(hechos.proxima_cita_en_dias)
     quy_nums = set(numeros_quechua(texto_quy))

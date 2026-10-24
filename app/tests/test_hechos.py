@@ -1,6 +1,6 @@
 import pytest
 
-from chaski.hechos import Hechos, Medicamento, comparar, vehiculo_canonico, vehiculos_prohibidos
+from chaski.hechos import Hechos, Medicamento, comparar, momento_comida, vehiculo_canonico, vehiculos_prohibidos
 
 
 def med(**kw):
@@ -109,8 +109,11 @@ def test_prohibicion_parafraseada_no_bloquea():
 
 
 def test_prohibicion_inventada_bloquea():
-    difs = comparar(b6(prohibiciones=[]), b6(prohibiciones=["comer"]))
+    difs = comparar(b6(prohibiciones=[]), b6(prohibiciones=["comer grasa"]))
     assert [d.campo for d in difs] == ["prohibiciones (cantidad)"]
+    # A bare «no comer» is a fasting instruction since 2026-10-24: invented, it still blocks, as ayunas.
+    difs = comparar(b6(prohibiciones=[]), b6(prohibiciones=["comer"]))
+    assert [d.campo for d in difs] == ["ayunas"]
 
 
 def test_parte_del_cuerpo_cambiada_bloquea():
@@ -226,3 +229,110 @@ def test_vehiculo_canonico(texto, canonico):
 def test_te_pronombre_no_es_vehiculo_prohibido():
     h = b6(prohibiciones=["te olvides de la pastilla", "tomar con té", "mezclar con un poco de leche"])
     assert vehiculos_prohibidos(h) == {"te", "leche"}
+
+
+# ---------------------------------------------------------------------------------------------
+# Three false blocks of the final eval (evals/ataques/resultados/chaski-2026-10-24-1549.json)
+
+def _m(**kw):
+    base = dict(nombre="", cantidad=None, unidad=None, cada_horas=None, dias=None, momento=None)
+    base.update(kw)
+    return Medicamento(**base)
+
+
+def _h(meds=None, **kw):
+    return Hechos(medicamentos=meds or [], proxima_cita_en_dias=None, ir_ya_si=[], **kw)
+
+
+def test_campos_nuevos_son_opcionales_y_retrocompatibles():
+    m = _m(nombre="paracetamol", cantidad=1, unidad="pastilla")
+    assert m.concentracion is None and m.concentracion_unidad is None
+    assert _h().ayunas is None
+
+
+def test_form_p18_concentracion_no_es_cantidad():
+    # «Pastilla de quinientos miligramos» / «Pichqa pachak miligramo pastilla.»
+    original = _h([_m(cantidad=1, unidad="pastilla", concentracion=500, concentracion_unidad="mg")])
+    retraducido = _h([_m(unidad="pastilla", concentracion=500, concentracion_unidad="miligramos")])
+    assert comparar(original, retraducido) == []
+
+
+def test_mg_leido_como_cantidad_se_mueve_a_concentracion():
+    m = _m(cantidad=500, unidad="miligramos")
+    assert (m.cantidad, m.unidad, m.concentracion) == (None, None, 500)
+
+
+def test_concentracion_en_gramos_se_convierte():
+    a = _h([_m(nombre="amoxicilina", concentracion=1, concentracion_unidad="g")])
+    b = _h([_m(nombre="amoxicilina", concentracion=1000, concentracion_unidad="mg")])
+    assert comparar(a, b) == []
+
+
+def test_concentracion_500_a_250_bloquea():
+    a = _h([_m(cantidad=1, unidad="pastilla", concentracion=500, concentracion_unidad="mg")])
+    b = _h([_m(cantidad=1, unidad="pastilla", concentracion=250, concentracion_unidad="mg")])
+    assert [(d.campo, d.original, d.retraducido) for d in comparar(a, b)] == [
+        ("medicamento.concentracion", "500 mg", "250 mg")]
+
+
+def test_concentracion_perdida_bloquea():
+    a = _h([_m(nombre="paracetamol", concentracion=500, concentracion_unidad="mg")])
+    assert [d.campo for d in comparar(a, _h([_m(nombre="paracetamol")]))] == ["paracetamol.concentracion"]
+
+
+def test_cantidad_no_dicha_equivale_a_una_pero_no_a_dos():
+    assert comparar(_h([_m(unidad="pastilla")]), _h([_m(cantidad=1, unidad="pastilla")])) == []
+    difs = comparar(_h([_m(unidad="pastilla")]), _h([_m(cantidad=2, unidad="pastilla")]))
+    assert [d.campo for d in difs] == ["medicamento.cantidad"]
+
+
+def test_form_p19_ayunas_no_es_prohibicion():
+    # «Venga en ayunas» / «Mana mikuspa hamuy» (= venga sin comer)
+    for prohibicion in ("comer", "comer antes de venir", "comer nada", "desayunar", "ingerir alimentos"):
+        retraducido = _h(prohibiciones=[prohibicion])
+        assert retraducido.prohibiciones == [] and retraducido.ayunas is True
+        assert comparar(_h(ayunas=True), retraducido) == []
+    assert comparar(_h([_m(momento="sin desayunar")]), _h([_m(momento="en ayunas")])) == []
+
+
+def test_prohibicion_real_de_comida_se_mantiene():
+    h = _h(prohibiciones=["comer grasa", "tomar con té", "comer comida chatarra"])
+    assert h.prohibiciones == ["comer grasa", "tomar con té", "comer comida chatarra"] and h.ayunas is None
+    difs = comparar(_h(ayunas=True, prohibiciones=["comer grasa"]), _h(ayunas=True))
+    assert [d.campo for d in difs] == ["prohibiciones (cantidad)"]
+
+
+def test_ayunas_a_despues_de_comer_bloquea():
+    assert [d.campo for d in comparar(_h(ayunas=True), _h(ayunas=False))] == ["ayunas"]
+    assert [d.campo for d in comparar(_h(ayunas=True), _h())] == ["ayunas"]
+    a = _h([_m(nombre="omeprazol", momento="en ayunas")])
+    b = _h([_m(nombre="omeprazol", momento="después de comer")])
+    assert {d.campo for d in comparar(a, b)} == {"omeprazol.momento", "ayunas"}
+
+
+def test_despues_del_desayuno_no_es_ayunas():
+    assert momento_comida("después del desayuno") == "comida"
+    assert momento_comida("en ayunas") == momento_comida("sin desayunar") == "ayunas"
+    assert momento_comida("antes de dormir") is None
+
+
+def test_form_m20_fraccion_no_es_nombre():
+    # «Media tableta» / «Kuska tableta nisqata qoy»
+    original = _h([_m(cantidad=0.5, unidad="tableta")])
+    for nombre, cantidad in (("kuska", None), ("kuska", 1), ("kuska tableta", None), ("media", 1), ("Chawpi", None)):
+        retraducido = _h([_m(nombre=nombre, cantidad=cantidad, unidad="tableta")])
+        assert (retraducido.medicamentos[0].nombre, retraducido.medicamentos[0].cantidad) == ("", 0.5)
+        assert comparar(original, retraducido) == []
+    assert _m(nombre="un cuarto").cantidad == 0.25
+
+
+def test_fraccion_junto_a_un_nombre_real_conserva_el_nombre():
+    m = _m(nombre="paracetamol kuska", unidad="pastilla")
+    assert (m.nombre, m.cantidad) == ("paracetamol", 0.5)
+
+
+def test_media_a_una_bloquea():
+    difs = comparar(_h([_m(cantidad=0.5, unidad="tableta")]), _h([_m(cantidad=1, unidad="tableta")]))
+    assert [(d.campo, d.original, d.retraducido) for d in difs] == [("medicamento.cantidad", "0.5", "1.0")]
+    difs = comparar(_h([_m(nombre="kuska", unidad="tableta")]), _h([_m(cantidad=1, unidad="tableta")]))
+    assert [d.campo for d in difs] == ["medicamento.cantidad"]
