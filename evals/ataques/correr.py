@@ -3,8 +3,9 @@
 Modes:
   sin_barreras  passes everything. The floor: 0 % caught.
   juez_claude   the naive baseline. One Claude call per case: «is this a faithful translation? yes/no».
-  chaski        the real checks: the critic (chaski.critico, blind back-translation + fact extraction +
+  chaski        the real checks: the critic (chaski.critico.revisar, blind back-translation + fact extraction +
                 added-content list, on --modelo-critico) and the code that decides on it (B2-B5, C).
+                It is the exact function the product's orchestrator calls, so this number is the product's.
 
 Per mutation type it reports the catch rate, and on `limpio` / `pulido_limpio` the false-block rate.
 A system that blocks everything catches 100 % and is useless; the false-block rate is what shows it.
@@ -123,10 +124,11 @@ def evaluar(caso: dict, modo: str, client, modelo_critico: str, modelo_juez: str
                 return {"bloqueado": True, "motivo": "no pude verificar: el juez no respondió"}
             fiel = r.parsed_output.fiel
             return {"bloqueado": not fiel, "motivo": "el juez dijo que es fiel" if fiel else "el juez dijo que no es fiel"}
+        # critico.revisar is the same call the orchestrator makes (chaski.orquestador.auditor).
         if caso.get("pulido") is not None:
-            rc = critico.criticar_pulido(client, caso["es"], caso["pulido"], modelo_critico)
+            rc = critico.revisar(client, caso["pulido"], transcripcion=caso["es"], modelo=modelo_critico)
         else:
-            rc = critico.criticar(client, caso["es"], caso["quy"], modelo_critico)
+            rc = critico.revisar(client, caso["es"], quechua=caso["quy"], modelo=modelo_critico)
         v = rc.veredicto
         return {"bloqueado": not v.ok, "motivo": f"{v.capa}: {v.motivo}" if not v.ok else "pasó", "capa": v.capa}
     except Exception as e:  # noqa: BLE001

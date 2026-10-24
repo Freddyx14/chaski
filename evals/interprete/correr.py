@@ -1,6 +1,6 @@
 """Eval of the two model roles over escenarios.jsonl, to pick the models (D15).
 
-  principal = chaski.interprete.decidir (Sonnet/Opus)  ·  crítico = chaski.orquestador.critico (Haiku)
+  principal = chaski.interprete.decidir (Sonnet/Opus)  ·  crítico = chaski.critico.revisar (the product's critic)
 
     cd app
     uv run python ../evals/interprete/correr.py --simulado                       # no network: checks the harness
@@ -10,8 +10,9 @@
 
 Reports action accuracy, full accuracy (action + listener + topic + bank id), accuracy per category, «never add
 clinical data» violations (code heuristic), dropped data, what the critic blocked (and whether it agreed with the
-heuristic), and latency p50/p95 per role. Writes resultados/<modelo>-<fecha>.json. The critic here judges the
-polished text in the speaker's language (no translation step), which is exactly the C7 question for the brain.
+heuristic), and latency p50/p95 per role. Writes resultados/<modelo>-<fecha>.json. The critic here runs its B2/B3
+path on Spanish `traducir` turns (transcript vs polish, no translation step), which is the C7 question for the brain;
+it is the same `chaski.critico.revisar` the orchestrator calls.
 
 Each case: {id, categoria, turno, contexto, esperado: {accion (str | list), para?, dato_faltante? (list),
 frase_banco_id?, must_include?, must_not}}. `simulado_propone` is what the fake model proposes in --simulado,
@@ -33,8 +34,12 @@ from types import SimpleNamespace
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI.parents[1] / "app"))
 
+from chaski import critico  # noqa: E402
+from chaski.auditoria import Retraduccion  # noqa: E402
+from chaski.critico import MODELO_CRITICO  # noqa: E402
+from chaski.guardas import Agregados  # noqa: E402
+from chaski.hechos import Hechos  # noqa: E402
 from chaski.interprete import Contexto, DecisionModelo, TurnoEntrada, decidir  # noqa: E402
-from chaski.orquestador import MODELO_CRITICO, Critica, EntradaRevision, critico  # noqa: E402
 
 ESCENARIOS = AQUI / "escenarios.jsonl"
 RESULTADOS = AQUI / "resultados"
@@ -81,10 +86,14 @@ class Oraculo:
         self.messages = SimpleNamespace(parse=self._parse)
 
     def _parse(self, **kw):
-        if kw["output_format"] is Critica:
-            return SimpleNamespace(stop_reason="end_turn", parsed_output=Critica(
-                datos_agregados=[], datos_cambiados=[], datos_omitidos=[], obedece_al_texto=False, inapropiado=False,
-                motivo="simulado"))
+        critica = {  # the critic finds nothing: only its plain-code layers can block in --simulado
+            Hechos: lambda: Hechos(medicamentos=[], proxima_cita_en_dias=None, ir_ya_si=[]),
+            Retraduccion: lambda: Retraduccion(castellano=kw["messages"][0]["content"]),
+            Agregados: lambda: Agregados(consejos_nuevos=[], diagnosticos_nuevos=[],
+                                         destinatario_original="no_se_sabe", destinatario_version="no_se_sabe"),
+        }.get(kw["output_format"])
+        if critica:
+            return SimpleNamespace(stop_reason="end_turn", parsed_output=critica())
         caso, esp = self.caso, self.caso["esperado"]
         propone = caso.get("simulado_propone") or _lista(esp["accion"])[0]
         propone = propone if isinstance(propone, dict) else {"accion": propone}
@@ -138,14 +147,8 @@ def percentil(valores: list[float], p: float) -> float | None:
     return round(orden[k], 1)
 
 
-def _fuente(caso: dict) -> str:
-    turno, ctx = caso["turno"], caso.get("contexto", {})
-    return "\n".join([*(f"{h['rol']}: {h['texto']}" for h in ctx.get("historial", [])), turno["texto"], *turno.get("n_mejores", [])])
-
-
 def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critico: str | None = MODELO_CRITICO) -> dict:
     filas, latencias, latencias_critico = [], [], []
-    revisar = critico(client, modelo_critico) if modelo_critico else None
     for caso in casos:
         if simulado:
             client.caso = caso
@@ -160,13 +163,13 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
         latencias.append(ms)
         ev = evaluar(caso, decision)
         critica = None
-        if revisar and decision is not None and decision.accion in ("traducir", "repreguntar", "responder"):
-            idioma = caso["turno"]["idioma"] if decision.accion == "traducir" else "spa"
+        if (modelo_critico and decision is not None and decision.accion == "traducir"
+                and caso["turno"]["idioma"] == "spa"):
             t1 = time.perf_counter()
             try:
-                v = revisar(EntradaRevision(accion=decision.accion, original=caso["turno"]["texto"], fuente=_fuente(caso),
-                                            pulido=decision.texto_pulido, traduccion=decision.texto_pulido, de=idioma, a=idioma))
-                critica = {"ok": v.ok, "motivo": v.motivo}
+                v = critico.revisar(client, decision.texto_pulido, transcripcion=caso["turno"]["texto"],
+                                    modelo=modelo_critico).veredicto
+                critica = {"ok": v.ok, "motivo": v.motivo if v.ok else f"{v.capa}: {v.motivo}"}
             except Exception as e:
                 critica = {"ok": False, "motivo": f"error: {type(e).__name__}: {e}"}
             critica["ms"] = round((time.perf_counter() - t1) * 1000, 1)
@@ -196,7 +199,7 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
         "errores": [{"id": f["id"], "error": f["error"]} for f in filas if f["error"]],
         "latencia_ms": {"p50": percentil(latencias, 50), "p95": percentil(latencias, 95),
                         "media": round(statistics.mean(latencias), 1) if latencias else None},
-        "critico": None if not revisar else {
+        "critico": None if not modelo_critico else {
             "revisadas": len(revisadas), "bloqueadas": len(bloqueadas),
             # agreement with the code heuristic: did it block what the heuristic flagged, and only that?
             "atrapo_violaciones": sum(1 for f in bloqueadas if f["violaciones"]),
