@@ -106,7 +106,10 @@
 | ✅ | Banco de frases + RAG híbrido (216 frases, 88 % / 95 %) | — |
 | ✅ | Mediciones: intérprete × 3 modelos, ataques (piso / juez / Chaski), RAG | — |
 | ✅ | Juez simple y Sonnet como crítico en la misma muestra → **Sonnet: 160/160 y 7,5 % de bloqueos falsos** | — |
-| ⬜ | Conectar barreras y banco dentro del orquestador (hoy son piezas aparte) + prueba de punta a punta del turno | 17:00 |
+| ⏳ | Conectar barreras, banco y **el mismo crítico que medimos** dentro del orquestador (había un crítico duplicado sin medir) + `servicio.py` y `PARA_RICARDO.md` | 17:15 |
+| ⏳ | Ensayo de la negativa: `traduccion_sembrada` → `Resultado.sembrada` · `Resultado.texto_original` (pedidos de ui-ux 15:25) | 17:15 |
+| ⏳ | 🔴 Hueco real (curl de ui-ux): se perdió «con agua» y pasó. Agregar el **vehículo** (agua, leche, té, comida) a los hechos + barrera en código + caso en el banco de ataques | 16:45 |
+| ⬜ | Re-correr el banco de ataques con todo integrado (incluye vehículo) para el número final | 18:00 |
 | ⬜ | Bajar los bloqueos falsos (18 %): revisar uno por uno cuáles son errores reales de la familia | 17:30 |
 | ⬜ | Correr el banco de ataques completo (784) con el crítico elegido para el número final | 18:00 |
 | ⬜ | Línea del pitch con los números finales y la visión de aprender quechua | 18:30 |
