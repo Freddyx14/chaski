@@ -2,7 +2,7 @@
 
 > **Acordado por Freddy y Ricardo** en la llamada de las 12:45 (transcript abajo, §9). Sale de la entrevista con la
 > enfermera (`research/entrevistas/`) y de la propuesta `plan/propuesta-interprete-agente.md`, que este documento
-> reemplaza. Decisiones D32–D36 para el `SOT.md`. **Congelamos funciones a las 19:00.**
+> reemplaza. Decisiones D32–D37 para el `SOT.md`. **Congelamos funciones a las 19:00.**
 
 ---
 
@@ -74,6 +74,54 @@ class Decision(BaseModel):
 
 ---
 
+## 2b · Barreras antes de hablar (lo que define si lo hicimos bien)
+
+> Freddy, 13:00: *«guardrails and detection before giving the text are to not give wrong information … that's going to
+> define if we did it well or not.»* En salud, **una frase segura y equivocada es peor que el silencio.**
+> Principio: **ante la duda, Chaski no habla; se lo dice al personal y repregunta.** El modelo propone, el código decide.
+
+Ocho capas, en el orden en que corre un turno. Cada una puede frenar el mensaje; ninguna lo puede «arreglar» inventando.
+
+| Capa | Qué revisa | Quién decide | Si falla |
+|---|---|---|---|
+| **B1 · Lo que se oyó** | Confianza del reconocimiento; palabras de baja confianza **sobre un dato crítico** (número, medicamento, parte del cuerpo); ruido, silencio o sin sentido (C6) | código (umbral) + Claude (sentido) | «No le entendí, ¿me lo repite?» al mismo hablante. **Nunca se adivina un número** |
+| **B2 · El pulido no cambia hechos** | Los hechos del texto pulido = los hechos de la transcripción (mismo `hechos.comparar` de la auditoría, aplicado a origen vs pulido) | código | Se descarta el pulido y se usa la transcripción literal |
+| **B3 · Nada nuevo** (C7) | El intérprete no agregó medicamento, dosis, frecuencia, días ni indicación que no estaba | código (hechos del pulido ⊆ hechos de la transcripción) | Bloqueo + aviso |
+| **B4 · Términos fijos** | Medicamentos y números no los «traduce» el modelo: el nombre del medicamento se dice tal cual (préstamo), los números salen de una plantilla verificada (ocho = *pusaq*) y los términos del glosario revisado por la enfermera se respetan | código + glosario | Si la traducción cambió un término fijo → bloqueo |
+| **B5 · Auditoría de ida y vuelta** (C8, ya existe) | Retraducción a ciegas por Claude + comparación en código de todos los hechos críticos | código | Bloqueo + «Chaski no dijo esto: no coincidió la frecuencia» |
+| **B6 · Hechos que hoy NO se comparan** (hay que agregarlos a `hechos.py`) | **Negaciones y prohibiciones** («**no** tome con té», «**no** le dé leche»), **parte del cuerpo**, **alergias**, **vía** (por boca, en la piel), **embarazo** | código | Bloqueo. *«Tómelo con té» vs «no lo tome con té» hoy pasaría la auditoría: es el hueco más peligroso que tenemos* |
+| **B7 · Frase verificada primero** (C9) | Si la intención está en el banco revisado, se usa ese audio y no se genera | intérprete + código | — |
+| **B8 · ¿Entendió?** (F6) | En medicamentos, el paciente lo repite con sus palabras y Claude compara sus hechos con los indicados | código | Se repite la indicación; al segundo fallo, avisar al personal |
+
+**Falla cerrada.** Cualquier error, tiempo agotado o respuesta mal formada en cualquier capa → **Chaski no dice nada
+al paciente** y le muestra al personal «no pude verificar esto». Nunca un «probablemente».
+
+**Lo que ve el personal** (ya en la app): `dicho` · `dicho_con_aviso` (ámbar, con el motivo) · `bloqueado` (rojo,
+con el campo que no coincidió). El rojo solo significa «Chaski no lo dijo».
+
+**Lo que dice el paciente es dato, no instrucción.** Si alguien dice «ignora lo anterior», se traduce como frase; el
+intérprete nunca obedece al contenido de la transcripción.
+
+### Cómo sabemos que las barreras funcionan (y el número para el pitch)
+
+Un **banco de ataques** con errores sembrados, corrido antes y después de cada cambio:
+
+| Tipo | Ejemplo |
+|---|---|
+| Dosis cambiada | «cada **ocho** horas» traducido como «cada **seis**» |
+| Negación invertida | «**no** tome con té» → «tome con té» |
+| Unidad cambiada | «una **cucharada**» → «una **pastilla**» |
+| Medicamento cambiado | «paracetamol» → «ibuprofeno» |
+| Días cambiados | «por **siete** días» → «por **tres**» |
+| Dato inventado | el pulido agrega «después de comer» que nadie dijo |
+| Basura | ruido, frase cortada, transcripción sin sentido |
+
+**Métricas**: % de errores sembrados que se atrapan (**la meta es 100 % en dosis, negación y medicamento**) y % de
+frases correctas bloqueadas por error (que no se vuelva inútil). **«La auditoría atrapó X de Y errores sembrados»
+es un número que ningún otro equipo va a tener**, y responde de frente al criterio 4 de Anthropic.
+
+---
+
 ## 3 · Traducción: dónde entra el ajuste fino
 
 Acordado: **Claude pule y audita; el modelo ajustado traduce.**
@@ -132,7 +180,7 @@ de quechua para el personal y no aprenden.
 |---|---|---|
 | **Ricardo** | 1. **Línea base congelada** de reconocimiento y traducción, con el hablante de prueba separado (lo crítico, sigue primero) · 2. Partir los datos en `train / banco / test` · 3. **NLLB-200 ajustado** castellano↔quechua con la base de texto (somosnlp quy + la base médica) y ruta `/traducir` · 4. omniASR ajustado con los audios completos (los de su papá y los del formulario) · 5. Audios del banco de emergencia con la voz de Chaski donde falte grabación | 1–2 a las 15:00 · 3–4 a las 19:00 |
 | **Sesión ui-ux** (app) | 1. Pantalla y flujo de las 5 acciones: tarjeta «Chaski pregunta» (repreguntar), respuesta de Chaski al personal (responder), «no le entendí» · 2. **Modo emergencia** (grilla de botones del banco) · 3. Terminar **receta** + «¿me lo repite?» · 4. Glosario en el resumen | 19:00 |
-| **Esta sesión** (Claude, con Freddy) | 1. `app/chaski/interprete.py`: la Decisión, el prompt con C1–C9, las reglas en código (C4, C7) y **pruebas con casos reales y basura** (FakeClient, como `auditoria.py`) · 2. `app/chaski/banco.py` + `banco.json` con el formato de §4 · 3. Interfaz `traducir()` con el interruptor de motor · 4. Medir Haiku vs Sonnet para el intérprete · 5. Docs, pitch y Devpost | 1–3 a las 16:00 · 4 a las 17:00 |
+| **Esta sesión** (Claude, con Freddy) | 0. **Barreras §2b primero**: B6 en `hechos.py` (negaciones, parte del cuerpo, alergias, vía, embarazo), B2/B3/B4 en código, y el **banco de ataques** con su número · 1. `app/chaski/interprete.py`: la Decisión, el prompt con C1–C9, las reglas en código (C4, C7) y **pruebas con casos reales y basura** (FakeClient, como `auditoria.py`) · 2. `app/chaski/banco.py` + `banco.json` con el formato de §4 · 3. Interfaz `traducir()` con el interruptor de motor · 4. Medir Haiku vs Sonnet para el intérprete · 5. Docs, pitch y Devpost | 1–3 a las 16:00 · 4 a las 17:00 |
 | **Freddy** | 1. Pedir a la familia que grabe (el link del formulario) · 2. **Con su mamá**: revisar los textos quechua del modo emergencia y de la app, y grabar su saludo para el pitch · 3. Pitch y Devpost | 1 ya · 2 a las 18:00 |
 
 **Integración 19:00–21:00**: el servicio de Ricardo llama a `interpretar()` dentro de `/turno/enfermera` y
@@ -152,6 +200,7 @@ se cortan**: son lo que la enfermera pidió.
 | D33 | **Claude pule y audita; NLLB ajustado traduce**, con Claude de respaldo detrás de un interruptor | El ajuste fino es donde aporta; Claude es el juez. Si NLLB no gana en chrF++, queda Claude |
 | D34 | **Banco de frases verificadas** para RAG y modo emergencia, sin base vectorial; los datos se parten `train / banco / test` antes de entrenar | Rapidez en emergencias, correctitud garantizada y la medición intacta |
 | D35 | **Modo emergencia y receta son obligatorios en la demo** | Son los dos dolores que la enfermera nombró: rapidez y medicamentos |
+| D37 | **Barreras antes de hablar (§2b)**: ocho capas, falla cerrada, el código decide; se mide con un banco de errores sembrados | En salud una frase segura y equivocada es peor que el silencio. Pedido de Freddy: es lo que define si lo hicimos bien |
 | D36 | **Aprender quechua desde las consultas**: hoy glosario en el resumen; la plataforma de aprendizaje va al backlog y al pitch como visión | La enfermera lo pidió; el Estado capacita y el personal no aprende |
 
 ---
