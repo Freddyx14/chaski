@@ -334,3 +334,39 @@ No es el número del pitch —es voz sintética, no humana— pero demuestra que
 punta y ya enseña el patrón: **el CER es bajo y el WER alto**, o sea que el modelo oye bien los sonidos
 y se equivoca en las palabras. Y la mitad de los préstamos sale mal, que es exactamente lo que el ajuste
 fino tiene que arreglar.
+
+## Bajar el turno del paciente: de 5.6 s a 1.8 s
+
+Medido el 24-oct sobre un audio realista de 6 s (antes se medía con uno de 44 s, que exageraba el ASR).
+
+| | antes | ahora |
+|---|---|---|
+| Detectar idioma | 482 ms | **0 ms** si la app ya sabe de quién es el turno |
+| Oír chanka | 1,926 ms | ~900 ms |
+| Pasar a castellano | 3,169 ms | **~850 ms** |
+| **Total** | **5.6 s** | **1.8 s** |
+
+### De dónde salió cada mejora
+
+**El prompt escribía demasiado.** Pedía un JSON con cuatro campos: 255 tokens de salida, 3.79 s. Pedir
+solo la frase en castellano baja a 53 tokens y **1.30 s**. Lo que manda el reloj no es qué modelo
+escribe, sino **cuánto** escribe. Las dudas ahora vienen marcadas en el propio texto con
+`[no se entiende]`, que cuesta cero tokens extra.
+
+**La detección de idioma se puede saltar.** En una consulta los turnos alternan, así que la app casi
+siempre sabe quién habla. `POST /turno/paciente` acepta `lengua=quy` y se ahorra ~450 ms. Si no lo
+sabe, lo deja vacío y se detecta como antes.
+
+**Y hay una versión en vivo**: `POST /turno/paciente/vivo` devuelve server-sent events con cada paso
+apenas termina, y el castellano **palabra por palabra** mientras Claude lo escribe. Medido: el primer
+token de Claude llega a los **613 ms**. Lo que se siente no es el total, es cuándo aparece la primera
+palabra.
+
+### Sobre el modo rápido de Claude
+
+Probado y **no sirve para esto**, por dos razones: solo existe en Opus 5 y Opus 4.8, y nuestra clave
+devuelve `429 RateLimitError` al pedirlo (el modo rápido tiene su propio límite, aparte del normal).
+
+Pero la medición dejó algo mejor: **Haiku 4.5 con la salida recortada tarda 1.30 s y Sonnet 5 tarda
+1.85 s** en la misma tarea. El modelo más liviano ya es el más rápido; el modo rápido de un modelo más
+grande no haría falta aunque estuviera disponible.

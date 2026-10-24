@@ -111,12 +111,33 @@ async def escuchar(audio: UploadFile = File(...)):
 
 
 @aplicacion.post("/turno/paciente")
-async def turno_paciente(audio: UploadFile = File(...)):
+async def turno_paciente(audio: UploadFile = File(...), lengua: str = Form("")):
     from servicio.flujo import turno_del_paciente
     try:
-        return turno_del_paciente(await audio.read(), audio.filename or "turno.wav")
+        return turno_del_paciente(await audio.read(), audio.filename or "turno.wav", lengua)
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/turno/paciente/vivo")
+async def turno_paciente_vivo(audio: UploadFile = File(...)):
+    """El mismo turno, pero en vivo: cada paso sale en cuanto está."""
+    from fastapi.responses import StreamingResponse
+
+    from servicio.flujo import turno_del_paciente_en_vivo
+
+    datos = await audio.read()
+    nombre = audio.filename or "turno.wav"
+
+    def eventos():
+        try:
+            for trozo in turno_del_paciente_en_vivo(datos, nombre):
+                yield f"data: {json.dumps(trozo, ensure_ascii=False)}\n\n"
+        except Exception as e:
+            yield f"data: {json.dumps({'paso': 'error', 'error': f'{type(e).__name__}: {e}'})}\n\n"
+
+    return StreamingResponse(eventos(), media_type="text/event-stream",
+                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @aplicacion.post("/turno/enfermera")

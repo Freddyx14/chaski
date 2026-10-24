@@ -20,17 +20,16 @@ import httpx
 INSTANCIA = os.environ.get("CHASKI_VOZ", "http://127.0.0.1:8010")
 MODELO_TEXTO = os.environ.get("CHASKI_MODELO_TEXTO", "claude-haiku-4-5")
 
+# La salida corta es la diferencia entre 3.8 s y 1.3 s: lo medido el 24-oct dice
+# que el coste lo manda cuantos tokens escribe, no que modelo escribe. Antes se
+# pedia un JSON con cuatro campos (255 tokens); ahora una linea (53 tokens).
 SISTEMA_QUY_ES = """Pasas al castellano lo que dijo un paciente quechuahablante en la posta de
-Pilpichaca. El texto te llega de un reconocimiento de voz que se equivoca, sobre todo en préstamos del
-castellano (doctor, pastilla, posta) y en nombres propios.
+Pilpichaca. El texto viene de un reconocimiento de voz que se equivoca, sobre todo en préstamos del
+castellano (doctor, pastilla, posta).
 
-Devuelves SOLO JSON:
-{"castellano": "...", "literal": "...", "dudas": ["lo que no entendiste"], "seguro": true|false}
-
-- "castellano": lo que la persona quiso decir, en castellano llano.
-- "literal": palabra por palabra, aunque suene raro. Sirve para que la enfermera compare.
-- Si el reconocimiento trae algo que no se entiende, va en "dudas" y NO lo completas.
-- Si dudas del sentido general, "seguro": false. Es una posta: callar es mejor que inventar."""
+Responde SOLO la frase en castellano llano, en una línea, sin comillas ni explicaciones.
+Si una parte no se entiende, escríbela entre corchetes así: [no se entiende].
+Es una posta: no inventes lo que no está."""
 
 
 def _json_de(texto: str) -> dict:
@@ -40,13 +39,23 @@ def _json_de(texto: str) -> dict:
     return json.loads(bloque.group(0))
 
 
-def turno_del_paciente(audio: bytes, nombre: str = "turno.wav") -> dict:
-    """Audio en quechua -> lo que la enfermera lee en castellano."""
+def turno_del_paciente(audio: bytes, nombre: str = "turno.wav",
+                       lengua_sabida: str = "") -> dict:
+    """Audio en quechua -> lo que la enfermera lee en castellano.
+
+    `lengua_sabida` salta la deteccion y ahorra ~300 ms. En una consulta los
+    turnos alternan —habla la enfermera, responde el paciente— asi que la app
+    casi siempre sabe de quien es el turno. Cuando no lo sepa, lo deja vacio y
+    se detecta.
+    """
     pasos = {}
     with httpx.Client(timeout=300) as cli:
         t0 = time.perf_counter()
-        lengua = cli.post(f"{INSTANCIA}/idioma",
-                          files={"audio": (nombre, audio, "audio/wav")}).json()
+        if lengua_sabida:
+            lengua = {"codigo": lengua_sabida, "confianza": None, "fuente": "la app lo sabía"}
+        else:
+            lengua = cli.post(f"{INSTANCIA}/idioma",
+                              files={"audio": (nombre, audio, "audio/wav")}).json()
         pasos["idioma_ms"] = round((time.perf_counter() - t0) * 1000, 1)
 
         t0 = time.perf_counter()
@@ -58,17 +67,60 @@ def turno_del_paciente(audio: bytes, nombre: str = "turno.wav") -> dict:
     from anthropic import Anthropic
     t0 = time.perf_counter()
     respuesta = Anthropic().messages.create(
-        model=MODELO_TEXTO, max_tokens=2000, system=SISTEMA_QUY_ES,
+        model=MODELO_TEXTO, max_tokens=300, system=SISTEMA_QUY_ES,
         messages=[{"role": "user", "content":
                    f"El reconocimiento oyó esto en chanka:\n\n{oido['texto']}"}])
     pasos["traducir_ms"] = round((time.perf_counter() - t0) * 1000, 1)
-    d = _json_de("".join(b.text for b in respuesta.content if b.type == "text"))
+    castellano = "".join(b.text for b in respuesta.content if b.type == "text").strip()
+    dudas = re.findall(r"\[([^\]]+)\]", castellano)
 
     return {"idioma": lengua, "chanka_oido": oido["texto"], "modelo_asr": oido["modelo"],
-            "castellano": d.get("castellano", ""), "literal": d.get("literal", ""),
-            "dudas": d.get("dudas", []), "seguro": bool(d.get("seguro")),
+            "castellano": castellano, "literal": "",
+            "dudas": dudas, "seguro": not dudas,
             "modelo_texto": MODELO_TEXTO, "pasos": pasos,
             "total_ms": round(sum(pasos.values()), 1)}
+
+
+def turno_del_paciente_en_vivo(audio: bytes, nombre: str = "turno.wav"):
+    """Lo mismo, pero soltando cada paso en cuanto termina.
+
+    La enfermera ve el chanka apenas el modelo lo oye, y el castellano palabra
+    por palabra mientras Claude lo escribe. Lo que se siente no es el total:
+    es cuanto tarda en aparecer la primera palabra.
+    """
+    from anthropic import Anthropic
+
+    with httpx.Client(timeout=300) as cli:
+        t0 = time.perf_counter()
+        lengua = cli.post(f"{INSTANCIA}/idioma",
+                          files={"audio": (nombre, audio, "audio/wav")}).json()
+        yield {"paso": "idioma", "codigo": lengua["codigo"], "confianza": lengua["confianza"],
+               "ms": round((time.perf_counter() - t0) * 1000, 1)}
+
+        t0 = time.perf_counter()
+        oido = cli.post(f"{INSTANCIA}/entender",
+                        files={"audio": (nombre, audio, "audio/wav")},
+                        data={"lengua": "quy_Latn"}).json()
+        yield {"paso": "entender", "texto": oido["texto"], "modelo": oido["modelo"],
+               "ms": round((time.perf_counter() - t0) * 1000, 1)}
+
+    t0 = time.perf_counter()
+    primero = None
+    trozos = []
+    with Anthropic().messages.stream(
+            model=MODELO_TEXTO, max_tokens=300, system=SISTEMA_QUY_ES,
+            messages=[{"role": "user",
+                       "content": f"El reconocimiento oyó esto en chanka:\n\n{oido['texto']}"}]) as flujo:
+        for trozo in flujo.text_stream:
+            if primero is None:
+                primero = round((time.perf_counter() - t0) * 1000, 1)
+            trozos.append(trozo)
+            yield {"paso": "palabra", "texto": trozo}
+    castellano = "".join(trozos).strip()
+    yield {"paso": "traducir", "castellano": castellano,
+           "dudas": re.findall(r"\[([^\]]+)\]", castellano),
+           "primer_token_ms": primero,
+           "ms": round((time.perf_counter() - t0) * 1000, 1)}
 
 
 def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
