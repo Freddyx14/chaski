@@ -2,7 +2,13 @@
 
 > Sábado 24 de octubre de 2026, 18:00 UTC. Todos los tiempos de este documento están medidos, no
 > estimados: `reports/tiempos-instancia.md`, `reports/lid.json`, `reports/traduccion.json`,
-> `reports/guarda.json`. Los diagramas se regeneran editando los `.svg`.
+> `reports/guarda.json`.
+>
+> **Los diagramas vienen en dos formatos.** El `.svg` es el que se ve aquí mismo y en GitHub. El
+> `.drawio` de `reports/drawio/` es el editable: se abre en [draw.io](https://app.diagrams.net) con
+> *File → Open*, o con la extensión de draw.io en VS Code, y trae las figuras como objetos movibles.
+> Los tres se regeneran con `python reports/drawio/generar.py`, así que conviene editar el script si
+> el cambio es de contenido, y draw.io si es de posición.
 
 > **Cambio de hoy:** el orquestador ya no corre en la laptop de Ricardo. Vive en la instancia, al lado
 > de los modelos. La URL pública es la misma y Freddy no cambia nada. Ver la sección 2.
@@ -10,6 +16,8 @@
 ## 1. Un turno de consulta
 
 ![Flujo de un turno](arquitectura-flujo.svg)
+
+> Editable: [`drawio/arquitectura-flujo.drawio`](drawio/arquitectura-flujo.drawio)
 
 Cuatro proveedores, y cada uno hace lo que hace mejor:
 
@@ -33,6 +41,8 @@ usar sus dos mitades (entender y hablar) en vez de solo la voz hace que su track
 ## 2. Dónde corre cada cosa
 
 ![Arquitectura de despliegue](arquitectura-despliegue.svg)
+
+> Editable: [`drawio/arquitectura-despliegue.drawio`](drawio/arquitectura-despliegue.drawio)
 
 Hasta esta mañana la cadena era **app → ngrok → laptop de Ricardo → túnel SSH → instancia**, y de
 vuelta por el mismo camino. Dos cosas malas de eso: si Ricardo cerraba la laptop se caía el backend de
@@ -89,6 +99,8 @@ de la enfermera es del paciente.
 ## 5. De la voz de la familia al número del pitch
 
 ![Arquitectura de datos](arquitectura-datos.svg)
+
+> Editable: [`drawio/arquitectura-datos.drawio`](drawio/arquitectura-datos.drawio)
 
 La regla que sostiene toda la medición: **el conjunto de prueba es una persona completa que el modelo
 nunca escuchó.** Si se parte por frase, el modelo aprende la voz y el número deja de significar nada.
