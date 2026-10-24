@@ -26,3 +26,9 @@ data/
 # Los manifiestos .jsonl SI van a git: son el texto, que es lo que hay que revisar.
 ricardo-artifacts/datos/crudo/**/*.wav
 ricardo-artifacts/datos/crudo/**/*.webm
+
+# Claude Code worktrees and agent skills that integrations drop in
+.claude/worktrees/
+form/.agents/
+form/.claude/
+form/skills-lock.json
