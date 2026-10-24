@@ -1,115 +1,82 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 620" width="1180" height="620" font-family="Archivo, Helvetica, Arial, sans-serif">
-  <rect width="1180" height="620" fill="#f4f3ee"/>
-  <text x="28" y="40" font-size="20" font-weight="700" fill="#16160f">Un turno de consulta, de micrófono a parlante</text>
-  <text x="28" y="62" font-size="12.5" fill="#4e4d45">Tiempos medidos el 24-oct-2026 en la A10G. Lo que está en azul es de Meta y lo ajustamos nosotros; lo verde es de Cartesia; lo rojo es Claude.</text>
-
-  <!-- leyenda -->
-  <g font-size="11.5" fill="#4e4d45">
-    <rect x="28" y="80" width="12" height="12" fill="#1f6fd0"/><text x="46" y="90">Meta · corre en nuestra GPU · lo ajustamos</text>
-    <rect x="300" y="80" width="12" height="12" fill="#1b9476"/><text x="318" y="90">Cartesia · nube · no se ajusta</text>
-    <rect x="520" y="80" width="12" height="12" fill="#c8372f"/><text x="538" y="90">Claude · nube · decide y corrige</text>
-    <rect x="740" y="80" width="12" height="12" fill="#86847a"/><text x="758" y="90">dispositivo del usuario</text>
-  </g>
-
-  <!-- entrada -->
-  <g>
-    <rect x="28" y="140" width="150" height="74" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
-    <text x="42" y="166" font-size="13.5" font-weight="600" fill="#16160f">Micrófono</text>
-    <text x="42" y="186" font-size="11.5" fill="#4e4d45">iPhone, app nativa</text>
-    <text x="42" y="203" font-size="11.5" fill="#4e4d45">16 kHz mono</text>
-  </g>
-  <path d="M178 177 H 228" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
-
-  <!-- LID -->
-  <g>
-    <rect x="228" y="134" width="168" height="86" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
-    <rect x="228" y="134" width="168" height="5" fill="#1f6fd0"/>
-    <text x="242" y="162" font-size="13.5" font-weight="600" fill="#16160f">mms-lid-512</text>
-    <text x="242" y="181" font-size="11.5" fill="#4e4d45">¿quechua o castellano?</text>
-    <text x="242" y="199" font-size="12" font-weight="700" fill="#1f6fd0">49 ms · 6/6 aciertos</text>
-    <text x="242" y="214" font-size="10.5" fill="#86847a">no se ajusta: ya acierta</text>
-  </g>
-
-  <!-- bifurcacion -->
-  <path d="M396 160 H 440 V 118 H 486" stroke="#1b9476" stroke-width="2" fill="none" marker-end="url(#g)"/>
-  <path d="M396 196 H 440 V 268 H 486" stroke="#1f6fd0" stroke-width="2" fill="none" marker-end="url(#b)"/>
-  <text x="446" y="112" font-size="11" fill="#1b9476">castellano</text>
-  <text x="446" y="288" font-size="11" fill="#1f6fd0">quechua</text>
-
-  <!-- STT castellano -->
-  <g>
-    <rect x="486" y="86" width="196" height="76" rx="3" fill="#ffffff" stroke="#1b9476" stroke-width="2"/>
-    <rect x="486" y="86" width="196" height="5" fill="#1b9476"/>
-    <text x="500" y="114" font-size="13.5" font-weight="600" fill="#16160f">Cartesia ink-whisper</text>
-    <text x="500" y="133" font-size="11.5" fill="#4e4d45">entiende a la enfermera</text>
-    <text x="500" y="151" font-size="10.5" fill="#86847a">streaming · hay que decirle el idioma</text>
-  </g>
-
-  <!-- ASR quechua -->
-  <g>
-    <rect x="486" y="232" width="196" height="92" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
-    <rect x="486" y="232" width="196" height="5" fill="#1f6fd0"/>
-    <text x="500" y="260" font-size="13.5" font-weight="600" fill="#16160f">omniASR_LLM_300M</text>
-    <text x="500" y="279" font-size="11.5" fill="#4e4d45">entiende al paciente · quy_Latn</text>
-    <text x="500" y="297" font-size="12" font-weight="700" fill="#1f6fd0">1.71 s · 3.41 GB de GPU</text>
-    <text x="500" y="313" font-size="10.5" fill="#c8372f">ESTE es el que ajustamos</text>
-  </g>
-
-  <path d="M682 124 H 742 V 196 H 790" stroke="#c4c2b6" stroke-width="2" fill="none" marker-end="url(#f)"/>
-  <path d="M682 278 H 742 V 220 H 790" stroke="#c4c2b6" stroke-width="2" fill="none" marker-end="url(#f)"/>
-  <text x="690" y="252" font-size="10.5" fill="#86847a">N mejores</text>
-
-  <!-- Claude -->
-  <g>
-    <rect x="790" y="150" width="200" height="118" rx="3" fill="#ffffff" stroke="#c8372f" stroke-width="2"/>
-    <rect x="790" y="150" width="200" height="5" fill="#c8372f"/>
-    <text x="804" y="178" font-size="13.5" font-weight="600" fill="#16160f">Claude</text>
-    <text x="804" y="197" font-size="11.5" fill="#4e4d45">corrige las N mejores</text>
-    <text x="804" y="214" font-size="11.5" fill="#4e4d45">traduce con glosario</text>
-    <text x="804" y="231" font-size="11.5" fill="#4e4d45">retraduce y se audita</text>
-    <text x="804" y="252" font-size="11" font-weight="700" fill="#c8372f">si cambió una dosis, no habla</text>
-  </g>
-
-  <!-- salidas -->
-  <path d="M990 180 H 1030 V 118 H 1062" stroke="#1b9476" stroke-width="2" fill="none" marker-end="url(#g)"/>
-  <path d="M990 238 H 1030 V 300 H 1062" stroke="#1f6fd0" stroke-width="2" fill="none" marker-end="url(#b)"/>
-
-  <g>
-    <rect x="1000" y="86" width="152" height="76" rx="3" fill="#ffffff" stroke="#1b9476" stroke-width="2"/>
-    <rect x="1000" y="86" width="152" height="5" fill="#1b9476"/>
-    <text x="1012" y="114" font-size="13" font-weight="600" fill="#16160f">Cartesia Sonic</text>
-    <text x="1012" y="133" font-size="11.5" fill="#4e4d45">habla castellano</text>
-    <text x="1012" y="151" font-size="10.5" fill="#86847a">44 idiomas · sin quechua</text>
-  </g>
-  <g>
-    <rect x="1000" y="264" width="152" height="86" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
-    <rect x="1000" y="264" width="152" height="5" fill="#1f6fd0"/>
-    <text x="1012" y="292" font-size="13" font-weight="600" fill="#16160f">mms-tts-quy</text>
-    <text x="1012" y="311" font-size="11.5" fill="#4e4d45">habla chanka</text>
-    <text x="1012" y="329" font-size="10.5" fill="#c8372f">lo ajustamos con la voz</text>
-    <text x="1012" y="344" font-size="10.5" fill="#c8372f">de la mamá de Freddy</text>
-  </g>
-
-  <!-- presupuesto de espera -->
-  <rect x="28" y="392" width="1124" height="94" rx="3" fill="#ffffff" stroke="#c4c2b6"/>
-  <text x="44" y="418" font-size="14" font-weight="700" fill="#16160f">Presupuesto de espera por turno</text>
-  <g font-size="12" fill="#4e4d45">
-    <text x="44" y="442">detectar idioma</text><text x="190" y="442" font-weight="700" fill="#1f6fd0">49 ms</text>
-    <text x="250" y="442">+ entender quechua</text><text x="400" y="442" font-weight="700" fill="#1f6fd0">1.71 s</text>
-    <text x="460" y="442">+ Claude</text><text x="560" y="442" font-weight="700" fill="#c8372f">por medir</text>
-    <text x="660" y="442">+ hablar</text><text x="740" y="442" font-weight="700" fill="#1b9476">por medir</text>
-  </g>
-  <text x="44" y="468" font-size="11.5" fill="#86847a">Con 49 ms, detectar el idioma ANTES de reconocer no cuesta nada: la vía en serie alcanza y no hace falta correr los dos reconocedores en paralelo.</text>
-
-  <!-- caso mezcla -->
-  <rect x="28" y="506" width="1124" height="86" rx="3" fill="#ffffff" stroke="#c8372f" stroke-width="1.5"/>
-  <text x="44" y="532" font-size="14" font-weight="700" fill="#c8372f">El caso que no tiene respuesta correcta</text>
-  <text x="44" y="554" font-size="12" fill="#4e4d45">«Mamáy, tome una pastilla cada ocho horas» es castellano con quechua adentro, y es como se habla en la posta. mms-lid lo llama castellano en los tres casos.</text>
-  <text x="44" y="574" font-size="12" fill="#4e4d45">No se cuenta ni como acierto ni como error. Se reporta aparte, y lo resuelve la alternancia de turnos: si el turno anterior fue de la enfermera, este es del paciente.</text>
-
-  <defs>
-    <marker id="f" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#c4c2b6"/></marker>
-    <marker id="g" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#1b9476"/></marker>
-    <marker id="b" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#1f6fd0"/></marker>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1650 680" width="1650" height="680" font-family="Archivo, Helvetica, Arial, sans-serif">
+<defs><marker id="m8C8C7A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8C8C7A"/></marker><marker id="m1B9476" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1B9476"/></marker><marker id="m1F6FD0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1F6FD0"/></marker></defs>
+<rect width="1650" height="680" fill="#F4F3EE"/>
+<text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">Un turno de consulta, de micrófono a parlante</text>
+<text x="40" y="66.8" font-size="12.0" fill="#4E4D45">Tiempos medidos el 24-oct-2026 en la A10G. Azul: Meta, en nuestra GPU, lo ajustamos. Verde: Cartesia. Rojo: Claude.</text>
+<rect x="40" y="170" width="170" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<rect x="40" y="170" width="170" height="4" fill="#8C8C7A"/>
+<text x="50" y="187.0" font-size="11.0" fill="#4E4D45" font-weight="700">Micrófono</text>
+<text x="50" y="218.9" font-size="11.0" fill="#4E4D45">iPhone o navegador</text>
+<text x="50" y="234.8" font-size="11.0" fill="#4E4D45">16 kHz mono</text>
+<rect x="250" y="160" width="210" height="96" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
+<rect x="250" y="160" width="210" height="4" fill="#1F6FD0"/>
+<text x="260" y="177.0" font-size="11.0" fill="#4E4D45" font-weight="700">mms-lid-512</text>
+<text x="260" y="208.9" font-size="11.0" fill="#4E4D45">¿quechua o castellano?</text>
+<text x="260" y="224.8" font-size="11.0" fill="#4E4D45">49 ms · 6/6 aciertos</text>
+<text x="260" y="240.8" font-size="11.0" fill="#4E4D45">No se ajusta: ya acierta</text>
+<rect x="510" y="90" width="210" height="76" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
+<rect x="510" y="90" width="210" height="4" fill="#1B9476"/>
+<text x="520" y="107.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cartesia ink-whisper</text>
+<text x="520" y="138.9" font-size="11.0" fill="#4E4D45">Entiende castellano</text>
+<text x="520" y="154.8" font-size="11.0" fill="#4E4D45">Nube de Cartesia</text>
+<rect x="510" y="250" width="210" height="96" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
+<rect x="510" y="250" width="210" height="4" fill="#1F6FD0"/>
+<text x="520" y="267.0" font-size="11.0" fill="#4E4D45" font-weight="700">omniASR_LLM_300M</text>
+<text x="520" y="298.9" font-size="11.0" fill="#4E4D45">Entiende chanka</text>
+<text x="520" y="314.9" font-size="11.0" fill="#4E4D45">1.71 s para 15.8 s de audio</text>
+<text x="520" y="330.8" font-size="11.0" fill="#4E4D45">EL NÚCLEO: esto ajustamos</text>
+<rect x="770" y="160" width="240" height="124" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<rect x="770" y="160" width="240" height="4" fill="#C8372F"/>
+<text x="780" y="177.0" font-size="11.0" fill="#4E4D45" font-weight="700">Claude</text>
+<text x="780" y="208.9" font-size="11.0" fill="#4E4D45">Traduce y audita</text>
+<text x="780" y="224.8" font-size="11.0" fill="#4E4D45">sonnet-5 traduce · haiku-4-5 extrae</text>
+<text x="780" y="240.8" font-size="11.0" fill="#4E4D45">hechos</text>
+<text x="780" y="256.8" font-size="11.0" fill="#4E4D45">7–12 s: el cuello de botella</text>
+<text x="780" y="272.7" font-size="11.0" fill="#4E4D45">Glosario cacheado en el system</text>
+<rect x="770" y="320" width="240" height="124" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="3"/>
+<rect x="770" y="320" width="240" height="4" fill="#8A4FBD"/>
+<text x="780" y="337.0" font-size="11.0" fill="#4E4D45" font-weight="700">La guarda</text>
+<text x="780" y="368.9" font-size="11.0" fill="#4E4D45">Retraduce a ciegas y compara los</text>
+<text x="780" y="384.9" font-size="11.0" fill="#4E4D45">hechos</text>
+<text x="780" y="400.8" font-size="11.0" fill="#4E4D45">Si cambió una dosis, no se dice</text>
+<text x="780" y="416.8" font-size="11.0" fill="#4E4D45">Medido: 0/6 falsos bloqueos, 3/6</text>
+<text x="780" y="432.7" font-size="11.0" fill="#4E4D45">fugas</text>
+<rect x="1070" y="120" width="220" height="70" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
+<rect x="1070" y="120" width="220" height="4" fill="#1B9476"/>
+<text x="1080" y="137.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cartesia Sonic 3.6</text>
+<text x="1080" y="168.9" font-size="11.0" fill="#4E4D45">Habla castellano · streaming</text>
+<rect x="1070" y="230" width="220" height="92" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
+<rect x="1070" y="230" width="220" height="4" fill="#1F6FD0"/>
+<text x="1080" y="247.0" font-size="11.0" fill="#4E4D45" font-weight="700">mms-tts-quy</text>
+<text x="1080" y="278.9" font-size="11.0" fill="#4E4D45">Habla chanka</text>
+<text x="1080" y="294.9" font-size="11.0" fill="#4E4D45">Se ajusta con la voz de la mamá de</text>
+<text x="1080" y="310.8" font-size="11.0" fill="#4E4D45">Freddy</text>
+<rect x="1340" y="170" width="210" height="92" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<rect x="1340" y="170" width="210" height="4" fill="#8C8C7A"/>
+<text x="1350" y="187.0" font-size="11.0" fill="#4E4D45" font-weight="700">Parlante</text>
+<text x="1350" y="218.9" font-size="11.0" fill="#4E4D45">Texto primero, audio después:</text>
+<text x="1350" y="234.8" font-size="11.0" fill="#4E4D45">se lee antes de que termine de</text>
+<text x="1350" y="250.8" font-size="11.0" fill="#4E4D45">hablar</text>
+<rect x="40" y="480" width="1250" height="142" fill="#FFFFFF" stroke="#C4C2B6" stroke-width="1"/>
+<rect x="40" y="480" width="1250" height="4" fill="#C4C2B6"/>
+<text x="52" y="499.0" font-size="11.0" fill="#4E4D45" font-weight="700">Por qué Cartesia no puede hacer el lado quechua</text>
+<text x="52" y="530.9" font-size="11.0" fill="#4E4D45">Verificado en su documentación el 24-oct: Sonic 3.6 habla 44 idiomas y el quechua no está entre ellos.</text>
+<text x="52" y="546.9" font-size="11.0" fill="#4E4D45">Su STT acepta un parámetro `language` en ISO-639-1 con `en` por defecto, y no detecta el idioma solo.</text>
+<text x="52" y="562.8" font-size="11.0" fill="#4E4D45">Así que el quechua y la detección son nuestros por necesidad, no por preferencia.</text>
+<text x="52" y="594.7" font-size="11.0" fill="#4E4D45">Y esos 49 ms del detector deciden la arquitectura: siendo tan barato, se detecta primero y se reconoce</text>
+<text x="52" y="610.6" font-size="11.0" fill="#4E4D45">después, en serie. No hace falta correr los dos reconocedores en paralelo ni adivinar por el turno anterior.</text>
+<path d="M210 208 L230 208 L230 208 L250 208" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M460 208 L485 208 L485 128 L510 128" fill="none" stroke="#1B9476" stroke-width="2" marker-end="url(#m1B9476)"/>
+<text x="485" y="162" font-size="11.0" fill="#1B9476" text-anchor="middle">castellano</text>
+<path d="M460 208 L485 208 L485 298 L510 298" fill="none" stroke="#1F6FD0" stroke-width="2" marker-end="url(#m1F6FD0)"/>
+<text x="485" y="247" font-size="11.0" fill="#1F6FD0" text-anchor="middle">quechua</text>
+<path d="M720 128 L745 128 L745 222 L770 222" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M720 298 L745 298 L745 222 L770 222" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M890 284 L890 302 L890 302 L890 320" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1010 382 L1040 382 L1040 155 L1070 155" fill="none" stroke="#1B9476" stroke-width="2" marker-end="url(#m1B9476)"/>
+<text x="1040" y="262" font-size="11.0" fill="#1B9476" text-anchor="middle">a la enfermera</text>
+<path d="M1010 382 L1040 382 L1040 276 L1070 276" fill="none" stroke="#1F6FD0" stroke-width="2" marker-end="url(#m1F6FD0)"/>
+<text x="1040" y="323" font-size="11.0" fill="#1F6FD0" text-anchor="middle">al paciente</text>
+<path d="M1290 155 L1315 155 L1315 216 L1340 216" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1290 276 L1315 276 L1315 216 L1340 216" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 </svg>

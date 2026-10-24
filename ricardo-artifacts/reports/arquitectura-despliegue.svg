@@ -1,134 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 700" width="1180" height="700" font-family="Archivo, Helvetica, Arial, sans-serif">
-  <defs>
-    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#86847a"/></marker>
-    <marker id="v" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8a4fbd"/></marker>
-    <marker id="c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#b8b5a8"/></marker>
-  </defs>
-  <rect width="1180" height="700" fill="#f4f3ee"/>
-  <text x="28" y="40" font-size="20" font-weight="700" fill="#16160f">Dónde corre cada cosa</text>
-  <text x="28" y="62" font-size="12.5" fill="#4e4d45">Arquitectura de despliegue al 24-oct-2026, 18:00 UTC. Desde este día la laptop de Ricardo ya no está en la cadena: todo vive en la instancia.</text>
-
-  <g font-size="11.5" fill="#4e4d45">
-    <rect x="28" y="80" width="12" height="12" fill="#8a4fbd"/><text x="46" y="90">dentro de la instancia · sin salir a internet</text>
-    <rect x="330" y="80" width="12" height="12" fill="#86847a"/><text x="348" y="90">por internet</text>
-    <rect x="500" y="80" width="12" height="12" fill="#c8372f"/><text x="518" y="90">nube de terceros · se paga por llamada</text>
-  </g>
-
-  <!-- clientes -->
-  <g>
-    <rect x="28" y="150" width="168" height="66" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
-    <text x="42" y="174" font-size="13" font-weight="600" fill="#16160f">App de Freddy</text>
-    <text x="42" y="193" font-size="11.5" fill="#4e4d45">iOS · consume la URL</text>
-    <text x="42" y="209" font-size="10.5" fill="#86847a">no cambió nada el 24-oct</text>
-  </g>
-  <g>
-    <rect x="28" y="236" width="168" height="60" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
-    <text x="42" y="260" font-size="13" font-weight="600" fill="#16160f">Navegador</text>
-    <text x="42" y="279" font-size="11.5" fill="#4e4d45">GET /flujo · demo</text>
-  </g>
-  <g>
-    <rect x="28" y="316" width="168" height="76" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5" stroke-dasharray="4 3"/>
-    <text x="42" y="340" font-size="13" font-weight="600" fill="#16160f">Etiquetador</text>
-    <text x="42" y="359" font-size="11.5" fill="#4e4d45">/corregir · laptop</text>
-    <text x="42" y="376" font-size="10.5" fill="#86847a">túnel SSH aparte, solo Ricardo</text>
-  </g>
-
-  <path d="M196 183 H 246" stroke="#86847a" stroke-width="2" marker-end="url(#a)"/>
-  <path d="M196 266 H 230 V 200 H 246" stroke="#86847a" stroke-width="2" fill="none" marker-end="url(#a)"/>
-
-  <!-- ngrok edge -->
-  <g>
-    <rect x="246" y="150" width="186" height="104" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="2"/>
-    <rect x="246" y="150" width="186" height="5" fill="#86847a"/>
-    <text x="260" y="178" font-size="13" font-weight="600" fill="#16160f">ngrok · borde HTTPS</text>
-    <text x="260" y="197" font-size="10.5" fill="#4e4d45">unsubmitted-wally-</text>
-    <text x="260" y="211" font-size="10.5" fill="#4e4d45">relatable.ngrok-free.dev</text>
-    <text x="260" y="231" font-size="11" font-weight="700" fill="#16160f">dominio reservado</text>
-    <text x="260" y="246" font-size="10.5" fill="#86847a">no cambia entre reinicios</text>
-  </g>
-  <path d="M432 202 H 492" stroke="#86847a" stroke-width="2" marker-end="url(#a)"/>
-
-  <!-- instancia -->
-  <rect x="492" y="120" width="420" height="500" rx="4" fill="#faf9f5" stroke="#8a4fbd" stroke-width="2" stroke-dasharray="6 4"/>
-  <text x="510" y="146" font-size="13.5" font-weight="700" fill="#8a4fbd">instancia g5.xlarge · 44.220.107.99</text>
-  <text x="510" y="163" font-size="11" fill="#4e4d45">NVIDIA A10G 23 GB · el agente de ngrok corre aquí dentro</text>
-
-  <!-- orquestador -->
-  <g>
-    <rect x="512" y="182" width="380" height="118" rx="3" fill="#ffffff" stroke="#8a4fbd" stroke-width="2"/>
-    <rect x="512" y="182" width="380" height="5" fill="#8a4fbd"/>
-    <text x="526" y="210" font-size="13.5" font-weight="600" fill="#16160f">Orquestador · puerto 8080</text>
-    <text x="526" y="229" font-size="11.5" fill="#4e4d45">servicio/app.py · FastAPI · venv propio</text>
-    <text x="526" y="247" font-size="11.5" fill="#4e4d45">/turno/paciente · /turno/enfermera · /ver · /escuchar</text>
-    <text x="526" y="266" font-size="10.5" fill="#86847a">fastapi · anthropic · httpx · python-multipart</text>
-    <text x="526" y="286" font-size="11" font-weight="700" fill="#8a4fbd">venv SEPARADO del de los modelos, a propósito</text>
-  </g>
-
-  <path d="M702 300 V 348" stroke="#8a4fbd" stroke-width="2.5" marker-end="url(#v)"/>
-  <text x="712" y="320" font-size="11.5" font-weight="700" fill="#8a4fbd">127.0.0.1</text>
-  <text x="712" y="336" font-size="10.5" fill="#4e4d45">no sale a internet</text>
-
-  <!-- voz -->
-  <g>
-    <rect x="512" y="348" width="380" height="126" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
-    <rect x="512" y="348" width="380" height="5" fill="#1f6fd0"/>
-    <text x="526" y="376" font-size="13.5" font-weight="600" fill="#16160f">Servicio de voz · puerto 8000</text>
-    <text x="526" y="395" font-size="11.5" fill="#4e4d45">instancia.py · los tres modelos de Meta en GPU</text>
-    <text x="526" y="414" font-size="11.5" fill="#4e4d45">omniASR_LLM_300M · mms-lid-512 · mms-tts-quy</text>
-    <text x="526" y="433" font-size="10.5" fill="#86847a">torch==2.8.0 · fairseq2 · numpy~=1.23 · clavados</text>
-    <text x="526" y="453" font-size="11" font-weight="700" fill="#c8372f">un pip install encima lo rompe. Ya pasó una vez.</text>
-    <text x="526" y="468" font-size="10.5" fill="#86847a">pico 3.41 GB de 23 · LID 49 ms · ASR 1.71 s / 15.8 s</text>
-  </g>
-
-  <!-- volumenes -->
-  <g>
-    <rect x="512" y="498" width="184" height="100" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
-    <text x="526" y="522" font-size="12.5" font-weight="600" fill="#16160f">/ · 145 GB</text>
-    <text x="526" y="540" font-size="11" fill="#c8372f">90 % lleno · 15 GB libres</text>
-    <text x="526" y="558" font-size="10.5" fill="#4e4d45">sistema. No poner nada</text>
-    <text x="526" y="574" font-size="10.5" fill="#4e4d45">nuevo aquí.</text>
-    <text x="526" y="590" font-size="10.5" fill="#86847a">persiste al parar la instancia</text>
-  </g>
-  <g>
-    <rect x="708" y="498" width="184" height="100" rx="3" fill="#ffffff" stroke="#1b9476" stroke-width="1.5"/>
-    <text x="722" y="522" font-size="12.5" font-weight="600" fill="#16160f">/opt/dlami/nvme</text>
-    <text x="722" y="540" font-size="11" font-weight="700" fill="#1b9476">229 GB · 9 % usado</text>
-    <text x="722" y="558" font-size="10.5" fill="#4e4d45">chaski/ · pesos · venvs</text>
-    <text x="722" y="574" font-size="10.5" fill="#c8372f">efímero: se borra al parar</text>
-    <text x="722" y="590" font-size="10.5" fill="#86847a">respaldo en ~/chaski-respaldo</text>
-  </g>
-
-  <!-- nubes -->
-  <g>
-    <rect x="952" y="182" width="200" height="106" rx="3" fill="#ffffff" stroke="#c8372f" stroke-width="2"/>
-    <rect x="952" y="182" width="200" height="5" fill="#c8372f"/>
-    <text x="966" y="210" font-size="13" font-weight="600" fill="#16160f">API de Anthropic</text>
-    <text x="966" y="229" font-size="11.5" fill="#4e4d45">traducir · auditar · ver</text>
-    <text x="966" y="247" font-size="11.5" fill="#4e4d45">sonnet-5 · haiku-4-5</text>
-    <text x="966" y="267" font-size="11" font-weight="700" fill="#c8372f">7–12 s por turno</text>
-    <text x="966" y="282" font-size="10.5" fill="#86847a">el cuello de botella real</text>
-  </g>
-  <g>
-    <rect x="952" y="310" width="200" height="94" rx="3" fill="#ffffff" stroke="#1b9476" stroke-width="2"/>
-    <rect x="952" y="310" width="200" height="5" fill="#1b9476"/>
-    <text x="966" y="338" font-size="13" font-weight="600" fill="#16160f">API de Cartesia</text>
-    <text x="966" y="357" font-size="11.5" fill="#4e4d45">Sonic 3.6 · habla castellano</text>
-    <text x="966" y="375" font-size="11.5" fill="#4e4d45">ink-whisper · lo entiende</text>
-    <text x="966" y="394" font-size="10.5" fill="#86847a">sin quechua: por eso es nuestro</text>
-  </g>
-  <path d="M892 230 H 952" stroke="#b8b5a8" stroke-width="2" marker-end="url(#c)"/>
-  <path d="M892 262 H 922 V 350 H 952" stroke="#b8b5a8" stroke-width="2" fill="none" marker-end="url(#c)"/>
-
-  <text x="952" y="446" font-size="12.5" font-weight="700" fill="#16160f">Lo que cambió</text>
-  <text x="952" y="466" font-size="11" fill="#4e4d45">Antes: app → ngrok → laptop</text>
-  <text x="952" y="482" font-size="11" fill="#4e4d45">de Ricardo → túnel SSH →</text>
-  <text x="952" y="498" font-size="11" fill="#4e4d45">instancia → y todo de vuelta.</text>
-  <text x="952" y="520" font-size="11" fill="#4e4d45">Si cerraba la laptop, se caía.</text>
-  <text x="952" y="546" font-size="11" font-weight="700" fill="#8a4fbd">Ahora el audio no sale de</text>
-  <text x="952" y="562" font-size="11" font-weight="700" fill="#8a4fbd">la instancia.</text>
-  <text x="952" y="586" font-size="10.5" fill="#86847a">La URL es la misma. Freddy</text>
-  <text x="952" y="600" font-size="10.5" fill="#86847a">no cambia una línea.</text>
-
-  <text x="28" y="660" font-size="11" fill="#86847a">Se despliega con `bash servicio/desplegar.sh`, que es re-ejecutable. Las claves viajan por stdin a $DESTINO/.env con chmod 600; nunca por git.</text>
-  <text x="28" y="678" font-size="11" fill="#86847a">El etiquetador sigue en la laptop porque lee audio local; abre su propio túnel SSH al 8000 de la instancia cuando lo necesita.</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 700" width="1500" height="700" font-family="Archivo, Helvetica, Arial, sans-serif">
+<defs><marker id="m8C8C7A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8C8C7A"/></marker><marker id="m8A4FBD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8A4FBD"/></marker><marker id="mC8C5B8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#C8C5B8"/></marker></defs>
+<rect width="1500" height="700" fill="#F4F3EE"/>
+<text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">Chaski — dónde corre cada cosa</text>
+<text x="40" y="66.8" font-size="12.0" fill="#4E4D45">Arquitectura de despliegue · 24-oct-2026 18:00 UTC · desde hoy la laptop de Ricardo ya no está en la cadena</text>
+<rect x="40" y="110" width="200" height="84" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<rect x="40" y="110" width="200" height="4" fill="#8C8C7A"/>
+<text x="50" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">App de Chaski (Freddy)</text>
+<text x="50" y="158.9" font-size="11.0" fill="#4E4D45">iOS · consume la URL pública</text>
+<text x="50" y="174.8" font-size="11.0" fill="#4E4D45">No cambió nada el 24-oct</text>
+<rect x="40" y="214" width="200" height="64" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<rect x="40" y="214" width="200" height="4" fill="#8C8C7A"/>
+<text x="50" y="231.0" font-size="11.0" fill="#4E4D45" font-weight="700">Navegador</text>
+<text x="50" y="262.9" font-size="11.0" fill="#4E4D45">GET /flujo · demo y pruebas</text>
+<rect x="40" y="298" width="200" height="92" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2" stroke-dasharray="8 4"/>
+<rect x="40" y="298" width="200" height="4" fill="#8C8C7A"/>
+<text x="50" y="315.0" font-size="11.0" fill="#4E4D45" font-weight="700">Etiquetador /corregir</text>
+<text x="50" y="346.9" font-size="11.0" fill="#4E4D45">Sigue en la laptop: lee audio</text>
+<text x="50" y="362.9" font-size="11.0" fill="#4E4D45">local.</text>
+<text x="50" y="378.8" font-size="11.0" fill="#4E4D45">Abre su propio túnel SSH.</text>
+<rect x="290" y="110" width="210" height="140" fill="#FFFFFF" stroke="#5A5A52" stroke-width="2"/>
+<rect x="290" y="110" width="210" height="4" fill="#5A5A52"/>
+<text x="300" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">ngrok · borde HTTPS</text>
+<text x="300" y="158.9" font-size="11.0" fill="#4E4D45">unsubmitted-wally-relatable</text>
+<text x="300" y="174.8" font-size="11.0" fill="#4E4D45">.ngrok-free.dev</text>
+<text x="300" y="206.8" font-size="11.0" fill="#4E4D45">Dominio reservado: no cambia</text>
+<text x="300" y="222.7" font-size="11.0" fill="#4E4D45">entre reinicios</text>
+<rect x="550" y="92" width="450" height="560" fill="#FAF9F5" stroke="#8A4FBD" stroke-width="2" stroke-dasharray="8 4"/>
+<rect x="550" y="92" width="450" height="4" fill="#8A4FBD"/>
+<text x="562" y="110.0" font-size="12.0" fill="#8A4FBD" font-weight="700">Instancia EC2 g5.xlarge · 44.220.107.99 · NVIDIA A10G 23 GB</text>
+<rect x="930" y="100" width="52" height="52" rx="4" fill="#D05C17" stroke="#FFFFFF" stroke-width="2"/><text x="956.0" y="130.0" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">EC2</text>
+<rect x="578" y="150" width="320" height="60" fill="#FFFFFF" stroke="#5A5A52" stroke-width="2"/>
+<rect x="578" y="150" width="320" height="4" fill="#5A5A52"/>
+<text x="588" y="167.0" font-size="11.0" fill="#4E4D45" font-weight="700">Agente de ngrok</text>
+<text x="588" y="198.9" font-size="11.0" fill="#4E4D45">Corre aquí dentro, no en la laptop</text>
+<rect x="578" y="228" width="394" height="130" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
+<rect x="578" y="228" width="394" height="4" fill="#8A4FBD"/>
+<text x="588" y="245.0" font-size="11.0" fill="#4E4D45" font-weight="700">Orquestador · puerto 8080</text>
+<text x="588" y="276.9" font-size="11.0" fill="#4E4D45">servicio/app.py · FastAPI</text>
+<text x="588" y="292.9" font-size="11.0" fill="#4E4D45">/turno/paciente · /turno/enfermera · /ver · /escuchar</text>
+<text x="588" y="308.8" font-size="11.0" fill="#4E4D45">venv propio: fastapi · anthropic · httpx</text>
+<text x="588" y="340.7" font-size="11.0" fill="#4E4D45">venv SEPARADO del de los modelos, a propósito</text>
+<rect x="578" y="404" width="394" height="136" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
+<rect x="578" y="404" width="394" height="4" fill="#1F6FD0"/>
+<text x="588" y="421.0" font-size="11.0" fill="#4E4D45" font-weight="700">Servicio de voz · puerto 8000</text>
+<text x="588" y="452.9" font-size="11.0" fill="#4E4D45">instancia.py · los tres modelos de Meta en GPU</text>
+<text x="588" y="468.9" font-size="11.0" fill="#4E4D45">omniASR_LLM_300M · mms-lid-512 · mms-tts-quy</text>
+<text x="588" y="484.8" font-size="11.0" fill="#4E4D45">torch==2.8.0 · fairseq2 · numpy~=1.23 — clavados</text>
+<text x="588" y="500.8" font-size="11.0" fill="#4E4D45">Un pip install encima lo rompe. Ya pasó una vez.</text>
+<text x="588" y="516.7" font-size="11.0" fill="#4E4D45">LID 49 ms · ASR 1.71 s para 15.8 s · pico 3.41 GB de 23</text>
+<path d="M578 565 a90.0 9 0 0 1 180 0 v68 a90.0 9 0 0 1 -180 0 z" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/><path d="M578 565 a90.0 9 0 0 0 180 0" fill="none" stroke="#C8372F" stroke-width="2"/>
+<text x="668.0" y="577.4" font-size="10.0" fill="#4E4D45" text-anchor="middle" font-weight="700">/ · 145 GB</text>
+<text x="668.0" y="591.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">90 % lleno</text>
+<text x="668.0" y="606.4" font-size="10.0" fill="#4E4D45" text-anchor="middle">No poner nada aquí</text>
+<text x="668.0" y="620.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">Persiste al parar</text>
+<path d="M792 565 a90.0 9 0 0 1 180 0 v68 a90.0 9 0 0 1 -180 0 z" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/><path d="M792 565 a90.0 9 0 0 0 180 0" fill="none" stroke="#1B9476" stroke-width="2"/>
+<text x="882.0" y="577.4" font-size="10.0" fill="#4E4D45" text-anchor="middle" font-weight="700">/opt/dlami/nvme</text>
+<text x="882.0" y="591.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">229 GB · 9 %</text>
+<text x="882.0" y="606.4" font-size="10.0" fill="#4E4D45" text-anchor="middle">Todo vive aquí</text>
+<text x="882.0" y="620.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">EFÍMERO: se borra al parar</text>
+<rect x="1050" y="228" width="220" height="130" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<rect x="1050" y="228" width="220" height="4" fill="#C8372F"/>
+<text x="1060" y="245.0" font-size="11.0" fill="#4E4D45" font-weight="700">API de Anthropic</text>
+<text x="1060" y="276.9" font-size="11.0" fill="#4E4D45">traducir · auditar · leer cajas</text>
+<text x="1060" y="292.9" font-size="11.0" fill="#4E4D45">sonnet-5 · haiku-4-5</text>
+<text x="1060" y="324.8" font-size="11.0" fill="#4E4D45">7–12 s por turno: el cuello de</text>
+<text x="1060" y="340.7" font-size="11.0" fill="#4E4D45">botella real</text>
+<rect x="1050" y="404" width="220" height="136" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
+<rect x="1050" y="404" width="220" height="4" fill="#1B9476"/>
+<text x="1060" y="421.0" font-size="11.0" fill="#4E4D45" font-weight="700">API de Cartesia</text>
+<text x="1060" y="452.9" font-size="11.0" fill="#4E4D45">Sonic 3.6 · habla castellano</text>
+<text x="1060" y="468.9" font-size="11.0" fill="#4E4D45">ink-whisper · lo entiende</text>
+<text x="1060" y="500.8" font-size="11.0" fill="#4E4D45">Sin quechua: por eso el quechua es</text>
+<text x="1060" y="516.7" font-size="11.0" fill="#4E4D45">nuestro</text>
+<rect x="40" y="412" width="470" height="189" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
+<rect x="40" y="412" width="470" height="4" fill="#8A4FBD"/>
+<text x="52" y="431.0" font-size="11.0" fill="#4E4D45" font-weight="700">Lo que cambió hoy</text>
+<text x="52" y="462.9" font-size="11.0" fill="#4E4D45">Antes: app → ngrok → laptop de Ricardo → túnel SSH →</text>
+<text x="52" y="478.9" font-size="11.0" fill="#4E4D45">instancia, y todo de vuelta por el mismo camino.</text>
+<text x="52" y="494.8" font-size="11.0" fill="#4E4D45">Si cerraba la laptop, se caía.</text>
+<text x="52" y="526.7" font-size="11.0" fill="#4E4D45">Ahora el audio del paciente no sale de la instancia.</text>
+<text x="52" y="542.6" font-size="11.0" fill="#4E4D45">La URL es la misma: Freddy no cambia una línea.</text>
+<text x="52" y="574.5" font-size="11.0" fill="#4E4D45">Se despliega con `bash servicio/desplegar.sh`, re-ejecutable.</text>
+<text x="52" y="590.5" font-size="11.0" fill="#4E4D45">Las claves viajan por stdin a .env con chmod 600; nunca por git.</text>
+<path d="M240 152 L265 152 L265 180 L290 180" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M240 246 L265 246 L265 180 L290 180" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M500 180 L539 180 L539 293 L578 293" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M775 358 L775 381 L775 381 L775 404" fill="none" stroke="#8A4FBD" stroke-width="3" marker-end="url(#m8A4FBD)"/>
+<text x="775" y="375" font-size="11.0" fill="#8A4FBD" text-anchor="middle">127.0.0.1</text>
+<text x="775" y="389" font-size="11.0" fill="#8A4FBD" text-anchor="middle">no sale a internet</text>
+<path d="M972 293 L1011 293 L1011 293 L1050 293" fill="none" stroke="#C8C5B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mC8C5B8)"/>
+<path d="M972 293 L1011 293 L1011 472 L1050 472" fill="none" stroke="#C8C5B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mC8C5B8)"/>
 </svg>
