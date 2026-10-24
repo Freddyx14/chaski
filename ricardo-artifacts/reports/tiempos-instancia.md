@@ -124,14 +124,38 @@ A batch 4, con 43 pasos por época:
 | 200 | **82 min** |
 | 400 | 164 min |
 
+### Corrección: 200 épocas eran demasiadas
+
+Puse 200 como valor de referencia y Ricardo lo cuestionó con razón: **esto es ajuste fino, no
+entrenar desde cero.** El modelo ya habla quechua; lo único que tiene que aprender es una voz.
+
+La receta de referencia para MMS-TTS ([finetune-hf-vits](https://github.com/ylacombe/finetune-hf-vits))
+dice que **80 a 150 muestras bastan para adaptación de hablante, y que se entrena en unos 20 minutos.**
+Nuestras 175 frases están por encima de ese rango.
+
+Conviene pensar en **pasos, no en épocas**: con 175 clips una época son 43 pasos, así que «200
+épocas» suena largo pero son 8 600 pasos, y la adaptación de hablante vive entre 1 000 y 2 000.
+
+| Épocas | Pasos | Tiempo | |
+|---|---|---|---|
+| 25 | 1 075 | **10 min** | probablemente ya sirve |
+| 50 | 2 150 | **20 min** | el punto de la receta |
+| 100 | 4 300 | 41 min | por si 50 queda corto |
+| 200 | 8 600 | 82 min | sobra, y con 12 min de audio arriesga sobreajuste |
+
+Con 175 clips —unos 12 minutos de audio— pasarse de vueltas no mejora la voz: la memoriza.
+
+**Cómo elegir, sin adivinar:** guardar un punto de control cada ~250 pasos, generar la misma frase
+con cada uno, y que la mamá de Freddy elija cuál suena a ella. La pérdida del discriminador **no**
+dice si la voz se parece; eso solo lo dice el oído de la persona a la que estamos imitando.
+
 ### Lo que cambia respecto del ASR
 
-**La voz cuesta ~6× más que entender.** omniASR con 700 clips y 30 épocas son 14 min; la voz con 175
-clips necesita cientos de épocas y se va a una hora y media. No es el tamaño del modelo —36 M contra
-300 M— sino que genera forma de onda y entrena contra un discriminador.
+**Aun corrigiendo las épocas, la voz sigue costando más por paso:** 0.572 s contra 0.328 s del ASR,
+con un modelo que es la décima parte de grande. No es el tamaño —36 M contra 300 M— sino que genera
+forma de onda y entrena contra un discriminador en cada paso.
 
-Eso reordena el sábado: el ASR se puede reentrenar diez veces en una tarde, la voz no. Para la voz
-conviene una corrida larga y buena, no una búsqueda de hiperparámetros.
+Pero con 50 épocas la corrida son 20 min, no 82. Las dos cosas caben varias veces en una tarde.
 
 ### Un detalle de memoria
 
