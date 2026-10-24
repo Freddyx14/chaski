@@ -90,19 +90,22 @@ NUMEROS = [
     "Vuelva en un mes",
 ]
 
-# Bloque B: respuestas libres, como responderia un paciente. Es lo que Rimay tiene que
-# entender en la consulta real, y es lo que se mide con la persona que el modelo no escucho.
+# Bloque B: lo que dice el PACIENTE. Frases fijas a proposito: asi cada una es un par
+# castellano -> chanka (sirve para traducir) y a la vez voz del lado del paciente (sirve para entender).
+# Las respuestas abiertas se descartaron el 24-oct: confundian y no daban pares de traduccion.
 LIBRES = [
-    "La enfermera le dice: «Tome una pastilla cada ocho horas por siete días. ¿Me lo repite?». Repítalo con sus palabras",
-    "La enfermera le pregunta: «¿Dónde le duele y desde cuándo?». Responda",
-    "La enfermera le pregunta: «¿Qué remedios está tomando ahora?». Responda",
-    "La enfermera le pregunta: «¿Cómo se siente hoy?». Responda",
-    "Pregúntele a la enfermera qué hace si se olvida la pastilla",
-    "La enfermera le pregunta: «¿Qué tiene su hijo?». Responda que tiene fiebre o diarrea, y desde cuándo",
-    "Dígale a la enfermera que no entendió y que por favor le repita",
-    "Pregúntele a la enfermera cuándo es su próximo control",
-    "La enfermera le pregunta: «¿Es alérgico a algún remedio?». Responda",
-    "Despídase de la enfermera y agradézcale",
+    "Me duele la cabeza desde ayer",
+    "Me duele la barriga desde hace tres días",
+    "Estoy tomando paracetamol",
+    "Mi hijo tiene fiebre desde anoche",
+    "Mi hija tiene diarrea desde hace dos días",
+    "No entendí, ¿me lo puede repetir?",
+    "¿Qué hago si me olvido la pastilla?",
+    "¿Cuándo es mi próximo control?",
+    "No soy alérgico a ningún remedio",
+    "Tengo que tomar una pastilla cada ocho horas, por siete días",
+    "Ya me siento mejor",
+    "Gracias, señorita",
 ]
 
 
@@ -214,7 +217,7 @@ def main() -> None:
         parte("Parte 1 · Lo que dice la enfermera · dígalo en quechua", "C", CLINICAS),
         parte("Parte 2 · Medicinas · dígalo en quechua (el nombre de la medicina, como lo dice la gente)", "M", MEDICAMENTOS),
         parte("Parte 3 · Números y días · dígalo en quechua", "N", NUMEROS),
-        parte("Parte 4 · Ahora usted es el paciente · responda en quechua con sus palabras", "B", LIBRES),
+        parte("Parte 4 · Lo que dice el paciente · dígalo en quechua", "B", LIBRES),
         ("Parte 5 · Extra, solo si le queda tiempo · lea en voz alta la columna en quechua",
          [["N.º", "Castellano", "Quechua chanka"]] +
          [[str(rango["E"][0] + i), P(f["castellano"]), P(f["chanka"])] for i, f in enumerate(verificadas)],

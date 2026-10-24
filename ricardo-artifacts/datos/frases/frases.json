@@ -571,16 +571,18 @@
   "Vuelva en un mes"
  ],
  "respuestas_libres": [
-  "La enfermera le dice: «Tome una pastilla cada ocho horas por siete días. ¿Me lo repite?». Repítalo con sus palabras",
-  "La enfermera le pregunta: «¿Dónde le duele y desde cuándo?». Responda",
-  "La enfermera le pregunta: «¿Qué remedios está tomando ahora?». Responda",
-  "La enfermera le pregunta: «¿Cómo se siente hoy?». Responda",
-  "Pregúntele a la enfermera qué hace si se olvida la pastilla",
-  "La enfermera le pregunta: «¿Qué tiene su hijo?». Responda que tiene fiebre o diarrea, y desde cuándo",
-  "Dígale a la enfermera que no entendió y que por favor le repita",
-  "Pregúntele a la enfermera cuándo es su próximo control",
-  "La enfermera le pregunta: «¿Es alérgico a algún remedio?». Responda",
-  "Despídase de la enfermera y agradézcale"
+  "Me duele la cabeza desde ayer",
+  "Me duele la barriga desde hace tres días",
+  "Estoy tomando paracetamol",
+  "Mi hijo tiene fiebre desde anoche",
+  "Mi hija tiene diarrea desde hace dos días",
+  "No entendí, ¿me lo puede repetir?",
+  "¿Qué hago si me olvido la pastilla?",
+  "¿Cuándo es mi próximo control?",
+  "No soy alérgico a ningún remedio",
+  "Tengo que tomar una pastilla cada ocho horas, por siete días",
+  "Ya me siento mejor",
+  "Gracias, señorita"
  ],
  "numeracion": {
   "1": [
@@ -876,402 +878,410 @@
    10
   ],
   "74": [
-   "E",
-   1
+   "B",
+   11
   ],
   "75": [
-   "E",
-   2
+   "B",
+   12
   ],
   "76": [
    "E",
-   3
+   1
   ],
   "77": [
    "E",
-   4
+   2
   ],
   "78": [
    "E",
-   5
+   3
   ],
   "79": [
    "E",
-   6
+   4
   ],
   "80": [
    "E",
-   7
+   5
   ],
   "81": [
    "E",
-   8
+   6
   ],
   "82": [
    "E",
-   9
+   7
   ],
   "83": [
    "E",
-   10
+   8
   ],
   "84": [
    "E",
-   11
+   9
   ],
   "85": [
    "E",
-   12
+   10
   ],
   "86": [
    "E",
-   13
+   11
   ],
   "87": [
    "E",
-   14
+   12
   ],
   "88": [
    "E",
-   15
+   13
   ],
   "89": [
    "E",
-   16
+   14
   ],
   "90": [
    "E",
-   17
+   15
   ],
   "91": [
    "E",
-   18
+   16
   ],
   "92": [
    "E",
-   19
+   17
   ],
   "93": [
    "E",
-   20
+   18
   ],
   "94": [
    "E",
-   21
+   19
   ],
   "95": [
    "E",
-   22
+   20
   ],
   "96": [
    "E",
-   23
+   21
   ],
   "97": [
    "E",
-   24
+   22
   ],
   "98": [
    "E",
-   25
+   23
   ],
   "99": [
    "E",
-   26
+   24
   ],
   "100": [
    "E",
-   27
+   25
   ],
   "101": [
    "E",
-   28
+   26
   ],
   "102": [
    "E",
-   29
+   27
   ],
   "103": [
    "E",
-   30
+   28
   ],
   "104": [
    "E",
-   31
+   29
   ],
   "105": [
    "E",
-   32
+   30
   ],
   "106": [
    "E",
-   33
+   31
   ],
   "107": [
    "E",
-   34
+   32
   ],
   "108": [
    "E",
-   35
+   33
   ],
   "109": [
    "E",
-   36
+   34
   ],
   "110": [
    "E",
-   37
+   35
   ],
   "111": [
    "E",
-   38
+   36
   ],
   "112": [
    "E",
-   39
+   37
   ],
   "113": [
    "E",
-   40
+   38
   ],
   "114": [
    "E",
-   41
+   39
   ],
   "115": [
    "E",
-   42
+   40
   ],
   "116": [
    "E",
-   43
+   41
   ],
   "117": [
    "E",
-   44
+   42
   ],
   "118": [
    "E",
-   45
+   43
   ],
   "119": [
    "E",
-   46
+   44
   ],
   "120": [
    "E",
-   47
+   45
   ],
   "121": [
    "E",
-   48
+   46
   ],
   "122": [
    "E",
-   49
+   47
   ],
   "123": [
    "E",
-   50
+   48
   ],
   "124": [
    "E",
-   51
+   49
   ],
   "125": [
    "E",
-   52
+   50
   ],
   "126": [
    "E",
-   53
+   51
   ],
   "127": [
    "E",
-   54
+   52
   ],
   "128": [
    "E",
-   55
+   53
   ],
   "129": [
    "E",
-   56
+   54
   ],
   "130": [
    "E",
-   57
+   55
   ],
   "131": [
    "E",
-   58
+   56
   ],
   "132": [
    "E",
-   59
+   57
   ],
   "133": [
    "E",
-   60
+   58
   ],
   "134": [
    "E",
-   61
+   59
   ],
   "135": [
    "E",
-   62
+   60
   ],
   "136": [
    "E",
-   63
+   61
   ],
   "137": [
    "E",
-   64
+   62
   ],
   "138": [
    "E",
-   65
+   63
   ],
   "139": [
    "E",
-   66
+   64
   ],
   "140": [
    "E",
-   67
+   65
   ],
   "141": [
    "E",
-   68
+   66
   ],
   "142": [
    "E",
-   69
+   67
   ],
   "143": [
    "E",
-   70
+   68
   ],
   "144": [
    "E",
-   71
+   69
   ],
   "145": [
    "E",
-   72
+   70
   ],
   "146": [
    "E",
-   73
+   71
   ],
   "147": [
    "E",
-   74
+   72
   ],
   "148": [
    "E",
-   75
+   73
   ],
   "149": [
    "E",
-   76
+   74
   ],
   "150": [
    "E",
-   77
+   75
   ],
   "151": [
    "E",
-   78
+   76
   ],
   "152": [
    "E",
-   79
+   77
   ],
   "153": [
    "E",
-   80
+   78
   ],
   "154": [
    "E",
-   81
+   79
   ],
   "155": [
    "E",
-   82
+   80
   ],
   "156": [
    "E",
-   83
+   81
   ],
   "157": [
    "E",
-   84
+   82
   ],
   "158": [
    "E",
-   85
+   83
   ],
   "159": [
    "E",
-   86
+   84
   ],
   "160": [
    "E",
-   87
+   85
   ],
   "161": [
    "E",
-   88
+   86
   ],
   "162": [
    "E",
-   89
+   87
   ],
   "163": [
    "E",
-   90
+   88
   ],
   "164": [
    "E",
-   91
+   89
   ],
   "165": [
    "E",
-   92
+   90
   ],
   "166": [
    "E",
-   93
+   91
   ],
   "167": [
    "E",
-   94
+   92
   ],
   "168": [
    "E",
-   95
+   93
   ],
   "169": [
    "E",
-   96
+   94
   ],
   "170": [
    "E",
-   97
+   95
   ],
   "171": [
    "E",
-   98
+   96
   ],
   "172": [
    "E",
-   99
+   97
   ],
   "173": [
+   "E",
+   98
+  ],
+  "174": [
+   "E",
+   99
+  ],
+  "175": [
    "E",
    100
   ]
