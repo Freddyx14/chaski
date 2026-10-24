@@ -1,15 +1,10 @@
 // Los motivos de D29 (opción L = D + I) hechos componentes: la chakana, la crucecita escalonada,
-// la fila de cruces, el zigzag tejido y el anillo del micrófono. Todo sale de `escalonado()`.
-import { useEffect, useState, type ReactNode } from 'react';
+// la fila de cruces y el zigzag tejido. Todo sale de `escalonado()`. El micrófono inti vive en inti.tsx (D31).
+import { useState, type ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
-import Animated, {
-  cancelAnimation, Easing, Extrapolation, interpolate, useAnimatedProps, useAnimatedStyle, useReducedMotion,
-  useSharedValue, withRepeat, withSequence, withTiming, type SharedValue,
-} from 'react-native-reanimated';
 import Svg, { Path, Rect } from 'react-native-svg';
 
 import { escalonado, escalonadoAdentro, trazo } from './geometria';
-import { brilloDeEstrella, UMBRALES } from './movimiento';
 import { C, ESCALA, M } from './tokens';
 
 /** La crucecita escalonada (un solo paso hondo). Rellena, o solo contorno si `hueca`. */
@@ -100,114 +95,6 @@ export function Zigzag({ color = C.border }: { color?: string }) {
         </Svg>
       )}
     </View>
-  );
-}
-
-export type ModoAnillo = 'reposo' | 'escucha' | 'piensa';
-
-const AnimatedPath = Animated.createAnimatedComponent(Path);
-
-/**
- * El anillo del micrófono: tres chakanas anidadas y la constelación alrededor. Está vivo:
- *  - reposo:  respira despacio (~4 s) para invitar a tocar.
- *  - escucha: las hebras se encienden de adentro hacia afuera con el volumen real y las estrellas se abren.
- *  - piensa:  un brillo gira por la constelación, estrella por estrella.
- * El tinte dice de quién es el turno: teal-amarillo-magenta para castellano, canela para quechua.
- * Con «Reducir movimiento» no respira ni gira; las hebras solo cambian de brillo.
- */
-export function AnilloChakana({ children, lado = 148, modo = 'reposo', nivel = 0, tinte = 'castellano' }: {
-  children: ReactNode; lado?: number; modo?: ModoAnillo; nivel?: number; tinte?: 'castellano' | 'quechua';
-}) {
-  const quieto = useReducedMotion();
-  const g = 4; // grosor de cada hebra
-  const s = 4; // aire entre hebras
-  const pasos = 2;
-  const paso = lado * 0.105;
-  // De afuera hacia adentro.
-  const hebras = tinte === 'quechua' ? [C.quechua, M.naranja, M.amarillo] : [M.turquesa, M.amarillo, M.magenta];
-  const caja = lado + 64; // la constelación vive fuera de la chakana
-  const o = (caja - lado) / 2;
-
-  const nivelSV = useSharedValue(0);
-  const respiro = useSharedValue(1);
-  const giro = useSharedValue(0);
-  const escucha = modo === 'escucha';
-
-  useEffect(() => {
-    nivelSV.value = withTiming(escucha ? nivel : 0, { duration: 90 });
-  }, [nivel, escucha, nivelSV]);
-
-  useEffect(() => {
-    cancelAnimation(respiro);
-    respiro.value = 1;
-    if (modo === 'reposo' && !quieto) {
-      respiro.value = withRepeat(withSequence(
-        withTiming(1.035, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
-        withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
-      ), -1);
-    }
-    cancelAnimation(giro);
-    giro.value = 0;
-    if (modo === 'piensa' && !quieto) {
-      giro.value = withRepeat(withTiming(8, { duration: 2400, easing: Easing.linear }), -1, false);
-    }
-  }, [modo, quieto, respiro, giro]);
-
-  const estiloRespiro = useAnimatedStyle(() => ({ transform: [{ scale: respiro.value }] }));
-
-  return (
-    <View style={{ width: caja, height: caja, alignItems: 'center', justifyContent: 'center' }}>
-      <Animated.View style={[StyleSheet.absoluteFill, estiloRespiro]}>
-        <Svg width={caja} height={caja}>
-          {hebras.map((color, i) => (
-            <Hebra
-              key={i}
-              d={trazo(escalonadoAdentro(lado, pasos, paso, i * (g + s) + g / 2).map(([x, y]) => [x + o, y + o]))}
-              color={color}
-              grosor={g}
-              // La hebra de adentro se enciende primero: umbral de la capa (2 - i).
-              umbral={UMBRALES[2 - i]}
-              nivel={nivelSV}
-              escucha={escucha}
-            />
-          ))}
-        </Svg>
-      </Animated.View>
-      {Array.from({ length: 8 }).map((_, i) => (
-        <Estrella key={i} i={i} caja={caja} radio={lado / 2 + 22} color={hebras[i % 3]}
-          nivel={nivelSV} giro={giro} piensa={modo === 'piensa'} quieto={quieto} />
-      ))}
-      {children}
-    </View>
-  );
-}
-
-function Hebra({ d, color, grosor, umbral, nivel, escucha }: {
-  d: string; color: string; grosor: number; umbral: number; nivel: SharedValue<number>; escucha: boolean;
-}) {
-  const props = useAnimatedProps(() => ({
-    strokeOpacity: escucha ? interpolate(nivel.value, [umbral - 0.08, umbral], [0.25, 1], Extrapolation.CLAMP) : 1,
-  }));
-  return <AnimatedPath d={d} fill="none" stroke={color} strokeWidth={grosor} animatedProps={props} />;
-}
-
-function Estrella({ i, caja, radio, color, nivel, giro, piensa, quieto }: {
-  i: number; caja: number; radio: number; color: string; nivel: SharedValue<number>; giro: SharedValue<number>;
-  piensa: boolean; quieto: boolean;
-}) {
-  const a = (Math.PI / 4) * i - Math.PI / 2;
-  const r = i % 2 ? radio * 0.92 : radio * 1.06;
-  const estilo = useAnimatedStyle(() => {
-    const abre = quieto ? 0 : nivel.value * 7;
-    return {
-      opacity: piensa && !quieto ? brilloDeEstrella(i, 8, giro.value) : 1,
-      transform: [{ translateX: Math.cos(a) * abre }, { translateY: Math.sin(a) * abre }],
-    };
-  });
-  return (
-    <Animated.View style={[{ position: 'absolute', left: caja / 2 + Math.cos(a) * r - 5, top: caja / 2 + Math.sin(a) * r - 5 }, estilo]}>
-      <Cruz tam={10} color={color} />
-    </Animated.View>
   );
 }
 

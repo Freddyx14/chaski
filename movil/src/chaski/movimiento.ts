@@ -20,11 +20,3 @@ export function palabrasDichas(total: number, progreso: number): number {
   if (total <= 0) return 0;
   return Math.max(0, Math.min(total, Math.ceil(total * Math.max(0, Math.min(1, progreso)))));
 }
-
-/** Brillo de la estrella `i` de `n` cuando el brillo gira en `giro` (0..n): llena cerca, tenue lejos. */
-export function brilloDeEstrella(i: number, n: number, giro: number): number {
-  'worklet';
-  const d = Math.abs(((giro - i) % n + n) % n);
-  const cerca = Math.min(d, n - d);
-  return cerca < 1 ? 1 - 0.7 * cerca : 0.3;
-}

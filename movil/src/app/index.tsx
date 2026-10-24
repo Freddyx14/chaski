@@ -18,7 +18,8 @@ import {
 import { usePerfil, type Perfil } from '@/chaski/perfil';
 import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/chaski/textos';
 import { C, ESCALA } from '@/chaski/tokens';
-import { AnilloChakana, BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
+import { AnilloInti } from '@/chaski/inti';
+import { BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
 import { nivelDesdeDb, palabrasDichas } from '@/chaski/movimiento';
 import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/chaski/ui';
 import { bocaAbierta, envolvente, nivelEn, type Envolvente } from '@/chaski/wav';
@@ -327,11 +328,11 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
         {fase.f === 'pensando' && (
           <View style={{ alignItems: 'center' }}>
             {/* Mientras piensa, el brillo gira por la constelación en el mismo lugar donde estaba el micrófono. */}
-            <AnilloChakana modo="piensa" tinte={fase.lado} lado={116}>
+            <AnilloInti modo="piensa" tinte={fase.lado} centro={72}>
               <View style={[e.micro, { width: 72, height: 72, borderRadius: 36, backgroundColor: C.actionTint }]}>
                 <Icono nombre="ellipsis" color={C.action} tam={28} />
               </View>
-            </AnilloChakana>
+            </AnilloInti>
           </View>
         )}
         {(fase.f === 'listo' || fase.f === 'grabando') && (
@@ -395,7 +396,7 @@ function Microfono({ grabando, nivel, lado, perfil, t, onPress, onCambiarLado, o
           )}
           {!grabando && <Text style={e.lateralTexto}>{t.receta}</Text>}
         </View>
-        <AnilloChakana modo={grabando ? 'escucha' : 'reposo'} nivel={nivel} tinte={lado}>
+        <AnilloInti modo={grabando ? 'escucha' : 'reposo'} nivel={nivel} tinte={lado}>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={grabando ? 'Terminar y traducir' : 'Empezar a hablar'}
@@ -407,7 +408,7 @@ function Microfono({ grabando, nivel, lado, perfil, t, onPress, onCambiarLado, o
           ]}>
           <Icono nombre={grabando ? 'stop.fill' : 'mic.fill'} color={C.surface} tam={36} />
         </Pressable>
-        </AnilloChakana>
+        </AnilloInti>
         <View style={e.lateral}>
           {!grabando && (
             <BotonEscalonado onPress={onResumen} etiqueta="Terminar y ver el resumen">

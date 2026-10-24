@@ -1,4 +1,7 @@
-# Chaski · UI final: opción L = D + I (D29)
+# Chaski · UI final: opción L = D + I (D29) + micrófono inti (D31)
+
+> **Diseño cerrado (D31, sáb 11:15).** Todo L queda igual salvo el micrófono: el anillo de chakana pasa a ser un
+> **micrófono inti** de anillos concéntricos (`movil/src/chaski/inti.tsx`), ver la sección «Micrófono inti».
 
 > Sábado 24 de octubre de 2026, 11:05 PT. Aprobada por Freddy sobre la maqueta `design/manta-opciones/opcion-L.png`
 > («FUCKING LIKE IT, LET'S GO WITH THAT AND BUILD IT»). Reemplaza las bandas de franjas de D28 (`03-manta.md`).
@@ -13,7 +16,7 @@ las esquinas cortadas en escalones (`movil/src/chaski/geometria.ts → escalonad
 |---|---|---|
 | 5 escalones chicos (~3 % del lado) | la silueta escalonada de D | la foto de Chaski |
 | la misma silueta metida hacia adentro, tres veces | las hebras de I: cobalto (afuera), amarillo, magenta (adentro) | el marco de Chaski |
-| 2 escalones hondos | la chakana | el anillo del micrófono, la marca del encabezado |
+| 2 escalones hondos | la chakana | la marca del encabezado |
 | 1 escalón muy hondo | la crucecita | progreso, constelación, filas y columnas, medidor de voz, etiqueta |
 
 ## Componentes (`movil/src/chaski/motivos.tsx`, `chaski.tsx`, `ui.tsx`)
@@ -27,7 +30,7 @@ las esquinas cortadas en escalones (`movil/src/chaski/geometria.ts → escalonad
 | `ColumnaDeCruces` | Tres crucecitas a la izquierda de cada fila de idioma: cobalto castellano, canela runasimi |
 | `Etiqueta` | Etiqueta de idioma con dos escalones en cada punta y una crucecita adentro |
 | `Zigzag` | Divisor de puntos en zigzag dentro de la tarjeta de quechua |
-| `AnilloChakana` | Tres chakanas anidadas alrededor del micrófono y una constelación de 8 crucecitas |
+| `AnilloInti` (`inti.tsx`) | El micrófono inti: 4 anillos concéntricos y 8 rayos escalonados (D31) |
 | `BotonEscalonado` | Receta y Resumen con contorno escalonado |
 | Chips de auditoría | Cada verificación en su chip blanco. **Ningún motivo toca la fila de auditoría** |
 
@@ -42,13 +45,27 @@ el volumen del micrófono, la envolvente de la voz y el avance del audio. Las re
 
 | Estado | Qué se mueve | Señal |
 |---|---|---|
-| **Listo** | El anillo respira muy despacio (escala 1 → 1.035, ciclo de 4 s) para invitar a tocar | — |
-| **Escuchando** | Las hebras del anillo se encienden de adentro hacia afuera con el volumen (umbrales 0.12 / 0.4 / 0.7) y las crucecitas de la constelación se abren unos puntos. El medidor es una fila de crucecitas que crecen con la voz | `metering` del grabador (dB → 0..1) |
-| **Escuchando al paciente** | Lo mismo, con el anillo y el medidor en canela, naranja y amarillo: se ve de quién es el turno | lado = quechua |
-| **Pensando** | Un brillo gira por la constelación, estrella por estrella (2.4 s por vuelta). Cada paso cumplido entra con un resorte chico | pasos del turno |
+| **Listo** | Los anillos respiran muy despacio, uno detrás del otro (ciclo de 4 s), para invitar a tocar | — |
+| **Escuchando** | Una onda sale del centro hacia afuera con el volumen: los anillos se encienden y se agrandan del de adentro al de afuera (umbrales 0.12 / 0.4 / 0.7). El medidor es una fila de crucecitas que crecen con la voz | `metering` del grabador (dB → 0..1) |
+| **Escuchando al paciente** | Lo mismo, con los anillos y el medidor en canela, naranja y amarillo: se ve de quién es el turno | lado = quechua |
+| **Pensando** | El inti chico gira sus rayos despacio (6 s por vuelta) y una luz recorre el anillo de afuera. Cada paso cumplido entra con un resorte chico | pasos del turno |
 | **Chaski habla** | El marco de Chaski late con la voz: en las partes fuertes se encienden magenta → amarillo → cobalto. El quechua se lee entero; lo ya dicho pasa a tinta plena, palabra por palabra | envolvente del WAV y `currentTime / duration` |
 | **Transiciones** | Las tarjetas suben con un resorte corto. Los chips de la auditoría entran uno por uno (110 ms entre chip y chip): se ve revisado | — |
 | **Bloqueado** | Un solo temblor suave de la comparación al aparecer. Nunca rojo que parpadea | — |
 
 **Modo demo:** sin micrófono ni audio, un reloj falso mueve el nivel (`?demo=grabando`) y la voz (`?demo=dicho`),
 así el movimiento se puede mostrar y revisar en el simulador o en el jurado sin servicio.
+
+## Micrófono inti (D31)
+
+Referencia de Freddy: un inti andino, anillos sólidos concéntricos alrededor de un disco con rayos detrás.
+
+| | |
+|---|---|
+| Centro | El botón teal del micrófono, 96 pt (72 pt en «pensando») |
+| Anillos | 4, de adentro hacia afuera: cobalto 5 · amarillo 9 · turquesa 5 · magenta 9 pt, con 3 pt de fondo entre cada uno. En el turno del paciente: naranja, amarillo, canela, naranja |
+| Rayos | 8 rayos escalonados cortos (dos peldaños) detrás del anillo de afuera, alternando amarillo y magenta (o los tonos canela) |
+| Constelación | Fuera: con los anillos y los rayos, las crucecitas sueltas ensuciaban el medallón |
+| Movimiento | Reposo: respiración escalonada. Escucha: onda del centro hacia afuera, escalada por el volumen. Piensa: giro de los rayos y una luz que recorre el anillo. `modo="habla"` + `pulso` laten con la envolvente de la voz (listo en el componente). Con «Reducir movimiento», quieto |
+
+Mientras Chaski habla el micrófono no está en pantalla (la consulta muestra «Repetir audio» y «Seguir»), así que lo que late con la voz es el marco de Chaski.

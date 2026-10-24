@@ -135,7 +135,7 @@ test('trazo y escalones de Chaski', () => {
   assert.deepEqual(escalonesDeChaski(96), { pasos: 4, paso: 3 });
 });
 
-import { brilloDeEstrella, hebrasEncendidas, nivelDesdeDb, palabrasDichas } from '../src/chaski/movimiento.ts';
+import { hebrasEncendidas, nivelDesdeDb, palabrasDichas } from '../src/chaski/movimiento.ts';
 import { nivelEn } from '../src/chaski/wav.ts';
 
 test('movimiento: con más voz se encienden más hebras, de adentro hacia afuera', () => {
@@ -153,12 +153,6 @@ test('movimiento: las palabras se revelan con el avance del audio, sin pasarse',
   assert.equal(palabrasDichas(6, 0.5), 3);
   assert.equal(palabrasDichas(6, 1.4), 6);
   assert.equal(palabrasDichas(0, 0.5), 0);
-});
-
-test('movimiento: el brillo gira por las 8 estrellas y da la vuelta', () => {
-  assert.equal(brilloDeEstrella(3, 8, 3), 1);
-  assert.equal(brilloDeEstrella(0, 8, 7.9) > 0.9, true);
-  assert.equal(brilloDeEstrella(4, 8, 0), 0.3);
 });
 
 test('nivelEn lee la envolvente en el instante del audio', () => {
