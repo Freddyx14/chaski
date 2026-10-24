@@ -168,6 +168,43 @@ que trabaja en una posta** según exactitud y riesgo de daño.
 
 ---
 
+## 9. Apertura del pitch (idea de Freddy y su amigo, 23-oct 22:20)
+
+1. Freddy dice una frase en quechua chanka directo al jurado, sin traducir. **La frase es una señal de alarma real del
+   embarazo**, dicha como la diría la enfermera (texto exacto y grabación: los da la mamá de Freddy, no la inventamos).
+2. «¿Entendieron?». Silencio.
+3. «Les acabo de decir [traducción]. Si ustedes fueran una gestante en Pilpichaca, acaban de perderse la indicación
+   que les podía salvar la vida. Eso le pasa a [cifra] personas, y en toda Huancavelica hay 52 servidores públicos
+   que hablan su idioma».
+4. Mejor aún: la frase sale de la **voz grabada de la mamá de Freddy**. Abre con la persona real.
+
+## 10. Alcance: ¿solo gestantes? ¿otras lenguas?
+
+**Visión (para el pitch):** Rimay es para **postas y hospitales**, y para **todas las lenguas originarias**.
+
+**Lo que construimos este fin de semana:** gestantes, Pilpichaca, chanka. Tres razones:
+1. **Anthropic premia lo específico** («the narrower, the better») y «una cosa bien hecha y usable el lunes».
+2. **La seguridad de Rimay depende de una hablante que revise** (F3, F4, F8). Para chanka la tenemos; para aimara o
+   asháninka no, y lanzar una lengua sin revisión es justo la falla que decimos evitar.
+3. Las señales de alarma del embarazo son un contenido **fijo y oficial**: el mejor primer caso para probar el método.
+
+**Cómo lo mostramos sin construirlo:** el idioma es un parámetro del sistema, no está fijo en el código. En el pitch:
+«el mismo método sirve para aimara o asháninka; lo único que falta es una revisora nativa como la que ya tenemos para chanka».
+
+## 11. Dónde está lo técnicamente difícil
+
+No es «traducir con Claude». Es **lograr que una IA sepa cuándo se equivoca en un idioma que casi no conoce**. Cuatro piezas:
+
+| # | Pieza | Por qué es difícil | Quién |
+|---|---|---|---|
+| T1 | **Evaluación chanka-salud** (F8) | No existe. Hay que crear el set con indicaciones reales, calificar con una hablante nativa con el protocolo de Kong et al. (2026), y medir a Claude contra Google Translate | Ricardo (métricas) + mamá de Freddy (calificación) |
+| T2 | **Detector de errores de traducción sin referencia** (F4) | En el uso real no hay traducción correcta para comparar. Hay que detectar cuándo cambió una dosis, una fecha o una señal de alarma usando retraducción y comparación de los datos críticos. **Se mide**: de los errores que la hablante encontró en T1, ¿cuántos atrapó el detector? | Freddy (Claude) + Ricardo (medición) |
+| T3 | **Voz en quechua** (F1, F5) | Síntesis de voz chanka (modelos de Huamán Curo et al., 2026) y, lo más difícil, **entender la respuesta hablada** de la paciente con reconocimiento de voz para una lengua con muy pocos datos (Romero et al., 2024) | Ricardo |
+| T4 | **Leer la receta y saber cuándo no está seguro** (F2) | Leer la receta ya está resuelto; lo difícil es que el sistema **se abstenga** cuando su lectura no es confiable, con un umbral medido | Ricardo (visión) |
+
+**La frase técnica del pitch:** *«Construimos la primera evaluación de IA en quechua chanka para salud, y un detector
+que atrapa X de cada 10 errores de traducción antes de que lleguen a una paciente.»* (X sale de T2.)
+
 ## Pendientes antes de construir
 
 - [ ] Que la mamá de Freddy acepte revisar las traducciones y, si quiere, aparecer en el pitch con sus palabras.
