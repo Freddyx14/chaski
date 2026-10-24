@@ -95,3 +95,41 @@ familias: nueve audios de tres clases, que son las tres que el intérprete tiene
 Sirven para tres cosas antes de que exista un solo audio de la familia: probar `idioma()` con las tres
 clases, medir la espera por turno del ciclo completo, y tener un castellano de referencia. El caso `mix`
 es el que más importa: ningún clasificador de idioma lo resuelve bien, y es lo normal en una consulta.
+
+## 7. El export del formulario
+
+El formulario que construye Freddy (`form/`, Next.js + Neon + Vercel Blob) exporta un **JSONL**, una
+línea por frase. Lo consume `voz/importar_formulario.py`, que baja el audio, lo normaliza a 16 kHz mono
+y arma el manifiesto.
+
+```json
+{"persona": "p1", "numero": 3,
+ "castellano": "Tómela con agua, no con té",
+ "quechua_escrito": "Yakuwan upyay, mana tewan",
+ "audio_url": "https://blob.vercel-storage.com/.../p1-003.webm",
+ "segundos": 4.2, "consentimiento": true}
+```
+
+| Campo | Obligatorio | Regla |
+|---|---|---|
+| `persona` | **sí** | identificador corto y anónimo. **Nunca el nombre real** |
+| `numero` | **sí** | el número del cuadernillo, corrido de 1 a 175 |
+| `audio_url` | **sí** | URL directa y descargable sin login |
+| `quechua_escrito` | no | lo que la persona escribió. Si falta, el clip entra sin texto y se transcribe después |
+| `castellano` | no | la frase que vio; si falta se completa desde el cuadernillo por el número |
+| `segundos` | no | se mide con `ffprobe` si no viene |
+| `consentimiento` | **sí** | **si es `false` o falta, la fila NO entra al corpus** |
+| `parte` | no | `C`, `M`, `N`, `B` o `E`; si falta se deduce del número |
+
+Importar:
+
+```bash
+PYTHONPATH=. uv run --with httpx python voz/importar_formulario.py <archivo-o-url>
+```
+
+**Por qué el formulario es mejor que las notas de voz.** El audio y el texto llegan **ya emparejados**:
+no hay que partir por silencios, ni deducir el número de lo que se oye, ni cruzar fotos de hojas con
+audios sueltos. Los tres sitios donde el emparejamiento se rompía desaparecen de golpe.
+
+**Lo que sigue haciendo falta igual:** comprobar en `/corregir` que el audio dice lo que la persona
+escribió. Una persona puede escribir una cosa y leer otra, y eso envenena los tres conjuntos a la vez.

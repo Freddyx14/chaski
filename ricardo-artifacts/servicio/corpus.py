@@ -428,3 +428,47 @@ def unir(persona: str, bloque: str, numero: int) -> dict:
     _reescribir(persona, nuevas)
     return {"hecho": True, "unido_con": f"{bloque}{siguiente.numero}",
             "segundos": fundido.segundos}
+
+
+# --- verificar que el audio diga lo que la persona escribio ----------------
+
+
+def _palabras(texto: str) -> list[str]:
+    limpio = re.sub(r"[^\w'áéíóúñ ]", " ", texto.lower())
+    return [p for p in limpio.split() if p]
+
+
+def distancia_palabras(a: list[str], b: list[str]) -> int:
+    fila = list(range(len(b) + 1))
+    for i, x in enumerate(a, 1):
+        nueva = [i]
+        for j, y in enumerate(b, 1):
+            nueva.append(min(fila[j] + 1, nueva[j - 1] + 1, fila[j - 1] + (x != y)))
+        fila = nueva
+    return fila[-1]
+
+
+def verificar(ruta_audio: str, escrito: str) -> dict:
+    """Compara lo que se oye con lo que la persona escribio.
+
+    No decide por nadie: da un numero y una sugerencia. Si el error de palabra
+    es alto, lo normal es que el modelo se haya equivocado, no la persona: el
+    reconocimiento todavia no esta ajustado. Por eso la sugerencia es mirar,
+    no descartar.
+    """
+    oido = transcribir(ruta_audio)
+    texto = oido.get("texto", "")
+    a, b = _palabras(escrito), _palabras(texto)
+    if not a:
+        return {"oido": texto, "wer": None, "veredicto": "sin_texto",
+                "nota": "no hay texto escrito con que comparar"}
+    wer = distancia_palabras(a, b) / len(a)
+    if wer <= 0.34:
+        veredicto, nota = "coincide", "el audio dice lo que está escrito"
+    elif wer <= 0.7:
+        veredicto, nota = "revisar", "se parece, pero conviene escucharlo"
+    else:
+        veredicto, nota = "no_coincide", ("muy distinto: o leyó otra frase, o el modelo todavía "
+                                          "no entiende esa voz")
+    return {"oido": texto, "wer": round(wer, 3), "veredicto": veredicto, "nota": nota,
+            "palabras_escritas": len(a)}

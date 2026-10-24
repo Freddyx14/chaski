@@ -196,6 +196,25 @@ def corpus_recodificar(persona: str = Form(...), bloque_actual: str = Form(...),
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
+@aplicacion.post("/corpus/importar")
+def corpus_importar(origen: str = Form(...), persona: str = Form("")):
+    """Trae al corpus el export del formulario (archivo o URL)."""
+    from voz.importar_formulario import importar
+    try:
+        return importar(origen, persona)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/corpus/verificar")
+def corpus_verificar(ruta: str = Form(...), escrito: str = Form("")):
+    from servicio.corpus import verificar
+    try:
+        return verificar(ruta, escrito)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.post("/corpus/ajustar")
 def corpus_ajustar(persona: str = Form(...), bloque: str = Form(...), numero: int = Form(...),
                    inicio: float = Form(None), fin: float = Form(None)):

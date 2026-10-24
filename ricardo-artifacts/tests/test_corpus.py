@@ -42,3 +42,11 @@ def test_las_partes_salen_de_los_rangos():
     assert r["C"][0] == 1
     assert parte_de(r["C"][0]) == "C"
     assert parte_de(r["M"][1]) == "M"
+
+
+def test_la_distancia_de_palabras_cuenta_cambios():
+    from servicio.corpus import _palabras, distancia_palabras
+    a = _palabras("Huk pastillata upyay sapa pusaq horaspi")
+    assert distancia_palabras(a, a) == 0
+    assert distancia_palabras(a, _palabras("Huk pastillata upyay sapa pusaq")) == 1
+    assert distancia_palabras(a, _palabras("mana imapas")) == 6

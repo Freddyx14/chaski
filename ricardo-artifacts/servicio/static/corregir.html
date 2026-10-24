@@ -49,6 +49,13 @@
   </div>
 
   <div class="barra" style="background:var(--blanco);border:1px solid var(--linea);padding:12px 14px">
+    <label for="origen" style="margin:0">Del formulario</label>
+    <input id="origen" type="text" placeholder="URL del export .jsonl, o ruta local" style="flex:1;min-width:220px">
+    <button id="importar" class="principal">Importar</button>
+    <span class="cual" id="estadoImport"></span>
+  </div>
+
+  <div class="barra" style="background:var(--blanco);border:1px solid var(--linea);padding:12px 14px">
     <label for="archivo" style="margin:0">Nota de voz</label>
     <input id="nombrePersona" type="text" placeholder="p1" style="width:80px">
     <select id="bloqueNuevo" style="width:auto">
@@ -78,6 +85,10 @@
     <p class="nota">Elige una persona.</p>
   </div>
 
+  <p class="nota"><b>Si los datos vienen del formulario</b>, el texto ya está escrito por la persona:
+    tu trabajo es comprobar que el audio dice eso. «¿El audio dice esto?» transcribe y mide la
+    diferencia. Una diferencia alta casi siempre es el modelo, que todavía no está ajustado, no la
+    persona: escucha antes de cambiar nada.</p>
   <p class="nota"><kbd>⌘ Enter</kbd> guarda y pasa al siguiente · <kbd>Espacio</kbd> vuelve a escuchar ·
     «No sirve» descarta el clip. Si el corte salió mal: <b>«Partir aquí»</b> usa la posición del
     reproductor, <b>«Unir con el siguiente»</b> pega dos pedazos de la misma frase, y los botones de
@@ -142,8 +153,13 @@ function pintar() {
     ${c.chanka_esperado ? `<p class="oido" style="border-color:var(--verde)"><b>Debería decir:</b> ${c.chanka_esperado}</p>` : ''}
     <p class="oido" id="oido">${c.transcripcion ? 'Guardado: ' + c.transcripcion : 'Sin transcribir todavía.'}</p>
     <div class="campo">
-      <label for="texto">Cómo se escribe en chanka</label>
+      <label for="texto">${c.transcripcion ? 'Lo que escribió la persona · corrige solo si el audio dice otra cosa'
+                                            : 'Cómo se escribe en chanka'}</label>
       <textarea id="texto" spellcheck="false">${c.transcripcion || ''}</textarea>
+    </div>
+    <div class="barra" style="gap:6px">
+      <button id="verificar" class="principal">¿El audio dice esto?</button>
+      <span class="cual" id="estadoVerif"></span>
     </div>
     <div class="barra">
       <button id="oir" class="principal">Transcribir con el modelo</button>
@@ -153,6 +169,7 @@ function pintar() {
       <button id="siguiente">Siguiente</button>
     </div>`;
   $('#oir').onclick = transcribir;
+  $('#verificar').onclick = verificar;
   $('#detectar').onclick = detectarCodigo;
   if (c.recortable) {
     $('#inicioMenos').onclick = () => ajustar({inicio: c.inicio - 0.2});
@@ -236,6 +253,23 @@ async function recodificar(silencioso) {
   await cargar();
   i = Math.min(n, clips.length - 1);
   pintar();
+}
+
+async function verificar() {
+  const c = clips[i];
+  const escrito = $('#texto').value.trim();
+  if (!escrito) { $('#estadoVerif').textContent = 'Primero escribe o importa el texto.'; return; }
+  $('#estadoVerif').textContent = 'Escuchando y comparando…';
+  const cuerpo = new FormData();
+  cuerpo.append('ruta', c.audio);
+  cuerpo.append('escrito', escrito);
+  const d = await (await fetch('/corpus/verificar', {method:'POST', body:cuerpo})).json();
+  if (d.error) { $('#estadoVerif').textContent = d.error; return; }
+  const color = d.veredicto === 'coincide' ? 'var(--verde)'
+              : d.veredicto === 'revisar' ? 'var(--acento)' : 'var(--rojo)';
+  $('#oido').innerHTML = 'El modelo oyó: <b>' + (d.oido || '—') + '</b>';
+  $('#estadoVerif').innerHTML = d.wer === null ? d.nota :
+    `<b style="color:${color}">${Math.round(d.wer*100)}% de diferencia</b> · ${d.nota}`;
 }
 
 async function transcribir() {
@@ -357,6 +391,29 @@ $('#subir').onclick = async () => {
   const quien = $('#nombrePersona').value.trim();
   if (!f || !quien) { $('#estadoSubida').textContent = 'Falta el archivo o el identificador.'; return; }
   await enviarNota(f, quien);
+};
+
+$('#importar').onclick = async () => {
+  const origen = $('#origen').value.trim();
+  if (!origen) { $('#estadoImport').textContent = 'Pon la URL o la ruta del export.'; return; }
+  $('#importar').disabled = true;
+  $('#estadoImport').textContent = 'Bajando los audios y armando el manifiesto…';
+  try {
+    const cuerpo = new FormData();
+    cuerpo.append('origen', origen);
+    const d = await (await fetch('/corpus/importar', {method:'POST', body:cuerpo})).json();
+    if (d.error) throw new Error(d.error);
+    const quienes = Object.entries(d.personas || {}).map(([p,n]) => `${p}: ${n}`).join(' · ');
+    $('#estadoImport').innerHTML = `${d.audios} audios · ${quienes || 'nadie'}` +
+      (d.con_texto ? ` · ${d.con_texto} ya traen el texto escrito` : '') +
+      (d.sin_consentimiento ? ` · <b style="color:var(--rojo)">${d.sin_consentimiento} sin consentimiento, fuera</b>` : '');
+    const sel = $('#persona');
+    for (const p of Object.keys(d.personas || {}))
+      if (![...sel.options].some(o => o.value === p)) sel.add(new Option(p, p));
+    const primera = Object.keys(d.personas || {})[0];
+    if (primera) { sel.value = primera; persona = primera; await cargar(); }
+  } catch (e) { $('#estadoImport').textContent = 'Falló: ' + e.message; }
+  finally { $('#importar').disabled = false; }
 };
 
 $('#exportar').onclick = async () => {

@@ -257,3 +257,40 @@ El presupuesto de espera dejó de ser una lista de números: es una **cascada** 
 bloque proporcional a lo que tardó, con la **meta de 4 s** marcada en rojo. De un vistazo se ve qué paso
 se come el turno. Arriba, cuatro medidas: turno del paciente, turno tuyo, ciclo completo y error del
 reconocimiento.
+
+## El formulario cambia de dónde vienen los datos
+
+Freddy está construyendo un formulario web (`form/`, Next.js + Neon + Vercel Blob): cada persona ve la
+frase en castellano, **la escribe en quechua y graba leyéndola**. El audio y el texto llegan **ya
+emparejados**.
+
+Eso borra de un golpe los tres sitios donde el emparejamiento se rompía: no hay que partir por silencios,
+ni deducir el número de lo que se oye, ni cruzar fotos de hojas con audios sueltos.
+
+`voz/importar_formulario.py` trae ese export al corpus:
+
+```bash
+PYTHONPATH=. uv run --with httpx python voz/importar_formulario.py <archivo-o-url>
+```
+
+o desde `/corregir`, en la caja «Del formulario». Baja cada audio, lo normaliza a 16 kHz mono y arma el
+manifiesto. **Las filas sin consentimiento no entran**, y se reportan aparte. El formato está en
+`CONTRATO.md` §7, publicado para que el formulario apunte a algo concreto.
+
+### Qué hace ahora el etiquetador
+
+Cuando el texto ya viene escrito, el trabajo deja de ser teclear y pasa a ser **comprobar que el audio
+dice eso**. El botón «¿El audio dice esto?» transcribe el clip y mide la diferencia en palabras:
+
+| Diferencia | Veredicto |
+|---|---|
+| ≤ 34% | coincide |
+| ≤ 70% | se parece, conviene escucharlo |
+| > 70% | muy distinto: o leyó otra frase, o el modelo no entiende esa voz |
+
+**La sugerencia es mirar, no descartar.** Hoy el reconocimiento no está ajustado y falla en los préstamos
+del castellano, así que una diferencia alta suele ser culpa del modelo, no de la persona. Descartar por
+el número sería tirar justo los clips que más falta hacen para entrenar.
+
+Las notas de voz de WhatsApp siguen funcionando como plan B: subir el archivo, grabar desde la página,
+partir, unir y mover los cortes.
