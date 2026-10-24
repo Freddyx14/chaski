@@ -59,9 +59,9 @@
 ### Freddy
 | | Tarea | Para |
 |---|---|---|
-| ⬜ | Elegir el modelo principal: **recomendado Opus** (98 % acierto, 0 datos inventados) | ya |
-| ⬜ | Elegir el crítico: **recomendado Sonnet** (100 % / 7,5 %) en vez de Haiku (96 % / 18 %), aunque Anthropic sugirió Haiku: los números mandan | ya |
-| ⬜ | p20 «Ricardo» en la base: ¿prueba (se borra) o dato real? | ya |
+| ✅ | Modelo principal: **Opus** (Freddy, 16:13: «if it gives the best accuracy, yes») | — |
+| ✅ | Crítico: **Sonnet** (Freddy, 16:13) · 🔁 ui-ux D39 en el SOT | — |
+| ✅ | p20 «Ricardo» era prueba: borrada de la base y de `data/formulario/` | — |
 | ⬜ | ¿Se guardan los audios de las consultas? (pregunta de privacidad de los jueces) | 18:00 |
 | ⬜ | Mamá: revisar las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
 | ⬜ | Mamá: grabar su saludo en quechua para abrir el pitch, con permiso | 18:00 |
