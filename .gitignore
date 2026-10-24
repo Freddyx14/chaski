@@ -12,3 +12,7 @@ __pycache__/
 .DS_Store
 data/raw/
 *.log
+
+# PDFs de papers y CSV pesados (no versionar)
+Ricardo-idea/papers/*.pdf
+Ricardo-idea/*.csv
