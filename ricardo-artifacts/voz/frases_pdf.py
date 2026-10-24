@@ -149,13 +149,19 @@ def main() -> None:
          "medicamentos_y_prestamos": MEDICAMENTOS},
         ensure_ascii=False, indent=1), encoding="utf-8")
 
-    nota_comun = (f"{len(verificadas)} frases verificadas vienen del conjunto "
-                  "<b>makitty/quechua-chanka-unified-v2</b> (CC-BY-4.0). Las "
-                  f"{len(CLINICAS)} frases clínicas van <b>sin traducir a propósito</b>: "
-                  "el quechua lo pone la familia, no el equipo. "
-                  f"Las {len(MEDICAMENTOS)} palabras del bloque M son préstamos del castellano: "
-                  "<b>dígalas como las dice la gente en la posta</b>, no como las leería un locutor. "
-                  "Grabe cada frase por separado, en un lugar silencioso, y diga el número antes.")
+    nota_comun = (
+        f"<b>Lo primero: grabar.</b> Diga el número y después la frase, en un lugar silencioso. "
+        f"Las {len(verificadas)} frases del primer bloque ya están escritas en chanka: "
+        "solo hay que leerlas o decirlas. "
+        f"Los bloques C ({len(CLINICAS)} frases de la posta) y M ({len(MEDICAMENTOS)} medicamentos y "
+        "préstamos) van <b>sin traducir a propósito</b>: el quechua lo pone usted, no el equipo.<br/><br/>"
+        "<b>Escribir el quechua es opcional en el papel.</b> Si prefiere, grabe nomás: nosotros pasamos "
+        "el audio a texto con la computadora y después usted <b>corrige en pantalla</b>, que es mucho "
+        "más rápido que escribir todo a mano. Si le resulta más cómodo escribirlo aquí, también sirve.<br/><br/>"
+        "<b>Por qué pedimos las dos cosas.</b> El audio enseña a la máquina a <i>entender</i> cómo se "
+        "habla; el texto escrito le enseña cómo se <i>escribe</i> y cómo se traduce. Son dos aprendizajes "
+        "distintos y los dos hacen falta. Las palabras del bloque M son préstamos del castellano: "
+        "<b>dígalas como las dice la gente en la posta</b>, no como las leería un locutor.")
 
     construir("frases_quechua.pdf", "Rimay · frases en quechua chanka",
               nota_comun + " <b>Este cuadernillo es para leer en voz alta.</b>",
