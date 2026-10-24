@@ -3,7 +3,8 @@ import { File, Paths } from 'expo-file-system';
 
 import { leerServidor } from './config';
 import type { Rol } from './perfil';
-import type { RespuestaEnfermera, RespuestaEscuchar, RespuestaPaciente } from './modelo';
+import bancoDemo from './banco-demo.json';
+import { frasesConTag, type FraseBanco, type RespuestaEnfermera, type RespuestaEscuchar, type RespuestaPaciente } from './modelo';
 
 export class SinServidor extends Error {}
 
@@ -94,6 +95,11 @@ export type Lectura = {
   no_leido: string[];
   coincide_con_lo_dicho: boolean | null;
   segundos: number;
+  // Si el servicio llega a leer la posología de una receta escrita, viene aquí; si no, la confirma la enfermera.
+  cantidad?: number | null;
+  unidad?: string | null;
+  cada_horas?: number | null;
+  dias?: number | null;
 };
 
 /** Foto de la caja o la receta → Claude visión (F9). `dicho` es lo último que dijo la enfermera. */
@@ -113,6 +119,8 @@ export type Resumen = {
   dudas: string[];
   no_se_dijo: string[];
   texto_para_decir: string;
+  /** D36: palabras quechua nuevas de esta consulta, para aprender. */
+  glosario?: { quechua: string; castellano: string }[];
 };
 
 /** F11: el resumen de la consulta, según quién lo lee (D27). Lo bloqueado nunca entra como indicación. */
@@ -121,4 +129,33 @@ export function resumen(turnos: { lado: string; castellano: string; quechua: str
   f.append('turnos', JSON.stringify(turnos));
   f.append('rol', rol);
   return pedir<Resumen>('/resumen', f, 90);
+}
+
+/**
+ * El banco de frases verificadas (D34, §4). Primero el servicio (`GET /banco?tag=`); si no responde, la
+ * copia local. Cuando exista app/chaski/banco.json, reemplazar `banco-demo.json` por ese archivo.
+ */
+export async function banco(tag: string): Promise<{ frases: FraseBanco[]; origen: 'servicio' | 'local' }> {
+  try {
+    const base = await leerServidor();
+    if (base) {
+      const corte = new AbortController();
+      const reloj = setTimeout(() => corte.abort(), 4000);
+      const r = await fetch(`${base}/banco?tag=${encodeURIComponent(tag)}`, { headers: CABECERAS, signal: corte.signal });
+      clearTimeout(reloj);
+      if (r.ok) {
+        const d = await r.json();
+        const frases: FraseBanco[] = Array.isArray(d) ? d : d.frases ?? [];
+        if (frases.length) return { frases: frasesConTag(frases, tag), origen: 'servicio' };
+      }
+    }
+  } catch {}
+  return { frases: frasesConTag(bancoDemo.frases as FraseBanco[], tag), origen: 'local' };
+}
+
+/** Audio de una frase del banco: el verificado si existe; si no, la voz de Chaski con su quechua revisado. */
+export async function audioDeFrase(f: FraseBanco): Promise<{ uri: string; headers?: Record<string, string> }> {
+  if (f.audio) return { uri: f.audio, headers: CABECERAS };
+  const { uri } = await voz(f.quy);
+  return { uri };
 }

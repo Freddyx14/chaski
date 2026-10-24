@@ -1,0 +1,13 @@
+{
+  "_about": "Fixture con el formato de plan/arquitectura-interprete.md §4 hasta que exista app/chaski/banco.json. El quechua NO se inventa: los marcadores [revisar…] no se dicen nunca (fraseRevisada).",
+  "frases": [
+    { "id": "emerg-donde-duele", "es": "¿Dónde le duele?", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia", "dolor"], "fuente": "pendiente" },
+    { "id": "emerg-senale", "es": "Señale con el dedo dónde le duele", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia", "dolor"], "fuente": "pendiente" },
+    { "id": "emerg-desde-cuando", "es": "¿Desde cuándo está así?", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia"], "fuente": "pendiente" },
+    { "id": "emerg-alergico", "es": "¿Es alérgico a algún medicamento?", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia"], "fuente": "pendiente" },
+    { "id": "emerg-embarazada", "es": "¿Está embarazada?", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia"], "fuente": "pendiente" },
+    { "id": "emerg-acompanante", "es": "¿Vino con alguien?", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia"], "fuente": "pendiente" },
+    { "id": "emerg-respira", "es": "¿Puede respirar bien?", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia"], "fuente": "pendiente" },
+    { "id": "emerg-tranquilo", "es": "Tranquilo, lo vamos a atender", "quy": "[revisar con la enfermera]", "audio": null, "tags": ["emergencia"], "fuente": "pendiente" }
+  ]
+}

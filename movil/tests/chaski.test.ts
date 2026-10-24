@@ -4,9 +4,11 @@ import assert from 'node:assert/strict';
 
 import { base64ABytes, bocaAbierta, envolvente } from '../src/chaski/wav.ts';
 import {
+  fraseRevisada, frasesConTag, leerInterprete, type FraseBanco,
   fueCastellano, ladoDetectado, nombreDelCampo, siguienteLado, veredictoEnfermera,
   type RespuestaEnfermera, type RespuestaPaciente,
 } from '../src/chaski/modelo.ts';
+import { comprobarRepeticion, faltantes, indicacionDesdeHechos, numerosEn, type HechosReceta } from '../src/chaski/receta.ts';
 
 function wav(muestras: number[], frecuencia = 16000): Uint8Array {
   const datos = muestras.length * 2;
@@ -168,4 +170,71 @@ test('el detector de idioma decide el lado solo con confianza alta', () => {
   assert.equal(ladoDetectado({ codigo: 'spa', confianza: 0.5 }, 'quechua'), 'quechua');
   assert.equal(ladoDetectado(null, 'quechua'), 'quechua');
   assert.equal(ladoDetectado({ codigo: 'eng', confianza: 1 }, 'castellano'), 'castellano');
+});
+
+// ---- intérprete agente (D32) -------------------------------------------------------------
+
+const FRASE: FraseBanco = { id: 'dolor-donde', es: '¿Dónde le duele?', quy: 'Maypitaq nanasunki?', audio: null, tags: ['emergencia'] };
+const PENDIENTE: FraseBanco = { id: 'p', es: '¿Desde cuándo?', quy: '[revisar con la enfermera]', audio: null, tags: ['emergencia'] };
+
+test('sin accion la app traduce como siempre', () => {
+  assert.deepEqual(leerInterprete({}), { tipo: 'traducir' });
+  assert.deepEqual(leerInterprete({ accion: 'traducir' }), { tipo: 'traducir' });
+});
+
+test('repreguntar trae pregunta, motivo y dato faltante; acepta la decision anidada', () => {
+  const v = leerInterprete({ decision: { accion: 'repreguntar', para: 'paciente', texto_pulido: '¿Desde cuándo le duele?',
+    motivo: 'No dijo desde cuándo', dato_faltante: 'desde cuándo' }, quechua: 'Hayk\'aqmantataq?' } as any);
+  assert.equal(v.tipo, 'pregunta');
+  if (v.tipo === 'pregunta') {
+    assert.equal(v.dato, 'desde cuándo');
+    assert.equal(v.quechua, "Hayk'aqmantataq?");
+    assert.equal(v.para, 'paciente');
+  }
+});
+
+test('falla cerrada: responder sin texto, accion rara o frase ausente terminan en no_entendi', () => {
+  assert.equal(leerInterprete({ accion: 'responder', texto_pulido: '' }).tipo, 'no_entendi');
+  assert.equal(leerInterprete({ accion: 'inventada' as any }).tipo, 'no_entendi');
+  assert.equal(leerInterprete({ accion: 'usar_frase_banco', frase_banco_id: 'nada' }, [FRASE]).tipo, 'no_entendi');
+  assert.equal(leerInterprete({ accion: 'usar_frase_banco', frase_banco_id: 'p' }, [PENDIENTE]).tipo, 'no_entendi');
+});
+
+test('usar_frase_banco busca la frase por id en el banco', () => {
+  const v = leerInterprete({ accion: 'usar_frase_banco', frase_banco_id: 'dolor-donde' }, [FRASE]);
+  assert.equal(v.tipo, 'frase');
+});
+
+test('una frase con marcador pendiente nunca se dice; con audio sí', () => {
+  assert.equal(fraseRevisada(PENDIENTE), false);
+  assert.equal(fraseRevisada(FRASE), true);
+  assert.equal(fraseRevisada({ ...PENDIENTE, audio: 'https://x/a.wav' }), true);
+  assert.deepEqual(frasesConTag([FRASE, { ...FRASE, id: 'x', tags: ['dolor'] }], 'emergencia').map((f) => f.id), ['dolor-donde']);
+});
+
+// ---- receta y «¿me lo repite?» ------------------------------------------------------------
+
+const PARACETAMOL: HechosReceta = { medicamento: 'paracetamol', concentracion: '500 mg', cantidad: 1, unidad: 'pastilla', cada_horas: 8, dias: 3 };
+
+test('la indicación sale de una plantilla con los números confirmados', () => {
+  assert.equal(indicacionDesdeHechos(PARACETAMOL), 'Tome una pastilla de paracetamol de 500 mg cada ocho horas, durante tres días.');
+  assert.equal(indicacionDesdeHechos({ ...PARACETAMOL, cantidad: 2, cada_horas: 24, dias: 1, concentracion: null }),
+    'Tome dos pastillas de paracetamol una vez al día, durante un día.');
+});
+
+test('sin un dato no se puede decir', () => {
+  assert.deepEqual(faltantes({ ...PARACETAMOL, cada_horas: null, dias: null }), ['Cada cuántas horas', 'Por cuántos días']);
+  assert.deepEqual(faltantes(PARACETAMOL), []);
+});
+
+test('números en cifras y en palabras', () => {
+  assert.deepEqual(numerosEn('cada 8 horas por tres días').sort((a, b) => a - b), [3, 8]);
+  assert.ok(numerosEn('una vez al día').includes(24));
+});
+
+test('«¿me lo repite?» marca lo que falta', () => {
+  const r = comprobarRepeticion(PARACETAMOL, 'Tomo una pastilla cada ocho horas');
+  assert.deepEqual(r.map((c) => c.ok), [true, true, true, false]);
+  assert.equal(r[3].nombre, 'Por cuántos días');
+  assert.ok(comprobarRepeticion(PARACETAMOL, 'el paracetamol, uno cada 8 horas, tres días').every((c) => c.ok));
 });

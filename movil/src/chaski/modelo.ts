@@ -3,7 +3,38 @@
 
 export type Diferencia = { campo: string; original: string; retraducido: string };
 
-export type RespuestaEnfermera = {
+/** Las cinco acciones del intérprete agente (D32, plan/arquitectura-interprete.md §2). */
+export type Accion = 'traducir' | 'repreguntar' | 'responder' | 'no_entendi' | 'usar_frase_banco';
+
+/** Una frase verificada del banco (§4): traducción y audio que sabemos que están bien. */
+export type FraseBanco = {
+  id: string;
+  es: string;
+  quy: string;
+  audio?: string | null;
+  tags: string[];
+  fuente?: string;
+};
+
+/**
+ * Los campos de la `Decision` que traen /turno/enfermera y /turno/paciente cuando el intérprete está
+ * integrado. Todos opcionales: sin `accion` la app hace exactamente lo de antes (traducir).
+ * El servicio puede mandarlos sueltos o dentro de `decision`.
+ */
+export type CamposDecision = {
+  accion?: Accion;
+  para?: 'personal' | 'paciente';
+  idioma_salida?: 'spa' | 'quy';
+  texto_pulido?: string;
+  motivo?: string | null;
+  frase_banco_id?: string | null;
+  dato_faltante?: string | null;
+  frase_banco?: FraseBanco | null;
+  audio_wav_b64?: string | null;
+  decision?: Omit<CamposDecision, 'decision'> | null;
+};
+
+export type RespuestaEnfermera = CamposDecision & {
   quechua: string;
   retraduccion: string;
   aprobado_por_auditoria: boolean;
@@ -15,7 +46,7 @@ export type RespuestaEnfermera = {
   total_ms: number;
 };
 
-export type RespuestaPaciente = {
+export type RespuestaPaciente = CamposDecision & {
   idioma: { codigo: string; confianza: number } | null;
   chanka_oido: string;
   castellano: string;
@@ -74,6 +105,61 @@ export function veredictoEnfermera(castellano: string, r: RespuestaEnfermera): V
     return { tipo: 'dicho_con_aviso', quechua: r.quechua, castellano, terminos: r.terminos_inseguros ?? [], casillas };
   }
   return { tipo: 'dicho', quechua: r.quechua, castellano, casillas };
+}
+
+export type Interprete =
+  | { tipo: 'traducir' }
+  | { tipo: 'pregunta'; para: 'personal' | 'paciente'; texto: string; quechua: string | null; motivo: string;
+      dato: string | null; audioB64: string | null }
+  | { tipo: 'respuesta'; texto: string; motivo: string; audioB64: string | null }
+  | { tipo: 'no_entendi'; motivo: string }
+  | { tipo: 'frase'; frase: FraseBanco };
+
+const ACCIONES: Accion[] = ['traducir', 'repreguntar', 'responder', 'no_entendi', 'usar_frase_banco'];
+
+/**
+ * Qué hace la pantalla con la decisión del intérprete. Falla cerrada (§2b): una acción desconocida, una
+ * frase del banco que no se encuentra o una repregunta sin texto terminan en «no le entendí», nunca en
+ * algo dicho a medias.
+ */
+export function leerInterprete(
+  r: CamposDecision & { quechua?: string; motivo?: string | null },
+  banco: FraseBanco[] = [],
+): Interprete {
+  const d = { ...r, ...(r.decision ?? {}) };
+  if (!d.accion || d.accion === 'traducir') return { tipo: 'traducir' };
+  if (!ACCIONES.includes(d.accion)) return { tipo: 'no_entendi', motivo: 'Respuesta del intérprete no reconocida' };
+  const motivo = (d.motivo ?? '').trim();
+  const texto = (d.texto_pulido ?? '').trim();
+  switch (d.accion) {
+    case 'repreguntar':
+      if (!texto && !r.quechua) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la pregunta' };
+      return {
+        tipo: 'pregunta', para: d.para ?? 'paciente', texto, quechua: r.quechua || null, motivo,
+        dato: d.dato_faltante ?? null, audioB64: d.audio_wav_b64 ?? null,
+      };
+    case 'responder':
+      if (!texto) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la respuesta' };
+      return { tipo: 'respuesta', texto, motivo, audioB64: d.audio_wav_b64 ?? null };
+    case 'usar_frase_banco': {
+      const frase = d.frase_banco ?? banco.find((f) => f.id === d.frase_banco_id);
+      if (!frase || !fraseRevisada(frase)) return { tipo: 'no_entendi', motivo: 'La frase verificada no está disponible' };
+      return { tipo: 'frase', frase };
+    }
+    default:
+      return { tipo: 'no_entendi', motivo: motivo || 'No se entendió con seguridad' };
+  }
+}
+
+/** Una frase del banco solo se dice si su quechua ya existe (no es un marcador pendiente de revisión). */
+export function fraseRevisada(f: FraseBanco): boolean {
+  const q = (f.quy ?? '').trim();
+  return !!f.audio || (q.length > 0 && !q.startsWith('['));
+}
+
+/** Las frases de una etiqueta, en el orden del banco. */
+export function frasesConTag(banco: FraseBanco[], tag: string): FraseBanco[] {
+  return banco.filter((f) => (f.tags ?? []).includes(tag));
 }
 
 function legible(v: string): string {
