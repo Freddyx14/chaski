@@ -39,6 +39,8 @@ export default function Recolector() {
 
   // Resume where they left off.
   useEffect(() => {
+    // The browser must not restore an old scroll position: every screen starts at the top.
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     const id = lsGet(LS_PARTICIPANTE);
     if (!id) { setPantalla("bienvenida"); return; }
     fetch(`/api/participantes/${id}`)
@@ -217,20 +219,15 @@ function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
 function Progreso({ indice, guardadas }: { indice: number; guardadas: Map<number, Guardada> }) {
   const f = FRASES[indice];
   const parte = PARTES.find((p) => p.bloque === f.bloque)!;
-  const deParte = FRASES.filter((x) => x.bloque === f.bloque);
-  const hechasParte = deParte.filter((x) => guardadas.has(x.global)).length;
   const hechasTotal = FRASES.filter((x) => x.bloque !== "E" && guardadas.has(x.global)).length;
+  const total = f.bloque === "E" ? FRASES.filter((x) => x.bloque === "E").length : TOTAL_OBLIGATORIAS;
+  const hechas = f.bloque === "E" ? FRASES.filter((x) => x.bloque === "E" && guardadas.has(x.global)).length : hechasTotal;
   return (
     <div className="prog">
-      <div className="prog-label">
-        <span>Parte {parte.parte} · {parte.titulo}</span>
-        <span>{hechasParte}/{deParte.length}</span>
-      </div>
-      <div className="bar"><div style={{ width: `${(100 * hechasParte) / deParte.length}%` }} /></div>
       <div className="prog-label small">
-        <span>Total</span><span>{hechasTotal}/{TOTAL_OBLIGATORIAS}</span>
+        <span>Parte {parte.parte} · {parte.titulo}</span><span>{hechas}/{total}</span>
       </div>
-      <div className="bar thin"><div style={{ width: `${(100 * hechasTotal) / TOTAL_OBLIGATORIAS}%` }} /></div>
+      <div className="bar thin"><div style={{ width: `${(100 * hechas) / total}%` }} /></div>
     </div>
   );
 }
@@ -277,6 +274,8 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
     if (texto && texto !== (guardada?.quechua_texto ?? "")) lsSet(claveBorrador, texto);
     else lsDel(claveBorrador);
   }, [texto, esExtra, claveBorrador, guardada]);
+
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   const tieneAudioPrevio = !!guardada?.audio_url && !rec.blob;
   const textoNuevo = !esExtra && texto.trim() !== (guardada?.quechua_texto ?? "").trim() && !!texto.trim();
@@ -346,22 +345,21 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
       </header>
 
       <div className="frase">
-        <div className="num">{f.global}</div>
-        <p className="es">{f.castellano}</p>
+        <p className="es"><span className="num">{f.global}.</span> {f.castellano}</p>
         {esExtra && <p className="qu-given">{f.chanka}</p>}
         {guardada && <p className="ok">✓ Guardada. Puede cambiarla.</p>}
       </div>
 
       {esExtra ? (
-        <p className="regla">Lea en voz alta el texto en quechua de arriba y grábelo.</p>
+        <p className="paso">Grábese leyendo en voz alta el texto en quechua</p>
       ) : (
         <>
           <label className="field">
-            <span>Escríbalo en quechua</span>
+            <span>1 · Escríbalo en quechua</span>
             <textarea
               value={texto}
               onChange={(e) => setTexto(e.target.value)}
-              rows={3}
+              rows={2}
               autoCapitalize="sentences"
               autoCorrect="off"
               spellCheck={false}
@@ -369,10 +367,10 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
               placeholder="Si no sabe escribirla, solo grábela"
             />
           </label>
-          <p className="regla">
-            {texto.trim()
-              ? "Ahora lea en voz alta exactamente lo que escribió."
-              : "Diga la frase en quechua y grábela."}
+          <p className="paso">
+            2 · {texto.trim()
+              ? "Grábese leyendo exactamente lo que escribió"
+              : "Grábese diciendo la frase en quechua"}
           </p>
         </>
       )}
@@ -381,12 +379,12 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
 
       <div className="acciones">
         {error && <p className="error">{error}</p>}
-        <button className="btn primary" disabled={!puedeGuardar} onClick={guardar}>
-          {enviando ? "Guardando…" : "Guardar y seguir"}
-        </button>
-        <div className="row">
-          <button className="btn" onClick={() => salir(onAnterior)} disabled={indice === 0 || enviando}>← Anterior</button>
-          <button className="btn" onClick={() => salir(onSaltar)} disabled={enviando}>Saltar →</button>
+        <div className="barra">
+          <button className="btn chico" onClick={() => salir(onAnterior)} disabled={indice === 0 || enviando} aria-label="Frase anterior">←</button>
+          <button className="btn primary" disabled={!puedeGuardar} onClick={guardar}>
+            {enviando ? "Guardando…" : "Guardar y seguir"}
+          </button>
+          <button className="btn chico" onClick={() => salir(onSaltar)} disabled={enviando}>Saltar</button>
         </div>
       </div>
     </main>

@@ -117,3 +117,23 @@ input, select, textarea { font-size: max(18px, 1em); }
   .wrap { padding-top: 24px; }
   .frase-pantalla .es { font-size: 26px; }
 }
+
+/* Compact phrase screen: everything, including the record button, fits on a phone without scrolling. */
+.frase-pantalla { gap: 10px; }
+.frase-pantalla .cabecera { gap: 4px; padding-bottom: 8px; }
+.frase-pantalla .cabecera .top { min-height: 36px; }
+.frase-pantalla .frase { padding: 0; gap: 4px; }
+.frase-pantalla .es { font-size: 22px; line-height: 1.25; }
+.frase-pantalla .num { font-size: 22px; color: var(--accent); font-weight: 800; }
+.frase-pantalla .qu-given { font-size: 21px; padding: 8px 10px; }
+.frase-pantalla .ok { font-size: 15px; }
+.frase-pantalla .field { gap: 4px; font-size: 17px; }
+.frase-pantalla textarea { min-height: 64px; padding: 10px; }
+.paso { font-size: 17px; font-weight: 600; }
+.frase-pantalla .grab { padding: 10px; gap: 8px; }
+.frase-pantalla .rec { min-height: 64px; font-size: 20px; }
+.frase-pantalla .grab audio { height: 40px; }
+.frase-pantalla .grab .btn { min-height: 48px; font-size: 18px; }
+.barra { display: grid; grid-template-columns: 64px 1fr 84px; gap: 8px; }
+.acciones .btn.chico { min-height: 56px; padding: 8px; font-size: 18px; }
+.acciones .btn.primary { min-height: 56px; font-size: 20px; }
