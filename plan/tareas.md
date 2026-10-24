@@ -53,6 +53,36 @@ Sin la línea base no hay «cuánto mejoramos», y ese número es el pitch. Rica
 - **Un solo script** que corre lo mismo antes y después y escribe un archivo fechado (p. ej. `reports/linea-base.json` con el commit), para que el «después» sea el mismo comando con otro modelo.
 - Paso 0 y paso 1 de abajo SON esta línea base: que queden guardados así, con las fallas, antes de las 13:30.
 
+### Dos rutas que la app ya llama (pegar en `servicio/app.py`)
+La lógica del resumen ya está en `app/rimay/resumen.py` con pruebas; solo falta exponerla. `/idioma` reenvía a la instancia, que ya lo tiene.
+
+```python
+@aplicacion.post("/idioma")
+async def idioma(audio: UploadFile = File(...)):
+    """Solo detección de idioma, sin Claude: la app decide de qué lado va el turno."""
+    import httpx
+    from servicio.flujo import INSTANCIA
+    try:
+        with httpx.Client(timeout=30) as cli:
+            return cli.post(f"{INSTANCIA}/idioma",
+                            files={"audio": (audio.filename or "turno.wav", await audio.read(), "audio/wav")}).json()
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/resumen")
+def resumen(turnos: str = Form(...), rol: str = Form("personal")):
+    import anthropic
+    from rimay.resumen import Turno, resumir, texto_para_decir
+    try:
+        r = resumir(anthropic.Anthropic(), [Turno(**t) for t in json.loads(turnos)], rol)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+    return {**r.model_dump(), "texto_para_decir": texto_para_decir(r)}
+```
+- `/idioma` devuelve `{codigo, confianza}` (lo que dé la instancia).
+- `turnos` de `/resumen` es JSON `[{lado: "castellano"|"quechua", castellano, quechua, estado}]`, estado ∈ dicho, dicho_con_aviso, bloqueado, entendido, con_dudas. `rol` ∈ personal, paciente (D27).
+
 ### Sábado
 - [ ] 07:30 · Recibir audios, convertir a 16 kHz mono, nombrar, separar al hablante de prueba
 - [ ] 08:30 · VM con HTTPS público; endpoint de voz → texto para la app
