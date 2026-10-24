@@ -11,6 +11,8 @@ applicable, mechanical mutations ON THE QUECHUA side (expected to be blocked):
   negacion     ama / mana / -chu removed
   medicamento  the medicine loanword swapped for another one
   unidad       pastilla ↔ kuchara, gota → pastilla
+  vehiculo     what it is taken with swapped (yakuwan → lechewan, tewan → lechewan, lichi → yaku) or
+               dropped; plus the live case of 2026-10-24 as a fixed pair (correct version + water dropped)
   agrega_consejo / agrega_diagnostico  a family-written Quechua sentence appended that the Spanish
                does not say (advice, diagnosis); the critic's check
 Plus B3 polish cases built from the Spanish instructions:
@@ -26,6 +28,7 @@ import json
 import random
 import re
 import sys
+import zlib
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
@@ -34,7 +37,8 @@ sys.path.insert(0, str(RAIZ / "app"))
 
 from chaski.guardas import (MEDICAMENTOS_CONOCIDOS, _NEGACION_QUY, medicamentos_en,  # noqa: E402
                             nombre_presente, norm, numeros_castellano, raiz_numero, tiene_negacion_castellano,
-                            tiene_negacion_quechua, unidades_castellano)
+                            tiene_negacion_quechua, unidades_castellano, vehiculos_castellano,
+                            vehiculos_quechua)
 
 SEMILLA = 13
 SALIDA = AQUI / "banco.jsonl"
@@ -190,6 +194,58 @@ def mutar_unidad(es: str, quy: str) -> list[tuple[str, str, str]]:
     return []
 
 
+# Quechua vehicle roots, longest first, and what each one is swapped to (always a class the pair lacks).
+_RAICES_VEHICULO = [("lichi", "leche"), ("leche", "leche"), ("lechi", "leche"), ("mate", "te"), ("yaku", "agua"),
+                    ("yacu", "agua"), ("unu", "agua"), ("te", "te"), ("ti", "te")]
+_CAMBIO_VEHICULO = {"agua": "leche", "te": "leche", "leche": "yaku"}
+# The live audit of 2026-10-24: «Unuwan upyaykuy, manan téwanchu» passed with its back-translation
+# «Bebe con uno, no con él». Fixed in the bank: the correct pair (limpio) and the water dropped (vehiculo).
+VIVO_ES = "Tómela con agua, no con té"
+VIVO_QUY = "Unuwan upyaykuy, manan téwanchu"
+VIVO_SIN_AGUA = "Upyaykuy, manan téwanchu"
+
+
+def mutar_vehiculo(es: str, quy: str, clave: str) -> list[tuple[str, str, str]]:
+    """Swap or drop the Quechua word for a vehicle the Spanish names (con agua / leche / té).
+
+    Swap or drop is chosen by a hash of the case id, not by the shared rng, so adding this mutation
+    leaves every other case of the bank unchanged.
+    """
+    clases = vehiculos_castellano(es)
+    if not clases:
+        return []
+    soltar = zlib.crc32(clave.encode()) % 2 == 1
+    for ini, fin, w in _palabras_con_posicion(quy):
+        presentes = vehiculos_quechua(w) & clases
+        if not presentes:
+            continue
+        clase = presentes.pop()
+        n = norm(w)
+        raiz = next(r for r, c in _RAICES_VEHICULO if c == clase and n.startswith(r))
+        if soltar:
+            nuevo = re.sub(r"\s+([,.?!])", r"\1", re.sub(r"\s{2,}", " ", _reemplazar(quy, ini, fin, ""))).strip(" ,")
+            nuevo = nuevo[:1].upper() + nuevo[1:]
+            desc = f"quitado: {w}"
+        else:
+            nueva = _con_mayuscula(w, _CAMBIO_VEHICULO[clase] + n[len(raiz):])
+            nuevo = _reemplazar(quy, ini, fin, nueva)
+            desc = f"{w} → {nueva}"
+        if clase in vehiculos_quechua(nuevo):
+            continue  # the pair says it twice; one mutation would not remove it
+        return [("vehiculo", nuevo, desc)]
+    return []
+
+
+def casos_vivos() -> list[dict]:
+    base = {"es": VIVO_ES, "fuente": "vivo-2026-10-24"}
+    return [
+        {"id": "vivo-20261024-limpio", "tipo": "limpio", **base, "quy": VIVO_QUY,
+         "mutacion": "caso vivo, versión correcta", "esperado": "pasar"},
+        {"id": "vivo-20261024-vehiculo", "tipo": "vehiculo", **base, "quy": VIVO_SIN_AGUA,
+         "mutacion": "caso vivo, quitado: Unuwan (con agua)", "esperado": "bloquear"},
+    ]
+
+
 def mutar_agregado(es: str, quy: str, rng: random.Random) -> list[tuple[str, str, str]]:
     """One appended sentence per pair (advice or diagnosis, chosen by the seed), so it does not dominate."""
     salida = []
@@ -208,7 +264,7 @@ def casos_traduccion(par: dict, rng: random.Random) -> list[dict]:
     casos = [{"id": f"{par['id']}-limpio", "tipo": "limpio", **base, "quy": quy, "mutacion": "", "esperado": "pasar"}]
     clinico = par.get("bloque") in ("C", "M", "N", "B")
     mutaciones = (mutar_numero(es, quy, rng, clinico) + mutar_negacion(es, quy) + mutar_medicamento(es, quy, rng)
-                  + mutar_unidad(es, quy))
+                  + mutar_unidad(es, quy) + mutar_vehiculo(es, quy, par["id"]))
     # Added content only on clinical instructions, where an invented sentence is a real risk.
     if par.get("bloque") in ("C", "M", "N"):
         mutaciones += mutar_agregado(es, quy, rng)
@@ -246,6 +302,7 @@ def construir(pares: list[dict], semilla: int = SEMILLA) -> list[dict]:
     banco = []
     for par in pares:
         banco.extend(casos_traduccion(par, rng))
+    banco.extend(casos_vivos())
     instrucciones = sorted({p["es"] for p in pares if p.get("bloque") in ("C", "M", "N")})
     banco.extend(casos_pulido(instrucciones, rng))
     return banco

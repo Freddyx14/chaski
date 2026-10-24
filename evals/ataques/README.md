@@ -20,13 +20,22 @@ also carry `pulido`). Built from real phrase pairs: the family-written Chanka in
 | `negacion` | `ama` / `mana` / `-chu` removed | block |
 | `medicamento` | the medicine loanword swapped for another | block |
 | `unidad` | `pastilla` ↔ `kuchara`, `sutu` → `pastilla` | block |
+| `vehiculo` | what it's taken with swapped (`yakuwan` → `lechewan`) or dropped, when the Spanish says «con agua / leche / té» | block |
 | `agrega_consejo` / `agrega_diagnostico` | a family-written sentence appended that the Spanish never said | block |
 | `pulido_agrega` | the polished Spanish adds a fact (days, frequency, a medicine, «después de comer») | block |
 | `pulido_limpio` | the polish only removes filler («eh, este…») | pass |
 
-Current bank (seed 13). 784 cases, 396 seeded errors and 388 correct ones: limpio 326 · numero 29 · dias 21 ·
-negacion 21 · medicamento 38 · unidad 33 · agrega_consejo 103 · agrega_diagnostico 95 · pulido_agrega 56 ·
-pulido_limpio 62.
+Current bank (seed 13). 790 cases, 401 seeded errors and 389 correct ones: limpio 327 · numero 29 · dias 21 ·
+negacion 21 · medicamento 38 · unidad 33 · vehiculo 5 · agrega_consejo 103 · agrega_diagnostico 95 ·
+pulido_agrega 56 · pulido_limpio 62.
+
+**The live case of 2026-10-24 is fixed in the bank.** The audit approved «Unuwan upyaykuy, manan
+téwanchu» (for «Tómela con agua, no con té») although its blind back-translation was «Bebe con uno, no
+con él»: the water was lost («unu» read as «uno») and no fact compared what the medicine is taken with.
+`vivo-20261024-limpio` is the correct pair (pass) and `vivo-20261024-vehiculo` drops «Unuwan» (block).
+The correct one is typed `limpio`, not `vehiculo`, because `correr.py` reports one metric per type.
+Only 4 corpus pairs name a vehicle, so `vehiculo` is small. The Chanka vehicle words in B4
+(`unu` / `yaku` = agua, `lichi` = leche, `te` / `ti` / `mate` = té) are still to be confirmed by the nurse.
 
 ## Why the false blocks on `limpio` matter
 
