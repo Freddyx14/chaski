@@ -294,3 +294,43 @@ el número sería tirar justo los clips que más falta hacen para entrenar.
 
 Las notas de voz de WhatsApp siguen funcionando como plan B: subir el archivo, grabar desde la página,
 partir, unir y mover los cortes.
+
+## Cómo sale el número del pitch
+
+`voz/medir_asr.py` mide el reconocimiento contra las transcripciones que una persona corrigió. Se corre
+**dos veces, con la misma orden y el mismo conjunto**:
+
+```bash
+# antes de ajustar nada
+PYTHONPATH=. uv run --with httpx python voz/medir_asr.py datos/corpus/asr.jsonl --etiqueta base
+
+# después del ajuste fino
+PYTHONPATH=. uv run --with httpx python voz/medir_asr.py datos/corpus/asr.jsonl --etiqueta ajustado
+```
+
+Las dos corridas se acumulan en `reports/asr.json`, así la comparación sale de dos mediciones hechas
+igual y no de dos recuerdos. Devuelve WER, CER, el desglose por persona y, aparte, **el acierto en los
+préstamos del castellano** — paracetamol, control, doctor — que es donde el modelo base falla y donde
+equivocarse en una posta hace daño.
+
+Tres reglas que lo hacen honesto:
+
+1. **Se mide sobre la voz de prueba**, la persona que el modelo nunca escuchó al entrenar.
+2. **Un clip sin transcripción corregida no entra**: no se mide contra lo que nadie verificó.
+3. El mismo conjunto y el mismo comando en las dos corridas. Cambiar el conjunto entre el «antes» y el
+   «después» es la forma más fácil de mentirse.
+
+### Primera corrida, de humo
+
+Con las cinco muestras sintéticas, que sí traen referencia:
+
+| | |
+|---|---|
+| WER | **32.8%** |
+| CER | **9.0%** |
+| Préstamos acertados | **2 de 4 (50%)** |
+
+No es el número del pitch —es voz sintética, no humana— pero demuestra que la medición corre de punta a
+punta y ya enseña el patrón: **el CER es bajo y el WER alto**, o sea que el modelo oye bien los sonidos
+y se equivoca en las palabras. Y la mitad de los préstamos sale mal, que es exactamente lo que el ajuste
+fino tiene que arreglar.

@@ -1,0 +1,55 @@
+[
+ {
+  "etiqueta": "base",
+  "modelo": "omniASR_LLM_300M",
+  "cuando": "2026-10-24T16:12:37.642284+00:00",
+  "origen": "datos/corpus/humo_asr.jsonl",
+  "clips": 5,
+  "wer": 0.3277,
+  "cer": 0.0896,
+  "por_persona": {
+   "sintetica": {
+    "clips": 5,
+    "wer": 0.3277,
+    "cer": 0.0896
+   }
+  },
+  "prestamos": {
+   "evaluados": 4,
+   "acertados": 2,
+   "tasa_acierto": 0.5
+  },
+  "detalle": [
+   {
+    "audio": "datos/muestras_quy/quy_01.wav",
+    "referencia": "¿Allinllanchu, mamáy? ¡Allinllanmi, taytáy! Taytáy, ¿allillanchu? Mamáy, allillanmi ¿Imaynallam kachkanki, taytáy? ¿Imaynallam kachkanki, taytáy? ¿Imaynallam kachkankichik, mamaykuna? Ñuqallaymi, doctor Hamullachkani, doctora Chaskiyukuyki, wiraqucha Mamaykuna, chaskiyukuychik Rimaykullayki, mamáy Rimaykullaykichik, taytaykuna Napaykullayki, taytáy Mamaykuna, napaykullaykichik",
+    "oido": "allinllanchu mamáy allinllanmi taytáy taytáy allillanchu wamáy allillanmi imaynallam kachkanki taytáy imaynallam kachkanki taytáy imaynallam kachkankichik mamaykuna ñoqallaymi tuptuq hamullachkani tupturqa chaskiyukuyki wirakuchan mamaykuna chaskiyukuychik rimaykullayki mamayqa rimaykullaykichik taytaykuwan napaykullayki taytáy mamaykuna napaykullaykichik",
+    "wer": 0.212
+   },
+   {
+    "audio": "datos/muestras_quy/quy_02.wav",
+    "referencia": "Yaykuykamuy taytáy Mamáy, yaykuykamuy Yaykuykamuychik, taytakuna Yaykuykamuychik, mamakuna Tiyakuy Tiyakuychik ¿Imatataq munanki, mamáy? ¿Imatataq munanki, taytáy? Mamáy, ¿imachamanmi hamuchkanki? ¿Imaraykutaq hamurqanki, taytáy? ¿Imapaqtaq allin kayman? ¿Imatam ruwallayman? ¿Imapitaq yanapaykiman? ¿Imapitaq yanapariykimanku? ¿Yanapayta atiymanchu?",
+    "oido": "yaykuykamuy kay tay mamay yaykuykamuy yaykuykamuychik taytakuna yaykuykamuychik mamakuna riyakuy riyakuychik imatataq munanki mamay — imatataq munanki taytariy mamay imachamanmi mamuchkanki imaraykutaq hamurqanki taytáy imapaqtaq allin kayman imatam ruwallayman imapitaq yanapaykiman — imapitaq yanaparikimanku — yanapayta atiymanchu",
+    "wer": 0.303
+   },
+   {
+    "audio": "datos/muestras_quy/quy_03.wav",
+    "referencia": "¿Yanapayta atiymankuchu? Uyariykim, mamáy Uyarisqaykim, taytáy Uyarisqaykichik Denuncia churaqmi hamuchkani Denunciaqmi hamuchkani Tapukuqmi hamuchkani Juezwanmi rimayta munani Fiscalwanmi rimayta munani Juezpa uyariwanantam munani Fiscalpa uyariwanantam munani Fiscalwanmi rimanay kachkan ¿Imatan suyarichkanki, mamáy?",
+    "oido": "yanapayta atiymankuchu kuyariykim mamay kuyarisqaykim taytáy kuyarisqaykichik dioncia churaqmi hamuchkani dionciaqmi hamuchkani hapukuqmi hamuchkani juezwanmi rimayta munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani imatan suyarichkanki mamay",
+    "wer": 0.625
+   },
+   {
+    "audio": "datos/muestras_quy/quy_04.wav",
+    "referencia": "¿Imatam maskarichkanki, taytáy? ¿Allichu yanapawankikumanchu, taytáy? Mamáy, ¿yanapawankikumanchu? Demunatam maskachkani Primer Juzgadotam maskachkani Wawata suyarichkani, jefelláy Abogadoytam suyarichkani Runasimita rimani, taytáy ¿Castellanuta rimankichu, mamáy? Manam castellanuta rimanichu ¿Runasimita rimankichu, doctor? Arí, runasimita rimani ¿Runasimita yachankichu, doctora?",
+    "oido": "imata maskarichkankitay tay allichu yanapawankikumanchu taytáy mamáy yanapawankikumanchu demonata maskachkani limer juzgadota maskachkani wawata suyarichkani jefelláy ugadoytam suyarichkani runasimita imani taytáy castillan uta rimankichu mamalla manam castillan uta rimanichu runasimita rimankichu doctor arí runasimita rimani runasimita yachankichu doctora",
+    "wer": 0.361
+   },
+   {
+    "audio": "datos/muestras_quy/quy_05.wav",
+    "referencia": "Arí, runasimita yachani Manam runasimita yachanichu ¿Runasimitachu utaq castellanusimitachu rimayta munanki? ¿Pitaq kaypi runasimita riman? ¿Pitaq kaypi castellanota riman? Allichu, allinllamanta rimaway ¿Allinllamanta rimaykuwankimanchu? ¿Manachu kaqmanta rimariwaq? ¿Yapa chayta rimaykuwankimanchu? Allichu, huktawan niway Hawkalla kakuy, mamáy Hawkayay, taytáy Llakikuyñiykita willawanki Lliumi allin kanqa",
+    "oido": "arí runasimita yachani manam runasimita yachanichu runasimitachu kutaq castellansimitachu rimayta munanki pitaq kaypi runasimita riman pitaq kaypi castellanota riman allichu allinllamanta rimaway allinllamanta rimaykuwankimanchu manachu kaqmanta rimariwaq yapachayta rimaykuwankimanchu allichu kuktawan niway hawkalla kakuy mamáy hawkayay taytáy llakikuyniykitam illawanki lliwmi allin kanqa",
+    "wer": 0.186
+   }
+  ]
+ }
+]
