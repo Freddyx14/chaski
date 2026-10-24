@@ -1,6 +1,6 @@
 # Rimay — fuente de verdad (SOT)
 
-> **Versión SOT-6 · sábado 24 de octubre de 2026, 00:58 PT**
+> **Versión SOT-7 · sábado 24 de octubre de 2026, 01:05 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-7 (sáb 01:05).** **Chaski tiene sus 6 cuadros** (reposo + 5 estados) en `avatar/estados/`, generados desde la especificación JSON `avatar/chaski.json` (identidad fija + un bloque por estado; los prompts salen de ahí, en `avatar/prompts/`). Para cambiar algo de Chaski se edita el JSON y se regenera.
 - **SOT-6 (sáb 00:58).** **El avatar es Chaski** (D22): la vicuña 3D sentada con audífonos de intérprete y bufanda teal, `avatar/opciones/2d-3d-audifonos.png`. Los 5 estados se generan el sábado a partir de esa imagen.
 - **SOT-5 (sáb 00:50).** **Claude es el núcleo (D19, §3)**: los modelos de voz son los oídos y la boca, Claude es el que entiende, ve y decide. Siete trabajos:
   - **Ver (F9):** lee la receta escrita a mano y la caja, y **cruza la caja con lo que dijo la enfermera** (si ella dijo paracetamol y la caja dice ibuprofeno, avisa). Si no está seguro de leer algo, no adivina.
@@ -220,6 +221,8 @@ personaje), **boca abierta y cerrada según el volumen del audio**, y movimiento
 | 2 | 3D suave, tipo película | La más juguetona y expresiva; bufanda teal | Más difícil de mantener idéntica entre estados |
 | 3 | Geométrica con manto textil andino | La que más parece vicuña; fácil de animar por partes | Menos juguetona |
 | 4 | Acuarela de cuento, con estetoscopio | Cálida, dice «salud» | Parece alpaca; textura pesada para animar |
+
+✅ **Hecho (sáb 01:05): los 6 cuadros están en `avatar/estados/`** (reposo, presentarse, escuchando, pensando, hablando, no_entendi), revisados: mismo personaje, cuatro patas, mismo encuadre; «hablando» mantiene la pose del reposo para alternar en el lip-sync. **Especificación:** `avatar/chaski.json`.
 
 ✅ **Elegida (D22): `2d-3d-audifonos.png`**, la versión 3D con audífonos de intérprete (variación de la 2; las variaciones 2b, 2c y 2d están en la misma carpeta). **Nombre: Chaski.** Los 5 estados se generan el sábado con `/falia` usando esa imagen como referencia, para que sea el mismo personaje. *(Hay 5 estados ya generados a partir de la opción 2 original, sin descargar; no sirven para la 2d.)*
 

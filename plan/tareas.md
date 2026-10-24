@@ -26,7 +26,7 @@
 - [ ] 17:00 · Videollamada con su mamá: prueba real (D18)
 - [ ] 17:00 · Evaluación chanka-salud: 30–50 indicaciones, Claude vs Google, a su mamá para calificar (F8)
 - [x] Elegir el avatar: Chaski, vicuña 3D con audífonos (D22)
-- [ ] Mañana temprano · Generar los 5 estados de Chaski con `/falia` desde `avatar/opciones/2d-3d-audifonos.png` (~US$0.75)
+- [x] Especificación JSON de Chaski (`avatar/chaski.json`) y sus 5 estados generados (`avatar/estados/`)
 - [ ] 18:00 · Avatar en la app con sus 5 estados (D17, D20, D22), solo si lo anterior está
 - [ ] 21:00 · Borrador en Devpost · repo público sin `context/photos/` · README con Cartesia y Claude
 - [ ] 22:00 · Ensayo del pitch
