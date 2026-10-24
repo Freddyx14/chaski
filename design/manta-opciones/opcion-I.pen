@@ -1,0 +1,2186 @@
+{
+  "version": "2.18",
+  "children": [
+    {
+      "type": "frame",
+      "id": "Xi8mS",
+      "x": 0,
+      "y": 0,
+      "name": "Tablero I · Chakana",
+      "fill": "$board-bg",
+      "layout": "vertical",
+      "padding": 120,
+      "children": [
+        {
+          "type": "frame",
+          "id": "c2naWV",
+          "name": "Encabezado",
+          "layout": "vertical",
+          "gap": 16,
+          "children": [
+            {
+              "type": "text",
+              "id": "v54GiW",
+              "name": "Título opción",
+              "fill": "$ink",
+              "content": "I · Chakana",
+              "lineHeight": 1.2,
+              "fontFamily": "Inter",
+              "fontSize": 40,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "XNNGD",
+              "name": "Racional",
+              "fill": "$ink-2",
+              "textGrowth": "fixed-width",
+              "width": 1200,
+              "content": "La cruz andina escalonada ordena todo: el anillo del micrófono, el marco de Chaski y el progreso.",
+              "lineHeight": 1.45,
+              "fontFamily": "Inter",
+              "fontSize": 20
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Bkcea",
+          "name": "Espacio encabezado",
+          "width": 10,
+          "height": 56
+        },
+        {
+          "type": "frame",
+          "id": "Rdn8q",
+          "name": "Pantallas",
+          "gap": 72,
+          "children": [
+            {
+              "type": "frame",
+              "id": "hzwB7",
+              "name": "Columna · 1 · Idioma",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wDOF3",
+                  "name": "Rótulo",
+                  "fill": "$ink-2",
+                  "content": "1 · Idioma",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "A7WSn",
+                  "name": "Pantalla 1 · Idioma",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 46,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "d1D0J",
+                      "name": "Barra de estado",
+                      "width": "fill_container",
+                      "height": 54,
+                      "padding": [
+                        0,
+                        30
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "qzlAv",
+                          "name": "Hora",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "x55PBP",
+                          "name": "Indicadores",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "gbeE2",
+                              "name": "Señal",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "signal-high",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "OXsQX",
+                              "name": "Wifi",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "iqk8A",
+                              "name": "Batería",
+                              "width": 21,
+                              "height": 21,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "XdZLG",
+                      "name": "Contenido",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "padding": [
+                        6,
+                        16,
+                        0,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "QHOOa",
+                          "name": "Centrar Chaski",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "y84OVR",
+                              "name": "Chaski · marco escalonado",
+                              "width": 280,
+                              "height": 280,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "CRFRB",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Paso 1 · cobalto",
+                                  "geometry": "M20 0l240 0 0 10 10 0 0 10 10 0 0 10 0 220 0 10-10 0 0 10-10 0 0 10-240 0 0-10-10 0 0-10-10 0 0-10 0-220 0-10 10 0 0-10 10 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    280,
+                                    280
+                                  ],
+                                  "width": 280,
+                                  "height": 280,
+                                  "stroke": "$m-cobalt",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "ItwxU",
+                                  "x": 13,
+                                  "y": 13,
+                                  "name": "Paso 2 · amarillo",
+                                  "geometry": "M20 0l214 0 0 10 10 0 0 10 10 0 0 10 0 194 0 10-10 0 0 10-10 0 0 10-214 0 0-10-10 0 0-10-10 0 0-10 0-194 0-10 10 0 0-10 10 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    254,
+                                    254
+                                  ],
+                                  "width": 254,
+                                  "height": 254,
+                                  "stroke": "$m-yellow",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "gzrMK",
+                                  "x": 26,
+                                  "y": 26,
+                                  "name": "Paso 3 · Chaski",
+                                  "geometry": "M20 0l188 0 0 10 10 0 0 10 10 0 0 10 0 168 0 10-10 0 0 10-10 0 0 10-188 0 0-10-10 0 0-10-10 0 0-10 0-168 0-10 10 0 0-10 10 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    228,
+                                    228
+                                  ],
+                                  "fill": {
+                                    "type": "image",
+                                    "enabled": true,
+                                    "url": "ref/chaski-presentarse.png",
+                                    "mode": "fill"
+                                  },
+                                  "width": 228,
+                                  "height": 228,
+                                  "stroke": "$m-magenta",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "QNcGf",
+                          "name": "Esp 16",
+                          "width": "fill_container",
+                          "height": 16
+                        },
+                        {
+                          "type": "text",
+                          "id": "I2fW5r",
+                          "name": "Wordmark",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Rimay",
+                          "lineHeight": 1.2,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 34,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "puGzK",
+                          "name": "Esp 12",
+                          "width": "fill_container",
+                          "height": 12
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sYnN1",
+                          "name": "Centrar progreso",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "cqY6w",
+                              "name": "Progreso · chakana 1 de 3",
+                              "width": 88,
+                              "height": 88,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "M0YXPU",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Chakana vacía",
+                                  "geometry": "M29.33 0l29.34 0 0 14.67 14.66 0 0 14.66 14.67 0 0 29.34-14.67 0 0 14.66-14.66 0 0 14.67-29.34 0 0-14.67-14.66 0 0-14.66-14.67 0 0-29.34 14.67 0 0-14.66 14.66 0z",
+                                  "viewBox": [
+                                    -2,
+                                    -2,
+                                    92,
+                                    92
+                                  ],
+                                  "fill": "#EFEBE6",
+                                  "width": 88,
+                                  "height": 88,
+                                  "stroke": "#CFC7BF",
+                                  "strokeWidth": 2.5
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "MR5nA",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Brazo 1 lleno",
+                                  "geometry": "M29.33 0l29.34 0 0 14.67 14.66 0 0 14.66-58.66 0 0-14.66 14.66 0z",
+                                  "viewBox": [
+                                    -2,
+                                    -2,
+                                    92,
+                                    92
+                                  ],
+                                  "fill": "$teal",
+                                  "width": 88,
+                                  "height": 88
+                                },
+                                {
+                                  "type": "rectangle",
+                                  "id": "EO3eQ",
+                                  "x": 29.33,
+                                  "y": 29.33,
+                                  "name": "Centro lleno",
+                                  "fill": "$teal",
+                                  "width": 29.33,
+                                  "height": 29.33
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "e2d8K",
+                          "name": "Esp 24",
+                          "width": "fill_container",
+                          "height": 24
+                        },
+                        {
+                          "type": "text",
+                          "id": "K92NZ1",
+                          "name": "Pregunta es",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "¿Qué idioma habla?",
+                          "lineHeight": 1.3,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "w1L3Id",
+                          "name": "Esp 4",
+                          "width": "fill_container",
+                          "height": 4
+                        },
+                        {
+                          "type": "text",
+                          "id": "beJfJ",
+                          "name": "Pregunta qu",
+                          "fill": "$cinnamon",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "¿Ima simitam rimanki?",
+                          "lineHeight": 1.3,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "R957B",
+                          "name": "Holgura sup",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SNVvz",
+                          "name": "Banda escalonada",
+                          "width": "fill_container",
+                          "height": 18,
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "Y0iyP9",
+                              "name": "Escalón 1",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-magenta",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "XuhYl",
+                              "name": "Escalón 2",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-yellow",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "HNC8g",
+                              "name": "Escalón 3",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-turquoise",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "r02rG",
+                              "name": "Escalón 4",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-cobalt",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "dsn6O",
+                              "name": "Escalón 5",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-magenta",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "rL5On",
+                              "name": "Escalón 6",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-yellow",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "h8cGYL",
+                              "name": "Escalón 7",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-turquoise",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "odi5Y",
+                              "name": "Escalón 8",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-cobalt",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "AZY83",
+                              "name": "Escalón 9",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-magenta",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "DxZ6w",
+                              "name": "Escalón 10",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-yellow",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "xlG47",
+                              "name": "Escalón 11",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-turquoise",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "RAvbA",
+                              "name": "Escalón 12",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-cobalt",
+                              "width": 26,
+                              "height": 18
+                            },
+                            {
+                              "type": "path",
+                              "id": "NusIH",
+                              "name": "Escalón 13",
+                              "geometry": "M0 18l0-6 6.5 0 0-6 3.25 0 0-6 6.5 0 0 6 3.25 0 0 6 6.5 0 0 6z",
+                              "viewBox": [
+                                0,
+                                0,
+                                26,
+                                18
+                              ],
+                              "fill": "$m-magenta",
+                              "width": 26,
+                              "height": 18
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "y4Pfs",
+                          "name": "Esp 26",
+                          "width": "fill_container",
+                          "height": 26
+                        },
+                        {
+                          "type": "frame",
+                          "id": "L8uCiQ",
+                          "name": "Opción · Castellano",
+                          "width": "fill_container",
+                          "height": 72,
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "gap": 14,
+                          "padding": [
+                            0,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "FE32r",
+                              "name": "Escalón",
+                              "geometry": "M0 0l6 0 0 6 6 0 0 6 6 0 0 12-6 0 0 6-6 0 0 6-6 0z",
+                              "viewBox": [
+                                0,
+                                0,
+                                18,
+                                36
+                              ],
+                              "fill": "$m-cobalt",
+                              "width": 18,
+                              "height": 36
+                            },
+                            {
+                              "type": "frame",
+                              "id": "bRU5w",
+                              "name": "Textos",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "TJSLD",
+                                  "name": "Título",
+                                  "fill": "$ink",
+                                  "content": "Castellano",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 20,
+                                  "fontWeight": "700"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "PHNrh",
+                              "name": "Empuje",
+                              "width": "fill_container",
+                              "height": 1
+                            },
+                            {
+                              "type": "icon",
+                              "id": "jYrX6",
+                              "name": "Chevron",
+                              "width": 20,
+                              "height": 20,
+                              "icon": "chevron-right",
+                              "library": "lucide",
+                              "fill": "$ink-3"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "PWZAV",
+                          "name": "Esp 12b",
+                          "width": "fill_container",
+                          "height": 12
+                        },
+                        {
+                          "type": "frame",
+                          "id": "QY0V9",
+                          "name": "Opción · Runasimi",
+                          "width": "fill_container",
+                          "height": 72,
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "gap": 14,
+                          "padding": [
+                            0,
+                            16
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "lOqXb",
+                              "name": "Escalón",
+                              "geometry": "M0 0l6 0 0 6 6 0 0 6 6 0 0 12-6 0 0 6-6 0 0 6-6 0z",
+                              "viewBox": [
+                                0,
+                                0,
+                                18,
+                                36
+                              ],
+                              "fill": "$cinnamon",
+                              "width": 18,
+                              "height": 36
+                            },
+                            {
+                              "type": "frame",
+                              "id": "iD1ri",
+                              "name": "Textos",
+                              "layout": "vertical",
+                              "gap": 2,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "vJqZ8",
+                                  "name": "Título",
+                                  "fill": "$cinnamon",
+                                  "content": "Runasimi",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 20,
+                                  "fontWeight": "700"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "oBM5y",
+                                  "name": "Subtítulo",
+                                  "fill": "$ink-2",
+                                  "content": "Quechua chanka",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "UooTB",
+                              "name": "Empuje",
+                              "width": "fill_container",
+                              "height": 1
+                            },
+                            {
+                              "type": "icon",
+                              "id": "w4GDG6",
+                              "name": "Chevron",
+                              "width": 20,
+                              "height": 20,
+                              "icon": "chevron-right",
+                              "library": "lucide",
+                              "fill": "$ink-3"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "mFgKc",
+                          "name": "Holgura inf",
+                          "width": "fill_container",
+                          "height": 20
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "raqdD",
+                      "name": "Indicador inicio",
+                      "width": "fill_container",
+                      "height": 13,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "je7od",
+                          "name": "Barra",
+                          "fill": "$ink",
+                          "width": 134,
+                          "height": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vhSqD",
+              "name": "Columna · 2 · Rimay habla",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "hdjcf",
+                  "name": "Rótulo",
+                  "fill": "$ink-2",
+                  "content": "2 · Rimay habla",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "B6W4b",
+                  "name": "Pantalla 2 · Rimay habla",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 46,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "LVrmH",
+                      "name": "Barra de estado",
+                      "width": "fill_container",
+                      "height": 54,
+                      "padding": [
+                        0,
+                        30
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "S3IHv",
+                          "name": "Hora",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "IPj4w",
+                          "name": "Indicadores",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "y3qT5",
+                              "name": "Señal",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "signal-high",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "H9lyhY",
+                              "name": "Wifi",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "C08Agl",
+                              "name": "Batería",
+                              "width": 21,
+                              "height": 21,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KFCMA",
+                      "name": "Contenido",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "padding": [
+                        6,
+                        16,
+                        0,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "WNAyI",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "height": 46,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "w9wq5H",
+                              "name": "Marca",
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "eDLUM",
+                                  "name": "Chakana glifo",
+                                  "geometry": "M7.33 0l7.34 0 0 3.67 3.66 0 0 3.66 3.67 0 0 7.34-3.67 0 0 3.66-3.66 0 0 3.67-7.34 0 0-3.67-3.66 0 0-3.66-3.67 0 0-7.34 3.67 0 0-3.66 3.66 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    22,
+                                    22
+                                  ],
+                                  "fill": "$m-cobalt",
+                                  "width": 22,
+                                  "height": 22
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "I7y0U",
+                                  "name": "Títulos",
+                                  "layout": "vertical",
+                                  "gap": 1,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "OadCz",
+                                      "name": "Rimay",
+                                      "fill": "$ink",
+                                      "content": "Rimay",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "pktqg",
+                                      "name": "Consulta",
+                                      "fill": "$ink-2",
+                                      "content": "Consulta · 3:12",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "F9zqG",
+                              "name": "Botón resumen",
+                              "width": 40,
+                              "height": 40,
+                              "fill": "$surface",
+                              "cornerRadius": 20,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "ljkKO",
+                                  "name": "Documento",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "file-text",
+                                  "library": "lucide",
+                                  "fill": "$ink-2"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "UhHth",
+                          "name": "Esp 14",
+                          "width": "fill_container",
+                          "height": 18
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hSYOl",
+                          "name": "Centrar Chaski",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "hLF7A",
+                              "name": "Chaski · marco escalonado",
+                              "width": 222,
+                              "height": 222,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "c0CuQI",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Paso 1 · cobalto",
+                                  "geometry": "M16 0l190 0 0 8 8 0 0 8 8 0 0 8 0 174 0 8-8 0 0 8-8 0 0 8-190 0 0-8-8 0 0-8-8 0 0-8 0-174 0-8 8 0 0-8 8 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    222,
+                                    222
+                                  ],
+                                  "width": 222,
+                                  "height": 222,
+                                  "stroke": "$m-cobalt",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "UMTg8",
+                                  "x": 8,
+                                  "y": 8,
+                                  "name": "Paso 2 · amarillo",
+                                  "geometry": "M16 0l174 0 0 8 8 0 0 8 8 0 0 8 0 158 0 8-8 0 0 8-8 0 0 8-174 0 0-8-8 0 0-8-8 0 0-8 0-158 0-8 8 0 0-8 8 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    206,
+                                    206
+                                  ],
+                                  "width": 206,
+                                  "height": 206,
+                                  "stroke": "$m-yellow",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "fh50y",
+                                  "x": 16,
+                                  "y": 16,
+                                  "name": "Paso 3 · Chaski",
+                                  "geometry": "M16 0l158 0 0 8 8 0 0 8 8 0 0 8 0 142 0 8-8 0 0 8-8 0 0 8-158 0 0-8-8 0 0-8-8 0 0-8 0-142 0-8 8 0 0-8 8 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    190,
+                                    190
+                                  ],
+                                  "fill": {
+                                    "type": "image",
+                                    "enabled": true,
+                                    "url": "ref/chaski-hablando.png",
+                                    "mode": "fill"
+                                  },
+                                  "width": 190,
+                                  "height": 190,
+                                  "stroke": "$m-magenta",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f6x0hq",
+                          "name": "Esp 16",
+                          "width": "fill_container",
+                          "height": 20
+                        },
+                        {
+                          "type": "frame",
+                          "id": "i38so3",
+                          "name": "Centrar Etiqueta Quechua",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "G1W1p",
+                              "name": "Etiqueta Quechua",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "dcu27",
+                                  "name": "Punta izq",
+                                  "geometry": "M12 0l-4 0 0 4-4 0 0 4-4 0 0 12 4 0 0 4 4 0 0 4 4 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    12,
+                                    28
+                                  ],
+                                  "fill": "$cinnamon",
+                                  "width": 12,
+                                  "height": 28
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Inbb5",
+                                  "name": "Cuerpo",
+                                  "height": 28,
+                                  "fill": "$cinnamon",
+                                  "gap": 6,
+                                  "padding": [
+                                    0,
+                                    6
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "y982hu",
+                                      "name": "Etiqueta",
+                                      "fill": "#FFFFFF",
+                                      "content": "Quechua chanka",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "BaBzA",
+                                  "name": "Punta der",
+                                  "flipX": true,
+                                  "geometry": "M12 0l-4 0 0 4-4 0 0 4-4 0 0 12 4 0 0 4 4 0 0 4 4 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    12,
+                                    28
+                                  ],
+                                  "fill": "$cinnamon",
+                                  "width": 12,
+                                  "height": 28
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "s5T7Wd",
+                          "name": "Esp 16",
+                          "width": "fill_container",
+                          "height": 20
+                        },
+                        {
+                          "type": "frame",
+                          "id": "OWikE",
+                          "name": "Tarjeta indicación",
+                          "width": "fill_container",
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
+                          "padding": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "b3DgFP",
+                              "name": "Quechua",
+                              "fill": "$ink",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "[Indicación en quechua chanka]",
+                              "lineHeight": 1.28,
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "kazDl",
+                              "name": "Esp 14",
+                              "width": "fill_container",
+                              "height": 14
+                            },
+                            {
+                              "type": "path",
+                              "id": "t1Zdto",
+                              "name": "Divisor escalonado",
+                              "geometry": "M0 4l8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 8 0 0-4 8 0 0 4 2 0",
+                              "viewBox": [
+                                0,
+                                0,
+                                338,
+                                4
+                              ],
+                              "width": 338,
+                              "height": 4,
+                              "stroke": "$border",
+                              "strokeWidth": 1.5
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fWKWz",
+                              "name": "Esp 14",
+                              "width": "fill_container",
+                              "height": 14
+                            },
+                            {
+                              "type": "text",
+                              "id": "m3KU8",
+                              "name": "Castellano",
+                              "fill": "$ink-2",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Tome una pastilla dos veces al día, en la mañana y en la noche, durante siete días.",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Inter",
+                              "fontSize": 15
+                            },
+                            {
+                              "type": "frame",
+                              "id": "DtB3s",
+                              "name": "Esp 10",
+                              "width": "fill_container",
+                              "height": 10
+                            },
+                            {
+                              "type": "text",
+                              "id": "F1KKm",
+                              "name": "Nota",
+                              "fill": "$ink-3",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Rimay ya lo dijo en voz alta.",
+                              "fontFamily": "Inter",
+                              "fontSize": 13
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "i3Hyx",
+                          "name": "Esp 16",
+                          "width": "fill_container",
+                          "height": 20
+                        },
+                        {
+                          "type": "frame",
+                          "id": "O9ichu",
+                          "name": "Auditoría",
+                          "width": "fill_container",
+                          "fill": "$ok-bg",
+                          "cornerRadius": 16,
+                          "layout": "vertical",
+                          "gap": 8,
+                          "padding": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "ydopx",
+                              "name": "Título auditoría",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "gv8xt",
+                                  "name": "Escudo",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "shield-check",
+                                  "library": "lucide",
+                                  "fill": "$ok-ink"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "qd9lM",
+                                  "name": "Auditado",
+                                  "fill": "$ok-ink",
+                                  "content": "Auditado antes de hablar",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "BNKiZ",
+                              "name": "Checks",
+                              "fill": "$ok-ink",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "✓ Medicamento   ✓ Dosis   ✓ Horario   ✓ Días",
+                              "fontFamily": "Inter",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CS3HS",
+                          "name": "Holgura",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "r040l",
+                          "name": "Acciones",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "SpvGI",
+                              "name": "Repetir audio",
+                              "width": "fill_container",
+                              "height": 52,
+                              "fill": "$surface",
+                              "cornerRadius": 26,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "wVRtb",
+                                  "name": "Altavoz",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "volume-2",
+                                  "library": "lucide",
+                                  "fill": "$teal"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "P0fPe",
+                                  "name": "Label",
+                                  "fill": "$teal",
+                                  "content": "Repetir audio",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "ORnGK",
+                              "name": "Seguir",
+                              "width": "fill_container",
+                              "height": 52,
+                              "fill": "$teal",
+                              "cornerRadius": 26,
+                              "gap": 8,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "ofHCu",
+                                  "name": "Micrófono",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "mic",
+                                  "library": "lucide",
+                                  "fill": "#FFFFFF"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "yhyUa",
+                                  "name": "Label",
+                                  "fill": "#FFFFFF",
+                                  "content": "Seguir",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 17,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nDulr",
+                          "name": "Esp 12",
+                          "width": "fill_container",
+                          "height": 12
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Pc6rv",
+                      "name": "Indicador inicio",
+                      "width": "fill_container",
+                      "height": 13,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "l8Se7m",
+                          "name": "Barra",
+                          "fill": "$ink",
+                          "width": 134,
+                          "height": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "qDRK6",
+              "name": "Columna · 3 · Listo para hablar",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Ztor1",
+                  "name": "Rótulo",
+                  "fill": "$ink-2",
+                  "content": "3 · Listo para hablar",
+                  "fontFamily": "Inter",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "n7ECGg",
+                  "name": "Pantalla 3 · Listo para hablar",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 46,
+                  "stroke": "$border",
+                  "strokeWidth": 1,
+                  "layout": "vertical",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "a7C1T4",
+                      "name": "Barra de estado",
+                      "width": "fill_container",
+                      "height": 54,
+                      "padding": [
+                        0,
+                        30
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "zHxHZ",
+                          "name": "Hora",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "Inter",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "o0lJF",
+                          "name": "Indicadores",
+                          "gap": 6,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "HgKrO",
+                              "name": "Señal",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "signal-high",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "diXSF",
+                              "name": "Wifi",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "LMzad",
+                              "name": "Batería",
+                              "width": 21,
+                              "height": 21,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Ml6VQ",
+                      "name": "Contenido",
+                      "width": "fill_container",
+                      "height": "fill_container",
+                      "layout": "vertical",
+                      "padding": [
+                        6,
+                        16,
+                        0,
+                        16
+                      ],
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "HQMhG",
+                          "name": "Header",
+                          "width": "fill_container",
+                          "height": 46,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "qf3Re",
+                              "name": "Marca",
+                              "gap": 10,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "OO7K2",
+                                  "name": "Chakana glifo",
+                                  "geometry": "M7.33 0l7.34 0 0 3.67 3.66 0 0 3.66 3.67 0 0 7.34-3.67 0 0 3.66-3.66 0 0 3.67-7.34 0 0-3.67-3.66 0 0-3.66-3.67 0 0-7.34 3.67 0 0-3.66 3.66 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    22,
+                                    22
+                                  ],
+                                  "fill": "$m-cobalt",
+                                  "width": 22,
+                                  "height": 22
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "pIbv1",
+                                  "name": "Títulos",
+                                  "layout": "vertical",
+                                  "gap": 1,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "qsLxe",
+                                      "name": "Rimay",
+                                      "fill": "$ink",
+                                      "content": "Rimay",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "rNUUK",
+                                      "name": "Consulta",
+                                      "fill": "$ink-2",
+                                      "content": "Consulta · 3:12",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "HrdXm",
+                              "name": "Botón resumen",
+                              "width": 40,
+                              "height": 40,
+                              "fill": "$surface",
+                              "cornerRadius": 20,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "OSzi9",
+                                  "name": "Documento",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "file-text",
+                                  "library": "lucide",
+                                  "fill": "$ink-2"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "f8mWTN",
+                          "name": "Esp 16",
+                          "width": "fill_container",
+                          "height": 16
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SgCsh",
+                          "name": "Centrar Chaski",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "N3POQ",
+                              "name": "Chaski · marco escalonado",
+                              "width": 240,
+                              "height": 240,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "L4VHw",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Paso 1 · cobalto",
+                                  "geometry": "M18 0l204 0 0 9 9 0 0 9 9 0 0 9 0 186 0 9-9 0 0 9-9 0 0 9-204 0 0-9-9 0 0-9-9 0 0-9 0-186 0-9 9 0 0-9 9 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    240,
+                                    240
+                                  ],
+                                  "width": 240,
+                                  "height": 240,
+                                  "stroke": "$m-cobalt",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "TizoQ",
+                                  "x": 9,
+                                  "y": 9,
+                                  "name": "Paso 2 · amarillo",
+                                  "geometry": "M18 0l186 0 0 9 9 0 0 9 9 0 0 9 0 168 0 9-9 0 0 9-9 0 0 9-186 0 0-9-9 0 0-9-9 0 0-9 0-168 0-9 9 0 0-9 9 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    222,
+                                    222
+                                  ],
+                                  "width": 222,
+                                  "height": 222,
+                                  "stroke": "$m-yellow",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "xbmns",
+                                  "x": 18,
+                                  "y": 18,
+                                  "name": "Paso 3 · Chaski",
+                                  "geometry": "M18 0l168 0 0 9 9 0 0 9 9 0 0 9 0 150 0 9-9 0 0 9-9 0 0 9-168 0 0-9-9 0 0-9-9 0 0-9 0-150 0-9 9 0 0-9 9 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    204,
+                                    204
+                                  ],
+                                  "fill": {
+                                    "type": "image",
+                                    "enabled": true,
+                                    "url": "ref/chaski-reposo.png",
+                                    "mode": "fill"
+                                  },
+                                  "width": 204,
+                                  "height": 204,
+                                  "stroke": "$m-magenta",
+                                  "strokeWidth": 3.5,
+                                  "strokeAlignment": "inner"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "G088oQ",
+                          "name": "Esp 22",
+                          "width": "fill_container",
+                          "height": 22
+                        },
+                        {
+                          "type": "text",
+                          "id": "Uk362",
+                          "name": "Título",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Listo para interpretar",
+                          "lineHeight": 1.3,
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zTfxw",
+                          "name": "Esp 10",
+                          "width": "fill_container",
+                          "height": 10
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VMYuO",
+                          "name": "Centrar descripción",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Def1K",
+                              "name": "Descripción",
+                              "fill": "$ink-2",
+                              "textGrowth": "fixed-width",
+                              "width": 300,
+                              "content": "Hable en castellano. Rimay se lo dirá en quechua al paciente y le avisará si algo no se entendió.",
+                              "lineHeight": 1.45,
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 15
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "UkngP",
+                          "name": "Holgura",
+                          "width": "fill_container",
+                          "height": "fill_container"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GxZEB",
+                          "name": "Controles",
+                          "width": "fill_container",
+                          "gap": 22,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "EQlXl",
+                              "name": "Receta",
+                              "layout": "vertical",
+                              "gap": 7,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "e21IF",
+                                  "name": "Botón",
+                                  "width": 56,
+                                  "height": 56,
+                                  "fill": "$surface",
+                                  "cornerRadius": 28,
+                                  "stroke": "$border",
+                                  "strokeWidth": 1,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "ijeAP",
+                                      "name": "Icono",
+                                      "width": 22,
+                                      "height": 22,
+                                      "icon": "camera",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "UgfKv",
+                                  "name": "Etiqueta",
+                                  "fill": "$ink-2",
+                                  "content": "Receta",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "l9BJ7",
+                              "name": "Micrófono · chakana",
+                              "width": 176,
+                              "height": 176,
+                              "layout": "none",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "HfJ6Y",
+                                  "x": 0,
+                                  "y": 0,
+                                  "name": "Anillo turquesa",
+                                  "geometry": "M58.67 0l58.66 0 0 29.33 29.34 0 0 29.34 29.33 0 0 58.66-29.33 0 0 29.34-29.34 0 0 29.33-58.66 0 0-29.33-29.34 0 0-29.34-29.33 0 0-58.66 29.33 0 0-29.34 29.34 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    176,
+                                    176
+                                  ],
+                                  "width": 176,
+                                  "height": 176,
+                                  "stroke": "$m-turquoise",
+                                  "strokeWidth": 4,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "fYbOa",
+                                  "x": 9,
+                                  "y": 9,
+                                  "name": "Anillo amarillo",
+                                  "geometry": "M52.67 0l52.66 0 0 26.33 26.34 0 0 26.34 26.33 0 0 52.66-26.33 0 0 26.34-26.34 0 0 26.33-52.66 0 0-26.33-26.34 0 0-26.34-26.33 0 0-52.66 26.33 0 0-26.34 26.34 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    158,
+                                    158
+                                  ],
+                                  "width": 158,
+                                  "height": 158,
+                                  "stroke": "$m-yellow",
+                                  "strokeWidth": 4,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "UJzfd",
+                                  "x": 18,
+                                  "y": 18,
+                                  "name": "Paso interior magenta",
+                                  "geometry": "M46.67 0l46.66 0 0 23.33 23.34 0 0 23.34 23.33 0 0 46.66-23.33 0 0 23.34-23.34 0 0 23.33-46.66 0 0-23.33-23.34 0 0-23.34-23.33 0 0-46.66 23.33 0 0-23.34 23.34 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    140,
+                                    140
+                                  ],
+                                  "width": 140,
+                                  "height": 140,
+                                  "stroke": "$m-magenta",
+                                  "strokeWidth": 4,
+                                  "strokeAlignment": "inner"
+                                },
+                                {
+                                  "type": "ellipse",
+                                  "id": "W9s8U",
+                                  "x": 40,
+                                  "y": 40,
+                                  "name": "Botón micrófono",
+                                  "fill": "$teal",
+                                  "width": 96,
+                                  "height": 96
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "k9SON",
+                                  "x": 70,
+                                  "y": 70,
+                                  "name": "Glifo micrófono",
+                                  "width": 36,
+                                  "height": 36,
+                                  "icon": "mic",
+                                  "library": "lucide",
+                                  "fill": "#FFFFFF"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "qUSW6",
+                              "name": "Resumen",
+                              "layout": "vertical",
+                              "gap": 7,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "IEs0Y",
+                                  "name": "Botón",
+                                  "width": 56,
+                                  "height": 56,
+                                  "fill": "$surface",
+                                  "cornerRadius": 28,
+                                  "stroke": "$border",
+                                  "strokeWidth": 1,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "nitWj",
+                                      "name": "Icono",
+                                      "width": 22,
+                                      "height": 22,
+                                      "icon": "list-checks",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "e9VO2",
+                                  "name": "Etiqueta",
+                                  "fill": "$ink-2",
+                                  "content": "Resumen",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 13,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "sWXhJ",
+                          "name": "Esp 16",
+                          "width": "fill_container",
+                          "height": 16
+                        },
+                        {
+                          "type": "text",
+                          "id": "hOCnd",
+                          "name": "Toque para hablar",
+                          "fill": "$teal",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Toque para hablar",
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "o50D1a",
+                          "name": "Esp 14",
+                          "width": "fill_container",
+                          "height": 14
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Y6TfKW",
+                          "name": "Centrar pastilla",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "sQwDA",
+                              "name": "Pastilla idioma",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "path",
+                                  "id": "wJ2XL",
+                                  "name": "Punta izq",
+                                  "geometry": "M12 0l-4 0 0 4-4 0 0 4-4 0 0 12 4 0 0 4 4 0 0 4 4 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    12,
+                                    28
+                                  ],
+                                  "fill": "$tag-es",
+                                  "width": 12,
+                                  "height": 28
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "CnDZM",
+                                  "name": "Cuerpo",
+                                  "height": 28,
+                                  "fill": "$tag-es",
+                                  "gap": 6,
+                                  "padding": [
+                                    0,
+                                    6
+                                  ],
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "nDAT3",
+                                      "name": "Intercambiar",
+                                      "width": 14,
+                                      "height": 14,
+                                      "icon": "arrow-left-right",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "zjAy4",
+                                      "name": "Etiqueta",
+                                      "fill": "$ink-2",
+                                      "content": "Habla usted · castellano",
+                                      "fontFamily": "Inter",
+                                      "fontSize": 13,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "path",
+                                  "id": "kDFck",
+                                  "name": "Punta der",
+                                  "flipX": true,
+                                  "geometry": "M12 0l-4 0 0 4-4 0 0 4-4 0 0 12 4 0 0 4 4 0 0 4 4 0z",
+                                  "viewBox": [
+                                    0,
+                                    0,
+                                    12,
+                                    28
+                                  ],
+                                  "fill": "$tag-es",
+                                  "width": 12,
+                                  "height": 28
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nkI3b",
+                          "name": "Esp 18",
+                          "width": "fill_container",
+                          "height": 18
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "VFwUn",
+                      "name": "Indicador inicio",
+                      "width": "fill_container",
+                      "height": 13,
+                      "justifyContent": "center",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 3,
+                          "id": "eRsMX",
+                          "name": "Barra",
+                          "fill": "$ink",
+                          "width": 134,
+                          "height": 5
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "board-bg": {
+      "type": "color",
+      "value": "#E9E6E1"
+    },
+    "ground": {
+      "type": "color",
+      "value": "#F6F4F1"
+    },
+    "surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E4DED8"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#18221F"
+    },
+    "ink-2": {
+      "type": "color",
+      "value": "#5B6A65"
+    },
+    "ink-3": {
+      "type": "color",
+      "value": "#6F7975"
+    },
+    "teal": {
+      "type": "color",
+      "value": "#0E6B64"
+    },
+    "teal-tint": {
+      "type": "color",
+      "value": "#DCEEEB"
+    },
+    "cinnamon": {
+      "type": "color",
+      "value": "#A85A2A"
+    },
+    "tag-es": {
+      "type": "color",
+      "value": "#ECEFEC"
+    },
+    "ok-ink": {
+      "type": "color",
+      "value": "#1E7A3E"
+    },
+    "ok-bg": {
+      "type": "color",
+      "value": "#DDF2E3"
+    },
+    "m-magenta": {
+      "type": "color",
+      "value": "#E4007C"
+    },
+    "m-yellow": {
+      "type": "color",
+      "value": "#FFC41F"
+    },
+    "m-turquoise": {
+      "type": "color",
+      "value": "#00A6B4"
+    },
+    "m-cobalt": {
+      "type": "color",
+      "value": "#2546B0"
+    },
+    "m-purple": {
+      "type": "color",
+      "value": "#6C2A8C"
+    },
+    "m-green": {
+      "type": "color",
+      "value": "#12A150"
+    }
+  },
+  "fileToken": "3ab485fe-0639-4b98-b5cc-59249bed95de"
+}

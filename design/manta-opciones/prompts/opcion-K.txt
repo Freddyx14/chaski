@@ -1,4 +1,4 @@
-RIMAY — ANDEAN MANTA DESIGN OPTION F: "Faja chumpi". THREE iPHONE SCREENS ON ONE BOARD.
+RIMAY — ANDEAN MANTA DESIGN OPTION K: "Lliclla geométrica". THREE iPHONE SCREENS ON ONE BOARD.
 
 WHAT RIMAY IS
 Rimay is a pocket interpreter between Spanish and Chanka Quechua for a rural health post in Pilpichaca,
@@ -38,8 +38,8 @@ PRODUCT COLORS (never change meaning)
 
 CANVAS
 Board background #E9E6E1. Three iPhone frames 402 x 874 pt, in one row, 72pt gaps, 120pt margin. Above the row,
-the option title in Inter 700 40pt #18221F: "F · Faja chumpi", and under it in Inter 400 20pt #5B6A65,
-max 1200pt wide: "Una faja tejida vertical recorre el costado como un chumpi: identidad fuerte sin tocar el contenido.". Above each frame a label Inter 600 18pt #5B6A65: "1 · Idioma", "2 · Rimay habla",
+the option title in Inter 700 40pt #18221F: "K · Lliclla geométrica", and under it in Inter 400 20pt #5B6A65,
+max 1200pt wide: "D más C: componentes de motivo y un héroe de lliclla repleto de figuras andinas.". Above each frame a label Inter 600 18pt #5B6A65: "1 · Idioma", "2 · Rimay habla",
 "3 · Listo para hablar". Each frame: status bar area 54pt (time "9:41" Inter 600 17pt, signal/wifi/battery
 glyphs), home indicator 134x5pt radius 3 #18221F, 8pt above the bottom edge. 16pt side margins.
 
@@ -75,13 +75,15 @@ and under that a pill #ECEFEC radius 16 with a swap-arrows icon and "Habla usted
 #5B6A65.
 
 THIS OPTION'S DIRECTION — follow it fully, it is what makes this board different from the other four:
-VERTICAL SASH (CHUMPI). Inspired by the chumpi (woven belt) and by manta-ref-4's vertical stripes:
-a single vertical woven sash 28pt wide runs along the LEFT edge of every screen, full height below the status
-bar: vertical stripes (magenta, yellow, turquoise, purple, orange) with a central column of S-hooks in yellow
-on purple and a white braid line. Content shifts right (left margin 44pt, right 16pt). On screen 1 the sash
-widens to 64pt and shows a column of small white llamas walking up between rombo chains. On screens 2 and 3
-the sash carries, at the height of the current step, a small white rombo marker as a "you are here" indicator.
-Everything else is calm #F6F4F1 with white cards. Distinctive, asymmetric, unmistakably Andean.
+D + C, MY BEST BET. Screen 1 gets a big lliclla hero covering the top 44% (full bleed): white ground with
+bright stripe bands and FIVE different motif bands, each a different family — rombo chain, ganchos en S, stepped
+zigzag (qenqo/river), a row of small llamas with q'antu flowers, an eight-pointed star (estrella de ocho puntas)
+band — drawn crisp on a pixel grid in the manta palette with thread-black outlines; Chaski's card (220pt, stepped
+corners) overlaps its lower edge with a 6pt white frame. Screens 2 and 3 get a shorter lliclla (top 140pt behind the
+header, header text on a white pill) with two motif bands. Then D's component language below: progress as three
+rombos, the quechua tag with a tiny rombo, stepped-zigzag dividers in #E4DED8, the mic wrapped in a ring of 12
+rombos (turquoise/yellow/magenta), stepped-octagon side buttons, option rows with a 6pt rombo chain on the left
+edge. Calm #F6F4F1 ground and white cards below the hero; the audit row untouched with 12pt of calm.
 
 HOW TO DRAW THE TEXTILE
 Draw every textile element as real vector geometry, not as a photo: stripes are rectangles of varied widths in

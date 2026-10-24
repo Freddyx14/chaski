@@ -105,26 +105,6 @@ placeholder is kept. The option title and rationale are on the board. Report any
 """.strip()
 
 OPCIONES = {
-    "A": ("Hilo fino",
-          "Una sola hebra tejida y los motivos como íconos: la manta se insinúa, la consulta manda.",
-          """MINIMAL ACCENT. The ground stays #F6F4F1 and calm. The manta appears as ONE thin woven line only:
-a 6pt band directly under the header (two rows of 3pt thread pixels: a tiny rombo chain in cobalt/turquoise/
-yellow on white with black outline) — nothing else striped. The motifs become small marks: a single 12pt rombo
-glyph (black outline, magenta center) as the bullet before "Rimay" in the header and as the separator dot in
-"Consulta · 3:12"; the three onboarding progress dots become three tiny rombos (filled teal for current,
-outlined #E4DED8 for the rest). On screen 1 a 6pt rombo band runs along the bottom edge of the Chaski card,
-like the fringe of a lliclla. Total textile area on any screen under 3%. This is the most restrained option:
-the founder should see that even a whisper of the manta makes it feel Peruvian."""),
-    "B": ("Orillo",
-          "La pantalla entera enmarcada por el orillo de una manta: bordes tejidos, interior en calma.",
-          """WOVEN FRAME / SELVAGE. Each screen is framed like the edge (orillo) of a manta: a 10pt woven border
-runs down the LEFT and RIGHT edges of the screen, full height below the status bar (vertical stripes: 2pt
-magenta, 2pt yellow, 3pt black-and-white braid, 3pt turquoise), and a 14pt horizontal woven band sits at the
-very bottom above the home indicator (stripes plus a small S-hook chain in yellow on purple). The content area
-inside stays white #FFFFFF (not off-white), so the frame reads like a cloth laid around a clean page. The Chaski
-card gets a 4pt woven inner border in the same selvage. Side margins grow to 26pt so nothing touches the frame.
-Onboarding (screen 1) also gets a 40pt woven band across the top under the status bar, matching the frame.
-The founder should feel he is holding a phone wrapped in a manta."""),
     "C": ("Lliclla en la mesa",
           "Un bloque grande de manta arriba, como una lliclla extendida, y tarjetas blancas encima.",
           """BOLD HERO. The top part of every screen is a big block of manta, like a lliclla spread on the
@@ -158,20 +138,76 @@ green on its own white card with 12pt of white around it. The primary buttons st
 white outline so they read on dark grounds; secondary buttons are white. The status bar text is white. Chaski's
 card gets a 6pt white frame. This is the warmest, most festive option; it must still pass contrast (white text on
 the grounds ≥ 4.5:1)."""),
-    "F": ("Faja chumpi",
-          "Una faja tejida vertical recorre el costado como un chumpi: identidad fuerte sin tocar el contenido.",
-          """VERTICAL SASH (CHUMPI). Inspired by the chumpi (woven belt) and by manta-ref-4's vertical stripes:
-a single vertical woven sash 28pt wide runs along the LEFT edge of every screen, full height below the status
-bar: vertical stripes (magenta, yellow, turquoise, purple, orange) with a central column of S-hooks in yellow
-on purple and a white braid line. Content shifts right (left margin 44pt, right 16pt). On screen 1 the sash
-widens to 64pt and shows a column of small white llamas walking up between rombo chains. On screens 2 and 3
-the sash carries, at the height of the current step, a small white rombo marker as a "you are here" indicator.
-Everything else is calm #F6F4F1 with white cards. Distinctive, asymmetric, unmistakably Andean."""),
+    "G": ("Fiesta geométrica",
+          "D sobre E: los motivos hechos interfaz encima de los fondos de color de la manta.",
+          """D + E, FREDDY'S EXPLICIT ASK. Take option E's grounds — screen 1 deep magenta #B0005F, screen 2 cobalt
+#1F3A94, screen 3 purple #55216F, each with a subtle tone-on-tone rombo lattice (same hue +8% lightness, 12%
+coverage) — and put option D's motif-as-interface components on top: onboarding progress = three rombos (current
+filled yellow #FFC41F with thread-black outline, others white outline); Chaski's card has stepped (escalonado)
+corners instead of round ones, with a 4pt white stepped frame; the quechua tag has a tiny rombo at its left;
+dividers inside cards are a 4pt stepped zigzag in #E4DED8; the mic (teal #0E6B64, 96pt, 2pt white outline) is
+wrapped by a ring of 12 small rombos in yellow/turquoise/pink/white; the side buttons are white stepped octagons;
+the onboarding option rows carry a 6pt rombo chain on their left edge (cobalt for Castellano, cinnamon #A85A2A for
+Runasimi). Every text on a colored ground is white (≥4.5:1). All medical content stays in white cards (radius 24),
+and the audit row sits on its own white card with 12pt of white around it, no motif touching it. Festive AND
+geometric: the founder's two favourites in one."""),
+    "H": ("Tocapu",
+          "Cada componente vive en una celda de tocapu: la cuadrícula inca de símbolos, multicolor.",
+          """TOCAPU GRID AS THE COMPONENT LANGUAGE. Tocapus are the square symbol cells of Inca tunics: a grid of
+squares, each holding a different small geometric sign (stepped cross, checkerboard, concentric square, diagonal
+bands, small rombo, S-hook), each cell a different solid manta color (magenta, yellow, turquoise, cobalt, orange,
+green, purple) with thread-black or white signs. Use this everywhere, sparsely but clearly: a header row of 8
+tocapu cells (each 20pt) under the header instead of a stripe; Chaski's card sits inside a 6pt tocapu border
+(cells of 6pt); the onboarding progress is three tocapu cells (current filled, others outlined); the quechua
+tag carries a tocapu cell as its leading icon; the Receta and Resumen side buttons are 56pt square tocapu cells
+(rounded 10) with the camera and checklist glyphs inside; the mic stays a teal circle but stands on a 3x3 tocapu
+plinth band beneath it; the onboarding option rows each start with a 40pt tocapu cell icon (cobalt cell with a
+white stepped sign for Castellano, cinnamon cell with a white rombo for Runasimi). Ground stays #F6F4F1 with white
+cards. More colors and more signs than D, organized in a strict grid so it stays calm."""),
+    "I": ("Chakana",
+          "La cruz andina escalonada ordena todo: el anillo del micrófono, el marco de Chaski y el progreso.",
+          """CHAKANA + ESCALONADO. The chakana (stepped Andean cross, three steps per arm, with a central circle or
+square) is the hero sign. The mic button: the teal #0E6B64 circle (96pt) sits at the center of a 150pt chakana
+outline drawn in 4pt stepped lines of alternating turquoise #00A6B4 and yellow #FFC41F, with a magenta #E4007C
+inner step. Chaski's card is a stepped (escalonado) frame: corners cut in 3 steps, 4pt multicolor stepped border
+(cobalt, yellow, magenta per step). The onboarding progress is a single chakana whose arms fill in color as the
+steps advance (1 of 3 arms + center filled). The header has a small 18pt chakana glyph before "Rimay". Dividers
+inside cards are a thin stepped line (escalera) in #E4DED8. The onboarding option rows have a stepped left edge
+(three steps) in cobalt / cinnamon. Section labels and the "Habla usted · castellano" pill use stepped ends
+instead of round ends. Ground #F6F4F1, white cards, the audit row untouched. More color than D (four manta
+colors in every stepped element), one disciplined motif family."""),
+    "J": ("Pallay",
+          "La densidad del cinturón tejido aplicada a los componentes: bordes llenos de motivos en botones y etiquetas.",
+          """PALLAY DENSITY. Pallay is the dense pick-up weave of belts and mantas: tight rows of tiny motifs.
+Apply that density as BORDERS of the components themselves, not as background: the primary "Seguir" button and the
+mic button get a 6pt pallay rim (micro rombos and S-hooks in yellow/magenta/turquoise on thread black, pixel 2pt);
+the onboarding option rows get a 6pt pallay band along their top edge (each row a different color family:
+cobalt/turquoise for Castellano, orange/magenta for Runasimi); the quechua tag is a short woven pallay strip with
+the label on a cinnamon center; the audio/level elements and the progress become pallay strips that fill with
+color as they advance (3 segments, current filled multicolor, rest #E4DED8 checker); Chaski's card has a 10pt pallay
+band along its bottom with small llamas and q'antu flowers (pixel motifs) on thread black; a 12pt pallay belt with
+ganchos en S runs under the header. Ground #F6F4F1, white cards, the audit row plain and untouched with 12pt of
+calm around it. The most motif-dense option, but every motif lives on an edge so text areas stay clean."""),
+    "K": ("Lliclla geométrica",
+          "D más C: componentes de motivo y un héroe de lliclla repleto de figuras andinas.",
+          """D + C, MY BEST BET. Screen 1 gets a big lliclla hero covering the top 44% (full bleed): white ground with
+bright stripe bands and FIVE different motif bands, each a different family — rombo chain, ganchos en S, stepped
+zigzag (qenqo/river), a row of small llamas with q'antu flowers, an eight-pointed star (estrella de ocho puntas)
+band — drawn crisp on a pixel grid in the manta palette with thread-black outlines; Chaski's card (220pt, stepped
+corners) overlaps its lower edge with a 6pt white frame. Screens 2 and 3 get a shorter lliclla (top 140pt behind the
+header, header text on a white pill) with two motif bands. Then D's component language below: progress as three
+rombos, the quechua tag with a tiny rombo, stepped-zigzag dividers in #E4DED8, the mic wrapped in a ring of 12
+rombos (turquoise/yellow/magenta), stepped-octagon side buttons, option rows with a 6pt rombo chain on the left
+edge. Calm #F6F4F1 ground and white cards below the hero; the audit row untouched with 12pt of calm."""),
 }
 
 
 def main() -> None:
+    import sys
+    solo = set(sys.argv[1:])
     for letra, (nombre, razon, direccion) in OPCIONES.items():
+        if solo and letra not in solo:
+            continue
         texto = BASE.format(letra=letra, nombre=nombre, razon=razon, direccion=direccion)
         (AQUI / f"opcion-{letra}.txt").write_text(texto, encoding="utf-8")
         print(letra, len(texto))

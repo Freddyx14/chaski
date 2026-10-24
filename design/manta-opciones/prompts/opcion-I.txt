@@ -1,4 +1,4 @@
-RIMAY — ANDEAN MANTA DESIGN OPTION A: "Hilo fino". THREE iPHONE SCREENS ON ONE BOARD.
+RIMAY — ANDEAN MANTA DESIGN OPTION I: "Chakana". THREE iPHONE SCREENS ON ONE BOARD.
 
 WHAT RIMAY IS
 Rimay is a pocket interpreter between Spanish and Chanka Quechua for a rural health post in Pilpichaca,
@@ -38,8 +38,8 @@ PRODUCT COLORS (never change meaning)
 
 CANVAS
 Board background #E9E6E1. Three iPhone frames 402 x 874 pt, in one row, 72pt gaps, 120pt margin. Above the row,
-the option title in Inter 700 40pt #18221F: "A · Hilo fino", and under it in Inter 400 20pt #5B6A65,
-max 1200pt wide: "Una sola hebra tejida y los motivos como íconos: la manta se insinúa, la consulta manda.". Above each frame a label Inter 600 18pt #5B6A65: "1 · Idioma", "2 · Rimay habla",
+the option title in Inter 700 40pt #18221F: "I · Chakana", and under it in Inter 400 20pt #5B6A65,
+max 1200pt wide: "La cruz andina escalonada ordena todo: el anillo del micrófono, el marco de Chaski y el progreso.". Above each frame a label Inter 600 18pt #5B6A65: "1 · Idioma", "2 · Rimay habla",
 "3 · Listo para hablar". Each frame: status bar area 54pt (time "9:41" Inter 600 17pt, signal/wifi/battery
 glyphs), home indicator 134x5pt radius 3 #18221F, 8pt above the bottom edge. 16pt side margins.
 
@@ -75,14 +75,16 @@ and under that a pill #ECEFEC radius 16 with a swap-arrows icon and "Habla usted
 #5B6A65.
 
 THIS OPTION'S DIRECTION — follow it fully, it is what makes this board different from the other four:
-MINIMAL ACCENT. The ground stays #F6F4F1 and calm. The manta appears as ONE thin woven line only:
-a 6pt band directly under the header (two rows of 3pt thread pixels: a tiny rombo chain in cobalt/turquoise/
-yellow on white with black outline) — nothing else striped. The motifs become small marks: a single 12pt rombo
-glyph (black outline, magenta center) as the bullet before "Rimay" in the header and as the separator dot in
-"Consulta · 3:12"; the three onboarding progress dots become three tiny rombos (filled teal for current,
-outlined #E4DED8 for the rest). On screen 1 a 6pt rombo band runs along the bottom edge of the Chaski card,
-like the fringe of a lliclla. Total textile area on any screen under 3%. This is the most restrained option:
-the founder should see that even a whisper of the manta makes it feel Peruvian.
+CHAKANA + ESCALONADO. The chakana (stepped Andean cross, three steps per arm, with a central circle or
+square) is the hero sign. The mic button: the teal #0E6B64 circle (96pt) sits at the center of a 150pt chakana
+outline drawn in 4pt stepped lines of alternating turquoise #00A6B4 and yellow #FFC41F, with a magenta #E4007C
+inner step. Chaski's card is a stepped (escalonado) frame: corners cut in 3 steps, 4pt multicolor stepped border
+(cobalt, yellow, magenta per step). The onboarding progress is a single chakana whose arms fill in color as the
+steps advance (1 of 3 arms + center filled). The header has a small 18pt chakana glyph before "Rimay". Dividers
+inside cards are a thin stepped line (escalera) in #E4DED8. The onboarding option rows have a stepped left edge
+(three steps) in cobalt / cinnamon. Section labels and the "Habla usted · castellano" pill use stepped ends
+instead of round ends. Ground #F6F4F1, white cards, the audit row untouched. More color than D (four manta
+colors in every stepped element), one disciplined motif family.
 
 HOW TO DRAW THE TEXTILE
 Draw every textile element as real vector geometry, not as a photo: stripes are rectangles of varied widths in

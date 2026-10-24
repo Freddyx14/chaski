@@ -1,4 +1,4 @@
-RIMAY — ANDEAN MANTA DESIGN OPTION B: "Orillo". THREE iPHONE SCREENS ON ONE BOARD.
+RIMAY — ANDEAN MANTA DESIGN OPTION J: "Pallay". THREE iPHONE SCREENS ON ONE BOARD.
 
 WHAT RIMAY IS
 Rimay is a pocket interpreter between Spanish and Chanka Quechua for a rural health post in Pilpichaca,
@@ -38,8 +38,8 @@ PRODUCT COLORS (never change meaning)
 
 CANVAS
 Board background #E9E6E1. Three iPhone frames 402 x 874 pt, in one row, 72pt gaps, 120pt margin. Above the row,
-the option title in Inter 700 40pt #18221F: "B · Orillo", and under it in Inter 400 20pt #5B6A65,
-max 1200pt wide: "La pantalla entera enmarcada por el orillo de una manta: bordes tejidos, interior en calma.". Above each frame a label Inter 600 18pt #5B6A65: "1 · Idioma", "2 · Rimay habla",
+the option title in Inter 700 40pt #18221F: "J · Pallay", and under it in Inter 400 20pt #5B6A65,
+max 1200pt wide: "La densidad del cinturón tejido aplicada a los componentes: bordes llenos de motivos en botones y etiquetas.". Above each frame a label Inter 600 18pt #5B6A65: "1 · Idioma", "2 · Rimay habla",
 "3 · Listo para hablar". Each frame: status bar area 54pt (time "9:41" Inter 600 17pt, signal/wifi/battery
 glyphs), home indicator 134x5pt radius 3 #18221F, 8pt above the bottom edge. 16pt side margins.
 
@@ -75,14 +75,16 @@ and under that a pill #ECEFEC radius 16 with a swap-arrows icon and "Habla usted
 #5B6A65.
 
 THIS OPTION'S DIRECTION — follow it fully, it is what makes this board different from the other four:
-WOVEN FRAME / SELVAGE. Each screen is framed like the edge (orillo) of a manta: a 10pt woven border
-runs down the LEFT and RIGHT edges of the screen, full height below the status bar (vertical stripes: 2pt
-magenta, 2pt yellow, 3pt black-and-white braid, 3pt turquoise), and a 14pt horizontal woven band sits at the
-very bottom above the home indicator (stripes plus a small S-hook chain in yellow on purple). The content area
-inside stays white #FFFFFF (not off-white), so the frame reads like a cloth laid around a clean page. The Chaski
-card gets a 4pt woven inner border in the same selvage. Side margins grow to 26pt so nothing touches the frame.
-Onboarding (screen 1) also gets a 40pt woven band across the top under the status bar, matching the frame.
-The founder should feel he is holding a phone wrapped in a manta.
+PALLAY DENSITY. Pallay is the dense pick-up weave of belts and mantas: tight rows of tiny motifs.
+Apply that density as BORDERS of the components themselves, not as background: the primary "Seguir" button and the
+mic button get a 6pt pallay rim (micro rombos and S-hooks in yellow/magenta/turquoise on thread black, pixel 2pt);
+the onboarding option rows get a 6pt pallay band along their top edge (each row a different color family:
+cobalt/turquoise for Castellano, orange/magenta for Runasimi); the quechua tag is a short woven pallay strip with
+the label on a cinnamon center; the audio/level elements and the progress become pallay strips that fill with
+color as they advance (3 segments, current filled multicolor, rest #E4DED8 checker); Chaski's card has a 10pt pallay
+band along its bottom with small llamas and q'antu flowers (pixel motifs) on thread black; a 12pt pallay belt with
+ganchos en S runs under the header. Ground #F6F4F1, white cards, the audit row plain and untouched with 12pt of
+calm around it. The most motif-dense option, but every motif lives on an edge so text areas stay clean.
 
 HOW TO DRAW THE TEXTILE
 Draw every textile element as real vector geometry, not as a photo: stripes are rectangles of varied widths in
