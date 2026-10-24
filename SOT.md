@@ -6,6 +6,22 @@
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
 > se regenera desde este archivo y lleva **el mismo número de versión**: si los números no coinciden, no están sincronizados.
 
+### Qué cambió en cada versión (léelo primero, Ricardo)
+
+- **SOT-5 (sáb 00:50).** **Claude es el núcleo (D19, §3)**: los modelos de voz son los oídos y la boca, Claude es el que entiende, ve y decide. Siete trabajos:
+  - **Ver (F9):** lee la receta escrita a mano y la caja, y **cruza la caja con lo que dijo la enfermera** (si ella dijo paracetamol y la caja dice ibuprofeno, avisa). Si no está seguro de leer algo, no adivina.
+  - **Corregir (F10):** el reconocimiento de quechua da varios intentos y Claude elige y corrige con el contexto de la consulta. **Cuarto número para el jurado: cuánto baja el error con Claude.** Se hace entre los dos: tu modelo da las N mejores, Freddy hace la corrección.
+  - **Entender** lo que quiso decir cada lado, estilo Wispr Flow (F3).
+  - **Auditarse** antes de hablar (F4, construido).
+  - **Juzgar** si el paciente entendió (F6).
+  - **Resumir la consulta (F11):** nota en castellano para la historia clínica y audio en quechua para llevar a casa.
+  - **Decidir el siguiente paso:** pedir repetir, avisar a la enfermera o seguir.
+  - Además: **el avatar es una vicuña** (D20, §10, 4 opciones en `avatar/opciones/`) y **las tareas por persona están en [`plan/tareas.md`](plan/tareas.md)** (D21). Tú armas las frases y preguntas que graban las familias.
+- **SOT-4 (sáb 00:20).** App nativa iOS por TestFlight (D14), modelo de Claude elegido midiendo (D15), Cartesia para el castellano (D16), avatar (D17), la mamá de Freddy en la prueba y el pitch (D18), plan del sábado (§11).
+- **SOT-3 (vie 23:50).** Rimay pasa a ser intérprete cara a cara para el personal de salud (D9–D12). Nace este archivo.
+
+> La página visual está en el repo: abre `plan/rimay-visual.html` en el navegador (el enlace de claude.ai es privado de Freddy).
+
 ---
 
 ## 1. El producto, hoy
