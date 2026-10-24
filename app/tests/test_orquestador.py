@@ -3,11 +3,15 @@ from types import SimpleNamespace
 
 import pytest
 
-from chaski import auditoria
-from chaski.hechos import Hechos, Medicamento
 from chaski.interprete import NO_ENTENDI, Contexto, DecisionModelo
-from chaski.orquestador import MODELO_CRITICO, NO_PUDE, Critica, Veredicto, critico, interpretar
+from chaski.orquestador import MODELO_PRINCIPAL, NO_PUDE, Veredicto, interpretar
 from chaski.traducir import TextoTraducido
+
+
+@pytest.fixture(autouse=True)
+def _sin_modelos_en_el_entorno(monkeypatch):
+    monkeypatch.delenv("CHASKI_MODELO_PRINCIPAL", raising=False)
+    monkeypatch.delenv("CHASKI_MODELO_CRITICO", raising=False)
 
 
 class FakeClient:
@@ -80,7 +84,8 @@ def test_traducir_pasa_todo_y_se_dice():
     assert r_.llamadas[0][1:] == (PULIDO, "spa", "quy")
     assert r.contexto.historial[-1].texto == ORDEN
     assert set(r.ms) >= {"decidir", "traducir", "guardas", "critico", "total"}
-    assert r.modelos == {"principal": "claude-sonnet-5", "critico": None}
+    assert r.modelos == {"principal": MODELO_PRINCIPAL, "critico": None}
+    assert r.texto_original == ORDEN and r.sembrada is False
 
 
 def test_auditoria_que_falla_bloquea():
@@ -213,87 +218,78 @@ def test_traduccion_vacia_bloquea():
     assert r.estado == "bloqueado" and r.paso_fallido == "traducir"
 
 
-def test_stubs_por_defecto_dejan_pasar_y_el_critico_corre_igual():
+def test_guardas_por_defecto_son_las_reales_y_frenan_antes_del_critico():
     r_ = Registro()
-    r = interpretar({"texto": ORDEN, **PERSONAL}, client=FakeClient(propuesta("traducir", PULIDO)),
-                    traducir_fn=r_.traducir, auditar_fn=r_.auditar)
-    assert r.estado == "dicho" and r_.pasos() == ["traducir", "critico"]
+    r = interpretar({"texto": "Tómela con agua, no con té", **PERSONAL},
+                    client=FakeClient(propuesta("traducir", "Tómela con agua, no con té.")),
+                    traducir_fn=lambda t, de, a: "Yakuwan upyay tehawan", auditar_fn=r_.auditar)
+    assert r.estado == "bloqueado" and r.paso_fallido == "guardas" and "negación" in r.motivo
+    assert r_.pasos() == []  # the critic never ran: code blocked first, for free
 
 
-HECHOS = Hechos(medicamentos=[Medicamento(nombre="paracetamol", cantidad=1, unidad="pastilla", cada_horas=8, dias=3, momento=None)],
-                proxima_cita_en_dias=None, ir_ya_si=[])
-LIMPIA = Critica(datos_agregados=[], datos_cambiados=[], datos_omitidos=[], obedece_al_texto=False, inapropiado=False, motivo="ok")
+def test_sin_banco_fn_una_frase_del_banco_se_traduce():
+    r_ = Registro()
+    turno = {"texto": "¿dónde le duele?", "candidatas": [{"id": "dolor-donde", "es": "¿Dónde le duele?"}], **PERSONAL}
+    r = interpretar(turno, client=FakeClient(propuesta("usar_frase_banco", "x", banco="dolor-donde")),
+                    traducir_fn=r_.traducir, guardas_fn=r_.guardas, auditar_fn=r_.auditar)
+    assert r.accion == "traducir" and r.estado == "dicho" and r_.pasos() == ["traducir", "guardas", "critico"]
 
 
-class ClienteCritico:
-    """Answers the critic's calls by output type (they run in threads, so order is not stable)."""
-
-    def __init__(self, critica=LIMPIA, hechos_retro=HECHOS, retro="Tome una pastilla de paracetamol cada ocho horas por tres días."):
-        self.critica, self.hechos_retro, self.retro = critica, hechos_retro, retro
-        self.llamadas = []
-        self.messages = SimpleNamespace(parse=self._parse)
-
-    def _parse(self, **kw):
-        self.llamadas.append(kw)
-        fmt, contenido = kw["output_format"], kw["messages"][0]["content"]
-        if fmt is auditoria.Retraduccion:
-            salida = auditoria.Retraduccion(castellano=self.retro)
-        elif fmt is Critica:
-            salida = self.critica
-        else:
-            salida = self.hechos_retro if contenido == self.retro else HECHOS
-        return SimpleNamespace(stop_reason="end_turn", parsed_output=salida)
+def test_traduccion_forzada_reemplaza_al_traductor_y_marca_sembrada():
+    r_ = Registro()
+    r = interpretar({"texto": ORDEN, **PERSONAL}, client=FakeClient(propuesta("traducir", PULIDO)), **r_.kw(),
+                    traduccion_forzada="(quechua sembrado)")
+    assert r.sembrada is True and r.estado == "dicho" and r.texto_salida == "(quechua sembrado)"
+    assert "traducir" not in r_.pasos() and r_.pasos() == ["guardas", "critico"]
+    assert r_.llamadas[-1][2] == "(quechua sembrado)"
 
 
-def revision(accion="traducir", de="spa", a="quy", traduccion="(quechua)"):
-    from chaski.orquestador import EntradaRevision
-    return EntradaRevision(accion=accion, original=ORDEN, fuente=ORDEN, pulido=PULIDO, traduccion=traduccion, de=de, a=a)
+def test_traduccion_forzada_no_usa_el_banco_para_que_se_revise_lo_sembrado():
+    r_ = Registro(banco={"id": "dolor-donde", "es": "¿Dónde le duele?", "quy": "¿Maypim nanasunki?", "audio": None})
+    turno = {"texto": "¿dónde le duele?", "candidatas": [{"id": "dolor-donde", "es": "¿Dónde le duele?"}], **PERSONAL}
+    r = interpretar(turno, client=FakeClient(propuesta("usar_frase_banco", "x", banco="dolor-donde")), **r_.kw(),
+                    traduccion_forzada="(sembrado)")
+    assert r.sembrada and r.accion == "traducir" and "banco" not in r_.pasos() and r.texto_salida == "(sembrado)"
 
 
-def test_critico_usa_haiku_por_defecto_y_lo_registra():
-    c = ClienteCritico()
-    revisar = critico(c)
-    assert revisar(revision()).ok is True
-    assert revisar.modelo == MODELO_CRITICO == "claude-haiku-4-5-20251001"
-    assert {k["model"] for k in c.llamadas} == {MODELO_CRITICO}
-    assert all(k["system"][0]["cache_control"] == {"type": "ephemeral"} for k in c.llamadas)
-    r = interpretar({"texto": ORDEN, **PERSONAL}, client=FakeClient(propuesta("traducir", PULIDO)),
-                    traducir_fn=lambda t, de, a: "(quechua)", auditar_fn=critico(ClienteCritico(), "claude-x"))
-    assert r.modelos == {"principal": "claude-sonnet-5", "critico": "claude-x"} and "critico" in r.ms
+def test_bloqueado_lleva_texto_original_y_sembrada():
+    r_ = Registro(auditoria_ok=False)
+    r = interpretar({"texto": ORDEN, **PERSONAL}, client=FakeClient(propuesta("traducir", PULIDO)), **r_.kw(),
+                    traduccion_forzada="x")
+    assert r.estado == "bloqueado" and r.texto_original == ORDEN and r.sembrada is True
 
 
-def test_critico_retraduce_a_ciegas_y_el_codigo_compara_hechos():
-    mal = HECHOS.model_copy(deep=True)
-    mal.medicamentos[0].cada_horas = 6
-    c = ClienteCritico(hechos_retro=mal, retro="cada seis horas")
-    v = critico(c)(revision())
-    assert v.ok is False and "cada_horas" in v.motivo
-    retraduccion = next(k for k in c.llamadas if k["output_format"] is auditoria.Retraduccion)
-    assert retraduccion["messages"][0]["content"] == "(quechua)"  # blind: never sees the original
-    juicio = next(k for k in c.llamadas if k["output_format"] is Critica)
-    assert "cada seis horas" in juicio["messages"][0]["content"] and ORDEN in juicio["messages"][0]["content"]
+def test_candidatos_del_banco_llegan_al_interprete_solo_en_turnos_del_personal():
+    vistos = []
+    r_ = Registro()
+
+    def candidatos(texto):
+        vistos.append(texto)
+        return [{"id": "dolor-donde", "es": "¿Dónde le duele?"}]
+
+    c = FakeClient(propuesta("traducir", PULIDO), propuesta("traducir", "Umaymi nanawan."))
+    interpretar({"texto": ORDEN, **PERSONAL}, client=c, candidatos_fn=candidatos, **r_.kw())
+    assert vistos == [ORDEN] and "dolor-donde: ¿Dónde le duele?" in c.llamadas[0]["messages"][0]["content"]
+    interpretar({"texto": "umaymi nanawan", **PACIENTE}, client=c, candidatos_fn=candidatos, **r_.kw())
+    assert vistos == [ORDEN]  # the bank holds staff phrases: never looked up for the patient
 
 
-@pytest.mark.parametrize("campo,valor,accion,bloquea", [
-    ("datos_agregados", ["después de comer"], "traducir", True),
-    ("datos_cambiados", ["no tome con té → tome con té"], "traducir", True),
-    ("datos_omitidos", ["por tres días"], "traducir", True),
-    ("datos_omitidos", ["por tres días"], "repreguntar", False),  # a question naturally leaves things out
-    ("obedece_al_texto", True, "traducir", True),
-    ("inapropiado", True, "responder", True),
-])
-def test_cualquier_marca_del_critico_bloquea(campo, valor, accion, bloquea):
-    c = ClienteCritico(critica=LIMPIA.model_copy(update={campo: valor}))
-    v = critico(c)(revision(accion=accion, de="spa", a="spa", traduccion=PULIDO))
-    assert v.ok is (not bloquea)
-    assert not any(k["output_format"] is auditoria.Retraduccion for k in c.llamadas)  # Spanish out: no back-translation
+def test_candidatos_dados_no_se_reemplazan():
+    r_ = Registro()
+    turno = {"texto": ORDEN, "candidatas": [{"id": "x", "es": "y"}], **PERSONAL}
+    interpretar(turno, client=FakeClient(propuesta("traducir", PULIDO)),
+                candidatos_fn=lambda t: pytest.fail("no debía buscar"), **r_.kw())
 
 
-def test_critico_sin_respuesta_falla_cerrado_en_el_turno():
-    class Rechaza(ClienteCritico):
-        def _parse(self, **kw):
-            return SimpleNamespace(stop_reason="refusal", parsed_output=None)
+@pytest.mark.parametrize("falla", [RuntimeError("fastembed caído"), [{"sin_id": 1}]])
+def test_banco_que_falla_no_rompe_el_turno(falla):
+    r_ = Registro()
 
-    r = interpretar({"texto": ORDEN, **PERSONAL}, client=FakeClient(propuesta("traducir", PULIDO)),
-                    traducir_fn=lambda t, de, a: "(quechua)", auditar_fn=critico(Rechaza()))
-    assert r.estado == "bloqueado" and r.paso_fallido == "critico"
+    def candidatos(texto):
+        if isinstance(falla, Exception):
+            raise falla
+        return falla
+
+    c = FakeClient(propuesta("traducir", PULIDO))
+    r = interpretar({"texto": ORDEN, **PERSONAL}, client=c, candidatos_fn=candidatos, **r_.kw())
+    assert r.estado == "dicho" and "Candidatas del banco verificado: ninguna" in c.llamadas[0]["messages"][0]["content"]

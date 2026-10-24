@@ -1,0 +1,83 @@
+# Para Ricardo: las tres rutas del intérprete
+
+Todo el turno vive en `chaski.servicio` (intérprete, traducción, barreras B1–B4 en código y el crítico). Tus rutas
+solo leen el formulario y llaman a una función. El crítico es **el mismo código** que mide
+`evals/ataques/correr.py --modo chaski` (`chaski.critico.revisar`), así que el número del pitch es el del producto.
+
+## Variables de entorno
+
+| Variable | Para qué | Por defecto |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | el cliente de Claude (se crea una sola vez, la primera vez que se usa) | obligatoria |
+| `CHASKI_MODELO_PRINCIPAL` | el intérprete (`decidir`) | `claude-opus-5` |
+| `CHASKI_MODELO_CRITICO` | el crítico | `claude-sonnet-5` (160/160 atrapados, 7,5 % de falsos bloqueos) |
+| `CHASKI_NLLB_URL` | tu NLLB; sin ella traduce Claude | vacía |
+
+Los dos modelos se cambian sin tocar código. Cada respuesta trae `modelos: {principal, critico}`.
+
+## Las rutas (para pegar en `servicio/app.py`)
+
+```python
+from fastapi import Form, Query
+from chaski import servicio as chaski_servicio
+
+
+@aplicacion.post("/turno/enfermera")
+def turno_enfermera(texto: str = Form(...), contexto: str = Form(""), n_mejores: str = Form(""),
+                    confianza: str = Form(""), traduccion_sembrada: str = Form("")):
+    try:
+        return chaski_servicio.turno(texto, "spa", "personal", contexto, n_mejores, confianza, traduccion_sembrada)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/turno/paciente")
+async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form("")):
+    try:
+        oido = tu_asr_quechua(await audio.read(), audio.filename or "turno.wav")  # tu /entender: {texto, alternativas}
+        return chaski_servicio.turno(oido["texto"], "quy", "paciente", contexto,
+                                     json.dumps(oido.get("alternativas", [])), oido.get("confianza"))
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.get("/banco")
+def banco(tag: str | None = Query(default=None)):
+    return chaski_servicio.banco_por_tag(tag)
+```
+
+La app ya manda `rol`, `modo_ensayo`, `rapido` y `con_audio`; FastAPI ignora los campos que la ruta no declara,
+así que no hace falta leerlos.
+
+## Qué entra
+
+- `contexto`: el JSON del `contexto` que devolvió el turno anterior (la app ya lo guarda y lo reenvía, con `modo`
+  adentro). Vacío = consulta nueva. Un JSON roto da `ValueError` (es un error de la app, no se tapa).
+- `n_mejores`: JSON con una lista de textos, o de pares `[texto, puntaje]` tal como los da `/entender`.
+- `confianza`: 0 a 1, del reconocedor. Con ella corre B1: si es menor a 0,6 y lo oído trae un número, un
+  medicamento o una parte del cuerpo, el turno se bloquea. Sin ella, B1 no corre.
+- `traduccion_sembrada`: **solo el ensayo de la negativa.** Reemplaza la traducción; barreras y crítico corren
+  igual, y la respuesta trae `sembrada: true` para que nadie lo confunda con un error real del traductor.
+
+## Qué sale
+
+`Resultado.model_dump()` (`chaski/orquestador.py`): `estado` (`dicho` · `dicho_con_aviso` · `bloqueado`),
+`accion`, `motivo`, `para`, `idioma_salida`, `texto_original` (lo que se oyó), `texto_pulido`, `texto_salida`
+(lo que se dice; vacío si se bloqueó), `audio`, `aviso`, `motor`, `respaldo`, `sembrada`, `modelos`,
+`paso_fallido`, `ms` y `contexto`.
+
+`GET /banco` devuelve `{id, es, quy, audio, tags, revisado}`. Hoy **ninguna frase está revisada**: el intérprete no
+dice ninguna (se traduce lo dicho) y la app no las hace sonar. Cuando la enfermera revise una, basta con poner
+`"revisado": true` en `app/chaski/banco.json`.
+
+## Al arrancar (opcional)
+
+Si hay frases revisadas, el intérprete busca candidatas con embeddings. Para que el primer turno no pague la
+carga del modelo:
+
+```python
+@aplicacion.on_event("startup")
+def _precargar():
+    from chaski import banco as banco_frases
+    banco_frases.precargar()
+```
