@@ -60,6 +60,7 @@
 | | Tarea | Para |
 |---|---|---|
 | ⬜ | Elegir el modelo principal: **recomendado Opus** (98 % acierto, 0 datos inventados) | ya |
+| ⬜ | Elegir el crítico: **recomendado Sonnet** (100 % / 7,5 %) en vez de Haiku (96 % / 18 %), aunque Anthropic sugirió Haiku: los números mandan | ya |
 | ⬜ | p20 «Ricardo» en la base: ¿prueba (se borra) o dato real? | ya |
 | ⬜ | ¿Se guardan los audios de las consultas? (pregunta de privacidad de los jueces) | 18:00 |
 | ⬜ | Mamá: revisar las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
@@ -104,7 +105,7 @@
 | ✅ | Barreras B1–B6, crítico Haiku, banco de ataques (784 casos) | — |
 | ✅ | Banco de frases + RAG híbrido (216 frases, 88 % / 95 %) | — |
 | ✅ | Mediciones: intérprete × 3 modelos, ataques (piso / juez / Chaski), RAG | — |
-| ⏳ | Juez simple y Sonnet como crítico **en la misma muestra** → elegir crítico | 15:40 |
+| ✅ | Juez simple y Sonnet como crítico en la misma muestra → **Sonnet: 160/160 y 7,5 % de bloqueos falsos** | — |
 | ⬜ | Conectar barreras y banco dentro del orquestador (hoy son piezas aparte) + prueba de punta a punta del turno | 17:00 |
 | ⬜ | Bajar los bloqueos falsos (18 %): revisar uno por uno cuáles son errores reales de la familia | 17:30 |
 | ⬜ | Correr el banco de ataques completo (784) con el crítico elegido para el número final | 18:00 |
@@ -132,8 +133,9 @@
 
 | Qué | Número | Fuente |
 |---|---|---|
-| Errores sembrados atrapados (crítico Haiku + código, muestra al azar) | 153 de 160 (96 %); 100 % en número, días, negación, medicamento, unidad | `evals/ataques/resultados/chaski-2026-10-24-1513.json` |
-| Frases correctas bloqueadas por error | 7 de 40 (18 %) | ídem |
+| **Chaski, crítico Sonnet + código** (muestra al azar, 200 casos) | **160 de 160 errores atrapados (100 %) · 3 de 40 frases correctas bloqueadas (7,5 %)** | `evals/ataques/resultados/chaski-2026-10-24-1518.json` |
+| Chaski, crítico Haiku + código (misma muestra) | 153 de 160 (96 %) · 7 de 40 bloqueos falsos (18 %); falla en diagnósticos agregados (14/20) | `…/chaski-2026-10-24-1513.json` |
+| Claude como juez simple (misma muestra) | 150 de 160 (94 %) · **26 de 40 bloqueos falsos (65 %)** | `…/juez_claude-2026-10-24-1513.json` |
 | Sin barreras (piso) | 0 % | `…/sin_barreras-…` |
 | Intérprete, acción correcta | Opus 98 % · Sonnet 94 % · Haiku 88 % | `evals/interprete/resultados/` |
 | RAG, acierto a la primera | híbrido 88 % vs palabras 70 % | `evals/banco/resultados/` |
