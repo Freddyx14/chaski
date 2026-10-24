@@ -2,7 +2,8 @@
 import pytest
 
 from chaski.guardas import (NO_PUDE_VERIFICAR, Veredicto, fail_closed, numeros_castellano, numeros_quechua,
-                            oido_confiable, pasa, pulido_conserva_hechos, terminos_fijos)
+                            oido_confiable, pasa, pulido_conserva_hechos, pulido_sin_terminos_nuevos,
+                            terminos_fijos)
 from chaski.hechos import Hechos, Medicamento
 
 
@@ -171,6 +172,24 @@ def test_pulido_que_agrega_una_prohibicion_bloquea_b3():
 def test_pulido_que_quita_una_negacion_bloquea():
     v = pulido_conserva_hechos(h(prohibiciones=["tomar con té"]), h())
     assert not v.ok and v.capa.startswith("B2")
+
+
+def test_pulido_en_codigo_quitar_relleno_pasa():
+    assert pulido_sin_terminos_nuevos("Eh, este, tome la pastilla cada ocho horas, ¿ya?",
+                                      "Tome la pastilla cada ocho horas").ok
+
+
+def test_pulido_en_codigo_numero_nuevo_bloquea():
+    v = pulido_sin_terminos_nuevos("Tome la pastilla", "Tome la pastilla por cinco días")
+    assert not v.ok and "5" in v.motivo
+
+
+def test_pulido_en_codigo_medicamento_nuevo_bloquea():
+    assert not pulido_sin_terminos_nuevos("Tome paracetamol", "Tome paracetamol e ibuprofeno").ok
+
+
+def test_pulido_en_codigo_negacion_quitada_bloquea():
+    assert not pulido_sin_terminos_nuevos("No la tome con té", "Tómela con té").ok
 
 
 def test_pulido_mal_formado_falla_cerrado():

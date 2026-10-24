@@ -7,7 +7,9 @@ malformed result is a block («no pude verificar»), never a pass.
   B1  oido_confiable           low-confidence ASR word on a critical token (number, medicine, body part)
   B2  pulido_conserva_hechos   the polished text changed a critical fact of the transcript
   B3  pulido_conserva_hechos   the polished text added a critical fact that was not said
+      pulido_sin_terminos_nuevos  same, in plain code: no new number, medicine, unit; negation kept
   B4  terminos_fijos           numbers, medicine names, units and negation survive into the Quechua
+  C   sin_agregados            the critic found advice, a diagnosis or a different addressee the source lacked
 """
 from __future__ import annotations
 
@@ -15,6 +17,8 @@ import functools
 import re
 import unicodedata
 from difflib import SequenceMatcher
+
+from typing import Literal
 
 from pydantic import BaseModel, Field
 
@@ -407,6 +411,32 @@ def pulido_conserva_hechos(hechos_transcripcion: Hechos, hechos_pulido: Hechos) 
     return pasa("B2/B3 pulido")
 
 
+@fail_closed
+def pulido_sin_terminos_nuevos(transcripcion: str, pulido: str) -> Veredicto:
+    """B3 in plain code, no extraction needed: the polish brings no number, medicine or unit that
+    the transcript did not have, and keeps a negation the transcript had.
+
+    Runs next to `pulido_conserva_hechos`; it is the half of B3 that cannot be fooled by a bad
+    extraction. It cannot see an invented 'después de comer' (that needs the facts).
+    """
+    capa = "B3 nada nuevo"
+    problemas: list[str] = []
+    nums_t = set(numeros_castellano(transcripcion))
+    for n in sorted(set(numeros_castellano(pulido)) - nums_t):
+        if n >= 2:
+            problemas.append(f"el pulido dice {n}, que no se dijo")
+    meds_t = set(medicamentos_en(transcripcion))
+    for m in sorted(set(medicamentos_en(pulido)) - meds_t):
+        problemas.append(f"el pulido nombra «{m}», que no se dijo")
+    for u in sorted(unidades_castellano(pulido) - unidades_castellano(transcripcion)):
+        problemas.append(f"el pulido agrega la unidad «{u}»")
+    if tiene_negacion_castellano(transcripcion) and not tiene_negacion_castellano(pulido):
+        problemas.append("el pulido quitó una negación")
+    if problemas:
+        return bloqueo(capa, problemas[0], problemas)
+    return pasa(capa)
+
+
 def _num(texto: str) -> float:
     try:
         return float(texto)
@@ -449,4 +479,39 @@ def oido_confiable(palabras_asr: list[dict], umbral: float = 0.6) -> Veredicto:
             dudosas.append(f"«{texto}» ({confianza:.2f})")
     if dudosas:
         return bloqueo(capa, f"no se oyó bien un dato crítico: {dudosas[0]}", dudosas)
+    return pasa(capa)
+
+
+# ---------------------------------------------------------------------------------------------
+# Critic: things the output says that the source did not (chaski.critico extracts, code decides)
+
+Destinatario = Literal["paciente", "acompanante", "personal", "no_se_sabe"]
+
+
+class Agregados(BaseModel):
+    consejos_nuevos: list[str] = Field(description=(
+        "Consejos, advertencias o instrucciones que la VERSIÓN dice y el ORIGINAL no, cada uno en pocas palabras. "
+        "Decir lo mismo con otras palabras no cuenta. Lista vacía si no hay"))
+    diagnosticos_nuevos: list[str] = Field(description=(
+        "Diagnósticos, enfermedades o causas que la VERSIÓN menciona y el ORIGINAL no. Lista vacía si no hay"))
+    destinatario_original: Destinatario = Field(description=(
+        "A quién le habla el ORIGINAL: 'paciente' (usted, el que está siendo atendido), 'acompanante' (familiar "
+        "o quien lo acompaña, p. ej. «dele a su hijo»), 'personal' (otro trabajador de salud), 'no_se_sabe'"))
+    destinatario_version: Destinatario = Field(description="A quién le habla la VERSIÓN, con las mismas opciones")
+
+
+@fail_closed
+def sin_agregados(agregados: Agregados) -> Veredicto:
+    """Block if the critic listed new advice or a new diagnosis, or the addressee changed.
+
+    'no_se_sabe' on either side is not a change: a short phrase often has no explicit addressee.
+    """
+    capa = "C agregados"
+    problemas = [f"consejo que no estaba: {c}" for c in agregados.consejos_nuevos if c.strip()]
+    problemas += [f"diagnóstico que no estaba: {d}" for d in agregados.diagnosticos_nuevos if d.strip()]
+    a, b = agregados.destinatario_original, agregados.destinatario_version
+    if "no_se_sabe" not in (a, b) and a != b:
+        problemas.append(f"cambió a quién se le habla: {a} → {b}")
+    if problemas:
+        return bloqueo(capa, problemas[0], problemas)
     return pasa(capa)
