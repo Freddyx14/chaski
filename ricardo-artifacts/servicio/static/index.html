@@ -162,10 +162,11 @@ function pintar(d, msTotal) {
     `<div class="bloque"><h3>Contra lo que dijo la enfermera</h3><p>${
       d.coincide_con_lo_dicho ? 'Coincide.' :
       '<b style="color:var(--rojo)">NO coincide con lo que dijo la enfermera.</b>'}</p></div>`;
-  const chanka = d.para_que_sirve_chanka
-    ? `<div class="bloque"><h3>En quechua chanka</h3><p class="chanka">${d.para_que_sirve_chanka}</p>
-       <p class="aviso">Sin auditar todavía: lo revisa la auditoría de retraducción antes de decirlo en voz alta.</p></div>`
-    : `<div class="bloque"><h3>En quechua chanka</h3><p class="vacio">Claude no se animó a decirlo. Es la respuesta correcta cuando duda.</p></div>`;
+  const chanka = `<div class="bloque"><h3>En quechua chanka</h3>
+       <p class="vacio" id="estadoChanka">El modelo de visión no traduce a propósito. La traducción la hace
+       el módulo de Freddy: Opus 5 con glosario, retraducción a ciegas y comparación de datos críticos.</p>
+       <button id="btnTraducir" style="margin-top:8px">Traducir y auditar</button>
+       <div id="cajaChanka"></div></div>`;
 
   salida.innerHTML = `
     <div class="ficha">
@@ -180,6 +181,43 @@ function pintar(d, msTotal) {
       <div class="meta">${d.modelo} · ${d.segundos}s en Claude · ${msTotal}ms de extremo a extremo ·
         ${d.tokens_entrada} tokens de entrada, ${d.tokens_salida} de salida</div>
     </div>`;
+
+  const btn = document.getElementById('btnTraducir');
+  if (btn) btn.onclick = () => traducir(d.para_que_sirve, btn);
+}
+
+async function traducir(textoEs, btn) {
+  if (!textoEs) return;
+  btn.disabled = true;
+  const estado = document.getElementById('estadoChanka');
+  estado.textContent = 'Traduciendo, retraduciendo a ciegas y comparando los datos críticos…';
+  avatar('escuchando');
+  const cuerpo = new FormData();
+  cuerpo.append('texto', textoEs);
+  try {
+    const r = await fetch('/traducir', {method: 'POST', body: cuerpo});
+    const t = await r.json();
+    if (t.error) { estado.innerHTML = `<b style="color:var(--rojo)">${t.error}</b>`; avatar('no_entendi'); return; }
+    estado.remove();
+    avatar(t.enviar ? 'hablando' : 'no_entendi');
+    const sello = t.enviar
+      ? '<span class="sello ok">La auditoría lo aprueba</span>'
+      : `<span class="sello duda">BLOQUEADO · ${t.motivo}</span>`;
+    const inseguros = (t.terminos_inseguros || []).length
+      ? `<p class="aviso">Términos sin traducción segura: <b>${t.terminos_inseguros.join(', ')}</b></p>` : '';
+    document.getElementById('cajaChanka').innerHTML = `
+      <p class="chanka" style="font-size:16px;margin:8px 0">${t.quechua}</p>
+      ${sello}
+      <p class="aviso" style="margin-top:8px"><b>Retraducción a ciegas</b> (otra llamada que nunca vio el
+        original): ${t.retraduccion}</p>
+      ${inseguros}
+      <p class="aviso">${t.segundos}s · ${t.enviar
+        ? 'Se puede decir en voz alta.'
+        : 'No se dice en voz alta: la enfermera lo revisa primero.'}</p>`;
+  } catch (e) {
+    estado.innerHTML = `<b style="color:var(--rojo)">${e.message}</b>`;
+    avatar('no_entendi');
+  } finally { btn.disabled = false; }
 }
 </script>
 </body>

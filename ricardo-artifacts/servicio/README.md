@@ -43,3 +43,34 @@ correcta.** El quechua no sale de aquí: sale de la traducción de Freddy con gl
 auditoría de retraducción, y recién entonces se dice en voz alta con `mms-tts-quy`.
 
 Que el modelo se calle solo, sin que nadie se lo pida, es justo lo que el criterio 4 de Anthropic premia.
+
+## La traducción al quechua no la hace la visión
+
+Haiku deja `para_que_sirve_chanka` en `null` a propósito: el prompt le dice que no se invente quechua.
+La traducción la hace **el módulo de Freddy**, que se importa, no se copia:
+
+```python
+from rimay.auditoria import auditar      # app/rimay/auditoria.py
+```
+
+Si él mejora el glosario o la auditoría, este banco lo hereda sin tocar nada.
+
+`POST /traducir` con `texto` en castellano devuelve el quechua, la retraducción a ciegas, y si la
+auditoría lo aprueba. El botón «Traducir y auditar» de la página lo llama con la explicación que leyó
+la cámara, así se ve la cadena entera: **foto → castellano → chanka → auditoría**.
+
+### Medido el 24-oct
+
+| Caso | Resultado |
+|---|---|
+| «Baja la fiebre y calma el dolor.» | `Kayqa rupapakuyta uraykuchin, nanaytapas tanichin.` · **aprobado** · 14.38 s |
+| «Baja la fiebre y calma el dolor de cabeza. Tome una tableta cada ocho horas.» | **BLOQUEADO**: «cambió un dato crítico: medicamento». La retraducción decía «Este remedio», que el original no nombraba. Términos inseguros: `tableta` · 25.58 s |
+
+El bloqueo es el comportamiento correcto, pero conviene mirarlo: la retraducción **agregó** un sujeto
+(«este remedio») que el original no tenía, y la comparación lo leyó como dato crítico cambiado. Es un
+falso positivo del lado seguro. Vale la pena que Freddy lo vea.
+
+**Y hay un problema de reloj: 14 a 25 segundos por traducción.** Son cuatro llamadas a Opus 5 en serie
+(extraer hechos, traducir, retraducir, extraer otra vez). Para un intérprete en vivo es demasiado. Esa es
+exactamente la decisión D15 del SOT: medir los tres modelos y quedarse con el más rápido que no pierda
+acierto en la auditoría. Las llamadas 1 y 2 podrían ir en paralelo con las 3 y 4 de la frase anterior.

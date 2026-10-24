@@ -13,13 +13,29 @@ from __future__ import annotations
 
 import json
 import os
+import sys
+import time
 from pathlib import Path
+
+# El modulo de traduccion y auditoria es de Freddy. Se IMPORTA, no se copia ni
+# se toca: si el mejora el glosario o la auditoria, esto lo hereda solo.
+APP_DE_FREDDY = (Path(__file__).resolve().parents[2] / "app")
+if APP_DE_FREDDY.exists() and str(APP_DE_FREDDY) not in sys.path:
+    sys.path.insert(0, str(APP_DE_FREDDY))
 
 from fastapi import FastAPI, File, Form, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from servicio.vision import MODELO, como_json, leer
+
+try:
+    import anthropic
+    from rimay.auditoria import auditar
+    HAY_TRADUCTOR = True
+except Exception as _e:          # el repo puede no tener app/ al lado
+    HAY_TRADUCTOR = False
+    _FALLO_TRADUCTOR = str(_e)
 
 AQUI = Path(__file__).parent
 CHASKI = Path("../design/chaski")
@@ -40,7 +56,30 @@ def salud():
     return {"modelo_vision": MODELO,
             "clave_anthropic": bool(os.environ.get("ANTHROPIC_API_KEY")),
             "clave_cartesia": bool(os.environ.get("CARTESIA_API_KEY")),
-            "chaski": CHASKI.exists()}
+            "chaski": CHASKI.exists(),
+            "traductor_de_freddy": HAY_TRADUCTOR}
+
+
+@aplicacion.post("/traducir")
+def traducir(texto: str = Form(...)):
+    """Castellano -> chanka, con la auditoria de retraduccion de Freddy.
+
+    No traduce Haiku: traduce `rimay.auditoria`, que usa Opus 5 con glosario,
+    retraduce A CIEGAS y compara los datos criticos con codigo. Si algo cambio,
+    `enviar` viene en false y NO se dice en voz alta.
+    """
+    if not HAY_TRADUCTOR:
+        return JSONResponse({"error": f"falta el modulo de Freddy: {_FALLO_TRADUCTOR}"},
+                            status_code=503)
+    t0 = time.perf_counter()
+    try:
+        r = auditar(anthropic.Anthropic(), texto)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+    return {"quechua": r.quechua, "retraduccion": r.retraduccion, "enviar": r.enviar,
+            "motivo": r.motivo, "terminos_inseguros": r.terminos_inseguros,
+            "diferencias": [d.model_dump() for d in r.diferencias],
+            "segundos": round(time.perf_counter() - t0, 2)}
 
 
 @aplicacion.post("/ver")
