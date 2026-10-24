@@ -1,19 +1,22 @@
 // La consulta: una sola pantalla que cambia de estado (tablero de Pencil + design/specs/02-pulido-ui.md).
 import {
-  IOSOutputFormat, setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus, useAudioRecorder,
-  useAudioRecorderState, requestRecordingPermissionsAsync, type RecordingOptions,
+  setAudioModeAsync, useAudioPlayer, useAudioPlayerStatus, useAudioRecorder,
+  useAudioRecorderState, requestRecordingPermissionsAsync,
 } from 'expo-audio';
+import { File, Paths } from 'expo-file-system';
 import * as Haptics from 'expo-haptics';
+import * as Speech from 'expo-speech';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { escuchar, idioma, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
+import { audioDeFrase, escuchar, idioma, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
 import { Chaski, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
-  fueCastellano, ladoDetectado, siguienteLado, veredictoEnfermera, type Lado, type RespuestaPaciente, type Veredicto,
+  fueCastellano, ladoDetectado, leerInterprete, siguienteLado, veredictoEnfermera,
+  type Interprete, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/chaski/modelo';
 import { usePerfil, type Perfil } from '@/chaski/perfil';
 import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/chaski/textos';
@@ -22,28 +25,12 @@ import { AnilloInti } from '@/chaski/inti';
 import { BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
 import { nivelDesdeDb, palabrasDichas } from '@/chaski/movimiento';
 import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/chaski/ui';
-import { bocaAbierta, envolvente, nivelEn, type Envolvente } from '@/chaski/wav';
+import { base64ABytes, bocaAbierta, envolvente, nivelEn, type Envolvente } from '@/chaski/wav';
 import Animated, {
   FadeInDown, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming, ZoomIn,
 } from 'react-native-reanimated';
 
-// WAV 16 kHz mono 16 bits: lo que piden el detector de idioma y el reconocimiento (CONTRATO.md §1).
-const GRABACION: RecordingOptions = {
-  extension: '.wav',
-  sampleRate: 16000,
-  numberOfChannels: 1,
-  bitRate: 256000,
-  isMeteringEnabled: true,
-  ios: {
-    outputFormat: IOSOutputFormat.LINEARPCM,
-    audioQuality: 96,
-    linearPCMBitDepth: 16,
-    linearPCMIsBigEndian: false,
-    linearPCMIsFloat: false,
-  },
-  android: { outputFormat: 'default', audioEncoder: 'default' },
-  web: {},
-};
+import { GRABACION } from '@/chaski/grabacion';
 
 
 type Fase =
@@ -53,7 +40,12 @@ type Fase =
   | { f: 'dicho'; v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean }
   | { f: 'bloqueado'; v: Extract<Veredicto, { tipo: 'bloqueado' }> }
   | { f: 'paciente'; r: RespuestaPaciente }
-  | { f: 'error'; mensaje: string; sinServidor: boolean };
+  | { f: 'error'; mensaje: string; sinServidor: boolean }
+  // Intérprete agente (D32): las acciones que no son «traducir».
+  | { f: 'pregunta'; d: Extract<Interprete, { tipo: 'pregunta' }>; lado: Lado }
+  | { f: 'respuesta'; d: Extract<Interprete, { tipo: 'respuesta' }> }
+  | { f: 'noentendi'; d: Extract<Interprete, { tipo: 'no_entendi' }>; lado: Lado }
+  | { f: 'frase'; d: Extract<Interprete, { tipo: 'frase' }> };
 
 // Modo demo: chaski:///?demo=<estado>&idioma=quechua&rol=paciente muestra un estado con datos de ejemplo,
 // sin servicio. Sirve para revisar pantallas y como respaldo de la demo si falla el wifi.
@@ -92,11 +84,30 @@ const DEMO: Record<string, Fase> = {
     },
   },
   error: { f: 'error', mensaje: 'No pude conectarme. Vuelva a intentarlo.', sinServidor: false },
+  pregunta: {
+    f: 'pregunta', lado: 'quechua',
+    d: leerInterprete({ accion: 'repreguntar', para: 'paciente', texto_pulido: '¿Desde cuándo le duele la barriga?',
+      motivo: 'Dijo que le duele, pero no desde cuándo', dato_faltante: 'desde cuándo' },
+    ) as Extract<Interprete, { tipo: 'pregunta' }>,
+  },
+  respuesta: {
+    f: 'respuesta',
+    d: leerInterprete({ accion: 'responder', texto_pulido: 'Dijo «wiksa», que es barriga. No mencionó fiebre.',
+      motivo: 'La enfermera le preguntó a Chaski, no al paciente' }) as Extract<Interprete, { tipo: 'respuesta' }>,
+  },
+  no_entendi: {
+    f: 'noentendi', lado: 'quechua',
+    d: leerInterprete({ accion: 'no_entendi', motivo: 'Se oyó un número con poca seguridad' }) as Extract<Interprete, { tipo: 'no_entendi' }>,
+  },
+  frase: {
+    f: 'frase',
+    d: { tipo: 'frase', frase: { id: 'emerg-donde-duele', es: '¿Dónde le duele?', quy: '[quechua revisado del banco]', audio: 'demo', tags: ['emergencia'] } },
+  },
 };
 
 export default function Pantalla() {
   const perfil = usePerfil();
-  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string }>();
+  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string }>();
   if (q.demo && DEMO[q.demo]) {
     const demo: Perfil = {
       idioma: q.idioma === 'quechua' ? 'quechua' : 'castellano',
@@ -107,13 +118,15 @@ export default function Pantalla() {
   }
   if (perfil === undefined) return <View style={e.pantalla} />;
   if (perfil === null) return <Redirect href="/bienvenida" />;
-  return <Consulta perfil={perfil} />;
+  // Desde el modo emergencia se vuelve con el turno del paciente listo para escuchar su respuesta.
+  const ladoInicial = q.lado === 'quechua' || q.lado === 'castellano' ? q.lado : undefined;
+  return <Consulta key={ladoInicial ?? 'consulta'} perfil={perfil} ladoInicial={ladoInicial} />;
 }
 
-function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
+function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: Fase; ladoInicial?: Lado }) {
   const t = textos(perfil.idioma);
   const [fase, setFase] = useState<Fase>(inicial ?? { f: 'listo' });
-  const [lado, setLado] = useState<Lado>(perfil.idioma);
+  const [lado, setLado] = useState<Lado>(ladoInicial ?? perfil.idioma);
   const [env, setEnv] = useState<Envolvente | null>(null);
   const ultimoAudio = useRef<string | null>(null);
 
@@ -179,6 +192,8 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
       const avance = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 2 } : p)), 1800);
       const r = await turnoEnfermera(texto, perfil.rol);
       clearTimeout(avance);
+      const ia = leerInterprete(r);
+      if (ia.tipo !== 'traducir') return interpretar(ia, 'castellano', texto, r.quechua);
       const v = veredictoEnfermera(texto, r);
       agregarTurno({ lado: 'castellano', castellano: texto, quechua: r.quechua, estado: v.tipo });
       if (v.tipo === 'bloqueado') {
@@ -208,6 +223,8 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
         setLado('castellano');
         return turnoDeLaEnfermera(uri);
       }
+      const ia = leerInterprete(r);
+      if (ia.tipo !== 'traducir') return interpretar(ia, 'quechua', r.castellano, r.chanka_oido);
       agregarTurno({
         lado: 'quechua', castellano: r.castellano, quechua: r.chanka_oido,
         estado: r.seguro ? 'entendido' : 'con_dudas',
@@ -217,6 +234,56 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
     } catch (e) {
       fallar(e);
     }
+  }
+
+  /** Las acciones del intérprete que no son traducir (D32). El código decide qué se dice y a quién. */
+  async function interpretar(ia: Interprete, hablo: Lado, castellano: string, quechua: string) {
+    if (ia.tipo === 'traducir') return;
+    if (ia.tipo === 'no_entendi') {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+      setLado(hablo);
+      setFase({ f: 'noentendi', d: ia, lado: hablo });
+      return;
+    }
+    if (ia.tipo === 'pregunta') {
+      // Repregunta: vuelve al MISMO hablante, una sola vez (C4 lo impone el servicio).
+      agregarTurno({ lado: hablo, castellano: ia.texto || castellano, quechua: ia.quechua ?? quechua, estado: 'dicho' });
+      setLado(hablo);
+      setFase({ f: 'pregunta', d: ia, lado: hablo });
+      if (ia.audioB64) return reproducirB64(ia.audioB64);
+      if (ia.para === 'paciente' && ia.quechua) return decir(ia.quechua);
+      return decirEnCastellano(ia.texto);
+    }
+    if (ia.tipo === 'respuesta') {
+      // Chaski le responde al personal: no se traduce al otro lado.
+      setLado('castellano');
+      setFase({ f: 'respuesta', d: ia });
+      if (ia.audioB64) return reproducirB64(ia.audioB64);
+      return decirEnCastellano(ia.texto);
+    }
+    // Frase verificada del banco: suena el audio revisado, sin generar nada.
+    agregarTurno({ lado: hablo, castellano: ia.frase.es, quechua: ia.frase.quy, estado: 'dicho' });
+    setLado('quechua');
+    setFase({ f: 'frase', d: ia });
+    try {
+      reproductor.replace(await audioDeFrase(ia.frase));
+      reproductor.play();
+    } catch {}
+  }
+
+  async function reproducirB64(b64: string) {
+    const bytes = base64ABytes(b64);
+    const archivo = new File(Paths.cache, `chaski-${Date.now()}.wav`);
+    archivo.create();
+    await archivo.write(bytes);
+    setEnv(envolvente(bytes));
+    reproductor.replace({ uri: archivo.uri });
+    reproductor.play();
+  }
+
+  function decirEnCastellano(texto: string) {
+    // Sin audio del servicio (Cartesia), la voz del sistema en castellano.
+    if (texto) Speech.speak(texto, { language: 'es-US', rate: 0.95 });
   }
 
   async function decir(quechua: string) {
@@ -254,11 +321,13 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
   const estadoChaski: EstadoChaski =
     fase.f === 'grabando' ? 'escuchando'
       : fase.f === 'pensando' ? 'pensando'
-        : fase.f === 'bloqueado' || fase.f === 'error' ? 'no_entendi'
+        : fase.f === 'bloqueado' || fase.f === 'error' || fase.f === 'noentendi' ? 'no_entendi'
+        : fase.f === 'pregunta' || fase.f === 'respuesta' || fase.f === 'frase' ? (hablando ? 'hablando' : 'reposo')
           : fase.f === 'dicho' ? 'hablando'
             : fase.f === 'paciente' ? 'escuchando'
               : 'reposo';
-  const protagonista = fase.f === 'listo' || fase.f === 'dicho' || fase.f === 'bloqueado' || fase.f === 'error' || fase.f === 'pensando';
+  const protagonista = fase.f === 'listo' || fase.f === 'dicho' || fase.f === 'bloqueado' || fase.f === 'error' || fase.f === 'pensando'
+    || fase.f === 'pregunta' || fase.f === 'respuesta' || fase.f === 'noentendi' || fase.f === 'frase';
 
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
@@ -266,7 +335,7 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
       <ScrollView contentContainerStyle={e.cuerpo} bounces={false}>
         {protagonista ? (
           <View style={e.centro}>
-            <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : fase.f === 'bloqueado' || fase.f === 'pensando' ? 150 : 200} boca={boca} pulso={fase.f === 'dicho' ? pulso : undefined} />
+            <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : fase.f === 'dicho' ? 200 : 150} boca={boca} pulso={fase.f === 'dicho' || fase.f === 'pregunta' || fase.f === 'respuesta' || fase.f === 'frase' ? pulso : undefined} />
           </View>
         ) : (
           <View style={e.filaChica}>
@@ -297,6 +366,11 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
 
         {fase.f === 'paciente' && <Paciente r={fase.r} t={t} />}
 
+        {fase.f === 'pregunta' && <TarjetaPregunta d={fase.d} t={t} />}
+        {fase.f === 'respuesta' && <TarjetaRespuesta d={fase.d} t={t} />}
+        {fase.f === 'noentendi' && <TarjetaNoEntendi d={fase.d} t={t} />}
+        {fase.f === 'frase' && <TarjetaFrase d={fase.d} t={t} />}
+
         {fase.f === 'error' && (
           <View style={e.centroTexto}>
             <Text style={e.titulo}>{fase.mensaje}</Text>
@@ -321,6 +395,24 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
           <View style={e.filaBotones}>
             <Boton icono="mic.fill" texto={t.responder} onPress={() => { setLado('castellano'); empezar(); }} flex />
             <Boton tipo="secundario" texto={t.pedirQueRepita} onPress={() => { setLado('quechua'); setFase({ f: 'listo' }); }} flex />
+          </View>
+        )}
+        {(fase.f === 'pregunta' || fase.f === 'frase') && (
+          <View style={e.filaBotones}>
+            <Boton tipo="secundario" icono="speaker.wave.2.fill" texto={t.repetirAudio} onPress={repetirAudio} flex />
+            <Boton icono="mic.fill" texto={t.responder} onPress={() => { setLado(fase.f === 'pregunta' ? fase.lado : 'quechua'); empezar(); }} flex />
+          </View>
+        )}
+        {fase.f === 'respuesta' && (
+          <View style={e.filaBotones}>
+            <Boton tipo="secundario" icono="speaker.wave.2.fill" texto={t.repetirAudio} onPress={() => decirEnCastellano(fase.d.texto)} flex />
+            <Boton icono="mic.fill" texto={t.seguirConsulta} onPress={() => setFase({ f: 'listo' })} flex />
+          </View>
+        )}
+        {fase.f === 'noentendi' && (
+          <View style={{ gap: 8 }}>
+            <Boton alto={56} icono="mic.fill" texto={t.repetir} onPress={() => { setLado(fase.lado); empezar(); }} />
+            <Boton tipo="texto" texto={t.volver} onPress={() => setFase({ f: 'listo' })} />
           </View>
         )}
         {fase.f === 'error' && (
@@ -361,6 +453,82 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
 
 // ---- piezas -------------------------------------------------------------------------------
 
+/** «Chaski pregunta»: la repregunta al mismo hablante, con el porqué y el dato que falta. */
+function TarjetaPregunta({ d, t }: { d: Extract<Interprete, { tipo: 'pregunta' }>; t: Textos }) {
+  return (
+    <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
+      <View style={{ alignItems: 'center' }}><Etiqueta idioma={d.para === 'paciente' ? 'quechua' : 'castellano'} /></View>
+      <Tarjeta estilo={{ gap: 8 }}>
+        <View style={e.fila}>
+          <Icono nombre="questionmark.bubble.fill" color={C.action} tam={20} />
+          <Text style={e.rotuloAccion}>{t.chaskiPregunta}</Text>
+        </View>
+        {d.para === 'paciente' && d.quechua ? <Text style={e.quechua}>{d.quechua}</Text> : null}
+        {d.texto ? <Text style={d.para === 'paciente' && d.quechua ? e.secundario : e.significado}>{d.texto}</Text> : null}
+      </Tarjeta>
+      {(d.motivo || d.dato) && (
+        <Tarjeta estilo={{ gap: 8 }}>
+          <Text style={e.rotulo}>{t.porQue}</Text>
+          {d.motivo ? <Text style={e.secundario}>{d.motivo}</Text> : null}
+          {d.dato ? (
+            <View style={e.chipDato}>
+              <Icono nombre="exclamationmark.circle" color={C.warn} tam={14} />
+              <Text style={e.chipDatoTexto}>{t.falta}: {d.dato}</Text>
+            </View>
+          ) : null}
+        </Tarjeta>
+      )}
+    </Animated.View>
+  );
+}
+
+/** Chaski le responde al personal directamente: no se traduce al paciente. */
+function TarjetaRespuesta({ d, t }: { d: Extract<Interprete, { tipo: 'respuesta' }>; t: Textos }) {
+  return (
+    <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
+      <View style={{ alignItems: 'center' }}><Etiqueta idioma="castellano" /></View>
+      <Tarjeta estilo={{ gap: 8 }}>
+        <View style={e.fila}>
+          <Icono nombre="bubble.left.fill" color={C.action} tam={20} />
+          <Text style={e.rotuloAccion}>{t.chaskiResponde}</Text>
+        </View>
+        <Text style={e.significado}>{d.texto}</Text>
+      </Tarjeta>
+    </Animated.View>
+  );
+}
+
+function TarjetaNoEntendi({ d, t }: { d: Extract<Interprete, { tipo: 'no_entendi' }>; t: Textos }) {
+  return (
+    <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 10, marginTop: 12, alignItems: 'center' }}>
+      <Text style={e.titulo}>{t.noLeEntendi}</Text>
+      <Text style={e.explicacion}>{t.noLeEntendiExplica}</Text>
+      {d.motivo ? <Aviso tipo="warn" texto={d.motivo} /> : null}
+    </Animated.View>
+  );
+}
+
+/** Frase verificada del banco (C9): traducción y audio revisados. */
+function TarjetaFrase({ d, t }: { d: Extract<Interprete, { tipo: 'frase' }>; t: Textos }) {
+  return (
+    <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
+      <View style={{ alignItems: 'center' }}><Etiqueta idioma="quechua" /></View>
+      <Tarjeta estilo={{ gap: 8 }}>
+        <Text style={e.quechua}>{d.frase.quy}</Text>
+        <Zigzag />
+        <Text style={e.secundario}>{d.frase.es}</Text>
+      </Tarjeta>
+      <View style={[e.auditoria, { backgroundColor: C.okTint }]}>
+        <View style={e.fila}>
+          <Icono nombre="checkmark.seal.fill" color={C.ok} tam={18} />
+          <Text style={[e.auditoriaTitulo, { color: C.ok }]}>{t.fraseVerificada}</Text>
+        </View>
+        <Text style={[e.mini, { color: C.ok }]}>{t.fraseVerificadaExplica}</Text>
+      </View>
+    </Animated.View>
+  );
+}
+
 function explicacion(p: Perfil, lado: Lado, t: Textos): string {
   const otro = otraPersona(p.rol, t);
   if (lado !== p.idioma) return t.explicaOtro(otro, lado === 'castellano' ? t.castellano : t.quechua);
@@ -381,9 +549,19 @@ function Encabezado({ t }: { t: Textos }) {
         <MarcaChaski />
         <Text style={e.reloj}>{t.consulta} · {reloj}</Text>
       </Pressable>
-      <Pressable accessibilityLabel="Ver la conversación" onPress={() => router.push('/historial')} style={e.botonRedondo}>
-        <Icono nombre="doc.text" color={C.inkSecondary} tam={18} />
-      </Pressable>
+      <View style={{ flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t.emergencia}
+          onPress={() => router.push('/emergencia')}
+          style={({ pressed }) => [e.emergencia, pressed && { opacity: 0.8 }]}>
+          <Icono nombre="bolt.heart.fill" color={C.surface} tam={16} />
+          <Text style={e.emergenciaTexto}>{t.emergencia}</Text>
+        </Pressable>
+        <Pressable accessibilityLabel="Ver la conversación" onPress={() => router.push('/historial')} style={e.botonRedondo}>
+          <Icono nombre="doc.text" color={C.inkSecondary} tam={18} />
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -629,6 +807,12 @@ function primeraMayuscula(s: string) {
 }
 
 const e = StyleSheet.create({
+  fila: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  rotuloAccion: { fontSize: ESCALA.chico, fontWeight: '700', color: C.action },
+  chipDato: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-start', backgroundColor: C.warnTint, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 5 },
+  chipDatoTexto: { fontSize: ESCALA.mini, fontWeight: '600', color: C.warn },
+  emergencia: { flexDirection: 'row', alignItems: 'center', gap: 6, height: 36, paddingHorizontal: 12, borderRadius: 18, backgroundColor: C.ink },
+  emergenciaTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.surface },
   pantalla: { flex: 1, backgroundColor: C.ground },
   encabezado: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 10 },
   marca: { gap: 2 },

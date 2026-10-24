@@ -10,7 +10,8 @@ Colores **solo** desde `../design/tokens.json`; Chaski desde `../avatar/` (sin c
 |---|---|
 | `bienvenida` | Onboarding: idioma → nombre → ¿personal de salud o paciente? |
 | `index` | La consulta: listo, grabando, pensando, dicho, dicho con aviso, bloqueado, respuesta del paciente, error |
-| `receta` | Foto de la receta o la caja → Claude visión (`/ver`) |
+| `receta` | F9 + F6: foto → `/ver` → la enfermera confirma los datos → indicación por plantilla → traducida y auditada → «¿me lo repite?» con lista de lo entendido |
+| `emergencia` | Modo emergencia (C11, D35): frases verificadas del banco (`GET /banco?tag=emergencia`, si no `src/chaski/banco-demo.json`), toca y suena. Las frases con quechua pendiente `[revisar…]` no se dicen nunca |
 | `historial` | Los turnos de la consulta |
 | `resumen` | Nota clínica (personal) o lo que hay que hacer en casa (paciente), con audio en quechua auditado |
 | `ajustes` | Dirección del servicio y cambio de perfil. Se entra con un **toque largo en «Chaski»** |
@@ -44,6 +45,9 @@ Cada estado se abre con un enlace, para revisar pantallas o como respaldo si fal
 ```
 chaski:///?demo=listo|grabando|pensando|dicho|aviso|bloqueado|paciente|error   [&idioma=quechua] [&rol=paciente]
 chaski:///resumen?demo=1&rol=personal|paciente
+chaski:///?demo=pregunta|respuesta|no_entendi|frase      (intérprete agente, D32)
+chaski:///receta?demo=datos|dicho|resultado
+chaski:///emergencia
 ```
 
 En el simulador con Expo Go: `xcrun simctl openurl booted "exp://127.0.0.1:8081/--/?demo=dicho"`.
@@ -67,6 +71,8 @@ xcodebuild -exportArchive -archivePath build/Chaski.xcarchive -exportOptionsPlis
 Para cada build nuevo, sube `ios.buildNumber` en `app.json`.
 
 ## Pendiente
+
+- `src/chaski/banco-demo.json` es un fixture con el formato del §4: cambiarlo por `app/chaski/banco.json` cuando exista, o servirlo en `GET /banco`.
 
 - Los textos en quechua de `src/chaski/textos.ts` son **borrador**: los revisa la mamá de Freddy.
 - «¿Me lo repite?» (F6) espera su ruta en el servicio.

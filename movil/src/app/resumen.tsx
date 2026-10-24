@@ -3,7 +3,7 @@
 import { useAudioPlayer } from 'expo-audio';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { resumen as pedirResumen, turnoEnfermera, voz, type Resumen } from '@/chaski/api';
@@ -12,7 +12,8 @@ import { nuevaConsulta, useTurnos } from '@/chaski/consulta';
 import { usePerfil } from '@/chaski/perfil';
 import { C, ESCALA } from '@/chaski/tokens';
 import { MarcaChaski } from '@/chaski/motivos';
-import { Aviso, Boton, Tarjeta } from '@/chaski/ui';
+import { textos } from '@/chaski/textos';
+import { Aviso, Boton, Icono, Tarjeta } from '@/chaski/ui';
 
 const EJEMPLO: Resumen = {
   rol: 'personal',
@@ -23,6 +24,10 @@ const EJEMPLO: Resumen = {
   dudas: ['qué hacer si olvida la dosis de la noche'],
   no_se_dijo: ['Tome dos juntas si le duele mucho.'],
   texto_para_decir: '',
+  glosario: [
+    { quechua: '[palabra en quechua]', castellano: 'fiebre' },
+    { quechua: '[palabra en quechua]', castellano: 'pastilla' },
+  ],
 };
 
 export default function PantallaResumen() {
@@ -34,6 +39,19 @@ export default function PantallaResumen() {
   const [error, setError] = useState(false);
   const [voz_, setVoz] = useState<'nada' | 'preparando' | 'lista' | 'no_segura'>('nada');
   const reproductor = useAudioPlayer(null);
+  const [sonando, setSonando] = useState<string | null>(null);
+
+  /** Glosario (D36): cada palabra nueva con la voz de Chaski, para ir aprendiendo. */
+  async function decirPalabra(quechua: string) {
+    if (quechua.startsWith('[')) return;
+    setSonando(quechua);
+    try {
+      const { uri } = await voz(quechua);
+      reproductor.replace({ uri });
+      reproductor.play();
+    } catch {}
+    setTimeout(() => setSonando(null), 1500);
+  }
 
   useEffect(() => {
     if (q.demo) return;
@@ -117,6 +135,27 @@ export default function PantallaResumen() {
                 {r.dudas.map((s, n) => <Aviso key={n} tipo="warn" texto={s} />)}
               </Tarjeta>
             )}
+            {r.glosario && r.glosario.length > 0 && (
+              <Tarjeta estilo={{ gap: 4 }}>
+                <Text style={e.rotulo}>{textos(perfil?.idioma ?? 'castellano').palabrasNuevas.toUpperCase()}</Text>
+                <Text style={[e.secundario, { marginBottom: 6 }]}>{textos(perfil?.idioma ?? 'castellano').palabrasNuevasExplica}</Text>
+                {r.glosario.map((g, n) => (
+                  <View key={n} style={[e.palabra, n > 0 && { borderTopWidth: 1, borderTopColor: C.border }]}>
+                    <View style={{ flex: 1 }}>
+                      <Text style={e.palabraQuy}>{g.quechua}</Text>
+                      <Text style={e.secundario}>{g.castellano}</Text>
+                    </View>
+                    <Pressable
+                      accessibilityRole="button"
+                      accessibilityLabel={`Escuchar ${g.quechua}`}
+                      onPress={() => decirPalabra(g.quechua)}
+                      style={({ pressed }) => [e.play, pressed && { backgroundColor: C.actionTint }]}>
+                      <Icono nombre={sonando === g.quechua ? 'speaker.wave.3.fill' : 'play.fill'} color={C.action} tam={16} />
+                    </Pressable>
+                  </View>
+                ))}
+              </Tarjeta>
+            )}
             {voz_ === 'no_segura' && <Aviso tipo="warn" texto="La auditoría no aprobó decirlo en quechua. Pídale al personal que lo repita." />}
           </>
         )}
@@ -138,6 +177,9 @@ export default function PantallaResumen() {
 }
 
 const e = StyleSheet.create({
+  palabra: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 10 },
+  palabraQuy: { fontSize: ESCALA.cuerpo, fontWeight: '700', color: C.quechua },
+  play: { width: 40, height: 40, borderRadius: 20, borderWidth: 1, borderColor: C.border, alignItems: 'center', justifyContent: 'center', backgroundColor: C.surface },
   pantalla: { flex: 1, backgroundColor: C.ground },
   fila: { flexDirection: 'row', gap: 14, alignItems: 'center' },
   titulo: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink },
