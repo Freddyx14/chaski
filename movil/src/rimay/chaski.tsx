@@ -4,6 +4,7 @@ import { Image } from 'expo-image';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { StyleSheet, View } from 'react-native';
 
+import { altoDeManta, Manta } from './manta';
 import { C } from './tokens';
 
 export type EstadoChaski = 'reposo' | 'presentarse' | 'escuchando' | 'pensando' | 'hablando' | 'no_entendi';
@@ -37,6 +38,10 @@ export function Chaski({ estado, tam, boca = false }: { estado: EstadoChaski; ta
         transition={0}
       />
       {loop ? <Loop key={estado} fuente={loop} /> : null}
+      {/* Chaski se sienta sobre su lliclla (D28). */}
+      <View style={[estilos.lliclla, { height: altoDeManta('lliclla', tam / 240) }]}>
+        <Manta variante="lliclla" ancho={tam} escala={tam / 240} />
+      </View>
     </View>
   );
 }
@@ -59,6 +64,7 @@ function Loop({ fuente }: { fuente: number }) {
 }
 
 const estilos = StyleSheet.create({
+  lliclla: { position: 'absolute', left: 0, right: 0, bottom: 0 },
   tarjeta: {
     overflow: 'hidden',
     // El degradado de la tarjeta es el mismo fondo de las imágenes; con la imagen a sangre

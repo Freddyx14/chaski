@@ -99,3 +99,18 @@ test('solo se reencamina a castellano con confianza alta', () => {
   assert.equal(fueCastellano({ ...p, idioma: { codigo: 'quy', confianza: 0.99 } }), false);
   assert.equal(fueCastellano({ ...p, idioma: null }), false);
 });
+
+import { tramos } from '../src/rimay/tejido.ts';
+
+test('tejido: une puntos contiguos y salta el fondo', () => {
+  assert.deepEqual(tramos('.11.2', 1), [
+    { desde: 1, largo: 2, valor: '1' },
+    { desde: 4, largo: 1, valor: '2' },
+  ]);
+  // Al repetir, el último punto de una copia y el primero de la siguiente se unen.
+  assert.deepEqual(tramos('1..1', 2), [
+    { desde: 0, largo: 1, valor: '1' },
+    { desde: 3, largo: 2, valor: '1' },
+    { desde: 7, largo: 1, valor: '1' },
+  ]);
+});
