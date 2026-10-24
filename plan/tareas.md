@@ -54,10 +54,13 @@ Sin la línea base no hay «cuánto mejoramos», y ese número es el pitch. Rica
 - Paso 0 y paso 1 de abajo SON esta línea base: que queden guardados así, con las fallas, antes de las 13:30.
 
 ### 🔴 URGENTE · Dos rutas que la app ya llama (pegar en `servicio/app.py`) — pedido de Freddy, sáb 09:31
-La app iOS ya está en TestFlight y sin estas rutas el resumen y la detección de idioma no funcionan. **Cuando las pegues, haz push** (y avisa por el grupo).
-- [ ] `/resumen`
-- [ ] `/idioma`
-- [ ] Levantar el túnel HTTPS donde corre el servicio: `cloudflared tunnel --url http://localhost:8000` y pasarle la dirección a Freddy
+**Estado al sáb 11:31 (pedido de Freddy, sigue pendiente):** la app Chaski ya está en TestFlight (build 4) y se conecta sola a tu túnel por `servicio/url.json`. Lo único que no funciona en la app es por estas dos rutas: **el resumen de la consulta muestra un error** y **los turnos alternan solos** en vez de detectar el idioma. **Cuando las pegues, reinicia el servicio, haz push y avisa por el grupo.**
+- [ ] `/resumen` (código abajo)
+- [ ] `/idioma` (código abajo)
+- [x] Túnel HTTPS (`servicio/publicar_url.sh`), ya funciona
+- [ ] **Reiniciar el servicio** para que tome el arreglo de la auditoría (`46e1003`: «tome una pastilla cada 8 horas» ya no bloquea por «medicamento» con nombre vacío, y «tableta» = «pastilla»)
+- [ ] Al reiniciar, cambiar `rimay` por `chaski` en tus imports (`servicio/app.py`, `servicio/auditoria_rapida.py`, `pyproject.toml`). El paquete se renombró (D30); el puente `app/rimay` mantiene vivo lo viejo, pero se borra después del hackathon
+- Cómo probar: `curl -F "turnos=[{\"lado\":\"castellano\",\"castellano\":\"Tome paracetamol cada 8 horas por 3 días\",\"quechua\":\"q\",\"estado\":\"dicho\"}]" -F "rol=paciente" $URL/resumen` y `curl -F "audio=@turno.wav" $URL/idioma`
 
 La lógica del resumen ya está en `app/chaski/resumen.py` con pruebas; solo falta exponerla. `/idioma` reenvía a la instancia, que ya lo tiene.
 

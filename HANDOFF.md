@@ -5,6 +5,8 @@
 
 ## ⏭️ PENDIENTES (empezar por acá)
 
+0. **🔴 Ricardo: `/resumen` y `/idioma` en `servicio/app.py`** (código listo en `plan/tareas.md`, sección URGENTE) + reiniciar el servicio. Sin eso, en la app (TestFlight build 4) el resumen da error y los turnos alternan en vez de detectar el idioma. Todo lo demás de la app ya funciona contra su túnel.
+
 1. **Datos de voz: todavía no llegó ni una grabación real.** Es lo que bloquea el ajuste fino (el núcleo técnico).
    - Un subagente está construyendo un **formulario web** (Next.js en Vercel + Neon para texto + Vercel Blob para audio) en `form/`:
      cada persona ve la frase en castellano, la escribe en quechua y graba leyéndola. Incluye export JSONL para Ricardo y `/admin`.
