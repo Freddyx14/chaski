@@ -316,7 +316,7 @@ p0 = d.caja("0 · El modelo tal cual\n\nLínea base. Sin tocar nada.",
             CAJA.format(b="#8C8C7A"), 40, 394, 250, 70)
 p1 = d.caja("1 · + vocabulario de la posta\n\nGlosario y préstamos",
             CAJA.format(b="#1F6FD0"), 320, 394, 250, 70)
-p2 = d.caja("2 · + ajuste fino con las voces\n\n~7 min en la A10G",
+p2 = d.caja("2 · + ajuste fino con las voces\n\nASR 30 épocas: 14 min\nVoz 50 épocas: 20 min\nmedido en la A10G",
             CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 600, 394, 250, 70)
 d.flecha(p0, p1); d.flecha(p1, p2)
 

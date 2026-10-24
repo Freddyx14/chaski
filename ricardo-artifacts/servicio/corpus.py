@@ -15,6 +15,7 @@ Por eso corregir una vez vale por tres.
 from __future__ import annotations
 
 import json
+import os
 import re
 from pathlib import Path
 
@@ -23,7 +24,11 @@ import httpx
 from voz.contrato import Grabacion, escribir_manifiesto, leer_manifiesto
 
 RAIZ = Path("datos/crudo")
-INSTANCIA = "http://127.0.0.1:8010"
+# Igual que en flujo.py: en la laptop el 8010 es el tunel SSH a la instancia,
+# pero cuando el servicio corre EN la instancia los modelos estan en el 8000 de
+# ahi mismo. Con la constante fija, el boton de transcribir de /corregir servia
+# la pagina y fallaba al apretarlo.
+INSTANCIA = os.environ.get("CHASKI_VOZ", "http://127.0.0.1:8010")
 
 
 # El cuadernillo numera corrido: 1, 2, 3... y la persona dice solo el numero.

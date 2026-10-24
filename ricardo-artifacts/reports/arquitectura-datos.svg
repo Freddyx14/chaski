@@ -61,10 +61,12 @@
 <rect x="320" y="394" width="250" height="4" fill="#1F6FD0"/>
 <text x="330" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">1 · + vocabulario de la posta</text>
 <text x="330" y="442.9" font-size="11.0" fill="#4E4D45">Glosario y préstamos</text>
-<rect x="600" y="394" width="250" height="70" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
+<rect x="600" y="394" width="250" height="92" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
 <rect x="600" y="394" width="250" height="4" fill="#1F6FD0"/>
 <text x="610" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">2 · + ajuste fino con las voces</text>
-<text x="610" y="442.9" font-size="11.0" fill="#4E4D45">~7 min en la A10G</text>
+<text x="610" y="442.9" font-size="11.0" fill="#4E4D45">ASR 30 épocas: 14 min</text>
+<text x="610" y="458.9" font-size="11.0" fill="#4E4D45">Voz 50 épocas: 20 min</text>
+<text x="610" y="474.8" font-size="11.0" fill="#4E4D45">medido en la A10G</text>
 <text x="40" y="514.2" font-size="13.0" fill="#16160F" font-weight="700">4 · Cada cosa se mide contra una verdad distinta</text>
 <text x="40" y="532.0" font-size="11.0" fill="#4E4D45">Hasta el 24-oct la auditoría no tenía ninguna: solo se comparaba con la de Freddy, y eso no prueba nada si las dos se equivocan igual.</text>
 <rect x="40" y="542" width="300" height="100" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
@@ -118,7 +120,7 @@
 <path d="M510 172 L525 172 L525 172 L540 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M770 172 L785 172 L785 172 L800 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M290 429 L305 429 L305 429 L320 429" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M570 429 L585 429 L585 429 L600 429" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M570 429 L585 429 L585 440 L600 440" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M340 592 L355 592 L355 714 L370 714" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
 <path d="M530 650 L530 663 L530 663 L530 676" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
 <path d="M885 642 L885 659 L530 659 L530 676" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>

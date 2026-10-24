@@ -28,6 +28,19 @@ Compruébala primero:
 curl https://unsubmitted-wally-relatable.ngrok-free.dev/salud
 ```
 
+## Las páginas, por si quieres abrirlas en el navegador
+
+Todo cuelga del mismo dominio. Desde el 24-oct lo sirve la instancia, no la laptop de Ricardo.
+
+| Página | Para qué |
+|---|---|
+| `/` | índice |
+| `/flujo` | la demo del turno completo, con Chaski |
+| `/corregir` | el etiquetador: transcribe, se corrige el escrito, se parte y se une |
+
+`/corregir` ya no es local. Corría en la laptop de Ricardo con un túnel SSH; ahora está en la misma
+URL que todo lo demás, así que lo pueden abrir los dos.
+
 ## Las rutas que te sirven
 
 | Ruta | Qué le mandas | Qué devuelve |

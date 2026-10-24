@@ -1,10 +1,13 @@
 """Audios de WhatsApp -> conjuntos listos para entrenar y medir.
 
-Dos reglas que no se negocian (plan/recoleccion-de-voz.md):
+Tres reglas que no se negocian (plan/recoleccion-de-voz.md):
   1. Sin consentimiento, el audio no entra a ningun conjunto.
   2. El conjunto de prueba es UNA PERSONA COMPLETA que no aparece en el
      entrenamiento. Si se parte por frase, el modelo aprende la voz y el numero
      del pitch deja de significar nada.
+  3. Quien no es hablante nativo no entra ni al entrenamiento ni a la prueba.
+     Sus grabaciones sirven para probar la tuberia, no para enseñarle al modelo
+     como suena el chanka ni para decir que tan bien lo entiende.
 """
 from __future__ import annotations
 
@@ -18,9 +21,26 @@ from voz.contrato import FRECUENCIA_HZ, Grabacion, escribir_manifiesto
 FRACCION_VALIDACION = 0.12
 MINIMO_PARA_VALIDACION = 10  # con menos clips, la validacion se comeria el entrenamiento
 
+# `origen` del contrato. Quien marca "aprendiz" esta leyendo el cuadernillo sin
+# ser hablante: su pronunciacion es una imitacion, no el acento de la posta.
+APRENDIZ = "aprendiz"
 
-def utilizables(grabaciones: list[Grabacion]) -> list[Grabacion]:
-    return [g for g in grabaciones if g.consentimiento and g.transcripcion.strip()]
+
+def es_nativo(g: Grabacion) -> bool:
+    return g.origen != APRENDIZ
+
+
+def utilizables(grabaciones: list[Grabacion], incluir_aprendices: bool = False) -> list[Grabacion]:
+    """Lo que puede entrar a un conjunto.
+
+    `incluir_aprendices` existe para probar la tuberia de punta a punta antes de
+    que lleguen las grabaciones de las familias, no para entrenar. Por defecto
+    va en falso: una grabacion de alguien que imita el chanka le ensena al modelo
+    una pronunciacion que ningun paciente tiene, y medida como prueba da un WER
+    que no representa a nadie.
+    """
+    listos = [g for g in grabaciones if g.consentimiento and g.transcripcion.strip()]
+    return listos if incluir_aprendices else [g for g in listos if es_nativo(g)]
 
 
 def resumen_por_persona(grabaciones: list[Grabacion]) -> dict:
@@ -50,9 +70,12 @@ def partir_por_hablante(grabaciones: list[Grabacion], persona_prueba: str | None
     datos = utilizables(grabaciones)
     personas = sorted({g.persona for g in datos})
     if len(personas) < 2:
+        aprendices = sorted({g.persona for g in grabaciones if not es_nativo(g)})
+        pista = (f" (se dejaron fuera {len(aprendices)} aprendices: {aprendices})"
+                 if aprendices else "")
         raise ValueError(
             "hacen falta al menos dos personas para una particion honesta; "
-            f"hay {len(personas)}")
+            f"hay {len(personas)}{pista}")
 
     prueba_id = persona_prueba or elegir_persona_prueba(datos)
     if prueba_id not in personas:

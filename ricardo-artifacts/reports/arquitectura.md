@@ -137,6 +137,40 @@ Y son **dos ajustes distintos**, que conviene no mezclar:
 Esa tensión es la razón de que el protocolo pida que todos graben el bloque de frases, pero que la voz de
 Chaski salga de una sola persona.
 
+### Cuánto dura cada ajuste, medido en la A10G
+
+| Qué | Datos | Épocas | Pasos | Tiempo |
+|---|---|---|---|---|
+| `omniASR` — entender | 700 clips, 4 personas | 30 | 2 640 | **14 min** |
+| `mms-tts-quy` — la voz | 175 clips, una voz | **50** | 2 150 | **20 min** |
+
+Las 50 épocas de la voz no son un número al voleo: la receta de referencia de MMS-TTS pone la
+adaptación de hablante en 80–150 muestras y unos 20 minutos, y nosotros tenemos 175 frases. Con ~12
+minutos de audio, 200 épocas no mejoran la voz, la memorizan.
+
+La voz se elige **de oído**, no por la pérdida: punto de control cada ~250 pasos, la misma frase
+generada con cada uno, y la mamá de Freddy dice cuál suena a ella. La pérdida del discriminador mide
+si el discriminador se deja engañar, que no es lo mismo que parecerse a una persona.
+
+Detalle completo, con los barridos de batch y de épocas, en `reports/tiempos-instancia.md`.
+
+### Las grabaciones de quien no es hablante
+
+Ricardo graba el cuadernillo mientras su papá y los padres de Freddy terminan. Habla chanka poco, así
+que lo que graba es una **imitación**, y eso cambia para qué sirve.
+
+Sirve para probar la tubería entera hoy, sin esperar a nadie: que el formulario reciba, que el
+segmentador corte, que `/corregir` muestre, que `medir_asr.py` saque un número. Es la única forma de
+llegar a las grabaciones de verdad con el camino ya despejado.
+
+No sirve para entrenar ni para medir. Entrenando, le enseña al modelo una pronunciación que ningún
+paciente de Pilpichaca tiene. Midiendo, da un WER que no representa a nadie. Las dos cosas
+**empeorarían** el resultado mientras parecen mejorarlo, que es el peor tipo de error.
+
+Así que está en el código, no en la buena memoria de nadie: una grabación con `origen: "aprendiz"`
+queda fuera de `utilizables()`, y por lo tanto fuera del entrenamiento y de la prueba. Para probar la
+tubería se pasa `incluir_aprendices=True` a propósito, en una línea que se ve.
+
 ## 7. Cómo se mide cada cosa
 
 El detalle está en `reports/metricas.md`, bloque por bloque de `frases.json`. Lo corto: cada cosa se
