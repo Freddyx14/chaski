@@ -1,6 +1,6 @@
 # Rimay — fuente de verdad (SOT)
 
-> **Versión SOT-5 · sábado 24 de octubre de 2026, 00:50 PT**
+> **Versión SOT-6 · sábado 24 de octubre de 2026, 00:58 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-6 (sáb 00:58).** **El avatar es Chaski** (D22): la vicuña 3D sentada con audífonos de intérprete y bufanda teal, `avatar/opciones/2d-3d-audifonos.png`. Los 5 estados se generan el sábado a partir de esa imagen.
 - **SOT-5 (sáb 00:50).** **Claude es el núcleo (D19, §3)**: los modelos de voz son los oídos y la boca, Claude es el que entiende, ve y decide. Siete trabajos:
   - **Ver (F9):** lee la receta escrita a mano y la caja, y **cruza la caja con lo que dijo la enfermera** (si ella dijo paracetamol y la caja dice ibuprofeno, avisa). Si no está seguro de leer algo, no adivina.
   - **Corregir (F10):** el reconocimiento de quechua da varios intentos y Claude elige y corrige con el contexto de la consulta. **Cuarto número para el jurado: cuánto baja el error con Claude.** Se hace entre los dos: tu modelo da las N mejores, Freddy hace la corrección.
@@ -154,6 +155,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D18 | sáb 00:14 | **La mamá de Freddy prueba por videollamada y, si puede, aparece en el pitch** | Usuaria real, voz real |
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
+| D22 | sáb 00:54 | **El avatar es Chaski: la vicuña 3D con audífonos y micrófono de intérprete y bufanda teal** (`avatar/opciones/2d-3d-audifonos.png`) | Se entiende de un vistazo que interpreta y traduce |
 | D21 | sáb 00:45 | **Tareas por persona en `plan/tareas.md`**; Ricardo arma las preguntas y frases que graban las familias | Seguimiento claro |
 
 ---
@@ -166,7 +168,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | P2 | ¿Qué modelo de Claude en la conversación? | Medir `claude-opus-5`, `claude-sonnet-5` y `claude-haiku-4-5` en el mismo set: segundos por turno y errores atrapados. Quedarse con el más rápido que no pierda acierto en la auditoría | abierta · se decide el sábado con números (D15) |
 | P3 | ¿Voz en castellano? | — | ✅ cerrada: Cartesia (D16) |
 | P4 | Nombre final | Ver lista abajo; decidirla con la mamá de Freddy | abierta |
-| P5 | ¿Cómo es el avatar? | Ver §10 | abierta · Freddy |
+| P5 | ¿Cómo es el avatar? | — | ✅ cerrada: Chaski, vicuña 3D con audífonos (D20, D22) |
 | P6 | ¿La mamá de Freddy puede el domingo de 12:30 a 14:30 (hora de Lima)? | Preguntarle hoy | abierta · Freddy |
 
 ### Nombres propuestos (P4)
@@ -219,8 +221,7 @@ personaje), **boca abierta y cerrada según el volumen del audio**, y movimiento
 | 3 | Geométrica con manto textil andino | La que más parece vicuña; fácil de animar por partes | Menos juguetona |
 | 4 | Acuarela de cuento, con estetoscopio | Cálida, dice «salud» | Parece alpaca; textura pesada para animar |
 
-**Recomendación:** la **2** si quieren la más juguetona, la **3** si quieren la más vicuña y la más fácil de animar.
-Freddy elige; con la elegida se generan los 5 estados con `/falia`.
+✅ **Elegida (D22): `2d-3d-audifonos.png`**, la versión 3D con audífonos de intérprete (variación de la 2; las variaciones 2b, 2c y 2d están en la misma carpeta). **Nombre: Chaski.** Los 5 estados se generan el sábado con `/falia` usando esa imagen como referencia, para que sea el mismo personaje. *(Hay 5 estados ya generados a partir de la opción 2 original, sin descargar; no sirven para la 2d.)*
 
 **Nombres propuestos para la vicuña** (si la app se llama Rimay, la vicuña lleva su propio nombre; significado a confirmar con la mamá de Freddy):
 | Nombre | Lo que entendemos | Por qué |
