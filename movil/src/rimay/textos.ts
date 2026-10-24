@@ -67,6 +67,7 @@ const es = {
   volver: 'Volver',
   receta: 'Receta',
   consulta: 'Consulta',
+  resumen: 'Resumen',
 };
 
 export type Textos = typeof es;

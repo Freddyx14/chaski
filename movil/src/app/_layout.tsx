@@ -17,6 +17,7 @@ export default function Layout() {
         <Stack.Screen name="historial" options={{ presentation: 'modal' }} />
         <Stack.Screen name="receta" options={{ presentation: 'modal' }} />
         <Stack.Screen name="ajustes" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="resumen" />
       </Stack>
     </>
   );

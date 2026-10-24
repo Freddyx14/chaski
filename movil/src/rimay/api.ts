@@ -94,3 +94,22 @@ export function ver(uri: string, dicho: string) {
   if (dicho) f.append('dicho', dicho);
   return pedir<Lectura>('/ver', f, 60);
 }
+
+export type Resumen = {
+  rol: Rol;
+  resumen: string;
+  indicaciones: string[];
+  senales_de_alarma: string[];
+  proxima_cita: string | null;
+  dudas: string[];
+  no_se_dijo: string[];
+  texto_para_decir: string;
+};
+
+/** F11: el resumen de la consulta, según quién lo lee (D27). Lo bloqueado nunca entra como indicación. */
+export function resumen(turnos: { lado: string; castellano: string; quechua: string; estado: string }[], rol: Rol) {
+  const f = new FormData();
+  f.append('turnos', JSON.stringify(turnos));
+  f.append('rol', rol);
+  return pedir<Resumen>('/resumen', f, 90);
+}

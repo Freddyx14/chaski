@@ -60,8 +60,9 @@ export default function Historial() {
           </Tarjeta>
         )}
       />
-      <View style={{ padding: 16 }}>
-        <Boton tipo="secundario" texto="Terminar consulta" onPress={() => { nuevaConsulta(); router.back(); }} />
+      <View style={{ padding: 16, gap: 8 }}>
+        <Boton texto="Terminar y ver el resumen" onPress={() => router.replace('/resumen')} deshabilitado={turnos.length === 0} />
+        <Boton tipo="texto" texto="Empezar otra consulta sin resumen" onPress={() => { nuevaConsulta(); router.back(); }} />
       </View>
     </SafeAreaView>
   );

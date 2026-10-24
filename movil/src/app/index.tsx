@@ -317,6 +317,7 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
             onPress={fase.f === 'grabando' ? terminar : empezar}
             onCambiarLado={() => fase.f === 'listo' && setLado(siguienteLado(lado))}
             onReceta={() => router.push('/receta')}
+            onResumen={() => router.push('/resumen')}
           />
         )}
       </View>
@@ -353,8 +354,8 @@ function Encabezado({ t }: { t: Textos }) {
   );
 }
 
-function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta }: {
-  grabando: boolean; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void;
+function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta, onResumen }: {
+  grabando: boolean; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void; onResumen: () => void;
 }) {
   return (
     <View style={{ alignItems: 'center', gap: 12 }}>
@@ -378,7 +379,14 @@ function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta
           ]}>
           <Icono nombre={grabando ? 'stop.fill' : 'mic.fill'} color={C.surface} tam={36} />
         </Pressable>
-        <View style={e.lateral} />
+        <View style={e.lateral}>
+          {!grabando && (
+            <Pressable onPress={onResumen} style={e.botonLateral} accessibilityLabel="Terminar y ver el resumen">
+              <Icono nombre="checklist" color={C.inkSecondary} tam={22} />
+            </Pressable>
+          )}
+          {!grabando && <Text style={e.lateralTexto}>{t.resumen}</Text>}
+        </View>
       </View>
       <Text style={e.microTexto}>{grabando ? t.tocarTerminar : t.tocarHablar}</Text>
       <Pressable onPress={onCambiarLado} disabled={grabando} style={e.lado} accessibilityHint="Toque para cambiar quién habla">
