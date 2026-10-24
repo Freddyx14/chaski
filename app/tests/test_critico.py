@@ -35,11 +35,12 @@ def flujo(retr_hechos=H, retr="Tome una pastilla de paracetamol cada ocho horas"
     return [H, Retraduccion(castellano=retr), retr_hechos, agregados]
 
 
-def test_critico_por_defecto_es_haiku_y_lo_usa_en_todas_las_llamadas():
+def test_critico_por_defecto_es_el_del_producto_y_lo_usa_en_todas_las_llamadas():
     c = FakeClient(flujo())
     r = criticar(c, ES, QUY)
     assert r.veredicto.ok, r.veredicto
-    assert MODELO_CRITICO == "claude-haiku-4-5-20251001"
+    from chaski import orquestador
+    assert MODELO_CRITICO == orquestador.modelo_critico_env()  # the eval and the product share one default
     assert [k["model"] for k in c.llamadas] == [MODELO_CRITICO] * 4 and r.llamadas == 4
 
 

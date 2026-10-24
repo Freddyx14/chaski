@@ -2,8 +2,8 @@
 
 The translator and the critic are different roles. The critic never writes what the patient
 hears; it only extracts, and plain code decides (chaski.hechos.comparar, chaski.guardas). It runs
-on Haiku by default for speed (advice from the Anthropic workshop, Cal Hacks 13.0) and takes the
-model as a parameter so Haiku and Sonnet can be compared on the same attack bank.
+on Sonnet by default (CHASKI_MODELO_CRITICO): Anthropic's workshop suggested Haiku for speed, but on the shared
+attack sample Sonnet caught 160/160 with 7.5 % false blocks vs Haiku's 96 % / 18 %. The model is a parameter.
 
 Calls per output, all with the critic model:
   1. facts of the Spanish original                       (extraer_hechos)
@@ -17,6 +17,7 @@ Reuses the system prompts of chaski.auditoria so the two paths cannot drift apar
 """
 from __future__ import annotations
 
+import os
 from concurrent.futures import ThreadPoolExecutor
 
 import anthropic
@@ -28,7 +29,9 @@ from chaski.guardas import (Agregados, Veredicto, bloqueo, fail_closed, pasa, pu
                             pulido_sin_terminos_nuevos, sin_agregados, terminos_fijos)
 from chaski.hechos import Hechos, comparar
 
-MODELO_CRITICO = "claude-haiku-4-5-20251001"
+# One default for the product and the evals (they once disagreed and a run measured Haiku by accident, 24-oct).
+# Sonnet won on the shared sample: 160/160 caught, 7.5 % false blocks, vs Haiku 96 % / 18 %.
+MODELO_CRITICO = os.environ.get("CHASKI_MODELO_CRITICO", "claude-sonnet-5")
 
 SISTEMA_AGREGADOS = (
     "Comparas dos textos en castellano de una posta de salud del Perú: el ORIGINAL que dijo el personal y la "
