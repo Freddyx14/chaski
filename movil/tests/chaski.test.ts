@@ -314,8 +314,8 @@ test('repreguntar con el contrato nuevo usa texto_salida como quechua', () => {
 });
 
 test('los pasos del «Pensando» avanzan con el tiempo y avisa si tarda', () => {
-  assert.deepEqual([0, 1400, 1600, 4000, 11000].map(pasoPorTiempo), [0, 0, 1, 2, 2]);
-  assert.equal(AVISO_LENTO_MS, 6000);
+  assert.deepEqual([0, 2900, 3100, 7500, 30000].map(pasoPorTiempo), [0, 0, 1, 2, 2]);
+  assert.equal(AVISO_LENTO_MS, 10000);
 });
 
 test('banco real: sin revisar o falta_quechua NUNCA se reproduce', () => {

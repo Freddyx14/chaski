@@ -15,7 +15,7 @@ import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinServidor, turn
 import { Chaski, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
-  AVISO_LENTO_MS, esEnsayo, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
+  AVISO_LENTO_MS, AVISO_MUY_LENTO_MS, esEnsayo, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
   pasoPorTiempo, siguienteLado, veredictoEnfermera,
   type Interprete, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/chaski/modelo';
@@ -754,6 +754,7 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
   const transcurrido = fase.desde ? ahora - fase.desde : 0;
   const paso = fase.desde ? Math.max(fase.paso, pasoPorTiempo(transcurrido)) : fase.paso;
   const lento = transcurrido >= AVISO_LENTO_MS;
+  const muyLento = transcurrido >= AVISO_MUY_LENTO_MS;
   return (
     <View style={{ gap: 12, marginTop: 16 }}>
       {fase.oido ? (
@@ -781,7 +782,7 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
           );
         })}
         {lento && (
-          <Animated.Text entering={FadeInDown.springify().damping(18)} style={e.mini}>{t.puedeTardar}</Animated.Text>
+          <Animated.Text entering={FadeInDown.springify().damping(18)} style={e.mini}>{muyLento ? t.sigueRevisando : t.puedeTardar}</Animated.Text>
         )}
       </Tarjeta>
     </View>

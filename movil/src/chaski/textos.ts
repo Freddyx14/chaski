@@ -37,6 +37,7 @@ const es = {
   pasosCastellano: ['Entendiendo lo que dijo', 'Traduciendo al quechua', 'Revisando que nada cambió'],
   pasosQuechua: ['Entendiendo en quechua', 'Pasándolo al castellano', 'Revisando que nada cambió'],
   puedeTardar: 'Esto puede tardar unos segundos.',
+  sigueRevisando: 'Chaski sigue revisando que no haya errores. Revisar con cuidado toma su tiempo.',
   preparandoVoz: 'Preparando la voz…',
   hablandoAhora: 'Chaski está hablando…',
   yaLoDijo: 'Chaski ya lo dijo en voz alta.',

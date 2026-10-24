@@ -35,7 +35,8 @@ async function pedirUnaVez<T>(base: string, ruta: string, cuerpo: FormData, segu
     r = await fetch(`${base}${ruta}`, { method: 'POST', body: cuerpo, signal: corte.signal, headers: CABECERAS });
   } catch (e) {
     const agotado = (e as Error)?.name === 'AbortError';
-    throw new FalloServicio(ruta, agotado ? `sin respuesta en ${segundos} s` : 'sin conexión', true);
+    // Un turno que se agotó NO se reintenta: repetirlo duplicaría la espera. Solo los cortes rápidos.
+    throw new FalloServicio(ruta, agotado ? `sin respuesta en ${segundos} s` : 'sin conexión', !agotado);
   } finally {
     clearTimeout(reloj);
   }
