@@ -17,6 +17,12 @@
 **So we build three lengths of the same pitch:** a **30 s** hook for anyone walking by, the **2:00 core** (default),
 and a **3:00** version when a judge clearly has time. Q&A is where the technical depth lives.
 
+**New since Friday (`research/pitch-research.md`):**
+- **The Anthropic prize is live on Devpost:** "[Anthropic] Claude for Public Benefit", 1 winner, $5,000 in Claude credits + 1 year of Claude Max 20x + office hours. **Opt into it on the submission.**
+- **Devpost requires a demo video**, and some sponsors judge only from it. The video is not a backup, it's a second pitch: it opens with the refusal moment.
+- No stage/finalist round is published for 13.0 (12.0 had one). Ask in #ask-directors.
+- **Anthropic's own 2026 Public Benefit Report** says they're working so Claude "performs well in languages that are underrepresented in their training data", lists "make powerful AI affordable and usable in every language and format" as a standard, and admits "we have not been active enough in collecting data to measure the results" ([PDF](https://www-cdn.anthropic.com/a9ceec76a54d28d27affffcdab6faf7c142cd587.pdf)). **Chaski is that sentence, with the measurement they say is missing.** For the Anthropic judge, say it in one line in B5.
+
 ## 2 · What each judge is scoring, and where in the pitch we hit it
 
 | Judge | Criteria (verbatim headings) | Beat that answers it |
@@ -51,7 +57,7 @@ Ricardo's baseline vs fine-tuned, on a speaker the model never heard. Until it e
 |---|---|---|---|
 | 0:00 | **B1 · Hook** | Opens in Quechua (one line, 3 s), then: *"That's how my mother greets her patients. She's a nurse at the Pilpichaca health post in Huancavelica, Peru, and she's the only one there who speaks Quechua."* | Freddy |
 | 0:15 | **B2 · Problem** | ★ number. *"When she's off shift, a patient gets a prescription they can't read, explained in a language they don't speak. ChatGPT? Even in Russian, a big language, it got 56% of discharge instructions wrong somewhere. Quechua barely exists in its training data."* | Freddy |
-| 0:35 | **B3 · Demo, the flow** | Nurse speaks Spanish → Chaski says it in Quechua → patient answers in Quechua → nurse reads it in Spanish. Chaski the vicuña on screen shows listening / thinking | Freddy as nurse, Ricardo plays the patient audio |
+| 0:35 | **B3 · Demo, the flow** (judges' advice: working flow on screen by ~0:40) | Nurse speaks Spanish → Chaski says it in Quechua → patient answers in Quechua → nurse reads it in Spanish. Chaski the vicuña on screen shows listening / thinking | Freddy as nurse, Ricardo plays the patient audio |
 | 1:05 | **B4 · The moment** | A dosage that doesn't survive the audit. *"Claude translated it, translated it back blind, and the dose didn't match. So Chaski refuses to say it and tells the nurse."* Show the block on screen | Freddy |
 | 1:25 | **B5 · How it's built** | *"Meta's speech models are the ears and the mouth. We fine-tuned them on recordings from families in Huancavelica: errors went from X to Y on a voice it never heard. Claude is the brain: it corrects what the ears heard, audits every translation, and writes the summary the patient takes home."* | Ricardo (his work, his credibility) |
 | 1:45 | **B6 · Close** | *"Works for the nurse and for the patient. Next stop is my mother's health post on Monday."* Then the summary on screen | Freddy |
