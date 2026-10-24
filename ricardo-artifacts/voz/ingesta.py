@@ -60,6 +60,20 @@ def resumen_por_persona(grabaciones: list[Grabacion]) -> dict:
     return salida
 
 
+def hablante_prueba_fijado() -> str:
+    """El hablante de prueba, si ya se eligio.
+
+    Se fija a proposito. La eleccion automatica mira quien tiene mas bloque B y
+    menos clips, asi que basta etiquetar a otra persona para que el conjunto de
+    prueba cambie de dueño solo. Y si cambia, la linea base medida sobre el
+    anterior deja de ser comparable con lo que venga despues.
+    """
+    ruta = Path("datos/crudo/personas.json")
+    if not ruta.exists():
+        return ""
+    return json.loads(ruta.read_text(encoding="utf-8")).get("_hablante_prueba", "")
+
+
 def elegir_persona_prueba(grabaciones: list[Grabacion]) -> str:
     """Quien tenga mas respuestas espontaneas (bloque B), que es lo que se parece
     al uso real; a igualdad, quien tenga menos clips, para no regalar datos de
@@ -80,7 +94,7 @@ def partir_por_hablante(grabaciones: list[Grabacion], persona_prueba: str | None
             "hacen falta al menos dos personas para una particion honesta; "
             f"hay {len(personas)}{pista}")
 
-    prueba_id = persona_prueba or elegir_persona_prueba(datos)
+    prueba_id = persona_prueba or hablante_prueba_fijado() or elegir_persona_prueba(datos)
     if prueba_id not in personas:
         raise ValueError(f"{prueba_id!r} no aparece en los datos: {personas}")
 
