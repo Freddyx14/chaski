@@ -3,7 +3,7 @@
 The same conversation produces two different documents:
   - personal: a short clinical note in Spanish for the health record, plus what still needs checking.
   - paciente: the instructions to take home, in plain Spanish. The app then sends that text through the
-    audited translation (rimay.auditoria) before it is ever said in Quechua, so the summary never
+    audited translation (chaski.auditoria) before it is ever said in Quechua, so the summary never
     bypasses the audit.
 
 What the model may NOT decide is decided in code: a turn that the audit blocked was never said to the
@@ -16,7 +16,7 @@ from typing import Literal
 import anthropic
 from pydantic import BaseModel, Field
 
-from rimay.auditoria import SinRespuesta
+from chaski.auditoria import SinRespuesta
 
 MODELO = "claude-sonnet-5"
 
@@ -95,7 +95,7 @@ def resumir(client: anthropic.Anthropic, turnos: list[Turno], rol: Rol, modelo: 
 
 
 def texto_para_decir(r: Resumen) -> str:
-    """The take-home text for the patient, in Spanish, ready for rimay.auditoria. Only what was said."""
+    """The take-home text for the patient, in Spanish, ready for chaski.auditoria. Only what was said."""
     partes = list(r.indicaciones)
     if r.senales_de_alarma:
         partes.append("Venga a la posta de inmediato si: " + ", ".join(r.senales_de_alarma) + ".")

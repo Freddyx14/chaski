@@ -4,10 +4,10 @@ import { File, Paths } from 'expo-file-system';
 
 import publicada from '../../../ricardo-artifacts/servicio/url.json';
 
-const ARCHIVO = () => new File(Paths.document, 'rimay-config.json');
+const ARCHIVO = () => new File(Paths.document, 'chaski-config.json');
 
 // Por defecto, la dirección que Ricardo publica en git (servicio/url.json). Ajustes la puede pisar.
-const POR_DEFECTO = process.env.EXPO_PUBLIC_RIMAY_API ?? publicada.url ?? '';
+const POR_DEFECTO = process.env.EXPO_PUBLIC_CHASKI_API ?? publicada.url ?? '';
 
 let actual: string | null = null;
 

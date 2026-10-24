@@ -5,12 +5,12 @@ import { useState } from 'react';
 import { KeyboardAvoidingView, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Chaski } from '@/rimay/chaski';
-import { guardarPerfil, type Idioma, type Rol } from '@/rimay/perfil';
-import { textos } from '@/rimay/textos';
-import { C, ESCALA } from '@/rimay/tokens';
-import { Manta } from '@/rimay/manta';
-import { Boton, Icono } from '@/rimay/ui';
+import { Chaski } from '@/chaski/chaski';
+import { guardarPerfil, type Idioma, type Rol } from '@/chaski/perfil';
+import { textos } from '@/chaski/textos';
+import { C, ESCALA } from '@/chaski/tokens';
+import { Manta } from '@/chaski/manta';
+import { Boton, Icono } from '@/chaski/ui';
 
 export default function Bienvenida() {
   const [paso, setPaso] = useState<1 | 2 | 3>(1);
@@ -34,7 +34,7 @@ export default function Bienvenida() {
           <View style={[e.chaskiSobreManta, { marginTop: paso === 1 ? -120 : -90 }]}>
             <Chaski estado="presentarse" tam={paso === 1 ? 210 : 150} />
           </View>
-          <Text style={e.marca}>Rimay</Text>
+          <Text style={e.marca}>Chaski</Text>
           <View style={e.puntos}>
             {[1, 2, 3].map((n) => <View key={n} style={[e.punto, n <= paso && { backgroundColor: C.action }]} />)}
           </View>

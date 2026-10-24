@@ -1,4 +1,4 @@
-# Rimay · la manta andina (D28)
+# Chaski · la manta andina (D28)
 
 > Sábado 24 de octubre, 09:40 PT. Pedido de Freddy: la identidad visual sale de las mantas de la sierra
 > (lliclla), con sus franjas de tinte y sus cadenas tejidas. Referencia favorita: tela blanca con franjas de
@@ -22,7 +22,7 @@ lo que dice el estado (auditado, aviso, bloqueado) tiene que seguir leyéndose s
 3. Una banda de manta nunca toca un elemento de estado: al menos 12 pt de fondo liso entre los dos, para que
    el rojo o el rosado del tejido no se lean como «bloqueado». Por eso la `lliclla` de Chaski no lleva rojo.
 4. El teal sigue siendo el único color de acción. El turquesa de la manta es adorno, no botón.
-5. Los motivos se tejen sobre una grilla de puntos (mapas de bits en `movil/src/rimay/manta.tsx`), como en el
+5. Los motivos se tejen sobre una grilla de puntos (mapas de bits en `movil/src/chaski/manta.tsx`), como en el
    telar. Nada de curvas ni degradados.
 
 ## Paleta (`tokens.json` → `manta`)

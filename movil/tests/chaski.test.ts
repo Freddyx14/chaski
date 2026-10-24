@@ -2,11 +2,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { base64ABytes, bocaAbierta, envolvente } from '../src/rimay/wav.ts';
+import { base64ABytes, bocaAbierta, envolvente } from '../src/chaski/wav.ts';
 import {
   fueCastellano, nombreDelCampo, siguienteLado, veredictoEnfermera,
   type RespuestaEnfermera, type RespuestaPaciente,
-} from '../src/rimay/modelo.ts';
+} from '../src/chaski/modelo.ts';
 
 function wav(muestras: number[], frecuencia = 16000): Uint8Array {
   const datos = muestras.length * 2;
@@ -100,7 +100,7 @@ test('solo se reencamina a castellano con confianza alta', () => {
   assert.equal(fueCastellano({ ...p, idioma: null }), false);
 });
 
-import { tramos } from '../src/rimay/tejido.ts';
+import { tramos } from '../src/chaski/tejido.ts';
 
 test('tejido: une puntos contiguos y salta el fondo', () => {
   assert.deepEqual(tramos('.11.2', 1), [

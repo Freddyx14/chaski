@@ -1,10 +1,10 @@
-# Rimay (nombre de trabajo) — el problema, la solución y sus funciones
+# Chaski (nombre de trabajo) — el problema, la solución y sus funciones
 
 > ⚠️ **Producto v1, superado por [`SOT.md`](../SOT.md) (SOT-3).** El producto ya no es WhatsApp ni solo gestantes: es una app de intérprete para el personal de salud. La evidencia de este documento sigue valiendo.
 
 > Qué es el producto, no cómo se construye. La arquitectura va en otro documento.
 > Las cifras vienen de `research/problemas-lenguas-originarias.md` y los papers de `research/papers.md`.
-> «Rimay» significa «hablar» en quechua. Es un nombre de trabajo: lo decidimos con la mamá de Freddy.
+> «Chaski» significa «hablar» en quechua. Es un nombre de trabajo: lo decidimos con la mamá de Freddy.
 >
 > ⚠️ **Alcance decidido por Freddy (viernes 23, 23:33 PT): salud general, no solo gestantes.** La comunidad es
 > **los pacientes quechuahablantes de la posta de Pilpichaca**, cualquiera sea su atención: control de niño, fiebre,
@@ -66,22 +66,22 @@ Dos usuarias:
 
 ## 3. La solución
 
-**Rimay lleva las indicaciones de la posta a la casa de la gestante, en quechua chanka y en audio, y comprueba
+**Chaski lleva las indicaciones de la posta a la casa de la gestante, en quechua chanka y en audio, y comprueba
 que las entendió.**
 
 Lo que hace en una consulta, de punta a punta:
 
 1. La enfermera dicta o escribe la indicación en castellano, y le toma una foto a la receta y a la caja de la medicina.
-2. Rimay lee la receta, arma la indicación completa y la traduce al chanka.
-3. **Antes de enviarla, Rimay se audita a sí mismo**: retraduce su quechua al castellano y, si no dice lo mismo, no la envía.
+2. Chaski lee la receta, arma la indicación completa y la traduce al chanka.
+3. **Antes de enviarla, Chaski se audita a sí mismo**: retraduce su quechua al castellano y, si no dice lo mismo, no la envía.
 4. La gestante recibe por WhatsApp un **audio en chanka** con su texto, más las **señales de alarma** de siempre.
-5. Rimay le pide que **lo repita con su voz**, en quechua.
+5. Chaski le pide que **lo repita con su voz**, en quechua.
 6. Si lo que dijo no coincide con la indicación, **avisa a la enfermera**: «María no entendió cuándo volver».
 
 Cada paso tiene respaldo en lo que el personal de salud ya hace a mano. Mehandru et al. (2022) entrevistaron a 20
 clínicos, entre ellos enfermeras y obstetras. Contra la barrera del idioma usan tres estrategias: **retraducir para
 comprobar, probar si la paciente entendió y usar frases traducidas de antemano**. Y recomiendan sistemas que combinen
-las tres. **Rimay es esas tres estrategias, automatizadas.**
+las tres. **Chaski es esas tres estrategias, automatizadas.**
 
 ---
 
@@ -95,9 +95,9 @@ por WhatsApp.
 
 ### F2 · Foto de la receta y de la caja (visión por computadora)
 La enfermera, o la misma paciente en casa, toma una foto de la **receta escrita a mano** y de la **caja del medicamento**.
-Rimay identifica el medicamento, la dosis y la frecuencia, y lo agrega a la indicación en chanka.
+Chaski identifica el medicamento, la dosis y la frecuencia, y lo agrega a la indicación en chanka.
 - **Por qué:** la receta escrita a mano en castellano es justo lo que la paciente no puede leer, y es donde un error de dosis hace daño.
-- **Protección:** si la lectura no es segura, Rimay **no adivina**: le pide a la enfermera que confirme ese dato.
+- **Protección:** si la lectura no es segura, Chaski **no adivina**: le pide a la enfermera que confirme ese dato.
 - **Respaldo:** leer recetas a mano es un problema estudiado (hay 193 papers en Scopus). Lo nuevo aquí no es leer la receta, es **lo que pasa después**, cuando la indicación llega en el idioma de la paciente.
 - **Extra posible:** foto del **carné de control prenatal** para leer la fecha de la próxima cita y recordársela en quechua.
 
@@ -107,27 +107,27 @@ del MINSA, traducido y grabado una vez y **revisado por la mamá de Freddy**. Ca
 - **Respaldo:** la traducción automática solo alcanza para mensajes simples o traducidos de antemano (van Lent et al., 2025). Lo que más importa no puede quedar a merced del modelo.
 - *Por confirmar:* la lista oficial del MINSA, con su fuente.
 
-### F4 · Rimay se audita antes de enviar (retraducción)
-Antes de enviar algo, Rimay vuelve a traducir su propio quechua al castellano y lo compara con la indicación original.
+### F4 · Chaski se audita antes de enviar (retraducción)
+Antes de enviar algo, Chaski vuelve a traducir su propio quechua al castellano y lo compara con la indicación original.
 Si cambió el sentido, una dosis o una fecha, **no la envía** y le pide revisión a la enfermera.
 - **Respaldo:** es la estrategia que usan los clínicos a mano (Mehandru et al., 2022), y es el método con que se evalúa la traducción médica (Kong et al., 2026).
 
 ### F5 · «¿Me lo repites?» (comprobación de lo que entendió)
-Después del audio, Rimay le pide a la gestante que **repita con su voz, en quechua**, qué tiene que hacer. Compara su
+Después del audio, Chaski le pide a la gestante que **repita con su voz, en quechua**, qué tiene que hacer. Compara su
 respuesta con la indicación. Si falta algo importante, se lo vuelve a explicar y **avisa a la enfermera**.
 - **Por qué:** es la técnica de *teach-back*, la que el personal de salud usa para saber si una paciente entendió (Mehandru et al., 2022).
-- **Riesgo conocido:** el reconocimiento de voz en quechua todavía es débil y depende mucho de los datos (Romero et al., 2024; Zevallos et al., 2022). Si no se entiende su respuesta, Rimay **no da por entendido nada**: lo marca para la enfermera.
+- **Riesgo conocido:** el reconocimiento de voz en quechua todavía es débil y depende mucho de los datos (Romero et al., 2024; Zevallos et al., 2022). Si no se entiende su respuesta, Chaski **no da por entendido nada**: lo marca para la enfermera.
 
 ### F6 · El panel de la enfermera
 Una sola pantalla: a quién se le envió qué, quién confirmó que entendió y **quién necesita una llamada**.
-Desde ahí también se corrige el quechua de Rimay.
+Desde ahí también se corrige el quechua de Chaski.
 
 ### F7 · Mejora con cada corrección
 Cada vez que la enfermera corrige una traducción, o una paciente no entiende algo, eso entra al **glosario chanka** y a
-la evaluación. Rimay se equivoca una vez, no dos.
+la evaluación. Chaski se equivoca una vez, no dos.
 
 ### F8 · La primera evaluación pública de IA en quechua chanka para salud (el núcleo técnico)
-Antes de confiar en Rimay, lo medimos. Con el mismo método de Kong et al. (2026): un set de **indicaciones prenatales
+Antes de confiar en Chaski, lo medimos. Con el mismo método de Kong et al. (2026): un set de **indicaciones prenatales
 reales**, traducidas al chanka por Claude y por Google Translate, retraducidas, y **calificadas por una hablante nativa
 que trabaja en una posta** según exactitud y riesgo de daño.
 - **Por qué importa:** responde la pregunta de Anthropic, «¿dónde falla Claude para esta gente?», **con números y no con una opinión**.
@@ -136,7 +136,7 @@ que trabaja en una posta** según exactitud y riesgo de daño.
 
 ---
 
-## 5. Lo que Rimay NO hace (alcance)
+## 5. Lo que Chaski NO hace (alcance)
 
 - **No diagnostica.** Solo transmite lo que ya indicó el personal de salud.
 - **No reemplaza a la enfermera ni al intérprete.** Les avisa cuándo hacen falta.
@@ -160,9 +160,9 @@ que trabaja en una posta** según exactitud y riesgo de daño.
 
 ## 7. Cómo medimos el impacto
 
-1. **% de gestantes que repiten bien las señales de alarma** (con y sin Rimay).
+1. **% de gestantes que repiten bien las señales de alarma** (con y sin Chaski).
 2. **Errores por indicación** en la evaluación chanka (F8): exactitud y riesgo de daño, Claude contra Google Translate.
-3. **Casos marcados para la enfermera**: cuántas veces Rimay detectó que alguien no entendió.
+3. **Casos marcados para la enfermera**: cuántas veces Chaski detectó que alguien no entendió.
 4. **Tiempo de la enfermera**: cuántas consultas se pudieron dar en quechua sin que ella tuviera que estar presente.
 
 ---
@@ -171,7 +171,7 @@ que trabaja en una posta** según exactitud y riesgo de daño.
 
 1. El jurado ve a la enfermera escribir una indicación y tomar una foto de una receta.
 2. Un celular recibe el audio **en quechua chanka**, en vivo.
-3. Una voz responde en quechua, a medias. Rimay detecta lo que faltó y aparece el aviso: «no entendió cuándo volver».
+3. Una voz responde en quechua, a medias. Chaski detecta lo que faltó y aparece el aviso: «no entendió cuándo volver».
 4. En pantalla: **«así falla cada modelo en chanka, y así lo corregimos»**, con los números de la evaluación.
 5. Si tenemos su permiso, una nota de voz de la mamá de Freddy contando lo que pasa cuando ella no está de turno.
 
@@ -189,11 +189,11 @@ que trabaja en una posta** según exactitud y riesgo de daño.
 
 ## 10. Alcance: ¿solo gestantes? ¿otras lenguas?
 
-**Visión (para el pitch):** Rimay es para **postas y hospitales**, y para **todas las lenguas originarias**.
+**Visión (para el pitch):** Chaski es para **postas y hospitales**, y para **todas las lenguas originarias**.
 
 **Lo que construimos este fin de semana:** gestantes, Pilpichaca, chanka. Tres razones:
 1. **Anthropic premia lo específico** («the narrower, the better») y «una cosa bien hecha y usable el lunes».
-2. **La seguridad de Rimay depende de una hablante que revise** (F3, F4, F8). Para chanka la tenemos; para aimara o
+2. **La seguridad de Chaski depende de una hablante que revise** (F3, F4, F8). Para chanka la tenemos; para aimara o
    asháninka no, y lanzar una lengua sin revisión es justo la falla que decimos evitar.
 3. Las señales de alarma del embarazo son un contenido **fijo y oficial**: el mejor primer caso para probar el método.
 
@@ -220,7 +220,7 @@ que atrapa X de cada 10 errores de traducción antes de que lleguen a una pacien
 - [ ] La lista oficial de señales de alarma del MINSA, con su fuente.
 - [ ] Confirmar que los modelos de voz chanka de Huamán Curo et al. (2026) se pueden descargar.
 - [ ] Cuántas gestantes atiende la posta de Pilpichaca (para la métrica de impacto); preguntarle a ella.
-- [ ] El nombre: Rimay es de trabajo.
+- [ ] El nombre: Chaski es de trabajo.
 
 ## Referencias
 

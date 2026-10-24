@@ -1,4 +1,4 @@
-# HANDOFF — Rimay (Cal Hacks 13.0) · sábado 24 de octubre de 2026, 08:55 PT
+# HANDOFF — Chaski (Cal Hacks 13.0) · sábado 24 de octubre de 2026, 08:55 PT
 
 > Punto de retome. **La verdad del producto está en [`SOT.md`](SOT.md)** (versión SOT-9 + D25).
 > Tareas por persona: [`plan/tareas.md`](plan/tareas.md). Entrega: **domingo 25, 9:00 AM PT** en Devpost.
@@ -26,11 +26,11 @@
 
 ## ✅ Qué se hizo (viernes 18:30 → sábado 09:00)
 
-- **Idea y producto:** de incendios → quechua en salud → **Rimay, intérprete castellano↔chanka para el personal de la posta** (D1–D25 en el SOT). Investigación con fuentes en `research/` (problemas, papers vía Scopus/OpenAlex, voz quechua, competencia).
-- **Código:** auditoría de traducción con retraducción a ciegas (F4), 20 pruebas, `app/rimay/`.
+- **Idea y producto:** de incendios → quechua en salud → **Chaski, intérprete castellano↔chanka para el personal de la posta** (D1–D25 en el SOT). Investigación con fuentes en `research/` (problemas, papers vía Scopus/OpenAlex, voz quechua, competencia).
+- **Código:** auditoría de traducción con retraducción a ciegas (F4), 20 pruebas, `app/chaski/`.
 - **Chaski** (vicuña con audífonos de intérprete, D22): especificación `avatar/chaski.json`, 6 cuadros en `avatar/estados/`, loops en `avatar/loops/` (escuchando y presentarse cierran solos; pensando y no_entendi en ping-pong).
-- **UI:** dos prototipos con el mismo brief (`design/specs/01-rimay-ui.txt`): Pencil `design/rimay-pen.png` y Claude Design https://claude.ai/artifact/We661RMs5wg16da2sk9tm1. Paleta decidida D24 → `design/tokens.json`.
-- **Página visual** sincronizada con el SOT: https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH (`plan/rimay-visual.html`, privada de Freddy).
+- **UI:** dos prototipos con el mismo brief (`design/specs/01-chaski-ui.txt`): Pencil `design/chaski-pen.png` y Claude Design https://claude.ai/artifact/We661RMs5wg16da2sk9tm1. Paleta decidida D24 → `design/tokens.json`.
+- **Página visual** sincronizada con el SOT: https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH (`plan/chaski-visual.html`, privada de Freddy).
 - **Cuadernillo de grabación** reescrito (75 frases, escribir + leer, D25) y **entrevista** al personal de salud (Mom Test).
 - **Ricardo (noche):** servicio con el ciclo completo de intérprete, medición en GPU (detección 49 ms, ASR 1.7 s por 16 s, A10G 23 GB), WER base 38 % (falla en préstamos del castellano), Cartesia para castellano, banco de visión. Ver `ricardo-artifacts/reports/arquitectura.md`.
 

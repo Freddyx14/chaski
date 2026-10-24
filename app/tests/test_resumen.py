@@ -2,8 +2,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from rimay.auditoria import SinRespuesta
-from rimay.resumen import Borrador, Turno, no_se_dijo, resumir, texto_para_decir
+from chaski.auditoria import SinRespuesta
+from chaski.resumen import Borrador, Turno, no_se_dijo, resumir, texto_para_decir
 
 
 class FakeClient:

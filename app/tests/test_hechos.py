@@ -1,4 +1,4 @@
-from rimay.hechos import Hechos, Medicamento, comparar
+from chaski.hechos import Hechos, Medicamento, comparar
 
 
 def med(**kw):

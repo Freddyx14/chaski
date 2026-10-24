@@ -3,9 +3,9 @@ from types import SimpleNamespace
 
 import pytest
 
-from rimay import auditoria
-from rimay.auditoria import MARCA_NO_ENTIENDO, Retraduccion, SinRespuesta, Traduccion, auditar, decidir
-from rimay.hechos import Diferencia, Hechos, Medicamento
+from chaski import auditoria
+from chaski.auditoria import MARCA_NO_ENTIENDO, Retraduccion, SinRespuesta, Traduccion, auditar, decidir
+from chaski.hechos import Diferencia, Hechos, Medicamento
 
 ORIGINAL = "Tome una pastilla de sulfato ferroso cada día, durante un mes."
 HECHOS_OK = Hechos(

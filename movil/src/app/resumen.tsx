@@ -6,13 +6,13 @@ import { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { resumen as pedirResumen, turnoEnfermera, voz, type Resumen } from '@/rimay/api';
-import { Chaski } from '@/rimay/chaski';
-import { nuevaConsulta, useTurnos } from '@/rimay/consulta';
-import { usePerfil } from '@/rimay/perfil';
-import { C, ESCALA } from '@/rimay/tokens';
-import { Manta } from '@/rimay/manta';
-import { Aviso, Boton, Tarjeta } from '@/rimay/ui';
+import { resumen as pedirResumen, turnoEnfermera, voz, type Resumen } from '@/chaski/api';
+import { Chaski } from '@/chaski/chaski';
+import { nuevaConsulta, useTurnos } from '@/chaski/consulta';
+import { usePerfil } from '@/chaski/perfil';
+import { C, ESCALA } from '@/chaski/tokens';
+import { Manta } from '@/chaski/manta';
+import { Aviso, Boton, Tarjeta } from '@/chaski/ui';
 
 const EJEMPLO: Resumen = {
   rol: 'personal',
@@ -107,7 +107,7 @@ export default function PantallaResumen() {
             )}
             {!paraPaciente && r.no_se_dijo.length > 0 && (
               <Tarjeta estilo={{ gap: 8 }}>
-                <Text style={[e.rotulo, { color: C.block }]}>RIMAY NO LO DIJO AL PACIENTE</Text>
+                <Text style={[e.rotulo, { color: C.block }]}>CHASKI NO LO DIJO AL PACIENTE</Text>
                 {r.no_se_dijo.map((s, n) => <Aviso key={n} tipo="block" texto={s} />)}
               </Tarjeta>
             )}

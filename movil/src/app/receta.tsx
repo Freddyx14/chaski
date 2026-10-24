@@ -7,11 +7,11 @@ import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ver, type Lectura } from '@/rimay/api';
-import { Chaski } from '@/rimay/chaski';
-import { useTurnos } from '@/rimay/consulta';
-import { C, ESCALA } from '@/rimay/tokens';
-import { Aviso, Boton, Tarjeta } from '@/rimay/ui';
+import { ver, type Lectura } from '@/chaski/api';
+import { Chaski } from '@/chaski/chaski';
+import { useTurnos } from '@/chaski/consulta';
+import { C, ESCALA } from '@/chaski/tokens';
+import { Aviso, Boton, Tarjeta } from '@/chaski/ui';
 
 export default function Receta() {
   const turnos = useTurnos();
@@ -50,7 +50,7 @@ export default function Receta() {
           <Chaski estado={leyendo ? 'pensando' : lectura && !lectura.seguro ? 'no_entendi' : 'reposo'} tam={96} />
           <View style={{ flex: 1, gap: 4 }}>
             <Text style={e.titulo}>Leer la receta o la caja</Text>
-            <Text style={e.secundario}>Rimay la lee y la compara con lo que usted dijo.</Text>
+            <Text style={e.secundario}>Chaski la lee y la compara con lo que usted dijo.</Text>
           </View>
         </View>
 

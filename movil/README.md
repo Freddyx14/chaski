@@ -1,4 +1,4 @@
-# Rimay · app iOS (Expo SDK 58)
+# Chaski · app iOS (Expo SDK 58)
 
 Intérprete castellano ↔ quechua chanka para la posta de Pilpichaca. Diseño: tablero de Pencil (D26) con los
 ajustes de `../design/specs/02-pulido-ui.md`; para los dos lados, personal de salud o paciente (D27).
@@ -13,7 +13,7 @@ Colores **solo** desde `../design/tokens.json`; Chaski desde `../avatar/` (sin c
 | `receta` | Foto de la receta o la caja → Claude visión (`/ver`) |
 | `historial` | Los turnos de la consulta |
 | `resumen` | Nota clínica (personal) o lo que hay que hacer en casa (paciente), con audio en quechua auditado |
-| `ajustes` | Dirección del servicio y cambio de perfil. Se entra con un **toque largo en «Rimay»** |
+| `ajustes` | Dirección del servicio y cambio de perfil. Se entra con un **toque largo en «Chaski»** |
 
 ## Correr
 
@@ -41,8 +41,8 @@ el túnel. Rutas que usa: `/escuchar`, `/turno/enfermera`, `/turno/paciente`, `/
 Cada estado se abre con un enlace, para revisar pantallas o como respaldo si falla el wifi del jurado:
 
 ```
-rimay:///?demo=listo|grabando|pensando|dicho|aviso|bloqueado|paciente|error   [&idioma=quechua] [&rol=paciente]
-rimay:///resumen?demo=1&rol=personal|paciente
+chaski:///?demo=listo|grabando|pensando|dicho|aviso|bloqueado|paciente|error   [&idioma=quechua] [&rol=paciente]
+chaski:///resumen?demo=1&rol=personal|paciente
 ```
 
 En el simulador con Expo Go: `xcrun simctl openurl booted "exp://127.0.0.1:8081/--/?demo=dicho"`.
@@ -54,10 +54,10 @@ Por Xcode con la llave de App Store Connect, no por EAS (se traba en preguntas i
 
 ```bash
 npx expo prebuild -p ios --clean
-xcodebuild -workspace ios/Rimay.xcworkspace -scheme Rimay -configuration Release \
-  -destination 'generic/platform=iOS' -archivePath build/Rimay.xcarchive archive \
+xcodebuild -workspace ios/Chaski.xcworkspace -scheme Chaski -configuration Release \
+  -destination 'generic/platform=iOS' -archivePath build/Chaski.xcarchive archive \
   DEVELOPMENT_TEAM=P7493694QL CODE_SIGNING_ALLOWED=NO
-xcodebuild -exportArchive -archivePath build/Rimay.xcarchive -exportOptionsPlist ExportOptions.plist \
+xcodebuild -exportArchive -archivePath build/Chaski.xcarchive -exportOptionsPlist ExportOptions.plist \
   -exportPath build/export -allowProvisioningUpdates \
   -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_PB2L3A68T7.p8 \
   -authenticationKeyID PB2L3A68T7 -authenticationKeyIssuerID 4bd118b5-a814-4813-997a-e7a61e89ee82
@@ -67,6 +67,6 @@ Para cada build nuevo, sube `ios.buildNumber` en `app.json`.
 
 ## Pendiente
 
-- Los textos en quechua de `src/rimay/textos.ts` son **borrador**: los revisa la mamá de Freddy.
+- Los textos en quechua de `src/chaski/textos.ts` son **borrador**: los revisa la mamá de Freddy.
 - «¿Me lo repite?» (F6) espera su ruta en el servicio.
 - Detección de idioma por turno (`/idioma`): mientras no exista, los turnos alternan solos y se pueden cambiar a mano.

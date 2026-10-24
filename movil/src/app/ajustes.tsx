@@ -1,14 +1,14 @@
-// Dirección del servicio (el túnel HTTPS cambia cada vez que se levanta). Se entra con un toque largo en «Rimay».
+// Dirección del servicio (el túnel HTTPS cambia cada vez que se levanta). Se entra con un toque largo en «Chaski».
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { salud } from '@/rimay/api';
-import { guardarServidor, leerServidor } from '@/rimay/config';
-import { guardarPerfil } from '@/rimay/perfil';
-import { C, ESCALA } from '@/rimay/tokens';
-import { Aviso, Boton } from '@/rimay/ui';
+import { salud } from '@/chaski/api';
+import { guardarServidor, leerServidor } from '@/chaski/config';
+import { guardarPerfil } from '@/chaski/perfil';
+import { C, ESCALA } from '@/chaski/tokens';
+import { Aviso, Boton } from '@/chaski/ui';
 
 export default function Ajustes() {
   const [url, setUrl] = useState('');

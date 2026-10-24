@@ -9,7 +9,7 @@
 > 2. Preguntar por **lo que pasó**, no por lo que haría o le gustaría («¿usarías…?» no sirve: todos dicen que sí).
 > 3. **Hablar poco y escuchar mucho.** Pedir el último caso concreto, con detalles.
 >
-> **No mencionar Rimay ni la app hasta el final** (bloque 7). Si se menciona antes, la respuesta se vuelve cortesía.
+> **No mencionar Chaski ni la app hasta el final** (bloque 7). Si se menciona antes, la respuesta se vuelve cortesía.
 
 ## Antes de empezar
 - Pedir permiso para **grabar** la llamada y para citar sus palabras en el pitch (con o sin su nombre, como prefiera).
@@ -40,7 +40,7 @@
 15. Cuando se **entregan los medicamentos con la receta**, ¿quién explica cómo tomarlos? ¿Cómo saben si el paciente entendió?
 16. ¿Hay alguna situación donde **no** usaría un traductor en el celular, aunque existiera? ¿Por qué?
 
-## 5 · Lo que queda registrado (decide si Rimay toma notas y resume)
+## 5 · Lo que queda registrado (decide si Chaski toma notas y resume)
 17. Después de atender a un paciente quechuahablante, ¿qué anotan? ¿Dónde? (historia clínica, cuaderno, sistema, nada)
 18. ¿Alguna vez hubo un problema porque **no quedó claro qué se le dijo** al paciente? (otro turno que no sabía, un reclamo, una duda después)
 19. Si al final de la consulta tuviera **una lista de lo que se dijo y de lo que el paciente entendió**, ¿para qué la usaría? ¿Quién más la leería?
@@ -53,7 +53,7 @@
 24. *(Si la persona habla quechua y es de las pocas que lo habla)* ¿Qué le pasa por eso? ¿La llaman en su día libre, la interrumpen, la sobrecarga?
 25. Si pudiera cambiar una sola cosa de cómo se atiende a los pacientes quechuahablantes, ¿cuál sería?
 
-## 7 · Recién al final: mostrar Rimay
+## 7 · Recién al final: mostrar Chaski
 26. Mostrarle el audio de Chaski y una pantalla. **¿En qué atención de la semana pasada le habría servido esto, y en cuál no?**
 27. ¿Qué tendría que hacer bien para que el personal confíe en él? ¿Qué no puede hacer mal nunca?
 28. Mostrar la pantalla de **«Lo que entendió el paciente»** (la lista con ✓ y ✗). ¿Le serviría? ¿Qué le cambiaría?
@@ -64,8 +64,8 @@
 - **Cifras suyas**: cuántos pacientes quechuahablantes por día o por semana, cuánto tiempo extra.
 - **Cómo lo resuelven hoy** (ese es el competidor real: el familiar, el niño, las señas).
 - **La situación prioritaria** (bloque 4): decide para qué momento diseñamos la app.
-- **Si el registro y el resumen sirven** (bloque 5): decide si Rimay toma notas en segundo plano.
-- **Lo que no se puede equivocar nunca**: define las protecciones de Rimay.
+- **Si el registro y el resumen sirven** (bloque 5): decide si Chaski toma notas en segundo plano.
+- **Lo que no se puede equivocar nunca**: define las protecciones de Chaski.
 - **Una frase textual**, con permiso, para el pitch.
 
 Las respuestas se guardan transcritas en `research/entrevista-<persona>-AAAA-MM-DD.md` (con permiso) y lo que cambie

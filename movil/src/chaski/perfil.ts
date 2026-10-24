@@ -7,7 +7,7 @@ export type Idioma = 'castellano' | 'quechua';
 export type Rol = 'personal' | 'paciente';
 export type Perfil = { idioma: Idioma; nombre: string; rol: Rol };
 
-const ARCHIVO = () => new File(Paths.document, 'rimay-perfil.json');
+const ARCHIVO = () => new File(Paths.document, 'chaski-perfil.json');
 
 let perfil: Perfil | null | undefined; // undefined = todavía no se leyó
 const oyentes = new Set<() => void>();

@@ -1,17 +1,17 @@
 """Try the audit from the terminal:
 
-    uv run python -m rimay.cli "Tome una pastilla de sulfato ferroso cada día después del almuerzo, durante un mes."
+    uv run python -m chaski.cli "Tome una pastilla de sulfato ferroso cada día después del almuerzo, durante un mes."
 """
 import sys
 
 import anthropic
 
-from rimay.auditoria import auditar
+from chaski.auditoria import auditar
 
 
 def main() -> None:
     if len(sys.argv) < 2:
-        sys.exit('uso: python -m rimay.cli "indicación en castellano"')
+        sys.exit('uso: python -m chaski.cli "indicación en castellano"')
     resultado = auditar(anthropic.Anthropic(), " ".join(sys.argv[1:]))
     print(f"\nORIGINAL     {resultado.original}")
     print(f"QUECHUA      {resultado.quechua}")

@@ -18,7 +18,7 @@ mejor el chanka. Un jurado técnico lo pregunta. Entonces:
 |---|---|---|
 | **Entrenamiento** | Todos menos uno | Ajustar los modelos |
 | **Prueba (held-out)** | **Una persona completa que no está en el entrenamiento**, idealmente distinta en edad o sexo | Medir antes y después. **Nunca se usa para entrenar** |
-| **Voz de Rimay** | Solo la mamá de Freddy (con su permiso) | La voz con la que Rimay le habla a las pacientes |
+| **Voz de Chaski** | Solo la mamá de Freddy (con su permiso) | La voz con la que Chaski le habla a las pacientes |
 
 Si alcanza el tiempo, se repite rotando quién queda fuera (validación por hablante) y se reporta el promedio.
 
@@ -29,7 +29,7 @@ entrenar un modelo y se muestre en Cal Hacks, y si acepta o no que se publique d
 
 ## 3. Qué graban
 
-### Bloque A · Frases de la posta (entrenamiento y voz de Rimay)
+### Bloque A · Frases de la posta (entrenamiento y voz de Chaski)
 Les mandamos **frases en castellano**; cada persona las dice **en chanka, como lo diría en la posta**.
 **Nosotros no escribimos el quechua**: lo dicen ellos. Después la mamá de Freddy escribe la transcripción de cada audio.
 
@@ -69,8 +69,8 @@ Métricas sobre la persona de prueba:
 - **CER y WER** (errores por carácter y por palabra), antes y después.
 - **% de conceptos clave recuperados**: de lo que importa (la dosis, el día, la señal de alarma), ¿cuánto entendió? Es la métrica que de verdad importa para una paciente.
 
-**Voz de Rimay (lo que dice Rimay)**
-- **Ida y vuelta**: Rimay habla una frase, el reconocimiento la transcribe, se compara. Menos errores = voz más clara.
+**Voz de Chaski (lo que dice Chaski)**
+- **Ida y vuelta**: Chaski habla una frase, el reconocimiento la transcribe, se compara. Menos errores = voz más clara.
 - **Prueba a ciegas**: la mamá de Freddy califica de 1 a 5 audios sintéticos mezclados con grabaciones reales, sin saber cuál es cuál.
 
 **La frase para el pitch:** *«Pasamos de X% a Y% de errores al entender quechua chanka hablado en una posta, medido con una
@@ -83,7 +83,7 @@ voz que el modelo nunca escuchó.»*
 | **Viernes, esta noche** | Mandar este protocolo y las frases a la familia. Consentimientos. La mamá de Freddy escucha 5 audios de la voz chanka de Meta y dice si se entiende |
 | **Sábado temprano (Perú va 2 h adelante de California)** | Graban los bloques A y B. Freddy y Ricardo van recibiendo y transcribiendo |
 | **Sábado mañana** | Línea base con lo que haya llegado |
-| **Sábado tarde** | Paso 1 y paso 2. Ajuste de la voz de Rimay |
+| **Sábado tarde** | Paso 1 y paso 2. Ajuste de la voz de Chaski |
 | **Domingo 07:00 PT** | Se congelan los números. Lo que no esté, no entra a la página |
 
 ## 7. Licencias (para saberlo, no para frenar)

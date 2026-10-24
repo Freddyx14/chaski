@@ -18,7 +18,7 @@
 técnica.** Freddy tiene Claude, WhatsApp, el panel y el pitch. Ricardo tiene la voz, la visión y la
 medición.
 
-Según SOT-3 §5: **datos de voz, reconocimiento (pasos 0-1-2), detección de idioma, la voz de Rimay, y las
+Según SOT-3 §5: **datos de voz, reconocimiento (pasos 0-1-2), detección de idioma, la voz de Chaski, y las
 métricas con sus gráficos.** Más el que no está escrito pero es suyo: **que los modelos corran en la VM
 con GPU de 40 GB** (D7).
 
@@ -71,12 +71,12 @@ modelo mediano en 16 GB es apretado. **Decidir esto en la primera hora, no a las
 
 ## Sesión B · Responder y medir
 
-Dueña de `ricardo-artifacts/salida/`. Produce la voz de Rimay, la detección de idioma y los números.
+Dueña de `ricardo-artifacts/salida/`. Produce la voz de Chaski, la detección de idioma y los números.
 
 | # | Tarea | Criterio de aprobación |
 |---|---|---|
 | B1 | **Detección de idioma** (F2): `facebook/mms-lid-512` limitado a `quy` y `spa`, por turno | Precisión medida sobre los audios de las familias **y** sobre castellano. Se reporta qué pasa con las frases mezcladas, que en la posta son normales |
-| B2 | **Voz de Rimay** (F5): `facebook/mms-tts-quy`, después ajustado con la voz de la mamá de Freddy | Ella escucha **a ciegas** y dice si se entiende. Su juicio manda sobre cualquier métrica |
+| B2 | **Voz de Chaski** (F5): `facebook/mms-tts-quy`, después ajustado con la voz de la mamá de Freddy | Ella escucha **a ciegas** y dice si se entiende. Su juicio manda sobre cualquier métrica |
 | B3 | **Espera por turno**: cuánto tarda cada paso del ciclo (idioma → reconocer → Claude → hablar) | Un intérprete que tarda ocho segundos por turno no se usa en una consulta. Se mide por paso para saber qué recortar |
 | B4 | **Métricas y `reports/`**: consolidar los números de A y los de Freddy en los JSON del contrato | Un JSON por número, y la página los lee sin tocar nada más |
 | B5 | **Gráficos de la página de resultados** | Reusa el marco de `../Ricardo-idea/viz`: tokens claros, canvas o SVG, sin modo oscuro |
@@ -112,7 +112,7 @@ estar en verde, y el PR no debe duplicar nada de `app/`.
 
 ## Qué le dices a la otra sesión al abrirla
 
-> Trabajamos en Rimay, un asistente de WhatsApp que lleva las indicaciones de la posta de Pilpichaca a
+> Trabajamos en Chaski, un asistente de WhatsApp que lleva las indicaciones de la posta de Pilpichaca a
 > gestantes quechuahablantes, en audio y en quechua chanka. Lee `plan/plan-completo.md`,
 > `ideas/producto.md` y `plan/ricardo-dos-sesiones.md`.
 > Eres la **sesión [A · voz]** o la **[B · medición]**. Eres dueña de la carpeta `voz/` o `medicion/`.

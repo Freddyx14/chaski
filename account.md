@@ -6,15 +6,15 @@
 ## 📍 Estado actual (act. 2026-10-23, Friday 18:30 PT)
 
 - **⚠️ Source of truth is now `SOT.md` (SOT-3, 23:50 PT Fri).** Product = face-to-face Spanish↔Chanka interpreter
-  app for health staff (D9–D12). Every new decision goes there first; `plan/rimay-visual.html` is regenerated from it
+  app for health staff (D9–D12). Every new decision goes there first; `plan/chaski-visual.html` is regenerated from it
   with the same version stamp.
 - **Scope (23:33 PT Fri, Freddy):** general health care at the Pilpichaca health post, NOT only pregnant women.
   Community = Quechua-speaking patients of that post. More family voices = more data.
-- **Build (23:30 PT Fri):** Rimay confirmed by both (Ricardo's extortion idea dropped; his own results showed the
+- **Build (23:30 PT Fri):** Chaski confirmed by both (Ricardo's extortion idea dropped; his own results showed the
   escalation model loses to the baseline). Plan: `plan/plan-completo.md`. First code in `app/`: the blind
   back-translation audit (T2), 20 tests green, **not yet run against the real API** (needs the Cal Hacks key).
   Ricardo's VM has a 40 GB GPU → fine-tuning runs there.
-- **Product chosen by Freddy (21:30 PT):** A + V2 → "Rimay" (working name), Chanka interpreter for pregnant
+- **Product chosen by Freddy (21:30 PT):** A + V2 → "Chaski" (working name), Chanka interpreter for pregnant
   women at the Pilpichaca health post with prescription-photo reading. Product doc: `ideas/producto.md`;
   evidence: `research/papers.md`. Architecture not written yet.
 - **Before that:** finalists A (Chanka interpreter for pregnant women) and C (fire last mile), scored

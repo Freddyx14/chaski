@@ -27,7 +27,7 @@ export type RespuestaPaciente = {
 
 export type RespuestaEscuchar = { texto: string; ms: number };
 
-/** Nombre que la enfermera entiende para cada campo que compara la auditoría (app/rimay/hechos.py). */
+/** Nombre que la enfermera entiende para cada campo que compara la auditoría (app/chaski/hechos.py). */
 export function nombreDelCampo(campo: string): string {
   const c = campo.toLowerCase();
   // Primero los campos cuyo nombre contiene otra palabra clave («ir_ya_si (cantidad de señales)»).

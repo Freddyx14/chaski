@@ -1,15 +1,16 @@
-# Rimay — fuente de verdad (SOT)
+# Chaski — fuente de verdad (SOT)
 
-> **Versión SOT-12 · sábado 24 de octubre de 2026, 09:40 PT**
+> **Versión SOT-13 · sábado 24 de octubre de 2026, 10:40 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
-> está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
+> está desactualizado. La página visual (`plan/chaski-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
 > se regenera desde este archivo y lleva **el mismo número de versión**: si los números no coinciden, no están sincronizados.
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-13 (sáb 10:40).** **El producto se llama Chaski (D30)**, ya no Rimay: la app, el repo, la carpeta, el paquete de código y la documentación. La vicuña también es Chaski: el intérprete y su personaje son uno. El bundle de iOS sigue siendo `lat.loopmind.rimay` (Apple no deja cambiarlo con builds subidos y no se ve en ningún lado). Además: **el diseño final será D + I** (rombos y chakana como componentes); la maqueta L se valida antes de tocar la app.
 - **SOT-12 (sáb 09:40).** **La identidad visual es la manta andina (D28)**: franjas de tinte y cadenas de rombos, ganchos en S y escalones, tomadas de las referencias de Freddy. La manta es adorno de identidad (onboarding, banda del encabezado, la lliclla donde se sienta Chaski), nunca contenido; los colores de estado no cambian. Reemplaza la regla de D24 de una sola franja fina. Detalle: `design/specs/03-manta.md`.
-- **SOT-11 (sáb 09:15).** **Rimay sirve a los dos lados (D27)**: lo puede usar el personal de salud o el paciente quechuahablante. Onboarding de tres pasos: idioma → nombre → ¿personal de salud o paciente? La interfaz sale en el idioma elegido. El rol cambia solo el texto de algunas pantallas, el prompt del agente y el tipo de resumen; el núcleo es el mismo. Las pantallas en quechua las redacta Claude y **las revisa la mamá de Freddy** antes del pitch.
+- **SOT-11 (sáb 09:15).** **Chaski sirve a los dos lados (D27)**: lo puede usar el personal de salud o el paciente quechuahablante. Onboarding de tres pasos: idioma → nombre → ¿personal de salud o paciente? La interfaz sale en el idioma elegido. El rol cambia solo el texto de algunas pantallas, el prompt del agente y el tipo de resumen; el núcleo es el mismo. Las pantallas en quechua las redacta Claude y **las revisa la mamá de Freddy** antes del pitch.
 - **SOT-10 (sáb 09:05).** **UI: se construye sobre el tablero de Pencil (D26)**, con 11 ajustes para el flujo real: estado «Pensando» con pasos, texto antes que voz, modo ensayo en ámbar (rojo solo para dato crítico), tocar para hablar (no mantener), quién habla en el botón y alternancia automática, franja textil, historial de la consulta, boca de Chaski con el volumen real. Detalle: `design/specs/02-pulido-ui.md`. La app vive en `movil/` (Expo SDK 58). También se registra D25 (cuadernillo + NLLB-200).
 - **SOT-9 (sáb 07:50).** **Paleta decidida (D24)**: «Chaski + textil», tokens en `design/tokens.json`. Loops de Chaski listos: escuchando y presentarse cierran solos, pensando y no_entendi en ping-pong; hablando se hace en la app alternando reposo/hablando con el volumen del audio. Entrevista Mom Test a la mamá de Freddy en `plan/entrevista-personal-salud.md`. Voz con emoción y clonación al backlog. **Corrección:** la GPU es una A10G de 23 GB, no 40 (medido por Ricardo).
 - **SOT-8 (sáb 01:50).** **Foco cerrado (D23):** traducción literal + ajuste fino de reconocimiento y voz. Las tres formas de interpretar que propuso Freddy van al backlog (§13). Además: los videos de Chaski se piden con el cuadro ya en 16:9 (`avatar/estados-16x9/`), porque en cuadrado Flow hacía zoom.
@@ -25,17 +26,17 @@
   - **Decidir el siguiente paso:** pedir repetir, avisar a la enfermera o seguir.
   - Además: **el avatar es una vicuña** (D20, §10, 4 opciones en `avatar/opciones/`) y **las tareas por persona están en [`plan/tareas.md`](plan/tareas.md)** (D21). Tú armas las frases y preguntas que graban las familias.
 - **SOT-4 (sáb 00:20).** App nativa iOS por TestFlight (D14), modelo de Claude elegido midiendo (D15), Cartesia para el castellano (D16), avatar (D17), la mamá de Freddy en la prueba y el pitch (D18), plan del sábado (§11).
-- **SOT-3 (vie 23:50).** Rimay pasa a ser intérprete cara a cara para el personal de salud (D9–D12). Nace este archivo.
+- **SOT-3 (vie 23:50).** Chaski pasa a ser intérprete cara a cara para el personal de salud (D9–D12). Nace este archivo.
 
-> La página visual está en el repo: abre `plan/rimay-visual.html` en el navegador (el enlace de claude.ai es privado de Freddy).
+> La página visual está en el repo: abre `plan/chaski-visual.html` en el navegador (el enlace de claude.ai es privado de Freddy).
 
 ---
 
 ## 1. El producto, hoy
 
-**Rimay es un intérprete castellano ↔ quechua chanka que el personal de salud tiene en su celular.** La enfermera
-habla y Rimay lo dice en quechua; el paciente responde y Rimay detecta que es quechua y se lo dice a ella en castellano.
-Antes de decir algo, Rimay se audita: si una dosis, una hora o una fecha cambió en la traducción, no lo dice.
+**Chaski es un intérprete castellano ↔ quechua chanka que el personal de salud tiene en su celular.** La enfermera
+habla y Chaski lo dice en quechua; el paciente responde y Chaski detecta que es quechua y se lo dice a ella en castellano.
+Antes de decir algo, Chaski se audita: si una dosis, una hora o una fecha cambió en la traducción, no lo dice.
 
 | | |
 |---|---|
@@ -47,12 +48,12 @@ Antes de decir algo, Rimay se audita: si una dosis, una hora o una fecha cambió
 
 ### Una consulta, paso a paso
 1. La enfermera habla en castellano.
-2. Rimay **entiende lo que quiso decir**: limpia muletillas y frases a medias, deja los números explícitos.
+2. Chaski **entiende lo que quiso decir**: limpia muletillas y frases a medias, deja los números explícitos.
 3. **Auditoría**: traduce al chanka, retraduce a ciegas, compara dosis, horas, días y citas con código. Si algo cambió, no lo dice y le muestra a la enfermera qué revisar. *(construido)*
-4. Rimay **lo dice en quechua chanka**, en voz alta; la enfermera lo ve en pantalla.
-5. El paciente responde. Rimay **detecta el idioma** solo.
-6. Rimay **entiende lo que quiso decir el paciente** y se lo dice a la enfermera en castellano, avisando si no está seguro.
-7. Al final: **«¿Me lo repite?»**. Rimay marca qué entendió el paciente y qué no.
+4. Chaski **lo dice en quechua chanka**, en voz alta; la enfermera lo ve en pantalla.
+5. El paciente responde. Chaski **detecta el idioma** solo.
+6. Chaski **entiende lo que quiso decir el paciente** y se lo dice a la enfermera en castellano, avisando si no está seguro.
+7. Al final: **«¿Me lo repite?»**. Chaski marca qué entendió el paciente y qué no.
 
 ### Por qué importa
 Una indicación que no se entiende es un tratamiento que no funciona: dosis equivocada, pastilla que se deja, control
@@ -69,7 +70,7 @@ establecimientos de salud del país tiene atención intercultural. Fuentes: `res
 | F1 | **Entender quechua hablado** | Casi no hay datos de voz en chanka. Se ajusta con las voces de las familias y se mide con una voz que el modelo nunca escuchó | por hacer · Ricardo |
 | F2 | **Detectar el idioma solo** | Quechua o castellano en cada turno, sin botones. `facebook/mms-lid-512` incluye `quy` y `spa` (verificado 23-oct); precisión por medir | por hacer · Ricardo |
 | F3 | **Entender lo que quiso decir** | Claude limpia la voz de la enfermera y el texto ruidoso del quechua, sin inventar ni quitar datos | por hacer · Freddy |
-| F4 | **Auditar antes de hablar** | Retraducción a ciegas + comparación por código | ✅ construido, 20 pruebas · `app/rimay/` |
+| F4 | **Auditar antes de hablar** | Retraducción a ciegas + comparación por código | ✅ construido, 20 pruebas · `app/chaski/` |
 | F5 | **Hablar quechua** | Voz chanka de Meta (`facebook/mms-tts-quy`), ajustada con la voz de la mamá de Freddy | voz base probada 23-oct · `muestras/` |
 | F6 | **«¿Me lo repite?»** | Comparar lo repetido con la indicación | por hacer · Freddy |
 | F7 | **Mejora con el uso** | Cada corrección de la enfermera entra al glosario y a los datos del siguiente ajuste | por hacer |
@@ -103,7 +104,7 @@ el que se niega a decir una dosis que no está seguro de haber traducido bien.»
 Tres números, medidos con honestidad, aunque salgan malos:
 1. **Errores al entender chanka hablado**: modelo de Meta tal cual → + vocabulario de la posta → + ajuste fino con las familias. Medido con una persona que no está en el entrenamiento.
 2. **Errores al traducir al chanka**: Claude contra Google Translate, calificados por la enfermera.
-3. **Errores que la auditoría atrapa** antes de que Rimay hable.
+3. **Errores que la auditoría atrapa** antes de que Chaski hable.
 4. **Cuánto baja el error del quechua cuando Claude corrige la transcripción** (F10).
 
 Más: precisión de la detección de idioma, y la espera por turno.
@@ -132,7 +133,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 
 | Freddy | Ricardo | Familias |
 |---|---|---|
-| Claude: entender, traducir, auditar, «¿me lo repite?» · app · evaluación chanka con su mamá · pitch y Devpost | Datos de voz · reconocimiento (pasos 0-1-2) · detección de idioma · voz de Rimay · métricas y gráficos | Graban frases de posta y respuestas libres en chanka · la mamá de Freddy transcribe, revisa el glosario y califica |
+| Claude: entender, traducir, auditar, «¿me lo repite?» · app · evaluación chanka con su mamá · pitch y Devpost | Datos de voz · reconocimiento (pasos 0-1-2) · detección de idioma · voz de Chaski · métricas y gráficos | Graban frases de posta y respuestas libres en chanka · la mamá de Freddy transcribe, revisa el glosario y califica |
 
 **Tareas por persona, con checklist: [`plan/tareas.md`](plan/tareas.md).** Protocolo de grabación: `plan/recoleccion-de-voz.md`.
 
@@ -147,25 +148,26 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D3 | vie 20:20 | Se descarta incendios | La detección ya la resuelve Satellites on Fire (US$2.7M) |
 | D4 | vie 21:10 | Rumbo: quechua en salud | La mamá de Freddy es la única enfermera quechuahablante de la posta de Pilpichaca |
 | D5 | vie 22:40 | Ajuste fino de voz con las familias, medido antes y después | Padres de Freddy y papá de Ricardo hablan chanka; da el núcleo técnico |
-| D6 | vie 23:08 | Rimay sobre corredores de extorsión | El propio análisis de Ricardo mostró que el modelo de escalamiento no le gana al baseline |
+| D6 | vie 23:08 | Chaski sobre corredores de extorsión | El propio análisis de Ricardo mostró que el modelo de escalamiento no le gana al baseline |
 | D7 | vie 23:08 | El entrenamiento corre en la VM de Ricardo (**GPU A10G, 23 GB**; se dijo 40, Ricardo midió 23) | Alcanza: el ASR usa 3.4 GB |
 | D8 | vie 23:33 | Salud general, no solo gestantes | Más voces familiares = más datos; la comunidad es la posta, no una condición |
 | D9 | vie 23:41 | **Usuaria principal: el personal de salud**, no el paciente | Lo usan en la consulta, cara a cara |
-| D10 | vie 23:41 | **App de intérprete con voz en los dos sentidos**, no WhatsApp | Conversación en vivo; la enfermera habla, Rimay habla en quechua, el paciente responde |
+| D10 | vie 23:41 | **App de intérprete con voz en los dos sentidos**, no WhatsApp | Conversación en vivo; la enfermera habla, Chaski habla en quechua, el paciente responde |
 | D11 | vie 23:41 | **Detección automática de idioma** en cada turno | Nadie debería tocar un botón para cambiar de idioma |
 | D12 | vie 23:41 | **Entender la intención, estilo Wispr Flow** | Que lo dicho a medias llegue claro de los dos lados |
 | D13 | vie 23:50 | Este archivo es la fuente de verdad; la página visual se sincroniza con él | Pedido de Freddy |
 | D14 | sáb 00:14 | **App nativa de iOS por TestFlight** | Freddy tiene la cuenta Apple Developer; se muestra como app de prueba |
 | D15 | sáb 00:14 | **El modelo de Claude se elige midiendo**: velocidad y acierto en el mismo set de prueba, y se queda uno | En una conversación en vivo la espera importa tanto como el acierto |
 | D16 | sáb 00:14 | **Cartesia para la voz en castellano** | Sus créditos y su track |
-| D17 | sáb 00:14 | **Avatar** que presenta Rimay y lo hace cercano | Más familiar para el paciente; lo pidió Freddy (ver §10) |
+| D17 | sáb 00:14 | **Avatar** que presenta Chaski y lo hace cercano | Más familiar para el paciente; lo pidió Freddy (ver §10) |
 | D18 | sáb 00:14 | **La mamá de Freddy prueba por videollamada y, si puede, aparece en el pitch** | Usuaria real, voz real |
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
 | D25 | sáb 08:35 | **El cuadernillo pide escribir la frase en quechua y leer en voz alta exactamente lo escrito** (75 frases, foto de cada hoja + una nota de voz por frase). Traducción: **NLLB-200 de Meta** (`facebook/nllb-200-distilled-600M`, incluye `quy_Latn`, licencia no comercial) ajustado con esos pares | Traducir, entender y hablar necesitan **texto escrito**: con solo voz habría que transcribir ~450 audios. Así cada persona trae su texto y su audio alineados. Omnilingual MT (Meta, mar-2026) no tiene pesos publicados |
+| D30 | sáb 10:31 | **El producto se llama Chaski**, no Rimay. Cambia en la app, el repo (`Freddyx14/chaski`), la carpeta (`clients/chaski`), el paquete Python (`app/chaski`, con un puente `rimay` para el servicio vivo) y toda la documentación. La vicuña y la app comparten nombre. Se mantienen el bundle `lat.loopmind.rimay` y el dominio `rimay-datos.vercel.app` | Decisión de Freddy. Chaski era el mensajero del Tawantinsuyu: lleva el mensaje de un idioma al otro, y ya es el personaje que ve el paciente |
 | D28 | sáb 09:40 | **La identidad visual sale de las mantas andinas (lliclla)**: paleta `manta` en `design/tokens.json`, motivos tejidos sobre grilla (rombos, ganchos en S, escalón, trenza) en bandas de identidad: onboarding, encabezado, la base de Chaski. Nunca dentro del contenido; rojo de bloqueo nunca pegado a la manta. Reemplaza la regla de D24 de una sola franja fina | Pedido de Freddy con referencias propias; la cultura de la sierra es la identidad, y la seguridad se cuida dejando el contenido limpio |
-| D27 | sáb 09:05 | **Rimay es para los dos lados: personal de salud y paciente.** Onboarding: (1) idioma, castellano o quechua; (2) nombre; (3) ¿personal de salud o paciente? La interfaz va en el idioma elegido. El rol cambia algunos textos de la vista, el system prompt del agente y el resumen final (nota clínica para el personal, instrucciones para llevar a casa para el paciente). No son dos apps | Freddy: un paciente que no habla castellano también llega a un servicio de salud y merece los mismos beneficios, el resumen de lo que escuchó y la auditoría con Claude |
-| D26 | sáb 09:05 | **La UI se construye sobre el tablero de Pencil** (`design/rimay-pen.png`), con los ajustes de `design/specs/02-pulido-ui.md`. La app está en `movil/` | Elección de Freddy entre Pencil y Claude Design; los ajustes salen de los tiempos reales del servicio (~5 s por turno) y de la tasa de bloqueos del modo estricto |
+| D27 | sáb 09:05 | **Chaski es para los dos lados: personal de salud y paciente.** Onboarding: (1) idioma, castellano o quechua; (2) nombre; (3) ¿personal de salud o paciente? La interfaz va en el idioma elegido. El rol cambia algunos textos de la vista, el system prompt del agente y el resumen final (nota clínica para el personal, instrucciones para llevar a casa para el paciente). No son dos apps | Freddy: un paciente que no habla castellano también llega a un servicio de salud y merece los mismos beneficios, el resumen de lo que escuchó y la auditoría con Claude |
+| D26 | sáb 09:05 | **La UI se construye sobre el tablero de Pencil** (`design/chaski-pen.png`), con los ajustes de `design/specs/02-pulido-ui.md`. La app está en `movil/` | Elección de Freddy entre Pencil y Claude Design; los ajustes salen de los tiempos reales del servicio (~5 s por turno) y de la tasa de bloqueos del modo estricto |
 | D24 | sáb 07:48 | **Paleta «Chaski + textil»**: fondo crudo `#F6F4F1`, acción teal `#0E6B64` (6.4:1), quechua canela `#A85A2A` (5.0:1), rojo solo para bloqueo, avisos siempre con ícono, una franja textil escalonada como único adorno. Tokens: `design/tokens.json` | Reutiliza lo diseñado, es la más segura y combina con el fondo cálido de Chaski; la franja da la identidad que faltaba |
 | D23 | sáb 01:40 | **El foco del fin de semana es la traducción literal** (modo 1 abajo) **más el ajuste fino de reconocimiento y voz en chanka**. Los modos 2 y 3 van al backlog | Lo que se puede hacer bien en 30 horas; los otros modos se suman si sobra tiempo |
 | D22 | sáb 00:54 | **El avatar es Chaski: la vicuña 3D con audífonos y micrófono de intérprete y bufanda teal** (`avatar/opciones/2d-3d-audifonos.png`) | Se entiende de un vistazo que interpreta y traduce |
@@ -180,7 +182,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | P1 | ¿App web o nativa? | — | ✅ cerrada: nativa iOS (D14) |
 | P2 | ¿Qué modelo de Claude en la conversación? | Medir `claude-opus-5`, `claude-sonnet-5` y `claude-haiku-4-5` en el mismo set: segundos por turno y errores atrapados. Quedarse con el más rápido que no pierda acierto en la auditoría | abierta · se decide el sábado con números (D15) |
 | P3 | ¿Voz en castellano? | — | ✅ cerrada: Cartesia (D16) |
-| P4 | Nombre final | Ver lista abajo; decidirla con la mamá de Freddy | abierta |
+| P4 | Nombre final | — | ✅ cerrada: **Chaski** (D30). Pendiente solo que la mamá de Freddy confirme la escritura |
 | P5 | ¿Cómo es el avatar? | — | ✅ cerrada: Chaski, vicuña 3D con audífonos (D20, D22) |
 | P6 | ¿La mamá de Freddy puede el domingo de 12:30 a 14:30 (hora de Lima)? | Preguntarle hoy | abierta · Freddy |
 
@@ -189,7 +191,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 
 | Nombre | Lo que entendemos que significa | Por qué podría servir |
 |---|---|---|
-| **Rimay** | hablar | Corto, dice lo que hace. El favorito de Freddy |
+| **Rimay** | hablar | Corto, dice lo que hace. Fue el nombre de trabajo hasta el 24-oct |
 | **Rimanakuy** | conversar, hablar entre dos | Justo lo que pasa: una conversación de ida y vuelta |
 | **Uyariy** | escuchar | Pone el foco en entender al paciente |
 | **Chaski** | mensajero (los corredores del Tawantinsuyu) | Lleva el mensaje de un lado al otro; fácil de recordar fuera del Perú |
@@ -200,10 +202,10 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 
 | Riesgo | Qué hacemos |
 |---|---|
-| El paciente habla libre, no frases de posta | Grabar respuestas espontáneas; si Rimay no entiende, lo dice y pide repetir, nunca inventa |
+| El paciente habla libre, no frases de posta | Grabar respuestas espontáneas; si Chaski no entiende, lo dice y pide repetir, nunca inventa |
 | Espera por turno de varios segundos | Medir por paso; recortar donde más tarde |
 | Mezcla de idiomas en una misma frase | Normal en la posta; se mide aparte |
-| La enfermera confía a ciegas | La pantalla siempre muestra lo que Rimay entendió y lo que va a decir |
+| La enfermera confía a ciegas | La pantalla siempre muestra lo que Chaski entendió y lo que va a decir |
 | Una dosis mal traducida | La auditoría (F4) bloquea antes de hablar |
 | TestFlight tarda en procesar el build | Subir el primer build el sábado temprano; plan B: la app en el iPhone de Freddy con Expo |
 | La app no llega a la VM | HTTPS público para la VM desde el sábado temprano; probarlo antes de construir encima |
@@ -238,7 +240,7 @@ personaje), **boca abierta y cerrada según el volumen del audio**, y movimiento
 
 ✅ **Elegida (D22): `2d-3d-audifonos.png`**, la versión 3D con audífonos de intérprete (variación de la 2; las variaciones 2b, 2c y 2d están en la misma carpeta). **Nombre: Chaski.** Los 5 estados se generan el sábado con `/falia` usando esa imagen como referencia, para que sea el mismo personaje. *(Hay 5 estados ya generados a partir de la opción 2 original, sin descargar; no sirven para la 2d.)*
 
-**Nombres propuestos para la vicuña** (si la app se llama Rimay, la vicuña lleva su propio nombre; significado a confirmar con la mamá de Freddy):
+**Nombres propuestos para la vicuña** (cuando la app se llamaba Rimay, la vicuña llevaba su propio nombre; significado a confirmar con la mamá de Freddy):
 | Nombre | Lo que entendemos | Por qué |
 |---|---|---|
 | **Chaski** | mensajero del Tawantinsuyu | Lleva el mensaje de un idioma al otro |
@@ -292,8 +294,8 @@ Un intérprete de verdad no solo traduce. Freddy y Ricardo identificaron tres mo
 | Modo | Qué hace | Ejemplo | Estado |
 |---|---|---|---|
 | **1 · Literal** | Lo que la enfermera dice se traduce tal cual | «Tome una pastilla cada 8 horas» → quechua | ✅ **foco del fin de semana (D23)** |
-| **2 · Mediado** | La enfermera le pide a Rimay que le haga entender algo al paciente; Rimay decide **cómo** decirlo para que se entienda | «Explícale que no puede dejar el tratamiento aunque se sienta bien» → Rimay arma el mensaje en quechua adaptado al paciente | backlog |
-| **3 · Preguntas al intérprete** | La enfermera le pregunta algo **a Rimay**, no al paciente, y Rimay responde a ella sin traducirlo | «¿Qué quiso decir con eso?» / «¿Te dijo cuántos días lleva con fiebre?» | backlog |
+| **2 · Mediado** | La enfermera le pide a Chaski que le haga entender algo al paciente; Chaski decide **cómo** decirlo para que se entienda | «Explícale que no puede dejar el tratamiento aunque se sienta bien» → Chaski arma el mensaje en quechua adaptado al paciente | backlog |
+| **3 · Preguntas al intérprete** | La enfermera le pregunta algo **a Chaski**, no al paciente, y Chaski responde a ella sin traducirlo | «¿Qué quiso decir con eso?» / «¿Te dijo cuántos días lleva con fiebre?» | backlog |
 
 ### Backlog: voz con emoción y clonación de voz (idea de Freddy, sáb 07:42)
 
@@ -315,7 +317,7 @@ al mediador o al que responde), y mencionó `/jev-ai` como inspiración. *(Por e
 | **`SOT.md`** | Esta fuente de verdad | ✅ |
 | `plan/tareas.md` | Tareas por persona, checklist | ✅ |
 | `avatar/opciones/` | Las 4 opciones de la vicuña | ✅ |
-| `plan/rimay-visual.html` | Página visual, sincronizada con SOT | ✅ si la versión coincide |
+| `plan/chaski-visual.html` | Página visual, sincronizada con SOT | ✅ si la versión coincide |
 | `plan/plan-completo.md` | Plan de recortes y medición | ⚠️ el calendario nuevo está en SOT §11 |
 | `plan/recoleccion-de-voz.md` | Protocolo de grabación para las familias | ✅ |
 | `ideas/producto.md` | Producto v1 (WhatsApp, gestantes) y su evidencia | ⚠️ la evidencia sí; el producto, no |
@@ -327,7 +329,7 @@ al mediador o al que responde), y mencionó `/jev-ai` como inspiración. *(Por e
 
 ```mermaid
 graph TD
-  SOT[SOT.md<br/>fuente de verdad] --> VIS[plan/rimay-visual.html<br/>página visual]
+  SOT[SOT.md<br/>fuente de verdad] --> VIS[plan/chaski-visual.html<br/>página visual]
   SOT --> TAR[plan/tareas.md<br/>checklist por persona]
   SOT --> REC[plan/recoleccion-de-voz.md<br/>grabación]
   SOT --> APP[app/<br/>código]

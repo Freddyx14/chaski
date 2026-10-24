@@ -5,7 +5,7 @@ Flow (T2 in plan/plan-completo.md):
   2. Claude translates to Chanka, using the reviewed glossary.
   3. A SEPARATE call, which never sees the original, translates the Quechua back to Spanish.
   4. Claude extracts the critical facts from the back-translation.
-  5. Plain code compares both (rimay.hechos.comparar). Any difference blocks the message.
+  5. Plain code compares both (chaski.hechos.comparar). Any difference blocks the message.
 
 Grounded in Mehandru et al. (2022): clinicians fight language barriers with back-translation and
 pre-translated phrases. This automates the first one.
@@ -18,7 +18,7 @@ from pathlib import Path
 import anthropic
 from pydantic import BaseModel, Field
 
-from rimay.hechos import Diferencia, Hechos, comparar
+from chaski.hechos import Diferencia, Hechos, comparar
 
 MODELO = "claude-opus-5"
 GLOSARIO = Path(__file__).resolve().parent / "glosario.json"

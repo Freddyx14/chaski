@@ -9,18 +9,18 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { escuchar, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/rimay/api';
-import { Chaski, type EstadoChaski } from '@/rimay/chaski';
-import { agregarTurno, inicioDeConsulta } from '@/rimay/consulta';
+import { escuchar, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
+import { Chaski, type EstadoChaski } from '@/chaski/chaski';
+import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
   fueCastellano, siguienteLado, veredictoEnfermera, type Lado, type RespuestaPaciente, type Veredicto,
-} from '@/rimay/modelo';
-import { usePerfil, type Perfil } from '@/rimay/perfil';
-import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/rimay/textos';
-import { C, ESCALA } from '@/rimay/tokens';
-import { Manta } from '@/rimay/manta';
-import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/rimay/ui';
-import { bocaAbierta, envolvente, type Envolvente } from '@/rimay/wav';
+} from '@/chaski/modelo';
+import { usePerfil, type Perfil } from '@/chaski/perfil';
+import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/chaski/textos';
+import { C, ESCALA } from '@/chaski/tokens';
+import { Manta } from '@/chaski/manta';
+import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/chaski/ui';
+import { bocaAbierta, envolvente, type Envolvente } from '@/chaski/wav';
 
 // WAV 16 kHz mono 16 bits: lo que piden el detector de idioma y el reconocimiento (CONTRATO.md §1).
 const GRABACION: RecordingOptions = {
@@ -50,7 +50,7 @@ type Fase =
   | { f: 'paciente'; r: RespuestaPaciente }
   | { f: 'error'; mensaje: string; sinServidor: boolean };
 
-// Modo demo: rimay:///?demo=<estado>&idioma=quechua&rol=paciente muestra un estado con datos de ejemplo,
+// Modo demo: chaski:///?demo=<estado>&idioma=quechua&rol=paciente muestra un estado con datos de ejemplo,
 // sin servicio. Sirve para revisar pantallas y como respaldo de la demo si falla el wifi.
 const DEMO_CASTELLANO = 'Tome una pastilla dos veces al día, en la mañana y en la noche, durante siete días.';
 const DEMO: Record<string, Fase> = {
@@ -345,7 +345,7 @@ function Encabezado({ t }: { t: Textos }) {
   return (
     <View style={e.encabezado}>
       <Pressable onLongPress={() => router.push('/ajustes')} style={e.marca} accessibilityHint="Mantenga presionado para ajustes">
-        <Text style={e.marcaTexto}>Rimay</Text>
+        <Text style={e.marcaTexto}>Chaski</Text>
         <Text style={e.reloj}>{t.consulta} · {reloj}</Text>
       </Pressable>
       <Pressable accessibilityLabel="Ver la conversación" onPress={() => router.push('/historial')} style={e.botonRedondo}>

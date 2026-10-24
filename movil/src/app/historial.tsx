@@ -3,12 +3,12 @@ import { router } from 'expo-router';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { nuevaConsulta, useTurnos } from '@/rimay/consulta';
-import { usePerfil } from '@/rimay/perfil';
-import { quienHabla, textos } from '@/rimay/textos';
-import type { Turno } from '@/rimay/modelo';
-import { C, ESCALA } from '@/rimay/tokens';
-import { Aviso, Boton, Etiqueta, Tarjeta } from '@/rimay/ui';
+import { nuevaConsulta, useTurnos } from '@/chaski/consulta';
+import { usePerfil } from '@/chaski/perfil';
+import { quienHabla, textos } from '@/chaski/textos';
+import type { Turno } from '@/chaski/modelo';
+import { C, ESCALA } from '@/chaski/tokens';
+import { Aviso, Boton, Etiqueta, Tarjeta } from '@/chaski/ui';
 
 const AVISO: Record<Turno['estado'], { tipo: 'ok' | 'warn' | 'block'; texto: string }> = {
   dicho: { tipo: 'ok', texto: 'Auditado y dicho' },

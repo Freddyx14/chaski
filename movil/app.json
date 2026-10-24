@@ -1,20 +1,20 @@
 {
   "expo": {
-    "name": "Rimay",
-    "slug": "rimay",
+    "name": "Chaski",
+    "slug": "chaski",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/rimay-icon.png",
-    "scheme": "rimay",
+    "icon": "./assets/images/chaski-icon.png",
+    "scheme": "chaski",
     "userInterfaceStyle": "light",
     "ios": {
-      "icon": "./assets/images/rimay-icon.png",
+      "icon": "./assets/images/chaski-icon.png",
       "bundleIdentifier": "lat.loopmind.rimay",
       "supportsTablet": false,
       "infoPlist": {
-        "NSMicrophoneUsageDescription": "Rimay escucha la consulta para interpretarla entre castellano y quechua.",
-        "NSCameraUsageDescription": "Rimay lee la receta o la caja del medicamento.",
-        "NSPhotoLibraryUsageDescription": "Rimay lee la foto de una receta o de una caja.",
+        "NSMicrophoneUsageDescription": "Chaski escucha la consulta para interpretarla entre castellano y quechua.",
+        "NSCameraUsageDescription": "Chaski lee la receta o la caja del medicamento.",
+        "NSPhotoLibraryUsageDescription": "Chaski lee la foto de una receta o de una caja.",
         "ITSAppUsesNonExemptEncryption": false
       },
       "buildNumber": "2"
@@ -34,21 +34,21 @@
       [
         "expo-audio",
         {
-          "microphonePermission": "Rimay escucha la consulta para interpretarla entre castellano y quechua."
+          "microphonePermission": "Chaski escucha la consulta para interpretarla entre castellano y quechua."
         }
       ],
       [
         "expo-image-picker",
         {
-          "cameraPermission": "Rimay lee la receta o la caja del medicamento.",
-          "photosPermission": "Rimay lee la foto de una receta o de una caja."
+          "cameraPermission": "Chaski lee la receta o la caja del medicamento.",
+          "photosPermission": "Chaski lee la foto de una receta o de una caja."
         }
       ],
       [
         "expo-splash-screen",
         {
           "backgroundColor": "#F6F4F1",
-          "image": "./assets/images/rimay-icon.png",
+          "image": "./assets/images/chaski-icon.png",
           "imageWidth": 180
         }
       ]

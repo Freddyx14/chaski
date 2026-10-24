@@ -2,9 +2,9 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
-import { cargarPerfil } from '@/rimay/perfil';
+import { cargarPerfil } from '@/chaski/perfil';
 
-import { C } from '@/rimay/tokens';
+import { C } from '@/chaski/tokens';
 
 export default function Layout() {
   useEffect(() => { cargarPerfil(); }, []);

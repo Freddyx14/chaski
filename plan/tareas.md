@@ -1,4 +1,4 @@
-# Rimay — tareas por persona
+# Chaski — tareas por persona
 
 > Checklist vivo. Cada tarea apunta a su función (F) o decisión (D) del [`SOT.md`](../SOT.md).
 > Marca `[x]` al terminar y haz commit. Si una tarea cambia el producto, el cambio va primero al SOT.
@@ -59,7 +59,7 @@ La app iOS ya está en TestFlight y sin estas rutas el resumen y la detección d
 - [ ] `/idioma`
 - [ ] Levantar el túnel HTTPS donde corre el servicio: `cloudflared tunnel --url http://localhost:8000` y pasarle la dirección a Freddy
 
-La lógica del resumen ya está en `app/rimay/resumen.py` con pruebas; solo falta exponerla. `/idioma` reenvía a la instancia, que ya lo tiene.
+La lógica del resumen ya está en `app/chaski/resumen.py` con pruebas; solo falta exponerla. `/idioma` reenvía a la instancia, que ya lo tiene.
 
 ```python
 @aplicacion.post("/idioma")
@@ -78,7 +78,7 @@ async def idioma(audio: UploadFile = File(...)):
 @aplicacion.post("/resumen")
 def resumen(turnos: str = Form(...), rol: str = Form("personal")):
     import anthropic
-    from rimay.resumen import Turno, resumir, texto_para_decir
+    from chaski.resumen import Turno, resumir, texto_para_decir
     try:
         r = resumir(anthropic.Anthropic(), [Turno(**t) for t in json.loads(turnos)], rol)
     except Exception as e:
@@ -95,7 +95,7 @@ def resumen(turnos: str = Form(...), rol: str = Form("personal")):
 - [ ] 13:30 · Paso 2: ajuste fino con las voces de las familias (F1)
 - [ ] 13:30 · Detección de idioma medida con las grabaciones (F2)
 - [ ] 15:00 · Darle a Claude las N mejores transcripciones para que corrija (F10), con Freddy
-- [ ] 16:00 · Voz de Rimay ajustada con la voz de la mamá de Freddy (F5)
+- [ ] 16:00 · Voz de Chaski ajustada con la voz de la mamá de Freddy (F5)
 - [ ] 19:00 · Gráficos de la página de resultados con los números reales
 - [ ] 22:00 · Ensayo del pitch: la lámina técnica
 
