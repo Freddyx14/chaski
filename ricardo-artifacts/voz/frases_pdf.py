@@ -228,10 +228,10 @@ def main() -> None:
                 [1.2 * cm, 6.6 * cm, 8.6 * cm])
 
     bloques = [
-        parte("Parte 1 · Lo que dice la enfermera", "C", CLINICAS),
-        parte("Parte 2 · Medicinas (el nombre de la medicina, como lo dice la gente)", "M", MEDICAMENTOS),
-        parte("Parte 3 · Números y días", "N", NUMEROS),
-        parte("Parte 4 · Lo que dice el paciente", "B", LIBRES),
+        parte("Parte 1 · Lo que dice la enfermera · escríbalo en quechua y grábelo leyendo lo que escribió", "C", CLINICAS),
+        parte("Parte 2 · Medicinas (el nombre de la medicina, como lo dice la gente) · escríbalo en quechua y grábelo leyendo lo que escribió", "M", MEDICAMENTOS),
+        parte("Parte 3 · Números y días · escríbalo en quechua y grábelo leyendo lo que escribió", "N", NUMEROS),
+        parte("Parte 4 · Lo que dice el paciente · escríbalo en quechua y grábelo leyendo lo que escribió", "B", LIBRES),
         ("Parte 5 · Extra, solo si le queda tiempo · lea en voz alta la columna en quechua",
          [["N.º", "Castellano", "Quechua chanka"]] +
          [[str(rango["E"][0] + i), P(f["castellano"]), P(f["chanka"])] for i, f in enumerate(verificadas)],
