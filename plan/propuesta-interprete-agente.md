@@ -1,6 +1,6 @@
 # Propuesta para acordar con Ricardo · Chaski como intérprete agente (sáb 24-oct, 13:00 PT)
 
-> **Estado: PROPUESTA, no decisión.** Sale de la entrevista con la enfermera de Pilpichaca
+> **Reemplazada por `plan/arquitectura-interprete.md` (acordada 12:45).** Estado anterior: PROPUESTA. Sale de la entrevista con la enfermera de Pilpichaca
 > (`research/entrevistas/2026-10-24-enfermera-pilpichaca-insights.md`) y de lo que Freddy propuso después.
 > Cuando Freddy y Ricardo acuerden qué entra, se registra como decisión en el `SOT.md`.
 > Quedan ~8 h útiles hasta el ensayo (22:00) y la entrega es el domingo 9:00.
