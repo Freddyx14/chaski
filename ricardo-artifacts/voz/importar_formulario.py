@@ -21,6 +21,7 @@ Uso:
 from __future__ import annotations
 
 import argparse
+from dataclasses import replace
 import json
 import sys
 import tempfile
@@ -28,7 +29,7 @@ from pathlib import Path
 
 import httpx
 
-from voz.contrato import Grabacion, escribir_manifiesto
+from voz.contrato import Grabacion, escribir_manifiesto, leer_manifiesto
 from voz.ingesta import convertir
 
 RAIZ = Path("datos/crudo")
@@ -143,6 +144,29 @@ def importar(origen: str, solo: str = "") -> dict:
                 consentimiento=True))
 
     for persona, grabaciones in por_persona.items():
+        # Lo corregido en /corregir manda sobre lo que trae el formulario.
+        # p17 grabo 74 frases y escribio una sola: su texto bueno lo escribio
+        # Ricardo etiquetando, y el formulario sigue mandando vacio. Sin esto,
+        # cada importacion borraba horas de etiquetado sin decir nada.
+        anterior = {}
+        ruta = RAIZ / persona / "manifiesto.jsonl"
+        if ruta.exists():
+            for vieja in leer_manifiesto(ruta):
+                if vieja.transcripcion.strip():
+                    anterior[(vieja.bloque, vieja.numero)] = vieja.transcripcion
+        # `Grabacion` es inmutable a proposito, asi que se reemplaza en vez de
+        # mutar: una grabacion no deberia cambiar de contenido a mitad de un
+        # proceso sin que se vea en el codigo.
+        rescatadas = 0
+        for i, g in enumerate(grabaciones):
+            guardada = anterior.get((g.bloque, g.numero), "")
+            if guardada and not g.transcripcion.strip():
+                grabaciones[i] = replace(g, transcripcion=guardada)
+                rescatadas += 1
+        if rescatadas:
+            print(f"  {persona}: {rescatadas} transcripciones del etiquetador conservadas",
+                  file=sys.stderr)
+
         grabaciones.sort(key=lambda g: g.numero)
         escribir_manifiesto(RAIZ / persona / "manifiesto.jsonl", grabaciones,
                             cabecera="del formulario: el texto lo escribio la propia persona")
