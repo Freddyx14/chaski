@@ -142,7 +142,7 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
         r.diferencias = d["diferencias"]
         detalle = d["tiempos"]
     else:
-        from rimay.auditoria import auditar
+        from chaski.auditoria import auditar
         res = auditar(anthropic.Anthropic(), texto_es)
         d = {"quechua": res.quechua, "retraduccion": res.retraduccion, "enviar": res.enviar,
              "motivo": res.motivo, "terminos_inseguros": res.terminos_inseguros,

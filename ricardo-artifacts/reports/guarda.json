@@ -1,0 +1,351 @@
+{
+ "cuando": "2026-10-24T17:30:30.595808+00:00",
+ "semilla": 13,
+ "reglas": {
+  "freddy_decidir": {
+   "casos": 4,
+   "falsos_bloqueos": 0,
+   "fugas": 4,
+   "tasa_falso_bloqueo": 0.0,
+   "tasa_fuga": 1.0
+  },
+  "ricardo_separando": {
+   "casos": 4,
+   "falsos_bloqueos": 0,
+   "fugas": 4,
+   "tasa_falso_bloqueo": 0.0,
+   "tasa_fuga": 1.0
+  }
+ },
+ "detalle": [
+  {
+   "castellano": "No tiene por qué",
+   "chanka": "Mana imamantapas",
+   "corrompido": "imamantapas",
+   "tipo": "negacion",
+   "limpia": {
+    "retraduccion": "De nada (literalmente: no por/de nada alguno)",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   },
+   "corrompida": {
+    "retraduccion": "de cualquier cosa (de lo que sea, sobre lo que fuere)",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   }
+  },
+  {
+   "castellano": "Hasta otro día, señora",
+   "chanka": "Huk punchawkama, señora",
+   "corrompido": "suqta punchawkama, señora",
+   "tipo": "numero",
+   "limpia": {
+    "retraduccion": "Hasta otro día, señora",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   },
+   "corrompida": {
+    "retraduccion": "hasta seis días, señora",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   }
+  },
+  {
+   "castellano": "Espere un momento, por favor",
+   "chanka": "Allicha, huk ratucha suyay",
+   "corrompido": "Allicha, pichqa ratucha suyay",
+   "tipo": "numero",
+   "limpia": {
+    "retraduccion": "Bueno, espera un ratito",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   },
+   "corrompida": {
+    "retraduccion": "Bueno, espera cinco ratitos",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   }
+  },
+  {
+   "castellano": "Esperen un momento, por favor",
+   "chanka": "Allicha, huk ratucha suyaychik",
+   "corrompido": "Allicha, pichqa ratucha suyaychik",
+   "tipo": "numero",
+   "limpia": {
+    "retraduccion": "Bueno, esperen un ratito",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   },
+   "corrompida": {
+    "retraduccion": "Bueno, esperen ustedes cinco ratitos",
+    "campos_distintos": [],
+    "freddy_decidir": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    },
+    "ricardo_separando": {
+     "enviar": true,
+     "motivo": "los datos críticos coinciden"
+    }
+   }
+  }
+ ],
+ "clinicas": {
+  "cuando": "2026-10-24T17:55:01.689834+00:00",
+  "semilla": 13,
+  "fuente": "clinicas",
+  "reglas": {
+   "freddy_decidir": {
+    "casos": 6,
+    "falsos_bloqueos": 0,
+    "fugas": 3,
+    "tasa_falso_bloqueo": 0.0,
+    "tasa_fuga": 0.5
+   },
+   "ricardo_separando": {
+    "casos": 6,
+    "falsos_bloqueos": 0,
+    "fugas": 3,
+    "tasa_falso_bloqueo": 0.0,
+    "tasa_fuga": 0.5
+   }
+  },
+  "detalle": [
+   {
+    "castellano": "Tome una pastilla cada ocho horas",
+    "chanka": "Sapa pusaq horaspi huk pastillata upyakuy.",
+    "corrompido": "Sapa pusaq horaspi suqta pastillata upyakuy.",
+    "tipo": "numero",
+    "limpia": {
+     "retraduccion": "Cada ocho horas toma una pastilla.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    },
+    "corrompida": {
+     "retraduccion": "Cada ocho horas toma seis pastillas.",
+     "campos_distintos": [
+      "medicamento.cantidad"
+     ],
+     "freddy_decidir": {
+      "enviar": false,
+      "motivo": "cambió un dato crítico: medicamento.cantidad"
+     },
+     "ricardo_separando": {
+      "enviar": false,
+      "motivo": "cambió un dato crítico: medicamento.cantidad"
+     }
+    }
+   },
+   {
+    "castellano": "Son siete días de tratamiento",
+    "chanka": "Qanchis punchawmi hampikuyniki kanqa.",
+    "corrompido": "tawa punchawmi hampikuyniki kanqa.",
+    "tipo": "numero",
+    "limpia": {
+     "retraduccion": "Siete días será tu curación.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    },
+    "corrompida": {
+     "retraduccion": "Cuatro días será tu curación.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    }
+   },
+   {
+    "castellano": "Venga en ayunas",
+    "chanka": "Mana mikuspa hamunki, mana imatapas mikusqayki.",
+    "corrompido": "mikuspa hamunki, imatapas mikusqayki.",
+    "tipo": "negacion",
+    "limpia": {
+     "retraduccion": "Vienes sin comer, no comerás nada.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    },
+    "corrompida": {
+     "retraduccion": "Comiendo vendrás (ven habiendo comido), algo comerás.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    }
+   },
+   {
+    "castellano": "Vuelva en un mes",
+    "chanka": "Huk killamanta kutimunki.",
+    "corrompido": "pichqa killamanta kutimunki.",
+    "tipo": "numero",
+    "limpia": {
+     "retraduccion": "Dentro de un mes volverás.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    },
+    "corrompida": {
+     "retraduccion": "Volverás dentro de cinco meses.",
+     "campos_distintos": [
+      "proxima_cita_en_dias"
+     ],
+     "freddy_decidir": {
+      "enviar": false,
+      "motivo": "cambió un dato crítico: proxima_cita_en_dias"
+     },
+     "ricardo_separando": {
+      "enviar": false,
+      "motivo": "cambió un dato crítico: proxima_cita_en_dias"
+     }
+    }
+   },
+   {
+    "castellano": "Si hay sangrado, venga de inmediato",
+    "chanka": "Yawar lluqsimuptinqaqa, kunallan posta ukuman hamunki.",
+    "corrompido": "Yawar lluqsimuptinqaqa.",
+    "tipo": "condicion",
+    "limpia": {
+     "retraduccion": "Si te sale sangre, ahorita mismo vienes adentro de la posta.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    },
+    "corrompida": {
+     "retraduccion": "Cuando le sale la sangre, pues.",
+     "campos_distintos": [
+      "ir_ya_si (cantidad de señales)"
+     ],
+     "freddy_decidir": {
+      "enviar": false,
+      "motivo": "cambió un dato crítico: ir_ya_si (cantidad de señales)"
+     },
+     "ricardo_separando": {
+      "enviar": false,
+      "motivo": "cambió un dato crítico: ir_ya_si (cantidad de señales)"
+     }
+    }
+   },
+   {
+    "castellano": "Si el bebé no se mueve, venga",
+    "chanka": "Wawacha mana kuyukuptinqa, kaymanmi hamuykunki.",
+    "corrompido": "Wawacha kuyukuptinqa, kaymanmi hamuykunki.",
+    "tipo": "negacion",
+    "limpia": {
+     "retraduccion": "Si el bebito no se mueve, aquí vendrás.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    },
+    "corrompida": {
+     "retraduccion": "Cuando el bebito se mueva, aquí has de venir.",
+     "campos_distintos": [],
+     "freddy_decidir": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     },
+     "ricardo_separando": {
+      "enviar": true,
+      "motivo": "los datos críticos coinciden"
+     }
+    }
+   }
+  ]
+ }
+}

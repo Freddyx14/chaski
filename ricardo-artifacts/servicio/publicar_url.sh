@@ -8,7 +8,9 @@ set -uo pipefail
 cd "$(dirname "$0")/.."              # ricardo-artifacts
 ARCHIVO=servicio/url.json
 DOC=servicio/PARA-FREDDY.md
-LOG=/tmp/cloudflared-chaski.log
+LOG=/tmp/ngrok.log
+# ngrok da una URL FIJA por cuenta: sobrevive reinicios. cloudflared daba una
+# distinta cada vez. El authtoken ya esta en ~/.../ngrok.yml.
 
 url_actual() { [ -f "$ARCHIVO" ] && python3 -c "import json,sys;print(json.load(open('$ARCHIVO'))['url'])" 2>/dev/null; }
 
@@ -31,19 +33,20 @@ if ! curl -s --max-time 10 http://127.0.0.1:8000/salud > /dev/null; then
 fi
 
 ANTERIOR=$(url_actual)
+pkill -f "ngrok http" 2>/dev/null
 pkill -f "cloudflared tunnel" 2>/dev/null
 sleep 2
-nohup cloudflared tunnel --url http://localhost:8000 > "$LOG" 2>&1 &
+nohup ngrok http 8000 --log="$LOG" > /dev/null 2>&1 &
 
-# Primero el nombre, despues la conexion registrada: cloudflared imprime la URL
-# antes de estar listo, y preguntar demasiado pronto da 000.
+# ngrok publica sus tuneles en una API local; es mas fiable que leer el log.
 URL=""
-for _ in $(seq 1 40); do
+for _ in $(seq 1 20); do
   sleep 2
-  URL=$(grep -oE "https://[a-z0-9-]+\.trycloudflare\.com" "$LOG" | head -1)
-  [ -n "$URL" ] && grep -qE "Registered tunnel connection" "$LOG" && break
+  URL=$(curl -s --max-time 5 http://127.0.0.1:4040/api/tunnels 2>/dev/null \
+        | python3 -c "import json,sys;t=json.load(sys.stdin).get('tunnels');print(t[0]['public_url'] if t else '')" 2>/dev/null)
+  [ -n "$URL" ] && break
 done
-if [ -z "$URL" ]; then echo "ERROR: cloudflared no dio URL. Mira $LOG"; exit 1; fi
+if [ -z "$URL" ]; then echo "ERROR: ngrok no dio URL. Mira $LOG"; exit 1; fi
 
 # cloudflared tarda unos segundos en propagar el nombre
 VIVA=0
@@ -58,7 +61,7 @@ if [ "$VIVA" != "1" ]; then
 fi
 
 CUANDO=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-printf '{\n "url": "%s",\n "publicada": "%s",\n "nota": "cambia en cada relanzamiento; Freddy lee este archivo"\n}\n' \
+printf '{\n "url": "%s",\n "publicada": "%s",\n "nota": "ngrok, fija por cuenta: no cambia entre reinicios"\n}\n' \
   "$URL" "$CUANDO" > "$ARCHIVO"
 python3 - "$URL" "$DOC" <<'PY'
 import re, sys

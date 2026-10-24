@@ -32,7 +32,7 @@ from servicio.vision import MODELO, como_json, leer
 
 try:
     import anthropic
-    from rimay.auditoria import auditar
+    from chaski.auditoria import auditar
     HAY_TRADUCTOR = True
 except Exception as _e:          # el repo puede no tener app/ al lado
     HAY_TRADUCTOR = False
@@ -297,7 +297,7 @@ def voz(texto: str = Form(...)):
 def traducir(texto: str = Form(...)):
     """Castellano -> chanka, con la auditoria de retraduccion de Freddy.
 
-    No traduce Haiku: traduce `rimay.auditoria`, que usa Opus 5 con glosario,
+    No traduce Haiku: traduce `chaski.auditoria`, que usa Opus 5 con glosario,
     retraduce A CIEGAS y compara los datos criticos con codigo. Si algo cambio,
     `enviar` viene en false y NO se dice en voz alta.
     """

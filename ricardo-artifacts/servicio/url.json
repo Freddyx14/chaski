@@ -1,5 +1,6 @@
 {
  "url": "https://unsubmitted-wally-relatable.ngrok-free.dev",
- "publicada": "2026-10-24T16:57:19Z",
- "nota": "ngrok, fija por cuenta: no cambia entre reinicios"
+ "publicada": "2026-10-24T18:05:00Z",
+ "sirve": "instancia g5.xlarge 44.220.107.99, orquestador en :8080, modelos en :8000",
+ "nota": "ngrok corre EN la instancia desde el 24-oct. Ya no depende de la laptop de Ricardo. Dominio reservado: no cambia entre reinicios."
 }

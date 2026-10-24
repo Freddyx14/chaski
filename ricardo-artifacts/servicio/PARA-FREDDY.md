@@ -2,6 +2,8 @@
 
 > **La URL de abajo se actualiza sola.** Ricardo corre `bash servicio/publicar_url.sh` y el cambio llega
 > por git, con la hora, en `servicio/url.json`. Si deja de responder, haz `git pull` antes de preguntar.
+>
+> El dominio está reservado en la cuenta de ngrok, así que no cambia aunque se reinicie el túnel.
 
 ## URL
 
@@ -10,7 +12,15 @@ https://unsubmitted-wally-relatable.ngrok-free.dev
 ```
 
 Es HTTPS, así que sirve desde la app de iOS (iOS no acepta HTTP plano). No necesitas llave SSH ni
-entrar a la instancia: la cadena es **tu app → esta URL → la Mac de Ricardo → su GPU A10G**.
+entrar a la instancia.
+
+**Cambió lo que hay detrás (24-oct, 18:00 UTC). La URL es la misma.** Antes la cadena pasaba por la
+Mac de Ricardo; si él cerraba la laptop, se te caía. Ahora es **tu app → esta URL → la instancia**, y
+nada más: el orquestador y los modelos corren en la misma máquina y se hablan por `127.0.0.1`. No
+tienes que cambiar una sola línea.
+
+Un efecto secundario bueno: el turno del paciente ya no cruza internet para llegar a la GPU. Antes
+el audio iba Mac → instancia → Mac; ahora no sale de la instancia.
 
 Compruébala primero:
 
@@ -83,3 +93,56 @@ usuario ve el chanka en 5 s en vez de esperar 5.6 s a que además se genere la v
 3. Mientras tanto, la app puede seguir contra las versiones falsas del contrato
    (`ricardo-artifacts/voz/contrato.py`): devuelven datos fijos con la misma forma, así la interfaz
    no se cae aunque no haya modelos.
+
+
+---
+
+## Dos cosas medidas el 24-oct que te tocan a ti
+
+### 1. `proxima_cita_en_dias` se inventa un número
+
+Medido así:
+
+```
+original      : Su control es el lunes
+chanka        : Controlniykiqa lunesmi kanqa.      <- correcto
+retraducción  : Tu control será el lunes.          <- correcto
+DIFF proxima_cita_en_dias: None -> 3
+```
+
+La traducción está bien y dice el mismo día. Lo que pasa es que el extractor convierte «lunes» en un
+número de días en la vuelta y no en la ida. Nadie puede sacar días de un nombre de día sin saber la
+fecha de hoy, así que ese 3 es ruido y bloquea una frase correcta.
+
+Lo tapé solo de mi lado (`artefacto_de_dia` en `servicio/auditoria_rapida.py`), con una regla
+estrecha: solo ese campo, y solo cuando los dos textos nombran el mismo día. No toqué tu esquema
+porque es tuyo. La solución de fondo es tuya: o el extractor recibe la fecha de hoy, o
+`proxima_cita_en_dias` no se deduce de un nombre de día.
+
+### 2. La guarda solo protege los campos que existen en `Hechos`
+
+Prueba con verdad de referencia (`voz/medir_guarda.py`): se toma el chanka correcto, se le inyecta un
+error clínico a propósito y se mira si la auditoría lo atrapa. Resultado sobre indicaciones de posta:
+
+```
+falsos bloqueos  0/6
+fugas            3/6
+```
+
+Las tres fugas, con su retraducción:
+
+| Original | Lo que dijo el quechua roto | ¿Bloqueó? |
+|---|---|---|
+| Son siete días de tratamiento | «Cuatro días será tu curación» | no |
+| Venga en ayunas | «Ven habiendo comido, algo comerás» | no |
+| Si el bebé no se mueve, venga | «Cuando el bebito se mueva, ven» | no |
+
+Lo importante: **la retraducción captó el error en castellano las tres veces.** La información estaba
+ahí. Lo que la perdió fue la extracción a `Hechos`, porque no hay campo para duración del
+tratamiento, ni para ayuno, ni la negación de una condición de alarma sobrevive a `ir_ya_si`.
+
+La tercera es la grave: invierte cuándo traer a un bebé que no se mueve.
+
+Propuesta, y queda en tus manos porque el esquema es tuyo: además de comparar por campos, comparar la
+retraducción contra el original directamente. Los campos atrapan dosis y horas, que es para lo que
+están; lo demás se les escapa entero.
