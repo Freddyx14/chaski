@@ -149,7 +149,7 @@ Una sola fuente para dos usos: **frases cuya traducción y audio sabemos que est
 ```
 
 - **Fuentes**: la base de frases médicas que encontró Ricardo (anemia, dolor de estómago…), las frases verificadas que las familias leen en voz alta en el formulario (bloque extra), y lo que la enfermera revise. El audio sale de las grabaciones de la familia; si no hay, de la voz de Chaski.
-- **Recuperar sin base vectorial**: el banco es chico (cientos). El intérprete recibe las ~20 candidatas más parecidas (búsqueda simple por palabras sobre `es`) y elige `frase_banco_id` solo si es **la misma intención**. Nada de infraestructura nueva.
+- **Recuperar con RAG (decisión de Freddy, 14:40)**: embeddings multilingües locales (ONNX, sin GPU ni API paga) sobre el lado castellano, combinados con un puntaje léxico (híbrido), similitud coseno en memoria con numpy. Sin base vectorial: el banco es de cientos de frases. El intérprete recibe las ~20 candidatas y elige `frase_banco_id` solo si es **la misma intención**. Se mide contra la búsqueda solo por palabras en `evals/banco/` (recall@1, recall@5, abstención correcta, latencia).
 - **Modo emergencia (C11)**: una pantalla de botones con las frases `tags: emergencia` (¿dónde le duele?, ¿desde cuándo?, ¿es alérgico?, ¿está embarazada?, señale con el dedo, ¿vino con alguien?…). Toca y suena. **Cero espera de modelos.** Y la respuesta del paciente vuelve por el turno normal.
 - ⚠️ **El mismo dato sirve para ajustar y para el banco, pero NUNCA para la prueba.** Ricardo parte cada fuente en `train / banco / test` **antes** de entrenar; las 100 `verificadas` siguen reservadas para medir. Si una frase de prueba entra al banco o al entrenamiento, el número del pitch deja de valer.
 
@@ -191,6 +191,18 @@ de quechua para el personal y no aprenden.
 se cortan**: son lo que la enfermera pidió.
 
 ---
+
+## 7b · Cómo se construye (14:45)
+
+Tres agentes en paralelo, cada uno en su **worktree** de git, y esta sesión integra en `main`:
+
+| Worktree | Qué | Archivos | Eval que produce |
+|---|---|---|---|
+| Barreras | B6 en `hechos.py`, `guardas.py` (B1–B4, falla cerrada) | `app/chaski/hechos.py`, `guardas.py`, `evals/ataques/` | **«La auditoría atrapó X de Y errores»**: sin barreras (0 %) vs Claude como juez simple vs Chaski |
+| Intérprete | `interprete.py` (C1–C9), `traducir.py` (nllb/claude), `orquestador.py` (falla cerrada) | `app/chaski/…`, `evals/interprete/` | Acierto de la acción por categoría, violaciones de «nada nuevo», latencia: Haiku vs Sonnet vs Opus (D15) |
+| Banco + RAG | `banco.py` (embeddings + léxico), `banco.json` | `app/chaski/banco.py`, `evals/banco/` | recall@1/@5 y latencia: léxico vs embeddings vs híbrido |
+
+**Línea base primero, después la mejora**: cada eval tiene su piso (sin barreras, juez simple, búsqueda por palabras) para que el número del pitch sea «de X a Y», no un número suelto.
 
 ## 8 · Decisiones para el SOT
 
