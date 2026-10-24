@@ -1,4 +1,4 @@
-Mensaje listo para mandar por WhatsApp junto con el PDF.
+Mensaje listo para mandar por WhatsApp junto con el PDF (frases_ambos.pdf).
 Copiar y pegar tal cual.
 
 ---
@@ -6,29 +6,35 @@ Copiar y pegar tal cual.
 Papá, te mando un PDF con frases. Necesito que me las digas EN QUECHUA y me las
 mandes como notas de voz.
 
-Cómo hacerlo, es sencillo:
+Así se graba cada frase:
+
+   dices el código  →  esperas un segundito  →  dices la frase en quechua
+   «ce uno»         →  ...                   →  (la frase en quechua)
+
+El código va en castellano. La frase, solo en quechua.
+
+Cómo mandarlas:
 
 1. Busca un lugar callado. Cierra la ventana si hay ruido de la calle.
-2. Agarra el teléfono como para una nota de voz normal, cerca de la boca.
-3. En cada nota, graba entre 10 y 15 frases. No todas de una.
-4. Antes de cada frase, DI EL NÚMERO en castellano. Así:
+2. El celular a un palmo de la boca, como para una nota de voz normal.
+3. En cada nota de voz graba entre 10 y 15 frases. No todas de una.
+4. Entre una frase y la siguiente, DESCANSA DOS SEGUNDOS. Cuenta «mil uno,
+   mil dos» en tu cabeza. Esa pausa es la que me deja separar cada frase.
+5. Si te equivocas, no borres la nota: di «otra vez», repite el código y la
+   frase, y sigue.
+6. Mándalas en orden y dime en qué código vas.
 
-   «uno»  ... (pausa) ...  la frase en quechua
-   «dos»  ... (pausa) ...  la frase en quechua
+Los bloques del PDF:
 
-5. Lo más importante: DESCANSA DOS SEGUNDOS entre una frase y la siguiente.
-   Cuenta «mil uno, mil dos» en tu cabeza. Esa pausa es la que le permite a la
-   computadora separar cada frase.
-6. La frase va solo en quechua. El número sí en castellano.
-7. Si te equivocas, no borres la nota: di «otra vez» y repite esa frase.
-8. Mándalas en orden y dime en qué número vas.
+   C  frases de la posta
+   M  medicamentos y palabras del castellano
+   N  números, días y horarios
+   B  respuestas libres: ahí no hay frase que repetir, cuenta con tus palabras
+      lo que te pide cada línea, como si fueras el paciente
 
-Las primeras 100 ya están escritas en quechua en el PDF: esas solo hay que
-leerlas o decirlas como tú las dirías.
+Las del bloque M son palabras como «paracetamol» o «control»: dilas como las
+dice la gente en la posta, no como las leería un locutor de radio.
 
-Las últimas 60 están solo en castellano: esas dilas como las dirías tú en
-quechua, con tus palabras. No hace falta que las escribas. Las palabras como
-«paracetamol» o «control» dilas como las dice la gente, no como las leería un
-locutor de radio.
+El bloque E del final es opcional, solo si te queda tiempo.
 
-No tienes que hacerlo todo hoy. Una nota de 10 frases ya me sirve.
+No tienes que hacerlo todo hoy. Una nota de diez frases ya me sirve.

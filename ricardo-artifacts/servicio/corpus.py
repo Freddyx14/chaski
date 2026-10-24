@@ -60,6 +60,35 @@ def cuantas(bloque: str) -> int:
     return len(referencias(bloque))
 
 
+MAXIMO_CODIGO_S = 1.8      # «ce uno» dura menos de dos segundos
+HUECO_CODIGO_S = 1.6       # el silencio entre el codigo y su frase
+
+
+def unir_codigo_con_frase(trozos: list) -> tuple[list, int]:
+    """Junta «C1» con la frase que le sigue.
+
+    La familia graba: codigo, pausa, frase. Esa pausa hace que el corte por
+    silencios produzca DOS trozos por frase. Aqui se vuelven a unir: un trozo
+    corto seguido de cerca por otro es un codigo y su frase, y se guardan como
+    un solo clip. Asi el conteo cuadra con el cuadernillo y el codigo queda
+    grabado dentro del audio, que sirve para verificar al corregir.
+    """
+    unidos, i, juntados = [], 0, 0
+    while i < len(trozos):
+        actual = trozos[i]
+        siguiente = trozos[i + 1] if i + 1 < len(trozos) else None
+        es_codigo = (actual.largo <= MAXIMO_CODIGO_S and siguiente is not None
+                     and siguiente.inicio - actual.fin <= HUECO_CODIGO_S)
+        if es_codigo:
+            unidos.append(type(actual)(inicio=actual.inicio, fin=siguiente.fin))
+            juntados += 1
+            i += 2
+        else:
+            unidos.append(actual)
+            i += 1
+    return unidos, juntados
+
+
 def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
                  esperadas: int = 0) -> dict:
     """Una nota de voz larga -> clips numerados + manifiesto, listos para corregir.
@@ -94,7 +123,13 @@ def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
     refs = referencias(bloque)
     if not esperadas:
         esperadas = max(len(refs) - desde + 1, 1)
-    trozos, diagnostico = mejor_particion(completo, total, esperadas)
+    # Se busca el doble de trozos: cada frase llega como «codigo + frase».
+    trozos, diagnostico = mejor_particion(completo, total, esperadas * 2)
+    trozos, juntados = unir_codigo_con_frase(trozos)
+    if abs(len(trozos) - esperadas) > abs(len(trozos) + juntados - esperadas):
+        # Si unir empeoro el conteo, la nota no traia codigos: se deshace.
+        trozos, diagnostico = mejor_particion(completo, total, esperadas)
+        juntados = 0
 
     grabaciones = list(previas)
     for j, t in enumerate(trozos):
@@ -108,9 +143,10 @@ def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
             segundos=round(t.largo, 2), consentimiento=False))
     escribir_manifiesto(manifiesto, grabaciones,
                         cabecera="sin revisar: falta transcripcion y consentimiento")
-    return {"persona": persona, "clips_nuevos": len(trozos), "clips_total": len(grabaciones),
-            "desde": desde, "segundos": total, "esperadas": esperadas,
-            "coincide": len(trozos) == esperadas, "umbral": diagnostico["umbral"]}
+    return {"persona": persona, "bloque": bloque, "clips_nuevos": len(trozos),
+            "clips_total": len(grabaciones), "desde": desde, "segundos": total,
+            "esperadas": esperadas, "coincide": len(trozos) == esperadas,
+            "codigos_unidos": juntados, "umbral": diagnostico["umbral"]}
 
 
 def personas() -> list[str]:
