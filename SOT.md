@@ -1,6 +1,6 @@
 # Rimay — fuente de verdad (SOT)
 
-> **Versión SOT-4 · sábado 24 de octubre de 2026, 00:20 PT**
+> **Versión SOT-5 · sábado 24 de octubre de 2026, 00:50 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -50,16 +50,37 @@ establecimientos de salud del país tiene atención intercultural. Fuentes: `res
 | F5 | **Hablar quechua** | Voz chanka de Meta (`facebook/mms-tts-quy`), ajustada con la voz de la mamá de Freddy | voz base probada 23-oct · `muestras/` |
 | F6 | **«¿Me lo repite?»** | Comparar lo repetido con la indicación | por hacer · Freddy |
 | F7 | **Mejora con el uso** | Cada corrección de la enfermera entra al glosario y a los datos del siguiente ajuste | por hacer |
+| F9 | **Leer la receta y la caja (Claude visión)** | Foto de la receta escrita a mano y de la caja → medicamento, dosis, frecuencia. **Cruza la caja con lo que dijo la enfermera**: si ella dijo paracetamol y la caja dice ibuprofeno, avisa. Si no está seguro de leer algo, no adivina | por hacer · Freddy |
+| F10 | **Claude corrige la transcripción en quechua** | El reconocimiento devuelve sus N mejores intentos; Claude elige y corrige con el contexto de la consulta (qué preguntó la enfermera) y el glosario. Se mide: errores con y sin Claude | por hacer · Freddy + Ricardo |
+| F11 | **Resumen de la consulta** | Al cerrar: nota en castellano para la historia clínica y audio en quechua para que el paciente se lleve a casa | por hacer · Freddy |
 | F8 | **Evaluación chanka-salud** | Claude vs Google Translate en indicaciones reales, calificado por la enfermera (método Kong et al., 2026) | por hacer · Freddy + mamá |
 
 ---
 
-## 3. Lo técnicamente difícil (lo que ve el jurado)
+## 3. Claude es el cerebro (D19)
+
+Los modelos de voz son los oídos y la boca. **Claude es el que entiende y decide.** Siete trabajos, todos centrales:
+
+| Trabajo de Claude | Función |
+|---|---|
+| Ver: leer la receta y la caja, y cruzarlas con lo que dijo la enfermera | F9 |
+| Corregir lo que el reconocimiento entendió en quechua, con el contexto de la consulta | F10 |
+| Entender lo que quiso decir cada lado (estilo Wispr Flow) | F3 |
+| Traducir y auditarse antes de hablar | F4 |
+| Juzgar si el paciente entendió («¿me lo repite?») | F6 |
+| Resumir la consulta para la historia clínica y para el paciente | F11 |
+| Decidir el siguiente paso de la conversación: pedir repetir, avisar a la enfermera, seguir | orquestador |
+
+**La frase del pitch:** *«Los modelos de voz son los oídos y la boca. Claude es el que entiende, el que ve la receta y
+el que se niega a decir una dosis que no está seguro de haber traducido bien.»*
+
+## 3b. Lo técnicamente difícil (lo que ve el jurado)
 
 Tres números, medidos con honestidad, aunque salgan malos:
 1. **Errores al entender chanka hablado**: modelo de Meta tal cual → + vocabulario de la posta → + ajuste fino con las familias. Medido con una persona que no está en el entrenamiento.
 2. **Errores al traducir al chanka**: Claude contra Google Translate, calificados por la enfermera.
 3. **Errores que la auditoría atrapa** antes de que Rimay hable.
+4. **Cuánto baja el error del quechua cuando Claude corrige la transcripción** (F10).
 
 Más: precisión de la detección de idioma, y la espera por turno.
 
@@ -89,7 +110,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 |---|---|---|
 | Claude: entender, traducir, auditar, «¿me lo repite?» · app · evaluación chanka con su mamá · pitch y Devpost | Datos de voz · reconocimiento (pasos 0-1-2) · detección de idioma · voz de Rimay · métricas y gráficos | Graban frases de posta y respuestas libres en chanka · la mamá de Freddy transcribe, revisa el glosario y califica |
 
-Protocolo de grabación: `plan/recoleccion-de-voz.md`. Calendario hora por hora: `plan/plan-completo.md`.
+**Tareas por persona, con checklist: [`plan/tareas.md`](plan/tareas.md).** Protocolo de grabación: `plan/recoleccion-de-voz.md`.
 
 ---
 
@@ -115,6 +136,9 @@ Protocolo de grabación: `plan/recoleccion-de-voz.md`. Calendario hora por hora:
 | D16 | sáb 00:14 | **Cartesia para la voz en castellano** | Sus créditos y su track |
 | D17 | sáb 00:14 | **Avatar** que presenta Rimay y lo hace cercano | Más familiar para el paciente; lo pidió Freddy (ver §10) |
 | D18 | sáb 00:14 | **La mamá de Freddy prueba por videollamada y, si puede, aparece en el pitch** | Usuaria real, voz real |
+| D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
+| D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
+| D21 | sáb 00:45 | **Tareas por persona en `plan/tareas.md`**; Ricardo arma las preguntas y frases que graban las familias | Seguimiento claro |
 
 ---
 
@@ -158,29 +182,37 @@ Protocolo de grabación: `plan/recoleccion-de-voz.md`. Calendario hora por hora:
 
 ---
 
-## 10. El avatar (D17)
+## 10. El avatar: una vicuña (D17, D20)
 
-**Para qué sirve:** que el paciente sepa con quién está hablando y le tenga confianza. Rimay se presenta solo, en
-quechua: «Allillanchu. Ñuqam Rimay kani…» *(texto a confirmar con la mamá de Freddy)*, y explica que va a ayudar a la
-enfermera a entenderle.
+**Para qué sirve:** que el paciente sepa con quién habla y le tenga confianza. Se presenta sola, en quechua, y explica
+que va a ayudar a la enfermera a entenderle *(texto del saludo: lo escribe la mamá de Freddy)*.
 
-**Lo que puede hacer el avatar en la app:**
-| Estado | Qué hace | Para qué |
+**Cinco estados:** presentarse · escuchando · pensando (cubre la espera) · hablando (la boca sigue el audio) · no entendí (pide repetir).
+
+**Cómo se anima** (lo que hace Duolingo, versión de 36 horas): Duolingo usa Rive con una máquina de estados y más de
+20 formas de boca sincronizadas con el audio ([blog de Duolingo](https://blog.duolingo.com/world-character-visemes),
+[DEV](https://dev.to/uianimation/how-duolingo-uses-rive-for-their-character-animation-and-how-you-can-build-a-similar-rive-mascot-5d19)).
+Nosotros: **una imagen por estado de la misma vicuña** (generadas con fal a partir de la elegida, para que sea el mismo
+personaje), **boca abierta y cerrada según el volumen del audio**, y movimientos simples en la app (respirar, parpadear, saltar).
+
+**Opciones generadas** (`avatar/opciones/`, fal `nano-banana-pro`, US$0.60 en total):
+| # | Estilo | Lo bueno | Lo malo |
+|---|---|---|---|
+| 1 | Vector plano tipo app | Muy legible en chico | ⚠️ **Tiene cinco patas** (la que saluda sale del pecho) y parece alpaca. Descartada tal cual |
+| 2 | 3D suave, tipo película | La más juguetona y expresiva; bufanda teal | Más difícil de mantener idéntica entre estados |
+| 3 | Geométrica con manto textil andino | La que más parece vicuña; fácil de animar por partes | Menos juguetona |
+| 4 | Acuarela de cuento, con estetoscopio | Cálida, dice «salud» | Parece alpaca; textura pesada para animar |
+
+**Recomendación:** la **2** si quieren la más juguetona, la **3** si quieren la más vicuña y la más fácil de animar.
+Freddy elige; con la elegida se generan los 5 estados con `/falia`.
+
+**Nombres propuestos para la vicuña** (si la app se llama Rimay, la vicuña lleva su propio nombre; significado a confirmar con la mamá de Freddy):
+| Nombre | Lo que entendemos | Por qué |
 |---|---|---|
-| Presentarse | Saluda y explica qué es, en quechua | Primera consulta: confianza |
-| Escuchando | Se inclina, ondas de sonido | El paciente sabe que puede hablar |
-| Pensando | Gesto breve | Cubre la espera de los modelos |
-| Hablando | Boca que se mueve con el audio | Se ve quién habla |
-| No entendí | Gesto de duda, pide repetir | Nunca inventa (F3) |
-
-**Opciones de diseño, a decidir con la mamá de Freddy (P5):**
-1. **Personaje humano**: una técnica o promotora de salud andina, con ropa de posta. Lo más cercano, pero el riesgo es caer en un estereotipo.
-2. **Animal andino** (vicuña, alpaca, cuy): juguetón y neutro, gusta a niños y adultos mayores; el riesgo es que se sienta infantil para un adulto.
-3. **Forma abstracta con textil andino** (un círculo con iconografía de tejido que late al hablar): elegante, sin estereotipo; menos «personaje».
-
-**Recomendación:** opción 2 o 3, **co-diseñada con la mamá de Freddy**, que sabe cómo lo recibirían sus pacientes.
-Se genera la imagen base con IA, se anima con estados simples en la app (sin video pesado), y la boca se mueve
-con el volumen del audio. **Va después de la conversación completa**: es lo que se recorta primero si el núcleo no está.
+| **Chaski** | mensajero del Tawantinsuyu | Lleva el mensaje de un idioma al otro |
+| **Wayra** | viento | Rápida, ligera |
+| **Killa** | luna | Suave, fácil de pronunciar en cualquier idioma |
+| **Sumaq** | bonito, hermoso | Cálido |
 
 ## 11. Pendientes
 
@@ -226,6 +258,8 @@ con el volumen del audio. **Va después de la conversación completa**: es lo qu
 | Archivo | Qué es | ¿Vigente? |
 |---|---|---|
 | **`SOT.md`** | Esta fuente de verdad | ✅ |
+| `plan/tareas.md` | Tareas por persona, checklist | ✅ |
+| `avatar/opciones/` | Las 4 opciones de la vicuña | ✅ |
 | `plan/rimay-visual.html` | Página visual, sincronizada con SOT | ✅ si la versión coincide |
 | `plan/plan-completo.md` | Plan de recortes y medición | ⚠️ el calendario nuevo está en SOT §11 |
 | `plan/recoleccion-de-voz.md` | Protocolo de grabación para las familias | ✅ |
@@ -233,3 +267,19 @@ con el volumen del audio. **Va después de la conversación completa**: es lo qu
 | `research/*` | Investigación con fuentes | ✅ |
 | `ideas/criterios.md` | Hoja para medir ideas | ✅ |
 | Resto de `ideas/` y `Ricardo-idea/` | Historia de cómo llegamos aquí | Solo referencia |
+
+### Cómo se conectan los documentos
+
+```mermaid
+graph TD
+  SOT[SOT.md<br/>fuente de verdad] --> VIS[plan/rimay-visual.html<br/>página visual]
+  SOT --> TAR[plan/tareas.md<br/>checklist por persona]
+  SOT --> REC[plan/recoleccion-de-voz.md<br/>grabación]
+  SOT --> APP[app/<br/>código]
+  SOT --> AV[avatar/<br/>vicuña]
+  RES[research/<br/>problemas, papers, voz, competencia] --> SOT
+  IDE[ideas/<br/>historia y criterios] --> SOT
+  RIC[Ricardo-idea/<br/>idea descartada] -.-> SOT
+  TAR --> APP
+  REC --> APP
+```

@@ -131,13 +131,18 @@ tr:last-child td{border-bottom:none}
 .dec{font-size:.88rem}
 .dec td:first-child{font-family:var(--mono);color:var(--muted);white-space:nowrap}
 .listen{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.brain{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.vic{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.vic figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.vic img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;background:#fff}
+.vic figcaption{font-size:.86rem}
 .speakerdot{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;font-size:1.4rem}
 </style>
 
 <div class="wrap">
 
   <header class="hero">
-    <span class="stamp">SOT-4 · sáb 24 oct, 00:20 PT · sincronizado con SOT.md</span>
+    <span class="stamp">SOT-5 · sáb 24 oct, 00:50 PT · sincronizado con SOT.md</span>
     <h1>Rimay, el intérprete quechua de bolsillo de la posta</h1>
     <p class="lede">La enfermera habla en castellano y Rimay lo dice en quechua chanka. El paciente responde, Rimay detecta que es quechua y se lo dice a ella en castellano. Antes de hablar se audita: si una dosis o una fecha cambió, no lo dice.</p>
     <div class="quote">
@@ -244,6 +249,20 @@ tr:last-child td{border-bottom:none}
     </div>
   </section>
 
+  <section class="sec" id="i">
+    <h2><span class="letter">I</span>Claude es el cerebro</h2>
+    <p>Los modelos de voz son los oídos y la boca. <strong>Claude es el que entiende, ve y decide.</strong> Siete trabajos, todos centrales:</p>
+    <div class="brain">
+      <div class="step"><span class="n">F9 · ver</span><h3>Lee la receta y la caja</h3><p>Y las cruza con lo que dijo la enfermera: si ella dijo paracetamol y la caja dice ibuprofeno, avisa.</p></div>
+      <div class="step"><span class="n">F10 · corregir</span><h3>Arregla lo que se oyó en quechua</h3><p>Elige entre los intentos del reconocimiento usando el contexto de la consulta. Se mide con y sin Claude.</p></div>
+      <div class="step"><span class="n">F3 · entender</span><h3>Lo que quiso decir cada lado</h3><p>Estilo Wispr Flow.</p></div>
+      <div class="step gate"><span class="n">F4 · auditar</span><h3>Se niega a decir una dosis dudosa</h3><p>Retraducción a ciegas + código. Construido.</p></div>
+      <div class="step"><span class="n">F6 · juzgar</span><h3>¿El paciente entendió?</h3><p>Compara lo repetido con la indicación.</p></div>
+      <div class="step"><span class="n">F11 · resumir</span><h3>Nota y audio para casa</h3><p>Castellano para la historia clínica, quechua para el paciente.</p></div>
+      <div class="step"><span class="n">orquestar</span><h3>Decide el siguiente paso</h3><p>Pedir repetir, avisar a la enfermera o seguir.</p></div>
+    </div>
+  </section>
+
   <section class="sec" id="c">
     <h2><span class="letter">C</span>Dos ciclos: el producto y el entrenamiento</h2>
     <p>La app (B) funciona con modelos que ya existen. Lo técnicamente difícil es el segundo ciclo: lograr que entiendan y hablen chanka de posta, y medirlo con honestidad.</p>
@@ -282,6 +301,7 @@ tr:last-child td{border-bottom:none}
       <table>
         <thead><tr><th>Pieza</th><th>Qué usamos</th><th>Estado</th></tr></thead>
         <tbody>
+          <tr><td>Ver receta y caja</td><td><span class="tag">Claude visión</span></td><td><span class="pill p-warn">sábado</span></td></tr>
           <tr><td>Traducir, entender, auditar</td><td><span class="tag">Claude Opus 5</span><span class="tag">Python</span></td><td><span class="pill p-ok">auditoría hecha · 20 pruebas</span></td></tr>
           <tr><td>Entender voz quechua</td><td><span class="tag">Meta Omnilingual ASR quy</span><span class="tag">KenLM</span><span class="tag">ajuste fino</span></td><td><span class="pill p-warn">sábado</span></td></tr>
           <tr><td>Entender voz castellano</td><td><span class="tag">Whisper u Omnilingual spa</span></td><td><span class="pill p-warn">por decidir</span></td></tr>
@@ -325,6 +345,9 @@ tr:last-child td{border-bottom:none}
           <tr><td>D16</td><td>Cartesia para la voz en castellano</td><td>Sus créditos y su track</td></tr>
           <tr><td>D17</td><td>Avatar que presenta Rimay</td><td>Más familiar para el paciente</td></tr>
           <tr><td>D18</td><td>La mamá de Freddy prueba por videollamada y, si puede, aparece en el pitch</td><td>Usuaria real, voz real</td></tr>
+          <tr><td>D19</td><td>Claude es el núcleo: visión, corrección, intención, auditoría, juicio, resumen, orquestación</td><td>Claude tiene que ser central, no un adorno</td></tr>
+          <tr><td>D20</td><td>El avatar es una vicuña juguetona y animada, con otro nombre</td><td>Elección de Freddy</td></tr>
+          <tr><td>D21</td><td>Tareas por persona en plan/tareas.md; Ricardo arma las frases de grabación</td><td>Seguimiento claro</td></tr>
         </tbody>
       </table>
     </div>
@@ -334,7 +357,7 @@ tr:last-child td{border-bottom:none}
         <tbody>
           <tr><td>P2</td><td>¿Qué modelo de Claude en la conversación?</td><td>Medir Opus 5, Sonnet 5 y Haiku 4.5 en el mismo set; quedarse con el más rápido que no pierda acierto</td></tr>
           <tr><td>P4</td><td>Nombre final</td><td>Rimay, Rimanakuy, Uyariy, Chaski, Yanapay o Tinkuy · significado y escritura los confirma la mamá de Freddy</td></tr>
-          <tr><td>P5</td><td>¿Cómo es el avatar?</td><td>Ver H; co-diseñarlo con la mamá de Freddy</td></tr>
+          <tr><td>P5</td><td>¿Cuál vicuña y qué nombre?</td><td>Estilo 2 (más juguetona) o 3 (más vicuña, más fácil de animar) · nombre: Chaski, Wayra, Killa o Sumaq</td></tr>
           <tr><td>P6</td><td>¿La mamá de Freddy puede el domingo de 12:30 a 14:30 (Lima)?</td><td>Preguntarle hoy</td></tr>
         </tbody>
       </table>
@@ -376,27 +399,28 @@ tr:last-child td{border-bottom:none}
   </section>
 
   <section class="sec" id="h">
-    <h2><span class="letter">H</span>El avatar</h2>
-    <p>Rimay se presenta solo, en quechua, y le explica al paciente que va a ayudar a la enfermera a entenderle. Su forma cambia según lo que pasa en la consulta.</p>
+    <h2><span class="letter">H</span>El avatar: una vicuña</h2>
+    <p>Se presenta sola en quechua y tiene cinco estados. Se anima como Duolingo en versión de 36 horas: una imagen por estado de la misma vicuña, boca abierta o cerrada según el volumen del audio, y movimientos simples (respirar, parpadear, saltar).</p>
     <div class="flow">
-      <div class="step"><span class="n">presentarse</span><h3>Saluda en quechua</h3><p>Primera consulta: confianza</p></div>
-      <div class="step"><span class="n">escuchando</span><h3>Ondas de sonido</h3><p>El paciente sabe que puede hablar</p></div>
-      <div class="step"><span class="n">pensando</span><h3>Gesto breve</h3><p>Cubre la espera de los modelos</p></div>
-      <div class="step"><span class="n">hablando</span><h3>La boca sigue el audio</h3><p>Se ve quién habla</p></div>
-      <div class="step gate"><span class="n">no entendí</span><h3>Pide repetir</h3><p>Nunca inventa</p></div>
+      <div class="step"><span class="n">presentarse</span><h3>Saluda en quechua</h3></div>
+      <div class="step"><span class="n">escuchando</span><h3>Orejas arriba</h3></div>
+      <div class="step"><span class="n">pensando</span><h3>Cubre la espera</h3></div>
+      <div class="step"><span class="n">hablando</span><h3>La boca sigue el audio</h3></div>
+      <div class="step gate"><span class="n">no entendí</span><h3>Pide repetir</h3></div>
     </div>
-    <div class="people">
-      <div class="person"><h3>Opción 1 · Persona</h3><p class="small">Una técnica o promotora de salud andina. Lo más cercano; riesgo de estereotipo.</p></div>
-      <div class="person"><h3>Opción 2 · Animal andino</h3><p class="small">Vicuña, alpaca o cuy. Juguetón y neutro; riesgo de sentirse infantil.</p></div>
-      <div class="person"><h3>Opción 3 · Forma con textil andino</h3><p class="small">Un círculo con iconografía de tejido que late al hablar. Sin estereotipo; menos personaje.</p></div>
+    <div class="vic">
+      <figure><img src="img/vicuna-1-vector.jpg" alt="Opción 1, vicuña en vector plano"><figcaption><strong>1 · Vector plano.</strong> ⚠️ Tiene cinco patas y parece alpaca. Descartada tal cual.</figcaption></figure>
+      <figure><img src="img/vicuna-2-3d.jpg" alt="Opción 2, vicuña en 3D suave con bufanda teal"><figcaption><strong>2 · 3D suave.</strong> La más juguetona y expresiva.</figcaption></figure>
+      <figure><img src="img/vicuna-3-textil.jpg" alt="Opción 3, vicuña geométrica con manto textil andino"><figcaption><strong>3 · Geométrica con textil.</strong> La que más parece vicuña; la más fácil de animar.</figcaption></figure>
+      <figure><img src="img/vicuna-4-acuarela.jpg" alt="Opción 4, vicuña en acuarela con estetoscopio"><figcaption><strong>4 · Acuarela.</strong> Cálida, dice «salud»; parece alpaca.</figcaption></figure>
     </div>
-    <div class="callout"><strong>Recomendación:</strong> opción 2 o 3, co-diseñada con la mamá de Freddy. Va después de la conversación completa: es lo primero que se recorta si el núcleo no está.</div>
+    <div class="callout"><strong>Nombres para la vicuña:</strong> Chaski (mensajero), Wayra (viento), Killa (luna), Sumaq (bonito). El significado lo confirma la mamá de Freddy. <strong>Recomendación de estilo:</strong> la 2 o la 3.</div>
   </section>
 
   <section class="feedback">
     <h3>Para tu feedback</h3>
     <p>Dime por letra qué tiene sentido y qué no. Cada cambio entra primero a <span class="mono">SOT.md</span> y después a esta página, con la misma versión.</p>
-    <p class="small">Fuente de verdad: <span class="mono">SOT.md</span> · calendario: <span class="mono">plan/plan-completo.md</span> · grabación: <span class="mono">plan/recoleccion-de-voz.md</span></p>
+    <p class="small">Fuente de verdad: <span class="mono">SOT.md</span> · tareas: <span class="mono">plan/tareas.md</span> · grabación: <span class="mono">plan/recoleccion-de-voz.md</span></p>
   </section>
 
 </div>
