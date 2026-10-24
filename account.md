@@ -20,7 +20,7 @@
 - **Before that:** finalists A (Chanka interpreter for pregnant women) and C (fire last mile), scored
   with `ideas/criterios.md`; analysis in `ideas/decision.md`. Ricardo brings another idea; decided with him.
 - **Key fact (2026-10-23):** Freddy's parents speak Quechua; his mother is a nurse at a health post in
-  Pilpichaca (Huancavelica), one of the 3 of 6 staff there who speak Quechua (corrected 2026-10-24 after interviewing her; 90 % of patients speak Quechua). Possible first user, reviewer and
+  Pilpichaca (Huancavelica), one of the 3 of 6 nurses there who speak Quechua (about 20 % of the 36 staff do) (corrected 2026-10-24 after interviewing her; 90 % of patients speak Quechua). Possible first user, reviewer and
   source of testimony (quote only with her permission).
 - **Next milestone:** pick ONE idea tonight (Friday) so Saturday is pure build.
 - **Hard deadline:** ✅ VERIFICADA — Devpost submission **Sunday 2026-10-25, 9:00 AM PT**. Judging 10:30–12:30, whole team at the table, live demo required, 2-minute pitch. Source: `context/hacker-guide-calhacks-13.md`.
