@@ -1,0 +1,16 @@
+[
+ {
+  "maquina": "arm64 Darwin",
+  "dispositivo": "mps",
+  "modelo": "small",
+  "parametros_millones": 185.1,
+  "entrenables_millones": 183.9,
+  "batch": 2,
+  "segundos_por_paso": 1.378,
+  "clips": 1000,
+  "epocas": 3,
+  "pasos": 1500,
+  "minutos_estimados": 34.4,
+  "memoria_gb": null
+ }
+]
