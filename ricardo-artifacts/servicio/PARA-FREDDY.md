@@ -1,12 +1,12 @@
 # Los modelos de voz, listos para que los llames
 
-> Escrito el sábado 24 de octubre de 2026. **La URL cambia cada vez que Ricardo reinicia el túnel**:
-> si deja de responder, pídesela y actualiza esta línea.
+> **La URL de abajo se actualiza sola.** Ricardo corre `bash servicio/publicar_url.sh` y el cambio llega
+> por git, con la hora, en `servicio/url.json`. Si deja de responder, haz `git pull` antes de preguntar.
 
 ## URL
 
 ```
-https://prep-lectures-aurora-density.trycloudflare.com
+https://difficulties-couples-stuff-tobacco.trycloudflare.com
 ```
 
 Es HTTPS, así que sirve desde la app de iOS (iOS no acepta HTTP plano). No necesitas llave SSH ni
@@ -15,7 +15,7 @@ entrar a la instancia: la cadena es **tu app → esta URL → la Mac de Ricardo 
 Compruébala primero:
 
 ```sh
-curl https://prep-lectures-aurora-density.trycloudflare.com/salud
+curl https://difficulties-couples-stuff-tobacco.trycloudflare.com/salud
 ```
 
 ## Las rutas que te sirven
@@ -35,13 +35,13 @@ Todo es `multipart/form-data`, como un formulario de siempre.
 
 ```sh
 # el paciente habla chanka -> lo que la enfermera lee
-curl -F "audio=@turno.wav" https://prep-lectures-aurora-density.trycloudflare.com/turno/paciente
+curl -F "audio=@turno.wav" https://difficulties-couples-stuff-tobacco.trycloudflare.com/turno/paciente
 
 # la enfermera responde -> chanka auditado + voz
-curl -F "texto=Tome una tableta cada ocho horas" -F "modo_ensayo=true" https://prep-lectures-aurora-density.trycloudflare.com/turno/enfermera
+curl -F "texto=Tome una tableta cada ocho horas" -F "modo_ensayo=true" https://difficulties-couples-stuff-tobacco.trycloudflare.com/turno/enfermera
 
 # solo la voz, cuando ya mostraste el texto
-curl -F "texto=Huk tabletata upyakunki sapa pusaq horaspi" --output voz.wav https://prep-lectures-aurora-density.trycloudflare.com/voz
+curl -F "texto=Huk tabletata upyakunki sapa pusaq horaspi" --output voz.wav https://difficulties-couples-stuff-tobacco.trycloudflare.com/voz
 ```
 
 Desde la app:
@@ -49,7 +49,7 @@ Desde la app:
 ```ts
 const cuerpo = new FormData();
 cuerpo.append("audio", archivoDeAudio);
-const r = await fetch("https://prep-lectures-aurora-density.trycloudflare.com/turno/paciente", { method: "POST", body: cuerpo });
+const r = await fetch("https://difficulties-couples-stuff-tobacco.trycloudflare.com/turno/paciente", { method: "POST", body: cuerpo });
 const d = await r.json();   // d.chanka_oido, d.castellano, d.pasos
 ```
 
@@ -78,7 +78,7 @@ usuario ve el chanka en 5 s en vez de esperar 5.6 s a que además se genere la v
 
 ## Si deja de responder
 
-1. `curl https://prep-lectures-aurora-density.trycloudflare.com/salud` — si no contesta, el túnel se cayó.
+1. `curl https://difficulties-couples-stuff-tobacco.trycloudflare.com/salud` — si no contesta, el túnel se cayó.
 2. Avísale a Ricardo: relanza `cloudflared` y la URL cambia.
 3. Mientras tanto, la app puede seguir contra las versiones falsas del contrato
    (`ricardo-artifacts/voz/contrato.py`): devuelven datos fijos con la misma forma, así la interfaz
