@@ -97,3 +97,46 @@ es «cuántos experimentos × 14 min», no «cuánto tarda uno».
 
 Lo que este número NO cubre: el ajuste de `mms-tts-quy`. Es VITS, con discriminador adversarial, y su
 costo por paso no se parece al de un CTC. Hay que medirlo aparte en vez de extrapolar de aquí.
+
+## Y el de mms-tts-quy, la voz de Chaski (medido, 24-oct)
+
+El número del ASR no servía aquí, así que `voz/bench_tts.py` lo mide aparte. Carga los **pesos reales
+de `facebook/mms-tts-quy`** y cronometra adelante + atrás sobre ellos. El discriminador —el
+multi-periodo y multi-escala de HiFi-GAN, que VITS usa y que `transformers` no trae— está reconstruido
+aquí con los tamaños del paper: es aproximación, no el discriminador exacto de Meta.
+
+En VITS cada paso entrena las dos redes, así que el costo por paso es la suma.
+
+Generador **36.3 M** de parámetros, discriminador **48.3 M**. Una sola voz, 175 frases, 4 s por clip:
+
+| Batch | Generador | Discriminador | Por paso | 200 épocas | Memoria |
+|---|---|---|---|---|---|
+| 1 | 0.278 s | 0.082 s | 0.360 s | **210 min** | 2.76 GB |
+| 2 | 0.297 s | 0.127 s | 0.424 s | **123 min** | 4.31 GB |
+| 4 | 0.373 s | 0.199 s | **0.572 s** | **82 min** | 6.73 GB |
+
+A batch 4, con 43 pasos por época:
+
+| Épocas | Tiempo |
+|---|---|
+| 50 | 20 min |
+| 100 | 41 min |
+| 200 | **82 min** |
+| 400 | 164 min |
+
+### Lo que cambia respecto del ASR
+
+**La voz cuesta ~6× más que entender.** omniASR con 700 clips y 30 épocas son 14 min; la voz con 175
+clips necesita cientos de épocas y se va a una hora y media. No es el tamaño del modelo —36 M contra
+300 M— sino que genera forma de onda y entrena contra un discriminador.
+
+Eso reordena el sábado: el ASR se puede reentrenar diez veces en una tarde, la voz no. Para la voz
+conviene una corrida larga y buena, no una búsqueda de hiperparámetros.
+
+### Un detalle de memoria
+
+Batch 8 dio `CUDA out of memory`. No porque no quepa, sino porque **el servicio de voz tiene 8.43 GB
+tomados** con los tres modelos cargados. Quedan ~13.5 GB y VITS a batch 8 con 4 s de audio pide más.
+
+Si hace falta ir más rápido, parar el servicio libera esos 8.43 GB — pero eso deja a Freddy sin
+backend, así que es una decisión que se avisa, no que se toma sola. A batch 4 entra sin tocar nada.
