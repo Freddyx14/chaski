@@ -357,3 +357,16 @@ test('sembrada del servicio marca el ensayo', () => {
   assert.equal(esEnsayo({ ...BASE_R, sembrada: true }), true);
   assert.equal(esEnsayo(BASE_R), false);
 });
+
+test('una grabación vacía, corta o en silencio no se manda al servicio', async () => {
+  const { revisarGrabacion } = await import('../src/chaski/wav.ts');
+  assert.equal(revisarGrabacion(new Uint8Array(0)).ok, false);
+  assert.equal(revisarGrabacion(wav([])).ok, false);                       // solo cabecera
+  assert.equal(revisarGrabacion(wav(Array(1600).fill(1000))).ok, false);   // 0.1 s
+  assert.equal(revisarGrabacion(wav(Array(16000).fill(0))).ok, false);     // 1 s de silencio digital
+  const voz = Array.from({ length: 16000 }, (_, i) => (i % 2 ? 9000 : -9000));
+  const r = revisarGrabacion(wav(voz));
+  assert.equal(r.ok, true);
+  const m4a = new Uint8Array(200); m4a.set([0, 0, 0, 0x20, 0x66, 0x74, 0x79, 0x70], 0); // «ftyp»
+  assert.equal(revisarGrabacion(m4a).ok, false);
+});

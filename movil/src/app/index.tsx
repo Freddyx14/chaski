@@ -26,7 +26,7 @@ import { AnilloInti } from '@/chaski/inti';
 import { BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
 import { nivelDesdeDb, palabrasDichas } from '@/chaski/movimiento';
 import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/chaski/ui';
-import { base64ABytes, bocaAbierta, envolvente, nivelEn, type Envolvente } from '@/chaski/wav';
+import { base64ABytes, bocaAbierta, envolvente, nivelEn, revisarGrabacion, type Envolvente } from '@/chaski/wav';
 import Animated, {
   FadeInDown, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming, ZoomIn,
 } from 'react-native-reanimated';
@@ -131,6 +131,8 @@ const DEMO: Record<string, Fase> = {
   },
 };
 
+class GrabacionInvalida extends Error {}
+
 export default function Pantalla() {
   const perfil = usePerfil();
   const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string }>();
@@ -197,7 +199,13 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
     await grabadora.stop();
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const uri = grabadora.uri;
-    if (!uri) return fallar(new Error('sin audio'));
+    if (!uri) return fallar(new GrabacionInvalida('sin archivo'));
+    try {
+      const revision = revisarGrabacion(await new File(uri).bytes());
+      if (!revision.ok) return fallar(new GrabacionInvalida(revision.motivo));
+    } catch (e) {
+      return fallar(new GrabacionInvalida(`no se pudo leer (${String((e as Error)?.message ?? e).slice(0, 40)})`));
+    }
     ultimoAudio.current = uri;
     // D11: el detector decide quién habló; si falla o duda, manda la alternancia.
     let quien = lado;
@@ -356,6 +364,11 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   }
 
   function fallar(e: unknown) {
+    if (e instanceof GrabacionInvalida) {
+      // No es la red: el teléfono no grabó voz. Se dice así, con el motivo en la línea gris.
+      setFase({ f: 'error', sinServidor: false, mensaje: t.sinGrabacion, detalle: `grabación · ${e.message}` });
+      return;
+    }
     const sinServidor = e instanceof SinServidor;
     setFase({
       f: 'error',

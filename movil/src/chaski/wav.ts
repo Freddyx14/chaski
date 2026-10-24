@@ -91,3 +91,19 @@ export function nivelEn(env: Envolvente | null, segundo: number): number {
   if (!env) return 0;
   return env.niveles[Math.floor((segundo * 1000) / env.ventanaMs)] ?? 0;
 }
+
+export type RevisionGrabacion = { ok: true; segundos: number } | { ok: false; motivo: string };
+
+/**
+ * Antes de mandar una grabación al servicio: ¿es un WAV con voz? El servicio responde 500 a un WAV vacío
+ * o en otro formato, y el teléfono lo mostraba como «No pude conectarme» (iPhone de Freddy, 24-oct).
+ */
+export function revisarGrabacion(bytes: Uint8Array, minimoSegundos = 0.3): RevisionGrabacion {
+  if (bytes.length < 44) return { ok: false, motivo: `archivo vacío (${bytes.length} B)` };
+  const env = envolvente(bytes);
+  if (!env) return { ok: false, motivo: `no es WAV PCM de 16 bits (${bytes.length} B)` };
+  if (env.segundos < minimoSegundos) return { ok: false, motivo: `grabación muy corta (${env.segundos.toFixed(2)} s)` };
+  // envolvente normaliza al pico: si el pico real es silencio digital, todos los niveles son 0.
+  if (env.niveles.every((n) => n === 0)) return { ok: false, motivo: 'grabación en silencio' };
+  return { ok: true, segundos: env.segundos };
+}

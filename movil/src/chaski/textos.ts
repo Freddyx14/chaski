@@ -66,6 +66,7 @@ const es = {
   sinServidor: 'Falta conectar Chaski con el servicio.',
   noEscuche: 'No le escuché bien. Hable un poco más cerca.',
   sinConexion: 'No pude conectarme. Vuelva a intentarlo.',
+  sinGrabacion: 'No se grabó su voz. Revise que Chaski tenga permiso para usar el micrófono y vuelva a hablar.',
   conectar: 'Conectar el servicio',
   reintentar: 'Reintentar',
   volver: 'Volver',

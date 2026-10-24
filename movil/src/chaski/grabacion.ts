@@ -5,6 +5,7 @@ export const GRABACION: RecordingOptions = {
   extension: '.wav',
   sampleRate: 16000,
   numberOfChannels: 1,
+  // bitRate = 16000 Hz × 16 bits × 1 canal: el valor exacto de este PCM, no un parámetro de compresión.
   bitRate: 256000,
   isMeteringEnabled: true,
   ios: {
