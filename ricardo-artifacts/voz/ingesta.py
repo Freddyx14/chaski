@@ -46,11 +46,13 @@ def utilizables(grabaciones: list[Grabacion], incluir_aprendices: bool = False) 
 def resumen_por_persona(grabaciones: list[Grabacion]) -> dict:
     salida: dict[str, dict] = {}
     for g in grabaciones:
-        fila = salida.setdefault(g.persona, {"clips": 0, "segundos": 0.0, "bloque_A": 0,
-                                             "bloque_B": 0, "sin_transcripcion": 0})
+        # Los bloques se cuentan sobre la marcha: cuando esto se escribio solo
+        # existian A y B, y el cuadernillo ya trae C, M, N y E.
+        fila = salida.setdefault(g.persona, {"clips": 0, "segundos": 0.0,
+                                             "bloques": {}, "sin_transcripcion": 0})
         fila["clips"] += 1
         fila["segundos"] += g.segundos
-        fila[f"bloque_{g.bloque}"] += 1
+        fila["bloques"][g.bloque] = fila["bloques"].get(g.bloque, 0) + 1
         if not g.transcripcion.strip():
             fila["sin_transcripcion"] += 1
     for fila in salida.values():
@@ -63,7 +65,8 @@ def elegir_persona_prueba(grabaciones: list[Grabacion]) -> str:
     al uso real; a igualdad, quien tenga menos clips, para no regalar datos de
     entrenamiento."""
     resumen = resumen_por_persona(grabaciones)
-    return sorted(resumen.items(), key=lambda kv: (-kv[1]["bloque_B"], kv[1]["clips"]))[0][0]
+    return sorted(resumen.items(),
+                  key=lambda kv: (-kv[1]["bloques"].get("B", 0), kv[1]["clips"]))[0][0]
 
 
 def partir_por_hablante(grabaciones: list[Grabacion], persona_prueba: str | None = None) -> dict:

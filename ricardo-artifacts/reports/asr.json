@@ -2,53 +2,1073 @@
  {
   "etiqueta": "base",
   "modelo": "omniASR_LLM_300M",
-  "cuando": "2026-10-24T16:12:37.642284+00:00",
-  "origen": "datos/corpus/humo_asr.jsonl",
-  "clips": 5,
-  "wer": 0.3277,
-  "cer": 0.0896,
+  "cuando": "2026-10-24T21:24:22.920826+00:00",
+  "origen": "datos/corpus/prueba.jsonl",
+  "clips": 175,
+  "wer": 0.6889,
+  "cer": 0.1562,
   "por_persona": {
-   "sintetica": {
-    "clips": 5,
-    "wer": 0.3277,
-    "cer": 0.0896
+   "p16": {
+    "clips": 175,
+    "wer": 0.6889,
+    "cer": 0.1562
    }
   },
   "prestamos": {
-   "evaluados": 4,
-   "acertados": 2,
-   "tasa_acierto": 0.5
+   "evaluados": 6,
+   "acertados": 5,
+   "tasa_acierto": 0.8333
   },
   "detalle": [
    {
-    "audio": "datos/muestras_quy/quy_01.wav",
-    "referencia": "¿Allinllanchu, mamáy? ¡Allinllanmi, taytáy! Taytáy, ¿allillanchu? Mamáy, allillanmi ¿Imaynallam kachkanki, taytáy? ¿Imaynallam kachkanki, taytáy? ¿Imaynallam kachkankichik, mamaykuna? Ñuqallaymi, doctor Hamullachkani, doctora Chaskiyukuyki, wiraqucha Mamaykuna, chaskiyukuychik Rimaykullayki, mamáy Rimaykullaykichik, taytaykuna Napaykullayki, taytáy Mamaykuna, napaykullaykichik",
-    "oido": "allinllanchu mamáy allinllanmi taytáy taytáy allillanchu wamáy allillanmi imaynallam kachkanki taytáy imaynallam kachkanki taytáy imaynallam kachkankichik mamaykuna ñoqallaymi tuptuq hamullachkani tupturqa chaskiyukuyki wirakuchan mamaykuna chaskiyukuychik rimaykullayki mamayqa rimaykullaykichik taytaykuwan napaykullayki taytáy mamaykuna napaykullaykichik",
-    "wer": 0.212
+    "audio": "datos/crudo/p16/p16_C_001.wav",
+    "referencia": "pusaq horapi juk pastillata upyay",
+    "oido": "pusaq urapi huk pastillata upyay",
+    "wer": 0.4
    },
    {
-    "audio": "datos/muestras_quy/quy_02.wav",
-    "referencia": "Yaykuykamuy taytáy Mamáy, yaykuykamuy Yaykuykamuychik, taytakuna Yaykuykamuychik, mamakuna Tiyakuy Tiyakuychik ¿Imatataq munanki, mamáy? ¿Imatataq munanki, taytáy? Mamáy, ¿imachamanmi hamuchkanki? ¿Imaraykutaq hamurqanki, taytáy? ¿Imapaqtaq allin kayman? ¿Imatam ruwallayman? ¿Imapitaq yanapaykiman? ¿Imapitaq yanapariykimanku? ¿Yanapayta atiymanchu?",
-    "oido": "yaykuykamuy kay tay mamay yaykuykamuy yaykuykamuychik taytakuna yaykuykamuychik mamakuna riyakuy riyakuychik imatataq munanki mamay — imatataq munanki taytariy mamay imachamanmi mamuchkanki imaraykutaq hamurqanki taytáy imapaqtaq allin kayman imatam ruwallayman imapitaq yanapaykiman — imapitaq yanaparikimanku — yanapayta atiymanchu",
-    "wer": 0.303
+    "audio": "datos/crudo/p16/p16_C_002.wav",
+    "referencia": "Mikuy qhipa pastillakunata japay",
+    "oido": "mikuy qipa pastillokunata hapay",
+    "wer": 0.75
    },
    {
-    "audio": "datos/muestras_quy/quy_03.wav",
-    "referencia": "¿Yanapayta atiymankuchu? Uyariykim, mamáy Uyarisqaykim, taytáy Uyarisqaykichik Denuncia churaqmi hamuchkani Denunciaqmi hamuchkani Tapukuqmi hamuchkani Juezwanmi rimayta munani Fiscalwanmi rimayta munani Juezpa uyariwanantam munani Fiscalpa uyariwanantam munani Fiscalwanmi rimanay kachkan ¿Imatan suyarichkanki, mamáy?",
-    "oido": "yanapayta atiymankuchu kuyariykim mamay kuyarisqaykim taytáy kuyarisqaykichik dioncia churaqmi hamuchkani dionciaqmi hamuchkani hapukuqmi hamuchkani juezwanmi rimayta munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani juezpa uyariwanantam munani imatan suyarichkanki mamay",
-    "wer": 0.625
+    "audio": "datos/crudo/p16/p16_C_003.wav",
+    "referencia": "Upyay yacuta manan tehuancho",
+    "oido": "upyay yakuta manam tiwanchu",
+    "wer": 0.75
    },
    {
-    "audio": "datos/muestras_quy/quy_04.wav",
-    "referencia": "¿Imatam maskarichkanki, taytáy? ¿Allichu yanapawankikumanchu, taytáy? Mamáy, ¿yanapawankikumanchu? Demunatam maskachkani Primer Juzgadotam maskachkani Wawata suyarichkani, jefelláy Abogadoytam suyarichkani Runasimita rimani, taytáy ¿Castellanuta rimankichu, mamáy? Manam castellanuta rimanichu ¿Runasimita rimankichu, doctor? Arí, runasimita rimani ¿Runasimita yachankichu, doctora?",
-    "oido": "imata maskarichkankitay tay allichu yanapawankikumanchu taytáy mamáy yanapawankikumanchu demonata maskachkani limer juzgadota maskachkani wawata suyarichkani jefelláy ugadoytam suyarichkani runasimita imani taytáy castillan uta rimankichu mamalla manam castillan uta rimanichu runasimita rimankichu doctor arí runasimita rimani runasimita yachankichu doctora",
-    "wer": 0.361
+    "audio": "datos/crudo/p16/p16_C_004.wav",
+    "referencia": "Amay pastillata dejaychu allin captiquipas",
+    "oido": "amay pastillata de haychu allin kaptikipas",
+    "wer": 0.6
    },
    {
-    "audio": "datos/muestras_quy/quy_05.wav",
-    "referencia": "Arí, runasimita yachani Manam runasimita yachanichu ¿Runasimitachu utaq castellanusimitachu rimayta munanki? ¿Pitaq kaypi runasimita riman? ¿Pitaq kaypi castellanota riman? Allichu, allinllamanta rimaway ¿Allinllamanta rimaykuwankimanchu? ¿Manachu kaqmanta rimariwaq? ¿Yapa chayta rimaykuwankimanchu? Allichu, huktawan niway Hawkalla kakuy, mamáy Hawkayay, taytáy Llakikuyñiykita willawanki Lliumi allin kanqa",
-    "oido": "arí runasimita yachani manam runasimita yachanichu runasimitachu kutaq castellansimitachu rimayta munanki pitaq kaypi runasimita riman pitaq kaypi castellanota riman allichu allinllamanta rimaway allinllamanta rimaykuwankimanchu manachu kaqmanta rimariwaq yapachayta rimaykuwankimanchu allichu kuktawan niway hawkalla kakuy mamáy hawkayay taytáy llakikuyniykitam illawanki lliwmi allin kanqa",
-    "wer": 0.186
+    "audio": "datos/crudo/p16/p16_C_005.wav",
+    "referencia": "Qanchis punchaupi trataqunki",
+    "oido": "qanchis punchawpi tratakunki",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_006.wav",
+    "referencia": "Lunes punchauta  jamunki controlninkipa",
+    "oido": "lunes punchawta hamunki controlnikipaq",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_007.wav",
+    "referencia": "Manan micuspa jamunqui",
+    "oido": "mana mikuspa hamunki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_008.wav",
+    "referencia": "Carniquita apamunki",
+    "oido": "karnikita apamunki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_009.wav",
+    "referencia": "Juk quillapi kutimunki",
+    "oido": "huk killapi kutimunki",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_010.wav",
+    "referencia": "Yawar kaptinja currimunki apurauta",
+    "oido": "yawar kaptinqa corrimonki apurawta",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_011.wav",
+    "referencia": "Fiebre qaptencca jamunki",
+    "oido": "fiebre kaptenqa hamunki",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_012.wav",
+    "referencia": "Wawa mana kuyuktincca jamunki",
+    "oido": "wawa mana kuyuptinqa hamunki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_013.wav",
+    "referencia": "Jaykapitac nanan",
+    "oido": "haykapitaq nanan",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_014.wav",
+    "referencia": "Maypitacc nanan",
+    "oido": "maypitaq nanan",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_015.wav",
+    "referencia": "Rupay cashcncho",
+    "oido": "europay kachkanchu",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_016.wav",
+    "referencia": "Ima pastillata tomascanchu",
+    "oido": "ima pastillata tomasqanchu",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_017.wav",
+    "referencia": "Imapas alergiaccunchi",
+    "oido": "imapas alergiakunchu",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_018.wav",
+    "referencia": "Jaykataj watayki",
+    "oido": "haykataq watayki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_019.wav",
+    "referencia": "Presioniykita tumaykusacc",
+    "oido": "precionikita tomaykusaq",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_020.wav",
+    "referencia": "Allinta samaykuy amayuyakuspa",
+    "oido": "allinta samaykuy ama llullakuspa",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_021.wav",
+    "referencia": "Chunka isjon fibriyocc kashkanki",
+    "oido": "chunka isqom fibrios kachkanki",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_022.wav",
+    "referencia": "Ashka yakuta junki",
+    "oido": "achka yakuta qunki",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_023.wav",
+    "referencia": "Chaupi pastillata, manam totalchata",
+    "oido": "chawpi pastillata manam totalchata",
+    "wer": 0.25
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_024.wav",
+    "referencia": "Isqayta junki, punchaupi y tutayajpi",
+    "oido": "iskayta qunki punchawpi y tutayaqpi",
+    "wer": 0.8
+   },
+   {
+    "audio": "datos/crudo/p16/p16_C_025.wav",
+    "referencia": "Quimsa punchaupi resultado chayamuncca",
+    "oido": "kimsa punchawpi resultayuq chayamuqqa",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_026.wav",
+    "referencia": "Upianki parcetamolta",
+    "oido": "o pianki para citamulta",
+    "wer": 2.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_027.wav",
+    "referencia": "Upianki ibuprofenota",
+    "oido": "opiangue ivo profenota",
+    "wer": 1.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_028.wav",
+    "referencia": "Upianki amoxicilinata",
+    "oido": "pupianki amo occicilinata",
+    "wer": 1.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_029.wav",
+    "referencia": "Upianki omeprazolta mana micuscca",
+    "oido": "upyanki homaiprasulta mana mikusqa",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_030.wav",
+    "referencia": "Upianki sulfato ferrosota",
+    "oido": "upyanki sulfato ferrozota",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_031.wav",
+    "referencia": "Upiayki acido folicota",
+    "oido": "upyaykuq ácido folikota",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_032.wav",
+    "referencia": "Upiaykuy albendazolta",
+    "oido": "upyaykuy albendazolta",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_033.wav",
+    "referencia": "Upiyakuy metforminata",
+    "oido": "upyayku mikpurminata",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_034.wav",
+    "referencia": "Upiaykuy losartanta",
+    "oido": "upyaykuy lozartanta",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_035.wav",
+    "referencia": "Kayta salbutamolta",
+    "oido": "kayta salvutamulta",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_036.wav",
+    "referencia": "Joy sueruta siminpe",
+    "oido": "qoy suyruta siminpi",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_037.wav",
+    "referencia": "Upyay vitaminata c",
+    "oido": "upyay vitaminata si",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_038.wav",
+    "referencia": "Upiyay jarabeta",
+    "oido": "opiay haravita",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_039.wav",
+    "referencia": "Tabletata upianki",
+    "oido": "tabletata upyanki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_040.wav",
+    "referencia": "Churasayki apollata",
+    "oido": "churasayki ampollata",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_041.wav",
+    "referencia": "Kimsa gotata sotoykuy",
+    "oido": "kimsa gotata sutuykuy",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_042.wav",
+    "referencia": "Juk wisllachapi jarabeta juykuy",
+    "oido": "huk wisllachapi qaramita quykuy",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_043.wav",
+    "referencia": "Pichcca mililitruta jarabeta",
+    "oido": "pichqa mililitruta qarabita",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_044.wav",
+    "referencia": "Piskcca pachac miligramuta Pastillata",
+    "oido": "pisqa pachak miligramuta pastillata",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_045.wav",
+    "referencia": "Chaupi tabletata",
+    "oido": "chawpi tabletata",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_046.wav",
+    "referencia": "Doctorme jawarincca",
+    "oido": "doctorme qawarinqa",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_047.wav",
+    "referencia": "Cai Doctora yanapasunki",
+    "oido": "kay doctora yanapasunki",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_048.wav",
+    "referencia": "Enfemeram willasunki",
+    "oido": "enfermeram uvillasunki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_049.wav",
+    "referencia": "Obstetram jawarisunki",
+    "oido": "ustitraw qawarisunki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_050.wav",
+    "referencia": "Rinki postata",
+    "oido": "virinki pustata",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_051.wav",
+    "referencia": "Hospitalman apasayki",
+    "oido": "hospitalman apasayki",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_052.wav",
+    "referencia": "Presionta medisayki",
+    "oido": "presiontame risayki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_053.wav",
+    "referencia": "Ham kashkanki diabetiswan",
+    "oido": "qam kachkanki diabeteswan",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_054.wav",
+    "referencia": "Ham kashkanki anemiawan",
+    "oido": "qam kachkanki animi awan",
+    "wer": 1.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_055.wav",
+    "referencia": "Controlnikipacc jamunki",
+    "oido": "controlnikipaq hamunki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_M_056.wav",
+    "referencia": "Caypi cashcan recetayki",
+    "oido": "kaypi kachkan recitayki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_057.wav",
+    "referencia": "Yupay jucmanta chuncacama",
+    "oido": "yupay hukmanta chunkakama",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_058.wav",
+    "referencia": "Killamanta pacha, intichaycama,",
+    "oido": "killamantapacha intichakama",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_059.wav",
+    "referencia": "Upyay pastillata punchaypi y tutallaccpi",
+    "oido": "upyay pastillata punchawpi y tutayaqpi",
+    "wer": 0.4
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_060.wav",
+    "referencia": "Upyay pastillata pusacc horapi",
+    "oido": "upyay pastillata pusaq urapiq",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_061.wav",
+    "referencia": "Upyay pasitillata chunca incaynillocc horapi",
+    "oido": "upyay pastillata chunka iskayniyuq urapi",
+    "wer": 0.8
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_062.wav",
+    "referencia": "Cutimunki juk semanapi",
+    "oido": "kutimunki huk semanapi",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_N_063.wav",
+    "referencia": "Killapi kutimunki",
+    "oido": "killapi kutimunki",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_064.wav",
+    "referencia": "Punchaimanta Humay nanashkan",
+    "oido": "punchaymanta umay nanashqa",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_065.wav",
+    "referencia": "Wixaymi nanashcan quinza punchaimanta",
+    "oido": "wiksaymi nanashkan kinsa punchaymanta",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_066.wav",
+    "referencia": "Ypiashkani paracetamolta",
+    "oido": "upshashkani para sitamulta",
+    "wer": 1.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_067.wav",
+    "referencia": "Jari waway fibriwan kashkan tutamanta",
+    "oido": "qari waway febrewan kachkan tutamanta",
+    "wer": 0.6
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_068.wav",
+    "referencia": "Warmy waway cashcan jechawan iskay punchaunanta",
+    "oido": "warmi waway kachkan qichawan iskay punchawanmanta",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_069.wav",
+    "referencia": "Willariway Manam yuyakuspa jukmanta",
+    "oido": "willariway mana llullakuspa hukmanta",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_070.wav",
+    "referencia": "Jonjauriticca imtata ruasaj pastillacunata",
+    "oido": "qunqaruptiyqa imatataq ruwasaq pastillakunata",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_071.wav",
+    "referencia": "Jaycapitacc cutimusacc controlnipacc",
+    "oido": "haykʼappataq kutimusaq kuntrunuypaq",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_072.wav",
+    "referencia": "Imatapas tomaiman manam malta rurawancho",
+    "oido": "imatapas tomayman manan malta rurawanchu",
+    "wer": 0.6
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_073.wav",
+    "referencia": "Upiasacc pusacc horacc niocc pastillacunata janchis diapi",
+    "oido": "upyasaq pusaq uraq niyuq pastillakunata qanchis yapi",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_074.wav",
+    "referencia": "Allinmi kashcani",
+    "oido": "allinmi kaskani",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_B_075.wav",
+    "referencia": "Allinmi pashñcha",
+    "oido": "allinmi pashñacha",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_076.wav",
+    "referencia": "¿Allinllanchu, mamáy?",
+    "oido": "allinllachu mamay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_077.wav",
+    "referencia": "¡Allinllanmi, taytáy!",
+    "oido": "allinllanmi taytay",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_078.wav",
+    "referencia": "Taytáy, ¿allillanchu?",
+    "oido": "taytay allinllachu",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_079.wav",
+    "referencia": "Mamáy, allillanmi",
+    "oido": "mamay allin llanmi",
+    "wer": 1.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_080.wav",
+    "referencia": "¿Imaynallam kachkanki, taytáy?",
+    "oido": "imaynallam kachkanki taytay",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_081.wav",
+    "referencia": "¿Imaynallam kachkanki, taytáy?",
+    "oido": "imaynallam kachkanki taytay",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_082.wav",
+    "referencia": "¿Imaynallam kachkankichik, mamaykuna?",
+    "oido": "imaynallam kachkanki mamaykuna",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_083.wav",
+    "referencia": "Ñuqallaymi, doctor",
+    "oido": "ñogallaymi doktor",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_084.wav",
+    "referencia": "Hamullachkani, doctora",
+    "oido": "hamuellachkan y doctora",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_085.wav",
+    "referencia": "Chaskiyukuyki, wiraqucha",
+    "oido": "chaskiyukunki wiraqocha",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_086.wav",
+    "referencia": "Mamaykuna, chaskiyukuychik",
+    "oido": "mamaykuna chaskiyukuyki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_087.wav",
+    "referencia": "Rimaykullayki, mamáy",
+    "oido": "rimaykullayki mamay",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_088.wav",
+    "referencia": "Rimaykullaykichik, taytaykuna",
+    "oido": "rimaykullayki taytaykuna",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_089.wav",
+    "referencia": "Napaykullayki, taytáy",
+    "oido": "napaykullayki taytay",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_090.wav",
+    "referencia": "Mamaykuna, napaykullaykichik",
+    "oido": "mamaykuna napaykullayki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_091.wav",
+    "referencia": "Yaykuykamuy taytáy",
+    "oido": "yaykuykamuy taytay",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_092.wav",
+    "referencia": "Mamáy, yaykuykamuy",
+    "oido": "mamay yaykuykamuy",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_093.wav",
+    "referencia": "Yaykuykamuychik, taytakuna",
+    "oido": "yaykuykamuchik taytaykuna",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_094.wav",
+    "referencia": "Yaykuykamuychik, mamakuna",
+    "oido": "yaykuykamuyki mamaykuna",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_095.wav",
+    "referencia": "Tiyakuy",
+    "oido": "tia kuy",
+    "wer": 2.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_096.wav",
+    "referencia": "Tiyakuychik",
+    "oido": "tiyakunki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_097.wav",
+    "referencia": "¿Imatataq munanki, mamáy?",
+    "oido": "imataq munanki mamay",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_098.wav",
+    "referencia": "¿Imatataq munanki, taytáy?",
+    "oido": "imataq munanki taytay",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_099.wav",
+    "referencia": "Mamáy, ¿imachamanmi hamuchkanki?",
+    "oido": "mamay imachamanmi hamuchkanki",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_100.wav",
+    "referencia": "¿Imaraykutaq hamurqanki, taytáy?",
+    "oido": "imaraykutaq hamurqanki taytay",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_101.wav",
+    "referencia": "¿Imapaqtaq allin kayman?",
+    "oido": "imapataq allinki kayman",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_102.wav",
+    "referencia": "¿Imatam ruwallayman?",
+    "oido": "imataq rurayman",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_103.wav",
+    "referencia": "¿Imapitaq yanapaykiman?",
+    "oido": "imatataq yanapasayki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_104.wav",
+    "referencia": "¿Imapitaq yanapariykimanku?",
+    "oido": "imapitaq yanapasayki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_105.wav",
+    "referencia": "¿Yanapayta atiymanchu?",
+    "oido": "yanapayta atiymanchu",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_106.wav",
+    "referencia": "¿Yanapayta atiymankuchu?",
+    "oido": "yanapayta itaymankuchu",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_107.wav",
+    "referencia": "Uyariykim, mamáy",
+    "oido": "uyarinki mamay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_108.wav",
+    "referencia": "Uyarisqaykim, taytáy",
+    "oido": "uyarishkanki taytay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_109.wav",
+    "referencia": "Uyarisqaykichik",
+    "oido": "uyarishkayki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_110.wav",
+    "referencia": "Denuncia churaqmi hamuchkani",
+    "oido": "rinuncia churanaypaq hamuchkani",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_111.wav",
+    "referencia": "Denunciaqmi hamuchkani",
+    "oido": "denonciaqmi hamuchkani",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_112.wav",
+    "referencia": "Tapukuqmi hamuchkani",
+    "oido": "tapukusmi hamushkani",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_113.wav",
+    "referencia": "Juezwanmi rimayta munani",
+    "oido": "quswanmi rimayta munashqani",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_114.wav",
+    "referencia": "Fiscalwanmi rimayta munani",
+    "oido": "fiskalwanmi rimayta munani",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_115.wav",
+    "referencia": "Juezpa uyariwanantam munani",
+    "oido": "wishpa uyarinanpaq munani",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_116.wav",
+    "referencia": "Fiscalpa uyariwanantam munani",
+    "oido": "fiskalta uyarinamanpaq munani",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_117.wav",
+    "referencia": "Fiscalwanmi rimanay kachkan",
+    "oido": "ishkalwan rimanaymi kashka",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_118.wav",
+    "referencia": "¿Imatan suyarichkanki, mamáy?",
+    "oido": "imatam suyarishkanki mamay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_119.wav",
+    "referencia": "¿Imatam maskarichkanki, taytáy?",
+    "oido": "imatam ashkarichkanki taytay",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_120.wav",
+    "referencia": "¿Allichu yanapawankikumanchu, taytáy?",
+    "oido": "allinchu yanapariwanki taytay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_121.wav",
+    "referencia": "Mamáy, ¿yanapawankikumanchu?",
+    "oido": "mamayllanapa riwanki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_122.wav",
+    "referencia": "Demunatam maskachkani",
+    "oido": "demonantam maskashkani",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_123.wav",
+    "referencia": "Primer Juzgadotam maskachkani",
+    "oido": "primer juzgadota maskashkani",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_124.wav",
+    "referencia": "Wawata suyarichkani, jefelláy",
+    "oido": "wawatam suyarishkani siphillay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_125.wav",
+    "referencia": "Abogadoytam suyarichkani",
+    "oido": "abogado tamsuyarishkani",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_126.wav",
+    "referencia": "Runasimita rimani, taytáy",
+    "oido": "runa simipi rimani taytay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_127.wav",
+    "referencia": "¿Castellanuta rimankichu, mamáy?",
+    "oido": "castellanota rimarinkichu mamay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_128.wav",
+    "referencia": "Manam castellanuta rimanichu",
+    "oido": "manam castellanota rimanichu",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_129.wav",
+    "referencia": "¿Runasimita rimankichu, doctor?",
+    "oido": "runasimita rimankichu doctor",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_130.wav",
+    "referencia": "Arí, runasimita rimani",
+    "oido": "ari iruna simitari mani",
+    "wer": 1.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_131.wav",
+    "referencia": "¿Runasimita yachankichu, doctora?",
+    "oido": "runa simito rimankichu doctora",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_132.wav",
+    "referencia": "Arí, runasimita yachani",
+    "oido": "arí runasimita yachani",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_133.wav",
+    "referencia": "Manam runasimita yachanichu",
+    "oido": "manam runa simita yachanichu",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_134.wav",
+    "referencia": "¿Runasimitachu utaq castellanusimitachu rimayta munanki?",
+    "oido": "runasimitachu utaq castellanota rimani munani",
+    "wer": 0.6
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_135.wav",
+    "referencia": "¿Pitaq kaypi runasimita riman?",
+    "oido": "pitaq kaypi runa simita riman",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_136.wav",
+    "referencia": "¿Pitaq kaypi castellanota riman?",
+    "oido": "pitaq kaypi castellanota riman",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_137.wav",
+    "referencia": "Allichu, allinllamanta rimaway",
+    "oido": "allinchu allinllamanta rimawan",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_138.wav",
+    "referencia": "¿Allinllamanta rimaykuwankimanchu?",
+    "oido": "allinllamanta rimaykumanwanchu",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_139.wav",
+    "referencia": "¿Manachu kaqmanta rimariwaq?",
+    "oido": "manachu kaymanta rimariwaq",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_140.wav",
+    "referencia": "¿Yapa chayta rimaykuwankimanchu?",
+    "oido": "llapa chanta rimaykuwanchu",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_141.wav",
+    "referencia": "Allichu, huktawan niway",
+    "oido": "allinchu huktawan niway",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_142.wav",
+    "referencia": "Hawkalla kakuy, mamáy",
+    "oido": "hawkalla kakuy mamay",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_143.wav",
+    "referencia": "Hawkayay, taytáy",
+    "oido": "hawkalla taytay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_144.wav",
+    "referencia": "Llakikuyñiykita willawanki",
+    "oido": "llakikuynikita willawanki",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_145.wav",
+    "referencia": "Lliumi allin kanqa",
+    "oido": "willaway allin kanka",
+    "wer": 0.667
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_146.wav",
+    "referencia": "Ama llakikuychu",
+    "oido": "ama llakikuychu",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_147.wav",
+    "referencia": "¡Yanapaway!",
+    "oido": "yanapaway",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_148.wav",
+    "referencia": "Yanapasqayki",
+    "oido": "yanapasunki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_149.wav",
+    "referencia": "Yanapasqaykikum",
+    "oido": "yanapasaykiku",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_150.wav",
+    "referencia": "Uyariy",
+    "oido": "uyari",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_151.wav",
+    "referencia": "Uyariykullaway",
+    "oido": "uyariway",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_152.wav",
+    "referencia": "Ama hina kaychu, taytáy",
+    "oido": "ama hina kaychu taytáy",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_153.wav",
+    "referencia": "¡Ima allinmi hamuranki!",
+    "oido": "imallanmi hamuchkanki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_154.wav",
+    "referencia": "¿Ima horasta comisario chayamunqa?",
+    "oido": "ima urataq comisario chayamuqa",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_155.wav",
+    "referencia": "¿Ima horasta fiscal chayamunqa?",
+    "oido": "ima urataq fiskal chayamunqa",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_156.wav",
+    "referencia": "Kasqanpacha",
+    "oido": "kas kan pacha",
+    "wer": 3.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_157.wav",
+    "referencia": "Kunanpacha",
+    "oido": "kunan pacha",
+    "wer": 2.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_158.wav",
+    "referencia": "Manam yanapayta atinichu, mamáy",
+    "oido": "mana yanapayta atinchu mamay",
+    "wer": 0.75
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_159.wav",
+    "referencia": "Anchata llakikuni, taytáy",
+    "oido": "anchata llakikuni taytay",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_160.wav",
+    "referencia": "Anchata llakipayki",
+    "oido": "anchata llakipayki",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_161.wav",
+    "referencia": "Pampachaway",
+    "oido": "pampachawa",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_162.wav",
+    "referencia": "Pampachaykuway",
+    "oido": "pampachaykuway",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_163.wav",
+    "referencia": "Pampachayuway qhiparikusqaymanta",
+    "oido": "pampachaway kikapaykusmanta",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_164.wav",
+    "referencia": "Pampachaway, kunanqa manam riyta atinichu",
+    "oido": "pampachawan kunanki manam iriyta atinichu",
+    "wer": 0.6
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_165.wav",
+    "referencia": "Kunanqa manam paywan rimayta atinkichu",
+    "oido": "kunaqa manam paywan rimayta atinichu",
+    "wer": 0.4
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_166.wav",
+    "referencia": "Yusulpayki",
+    "oido": "iosuypalki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_167.wav",
+    "referencia": "Yanaparwanki",
+    "oido": "yanaparuwanki",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_168.wav",
+    "referencia": "Yusulpayki yanapawasqaykimanta",
+    "oido": "yusuypalki waskaykimanda",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_169.wav",
+    "referencia": "Imamanta",
+    "oido": "imamanta",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_170.wav",
+    "referencia": "Mana imamantapas",
+    "oido": "mana imamantapas",
+    "wer": 0.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_171.wav",
+    "referencia": "Paqarinkama, taytáy",
+    "oido": "parinkama taytay",
+    "wer": 1.0
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_172.wav",
+    "referencia": "Huk punchawkama, señora",
+    "oido": "huk punchawman señora",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_173.wav",
+    "referencia": "Anchata agradisiyki, papay",
+    "oido": "anchata agradechunki papay",
+    "wer": 0.333
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_174.wav",
+    "referencia": "Allicha, huk ratucha suyay",
+    "oido": "allinta huk ratucha supay",
+    "wer": 0.5
+   },
+   {
+    "audio": "datos/crudo/p16/p16_E_175.wav",
+    "referencia": "Allicha, huk ratucha suyaychik",
+    "oido": "allincha huk ratucha suyawanki",
+    "wer": 0.5
    }
   ]
  }

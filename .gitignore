@@ -18,3 +18,11 @@ Ricardo-idea/papers/*.pdf
 Ricardo-idea/*.csv
 data/
 .superpowers/
+
+# Las grabaciones de las familias. Se quedan fuera de git a proposito:
+# son 70 MB que git guardaria para siempre, y si el repo se hace publico para
+# la entrega, las voces de nuestros padres se hacen publicas con el. El audio
+# vive en la laptop y en la instancia, y `servicio/desplegar.sh` las sincroniza.
+# Los manifiestos .jsonl SI van a git: son el texto, que es lo que hay que revisar.
+ricardo-artifacts/datos/crudo/**/*.wav
+ricardo-artifacts/datos/crudo/**/*.webm

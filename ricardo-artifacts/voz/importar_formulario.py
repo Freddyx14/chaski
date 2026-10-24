@@ -84,7 +84,7 @@ def parte_de(numero: int) -> str:
 def importar(origen: str, solo: str = "") -> dict:
     filas = leer_lineas(origen)
     por_persona: dict[str, list[Grabacion]] = {}
-    saltadas, sin_consentimiento, bajadas = 0, 0, 0
+    saltadas, sin_consentimiento, bajadas, rotas = 0, 0, 0, 0
 
     with httpx.Client() as cliente:
         for fila in filas:
@@ -119,6 +119,15 @@ def importar(origen: str, solo: str = "") -> dict:
             crudo.close()
             try:
                 segundos = convertir(crudo.name, destino)
+            except Exception as e:
+                # Una grabacion que se corto a la mitad deja un webm que ffmpeg
+                # no puede leer. Antes eso tiraba la importacion entera y se
+                # perdian las cuatrocientas buenas por una mala.
+                print(f"  {persona} #{numero}: el audio no se pudo convertir "
+                      f"({str(e)[:50]}); se salta", file=sys.stderr)
+                destino.unlink(missing_ok=True)
+                rotas += 1
+                continue
             finally:
                 Path(crudo.name).unlink(missing_ok=True)
             bajadas += 1
@@ -139,7 +148,7 @@ def importar(origen: str, solo: str = "") -> dict:
                             cabecera="del formulario: el texto lo escribio la propia persona")
 
     return {"personas": {p: len(g) for p, g in por_persona.items()},
-            "audios": bajadas, "saltadas": saltadas,
+            "audios": bajadas, "saltadas": saltadas, "rotas": rotas,
             "sin_consentimiento": sin_consentimiento,
             "con_texto": sum(1 for g in sum(por_persona.values(), []) if g.transcripcion)}
 
