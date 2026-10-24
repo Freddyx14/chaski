@@ -17,6 +17,8 @@ Reuses the system prompts of chaski.auditoria so the two paths cannot drift apar
 """
 from __future__ import annotations
 
+from concurrent.futures import ThreadPoolExecutor
+
 import anthropic
 from pydantic import BaseModel
 
@@ -44,6 +46,7 @@ class ResultadoCritico(BaseModel):
     retraduccion: str | None = None
     hechos_retraducido: Hechos | None = None
     agregados: Agregados | None = None
+    pulido: ResultadoCritico | None = None  # set by `revisar` when it also checked the polish
 
 
 def _parse(client, modelo: str, sistema: str, contenido: str, formato: type[BaseModel]):
@@ -134,6 +137,34 @@ def decidir_pulido(transcripcion: str, pulido: str, hechos_transcripcion: Hechos
         if not v.ok:
             return v
     return pasa("crítico pulido")
+
+
+def revisar(client: anthropic.Anthropic, texto_es: str, *, quechua: str | None = None,
+            transcripcion: str | None = None, modelo: str = MODELO_CRITICO) -> ResultadoCritico:
+    """THE critic path. `evals/ataques/correr.py --modo chaski` and the orchestrator both call this, so what was
+    measured is literally what runs in the product.
+
+      quechua        → `criticar(texto_es, quechua)`: blind back-translation, facts, B4/B5, added content (C)
+      transcripcion  → `criticar_pulido(transcripcion, texto_es)`: B2/B3 on the polish (skipped when identical)
+
+    When both apply they run in parallel and the polish verdict is reported first (it is upstream). With neither,
+    there is nothing a model can check: it passes and the code guards are all that ran.
+    """
+    con_pulido = transcripcion is not None and transcripcion.strip() != texto_es.strip()
+    if not con_pulido and quechua is None:
+        return ResultadoCritico(veredicto=pasa("crítico: nada que retraducir"), modelo=modelo, llamadas=0)
+    if not con_pulido:
+        return criticar(client, texto_es, quechua, modelo)
+    if quechua is None:
+        return criticar_pulido(client, transcripcion, texto_es, modelo)
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        f_pulido = pool.submit(criticar_pulido, client, transcripcion, texto_es, modelo)
+        f_traduccion = pool.submit(criticar, client, texto_es, quechua, modelo)
+        r_pulido, r_traduccion = f_pulido.result(), f_traduccion.result()
+    r = r_traduccion.model_copy(update={"llamadas": r_pulido.llamadas + r_traduccion.llamadas, "pulido": r_pulido})
+    if not r_pulido.veredicto.ok:
+        r.veredicto = r_pulido.veredicto
+    return r
 
 
 # Calls each path makes, for the cost estimate in evals/ataques/correr.py.
