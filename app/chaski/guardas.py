@@ -505,12 +505,15 @@ def sin_agregados(agregados: Agregados) -> Veredicto:
     """Block if the critic listed new advice or a new diagnosis, or the addressee changed.
 
     'no_se_sabe' on either side is not a change: a short phrase often has no explicit addressee.
+    Patient and companion count as the same side: both hear the instruction in the room, and the critic
+    can't tell them apart from a Quechua «usted» (false blocks measured on clean pairs, 24-oct).
     """
     capa = "C agregados"
     problemas = [f"consejo que no estaba: {c}" for c in agregados.consejos_nuevos if c.strip()]
     problemas += [f"diagnóstico que no estaba: {d}" for d in agregados.diagnosticos_nuevos if d.strip()]
     a, b = agregados.destinatario_original, agregados.destinatario_version
-    if "no_se_sabe" not in (a, b) and a != b:
+    lado = {"paciente": "paciente", "acompanante": "paciente", "personal": "personal"}
+    if "no_se_sabe" not in (a, b) and lado[a] != lado[b]:
         problemas.append(f"cambió a quién se le habla: {a} → {b}")
     if problemas:
         return bloqueo(capa, problemas[0], problemas)

@@ -1,0 +1,1691 @@
+{
+  "modo": "chaski",
+  "simulado": false,
+  "fecha": "2026-10-24T15:02:07",
+  "modelo_critico": "claude-haiku-4-5-20251001",
+  "modelo_juez": null,
+  "limite_por_tipo": 20,
+  "llamadas_estimadas": 760,
+  "resumen": {
+    "por_tipo": {
+      "agrega_consejo": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      },
+      "agrega_diagnostico": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 17,
+        "tasa_bloqueo": 0.85,
+        "metrica": "atrapados"
+      },
+      "dias": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      },
+      "limpio": {
+        "esperado": "pasar",
+        "n": 20,
+        "bloqueados": 8,
+        "tasa_bloqueo": 0.4,
+        "metrica": "falsos_bloqueos"
+      },
+      "medicamento": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      },
+      "negacion": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      },
+      "numero": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      },
+      "pulido_agrega": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      },
+      "pulido_limpio": {
+        "esperado": "pasar",
+        "n": 20,
+        "bloqueados": 4,
+        "tasa_bloqueo": 0.2,
+        "metrica": "falsos_bloqueos"
+      },
+      "unidad": {
+        "esperado": "bloquear",
+        "n": 20,
+        "bloqueados": 20,
+        "tasa_bloqueo": 1.0,
+        "metrica": "atrapados"
+      }
+    },
+    "errores_sembrados": 160,
+    "atrapados": 157,
+    "tasa_atrapados": 0.9812,
+    "limpios": 40,
+    "falsos_bloqueos": 12,
+    "tasa_falsos_bloqueos": 0.3
+  },
+  "casos": [
+    {
+      "id": "form-p15-C1-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C1-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C1-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C2-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cantidad, medicamento.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C2-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C3-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: la retraducción no entiende una parte del quechua",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C3-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C3-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: no beber con chicha",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C4-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C4-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C4-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C5-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C5-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C6-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C6-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C7-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C7-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: beber mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C8-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C8-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: beber mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C9-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C9-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C9-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: Tú estarás enfermo",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C10-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: ir_ya_si (cantidad de señales)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C10-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C11-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: ir_ya_si (cantidad de señales)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C11-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: ir_ya_si (cantidad de señales)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C12-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C12-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: ir_ya_si (cantidad de señales)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C12-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: bebe mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C13-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C13-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C14-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C14-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C15-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: la retraducción no entiende una parte del quechua",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C15-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: beber mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C16-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C16-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: Beber mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C17-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C17-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: diagnóstico que no estaba: enfermedad",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C18-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C18-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C19-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "C agregados: cambió a quién se le habla: paciente → acompanante",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C19-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C20-limpio",
+      "tipo": "limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico"
+    },
+    {
+      "id": "form-p15-C20-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: descanso",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C21-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 39 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p15-C21-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 39 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p15-C22-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: cambió a quién se le habla: acompanante → paciente",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-C23-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C24-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C24-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C25-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-C25-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M1-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M2-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M2-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: beber mucho agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M3-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M3-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: diagnóstico que no estaba: anemia",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M4-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M4-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: omeprazol.cada_horas",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M5-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M5-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: diagnóstico que no estaba: anemia",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M6-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M6-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: diagnóstico que no estaba: anemia",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M7-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M7-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: beber mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M8-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M8-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M9-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M9-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: diagnóstico que no estaba: anemia",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M10-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M10-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: diagnóstico que no estaba: anemia",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M11-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M11-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M12-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M12-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: tomar mucha agua",
+      "capa": "C agregados"
+    },
+    {
+      "id": "form-p15-M13-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M14-agrega_consejo",
+      "tipo": "agrega_consejo",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M15-agrega_diagnostico",
+      "tipo": "agrega_diagnostico",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M16-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M17-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: pastilla amargada.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M18-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M19-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cantidad, medicamento.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-M20-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-N4-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-N5-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-N6-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-B2-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-B3-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-B5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-B6-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p15-B9-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: la retraducción no entiende una parte del quechua",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p15-B10-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C1-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: no especificado.cada_horas",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C1-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: pasado tiempo.cada_horas, pasado tiempo.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C2-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C3-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C4-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C4-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: unidad «cuchara» en el quechua, el castellano dice pastilla",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p16-C5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C9-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C12-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: ir_ya_si (cantidad de señales)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C16-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: unidad «cuchara» en el quechua, el castellano dice pastilla",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p16-C21-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 39 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p16-C23-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p16-C23-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-C24-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 2 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p16-C25-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M1-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M2-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M3-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M4-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M5-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M6-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M7-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M8-medicamento",
+      "tipo": "medicamento",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M14-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M16-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M16-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: {desconocido}.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M17-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M17-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cantidad, medicamento.unidad, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M18-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cantidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M18-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cantidad, medicamento.unidad, medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M19-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cantidad, medicamento.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M19-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-M20-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-N3-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-N4-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cada_horas",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-N4-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-N6-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-B2-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p16-B5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 2 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p17-C1-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cada_horas",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p17-C1-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: no especificado.cada_horas, no especificado.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C1-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: {medicamento}.cada_horas",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C1-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.cada_horas, medicamento.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C2-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: agua.cantidad, agua.unidad",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C3-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C4-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C4-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C9-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-C12-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p18-C16-unidad",
+      "tipo": "unidad",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: unidad «cuchara» en el quechua, el castellano dice pastilla",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p18-C21-numero",
+      "tipo": "numero",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 39 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p18-C23-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p18-C25-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-N6-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-N7-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p18-B2-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: número 3 no aparece en el quechua",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p18-B5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p19-C3-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento, prohibiciones (cantidad)",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "form-p19-C4-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "form-p19-C5-dias",
+      "tipo": "dias",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "verif-052-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "verif-057-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B5 ida y vuelta: cambió un dato crítico: partes_cuerpo",
+      "capa": "B5 ida y vuelta"
+    },
+    {
+      "id": "verif-070-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "verif-082-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "verif-088-negacion",
+      "tipo": "negacion",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B4 términos fijos: el castellano tiene una negación y el quechua no (ama / mana / -chu)",
+      "capa": "B4 términos fijos"
+    },
+    {
+      "id": "pulido-000-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-000-agrega_dosis",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 2, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-001-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-001-agrega_dias",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido agregó un dato: medicamento.dias: None → 5",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-002-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-002-agrega_dosis",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 2, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-003-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-003-agrega_momento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: Dar líquido después de comer",
+      "capa": "C agregados"
+    },
+    {
+      "id": "pulido-004-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-004-agrega_medicamento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido nombra «ibuprofeno», que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-005-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-005-agrega_frecuencia",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 12, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-006-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-006-agrega_momento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "C agregados: consejo que no estaba: después de comer",
+      "capa": "C agregados"
+    },
+    {
+      "id": "pulido-007-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "C agregados: cambió a quién se le habla: acompanante → paciente",
+      "capa": "C agregados"
+    },
+    {
+      "id": "pulido-007-agrega_medicamento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido nombra «ibuprofeno», que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-008-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-008-agrega_momento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido agregó un dato: proxima_cita_en_dias: None → 3",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-009-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-009-agrega_frecuencia",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 12, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-010-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-010-agrega_medicamento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido nombra «ibuprofeno», que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-011-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "C agregados: cambió a quién se le habla: acompanante → paciente",
+      "capa": "C agregados"
+    },
+    {
+      "id": "pulido-011-agrega_dias",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 5, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-012-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-012-agrega_dias",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 5, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-013-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido agregó un dato: medicamento: (no estaba) → ampolla",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-013-agrega_dosis",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 2, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-014-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": true,
+      "motivo": "B2 el pulido no cambia hechos: el pulido cambió un dato: ir_ya_si (cantidad de señales): 1 → 0",
+      "capa": "B2 el pulido no cambia hechos"
+    },
+    {
+      "id": "pulido-014-agrega_frecuencia",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 12, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-015-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-015-agrega_momento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido agregó un dato: pastilla.momento: (no estaba) → después de comer",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-016-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-016-agrega_medicamento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido nombra «ibuprofeno», que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-017-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-017-agrega_momento",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido agregó un dato: medicamento: (no estaba) → ",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-018-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-018-agrega_dias",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 5, que no se dijo",
+      "capa": "B3 nada nuevo"
+    },
+    {
+      "id": "pulido-019-limpio",
+      "tipo": "pulido_limpio",
+      "esperado": "pasar",
+      "bloqueado": false,
+      "motivo": "pasó",
+      "capa": "crítico pulido"
+    },
+    {
+      "id": "pulido-019-agrega_dosis",
+      "tipo": "pulido_agrega",
+      "esperado": "bloquear",
+      "bloqueado": true,
+      "motivo": "B3 nada nuevo: el pulido dice 2, que no se dijo",
+      "capa": "B3 nada nuevo"
+    }
+  ]
+}

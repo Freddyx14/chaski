@@ -104,8 +104,12 @@ def test_diagnostico_inventado_bloquea():
 
 
 def test_destinatario_equivocado_bloquea():
-    v = sin_agregados(LIMPIO.model_copy(update={"destinatario_version": "acompanante"}))
-    assert not v.ok and "acompanante" in v.motivo
+    v = sin_agregados(LIMPIO.model_copy(update={"destinatario_version": "personal"}))
+    assert not v.ok and "personal" in v.motivo
+
+
+def test_paciente_y_acompanante_son_el_mismo_lado():
+    assert sin_agregados(LIMPIO.model_copy(update={"destinatario_version": "acompanante"})).ok
 
 
 def test_destinatario_desconocido_no_bloquea():
