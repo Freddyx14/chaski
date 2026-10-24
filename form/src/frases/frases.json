@@ -1,0 +1,1289 @@
+{
+ "verificadas": [
+  {
+   "castellano": "¿Está bien, señora?",
+   "chanka": "¿Allinllanchu, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Estoy bien, señor!",
+   "chanka": "¡Allinllanmi, taytáy!",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Señor, ¿cómo está?",
+   "chanka": "Taytáy, ¿allillanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Señora, estoy bien",
+   "chanka": "Mamáy, allillanmi",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Cómo está, señor?",
+   "chanka": "¿Imaynallam kachkanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Cómo está, señora?",
+   "chanka": "¿Imaynallam kachkanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Cómo están, señoras?",
+   "chanka": "¿Imaynallam kachkankichik, mamaykuna?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, doctor",
+   "chanka": "Ñuqallaymi, doctor",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, doctora",
+   "chanka": "Hamullachkani, doctora",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le recibo, señor",
+   "chanka": "Chaskiyukuyki, wiraqucha",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Les recibo, señoras",
+   "chanka": "Mamaykuna, chaskiyukuychik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señora",
+   "chanka": "Rimaykullayki, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señores",
+   "chanka": "Rimaykullaykichik, taytaykuna",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señor",
+   "chanka": "Napaykullayki, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señoras",
+   "chanka": "Mamaykuna, napaykullaykichik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señor",
+   "chanka": "Yaykuykamuy taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señora",
+   "chanka": "Mamáy, yaykuykamuy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señores",
+   "chanka": "Yaykuykamuychik, taytakuna",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señoras",
+   "chanka": "Yaykuykamuychik, mamakuna",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Tome asiento",
+   "chanka": "Tiyakuy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Tomen asiento",
+   "chanka": "Tiyakuychik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué desea, señora?",
+   "chanka": "¿Imatataq munanki, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué desea, señor?",
+   "chanka": "¿Imatataq munanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Para qué ha venido, señora?",
+   "chanka": "Mamáy, ¿imachamanmi hamuchkanki?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Por qué ha venido, señor?",
+   "chanka": "¿Imaraykutaq hamurqanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿En qué le puedo servir?",
+   "chanka": "¿Imapaqtaq allin kayman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué puedo hacer por usted?",
+   "chanka": "¿Imatam ruwallayman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿En qué le puedo ayudar?",
+   "chanka": "¿Imapitaq yanapaykiman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿En qué le podemos ayudar?",
+   "chanka": "¿Imapitaq yanapariykimanku?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Puedo ayudarle?",
+   "chanka": "¿Yanapayta atiymanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Podemos ayudarle?",
+   "chanka": "¿Yanapayta atiymankuchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le escucho, señora",
+   "chanka": "Uyariykim, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le escucharé, señor",
+   "chanka": "Uyarisqaykim, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Les escucharé",
+   "chanka": "Uyarisqaykichik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "He venido para poner una denuncia",
+   "chanka": "Denuncia churaqmi hamuchkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "He venido a denunciar",
+   "chanka": "Denunciaqmi hamuchkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "He venido a hacer una consulta",
+   "chanka": "Tapukuqmi hamuchkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo hablar con el juez",
+   "chanka": "Juezwanmi rimayta munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo hablar con el fiscal",
+   "chanka": "Fiscalwanmi rimayta munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo que me escuche el juez",
+   "chanka": "Juezpa uyariwanantam munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo que me escuche el fiscal",
+   "chanka": "Fiscalpa uyariwanantam munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Necesito hablar con el fiscal",
+   "chanka": "Fiscalwanmi rimanay kachkan",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué está esperando, señora?",
+   "chanka": "¿Imatan suyarichkanki, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué está buscando, señor?",
+   "chanka": "¿Imatam maskarichkanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Me puede ayudar, señor?",
+   "chanka": "¿Allichu yanapawankikumanchu, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Me puede ayudar, señora?",
+   "chanka": "Mamáy, ¿yanapawankikumanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy buscando la Demuna",
+   "chanka": "Demunatam maskachkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy buscando el Primer Juzgado",
+   "chanka": "Primer Juzgadotam maskachkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy esperando a mi hija, jefe",
+   "chanka": "Wawata suyarichkani, jefelláy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy esperando a mi abogado",
+   "chanka": "Abogadoytam suyarichkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Yo hablo quechua, señor",
+   "chanka": "Runasimita rimani, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Habla castellano, señora?",
+   "chanka": "¿Castellanuta rimankichu, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No hablo castellano.",
+   "chanka": "Manam castellanuta rimanichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Habla quechua, doctor?",
+   "chanka": "¿Runasimita rimankichu, doctor?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Sí, hablo quechua",
+   "chanka": "Arí, runasimita rimani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Sabe quechua, doctora?",
+   "chanka": "¿Runasimita yachankichu, doctora?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Sí, sé quechua",
+   "chanka": "Arí, runasimita yachani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No sé quechua",
+   "chanka": "Manam runasimita yachanichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Prefiere usted hablar quechua o castellano?",
+   "chanka": "¿Runasimitachu utaq castellanusimitachu rimayta munanki?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Quién habla quechua aquí?",
+   "chanka": "¿Pitaq kaypi runasimita riman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Quién habla castellano aquí?",
+   "chanka": "¿Pitaq kaypi castellanota riman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Por favor, hábleme despacio",
+   "chanka": "Allichu, allinllamanta rimaway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Puede hablar más despacio?",
+   "chanka": "¿Allinllamanta rimaykuwankimanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Puede repetir?",
+   "chanka": "¿Manachu kaqmanta rimariwaq?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Podría repetir eso?",
+   "chanka": "¿Yapa chayta rimaykuwankimanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Por favor, repita",
+   "chanka": "Allichu, huktawan niway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Tranquilícese, señora",
+   "chanka": "Hawkalla kakuy, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Cálmese, señor",
+   "chanka": "Hawkayay, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Cuénteme lo que le aflige",
+   "chanka": "Llakikuyñiykita willawanki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Todo va a estar bien",
+   "chanka": "Lliumi allin kanqa",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No se preocupe",
+   "chanka": "Ama llakikuychu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Ayúdeme!",
+   "chanka": "¡Yanapaway!",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le ayudaré",
+   "chanka": "Yanapasqayki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le vamos a ayudar",
+   "chanka": "Yanapasqaykikum",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Escuche",
+   "chanka": "Uyariy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Escúcheme, por favor",
+   "chanka": "Uyariykullaway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Por favor, señor",
+   "chanka": "Ama hina kaychu, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Qué bueno que ha venido!",
+   "chanka": "¡Ima allinmi hamuranki!",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿A qué hora llega el comisario?",
+   "chanka": "¿Ima horasta comisario chayamunqa?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿A qué hora llega el fiscal?",
+   "chanka": "¿Ima horasta fiscal chayamunqa?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Inmediatamente",
+   "chanka": "Kasqanpacha",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "En este momento",
+   "chanka": "Kunanpacha",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No puedo ayudarle, señora",
+   "chanka": "Manam yanapayta atinichu, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Lo lamento mucho, señor",
+   "chanka": "Anchata llakikuni, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Lo lamento mucho",
+   "chanka": "Anchata llakipayki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Disculpe",
+   "chanka": "Pampachaway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Perdóneme",
+   "chanka": "Pampachaykuway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Perdón por llegar tarde",
+   "chanka": "Pampachayuway qhiparikusqaymanta",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Perdóneme, pero no puedo ir ahora",
+   "chanka": "Pampachaway, kunanqa manam riyta atinichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No puede hablar con él ahora",
+   "chanka": "Kunanqa manam paywan rimayta atinkichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Gracias!",
+   "chanka": "Yusulpayki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Me ha ayudado!",
+   "chanka": "Yanaparwanki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Gracias por su ayuda",
+   "chanka": "Yusulpayki yanapawasqaykimanta",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No hay de qué",
+   "chanka": "Imamanta",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No tiene por qué",
+   "chanka": "Mana imamantapas",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Nos vemos mañana, señor",
+   "chanka": "Paqarinkama, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Hasta otro día, señora",
+   "chanka": "Huk punchawkama, señora",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Muchas gracias, señor!",
+   "chanka": "Anchata agradisiyki, papay",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Espere un momento, por favor",
+   "chanka": "Allicha, huk ratucha suyay",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Esperen un momento, por favor",
+   "chanka": "Allicha, huk ratucha suyaychik",
+   "fuente": "rosettia-chanka-data"
+  }
+ ],
+ "clinicas_sin_traducir": [
+  "Tome una pastilla cada ocho horas",
+  "Tome la pastilla después de comer",
+  "Tómela con agua, no con té",
+  "No deje la pastilla aunque se sienta bien",
+  "Son siete días de tratamiento",
+  "Su control es el lunes",
+  "Venga en ayunas",
+  "Traiga su carné",
+  "Vuelva en un mes",
+  "Si hay sangrado, venga de inmediato",
+  "Si tiene fiebre alta, venga",
+  "Si el bebé no se mueve, venga",
+  "¿Desde cuándo le duele?",
+  "¿Dónde le duele?",
+  "¿Tiene fiebre?",
+  "¿Está tomando alguna pastilla?",
+  "¿Es alérgica a algo?",
+  "¿Cuántos años tiene?",
+  "Voy a tomarle la presión",
+  "Respire hondo, por favor",
+  "Tiene treinta y nueve de fiebre",
+  "Dele bastante líquido",
+  "Media pastilla, no entera",
+  "Dos veces al día, mañana y noche",
+  "El resultado llega en tres días"
+ ],
+ "medicamentos_y_prestamos": [
+  "Tome paracetamol",
+  "Tome ibuprofeno",
+  "Tome amoxicilina",
+  "Tome omeprazol en ayunas",
+  "Tome sulfato ferroso",
+  "Tome ácido fólico",
+  "Tome albendazol",
+  "Tome metformina",
+  "Tome losartán",
+  "Use el salbutamol",
+  "Dele suero oral",
+  "Tome vitamina C",
+  "Tome el jarabe",
+  "Tome una tableta",
+  "Le voy a poner una ampolla",
+  "Póngale tres gotas",
+  "Una cucharadita de jarabe",
+  "Cinco mililitros de jarabe",
+  "Pastilla de quinientos miligramos",
+  "Media tableta",
+  "El doctor lo va a ver",
+  "La doctora la va a atender",
+  "La enfermera le va a explicar",
+  "La obstetra la va a revisar",
+  "Vaya a la posta",
+  "Lo vamos a llevar al hospital",
+  "Le voy a medir la presión",
+  "Usted tiene diabetes",
+  "Usted tiene anemia",
+  "Venga a su control",
+  "Aquí está su receta"
+ ],
+ "numeros_y_tiempos": [
+  "Cuente del uno al diez",
+  "Diga los días de la semana, del lunes al domingo",
+  "Tome la pastilla en la mañana, en la tarde y en la noche",
+  "Tome la pastilla cada ocho horas",
+  "Tome la pastilla cada doce horas",
+  "Vuelva en una semana",
+  "Vuelva en un mes"
+ ],
+ "respuestas_libres": [
+  "Me duele la cabeza desde ayer",
+  "Me duele la barriga desde hace tres días",
+  "Estoy tomando paracetamol",
+  "Mi hijo tiene fiebre desde anoche",
+  "Mi hija tiene diarrea desde hace dos días",
+  "No entendí, ¿me lo puede repetir?",
+  "¿Qué hago si me olvido la pastilla?",
+  "¿Cuándo es mi próximo control?",
+  "No soy alérgico a ningún remedio",
+  "Tengo que tomar una pastilla cada ocho horas, por siete días",
+  "Ya me siento mejor",
+  "Gracias, señorita"
+ ],
+ "numeracion": {
+  "1": [
+   "C",
+   1
+  ],
+  "2": [
+   "C",
+   2
+  ],
+  "3": [
+   "C",
+   3
+  ],
+  "4": [
+   "C",
+   4
+  ],
+  "5": [
+   "C",
+   5
+  ],
+  "6": [
+   "C",
+   6
+  ],
+  "7": [
+   "C",
+   7
+  ],
+  "8": [
+   "C",
+   8
+  ],
+  "9": [
+   "C",
+   9
+  ],
+  "10": [
+   "C",
+   10
+  ],
+  "11": [
+   "C",
+   11
+  ],
+  "12": [
+   "C",
+   12
+  ],
+  "13": [
+   "C",
+   13
+  ],
+  "14": [
+   "C",
+   14
+  ],
+  "15": [
+   "C",
+   15
+  ],
+  "16": [
+   "C",
+   16
+  ],
+  "17": [
+   "C",
+   17
+  ],
+  "18": [
+   "C",
+   18
+  ],
+  "19": [
+   "C",
+   19
+  ],
+  "20": [
+   "C",
+   20
+  ],
+  "21": [
+   "C",
+   21
+  ],
+  "22": [
+   "C",
+   22
+  ],
+  "23": [
+   "C",
+   23
+  ],
+  "24": [
+   "C",
+   24
+  ],
+  "25": [
+   "C",
+   25
+  ],
+  "26": [
+   "M",
+   1
+  ],
+  "27": [
+   "M",
+   2
+  ],
+  "28": [
+   "M",
+   3
+  ],
+  "29": [
+   "M",
+   4
+  ],
+  "30": [
+   "M",
+   5
+  ],
+  "31": [
+   "M",
+   6
+  ],
+  "32": [
+   "M",
+   7
+  ],
+  "33": [
+   "M",
+   8
+  ],
+  "34": [
+   "M",
+   9
+  ],
+  "35": [
+   "M",
+   10
+  ],
+  "36": [
+   "M",
+   11
+  ],
+  "37": [
+   "M",
+   12
+  ],
+  "38": [
+   "M",
+   13
+  ],
+  "39": [
+   "M",
+   14
+  ],
+  "40": [
+   "M",
+   15
+  ],
+  "41": [
+   "M",
+   16
+  ],
+  "42": [
+   "M",
+   17
+  ],
+  "43": [
+   "M",
+   18
+  ],
+  "44": [
+   "M",
+   19
+  ],
+  "45": [
+   "M",
+   20
+  ],
+  "46": [
+   "M",
+   21
+  ],
+  "47": [
+   "M",
+   22
+  ],
+  "48": [
+   "M",
+   23
+  ],
+  "49": [
+   "M",
+   24
+  ],
+  "50": [
+   "M",
+   25
+  ],
+  "51": [
+   "M",
+   26
+  ],
+  "52": [
+   "M",
+   27
+  ],
+  "53": [
+   "M",
+   28
+  ],
+  "54": [
+   "M",
+   29
+  ],
+  "55": [
+   "M",
+   30
+  ],
+  "56": [
+   "M",
+   31
+  ],
+  "57": [
+   "N",
+   1
+  ],
+  "58": [
+   "N",
+   2
+  ],
+  "59": [
+   "N",
+   3
+  ],
+  "60": [
+   "N",
+   4
+  ],
+  "61": [
+   "N",
+   5
+  ],
+  "62": [
+   "N",
+   6
+  ],
+  "63": [
+   "N",
+   7
+  ],
+  "64": [
+   "B",
+   1
+  ],
+  "65": [
+   "B",
+   2
+  ],
+  "66": [
+   "B",
+   3
+  ],
+  "67": [
+   "B",
+   4
+  ],
+  "68": [
+   "B",
+   5
+  ],
+  "69": [
+   "B",
+   6
+  ],
+  "70": [
+   "B",
+   7
+  ],
+  "71": [
+   "B",
+   8
+  ],
+  "72": [
+   "B",
+   9
+  ],
+  "73": [
+   "B",
+   10
+  ],
+  "74": [
+   "B",
+   11
+  ],
+  "75": [
+   "B",
+   12
+  ],
+  "76": [
+   "E",
+   1
+  ],
+  "77": [
+   "E",
+   2
+  ],
+  "78": [
+   "E",
+   3
+  ],
+  "79": [
+   "E",
+   4
+  ],
+  "80": [
+   "E",
+   5
+  ],
+  "81": [
+   "E",
+   6
+  ],
+  "82": [
+   "E",
+   7
+  ],
+  "83": [
+   "E",
+   8
+  ],
+  "84": [
+   "E",
+   9
+  ],
+  "85": [
+   "E",
+   10
+  ],
+  "86": [
+   "E",
+   11
+  ],
+  "87": [
+   "E",
+   12
+  ],
+  "88": [
+   "E",
+   13
+  ],
+  "89": [
+   "E",
+   14
+  ],
+  "90": [
+   "E",
+   15
+  ],
+  "91": [
+   "E",
+   16
+  ],
+  "92": [
+   "E",
+   17
+  ],
+  "93": [
+   "E",
+   18
+  ],
+  "94": [
+   "E",
+   19
+  ],
+  "95": [
+   "E",
+   20
+  ],
+  "96": [
+   "E",
+   21
+  ],
+  "97": [
+   "E",
+   22
+  ],
+  "98": [
+   "E",
+   23
+  ],
+  "99": [
+   "E",
+   24
+  ],
+  "100": [
+   "E",
+   25
+  ],
+  "101": [
+   "E",
+   26
+  ],
+  "102": [
+   "E",
+   27
+  ],
+  "103": [
+   "E",
+   28
+  ],
+  "104": [
+   "E",
+   29
+  ],
+  "105": [
+   "E",
+   30
+  ],
+  "106": [
+   "E",
+   31
+  ],
+  "107": [
+   "E",
+   32
+  ],
+  "108": [
+   "E",
+   33
+  ],
+  "109": [
+   "E",
+   34
+  ],
+  "110": [
+   "E",
+   35
+  ],
+  "111": [
+   "E",
+   36
+  ],
+  "112": [
+   "E",
+   37
+  ],
+  "113": [
+   "E",
+   38
+  ],
+  "114": [
+   "E",
+   39
+  ],
+  "115": [
+   "E",
+   40
+  ],
+  "116": [
+   "E",
+   41
+  ],
+  "117": [
+   "E",
+   42
+  ],
+  "118": [
+   "E",
+   43
+  ],
+  "119": [
+   "E",
+   44
+  ],
+  "120": [
+   "E",
+   45
+  ],
+  "121": [
+   "E",
+   46
+  ],
+  "122": [
+   "E",
+   47
+  ],
+  "123": [
+   "E",
+   48
+  ],
+  "124": [
+   "E",
+   49
+  ],
+  "125": [
+   "E",
+   50
+  ],
+  "126": [
+   "E",
+   51
+  ],
+  "127": [
+   "E",
+   52
+  ],
+  "128": [
+   "E",
+   53
+  ],
+  "129": [
+   "E",
+   54
+  ],
+  "130": [
+   "E",
+   55
+  ],
+  "131": [
+   "E",
+   56
+  ],
+  "132": [
+   "E",
+   57
+  ],
+  "133": [
+   "E",
+   58
+  ],
+  "134": [
+   "E",
+   59
+  ],
+  "135": [
+   "E",
+   60
+  ],
+  "136": [
+   "E",
+   61
+  ],
+  "137": [
+   "E",
+   62
+  ],
+  "138": [
+   "E",
+   63
+  ],
+  "139": [
+   "E",
+   64
+  ],
+  "140": [
+   "E",
+   65
+  ],
+  "141": [
+   "E",
+   66
+  ],
+  "142": [
+   "E",
+   67
+  ],
+  "143": [
+   "E",
+   68
+  ],
+  "144": [
+   "E",
+   69
+  ],
+  "145": [
+   "E",
+   70
+  ],
+  "146": [
+   "E",
+   71
+  ],
+  "147": [
+   "E",
+   72
+  ],
+  "148": [
+   "E",
+   73
+  ],
+  "149": [
+   "E",
+   74
+  ],
+  "150": [
+   "E",
+   75
+  ],
+  "151": [
+   "E",
+   76
+  ],
+  "152": [
+   "E",
+   77
+  ],
+  "153": [
+   "E",
+   78
+  ],
+  "154": [
+   "E",
+   79
+  ],
+  "155": [
+   "E",
+   80
+  ],
+  "156": [
+   "E",
+   81
+  ],
+  "157": [
+   "E",
+   82
+  ],
+  "158": [
+   "E",
+   83
+  ],
+  "159": [
+   "E",
+   84
+  ],
+  "160": [
+   "E",
+   85
+  ],
+  "161": [
+   "E",
+   86
+  ],
+  "162": [
+   "E",
+   87
+  ],
+  "163": [
+   "E",
+   88
+  ],
+  "164": [
+   "E",
+   89
+  ],
+  "165": [
+   "E",
+   90
+  ],
+  "166": [
+   "E",
+   91
+  ],
+  "167": [
+   "E",
+   92
+  ],
+  "168": [
+   "E",
+   93
+  ],
+  "169": [
+   "E",
+   94
+  ],
+  "170": [
+   "E",
+   95
+  ],
+  "171": [
+   "E",
+   96
+  ],
+  "172": [
+   "E",
+   97
+  ],
+  "173": [
+   "E",
+   98
+  ],
+  "174": [
+   "E",
+   99
+  ],
+  "175": [
+   "E",
+   100
+  ]
+ }
+}
