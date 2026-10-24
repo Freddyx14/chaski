@@ -3,7 +3,7 @@ from types import SimpleNamespace
 import pytest
 
 from chaski.auditoria import SinRespuesta
-from chaski.resumen import Borrador, Turno, no_se_dijo, resumir, texto_para_decir
+from chaski.resumen import Borrador, Termino, Turno, glosario_verificado, no_se_dijo, resumir, texto_para_decir
 
 
 class FakeClient:
@@ -75,3 +75,36 @@ def test_texto_para_decir_solo_lo_dicho():
     assert texto == ("Tome una pastilla de paracetamol cada 8 horas por 3 días. "
                      "Venga a la posta de inmediato si: la fiebre no baja. Su próximo control: en 3 días.")
     assert "dos juntas" not in texto
+
+
+QUY = [
+    Turno(lado="castellano", castellano="Tome una pastilla cada 8 horas.", quechua="Sapa pusaq horapi huk pastillata ukyay.", estado="dicho"),
+    Turno(lado="quechua", castellano="Me duele la cabeza.", quechua="Umaymi nanawan.", estado="entendido"),
+    Turno(lado="castellano", castellano="Tome dos juntas.", quechua="Iskayta kuskata ukyay.", estado="bloqueado"),
+]
+
+
+def test_glosario_solo_con_quechua_que_se_dijo():
+    propuestos = [Termino(quechua="Umaymi nanawan", castellano="me duele la cabeza"),
+                  Termino(quechua="sapa pusaq horapi", castellano="cada ocho horas"),
+                  Termino(quechua="wiksa nanay", castellano="dolor de barriga"),          # inventado
+                  Termino(quechua="iskayta kuskata", castellano="dos juntas")]           # turno bloqueado
+    g = glosario_verificado(propuestos, QUY)
+    assert [t.quechua for t in g] == ["Umaymi nanawan", "sapa pusaq horapi"]
+
+
+def test_glosario_sin_repetidos_y_maximo_ocho():
+    turno = [Turno(lado="castellano", castellano="x", quechua=" ".join(f"p{i}" for i in range(20)), estado="dicho")]
+    propuestos = [Termino(quechua=f"p{i}", castellano="x") for i in range(12)] + [Termino(quechua="P1", castellano="x")]
+    assert len(glosario_verificado(propuestos, turno)) == 8
+
+
+def test_resumir_filtra_el_glosario_y_le_muestra_el_quechua_al_modelo():
+    b = Borrador(resumen="r", indicaciones=[], senales_de_alarma=[], proxima_cita=None, dudas=[],
+                 glosario=[Termino(quechua="Umaymi nanawan", castellano="me duele la cabeza"),
+                           Termino(quechua="inventado", castellano="x")])
+    cliente = FakeClient(b)
+    r = resumir(cliente, QUY, "personal")
+    assert [t.quechua for t in r.glosario] == ["Umaymi nanawan"]
+    prompt = cliente.llamadas[0]["messages"][0]["content"]
+    assert "en quechua: Umaymi nanawan." in prompt and "Iskayta" not in prompt

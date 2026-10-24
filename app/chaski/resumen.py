@@ -30,6 +30,11 @@ class Turno(BaseModel):
     estado: Literal["dicho", "dicho_con_aviso", "bloqueado", "entendido", "con_dudas"]
 
 
+class Termino(BaseModel):
+    quechua: str = Field(description="Palabra o frase corta en quechua, copiada TAL CUAL de los turnos")
+    castellano: str = Field(description="Qué significa, en castellano llano")
+
+
 class Borrador(BaseModel):
     """What Claude writes. Everything here must come from the turns it was given."""
     resumen: str = Field(description="Dos a cuatro frases sobre la consulta")
@@ -37,6 +42,7 @@ class Borrador(BaseModel):
     senales_de_alarma: list[str] = Field(description="Señales por las que debe volver de inmediato, solo si se dijeron. Lista vacía si no")
     proxima_cita: str | None = Field(description="Cuándo debe volver, solo si se dijo. null si no")
     dudas: list[str] = Field(description="Lo que no quedó claro en la conversación y conviene confirmar. Lista vacía si nada")
+    glosario: list[Termino] = Field(default_factory=list, description="Hasta 8 palabras o frases cortas en quechua de esta consulta que sirven para aprender (síntomas, partes del cuerpo, indicaciones), copiadas tal cual de los turnos. Lista vacía si no hay quechua")
 
 
 class Resumen(Borrador):
@@ -68,7 +74,26 @@ def _conversacion(turnos: list[Turno]) -> str:
         quien = "Habla en castellano" if t.lado == "castellano" else "Habla en quechua (lo que quiso decir)"
         marca = " [con dudas]" if t.estado in ("con_dudas", "dicho_con_aviso") else ""
         lineas.append(f"{i}. {quien}{marca}: {t.castellano}")
+        if t.quechua.strip():
+            lineas.append(f"   en quechua: {t.quechua}")
     return "\n".join(lineas)
+
+
+def _norm(texto: str) -> str:
+    return " ".join(texto.lower().replace("’", "'").split())
+
+
+def glosario_verificado(terminos: list[Termino], turnos: list[Turno]) -> list[Termino]:
+    """D36: only Quechua that was actually said. A term the model wrote but that does not appear verbatim in a
+    turn that reached the patient is dropped: the glossary teaches, so it must never invent Quechua."""
+    dicho = " ".join(_norm(t.quechua) for t in turnos if t.estado != "bloqueado" and t.quechua.strip())
+    vistos, salida = set(), []
+    for t in terminos:
+        q = _norm(t.quechua)
+        if q and q in dicho and q not in vistos:
+            vistos.add(q)
+            salida.append(Termino(quechua=t.quechua.strip(), castellano=t.castellano.strip()))
+    return salida[:8]
 
 
 def no_se_dijo(turnos: list[Turno]) -> list[str]:
@@ -81,7 +106,7 @@ def resumir(client: anthropic.Anthropic, turnos: list[Turno], rol: Rol, modelo: 
     conversacion = _conversacion(turnos)
     if not conversacion:
         return Resumen(rol=rol, resumen="La consulta no tuvo turnos que se hayan dicho.", indicaciones=[],
-                       senales_de_alarma=[], proxima_cita=None, dudas=[], no_se_dijo=bloqueados)
+                       senales_de_alarma=[], proxima_cita=None, dudas=[], glosario=[], no_se_dijo=bloqueados)
     respuesta = client.messages.parse(
         model=modelo,
         max_tokens=4000,
@@ -91,7 +116,9 @@ def resumir(client: anthropic.Anthropic, turnos: list[Turno], rol: Rol, modelo: 
     )
     if respuesta.stop_reason == "refusal" or respuesta.parsed_output is None:
         raise SinRespuesta(f"stop_reason={respuesta.stop_reason}")
-    return Resumen(**respuesta.parsed_output.model_dump(), rol=rol, no_se_dijo=bloqueados)
+    borrador = respuesta.parsed_output
+    datos = borrador.model_dump(exclude={"glosario"})
+    return Resumen(**datos, glosario=glosario_verificado(borrador.glosario, turnos), rol=rol, no_se_dijo=bloqueados)
 
 
 def texto_para_decir(r: Resumen) -> str:
