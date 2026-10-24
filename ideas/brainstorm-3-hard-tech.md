@@ -62,6 +62,29 @@ Where it fails, in the pitch: the model misses a runaway fire (false negative). 
 threshold we still log it and show it on the map, we just don't wake anyone. And we report the model's
 recall on held-out 2026 fires, honestly.
 
+## Calibration: what won HackMIT 2026 (Peel)
+
+A low-cost optical dissolution tester that plugs into a phone and measures how a pill dissolves, plus an
+AI evidence engine that checks the medicine against regulatory recalls, drug databases and the live web.
+Opened with one statistic (WHO: 1 in 10 medical products in low- and middle-income countries are
+substandard or falsified). Elastic was "the entire brain": 100K+ records, hybrid retrieval, research
+agent, safety guardrails. Also won Elastic's sponsor track. (Source: the team's LinkedIn post, pasted by Freddy.)
+
+The pattern underneath it:
+| Peel | Our fire version |
+|---|---|
+| **A new measurement** nobody had cheaply (a pill dissolving) | **The satellite is our sensor**, free and already orbiting. The new measurement is *runaway risk per hotspot* (Core 2) and *hectares burned per community* (Core 1) |
+| **An evidence engine** over a big corpus | SERFOR's 97,376 historical fires + 3,090 community boundaries + the fire laws and the official protocol, with Claude reasoning over them |
+| **One statistic** that frames everything | 98% of fires are human-caused / 34 satellite fires never reached the official count / 12 dead in 2026 |
+| **Access for people who can't afford the lab** | Comunidades that get no alert today, in their own language |
+| **The sponsor tech is the brain, not a sticker** | Same rule: whatever sponsor we add must carry real weight or we drop it |
+
+Two takeaways:
+1. **Physical demo was the hook.** Ours is a phone in a judge's hand receiving a real alert in Quechua,
+   and a satellite image showing a burn scar nobody reported. It must be that tangible.
+2. **Elastic can be a real second track** if the evidence engine (fire records + laws + protocol) runs on
+   it, the way it did for Peel. Revisit once the core is working; don't start with it.
+
 ## Division of work
 - **Ricardo:** model (Core 2, then Core 1 if time), SERFOR/FIRMS ingestion, map.
 - **Freddy:** Claude layer (risk explanation, Quechua/Spanish, voice-note intake, report filing), WhatsApp, pitch.
