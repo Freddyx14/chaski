@@ -66,17 +66,48 @@ def pagina_flujo():
     return FileResponse(AQUI / "static" / "flujo.html")
 
 
+CARPETAS_MUESTRAS = (Path("datos/muestras_quy"), Path("datos/prueba_minima"))
+
+
 @aplicacion.get("/muestras")
 def muestras():
-    """Los audios en chanka que pueden hacer de paciente."""
-    carpeta = Path("datos/prueba_minima")
-    return {"audios": sorted(p.name for p in carpeta.glob("quy_*.wav"))} if carpeta.exists() else {"audios": []}
+    """Los audios en chanka que pueden hacer de paciente, con su texto de referencia."""
+    salida = []
+    for carpeta in CARPETAS_MUESTRAS:
+        if not carpeta.exists():
+            continue
+        fichas = {}
+        ficha = carpeta / "fichas.json"
+        if ficha.exists():
+            for f in json.loads(ficha.read_text(encoding="utf-8")):
+                fichas[f.get("archivo", "")] = f
+        for wav in sorted(carpeta.glob("quy_*.wav")):
+            f = fichas.get(wav.name, {})
+            salida.append({"nombre": wav.name, "carpeta": carpeta.name,
+                           "segundos": f.get("segundos"),
+                           "frases": f.get("frases"),
+                           "referencia": f.get("chanka", ""),
+                           "castellano": f.get("castellano", "")})
+    return {"audios": salida}
 
 
 @aplicacion.get("/muestras/{nombre}")
 def muestra(nombre: str):
-    ruta = Path("datos/prueba_minima") / nombre
-    return FileResponse(ruta) if ruta.exists() else JSONResponse({"error": "no existe"}, 404)
+    for carpeta in CARPETAS_MUESTRAS:
+        ruta = carpeta / nombre
+        if ruta.exists():
+            return FileResponse(ruta)
+    return JSONResponse({"error": "no existe"}, 404)
+
+
+@aplicacion.post("/escuchar")
+async def escuchar(audio: UploadFile = File(...)):
+    """Voz de la enfermera en castellano -> texto, con Cartesia."""
+    from servicio.flujo import entender_castellano
+    try:
+        return entender_castellano(await audio.read(), audio.filename or "turno.webm")
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
 @aplicacion.post("/turno/paciente")

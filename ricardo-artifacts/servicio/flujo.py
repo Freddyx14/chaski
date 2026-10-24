@@ -58,7 +58,7 @@ def turno_del_paciente(audio: bytes, nombre: str = "turno.wav") -> dict:
     from anthropic import Anthropic
     t0 = time.perf_counter()
     respuesta = Anthropic().messages.create(
-        model=MODELO_TEXTO, max_tokens=700, system=SISTEMA_QUY_ES,
+        model=MODELO_TEXTO, max_tokens=2000, system=SISTEMA_QUY_ES,
         messages=[{"role": "user", "content":
                    f"El reconocimiento oyó esto en chanka:\n\n{oido['texto']}"}])
     pasos["traducir_ms"] = round((time.perf_counter() - t0) * 1000, 1)
@@ -137,3 +137,33 @@ def decir_en_voz(texto_quechua: str) -> tuple[bytes, float]:
         t0 = time.perf_counter()
         voz = cli.post(f"{INSTANCIA}/hablar", data={"texto": texto_quechua})
     return voz.content, round((time.perf_counter() - t0) * 1000, 1)
+
+
+# --- entender castellano con Cartesia -------------------------------------
+
+CARTESIA_STT = "https://api.cartesia.ai/stt"
+CARTESIA_VERSION = "2026-08-14"
+
+
+def entender_castellano(audio: bytes, nombre: str = "turno.webm") -> dict:
+    """Voz de la enfermera -> texto. Cartesia `ink-whisper`, en castellano.
+
+    Es el respaldo del dictado del navegador, que no existe en todos y necesita
+    conexion a Google. Esto corre igual en Safari, en Firefox y en el celular.
+    """
+    clave = os.environ.get("CARTESIA_API_KEY")
+    if not clave:
+        raise RuntimeError("falta CARTESIA_API_KEY en el entorno")
+    t0 = time.perf_counter()
+    with httpx.Client(timeout=180) as cli:
+        r = cli.post(CARTESIA_STT,
+                     headers={"Authorization": f"Bearer {clave}",
+                              "Cartesia-Version": CARTESIA_VERSION},
+                     files={"file": (nombre, audio, "audio/webm")},
+                     data={"model": "ink-whisper", "language": "es"})
+    ms = round((time.perf_counter() - t0) * 1000, 1)
+    if r.status_code >= 400:
+        raise RuntimeError(f"Cartesia {r.status_code}: {r.text[:200]}")
+    d = r.json()
+    return {"texto": d.get("text", ""), "idioma": d.get("language"),
+            "segundos_audio": d.get("duration"), "ms": ms, "modelo": "cartesia/ink-whisper"}

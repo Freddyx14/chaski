@@ -4,52 +4,90 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chaski · flujo completo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Spectral:wght@400;600&display=swap">
 <style>
-  :root{color-scheme:light;--papel:#f4f3ee;--blanco:#fff;--tinta:#16160f;--tinta2:#4e4d45;
-        --mute:#86847a;--linea:#dedcd2;--regla:#c4c2b6;--acento:#1f6fd0;--rojo:#c8372f;
-        --verde:#1b9476;--ambar:#a86b14}
+  :root{
+    color-scheme:light;
+    --papel:#f4f3ee; --blanco:#fff; --hueso:#efede5;
+    --tinta:#16160f; --tinta2:#4e4d45; --mute:#86847a;
+    --linea:#dedcd2; --regla:#c4c2b6;
+    --acento:#1f6fd0; --acento2:#7fb2ec;
+    --rojo:#c8372f; --verde:#1b9476; --ambar:#a86b14; --violeta:#6b4ea8;
+    --sombra:0 1px 3px rgba(22,22,15,.08);
+    --sombra2:0 6px 22px rgba(22,22,15,.13);
+  }
   *{box-sizing:border-box}
   body{margin:0;background:var(--papel);color:var(--tinta);
-       font:15px/1.45 Archivo,-apple-system,Helvetica,Arial,sans-serif;padding:20px 18px 70px}
-  .caja{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
-  header{display:flex;gap:14px;align-items:center}
-  header img{width:62px;height:62px;object-fit:contain}
-  h1{font-size:23px;margin:0;font-weight:700;letter-spacing:-.02em}
-  .sub{color:var(--tinta2);font-size:13.5px;margin:3px 0 0}
-  .rejilla{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-  @media(max-width:880px){.rejilla{grid-template-columns:1fr}}
-  .panel{background:var(--blanco);border:1px solid var(--linea);box-shadow:0 1px 3px rgba(22,22,15,.07)}
-  .panel h2{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);
-            margin:0;padding:11px 14px;border-bottom:1px solid var(--linea);font-weight:600;
-            display:flex;justify-content:space-between;align-items:center}
-  .cuerpo{padding:14px;display:flex;flex-direction:column;gap:11px}
+       font:15px/1.45 Archivo,-apple-system,Helvetica,Arial,sans-serif;
+       padding:22px 18px 70px}
+  .caja{max-width:1280px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+
+  header{display:flex;gap:15px;align-items:center}
+  header img{width:66px;height:66px;object-fit:contain;flex:none}
+  h1{font-size:25px;margin:0;font-weight:700;letter-spacing:-.022em}
+  .sub{color:var(--tinta2);font-size:14px;margin:3px 0 0;font-family:Spectral,Georgia,serif}
+  .estado{margin-left:auto;display:flex;gap:7px;align-items:center;font-size:11.5px;color:var(--mute)}
+  .punto{width:8px;height:8px;border-radius:50%;background:var(--verde)}
+
+  .rejilla{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;align-items:start}
+  @media(max-width:1060px){.rejilla{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media(max-width:720px){.rejilla{grid-template-columns:1fr}}
+
+  .panel{background:var(--blanco);border:1px solid var(--linea);box-shadow:var(--sombra);
+         display:flex;flex-direction:column}
+  .panel>h2{font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute);
+            margin:0;padding:12px 15px;border-bottom:1px solid var(--linea);font-weight:600;
+            display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .panel>h2 .num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;
+                 background:var(--tinta);color:#fff;font-size:10px;margin-right:7px}
+  .cuerpo{padding:15px;display:flex;flex-direction:column;gap:11px}
+
   button{font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border:1px solid var(--regla);
-         background:var(--blanco);color:var(--tinta);cursor:pointer}
+         background:var(--blanco);color:var(--tinta);cursor:pointer;transition:background .12s}
+  button:hover:not(:disabled){background:var(--hueso)}
   button.principal{background:var(--acento);border-color:var(--acento);color:#fff}
+  button.principal:hover:not(:disabled){background:#1a5fb4}
+  button.grabando{background:var(--rojo);border-color:var(--rojo);color:#fff}
   button:disabled{opacity:.45;cursor:default}
+  button:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
   .fila{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-  textarea{font:inherit;font-size:14px;padding:10px;border:1px solid var(--regla);width:100%;
-           min-height:74px;resize:vertical}
+  select,textarea{font:inherit;border:1px solid var(--regla);background:var(--blanco);padding:9px 10px}
+  select{font-size:13px;width:100%}
+  textarea{font-size:14.5px;width:100%;min-height:78px;resize:vertical;line-height:1.45}
   label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  audio{width:100%}
+  video,img.foto{width:100%;background:#15181c;border:1px solid var(--regla);aspect-ratio:4/3;object-fit:cover}
+
   .paso{border-left:3px solid var(--linea);padding:7px 0 7px 11px}
-  .paso .que{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  .paso .que{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);font-weight:600}
   .paso .texto{font-size:15px;margin:3px 0 0;line-height:1.45}
   .paso.quechua{border-color:var(--acento)}
-  .paso.quechua .texto{color:var(--acento)}
-  .paso.ok{border-color:var(--verde)}
-  .paso.mal{border-color:var(--rojo)}
-  .ms{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums;margin-left:auto}
-  .sello{display:inline-flex;gap:6px;font-size:11.5px;font-weight:700;padding:4px 9px;border:1px solid;width:fit-content}
+  .paso.quechua .texto{color:var(--acento);font-weight:600}
+  .paso.ok{border-color:var(--verde)} .paso.mal{border-color:var(--rojo)}
+  .referencia{font-family:Spectral,Georgia,serif;font-size:13px;color:var(--tinta2);
+              background:var(--hueso);padding:9px 11px;margin:0;line-height:1.5}
+
+  .sello{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+         padding:4px 9px;border:1px solid;width:fit-content}
   .s-ok{color:var(--verde);border-color:var(--verde)}
   .s-mal{color:var(--rojo);border-color:var(--rojo)}
   .s-aviso{color:var(--ambar);border-color:var(--ambar)}
-  .vacio{color:var(--mute);font-size:14px}
-  .reloj{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--linea);padding-top:9px;
-         font-size:11.5px;color:var(--mute);font-variant-numeric:tabular-nums}
-  .reloj b{color:var(--tinta)}
-  audio{width:100%;margin-top:6px}
-  .nota{font-size:12px;color:var(--mute);line-height:1.45}
-  .conmutador{display:flex;gap:7px;align-items:center;font-size:12px;color:var(--tinta2)}
+  .vacio{color:var(--mute);font-size:14px;margin:0}
+  .nota{font-size:11.5px;color:var(--mute);line-height:1.45;margin:0}
+  .ms{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums;font-weight:600}
+  .conmutador{display:flex;gap:7px;align-items:flex-start;font-size:12px;color:var(--tinta2)}
+  .conmutador label{text-transform:none;letter-spacing:0;font-size:12px;color:var(--tinta2);font-weight:400}
+
+  .medidas{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:1px;
+           background:var(--linea);border:1px solid var(--linea)}
+  .medida{background:var(--blanco);padding:10px 12px}
+  .medida dt{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--mute);
+             font-weight:600;margin:0 0 2px}
+  .medida dd{margin:0;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+  .medida dd small{font-size:11px;font-weight:600;color:var(--mute)}
+  svg{display:block;max-width:100%}
 </style>
 </head>
 <body>
@@ -58,286 +96,384 @@
     <img id="avatar" src="/chaski/reposo.png" alt="Chaski" onerror="this.style.display='none'">
     <div>
       <h1>Chaski · flujo completo</h1>
-      <p class="sub">El paciente habla chanka, tú contestas en castellano. Cada paso muestra qué modelo
-        lo hizo y cuánto tardó.</p>
+      <p class="sub">El paciente habla chanka, tú respondes en castellano. Cada paso dice qué modelo lo hizo y cuánto tardó.</p>
     </div>
+    <div class="estado"><span class="punto" id="luz"></span><span id="estadoTexto">listo</span></div>
   </header>
 
   <div class="rejilla">
     <section class="panel">
-      <h2>1 · El paciente habla en quechua <span class="ms" id="relojPaciente"></span></h2>
+      <h2><span><span class="num">1</span>El paciente habla quechua</span><span class="ms" id="relojPaciente"></span></h2>
       <div class="cuerpo">
-        <div class="fila">
-          <select id="muestra" style="flex:1;padding:9px;border:1px solid var(--regla);font:inherit;font-size:13px"></select>
-          <button id="azar">Al azar</button>
-        </div>
+        <select id="muestra"></select>
+        <p class="referencia" id="refMuestra">—</p>
         <audio id="audioPaciente" controls></audio>
-        <button id="escuchar" class="principal">Chaski escucha y traduce</button>
+        <div class="fila">
+          <button id="azar">Otro al azar</button>
+          <button id="escuchar" class="principal">Chaski escucha</button>
+        </div>
         <div id="salidaPaciente"><p class="vacio">Elige un audio y pulsa el botón.</p></div>
       </div>
     </section>
 
     <section class="panel">
-      <h2>2 · Tú contestas en castellano <span class="ms" id="relojEnfermera"></span></h2>
+      <h2><span><span class="num">2</span>Tú respondes en castellano</span><span class="ms" id="relojEnfermera"></span></h2>
       <div class="cuerpo">
         <label for="respuesta">Lo que le dices al paciente</label>
         <textarea id="respuesta" placeholder="Tome una tableta cada ocho horas, después de comer."></textarea>
         <div class="fila">
           <button id="dictar">🎙 Dictar</button>
-          <button id="decir" class="principal">Chaski lo dice en quechua</button>
+          <button id="decirBtn" class="principal">Chaski lo dice en quechua</button>
         </div>
+        <p class="nota" id="estadoDictado"></p>
         <div class="conmutador">
           <input type="checkbox" id="ensayo" checked>
-          <label for="ensayo" style="text-transform:none;letter-spacing:0;font-size:12px;color:var(--tinta2)">
-            Modo ensayo: si solo bloquea por términos sin traducción segura, lo dice igual con aviso
-          </label>
+          <label for="ensayo">Modo ensayo: si solo bloquea por términos sin traducción segura, lo dice igual con aviso</label>
         </div>
         <div id="salidaEnfermera"><p class="vacio">Escribe o dicta una indicación.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2><span><span class="num">3</span>La caja del medicamento</span><span class="ms" id="relojCamara"></span></h2>
+      <div class="cuerpo">
+        <div class="fila">
+          <button id="abrirCamara">Cámara</button>
+          <button id="tomar" class="principal" disabled>Tomar foto</button>
+          <button id="subir">Subir o cámara del teléfono</button>
+          <input id="archivo" type="file" accept="image/*" capture="environment" hidden>
+        </div>
+        <video id="camara" autoplay playsinline muted hidden></video>
+        <img id="vista" class="foto" hidden alt="foto de la caja">
+        <canvas id="lienzo" hidden></canvas>
+        <div id="salidaCamara"><p class="vacio">Enfoca una caja o receta. Chaski la lee y dice para qué sirve.</p></div>
+        <p class="nota">En el teléfono, «Subir o cámara» abre la cámara nativa y funciona sin HTTPS.</p>
       </div>
     </section>
   </div>
 
   <section class="panel">
-    <h2>3 · La caja del medicamento <span class="ms" id="relojCamara"></span></h2>
+    <h2><span>Presupuesto de espera por turno</span><span class="ms" id="metaTexto">meta: 4 s por turno</span></h2>
     <div class="cuerpo">
-      <div class="fila">
-        <button id="abrirCamara">Abrir cámara</button>
-        <button id="tomar" class="principal" disabled>Tomar foto</button>
-        <button id="subir">Subir o usar cámara del teléfono</button>
-        <input id="archivo" type="file" accept="image/*" capture="environment" hidden>
-      </div>
-      <video id="camara" autoplay playsinline muted hidden
-             style="width:100%;max-width:520px;background:#111;border:1px solid var(--regla);aspect-ratio:4/3;object-fit:cover"></video>
-      <img id="vista" hidden alt="foto"
-           style="width:100%;max-width:520px;border:1px solid var(--regla)">
-      <canvas id="lienzo" hidden></canvas>
-      <div id="salidaCamara"><p class="vacio">Enfoca una caja o una receta. Chaski la lee y dice para qué sirve.</p></div>
-      <p class="nota">En el teléfono, «Subir o usar cámara» abre la cámara nativa y funciona sin HTTPS.
-        La cámara en vivo necesita <b>localhost o HTTPS</b>.</p>
-    </div>
-  </section>
-
-  <section class="panel">
-    <h2>Presupuesto de espera</h2>
-    <div class="cuerpo">
-      <div class="reloj" id="presupuesto"><span class="vacio">Todavía no hay turnos medidos.</span></div>
-      <p class="nota">Los modelos de voz corren en la A10G por un túnel SSH. La traducción y la auditoría
-        corren en Claude. Nada está ajustado todavía: estos números son el punto de partida.</p>
+      <dl class="medidas" id="medidas">
+        <div class="medida"><dt>Turno del paciente</dt><dd id="mPaciente">—</dd></div>
+        <div class="medida"><dt>Turno tuyo</dt><dd id="mEnfermera">—</dd></div>
+        <div class="medida"><dt>Ciclo completo</dt><dd id="mCiclo">—</dd></div>
+        <div class="medida"><dt>Error del reconocimiento</dt><dd id="mWer">—</dd></div>
+      </dl>
+      <svg id="cascada" role="img" aria-label="Cuánto tarda cada paso del turno"></svg>
+      <p class="nota">Los modelos de voz corren en la A10G por un túnel SSH; la traducción y la auditoría,
+        en Claude. <b>Nada está ajustado todavía</b>: estos números son el punto de partida.</p>
     </div>
   </section>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
-const $ = (s) => document.querySelector(s);
-let ultimo = {paciente: null, enfermera: null};
+const $ = s => document.querySelector(s);
+const estado = {paciente:null, enfermera:null, muestras:[], wer:null};
+const COLOR = {idioma:'#7fb2ec', entender:'#1f6fd0', traducir:'#6b4ea8',
+               auditar:'#a86b14', hablar:'#1b9476'};
+const NOMBRE = {idioma:'detectar idioma', entender:'oír quechua', traducir:'pasar a castellano',
+                auditar:'traducir y auditar', hablar:'hablar en quechua'};
 
-function avatar(e) { const i = $('#avatar'); if (i) i.src = '/chaski/' + e + '.png'; }
+function avatar(e){const i=$('#avatar'); if(i) i.src='/chaski/'+e+'.png';}
+function luz(texto, color){$('#estadoTexto').textContent=texto; $('#luz').style.background=color;}
 
-fetch('/muestras').then(r => r.json()).then(d => {
-  const sel = $('#muestra');
-  sel.innerHTML = d.audios.map(a => `<option value="${a}">${a}</option>`).join('')
-    || '<option value="">no hay audios en datos/prueba_minima</option>';
-  cargarAudio();
+// ---------- muestras ----------
+fetch('/muestras').then(r=>r.json()).then(d=>{
+  estado.muestras = d.audios;
+  $('#muestra').innerHTML = d.audios.map(a=>{
+    const dur = a.segundos ? ` · ${Math.round(a.segundos)}s` : '';
+    const fr = a.frases ? ` · ${a.frases} frases` : '';
+    return `<option value="${a.nombre}">${a.nombre}${dur}${fr}</option>`;
+  }).join('') || '<option value="">sin audios</option>';
+  elegirMuestra();
 });
-$('#muestra').onchange = cargarAudio;
+$('#muestra').onchange = elegirMuestra;
 $('#azar').onclick = () => {
-  const sel = $('#muestra');
-  if (sel.options.length) { sel.selectedIndex = Math.floor(Math.random() * sel.options.length); cargarAudio(); }
+  const s = $('#muestra');
+  if (s.options.length) { s.selectedIndex = Math.floor(Math.random()*s.options.length); elegirMuestra(); }
 };
-function cargarAudio() {
-  const n = $('#muestra').value;
-  if (n) $('#audioPaciente').src = '/muestras/' + n;
+function muestraActual(){ return estado.muestras.find(m=>m.nombre===$('#muestra').value) || {}; }
+function elegirMuestra(){
+  const m = muestraActual();
+  $('#audioPaciente').src = m.nombre ? '/muestras/'+m.nombre : '';
+  $('#refMuestra').textContent = m.castellano || 'Sin texto de referencia.';
+  $('#salidaPaciente').innerHTML = '<p class="vacio">Pulsa «Chaski escucha».</p>';
+  estado.wer = null; medidas();
 }
 
+// ---------- turno del paciente ----------
 $('#escuchar').onclick = async () => {
-  const n = $('#muestra').value;
-  if (!n) return;
-  avatar('escuchando');
+  const m = muestraActual();
+  if (!m.nombre) return;
+  avatar('escuchando'); luz('escuchando al paciente', 'var(--acento)');
   $('#escuchar').disabled = true;
   $('#salidaPaciente').innerHTML = '<p class="vacio">Detectando idioma, transcribiendo y traduciendo…</p>';
   try {
-    const wav = await (await fetch('/muestras/' + n)).blob();
-    const cuerpo = new FormData();
-    cuerpo.append('audio', wav, n);
+    const wav = await (await fetch('/muestras/'+m.nombre)).blob();
+    const cuerpo = new FormData(); cuerpo.append('audio', wav, m.nombre);
     const t0 = performance.now();
-    const d = await (await fetch('/turno/paciente', {method:'POST', body:cuerpo})).json();
+    const d = await (await fetch('/turno/paciente',{method:'POST',body:cuerpo})).json();
     if (d.error) throw new Error(d.error);
-    ultimo.paciente = d;
-    pintarPaciente(d, Math.round(performance.now() - t0));
-    avatar(d.seguro ? 'hablando' : 'no_entendi');
-  } catch (e) {
-    $('#salidaPaciente').innerHTML = `<div class="sello s-mal">Falló: ${e.message}</div>`;
-    avatar('no_entendi');
+    estado.paciente = d;
+    estado.wer = m.referencia ? wer(m.referencia, d.chanka_oido) : null;
+    pintarPaciente(d, Math.round(performance.now()-t0), m);
+    avatar(d.seguro?'hablando':'no_entendi'); luz('listo','var(--verde)');
+  } catch(e){
+    $('#salidaPaciente').innerHTML = `<div class="sello s-mal">${e.message}</div>`;
+    avatar('no_entendi'); luz('falló','var(--rojo)');
   } finally { $('#escuchar').disabled = false; }
 };
 
-function pintarPaciente(d, msTotal) {
-  $('#relojPaciente').textContent = msTotal + ' ms';
-  const dudas = (d.dudas || []).length
-    ? `<div class="paso mal"><span class="que">Lo que Chaski no entendió</span>
-       <p class="texto">${d.dudas.join(' · ')}</p></div>` : '';
+function pintarPaciente(d, msTotal, m){
+  $('#relojPaciente').textContent = (msTotal/1000).toFixed(1)+' s';
+  const dudas = (d.dudas||[]).length
+    ? `<div class="paso mal"><span class="que">Lo que no entendió</span><p class="texto">${d.dudas.join(' · ')}</p></div>`:'';
+  const werFila = estado.wer!=null
+    ? `<div class="sello ${estado.wer<0.3?'s-ok':'s-aviso'}">Error de palabra: ${(estado.wer*100).toFixed(0)}%</div>`:'';
   $('#salidaPaciente').innerHTML = `
-    <div class="paso"><span class="que">Idioma detectado · mms-lid-512 · ${d.pasos.idioma_ms} ms</span>
-      <p class="texto"><b>${d.idioma.codigo}</b> con confianza ${d.idioma.confianza}</p></div>
-    <div class="paso quechua"><span class="que">Lo que oyó · ${d.modelo_asr} · ${d.pasos.entender_ms} ms</span>
+    <div class="paso"><span class="que">mms-lid-512 · ${Math.round(d.pasos.idioma_ms)} ms</span>
+      <p class="texto"><b>${d.idioma.codigo}</b> · confianza ${d.idioma.confianza}</p></div>
+    <div class="paso quechua"><span class="que">omniASR · ${Math.round(d.pasos.entender_ms)} ms</span>
       <p class="texto">${d.chanka_oido}</p></div>
-    <div class="paso ${d.seguro ? 'ok' : 'mal'}">
-      <span class="que">Lo que la enfermera lee · ${d.modelo_texto} · ${d.pasos.traducir_ms} ms</span>
-      <p class="texto"><b>${d.castellano || '—'}</b></p>
-      <p class="nota">Literal: ${d.literal || '—'}</p></div>
-    ${dudas}
-    ${d.seguro ? '' : '<div class="sello s-aviso">Chaski no está seguro del sentido</div>'}`;
-  presupuesto();
+    ${werFila}
+    <div class="paso ${d.seguro?'ok':'mal'}"><span class="que">${d.modelo_texto} · ${Math.round(d.pasos.traducir_ms)} ms</span>
+      <p class="texto"><b>${d.castellano||'—'}</b></p></div>
+    ${dudas}`;
+  medidas(); cascada();
 }
 
-// dictado con el reconocimiento del navegador, para no gastar creditos de Cartesia en ensayo
-$('#dictar').onclick = () => {
-  const R = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!R) { alert('Este navegador no tiene dictado. Escríbelo a mano o usa Chrome.'); return; }
-  const rec = new R();
-  rec.lang = 'es-PE'; rec.interimResults = false;
-  rec.onresult = (e) => { $('#respuesta').value = e.results[0][0].transcript; };
-  rec.onerror = (e) => alert('Dictado: ' + e.error);
-  rec.start();
+function wer(ref, hip){
+  const n = s => s.toLowerCase().normalize('NFC').replace(/[^\wáéíóúñ'\s]/g,'').trim().split(/\s+/).filter(Boolean);
+  const a = n(ref), b = n(hip);
+  if (!a.length) return null;
+  const d = Array.from({length:a.length+1},(_,i)=>Array.from({length:b.length+1},(_,j)=> i===0?j:(j===0?i:0)));
+  for(let i=1;i<=a.length;i++) for(let j=1;j<=b.length;j++)
+    d[i][j] = Math.min(d[i-1][j]+1, d[i][j-1]+1, d[i-1][j-1]+(a[i-1]!==b[j-1]?1:0));
+  return d[a.length][b.length]/a.length;
+}
+
+// ---------- dictado por micrófono ----------
+let grabadora=null, trozos=[];
+$('#dictar').onclick = async () => {
+  if (grabadora && grabadora.state === 'recording') { grabadora.stop(); return; }
+  try {
+    const flujo = await navigator.mediaDevices.getUserMedia({audio:true});
+    trozos = [];
+    grabadora = new MediaRecorder(flujo);
+    grabadora.ondataavailable = e => { if (e.data.size) trozos.push(e.data); };
+    grabadora.onstop = async () => {
+      flujo.getTracks().forEach(t=>t.stop());
+      $('#dictar').classList.remove('grabando');
+      $('#dictar').textContent = '🎙 Dictar';
+      $('#estadoDictado').textContent = 'Transcribiendo con Cartesia…';
+      const blob = new Blob(trozos, {type:'audio/webm'});
+      const cuerpo = new FormData(); cuerpo.append('audio', blob, 'turno.webm');
+      try{
+        const d = await (await fetch('/escuchar',{method:'POST',body:cuerpo})).json();
+        if (d.error) throw new Error(d.error);
+        $('#respuesta').value = d.texto;
+        $('#estadoDictado').textContent = `${d.modelo} · ${Math.round(d.ms)} ms · ${d.segundos_audio?.toFixed(1)}s de audio`;
+      }catch(e){ $('#estadoDictado').textContent = 'No se pudo transcribir: '+e.message; }
+    };
+    grabadora.start();
+    $('#dictar').classList.add('grabando');
+    $('#dictar').textContent = '⏹ Detener';
+    $('#estadoDictado').textContent = 'Grabando… habla y pulsa Detener.';
+  } catch(e){
+    $('#estadoDictado').textContent = 'No se pudo abrir el micrófono: '+e.message+
+      ' (en el teléfono hace falta HTTPS).';
+  }
 };
 
-$('#decir').onclick = () => decir(false);
-
-async function decir(forzar) {
+// ---------- turno de la enfermera ----------
+$('#decirBtn').onclick = () => decir(false);
+async function decir(forzar){
   const texto = $('#respuesta').value.trim();
   if (!texto) return;
-  avatar('escuchando');
-  $('#decir').disabled = true;
-  $('#salidaEnfermera').innerHTML = '<p class="vacio">Traduciendo, retraduciendo a ciegas y auditando…</p>';
-  try {
+  avatar('escuchando'); luz('traduciendo y auditando','var(--ambar)');
+  $('#decirBtn').disabled = true;
+  $('#salidaEnfermera').innerHTML = '<p class="vacio">Traduciendo, retraduciendo a ciegas y comparando los datos críticos…</p>';
+  try{
     const cuerpo = new FormData();
     cuerpo.append('texto', texto);
-    cuerpo.append('modo_ensayo', $('#ensayo').checked ? 'true' : 'false');
-    cuerpo.append('forzar', forzar ? 'true' : 'false');
+    cuerpo.append('modo_ensayo', $('#ensayo').checked?'true':'false');
+    cuerpo.append('forzar', forzar?'true':'false');
     const t0 = performance.now();
-    const d = await (await fetch('/turno/enfermera', {method:'POST', body:cuerpo})).json();
+    const d = await (await fetch('/turno/enfermera',{method:'POST',body:cuerpo})).json();
     if (d.error) throw new Error(d.error);
-    ultimo.enfermera = d;
-    pintarEnfermera(d, Math.round(performance.now() - t0));
-    avatar(d.se_dice ? 'hablando' : 'no_entendi');
-  } catch (e) {
-    $('#salidaEnfermera').innerHTML = `<div class="sello s-mal">Falló: ${e.message}</div>`;
-    avatar('no_entendi');
-  } finally { $('#decir').disabled = false; }
+    estado.enfermera = d;
+    pintarEnfermera(d, Math.round(performance.now()-t0));
+    avatar(d.se_dice?'hablando':'no_entendi'); luz('listo','var(--verde)');
+  }catch(e){
+    $('#salidaEnfermera').innerHTML = `<div class="sello s-mal">${e.message}</div>`;
+    avatar('no_entendi'); luz('falló','var(--rojo)');
+  } finally { $('#decirBtn').disabled = false; }
 }
 
-function pintarEnfermera(d, msTotal) {
-  $('#relojEnfermera').textContent = msTotal + ' ms';
+function pintarEnfermera(d, msTotal){
+  $('#relojEnfermera').textContent = (msTotal/1000).toFixed(1)+' s';
   const sello = d.aprobado_por_auditoria
     ? '<div class="sello s-ok">La auditoría lo aprueba</div>'
     : (d.se_dice ? `<div class="sello s-aviso">Se dice con aviso · ${d.motivo}</div>`
-                 : `<div class="sello s-mal">BLOQUEADO · ${d.motivo}</div>`);
-  const audio = d.audio_wav_b64
-    ? `<audio controls autoplay src="data:audio/wav;base64,${d.audio_wav_b64}"></audio>`
-    : (d.se_dice ? '<p class="nota" id="estadoVoz">Generando la voz…</p>'
-                 : '<p class="nota">No se genera audio: no se dice en voz alta.</p>');
-  const inseguros = (d.terminos_inseguros || []).length
-    ? `<p class="nota">Términos sin traducción segura: <b>${d.terminos_inseguros.join(', ')}</b></p>` : '';
+                 : `<div class="sello s-mal">Bloqueado · ${d.motivo}</div>`);
   $('#salidaEnfermera').innerHTML = `
-    <div class="paso quechua"><span class="que">En chanka · ${d.pasos.auditoria_ms} ms de auditoría</span>
+    <div class="paso quechua"><span class="que">chanka · auditoría ${Math.round(d.pasos.auditoria_ms)} ms</span>
       <p class="texto">${d.quechua}</p></div>
-    <div class="paso"><span class="que">Retraducción a ciegas · otra llamada que nunca vio el original</span>
-      <p class="texto">${d.retraduccion}</p></div>
+    <div class="paso"><span class="que">retraducción a ciegas</span><p class="texto">${d.retraduccion}</p></div>
     ${sello}
-    ${d.aviso ? `<p class="nota">${d.aviso}</p>` : ''}
-    ${(!d.se_dice) ? '<button id="forzar" style="margin-top:6px">Decirlo igual (solo ensayo)</button>' : ''}
-    ${inseguros}
-    <div class="paso ok" id="cajaVoz"><span class="que">Voz de Chaski · mms-tts-quy</span>
-      ${audio}</div>`;
-  if (d.se_dice && !d.audio_wav_b64) pedirVoz(d.quechua);
-  presupuesto();
-  const f = document.getElementById('forzar');
-  if (f) f.onclick = () => decir(true);
+    ${d.aviso?`<p class="nota">${d.aviso}</p>`:''}
+    ${(d.terminos_inseguros||[]).length?`<p class="nota">Términos sin traducción segura: <b>${d.terminos_inseguros.join(', ')}</b></p>`:''}
+    <div class="paso ok" id="cajaVoz"><span class="que">voz de Chaski · mms-tts-quy</span>
+      ${d.se_dice?'<p class="nota" id="estadoVoz">Generando la voz…</p>':'<p class="nota">No se genera audio.</p>'}</div>
+    ${!d.se_dice?'<button id="forzar">Decirlo igual (solo ensayo)</button>':''}`;
+  const f = $('#forzar'); if (f) f.onclick = () => decir(true);
+  if (d.se_dice) pedirVoz(d.quechua);
+  medidas(); cascada();
 }
 
-async function pedirVoz(quechua) {
-  try {
-    const cuerpo = new FormData();
-    cuerpo.append('texto', quechua);
-    const t0 = performance.now();
-    const r = await fetch('/voz', {method: 'POST', body: cuerpo});
-    const ms = r.headers.get('X-Ms') || Math.round(performance.now() - t0);
+async function pedirVoz(quechua){
+  try{
+    const cuerpo = new FormData(); cuerpo.append('texto', quechua);
+    const r = await fetch('/voz',{method:'POST',body:cuerpo});
+    const ms = Number(r.headers.get('X-Ms')||0);
     const blob = await r.blob();
-    const caja = document.getElementById('cajaVoz');
-    if (caja) caja.innerHTML = `<span class="que">Voz de Chaski · mms-tts-quy · ${ms} ms</span>
+    $('#cajaVoz').innerHTML = `<span class="que">voz de Chaski · mms-tts-quy · ${Math.round(ms)} ms</span>
       <audio controls autoplay src="${URL.createObjectURL(blob)}"></audio>`;
-    if (ultimo.enfermera) ultimo.enfermera.pasos.hablar_ms = Number(ms);
-    presupuesto();
-  } catch (e) {
-    const est = document.getElementById('estadoVoz');
-    if (est) est.textContent = 'No se pudo generar la voz: ' + e.message;
-  }
+    if (estado.enfermera) estado.enfermera.pasos.hablar_ms = ms;
+    medidas(); cascada();
+  }catch(e){ const x=$('#estadoVoz'); if(x) x.textContent='No se pudo generar la voz: '+e.message; }
 }
 
-// --- camara ---
-let flujoVideo = null;
+// ---------- cámara ----------
+let flujoVideo=null;
 $('#abrirCamara').onclick = async () => {
-  try {
-    flujoVideo = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:1280}});
-    const v = $('#camara'); v.srcObject = flujoVideo; v.hidden = false;
-    $('#vista').hidden = true; $('#tomar').disabled = false;
-  } catch (e) {
-    $('#salidaCamara').innerHTML = `<div class="sello s-mal">No se pudo abrir la cámara: ${e.message}.
-      Usa «Subir o usar cámara del teléfono».</div>`;
+  try{
+    flujoVideo = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment',width:1280}});
+    $('#camara').srcObject = flujoVideo; $('#camara').hidden=false; $('#vista').hidden=true; $('#tomar').disabled=false;
+  }catch(e){
+    $('#salidaCamara').innerHTML = `<div class="sello s-mal">No se pudo abrir la cámara. Usa «Subir o cámara del teléfono».</div>`;
   }
 };
 $('#tomar').onclick = () => {
-  const v = $('#camara'), c = $('#lienzo');
-  c.width = v.videoWidth; c.height = v.videoHeight;
-  c.getContext('2d').drawImage(v, 0, 0);
-  c.toBlob(b => { verFoto(b); }, 'image/jpeg', 0.92);
+  const v=$('#camara'), c=$('#lienzo');
+  c.width=v.videoWidth; c.height=v.videoHeight;
+  c.getContext('2d').drawImage(v,0,0);
+  c.toBlob(b=>verFoto(b),'image/jpeg',.92);
 };
 $('#subir').onclick = () => $('#archivo').click();
-$('#archivo').onchange = e => { const f = e.target.files[0]; if (f) verFoto(f); };
+$('#archivo').onchange = e => { const f=e.target.files[0]; if(f) verFoto(f); };
 
-async function verFoto(blob) {
-  $('#vista').src = URL.createObjectURL(blob); $('#vista').hidden = false; $('#camara').hidden = true;
+async function verFoto(blob){
+  $('#vista').src = URL.createObjectURL(blob); $('#vista').hidden=false; $('#camara').hidden=true;
   $('#salidaCamara').innerHTML = '<p class="vacio">Chaski está leyendo la caja…</p>';
-  avatar('escuchando');
+  avatar('escuchando'); luz('leyendo la caja','var(--acento)');
   const cuerpo = new FormData();
   cuerpo.append('imagen', blob, 'caja.jpg');
-  cuerpo.append('dicho', $('#respuesta').value || '');
+  cuerpo.append('dicho', $('#respuesta').value||'');
   const t0 = performance.now();
-  try {
-    const d = await (await fetch('/ver', {method:'POST', body:cuerpo})).json();
+  try{
+    const d = await (await fetch('/ver',{method:'POST',body:cuerpo})).json();
     if (d.error) throw new Error(d.error);
-    $('#relojCamara').textContent = Math.round(performance.now() - t0) + ' ms';
-    const coincide = d.coincide_con_lo_dicho === null ? '' :
-      (d.coincide_con_lo_dicho ? '<div class="sello s-ok">Coincide con lo que dijiste</div>'
-        : '<div class="sello s-mal">NO coincide con lo que dijiste</div>');
+    $('#relojCamara').textContent = ((performance.now()-t0)/1000).toFixed(1)+' s';
+    const coincide = d.coincide_con_lo_dicho===null ? '' :
+      (d.coincide_con_lo_dicho?'<div class="sello s-ok">Coincide con lo que dijiste</div>'
+                              :'<div class="sello s-mal">NO coincide con lo que dijiste</div>');
     $('#salidaCamara').innerHTML = `
-      ${d.seguro ? '<div class="sello s-ok">Leído con seguridad</div>'
-                 : '<div class="sello s-mal">No está seguro · no inventa</div>'}
-      <div class="paso"><span class="que">Medicamento</span>
-        <p class="texto"><b>${d.medicamento || '—'}</b> ${d.concentracion || ''} ${d.presentacion || ''}</p></div>
-      <div class="paso"><span class="que">Para qué sirve</span><p class="texto">${d.para_que_sirve || '—'}</p></div>
+      ${d.seguro?'<div class="sello s-ok">Leído con seguridad</div>':'<div class="sello s-mal">No está seguro · no inventa</div>'}
+      <div class="paso"><span class="que">medicamento</span>
+        <p class="texto"><b>${d.medicamento||'—'}</b> ${d.concentracion||''} ${d.presentacion||''}</p></div>
+      <div class="paso"><span class="que">para qué sirve</span><p class="texto">${d.para_que_sirve||'—'}</p></div>
       ${coincide}
-      <button id="decirCaja" style="margin-top:8px">Decírselo al paciente en quechua</button>`;
-    avatar(d.seguro ? 'hablando' : 'no_entendi');
-    const b = document.getElementById('decirCaja');
-    if (b) b.onclick = () => { $('#respuesta').value = d.para_que_sirve; decir(false); };
-  } catch (e) {
+      ${d.para_que_sirve?'<button id="decirCaja">Decírselo en quechua</button>':''}`;
+    avatar(d.seguro?'hablando':'no_entendi'); luz('listo','var(--verde)');
+    const b=$('#decirCaja'); if(b) b.onclick=()=>{ $('#respuesta').value=d.para_que_sirve; decir(false); };
+  }catch(e){
     $('#salidaCamara').innerHTML = `<div class="sello s-mal">${e.message}</div>`;
-    avatar('no_entendi');
+    avatar('no_entendi'); luz('falló','var(--rojo)');
   }
 }
 
-function presupuesto() {
-  const p = ultimo.paciente, e = ultimo.enfermera;
-  const partes = [];
-  if (p) partes.push(`<span>idioma <b>${p.pasos.idioma_ms} ms</b></span>
-    <span>oír <b>${p.pasos.entender_ms} ms</b></span>
-    <span>traducir <b>${p.pasos.traducir_ms} ms</b></span>`);
-  if (e) partes.push(`<span>auditar <b>${e.pasos.auditoria_ms} ms</b></span>
-    <span>hablar <b>${e.pasos.hablar_ms || '—'} ms</b></span>`);
-  if (p && e) partes.push(`<span>ciclo completo <b>${Math.round(p.total_ms + e.total_ms)} ms</b></span>`);
-  $('#presupuesto').innerHTML = partes.join('') || '<span class="vacio">Todavía no hay turnos medidos.</span>';
+// ---------- medidas y cascada ----------
+function medidas(){
+  const p = estado.paciente, e = estado.enfermera;
+  const seg = ms => ms==null?'—':`${(ms/1000).toFixed(1)}<small> s</small>`;
+  $('#mPaciente').innerHTML = p?seg(p.total_ms):'—';
+  const te = e ? (e.pasos.auditoria_ms + (e.pasos.hablar_ms||0)) : null;
+  $('#mEnfermera').innerHTML = seg(te);
+  $('#mCiclo').innerHTML = (p&&te!=null)?seg(p.total_ms+te):'—';
+  $('#mWer').innerHTML = estado.wer==null?'—':`${(estado.wer*100).toFixed(0)}<small> %</small>`;
 }
+
+function cascada(){
+  const filas = [];
+  if (estado.paciente){
+    const p = estado.paciente.pasos;
+    filas.push({turno:'Turno del paciente', pasos:[
+      {k:'idioma', ms:p.idioma_ms}, {k:'entender', ms:p.entender_ms}, {k:'traducir', ms:p.traducir_ms}]});
+  }
+  if (estado.enfermera){
+    const e = estado.enfermera.pasos;
+    filas.push({turno:'Turno tuyo', pasos:[
+      {k:'auditar', ms:e.auditoria_ms}, {k:'hablar', ms:e.hablar_ms||0}]});
+  }
+  const svg = d3.select('#cascada');
+  svg.selectAll('*').remove();
+  if (!filas.length){ svg.attr('height',0); return; }
+
+  const ancho = Math.max(svg.node().parentElement.clientWidth, 300);
+  const altoFila = 54, m = {arriba:22, derecha:14, abajo:26, izquierda:124};
+  const alto = m.arriba + filas.length*altoFila + m.abajo;
+  svg.attr('viewBox',`0 0 ${ancho} ${alto}`).attr('width',ancho).attr('height',alto);
+
+  const maximo = d3.max(filas, f => d3.sum(f.pasos, p=>p.ms)) || 1;
+  const x = d3.scaleLinear().domain([0, Math.max(maximo, 4000)]).range([m.izquierda, ancho-m.derecha]);
+
+  svg.append('g').attr('transform',`translate(0,${alto-m.abajo})`)
+    .call(d3.axisBottom(x).ticks(6).tickFormat(d=>d/1000+'s').tickSizeOuter(0))
+    .call(g=>g.selectAll('text').attr('fill','#86847a').attr('font-size',10))
+    .call(g=>g.selectAll('line,path').attr('stroke','#c4c2b6'));
+
+  // meta de 4 s
+  svg.append('line').attr('x1',x(4000)).attr('x2',x(4000)).attr('y1',m.arriba-8).attr('y2',alto-m.abajo)
+    .attr('stroke','#c8372f').attr('stroke-dasharray','3 3').attr('stroke-width',1.3);
+  svg.append('text').attr('x',x(4000)+4).attr('y',m.arriba-11).attr('fill','#c8372f')
+    .attr('font-size',10).attr('font-weight',700).text('meta 4 s');
+
+  filas.forEach((f,i)=>{
+    const y = m.arriba + i*altoFila;
+    svg.append('text').attr('x',m.izquierda-10).attr('y',y+21).attr('text-anchor','end')
+      .attr('fill','#16160f').attr('font-size',12).attr('font-weight',600).text(f.turno);
+    let acum = 0;
+    f.pasos.forEach(p=>{
+      if (!p.ms) return;
+      const x0 = x(acum), x1 = x(acum+p.ms);
+      svg.append('rect').attr('x',x0).attr('y',y+4).attr('width',Math.max(x1-x0-2,1)).attr('height',26)
+        .attr('fill',COLOR[p.k]).append('title').text(`${NOMBRE[p.k]}: ${Math.round(p.ms)} ms`);
+      if (x1-x0 > 54)
+        svg.append('text').attr('x',x0+6).attr('y',y+21).attr('fill','#fff')
+          .attr('font-size',10.5).attr('font-weight',700)
+          .text(`${(p.ms/1000).toFixed(1)}s`);
+      acum += p.ms;
+    });
+    svg.append('text').attr('x',x(acum)+6).attr('y',y+21).attr('fill','#4e4d45')
+      .attr('font-size',11).attr('font-weight',700).attr('font-variant-numeric','tabular-nums')
+      .text(`${(acum/1000).toFixed(1)} s`);
+    // leyenda por fila
+    let lx = m.izquierda;
+    f.pasos.filter(p=>p.ms).forEach(p=>{
+      svg.append('rect').attr('x',lx).attr('y',y+36).attr('width',8).attr('height',8).attr('fill',COLOR[p.k]);
+      const t = svg.append('text').attr('x',lx+12).attr('y',y+44).attr('fill','#86847a').attr('font-size',10)
+        .text(NOMBRE[p.k]);
+      lx += 22 + NOMBRE[p.k].length*5.4;
+    });
+  });
+}
+
+window.addEventListener('resize', () => { clearTimeout(window._t); window._t=setTimeout(cascada,180); });
+medidas();
 </script>
 </body>
 </html>

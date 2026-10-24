@@ -87,16 +87,52 @@ async def idioma(audio: UploadFile = File(...)):
             "probabilidades": probabilidades, "ms": round((time.perf_counter() - t0) * 1000, 1)}
 
 
+MAXIMO_TROZO_S = 20.0   # omniASR revienta con audios largos; 44 s falla, 16 s pasa
+
+
+def _partir(ruta: str) -> list[str]:
+    """Parte el audio en trozos de MAXIMO_TROZO_S, cortando en el silencio mas
+    cercano para no romper una palabra por la mitad."""
+    onda, fm = sf.read(ruta)
+    total = len(onda) / fm
+    if total <= MAXIMO_TROZO_S:
+        return [ruta]
+    import numpy as np
+    paso = int(MAXIMO_TROZO_S * fm)
+    margen = int(2.0 * fm)          # busca silencio hasta 2 s antes del corte
+    rutas, inicio = [], 0
+    while inicio < len(onda):
+        fin = min(inicio + paso, len(onda))
+        if fin < len(onda):
+            ventana = onda[max(fin - margen, inicio):fin]
+            if len(ventana):
+                energia = np.abs(ventana)
+                corte_relativo = int(np.argmin(
+                    np.convolve(energia, np.ones(int(0.05 * fm)) / (0.05 * fm), mode="same")))
+                fin = max(fin - margen, inicio) + corte_relativo
+        trozo = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
+        sf.write(trozo.name, onda[inicio:fin], fm)
+        rutas.append(trozo.name)
+        inicio = fin
+    return rutas
+
+
 @aplicacion.post("/entender")
 async def entender(audio: UploadFile = File(...), lengua: str = Form("quy_Latn")):
     ruta = _guardar(await audio.read())
     pipe = asr()
     t0 = time.perf_counter()
-    salida = pipe.transcribe([ruta], lang=[lengua], batch_size=1)
-    os.unlink(ruta)
-    texto = salida[0] if salida else ""
+    trozos = _partir(ruta)
+    try:
+        salida = pipe.transcribe(trozos, lang=[lengua] * len(trozos), batch_size=1)
+        texto = " ".join(s.strip() for s in salida if s and s.strip())
+    finally:
+        for t in trozos:
+            if t != ruta:
+                os.unlink(t)
+        os.unlink(ruta)
     return {"texto": texto, "alternativas": [[texto, 1.0]], "modelo": "omniASR_LLM_300M",
-            "segundos": round(time.perf_counter() - t0, 2)}
+            "trozos": len(trozos), "segundos": round(time.perf_counter() - t0, 2)}
 
 
 @aplicacion.post("/hablar")

@@ -206,3 +206,54 @@ ssh -i ~/.ssh/id_rsa_aws ubuntu@44.220.107.99 'bash ~/restaurar.sh'
 
 Copia el entorno de vuelta al NVMe, deja la caché de fairseq2 enlazada y levanta el servicio.
 **Unos 2 minutos**, sin descargar nada. Reconstruir desde cero serían 12 a 15.
+
+## Cinco audios de prueba con verdad de referencia
+
+`voz/generar_muestras.py` dice con `mms-tts-quy` los pares verificados del cuadernillo y los pega en
+audios de **menos de 45 s**. Como sabemos exactamente qué texto se dijo, **cada audio trae su referencia**
+y el error del reconocimiento se mide sin esperar a las familias.
+
+```
+quy_01.wav  44.1s  15 frases      quy_04.wav  42.1s  13 frases
+quy_02.wav  43.3s  15 frases      quy_05.wav  44.4s  14 frases
+quy_03.wav  42.1s  13 frases      216 s en total
+```
+
+La página los ofrece en el selector, muestra el castellano de referencia y **calcula el error de palabra
+en vivo** contra lo que oyó el modelo.
+
+### `omniASR` no aguanta audios largos
+
+Con 44 s revienta: `RuntimeError: The map function has failed`. Con 16 s pasa. El servicio ahora **parte
+el audio en trozos de 20 s cortando en el silencio más cercano** para no romper una palabra, transcribe
+cada trozo y los pega. Los 44 s salen en **5.7 s, en 3 trozos**.
+
+Esto importa fuera de la prueba: un paciente que habla cuarenta segundos seguidos es normal en una
+consulta, y sin esto el sistema se caía.
+
+### Primer número contra referencia conocida
+
+| | |
+|---|---|
+| Audio | `quy_01.wav`, 44 s, 33 palabras |
+| **WER** | **21.2%** |
+
+Sigue siendo voz sintética, así que no es el número del pitch. Pero ya es una medición reproducible
+—mismo audio, misma referencia, mismo comando— contra la que comparar después del ajuste fino.
+
+## Dictado por micrófono: Cartesia
+
+El botón «Dictar» graba con `MediaRecorder` y manda el audio a `POST /escuchar`, que llama a
+**Cartesia `ink-whisper`** en castellano. Medido: **480 ms** para 3.5 s de audio, y transcribió
+«Tome una pastilla cada 8 horas, después de comer» sin un error.
+
+Se eligió sobre el dictado del navegador porque ese no existe en Safari ni en Firefox, depende de los
+servidores de Google y falla sin aviso. Éste funciona igual en los tres navegadores y en el teléfono, y
+de paso usa la mitad de Cartesia que faltaba: entender, no solo hablar.
+
+## La cascada en D3
+
+El presupuesto de espera dejó de ser una lista de números: es una **cascada** donde cada paso es un
+bloque proporcional a lo que tardó, con la **meta de 4 s** marcada en rojo. De un vistazo se ve qué paso
+se come el turno. Arriba, cuatro medidas: turno del paciente, turno tuyo, ciclo completo y error del
+reconocimiento.

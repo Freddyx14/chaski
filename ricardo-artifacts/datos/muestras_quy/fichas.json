@@ -1,0 +1,327 @@
+[
+ {
+  "archivo": "quy_01.wav",
+  "segundos": 44.11,
+  "frases": 15,
+  "chanka": "¿Allinllanchu, mamáy? ¡Allinllanmi, taytáy! Taytáy, ¿allillanchu? Mamáy, allillanmi ¿Imaynallam kachkanki, taytáy? ¿Imaynallam kachkanki, taytáy? ¿Imaynallam kachkankichik, mamaykuna? Ñuqallaymi, doctor Hamullachkani, doctora Chaskiyukuyki, wiraqucha Mamaykuna, chaskiyukuychik Rimaykullayki, mamáy Rimaykullaykichik, taytaykuna Napaykullayki, taytáy Mamaykuna, napaykullaykichik",
+  "castellano": "¿Está bien, señora? ¡Estoy bien, señor! Señor, ¿cómo está? Señora, estoy bien ¿Cómo está, señor? ¿Cómo está, señora? ¿Cómo están, señoras? Buenos días, doctor Buenos días, doctora Le recibo, señor Les recibo, señoras Buenos días, señora Buenos días, señores Buenos días, señor Buenos días, señoras",
+  "partes": [
+   {
+    "chanka": "¿Allinllanchu, mamáy?",
+    "castellano": "¿Está bien, señora?"
+   },
+   {
+    "chanka": "¡Allinllanmi, taytáy!",
+    "castellano": "¡Estoy bien, señor!"
+   },
+   {
+    "chanka": "Taytáy, ¿allillanchu?",
+    "castellano": "Señor, ¿cómo está?"
+   },
+   {
+    "chanka": "Mamáy, allillanmi",
+    "castellano": "Señora, estoy bien"
+   },
+   {
+    "chanka": "¿Imaynallam kachkanki, taytáy?",
+    "castellano": "¿Cómo está, señor?"
+   },
+   {
+    "chanka": "¿Imaynallam kachkanki, taytáy?",
+    "castellano": "¿Cómo está, señora?"
+   },
+   {
+    "chanka": "¿Imaynallam kachkankichik, mamaykuna?",
+    "castellano": "¿Cómo están, señoras?"
+   },
+   {
+    "chanka": "Ñuqallaymi, doctor",
+    "castellano": "Buenos días, doctor"
+   },
+   {
+    "chanka": "Hamullachkani, doctora",
+    "castellano": "Buenos días, doctora"
+   },
+   {
+    "chanka": "Chaskiyukuyki, wiraqucha",
+    "castellano": "Le recibo, señor"
+   },
+   {
+    "chanka": "Mamaykuna, chaskiyukuychik",
+    "castellano": "Les recibo, señoras"
+   },
+   {
+    "chanka": "Rimaykullayki, mamáy",
+    "castellano": "Buenos días, señora"
+   },
+   {
+    "chanka": "Rimaykullaykichik, taytaykuna",
+    "castellano": "Buenos días, señores"
+   },
+   {
+    "chanka": "Napaykullayki, taytáy",
+    "castellano": "Buenos días, señor"
+   },
+   {
+    "chanka": "Mamaykuna, napaykullaykichik",
+    "castellano": "Buenos días, señoras"
+   }
+  ]
+ },
+ {
+  "archivo": "quy_02.wav",
+  "segundos": 43.31,
+  "frases": 15,
+  "chanka": "Yaykuykamuy taytáy Mamáy, yaykuykamuy Yaykuykamuychik, taytakuna Yaykuykamuychik, mamakuna Tiyakuy Tiyakuychik ¿Imatataq munanki, mamáy? ¿Imatataq munanki, taytáy? Mamáy, ¿imachamanmi hamuchkanki? ¿Imaraykutaq hamurqanki, taytáy? ¿Imapaqtaq allin kayman? ¿Imatam ruwallayman? ¿Imapitaq yanapaykiman? ¿Imapitaq yanapariykimanku? ¿Yanapayta atiymanchu?",
+  "castellano": "Adelante, señor Adelante, señora Adelante, señores Adelante, señoras Tome asiento Tomen asiento ¿Qué desea, señora? ¿Qué desea, señor? ¿Para qué ha venido, señora? ¿Por qué ha venido, señor? ¿En qué le puedo servir? ¿Qué puedo hacer por usted? ¿En qué le puedo ayudar? ¿En qué le podemos ayudar? ¿Puedo ayudarle?",
+  "partes": [
+   {
+    "chanka": "Yaykuykamuy taytáy",
+    "castellano": "Adelante, señor"
+   },
+   {
+    "chanka": "Mamáy, yaykuykamuy",
+    "castellano": "Adelante, señora"
+   },
+   {
+    "chanka": "Yaykuykamuychik, taytakuna",
+    "castellano": "Adelante, señores"
+   },
+   {
+    "chanka": "Yaykuykamuychik, mamakuna",
+    "castellano": "Adelante, señoras"
+   },
+   {
+    "chanka": "Tiyakuy",
+    "castellano": "Tome asiento"
+   },
+   {
+    "chanka": "Tiyakuychik",
+    "castellano": "Tomen asiento"
+   },
+   {
+    "chanka": "¿Imatataq munanki, mamáy?",
+    "castellano": "¿Qué desea, señora?"
+   },
+   {
+    "chanka": "¿Imatataq munanki, taytáy?",
+    "castellano": "¿Qué desea, señor?"
+   },
+   {
+    "chanka": "Mamáy, ¿imachamanmi hamuchkanki?",
+    "castellano": "¿Para qué ha venido, señora?"
+   },
+   {
+    "chanka": "¿Imaraykutaq hamurqanki, taytáy?",
+    "castellano": "¿Por qué ha venido, señor?"
+   },
+   {
+    "chanka": "¿Imapaqtaq allin kayman?",
+    "castellano": "¿En qué le puedo servir?"
+   },
+   {
+    "chanka": "¿Imatam ruwallayman?",
+    "castellano": "¿Qué puedo hacer por usted?"
+   },
+   {
+    "chanka": "¿Imapitaq yanapaykiman?",
+    "castellano": "¿En qué le puedo ayudar?"
+   },
+   {
+    "chanka": "¿Imapitaq yanapariykimanku?",
+    "castellano": "¿En qué le podemos ayudar?"
+   },
+   {
+    "chanka": "¿Yanapayta atiymanchu?",
+    "castellano": "¿Puedo ayudarle?"
+   }
+  ]
+ },
+ {
+  "archivo": "quy_03.wav",
+  "segundos": 42.14,
+  "frases": 13,
+  "chanka": "¿Yanapayta atiymankuchu? Uyariykim, mamáy Uyarisqaykim, taytáy Uyarisqaykichik Denuncia churaqmi hamuchkani Denunciaqmi hamuchkani Tapukuqmi hamuchkani Juezwanmi rimayta munani Fiscalwanmi rimayta munani Juezpa uyariwanantam munani Fiscalpa uyariwanantam munani Fiscalwanmi rimanay kachkan ¿Imatan suyarichkanki, mamáy?",
+  "castellano": "¿Podemos ayudarle? Le escucho, señora Le escucharé, señor Les escucharé He venido para poner una denuncia He venido a denunciar He venido a hacer una consulta Deseo hablar con el juez Deseo hablar con el fiscal Deseo que me escuche el juez Deseo que me escuche el fiscal Necesito hablar con el fiscal ¿Qué está esperando, señora?",
+  "partes": [
+   {
+    "chanka": "¿Yanapayta atiymankuchu?",
+    "castellano": "¿Podemos ayudarle?"
+   },
+   {
+    "chanka": "Uyariykim, mamáy",
+    "castellano": "Le escucho, señora"
+   },
+   {
+    "chanka": "Uyarisqaykim, taytáy",
+    "castellano": "Le escucharé, señor"
+   },
+   {
+    "chanka": "Uyarisqaykichik",
+    "castellano": "Les escucharé"
+   },
+   {
+    "chanka": "Denuncia churaqmi hamuchkani",
+    "castellano": "He venido para poner una denuncia"
+   },
+   {
+    "chanka": "Denunciaqmi hamuchkani",
+    "castellano": "He venido a denunciar"
+   },
+   {
+    "chanka": "Tapukuqmi hamuchkani",
+    "castellano": "He venido a hacer una consulta"
+   },
+   {
+    "chanka": "Juezwanmi rimayta munani",
+    "castellano": "Deseo hablar con el juez"
+   },
+   {
+    "chanka": "Fiscalwanmi rimayta munani",
+    "castellano": "Deseo hablar con el fiscal"
+   },
+   {
+    "chanka": "Juezpa uyariwanantam munani",
+    "castellano": "Deseo que me escuche el juez"
+   },
+   {
+    "chanka": "Fiscalpa uyariwanantam munani",
+    "castellano": "Deseo que me escuche el fiscal"
+   },
+   {
+    "chanka": "Fiscalwanmi rimanay kachkan",
+    "castellano": "Necesito hablar con el fiscal"
+   },
+   {
+    "chanka": "¿Imatan suyarichkanki, mamáy?",
+    "castellano": "¿Qué está esperando, señora?"
+   }
+  ]
+ },
+ {
+  "archivo": "quy_04.wav",
+  "segundos": 42.14,
+  "frases": 13,
+  "chanka": "¿Imatam maskarichkanki, taytáy? ¿Allichu yanapawankikumanchu, taytáy? Mamáy, ¿yanapawankikumanchu? Demunatam maskachkani Primer Juzgadotam maskachkani Wawata suyarichkani, jefelláy Abogadoytam suyarichkani Runasimita rimani, taytáy ¿Castellanuta rimankichu, mamáy? Manam castellanuta rimanichu ¿Runasimita rimankichu, doctor? Arí, runasimita rimani ¿Runasimita yachankichu, doctora?",
+  "castellano": "¿Qué está buscando, señor? ¿Me puede ayudar, señor? ¿Me puede ayudar, señora? Estoy buscando la Demuna Estoy buscando el Primer Juzgado Estoy esperando a mi hija, jefe Estoy esperando a mi abogado Yo hablo quechua, señor ¿Habla castellano, señora? No hablo castellano. ¿Habla quechua, doctor? Sí, hablo quechua ¿Sabe quechua, doctora?",
+  "partes": [
+   {
+    "chanka": "¿Imatam maskarichkanki, taytáy?",
+    "castellano": "¿Qué está buscando, señor?"
+   },
+   {
+    "chanka": "¿Allichu yanapawankikumanchu, taytáy?",
+    "castellano": "¿Me puede ayudar, señor?"
+   },
+   {
+    "chanka": "Mamáy, ¿yanapawankikumanchu?",
+    "castellano": "¿Me puede ayudar, señora?"
+   },
+   {
+    "chanka": "Demunatam maskachkani",
+    "castellano": "Estoy buscando la Demuna"
+   },
+   {
+    "chanka": "Primer Juzgadotam maskachkani",
+    "castellano": "Estoy buscando el Primer Juzgado"
+   },
+   {
+    "chanka": "Wawata suyarichkani, jefelláy",
+    "castellano": "Estoy esperando a mi hija, jefe"
+   },
+   {
+    "chanka": "Abogadoytam suyarichkani",
+    "castellano": "Estoy esperando a mi abogado"
+   },
+   {
+    "chanka": "Runasimita rimani, taytáy",
+    "castellano": "Yo hablo quechua, señor"
+   },
+   {
+    "chanka": "¿Castellanuta rimankichu, mamáy?",
+    "castellano": "¿Habla castellano, señora?"
+   },
+   {
+    "chanka": "Manam castellanuta rimanichu",
+    "castellano": "No hablo castellano."
+   },
+   {
+    "chanka": "¿Runasimita rimankichu, doctor?",
+    "castellano": "¿Habla quechua, doctor?"
+   },
+   {
+    "chanka": "Arí, runasimita rimani",
+    "castellano": "Sí, hablo quechua"
+   },
+   {
+    "chanka": "¿Runasimita yachankichu, doctora?",
+    "castellano": "¿Sabe quechua, doctora?"
+   }
+  ]
+ },
+ {
+  "archivo": "quy_05.wav",
+  "segundos": 44.4,
+  "frases": 14,
+  "chanka": "Arí, runasimita yachani Manam runasimita yachanichu ¿Runasimitachu utaq castellanusimitachu rimayta munanki? ¿Pitaq kaypi runasimita riman? ¿Pitaq kaypi castellanota riman? Allichu, allinllamanta rimaway ¿Allinllamanta rimaykuwankimanchu? ¿Manachu kaqmanta rimariwaq? ¿Yapa chayta rimaykuwankimanchu? Allichu, huktawan niway Hawkalla kakuy, mamáy Hawkayay, taytáy Llakikuyñiykita willawanki Lliumi allin kanqa",
+  "castellano": "Sí, sé quechua No sé quechua ¿Prefiere usted hablar quechua o castellano? ¿Quién habla quechua aquí? ¿Quién habla castellano aquí? Por favor, hábleme despacio ¿Puede hablar más despacio? ¿Puede repetir? ¿Podría repetir eso? Por favor, repita Tranquilícese, señora Cálmese, señor Cuénteme lo que le aflige Todo va a estar bien",
+  "partes": [
+   {
+    "chanka": "Arí, runasimita yachani",
+    "castellano": "Sí, sé quechua"
+   },
+   {
+    "chanka": "Manam runasimita yachanichu",
+    "castellano": "No sé quechua"
+   },
+   {
+    "chanka": "¿Runasimitachu utaq castellanusimitachu rimayta munanki?",
+    "castellano": "¿Prefiere usted hablar quechua o castellano?"
+   },
+   {
+    "chanka": "¿Pitaq kaypi runasimita riman?",
+    "castellano": "¿Quién habla quechua aquí?"
+   },
+   {
+    "chanka": "¿Pitaq kaypi castellanota riman?",
+    "castellano": "¿Quién habla castellano aquí?"
+   },
+   {
+    "chanka": "Allichu, allinllamanta rimaway",
+    "castellano": "Por favor, hábleme despacio"
+   },
+   {
+    "chanka": "¿Allinllamanta rimaykuwankimanchu?",
+    "castellano": "¿Puede hablar más despacio?"
+   },
+   {
+    "chanka": "¿Manachu kaqmanta rimariwaq?",
+    "castellano": "¿Puede repetir?"
+   },
+   {
+    "chanka": "¿Yapa chayta rimaykuwankimanchu?",
+    "castellano": "¿Podría repetir eso?"
+   },
+   {
+    "chanka": "Allichu, huktawan niway",
+    "castellano": "Por favor, repita"
+   },
+   {
+    "chanka": "Hawkalla kakuy, mamáy",
+    "castellano": "Tranquilícese, señora"
+   },
+   {
+    "chanka": "Hawkayay, taytáy",
+    "castellano": "Cálmese, señor"
+   },
+   {
+    "chanka": "Llakikuyñiykita willawanki",
+    "castellano": "Cuénteme lo que le aflige"
+   },
+   {
+    "chanka": "Lliumi allin kanqa",
+    "castellano": "Todo va a estar bien"
+   }
+  ]
+ }
+]
