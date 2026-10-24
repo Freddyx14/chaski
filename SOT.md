@@ -1,6 +1,6 @@
 # Rimay — fuente de verdad (SOT)
 
-> **Versión SOT-7 · sábado 24 de octubre de 2026, 01:05 PT**
+> **Versión SOT-8 · sábado 24 de octubre de 2026, 01:50 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-8 (sáb 01:50).** **Foco cerrado (D23):** traducción literal + ajuste fino de reconocimiento y voz. Las tres formas de interpretar que propuso Freddy van al backlog (§13). Además: los videos de Chaski se piden con el cuadro ya en 16:9 (`avatar/estados-16x9/`), porque en cuadrado Flow hacía zoom.
 - **SOT-7 (sáb 01:05).** **Chaski tiene sus 6 cuadros** (reposo + 5 estados) en `avatar/estados/`, generados desde la especificación JSON `avatar/chaski.json` (identidad fija + un bloque por estado; los prompts salen de ahí, en `avatar/prompts/`). Para cambiar algo de Chaski se edita el JSON y se regenera.
 - **SOT-6 (sáb 00:58).** **El avatar es Chaski** (D22): la vicuña 3D sentada con audífonos de intérprete y bufanda teal, `avatar/opciones/2d-3d-audifonos.png`. Los 5 estados se generan el sábado a partir de esa imagen.
 - **SOT-5 (sáb 00:50).** **Claude es el núcleo (D19, §3)**: los modelos de voz son los oídos y la boca, Claude es el que entiende, ve y decide. Siete trabajos:
@@ -156,6 +157,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D18 | sáb 00:14 | **La mamá de Freddy prueba por videollamada y, si puede, aparece en el pitch** | Usuaria real, voz real |
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
+| D23 | sáb 01:40 | **El foco del fin de semana es la traducción literal** (modo 1 abajo) **más el ajuste fino de reconocimiento y voz en chanka**. Los modos 2 y 3 van al backlog | Lo que se puede hacer bien en 30 horas; los otros modos se suman si sobra tiempo |
 | D22 | sáb 00:54 | **El avatar es Chaski: la vicuña 3D con audífonos y micrófono de intérprete y bufanda teal** (`avatar/opciones/2d-3d-audifonos.png`) | Se entiende de un vistazo que interpreta y traduce |
 | D21 | sáb 00:45 | **Tareas por persona en `plan/tareas.md`**; Ricardo arma las preguntas y frases que graban las familias | Seguimiento claro |
 
@@ -272,6 +274,20 @@ personaje), **boca abierta y cerrada según el volumen del audio**, y movimiento
 | 08:00 | Devpost final |
 | 09:00 | **Entrega** |
 | 10:30–12:30 | Jurado, los dos en la mesa; la mamá de Freddy por videollamada si puede |
+
+## 13. Backlog: las tres formas de interpretar (idea de Freddy, sáb 01:40)
+
+Un intérprete de verdad no solo traduce. Freddy y Ricardo identificaron tres modos:
+
+| Modo | Qué hace | Ejemplo | Estado |
+|---|---|---|---|
+| **1 · Literal** | Lo que la enfermera dice se traduce tal cual | «Tome una pastilla cada 8 horas» → quechua | ✅ **foco del fin de semana (D23)** |
+| **2 · Mediado** | La enfermera le pide a Rimay que le haga entender algo al paciente; Rimay decide **cómo** decirlo para que se entienda | «Explícale que no puede dejar el tratamiento aunque se sienta bien» → Rimay arma el mensaje en quechua adaptado al paciente | backlog |
+| **3 · Preguntas al intérprete** | La enfermera le pregunta algo **a Rimay**, no al paciente, y Rimay responde a ella sin traducirlo | «¿Qué quiso decir con eso?» / «¿Te dijo cuántos días lleva con fiebre?» | backlog |
+
+**Lo difícil, cuando se haga:** saber en cada turno si lo que se dijo es **para traducir** o **para el intérprete**.
+Freddy lo imagina como una **orquestación de agentes** (un agente que clasifica la intención y deriva al traductor,
+al mediador o al que responde), y mencionó `/jev-ai` como inspiración. *(Por evaluar: no está decidido.)*
 
 ## 12. Mapa de documentos
 
