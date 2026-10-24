@@ -176,10 +176,10 @@ def main() -> None:
 
     nota_comun = (
         "<b>Cómo grabar.</b> Lugar silencioso, el celular a un palmo de la boca. "
-        "<b>Una nota de voz de WhatsApp por frase</b>, al chat de Freddy. "
+        "<b>Una nota de voz por frase</b>, enviada a la persona del equipo que le compartió este documento. "
         "En cada nota, primero diga el código en castellano («C uno», «M cinco», «B tres») y después "
         "la frase <b>en quechua chanka, como la diría en la posta</b>: natural, no leyendo como locutor. "
-        "<b>No hace falta escribir nada</b>: la mamá de Freddy corrige el texto después en pantalla.<br/><br/>"
+        "<b>No hace falta escribir nada</b>: el texto lo corrige después una hablante de quechua, en pantalla.<br/><br/>"
         "<b>Orden.</b> Primero C, M, N y B (lo importante, unos 25 minutos). "
         "El bloque «Extra» es solo si le queda tiempo.")
 

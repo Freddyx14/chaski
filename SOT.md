@@ -73,6 +73,7 @@ establecimientos de salud del país tiene atención intercultural. Fuentes: `res
 | F9 | **Leer la receta y la caja (Claude visión)** | Foto de la receta escrita a mano y de la caja → medicamento, dosis, frecuencia. **Cruza la caja con lo que dijo la enfermera**: si ella dijo paracetamol y la caja dice ibuprofeno, avisa. Si no está seguro de leer algo, no adivina | por hacer · Freddy |
 | F10 | **Claude corrige la transcripción en quechua** | El reconocimiento devuelve sus N mejores intentos; Claude elige y corrige con el contexto de la consulta (qué preguntó la enfermera) y el glosario. Se mide: errores con y sin Claude | por hacer · Freddy + Ricardo |
 | F11 | **Resumen de la consulta** | Al cerrar: nota en castellano para la historia clínica y audio en quechua para que el paciente se lleve a casa | por hacer · Freddy |
+| F12 | **Notas en segundo plano + resumen con checklist** | Claude escucha toda la consulta y toma notas, para que al final el personal tenga claro qué se dijo y qué entendió el paciente. **Para qué situación** (consulta, emergencia, farmacia, control prenatal, CRED, visita) se decide con la entrevista al personal de salud (bloques 4 y 5 de `plan/entrevista-personal-salud.md`) | idea de Freddy, sáb 08:02 · por validar |
 | F8 | **Evaluación chanka-salud** | Claude vs Google Translate en indicaciones reales, calificado por la enfermera (método Kong et al., 2026) | por hacer · Freddy + mamá |
 
 ---
