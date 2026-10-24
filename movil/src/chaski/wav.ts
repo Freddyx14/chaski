@@ -85,3 +85,9 @@ export function bocaAbierta(env: Envolvente | null, segundo: number, umbral = 0.
   const i = Math.floor((segundo * 1000) / env.ventanaMs);
   return (env.niveles[i] ?? 0) >= umbral;
 }
+
+/** Volumen 0..1 de la voz en este instante: lo que hace latir el marco de Chaski mientras habla. */
+export function nivelEn(env: Envolvente | null, segundo: number): number {
+  if (!env) return 0;
+  return env.niveles[Math.floor((segundo * 1000) / env.ventanaMs)] ?? 0;
+}

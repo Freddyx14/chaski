@@ -3,19 +3,36 @@ import { SymbolView, type SymbolViewProps } from 'expo-symbols';
 import type { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View, type StyleProp, type ViewStyle } from 'react-native';
 
+import Svg, { Rect } from 'react-native-svg';
+
+import { Cruz } from './motivos';
 import { C, ESCALA } from './tokens';
 
 export function Icono({ nombre, color, tam = 20 }: { nombre: SymbolViewProps['name']; color: string; tam?: number }) {
   return <SymbolView name={nombre} tintColor={color} size={tam} resizeMode="scaleAspectFit" style={{ width: tam, height: tam }} />;
 }
 
+/** Etiqueta de idioma con las puntas escalonadas y una crucecita adentro (D29). */
 export function Etiqueta({ idioma }: { idioma: 'castellano' | 'quechua' }) {
   const q = idioma === 'quechua';
+  const fondo = q ? C.quechua : C.castellanoTag;
+  const tinta = q ? C.surface : C.ink;
+  const alto = 28;
+  // Dos escalones a cada lado: columnas de 3 pt que crecen hacia el centro.
+  const punta = (espejo: boolean) => (
+    <Svg width={6} height={alto} style={espejo ? { transform: [{ scaleX: -1 }] } : undefined}>
+      <Rect x={0} y={8} width={3} height={alto - 16} fill={fondo} />
+      <Rect x={3} y={4} width={3} height={alto - 8} fill={fondo} />
+    </Svg>
+  );
   return (
-    <View style={[estilos.etiqueta, { backgroundColor: q ? C.quechua : C.castellanoTag }]}>
-      <Text style={[estilos.etiquetaTexto, { color: q ? C.surface : C.ink }]}>
-        {q ? 'Quechua chanka' : 'Castellano'}
-      </Text>
+    <View style={estilos.etiquetaFila}>
+      {punta(false)}
+      <View style={[estilos.etiqueta, { backgroundColor: fondo }]}>
+        <Cruz tam={9} color={tinta} />
+        <Text style={[estilos.etiquetaTexto, { color: tinta }]}>{q ? 'Quechua chanka' : 'Castellano'}</Text>
+      </View>
+      {punta(true)}
     </View>
   );
 }
@@ -69,7 +86,8 @@ export function Aviso({ tipo, texto }: { tipo: 'ok' | 'warn' | 'block'; texto: s
 }
 
 export const estilos = StyleSheet.create({
-  etiqueta: { height: 28, borderRadius: 14, paddingHorizontal: 12, justifyContent: 'center', alignSelf: 'flex-start' },
+  etiquetaFila: { flexDirection: 'row', alignItems: 'center' },
+  etiqueta: { height: 28, paddingHorizontal: 8, flexDirection: 'row', alignItems: 'center', gap: 6 },
   etiquetaTexto: { fontSize: ESCALA.mini, fontWeight: '600' },
   tarjeta: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderRadius: 20, padding: 16 },
   boton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 20 },

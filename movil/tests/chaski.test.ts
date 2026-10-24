@@ -100,17 +100,70 @@ test('solo se reencamina a castellano con confianza alta', () => {
   assert.equal(fueCastellano({ ...p, idioma: null }), false);
 });
 
-import { tramos } from '../src/chaski/tejido.ts';
+import { escalonado, escalonadoAdentro, escalonesDeChaski, trazo } from '../src/chaski/geometria.ts';
 
-test('tejido: une puntos contiguos y salta el fondo', () => {
-  assert.deepEqual(tramos('.11.2', 1), [
-    { desde: 1, largo: 2, valor: '1' },
-    { desde: 4, largo: 1, valor: '2' },
-  ]);
-  // Al repetir, el último punto de una copia y el primero de la siguiente se unen.
-  assert.deepEqual(tramos('1..1', 2), [
-    { desde: 0, largo: 1, valor: '1' },
-    { desde: 3, largo: 2, valor: '1' },
-    { desde: 7, largo: 1, valor: '1' },
-  ]);
+test('escalonado: cuatro esquinas de escalones, contorno cerrado y simétrico', () => {
+  const p = escalonado(100, 2, 10);
+  // Cada esquina aporta 1 + 2·pasos puntos.
+  assert.equal(p.length, 4 * (1 + 2 * 2));
+  // Empieza en el borde superior, donde arranca el corte de la esquina derecha.
+  assert.deepEqual(p[0], [80, 0]);
+  // La esquina superior derecha baja en escalones hasta el borde derecho.
+  assert.deepEqual(p.slice(0, 5), [[80, 0], [80, 10], [90, 10], [90, 20], [100, 20]]);
+  // Nunca se sale del cuadrado.
+  assert.ok(p.every(([x, y]) => x >= 0 && x <= 100 && y >= 0 && y <= 100));
+});
+
+test('escalonado: la chakana (corte hondo) y la crucecita (un paso) salen de la misma figura', () => {
+  assert.equal(escalonado(90, 3, 10).length, 28);
+  assert.deepEqual(escalonado(10, 1, 3).slice(0, 3), [[7, 0], [7, 3], [10, 3]]);
+  assert.throws(() => escalonado(10, 2, 3), /demasiado hondo/);
+});
+
+test('escalonadoAdentro: los escalones quedan paralelos al contorno de afuera', () => {
+  const fuera = escalonado(100, 2, 10);
+  const dentro = escalonadoAdentro(100, 2, 10, 5);
+  // Cada punto se mueve en diagonal hacia adentro: |dx| = |dy| = margen en las esquinas de los escalones.
+  assert.deepEqual(dentro[0], [75, 5]);
+  assert.deepEqual(dentro[4], [95, 25]);
+  assert.equal(dentro.length, fuera.length);
+});
+
+test('trazo y escalones de Chaski', () => {
+  assert.equal(trazo([[0, 0], [1.234, 2]]), 'M0 0L1.23 2Z');
+  assert.deepEqual(escalonesDeChaski(240), { pasos: 5, paso: 7 });
+  assert.deepEqual(escalonesDeChaski(96), { pasos: 4, paso: 3 });
+});
+
+import { brilloDeEstrella, hebrasEncendidas, nivelDesdeDb, palabrasDichas } from '../src/chaski/movimiento.ts';
+import { nivelEn } from '../src/chaski/wav.ts';
+
+test('movimiento: con más voz se encienden más hebras, de adentro hacia afuera', () => {
+  assert.equal(hebrasEncendidas(0), 0);
+  assert.equal(hebrasEncendidas(0.2), 1);
+  assert.equal(hebrasEncendidas(0.5), 2);
+  assert.equal(hebrasEncendidas(0.9), 3);
+  assert.equal(nivelDesdeDb(undefined), 0);
+  assert.equal(nivelDesdeDb(-160), 0);
+  assert.equal(nivelDesdeDb(0), 1);
+});
+
+test('movimiento: las palabras se revelan con el avance del audio, sin pasarse', () => {
+  assert.equal(palabrasDichas(6, 0), 0);
+  assert.equal(palabrasDichas(6, 0.5), 3);
+  assert.equal(palabrasDichas(6, 1.4), 6);
+  assert.equal(palabrasDichas(0, 0.5), 0);
+});
+
+test('movimiento: el brillo gira por las 8 estrellas y da la vuelta', () => {
+  assert.equal(brilloDeEstrella(3, 8, 3), 1);
+  assert.equal(brilloDeEstrella(0, 8, 7.9) > 0.9, true);
+  assert.equal(brilloDeEstrella(4, 8, 0), 0.3);
+});
+
+test('nivelEn lee la envolvente en el instante del audio', () => {
+  const env = { niveles: [0, 1, 0.5], ventanaMs: 50, segundos: 0.15 };
+  assert.equal(nivelEn(env, 0.06), 1);
+  assert.equal(nivelEn(env, 0.9), 0);
+  assert.equal(nivelEn(null, 0.1), 0);
 });

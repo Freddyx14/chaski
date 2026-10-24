@@ -7,6 +7,7 @@ import { nuevaConsulta, useTurnos } from '@/chaski/consulta';
 import { usePerfil } from '@/chaski/perfil';
 import { quienHabla, textos } from '@/chaski/textos';
 import type { Turno } from '@/chaski/modelo';
+import { MarcaChaski } from '@/chaski/motivos';
 import { C, ESCALA } from '@/chaski/tokens';
 import { Aviso, Boton, Etiqueta, Tarjeta } from '@/chaski/ui';
 
@@ -29,7 +30,7 @@ export default function Historial() {
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
       <View style={e.encabezado}>
-        <Text style={e.titulo}>La conversación</Text>
+        <MarcaChaski texto="La conversación" tam={ESCALA.h1} />
         <Boton tipo="texto" texto="Cerrar" onPress={() => router.back()} />
       </View>
       <FlatList
@@ -71,7 +72,6 @@ export default function Historial() {
 const e = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: C.ground },
   encabezado: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12 },
-  titulo: { fontSize: ESCALA.h1, fontWeight: '700', color: C.ink },
   fila: { flexDirection: 'row', justifyContent: 'space-between' },
   quien: { fontSize: ESCALA.mini, fontWeight: '600', color: C.inkTertiary, letterSpacing: 0.6 },
   hora: { fontSize: ESCALA.mini, color: C.inkTertiary, fontVariant: ['tabular-nums'] },

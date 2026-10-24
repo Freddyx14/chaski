@@ -1,11 +1,14 @@
-// Chaski, la vicuña intérprete (D22). Siempre en su tarjeta con degradado (regla de tokens.json).
-// Los estados con video usan los loops de avatar/loops; «hablando» alterna dos cuadros con la boca.
+// Chaski, la vicuña intérprete (D22), en su marco de D29: la silueta escalonada de D dentro de las tres
+// hebras de I (cobalto, amarillo, magenta) que siguen los escalones. Los estados con video usan los loops
+// de avatar/loops; «hablando» alterna dos cuadros con la boca.
 import { Image } from 'expo-image';
 import { useVideoPlayer, VideoView } from 'expo-video';
 import { StyleSheet, View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
-import { altoDeManta, Manta } from './manta';
-import { C } from './tokens';
+import { escalonadoAdentro, escalonesDeChaski, trazo } from './geometria';
+import { hebrasEncendidas } from './movimiento';
+import { C, M } from './tokens';
 
 export type EstadoChaski = 'reposo' | 'presentarse' | 'escuchando' | 'pensando' | 'hablando' | 'no_entendi';
 
@@ -25,23 +28,50 @@ const LOOPS: Partial<Record<EstadoChaski, number>> = {
   no_entendi: require('../../../avatar/loops/no_entendi.mp4'),
 };
 
-export function Chaski({ estado, tam, boca = false }: { estado: EstadoChaski; tam: number; boca?: boolean }) {
-  const radio = tam >= 200 ? 28 : 20;
+const HEBRAS = [M.cobalto, M.amarillo, M.magenta]; // de afuera hacia adentro
+
+/**
+ * `fondo` es el color de lo que hay detrás: tapa las esquinas de la foto fuera de los escalones.
+ * `pulso` (0..1) es el volumen de la voz en este instante (la envolvente del WAV): mientras Chaski habla,
+ * las hebras se encienden de adentro hacia afuera, magenta → amarillo → cobalto, en las partes fuertes.
+ */
+export function Chaski({ estado, tam, boca = false, fondo = C.ground, pulso }: {
+  estado: EstadoChaski; tam: number; boca?: boolean; fondo?: string; pulso?: number;
+}) {
+  const encendidas = pulso === undefined ? 3 : hebrasEncendidas(pulso, [0.15, 0.45, 0.75]);
   const loop = LOOPS[estado];
+  const g = Math.max(2, Math.round(tam * 0.022)); // grosor de cada hebra
+  const s = Math.max(1.5, Math.round(tam * 0.018 * 2) / 2); // aire entre hebras
+  const foto = 3 * g + 2 * s; // donde empieza la foto
+  const { pasos, paso } = escalonesDeChaski(tam);
+  const silueta = trazo(escalonadoAdentro(tam, pasos, paso, foto));
+  const lienzo = `M0 0H${tam}V${tam}H0Z`;
   return (
-    <View style={[estilos.tarjeta, { width: tam, height: tam, borderRadius: radio }]}>
-      {/* El cuadro fijo queda debajo: si el video tarda en arrancar, no se ve un hueco. */}
-      <Image
-        source={estado === 'hablando' ? (boca ? CUADROS.hablando : CUADROS.reposo) : CUADROS[estado]}
-        style={StyleSheet.absoluteFill}
-        contentFit="cover"
-        transition={0}
-      />
-      {loop ? <Loop key={estado} fuente={loop} /> : null}
-      {/* Chaski se sienta sobre su lliclla (D28). */}
-      <View style={[estilos.lliclla, { height: altoDeManta('lliclla', tam / 240) }]}>
-        <Manta variante="lliclla" ancho={tam} escala={tam / 240} />
+    <View style={{ width: tam, height: tam }}>
+      <View style={[estilos.foto, { left: foto, top: foto, right: foto, bottom: foto }]}>
+        {/* El cuadro fijo queda debajo: si el video tarda en arrancar, no se ve un hueco. */}
+        <Image
+          source={estado === 'hablando' ? (boca ? CUADROS.hablando : CUADROS.reposo) : CUADROS[estado]}
+          style={StyleSheet.absoluteFill}
+          contentFit="cover"
+          transition={0}
+        />
+        {loop ? <Loop key={estado} fuente={loop} /> : null}
       </View>
+      <Svg width={tam} height={tam} style={StyleSheet.absoluteFill} pointerEvents="none">
+        <Path d={lienzo + silueta} fill={fondo} fillRule="evenodd" />
+        {HEBRAS.map((color, i) => (
+          <Path
+            key={color}
+            d={trazo(escalonadoAdentro(tam, pasos, paso, i * (g + s) + g / 2))}
+            fill="none"
+            stroke={color}
+            strokeWidth={g}
+            // i = 0 es la de afuera; se enciende la última.
+            strokeOpacity={2 - i < encendidas ? 1 : 0.35}
+          />
+        ))}
+      </Svg>
     </View>
   );
 }
@@ -64,11 +94,6 @@ function Loop({ fuente }: { fuente: number }) {
 }
 
 const estilos = StyleSheet.create({
-  lliclla: { position: 'absolute', left: 0, right: 0, bottom: 0 },
-  tarjeta: {
-    overflow: 'hidden',
-    // El degradado de la tarjeta es el mismo fondo de las imágenes; con la imagen a sangre
-    // solo se ve este color mientras carga.
-    backgroundColor: C.chaskiCardBottom,
-  },
+  // El fondo de la foto es el mismo de las imágenes: mientras carga no se ve un hueco blanco.
+  foto: { position: 'absolute', overflow: 'hidden', backgroundColor: C.chaskiCardBottom },
 });

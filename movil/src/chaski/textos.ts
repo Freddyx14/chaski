@@ -2,7 +2,7 @@
 //
 // ⚠️ EL QUECHUA DE ESTE ARCHIVO ES UN BORRADOR DE CLAUDE, SIN REVISAR. Lo revisa la mamá de Freddy
 // (hablante de chanka, enfermera en Pilpichaca) antes de mostrarlo en el pitch. Cada línea revisada se
-// marca con `// ✓` al final.
+// marca con `// ✓` al final. Ojo: «rimay» aquí es el VERBO (hablar), no el nombre de la app (D30).
 import type { Idioma, Perfil, Rol } from './perfil';
 
 const es = {
@@ -87,7 +87,7 @@ const quechua: Textos = {
   empezar: 'Qallariy',
   hola: (n: string) => `Allillanchu, ${n}`,
   listo: 'Yanapanaypaqmi kachkani',
-  explicaYoQuechua: () => 'Runasimipi chaski. Chaskim hampiqman willanqa.',
+  explicaYoQuechua: () => 'Runasimipi rimay. Chaskim hampiqman willanqa.',
   explicaOtro: () => 'Kunanqa hampiqmi rimanqa. Chaskim runasimipi willasunki.',
   tocarHablar: 'Llapiy rimanaykipaq',
   tocarTerminar: 'Llapiy tukunaykipaq',
@@ -98,7 +98,7 @@ const quechua: Textos = {
   castellano: 'castellano',
   quechua: 'runasimi',
   escuchando: 'Uyarichkani…',
-  hableNormal: 'Chaski. Tukuspaqa llapiy.',
+  hableNormal: 'Rimay. Tukuspaqa llapiy.',
   preparandoVoz: 'Rimanaypaq wakichikuchkani…',
   hablandoAhora: 'Chaskim rimachkan…',
   yaLoDijo: 'Chaskiqa rimarqanñam.',
@@ -109,7 +109,7 @@ const quechua: Textos = {
   volver: 'Kutiy',
   reintentar: 'Yapamanta',
   sinConexion: 'Manam atinichu. Yapamanta ruray.',
-  noEscuche: 'Manam allintachu uyarirqani. Asuykamuspa chaski.',
+  noEscuche: 'Manam allintachu uyarirqani. Asuykamuspa rimay.',
   receta: 'Receta',
   consulta: 'Consulta',
 };

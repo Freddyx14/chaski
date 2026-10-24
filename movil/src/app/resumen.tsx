@@ -11,7 +11,7 @@ import { Chaski } from '@/chaski/chaski';
 import { nuevaConsulta, useTurnos } from '@/chaski/consulta';
 import { usePerfil } from '@/chaski/perfil';
 import { C, ESCALA } from '@/chaski/tokens';
-import { Manta } from '@/chaski/manta';
+import { MarcaChaski } from '@/chaski/motivos';
 import { Aviso, Boton, Tarjeta } from '@/chaski/ui';
 
 const EJEMPLO: Resumen = {
@@ -68,7 +68,7 @@ export default function PantallaResumen() {
   const paraPaciente = rol === 'paciente';
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
-      <Manta variante="faja" escala={1.3} />
+      <View style={{ paddingHorizontal: 16, paddingTop: 10 }}><MarcaChaski /></View>
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
         <View style={e.fila}>
           <Chaski estado={r ? 'presentarse' : error ? 'no_entendi' : 'pensando'} tam={96} />

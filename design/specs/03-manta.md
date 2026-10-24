@@ -1,5 +1,7 @@
 # Chaski · la manta andina (D28)
 
+> ⚠️ **Reemplazado por D29** (`04-l-d-mas-i.md`): las bandas de franjas de esta página ya no están en la app. Se conserva como historia.
+
 > Sábado 24 de octubre, 09:40 PT. Pedido de Freddy: la identidad visual sale de las mantas de la sierra
 > (lliclla), con sus franjas de tinte y sus cadenas tejidas. Referencia favorita: tela blanca con franjas de
 > colores y bandas de rombos. **Reemplaza la regla de D24 de «una sola franja textil fina como único adorno».**

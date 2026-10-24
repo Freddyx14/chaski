@@ -18,9 +18,13 @@ import {
 import { usePerfil, type Perfil } from '@/chaski/perfil';
 import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/chaski/textos';
 import { C, ESCALA } from '@/chaski/tokens';
-import { Manta } from '@/chaski/manta';
+import { AnilloChakana, BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
+import { nivelDesdeDb, palabrasDichas } from '@/chaski/movimiento';
 import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/chaski/ui';
-import { bocaAbierta, envolvente, type Envolvente } from '@/chaski/wav';
+import { bocaAbierta, envolvente, nivelEn, type Envolvente } from '@/chaski/wav';
+import Animated, {
+  FadeInDown, useAnimatedStyle, useReducedMotion, useSharedValue, withSequence, withTiming, ZoomIn,
+} from 'react-native-reanimated';
 
 // WAV 16 kHz mono 16 bits: lo que piden el detector de idioma y el reconocimiento (CONTRATO.md §1).
 const GRABACION: RecordingOptions = {
@@ -124,8 +128,20 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
     })();
   }, []);
 
-  const hablando = estadoReproductor.playing;
-  const boca = hablando && bocaAbierta(env, estadoReproductor.currentTime);
+  // En modo demo no hay micrófono ni audio: un reloj falso mueve el nivel y la voz para que se vea el movimiento.
+  const esDemo = !!inicial;
+  const reloj = useRelojDemo(esDemo && (fase.f === 'grabando' || fase.f === 'dicho'));
+  const hablandoDemo = esDemo && fase.f === 'dicho';
+  const hablando = estadoReproductor.playing || hablandoDemo;
+  const nivelVoz = esDemo && fase.f === 'grabando'
+    ? 0.45 + 0.45 * Math.sin(reloj * 5) * Math.sin(reloj * 1.3)
+    : nivelDesdeDb(estadoGrabadora.metering);
+  const pulso = !hablando ? undefined
+    : hablandoDemo ? Math.abs(Math.sin(reloj * 9)) * (0.55 + 0.45 * Math.sin(reloj * 2))
+      : nivelEn(env, estadoReproductor.currentTime);
+  const progresoVoz = hablandoDemo ? (reloj % 4) / 4
+    : estadoReproductor.duration > 0 ? estadoReproductor.currentTime / estadoReproductor.duration : 0;
+  const boca = hablando && (hablandoDemo ? (pulso ?? 0) > 0.25 : bocaAbierta(env, estadoReproductor.currentTime));
 
   // ---- grabar -----------------------------------------------------------------------------
   async function empezar() {
@@ -240,11 +256,10 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
       <Encabezado t={t} />
-      <Manta variante="faja" escala={1.3} />
       <ScrollView contentContainerStyle={e.cuerpo} bounces={false}>
         {protagonista ? (
           <View style={e.centro}>
-            <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : fase.f === 'bloqueado' ? 150 : 200} boca={boca} />
+            <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : fase.f === 'bloqueado' || fase.f === 'pensando' ? 150 : 200} boca={boca} pulso={fase.f === 'dicho' ? pulso : undefined} />
           </View>
         ) : (
           <View style={e.filaChica}>
@@ -265,11 +280,11 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
           </View>
         )}
 
-        {fase.f === 'grabando' && <Medidor nivel={estadoGrabadora.metering} t={t} />}
+        {fase.f === 'grabando' && <Medidor nivel={nivelVoz} tinte={lado} t={t} />}
 
         {fase.f === 'pensando' && <Pensando fase={fase} t={t} />}
 
-        {fase.f === 'dicho' && <Dicho v={fase.v} vozLista={fase.vozLista} hablando={hablando} t={t} />}
+        {fase.f === 'dicho' && <Dicho v={fase.v} vozLista={fase.vozLista || hablandoDemo} hablando={hablando} progreso={progresoVoz} t={t} />}
 
         {fase.f === 'bloqueado' && <Bloqueado v={fase.v} t={t} />}
 
@@ -309,8 +324,19 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
             <Boton tipo="texto" texto={t.volver} onPress={() => setFase({ f: 'listo' })} />
           </View>
         )}
+        {fase.f === 'pensando' && (
+          <View style={{ alignItems: 'center' }}>
+            {/* Mientras piensa, el brillo gira por la constelación en el mismo lugar donde estaba el micrófono. */}
+            <AnilloChakana modo="piensa" tinte={fase.lado} lado={116}>
+              <View style={[e.micro, { width: 72, height: 72, borderRadius: 36, backgroundColor: C.actionTint }]}>
+                <Icono nombre="ellipsis" color={C.action} tam={28} />
+              </View>
+            </AnilloChakana>
+          </View>
+        )}
         {(fase.f === 'listo' || fase.f === 'grabando') && (
           <Microfono
+            nivel={nivelVoz}
             grabando={fase.f === 'grabando'}
             lado={lado}
             perfil={perfil}
@@ -345,7 +371,7 @@ function Encabezado({ t }: { t: Textos }) {
   return (
     <View style={e.encabezado}>
       <Pressable onLongPress={() => router.push('/ajustes')} style={e.marca} accessibilityHint="Mantenga presionado para ajustes">
-        <Text style={e.marcaTexto}>Chaski</Text>
+        <MarcaChaski />
         <Text style={e.reloj}>{t.consulta} · {reloj}</Text>
       </Pressable>
       <Pressable accessibilityLabel="Ver la conversación" onPress={() => router.push('/historial')} style={e.botonRedondo}>
@@ -355,20 +381,21 @@ function Encabezado({ t }: { t: Textos }) {
   );
 }
 
-function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta, onResumen }: {
-  grabando: boolean; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void; onResumen: () => void;
+function Microfono({ grabando, nivel, lado, perfil, t, onPress, onCambiarLado, onReceta, onResumen }: {
+  grabando: boolean; nivel: number; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void; onResumen: () => void;
 }) {
   return (
     <View style={{ alignItems: 'center', gap: 12 }}>
       <View style={e.filaMicro}>
         <View style={e.lateral}>
           {!grabando && (
-            <Pressable onPress={onReceta} style={e.botonLateral} accessibilityLabel="Leer receta">
+            <BotonEscalonado onPress={onReceta} etiqueta="Leer receta">
               <Icono nombre="camera" color={C.inkSecondary} tam={22} />
-            </Pressable>
+            </BotonEscalonado>
           )}
           {!grabando && <Text style={e.lateralTexto}>{t.receta}</Text>}
         </View>
+        <AnilloChakana modo={grabando ? 'escucha' : 'reposo'} nivel={nivel} tinte={lado}>
         <Pressable
           accessibilityRole="button"
           accessibilityLabel={grabando ? 'Terminar y traducir' : 'Empezar a hablar'}
@@ -380,11 +407,12 @@ function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta
           ]}>
           <Icono nombre={grabando ? 'stop.fill' : 'mic.fill'} color={C.surface} tam={36} />
         </Pressable>
+        </AnilloChakana>
         <View style={e.lateral}>
           {!grabando && (
-            <Pressable onPress={onResumen} style={e.botonLateral} accessibilityLabel="Terminar y ver el resumen">
+            <BotonEscalonado onPress={onResumen} etiqueta="Terminar y ver el resumen">
               <Icono nombre="checklist" color={C.inkSecondary} tam={22} />
-            </Pressable>
+            </BotonEscalonado>
           )}
           {!grabando && <Text style={e.lateralTexto}>{t.resumen}</Text>}
         </View>
@@ -400,20 +428,24 @@ function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta
   );
 }
 
-function Medidor({ nivel, t }: { nivel?: number; t: Textos }) {
-  // metering viene en dB (-160..0). Se lleva a 0..1 y se dibuja como barras.
-  const n = nivel === undefined ? 0 : Math.max(0, Math.min(1, (nivel + 55) / 50));
-  const [historia, setHistoria] = useState<number[]>(Array(24).fill(0));
-  useEffect(() => setHistoria((h) => [...h.slice(1), n]), [n]);
+/** El medidor mientras alguien habla: una fila de crucecitas que crecen con la voz, del color del turno. */
+function Medidor({ nivel, tinte, t }: { nivel: number; tinte: Lado; t: Textos }) {
+  const [historia, setHistoria] = useState<number[]>(Array(18).fill(0));
+  useEffect(() => setHistoria((h) => [...h.slice(1), nivel]), [nivel]);
+  const color = tinte === 'quechua' ? C.quechua : C.action;
   return (
-    <Tarjeta estilo={{ marginTop: 16, alignItems: 'center' }}>
-      <Text style={e.secundario}>{t.hableNormal}</Text>
-      <View style={e.barras}>
-        {historia.map((v, i) => (
-          <View key={i} style={[e.barra, { height: 6 + v * 26 }]} />
-        ))}
-      </View>
-    </Tarjeta>
+    <Animated.View entering={FadeInDown.springify().damping(18)}>
+      <Tarjeta estilo={{ marginTop: 16, alignItems: 'center' }}>
+        <Text style={e.secundario}>{t.hableNormal}</Text>
+        <View style={e.barras}>
+          {historia.map((v, i) => (
+            <View key={i} style={{ width: 16, alignItems: 'center' }}>
+              <Cruz tam={Math.round(5 + v * 11)} color={color} />
+            </View>
+          ))}
+        </View>
+      </Tarjeta>
+    </Animated.View>
   );
 }
 
@@ -433,11 +465,14 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
           const ahora = i === fase.paso;
           return (
             <View key={p} style={e.paso}>
-              <Icono
-                nombre={hecho ? 'checkmark.circle.fill' : ahora ? 'ellipsis.circle' : 'circle'}
-                color={hecho ? C.ok : ahora ? C.action : C.border}
-                tam={20}
-              />
+              {/* Cada paso cumplido entra con un resorte chico: se siente que avanzó. */}
+              <Animated.View key={hecho ? 'hecho' : 'falta'} entering={hecho ? ZoomIn.springify().damping(12) : undefined}>
+                <Icono
+                  nombre={hecho ? 'checkmark.circle.fill' : ahora ? 'ellipsis.circle' : 'circle'}
+                  color={hecho ? C.ok : ahora ? C.action : C.border}
+                  tam={20}
+                />
+              </Animated.View>
               <Text style={[e.pasoTexto, { color: hecho || ahora ? C.ink : C.inkTertiary }]}>{p}</Text>
             </View>
           );
@@ -450,25 +485,33 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
 function Casillas({ casillas }: { casillas: { nombre: string; ok: boolean }[] }) {
   return (
     <View style={e.casillas}>
-      {casillas.map((c) => (
-        <View key={c.nombre} style={e.casilla}>
-          <Icono nombre="checkmark" color={C.ok} tam={12} />
+      {casillas.map((c, i) => (
+        // Los chips entran uno por uno: la auditoría se ve revisada, punto por punto.
+        <Animated.View key={c.nombre} entering={ZoomIn.delay(180 + i * 110).springify().damping(14)} style={e.casilla}>
+          <Icono nombre="checkmark" color={C.ok} tam={11} />
           <Text style={e.casillaTexto}>{c.nombre}</Text>
-        </View>
+        </Animated.View>
       ))}
     </View>
   );
 }
 
-function Dicho({ v, vozLista, hablando, t }: {
-  v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean; hablando: boolean; t: Textos;
+function Dicho({ v, vozLista, hablando, progreso, t }: {
+  v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean; hablando: boolean; progreso: number; t: Textos;
 }) {
+  // El texto se lee siempre entero; lo que la voz ya dijo pasa a tinta plena, palabra por palabra.
+  const palabras = v.quechua.split(/\s+/).filter(Boolean);
+  const dichas = hablando ? palabrasDichas(palabras.length, progreso) : vozLista ? palabras.length : 0;
   return (
-    <View style={{ gap: 12, marginTop: 12 }}>
+    <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
       <View style={{ alignItems: 'center' }}><Etiqueta idioma="quechua" /></View>
       <Tarjeta>
-        <Text style={e.quechua}>{v.quechua}</Text>
-        <View style={e.separador} />
+        <Text style={e.quechua}>
+          {palabras.map((p, i) => (
+            <Text key={i} style={{ color: i < dichas ? C.ink : C.inkTertiary }}>{p}{i < palabras.length - 1 ? ' ' : ''}</Text>
+          ))}
+        </Text>
+        <Zigzag />
         <Text style={e.secundario}>{v.castellano}</Text>
         <Text style={[e.mini, { marginTop: 8 }]}>
           {!vozLista ? t.preparandoVoz : hablando ? t.hablandoAhora : t.yaLoDijo}
@@ -487,13 +530,24 @@ function Dicho({ v, vozLista, hablando, t }: {
           texto={v.terminos.length ? t.dichoConAviso(v.terminos.join(', ')) : t.dichoConAvisoSolo}
         />
       )}
-    </View>
+    </Animated.View>
   );
 }
 
 function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: Textos }) {
+  // Un solo temblor suave de la comparación al aparecer: avisa sin alarmar. Nunca rojo que parpadea.
+  const quieto = useReducedMotion();
+  const x = useSharedValue(0);
+  useEffect(() => {
+    if (quieto) return;
+    x.value = withSequence(
+      withTiming(-6, { duration: 70 }), withTiming(6, { duration: 70 }),
+      withTiming(-3, { duration: 70 }), withTiming(0, { duration: 70 }),
+    );
+  }, [quieto, x]);
+  const temblor = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
   return (
-    <View style={{ gap: 12, marginTop: 12 }}>
+    <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
       <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>{t.noLoDije}</Text>
       <Text style={[e.explicacion, { alignSelf: 'center' }]}>{t.reviseParte}</Text>
       <Tarjeta>
@@ -502,7 +556,7 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
       </Tarjeta>
       {v.diferencias.length > 0 ? (
         v.diferencias.map((d, i) => (
-          <View key={i} style={e.comparacion}>
+          <Animated.View key={i} style={[e.comparacion, temblor]}>
             <Text style={[e.rotulo, { color: C.block }]}>{d.nombre.toUpperCase()}</Text>
             <View style={e.dosColumnas}>
               <View style={{ flex: 1 }}>
@@ -514,7 +568,7 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
                 <Text style={[e.valor, { color: C.block }]}>{d.decia}</Text>
               </View>
             </View>
-          </View>
+          </Animated.View>
         ))
       ) : (
         <View style={e.comparacion}>
@@ -528,12 +582,13 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
           <Casillas casillas={v.casillasOk.map((nombre) => ({ nombre, ok: true }))} />
         </Tarjeta>
       )}
-    </View>
+    </Animated.View>
   );
 }
 
 function Paciente({ r, t }: { r: RespuestaPaciente; t: Textos }) {
   return (
+    <Animated.View entering={FadeInDown.springify().damping(18)}>
     <Tarjeta estilo={{ marginTop: 16, gap: 6 }}>
       <Text style={e.rotulo}>{t.loQueDijo}</Text>
       <Text style={[e.cuerpoTexto, { color: C.inkSecondary }]}>{r.chanka_oido || t.noSeOyo}</Text>
@@ -546,7 +601,20 @@ function Paciente({ r, t }: { r: RespuestaPaciente; t: Textos }) {
         {r.dudas.length > 0 && <Text style={e.mini}>{t.noEntendi}: {r.dudas.join(' · ')}</Text>}
       </View>
     </Tarjeta>
+    </Animated.View>
   );
+}
+
+/** Segundos desde que se activó, cada 50 ms. Solo para el modo demo, que no tiene micrófono ni audio. */
+function useRelojDemo(activo: boolean): number {
+  const [t, setT] = useState(0);
+  useEffect(() => {
+    if (!activo) return;
+    const inicio = Date.now();
+    const id = setInterval(() => setT((Date.now() - inicio) / 1000), 50);
+    return () => clearInterval(id);
+  }, [activo]);
+  return t;
 }
 
 function primeraMayuscula(s: string) {
@@ -557,8 +625,8 @@ const e = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: C.ground },
   encabezado: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 10 },
   marca: { gap: 2 },
-  marcaTexto: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink },
-  reloj: { fontSize: ESCALA.mini, color: C.inkSecondary, fontVariant: ['tabular-nums'] },
+  // Alineado bajo «Chaski», pasando la chakana.
+  reloj: { fontSize: ESCALA.mini, color: C.inkSecondary, fontVariant: ['tabular-nums'], paddingLeft: 27 },
   botonRedondo: { width: 40, height: 40, borderRadius: 20, backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, alignItems: 'center', justifyContent: 'center' },
   cuerpo: { paddingHorizontal: 16, paddingTop: 16, paddingBottom: 24 },
   centro: { alignItems: 'center' },
@@ -571,27 +639,25 @@ const e = StyleSheet.create({
   cuerpoTexto: { fontSize: ESCALA.h2, color: C.ink, lineHeight: 26 },
   quechua: { fontSize: ESCALA.h1, fontWeight: '600', color: C.ink, lineHeight: 31 },
   significado: { fontSize: ESCALA.h1, fontWeight: '700', color: C.ink, lineHeight: 31 },
-  separador: { height: 1, backgroundColor: C.border, marginVertical: 12 },
   rotulo: { fontSize: ESCALA.mini, fontWeight: '600', color: C.inkTertiary, letterSpacing: 0.6 },
   valor: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink, marginTop: 2 },
   comparacion: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderLeftWidth: 4, borderLeftColor: C.block, borderRadius: 16, padding: 16 },
   dosColumnas: { flexDirection: 'row', gap: 16, marginTop: 8 },
   auditoria: { borderRadius: 16, padding: 14, gap: 8 },
   auditoriaTitulo: { fontSize: ESCALA.chico, fontWeight: '600' },
-  casillas: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
-  casilla: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  casillas: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
+  // Cada verificación en su propio chip blanco (D29): ningún motivo toca la fila de auditoría.
+  casilla: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: C.surface, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 },
   casillaTexto: { fontSize: ESCALA.mini, fontWeight: '500', color: C.ok },
   paso: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   pasoTexto: { fontSize: ESCALA.cuerpo, fontWeight: '500' },
-  barras: { flexDirection: 'row', alignItems: 'center', gap: 4, height: 40, marginTop: 12 },
-  barra: { width: 4, borderRadius: 2, backgroundColor: C.action },
+  barras: { flexDirection: 'row', alignItems: 'center', height: 40, marginTop: 12 },
   pie: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8 },
   filaBotones: { flexDirection: 'row', gap: 12 },
-  filaMicro: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 28 },
+  filaMicro: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', alignSelf: 'stretch' },
   micro: { width: 96, height: 96, borderRadius: 48, alignItems: 'center', justifyContent: 'center' },
   microTexto: { fontSize: ESCALA.chico, fontWeight: '600', color: C.action },
-  lateral: { width: 64, alignItems: 'center', gap: 4 },
-  botonLateral: { width: 56, height: 56, borderRadius: 28, backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, alignItems: 'center', justifyContent: 'center' },
+  lateral: { width: 72, alignItems: 'center', gap: 4 },
   lateralTexto: { fontSize: ESCALA.mini, color: C.inkSecondary },
   lado: { flexDirection: 'row', alignItems: 'center', gap: 6, paddingVertical: 8, paddingHorizontal: 14, borderRadius: 16, backgroundColor: C.castellanoTag },
   ladoTexto: { fontSize: ESCALA.mini, fontWeight: '600', color: C.inkSecondary },

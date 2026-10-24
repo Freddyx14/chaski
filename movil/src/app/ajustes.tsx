@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { salud } from '@/chaski/api';
 import { guardarServidor, leerServidor } from '@/chaski/config';
 import { guardarPerfil } from '@/chaski/perfil';
+import { MarcaChaski } from '@/chaski/motivos';
 import { C, ESCALA } from '@/chaski/tokens';
 import { Aviso, Boton } from '@/chaski/ui';
 
@@ -33,7 +34,7 @@ export default function Ajustes() {
   return (
     <SafeAreaView style={e.pantalla}>
       <View style={{ padding: 16, gap: 14 }}>
-        <Text style={e.titulo}>Servicio</Text>
+        <MarcaChaski texto="Servicio" tam={ESCALA.h1} />
         <Text style={e.secundario}>La dirección HTTPS del túnel que expone el servicio (termina en trycloudflare.com).</Text>
         <TextInput
           value={url}
@@ -56,7 +57,6 @@ export default function Ajustes() {
 
 const e = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: C.ground },
-  titulo: { fontSize: ESCALA.h1, fontWeight: '700', color: C.ink },
   secundario: { fontSize: ESCALA.chico, color: C.inkSecondary, lineHeight: 20 },
   campo: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderRadius: 14, padding: 14, fontSize: ESCALA.chico, color: C.ink },
 });
