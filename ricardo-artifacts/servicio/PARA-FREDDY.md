@@ -37,6 +37,8 @@ curl https://unsubmitted-wally-relatable.ngrok-free.dev/salud
 | `POST /voz` | `texto` (en chanka) | el WAV, para pedirlo **después** de mostrar el texto |
 | `POST /escuchar` | `audio` (castellano) | texto con Cartesia `ink-whisper` |
 | `POST /ver` | `imagen`, `dicho` opcional | lee la caja o la receta con Claude |
+| `POST /idioma` | `audio` (archivo) | `{codigo, confianza, probabilidades, ms}` — solo el detector, sin Claude |
+| `POST /resumen` | `turnos` (JSON), `rol` | el resumen de la consulta según quién lo lee |
 | `GET /salud` | — | qué modelo de visión usa y si están las claves |
 
 Todo es `multipart/form-data`, como un formulario de siempre.
@@ -146,3 +148,43 @@ La tercera es la grave: invierte cuándo traer a un bebé que no se mueve.
 Propuesta, y queda en tus manos porque el esquema es tuyo: además de comparar por campos, comparar la
 retraducción contra el original directamente. Los campos atrapan dosis y horas, que es para lo que
 están; lo demás se les escapa entero.
+
+
+---
+
+## `/idioma` y `/resumen`, listas (sáb 24-oct)
+
+Las dos que pediste. Están puestas, desplegadas en la instancia y probadas contra la URL pública.
+No cambia nada de tu lado: son las rutas que tu app ya llamaba.
+
+**`/idioma`** reenvía al servicio de voz, que ya tenía `mms-lid-512` cargado:
+
+```
+POST /idioma  (audio)
+{"codigo":"quy","confianza":1.0,"probabilidades":{"spa":0.0,"quy":1.0},"ms":517.2}
+```
+
+517 ms ahí son el modelo con el audio largo de prueba; con un turno corto son los 49 ms de siempre.
+Se puede preguntar en cada turno en vez de alternar los lados a mano.
+
+**`/resumen`** expone `chaski.resumen` tal cual. Probada con una consulta de cuatro turnos donde uno
+venía `bloqueado`, que es el caso que importa:
+
+```
+turno bloqueado : «Si hay sangrado, venga de inmediato a la posta»
+
+indicaciones      ['Tomar una pastilla cada ocho horas por tres días']
+senales_de_alarma []
+no_se_dijo        ['Si hay sangrado, venga de inmediato a la posta']
+```
+
+La regla aguanta: lo bloqueado no salió como indicación ni como señal de alarma, salió en `no_se_dijo`.
+Es lo correcto — al paciente nunca se le dijo, y la enfermera tiene que enterarse de eso.
+
+Rol `personal` escribe en castellano clínico; rol `paciente` tutea y arma el `texto_para_decir`.
+Tardan 2.8 s y 4.7 s.
+
+**Una cosa para que decidas tú.** Un turno `dicho_con_aviso` («Su control es el lunes») no salió en
+`proxima_cita` sino en `dudas`, y en el resumen de paciente sí apareció en `texto_para_decir`. Puede
+ser lo que querías —se dijo con aviso, así que dudar es razonable— pero son dos criterios distintos
+entre roles. El prompt es tuyo; yo no lo toqué.
