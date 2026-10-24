@@ -98,6 +98,26 @@
   </div>
 
   <section class="panel">
+    <h2>3 · La caja del medicamento <span class="ms" id="relojCamara"></span></h2>
+    <div class="cuerpo">
+      <div class="fila">
+        <button id="abrirCamara">Abrir cámara</button>
+        <button id="tomar" class="principal" disabled>Tomar foto</button>
+        <button id="subir">Subir o usar cámara del teléfono</button>
+        <input id="archivo" type="file" accept="image/*" capture="environment" hidden>
+      </div>
+      <video id="camara" autoplay playsinline muted hidden
+             style="width:100%;max-width:520px;background:#111;border:1px solid var(--regla);aspect-ratio:4/3;object-fit:cover"></video>
+      <img id="vista" hidden alt="foto"
+           style="width:100%;max-width:520px;border:1px solid var(--regla)">
+      <canvas id="lienzo" hidden></canvas>
+      <div id="salidaCamara"><p class="vacio">Enfoca una caja o una receta. Chaski la lee y dice para qué sirve.</p></div>
+      <p class="nota">En el teléfono, «Subir o usar cámara» abre la cámara nativa y funciona sin HTTPS.
+        La cámara en vivo necesita <b>localhost o HTTPS</b>.</p>
+    </div>
+  </section>
+
+  <section class="panel">
     <h2>Presupuesto de espera</h2>
     <div class="cuerpo">
       <div class="reloj" id="presupuesto"><span class="vacio">Todavía no hay turnos medidos.</span></div>
@@ -214,7 +234,8 @@ function pintarEnfermera(d, msTotal) {
                  : `<div class="sello s-mal">BLOQUEADO · ${d.motivo}</div>`);
   const audio = d.audio_wav_b64
     ? `<audio controls autoplay src="data:audio/wav;base64,${d.audio_wav_b64}"></audio>`
-    : '<p class="nota">No se genera audio: no se dice en voz alta.</p>';
+    : (d.se_dice ? '<p class="nota" id="estadoVoz">Generando la voz…</p>'
+                 : '<p class="nota">No se genera audio: no se dice en voz alta.</p>');
   const inseguros = (d.terminos_inseguros || []).length
     ? `<p class="nota">Términos sin traducción segura: <b>${d.terminos_inseguros.join(', ')}</b></p>` : '';
   $('#salidaEnfermera').innerHTML = `
@@ -226,11 +247,84 @@ function pintarEnfermera(d, msTotal) {
     ${d.aviso ? `<p class="nota">${d.aviso}</p>` : ''}
     ${(!d.se_dice) ? '<button id="forzar" style="margin-top:6px">Decirlo igual (solo ensayo)</button>' : ''}
     ${inseguros}
-    <div class="paso ok"><span class="que">Voz de Chaski · mms-tts-quy · ${d.pasos.hablar_ms || '—'} ms</span>
+    <div class="paso ok" id="cajaVoz"><span class="que">Voz de Chaski · mms-tts-quy</span>
       ${audio}</div>`;
+  if (d.se_dice && !d.audio_wav_b64) pedirVoz(d.quechua);
   presupuesto();
   const f = document.getElementById('forzar');
   if (f) f.onclick = () => decir(true);
+}
+
+async function pedirVoz(quechua) {
+  try {
+    const cuerpo = new FormData();
+    cuerpo.append('texto', quechua);
+    const t0 = performance.now();
+    const r = await fetch('/voz', {method: 'POST', body: cuerpo});
+    const ms = r.headers.get('X-Ms') || Math.round(performance.now() - t0);
+    const blob = await r.blob();
+    const caja = document.getElementById('cajaVoz');
+    if (caja) caja.innerHTML = `<span class="que">Voz de Chaski · mms-tts-quy · ${ms} ms</span>
+      <audio controls autoplay src="${URL.createObjectURL(blob)}"></audio>`;
+    if (ultimo.enfermera) ultimo.enfermera.pasos.hablar_ms = Number(ms);
+    presupuesto();
+  } catch (e) {
+    const est = document.getElementById('estadoVoz');
+    if (est) est.textContent = 'No se pudo generar la voz: ' + e.message;
+  }
+}
+
+// --- camara ---
+let flujoVideo = null;
+$('#abrirCamara').onclick = async () => {
+  try {
+    flujoVideo = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:1280}});
+    const v = $('#camara'); v.srcObject = flujoVideo; v.hidden = false;
+    $('#vista').hidden = true; $('#tomar').disabled = false;
+  } catch (e) {
+    $('#salidaCamara').innerHTML = `<div class="sello s-mal">No se pudo abrir la cámara: ${e.message}.
+      Usa «Subir o usar cámara del teléfono».</div>`;
+  }
+};
+$('#tomar').onclick = () => {
+  const v = $('#camara'), c = $('#lienzo');
+  c.width = v.videoWidth; c.height = v.videoHeight;
+  c.getContext('2d').drawImage(v, 0, 0);
+  c.toBlob(b => { verFoto(b); }, 'image/jpeg', 0.92);
+};
+$('#subir').onclick = () => $('#archivo').click();
+$('#archivo').onchange = e => { const f = e.target.files[0]; if (f) verFoto(f); };
+
+async function verFoto(blob) {
+  $('#vista').src = URL.createObjectURL(blob); $('#vista').hidden = false; $('#camara').hidden = true;
+  $('#salidaCamara').innerHTML = '<p class="vacio">Chaski está leyendo la caja…</p>';
+  avatar('escuchando');
+  const cuerpo = new FormData();
+  cuerpo.append('imagen', blob, 'caja.jpg');
+  cuerpo.append('dicho', $('#respuesta').value || '');
+  const t0 = performance.now();
+  try {
+    const d = await (await fetch('/ver', {method:'POST', body:cuerpo})).json();
+    if (d.error) throw new Error(d.error);
+    $('#relojCamara').textContent = Math.round(performance.now() - t0) + ' ms';
+    const coincide = d.coincide_con_lo_dicho === null ? '' :
+      (d.coincide_con_lo_dicho ? '<div class="sello s-ok">Coincide con lo que dijiste</div>'
+        : '<div class="sello s-mal">NO coincide con lo que dijiste</div>');
+    $('#salidaCamara').innerHTML = `
+      ${d.seguro ? '<div class="sello s-ok">Leído con seguridad</div>'
+                 : '<div class="sello s-mal">No está seguro · no inventa</div>'}
+      <div class="paso"><span class="que">Medicamento</span>
+        <p class="texto"><b>${d.medicamento || '—'}</b> ${d.concentracion || ''} ${d.presentacion || ''}</p></div>
+      <div class="paso"><span class="que">Para qué sirve</span><p class="texto">${d.para_que_sirve || '—'}</p></div>
+      ${coincide}
+      <button id="decirCaja" style="margin-top:8px">Decírselo al paciente en quechua</button>`;
+    avatar(d.seguro ? 'hablando' : 'no_entendi');
+    const b = document.getElementById('decirCaja');
+    if (b) b.onclick = () => { $('#respuesta').value = d.para_que_sirve; decir(false); };
+  } catch (e) {
+    $('#salidaCamara').innerHTML = `<div class="sello s-mal">${e.message}</div>`;
+    avatar('no_entendi');
+  }
 }
 
 function presupuesto() {

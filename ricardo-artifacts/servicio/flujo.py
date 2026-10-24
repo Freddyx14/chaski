@@ -72,13 +72,32 @@ def turno_del_paciente(audio: bytes, nombre: str = "turno.wav") -> dict:
 
 
 def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
-                          forzar: bool = False) -> dict:
-    """Castellano -> auditoría -> chanka -> audio."""
+                          forzar: bool = False, rapido: bool = True,
+                          con_audio: bool = True) -> dict:
+    """Castellano -> auditoría -> chanka -> audio.
+
+    `rapido` usa la orquestación en paralelo con modelos mezclados: 5.3 s en vez
+    de 26 s. `con_audio=False` devuelve solo el texto, para que la página lo
+    muestre YA y pida la voz después.
+    """
     import anthropic
-    from rimay.auditoria import auditar
 
     t0 = time.perf_counter()
-    r = auditar(anthropic.Anthropic(), texto_es)
+    if rapido:
+        from servicio.auditoria_rapida import auditar_rapido
+        d = auditar_rapido(texto_es)
+        r = type("R", (), d)
+        r.diferencias = d["diferencias"]
+        detalle = d["tiempos"]
+    else:
+        from rimay.auditoria import auditar
+        res = auditar(anthropic.Anthropic(), texto_es)
+        d = {"quechua": res.quechua, "retraduccion": res.retraduccion, "enviar": res.enviar,
+             "motivo": res.motivo, "terminos_inseguros": res.terminos_inseguros,
+             "diferencias": [x.model_dump() for x in res.diferencias]}
+        r = type("R", (), d)
+        r.diferencias = d["diferencias"]
+        detalle = {}
     auditoria_ms = round((time.perf_counter() - t0) * 1000, 1)
 
     solo_terminos = (not r.diferencias) and bool(r.terminos_inseguros)
@@ -87,7 +106,7 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
     se_dice = r.enviar or (modo_ensayo and solo_terminos) or forzar
 
     audio_b64, hablar_ms = None, None
-    if se_dice:
+    if se_dice and con_audio:
         import base64
         with httpx.Client(timeout=300) as cli:
             t0 = time.perf_counter()
@@ -98,7 +117,7 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
     return {"quechua": r.quechua, "retraduccion": r.retraduccion,
             "aprobado_por_auditoria": r.enviar, "motivo": r.motivo,
             "terminos_inseguros": r.terminos_inseguros,
-            "diferencias": [d.model_dump() for d in r.diferencias],
+            "diferencias": d["diferencias"],
             "se_dice": se_dice,
             "aviso": (("Forzado a mano en ensayo: la auditoría NO lo aprueba y alguien decidió decirlo "
                        "igual. En producción esto no existe.") if (forzar and not r.enviar)
@@ -107,5 +126,14 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
                             "esto se corrige.") if (se_dice and not r.enviar) else None),
             "forzado": bool(forzar and not r.enviar),
             "audio_wav_b64": audio_b64,
-            "pasos": {"auditoria_ms": auditoria_ms, "hablar_ms": hablar_ms},
+            "pasos": {"auditoria_ms": auditoria_ms, "hablar_ms": hablar_ms, **detalle},
+            "rapido": rapido,
             "total_ms": round(auditoria_ms + (hablar_ms or 0), 1)}
+
+
+def decir_en_voz(texto_quechua: str) -> tuple[bytes, float]:
+    """Solo la voz. La página la pide aparte, cuando ya mostró el texto."""
+    with httpx.Client(timeout=300) as cli:
+        t0 = time.perf_counter()
+        voz = cli.post(f"{INSTANCIA}/hablar", data={"texto": texto_quechua})
+    return voz.content, round((time.perf_counter() - t0) * 1000, 1)

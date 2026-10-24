@@ -24,6 +24,7 @@ if APP_DE_FREDDY.exists() and str(APP_DE_FREDDY) not in sys.path:
     sys.path.insert(0, str(APP_DE_FREDDY))
 
 from fastapi import FastAPI, File, Form, UploadFile
+from fastapi import Response
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -89,12 +90,74 @@ async def turno_paciente(audio: UploadFile = File(...)):
 
 @aplicacion.post("/turno/enfermera")
 def turno_enfermera(texto: str = Form(...), modo_ensayo: bool = Form(True),
-                    forzar: bool = Form(False)):
+                    forzar: bool = Form(False), rapido: bool = Form(True),
+                    con_audio: bool = Form(False)):
     from servicio.flujo import turno_de_la_enfermera
     try:
-        return turno_de_la_enfermera(texto, modo_ensayo=modo_ensayo, forzar=forzar)
+        return turno_de_la_enfermera(texto, modo_ensayo=modo_ensayo, forzar=forzar,
+                                     rapido=rapido, con_audio=con_audio)
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.get("/corregir")
+def pagina_corregir():
+    return FileResponse(AQUI / "static" / "corregir.html")
+
+
+@aplicacion.get("/corpus/personas")
+def corpus_personas():
+    from servicio.corpus import personas
+    return {"personas": personas()}
+
+
+@aplicacion.get("/corpus/clips")
+def corpus_clips(persona: str):
+    from servicio.corpus import clips
+    return {"clips": clips(persona)}
+
+
+@aplicacion.get("/corpus/audio")
+def corpus_audio(ruta: str):
+    p = Path(ruta)
+    return FileResponse(p) if p.exists() else JSONResponse({"error": "no existe"}, 404)
+
+
+@aplicacion.post("/corpus/transcribir")
+def corpus_transcribir(ruta: str = Form(...)):
+    from servicio.corpus import transcribir
+    try:
+        return transcribir(ruta)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/corpus/guardar")
+def corpus_guardar(persona: str = Form(...), numero: int = Form(...),
+                   transcripcion: str = Form(""), consentimiento: bool = Form(True),
+                   descartar: bool = Form(False)):
+    from servicio.corpus import guardar
+    try:
+        return guardar(persona, numero, transcripcion, consentimiento, descartar)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/corpus/exportar")
+def corpus_exportar(persona: str = Form("")):
+    from servicio.corpus import exportar
+    return exportar(persona or None)
+
+
+@aplicacion.post("/voz")
+def voz(texto: str = Form(...)):
+    """Solo la voz, para pedirla DESPUÉS de mostrar el texto."""
+    from servicio.flujo import decir_en_voz
+    try:
+        audio, ms = decir_en_voz(texto)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+    return Response(content=audio, media_type="audio/wav", headers={"X-Ms": str(ms)})
 
 
 @aplicacion.post("/traducir")

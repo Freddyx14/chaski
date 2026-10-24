@@ -140,3 +140,69 @@ Mientras los modelos no estén ajustados, la página trae dos salidas, y las dos
 
 Verificado: forzando «Tome una tableta cada ocho horas» salió
 `Huk tabletata upyakunki sapa pusaq horaspi.` con 171 KB de audio en chanka.
+
+## Bajar la espera: de 26 s a 5.1 s
+
+La auditoría eran cuatro llamadas a Opus 5 en fila. Tres cambios, medidos:
+
+| Qué | Mediana |
+|---|---|
+| Original: Opus 5 × 4 en serie | **26,210 ms** |
+| Paralelo + Sonnet traduce + Haiku lo mecánico | **10,174 ms** |
+| Paralelo + Haiku en todo | **5,143 ms** |
+
+1. **Paralelo.** Sacar los hechos del original y traducir no dependen una de la otra: salen juntas.
+   Tres pasos en vez de cuatro.
+2. **Cada llamada con su modelo.** Traducir pide calidad. Sacar hechos de un texto y retraducir son
+   mecánicas: Haiku las hace en una fracción.
+3. **El glosario va en el `system`, no en el mensaje**, con `cache_control`. Así es prefijo estable y no
+   se reprocesa en cada llamada.
+
+Está en `servicio/auditoria_rapida.py`, que **reusa los prompts y los modelos de datos de Freddy**: solo
+cambia la orquestación. Su `auditar` original sigue intacto y se puede pedir con `rapido=false`.
+
+**Y la página ya no espera a la voz:** muestra el chanka apenas lo tiene y pide el audio en una segunda
+llamada (`POST /voz`, 543 ms). Lo que se siente bajó de 26 s a unos 5 s hasta ver el texto.
+
+## La cámara, en el mismo flujo
+
+`/flujo` tiene ahora el panel 3. Dos caminos, porque los navegadores no se ponen de acuerdo:
+
+- **Cámara en vivo** (`getUserMedia`): funciona en laptop con `localhost`. En teléfono **necesita HTTPS**.
+- **«Subir o usar cámara del teléfono»** (`<input capture="environment">`): abre la cámara nativa de
+  Android y iOS y **funciona sin HTTPS**.
+
+Lo que lee la caja se puede mandar al paciente en quechua con un botón, así se ve la cadena entera:
+foto → castellano → chanka → voz.
+
+## El corrector: `/corregir`
+
+Convierte audios crudos en verdad de referencia, y **una corrección sirve para los tres ajustes**:
+
+```
+audio → omniASR transcribe → nosotros corregimos la escritura → (audio, texto correcto) + castellano
+```
+
+| Conjunto | Qué par usa | Para qué |
+|---|---|---|
+| `datos/corpus/asr.jsonl` | audio → texto chanka | que entienda el acento y los préstamos |
+| `datos/corpus/tts.jsonl` | texto chanka → audio | que Chaski suene como una persona de verdad |
+| `datos/corpus/traduccion.jsonl` | castellano ↔ chanka | que traduzca como se habla en la posta |
+
+La pantalla muestra la frase en castellano del cuadernillo, reproduce el audio, trae lo que oyó el modelo
+como borrador y deja corregirlo. `⌘ Enter` guarda y pasa al siguiente; `Espacio` vuelve a escuchar;
+«No sirve» descarta el clip. El botón «Exportar corpus» escribe los tres archivos.
+
+**Solo entra al corpus lo que tiene transcripción corregida y consentimiento marcado.**
+
+## Antes de apagar la instancia
+
+Ya está hecho: `~/chaski-respaldo`, **18 GB** en el disco raíz, que sí sobrevive al apagado.
+Al encenderla mañana:
+
+```bash
+ssh -i ~/.ssh/id_rsa_aws ubuntu@44.220.107.99 'bash ~/restaurar.sh'
+```
+
+Copia el entorno de vuelta al NVMe, deja la caché de fairseq2 enlazada y levanta el servicio.
+**Unos 2 minutos**, sin descargar nada. Reconstruir desde cero serían 12 a 15.

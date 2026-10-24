@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaski · corregir transcripciones</title>
+<style>
+  :root{color-scheme:light;--papel:#f4f3ee;--blanco:#fff;--tinta:#16160f;--tinta2:#4e4d45;
+        --mute:#86847a;--linea:#dedcd2;--regla:#c4c2b6;--acento:#1f6fd0;--rojo:#c8372f;--verde:#1b9476}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papel);color:var(--tinta);
+       font:15px/1.45 Archivo,-apple-system,Helvetica,Arial,sans-serif;padding:20px 18px 70px}
+  .caja{max-width:980px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+  h1{font-size:22px;margin:0;font-weight:700;letter-spacing:-.02em}
+  .sub{color:var(--tinta2);font-size:13.5px;margin:3px 0 0}
+  .barra{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  select,input[type=text]{font:inherit;font-size:13px;padding:8px 10px;border:1px solid var(--regla);background:var(--blanco)}
+  button{font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border:1px solid var(--regla);
+         background:var(--blanco);color:var(--tinta);cursor:pointer}
+  button.principal{background:var(--acento);border-color:var(--acento);color:#fff}
+  button.malo{border-color:var(--rojo);color:var(--rojo)}
+  button:disabled{opacity:.45;cursor:default}
+  .panel{background:var(--blanco);border:1px solid var(--linea);padding:16px;
+         box-shadow:0 1px 3px rgba(22,22,15,.07);display:flex;flex-direction:column;gap:12px}
+  .cabecera{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .cual{font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .castellano{font-size:17px;font-weight:600;margin:0}
+  label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  .campo{display:flex;flex-direction:column;gap:5px}
+  textarea{font:inherit;font-size:17px;padding:11px;border:2px solid var(--acento);width:100%;
+           min-height:72px;resize:vertical;line-height:1.4}
+  .oido{font-size:14px;color:var(--tinta2);background:var(--papel);border-left:3px solid var(--regla);
+        padding:8px 11px;margin:0}
+  audio{width:100%}
+  .progreso{height:7px;background:var(--linea);overflow:hidden}
+  .progreso div{height:100%;background:var(--verde);transition:width .25s}
+  .nota{font-size:12px;color:var(--mute);line-height:1.45;margin:0}
+  kbd{font:inherit;font-size:11px;background:var(--papel);border:1px solid var(--regla);
+      padding:1px 5px;border-radius:3px}
+  .listo{color:var(--verde);font-weight:700}
+</style>
+</head>
+<body>
+<div class="caja">
+  <div>
+    <h1>Corregir transcripciones</h1>
+    <p class="sub">Escucha, corrige cómo se escribe en chanka y guarda. Cada clip corregido entra a los
+      <b>tres</b> ajustes: reconocimiento, voz y traducción.</p>
+  </div>
+
+  <div class="barra">
+    <select id="persona"></select>
+    <button id="transcribirTodo">Transcribir los que faltan</button>
+    <button id="exportar">Exportar corpus</button>
+    <span class="cual" id="contador"></span>
+  </div>
+  <div class="progreso"><div id="barra" style="width:0%"></div></div>
+
+  <div class="panel" id="tarjeta">
+    <p class="nota">Elige una persona.</p>
+  </div>
+
+  <p class="nota"><kbd>⌘ Enter</kbd> guarda y pasa al siguiente · <kbd>Espacio</kbd> vuelve a escuchar ·
+    «No sirve» descarta el clip (ruido, cortado, dos frases juntas).</p>
+  <p class="nota" id="salidaExportar"></p>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+let clips = [], i = 0, persona = '';
+
+fetch('/corpus/personas').then(r=>r.json()).then(d=>{
+  $('#persona').innerHTML = d.personas.length
+    ? d.personas.map(p=>`<option>${p}</option>`).join('')
+    : '<option value="">no hay audios en datos/crudo</option>';
+  if (d.personas.length) { persona = d.personas[0]; cargar(); }
+});
+$('#persona').onchange = e => { persona = e.target.value; i = 0; cargar(); };
+
+async function cargar() {
+  if (!persona) return;
+  clips = (await (await fetch('/corpus/clips?persona=' + encodeURIComponent(persona))).json()).clips;
+  const pendiente = clips.findIndex(c => !c.revisado);
+  i = pendiente >= 0 ? pendiente : 0;
+  pintar();
+}
+
+function pintar() {
+  const revisados = clips.filter(c => c.revisado).length;
+  $('#contador').textContent = `${revisados} de ${clips.length} revisados`;
+  $('#barra').style.width = clips.length ? (100 * revisados / clips.length) + '%' : '0%';
+  if (!clips.length) { $('#tarjeta').innerHTML = '<p class="nota">Esta persona no tiene clips.</p>'; return; }
+  const c = clips[i];
+  $('#tarjeta').innerHTML = `
+    <div class="cabecera">
+      <p class="castellano">${c.castellano || '<span style="color:var(--mute)">(sin frase de origen)</span>'}</p>
+      <span class="cual">${i+1} / ${clips.length} · ${c.nombre} · ${c.segundos}s
+        ${c.revisado ? '· <span class="listo">revisado</span>' : ''}</span>
+    </div>
+    <audio id="audio" controls autoplay src="/corpus/audio?ruta=${encodeURIComponent(c.audio)}"></audio>
+    <p class="oido" id="oido">${c.transcripcion ? 'Guardado: ' + c.transcripcion : 'Sin transcribir todavía.'}</p>
+    <div class="campo">
+      <label for="texto">Cómo se escribe en chanka</label>
+      <textarea id="texto" spellcheck="false">${c.transcripcion || ''}</textarea>
+    </div>
+    <div class="barra">
+      <button id="oir" class="principal">Transcribir con el modelo</button>
+      <button id="guardar" class="principal">Guardar y siguiente</button>
+      <button id="descartar" class="malo">No sirve</button>
+      <button id="anterior">Anterior</button>
+      <button id="siguiente">Siguiente</button>
+    </div>`;
+  $('#oir').onclick = transcribir;
+  $('#guardar').onclick = () => guardar(false);
+  $('#descartar').onclick = () => guardar(true);
+  $('#anterior').onclick = () => { i = Math.max(0, i-1); pintar(); };
+  $('#siguiente').onclick = () => { i = Math.min(clips.length-1, i+1); pintar(); };
+  $('#texto').focus();
+}
+
+async function transcribir() {
+  const c = clips[i];
+  $('#oido').textContent = 'El modelo está escuchando…';
+  const cuerpo = new FormData(); cuerpo.append('ruta', c.audio);
+  const d = await (await fetch('/corpus/transcribir', {method:'POST', body:cuerpo})).json();
+  if (d.error) { $('#oido').textContent = d.error; return; }
+  $('#oido').textContent = 'El modelo oyó: ' + d.texto;
+  if (!$('#texto').value.trim()) $('#texto').value = d.texto;
+  $('#texto').focus();
+}
+
+async function guardar(descartar) {
+  const c = clips[i];
+  const cuerpo = new FormData();
+  cuerpo.append('persona', persona);
+  cuerpo.append('numero', c.numero);
+  cuerpo.append('transcripcion', descartar ? '' : $('#texto').value);
+  cuerpo.append('consentimiento', 'true');
+  cuerpo.append('descartar', descartar ? 'true' : 'false');
+  await fetch('/corpus/guardar', {method:'POST', body:cuerpo});
+  if (descartar) { await cargar(); return; }
+  c.transcripcion = $('#texto').value; c.revisado = !!c.transcripcion.trim();
+  i = Math.min(clips.length - 1, i + 1);
+  pintar();
+}
+
+$('#transcribirTodo').onclick = async () => {
+  $('#transcribirTodo').disabled = true;
+  for (let k = 0; k < clips.length; k++) {
+    if (clips[k].transcripcion) continue;
+    const cuerpo = new FormData(); cuerpo.append('ruta', clips[k].audio);
+    const d = await (await fetch('/corpus/transcribir', {method:'POST', body:cuerpo})).json();
+    if (!d.error) clips[k].transcripcion = d.texto;
+    $('#contador').textContent = `transcribiendo ${k+1} de ${clips.length}…`;
+  }
+  $('#transcribirTodo').disabled = false;
+  pintar();
+};
+
+$('#exportar').onclick = async () => {
+  const cuerpo = new FormData(); cuerpo.append('persona', '');
+  const d = await (await fetch('/corpus/exportar', {method:'POST', body:cuerpo})).json();
+  $('#salidaExportar').innerHTML = `Exportado a <b>${d.carpeta}</b>:
+    ${d.asr} para reconocimiento · ${d.tts} para voz · ${d.traduccion} pares de traducción.`;
+};
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) { e.preventDefault(); guardar(false); }
+  if (e.code === 'Space' && e.target.tagName !== 'TEXTAREA') {
+    e.preventDefault(); const a = $('#audio'); if (a) { a.currentTime = 0; a.play(); }
+  }
+});
+</script>
+</body>
+</html>
