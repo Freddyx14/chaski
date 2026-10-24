@@ -62,20 +62,21 @@
 | ✅ | Modelo principal: **Opus** (Freddy, 16:13: «if it gives the best accuracy, yes») | — |
 | ✅ | Crítico: **Sonnet** (Freddy, 16:13) · 🔁 ui-ux D39 en el SOT | — |
 | ✅ | p20 «Ricardo» era prueba: borrada de la base y de `data/formulario/` | — |
-| ⬜ | ¿Se guardan los audios de las consultas? (pregunta de privacidad de los jueces) | 18:00 |
+| ⏳ | ¿Se guardan los audios de las consultas? ¿Hace falta base de datos? (SpacetimeDB propuesto por Freddy) · recomendación dada 17:00 | ya |
 | 🔁 | Mensaje a la mamá en el portapapeles (16:28): revisar las 14 con quechua y escribir las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
 | ⬜ | Mamá: grabar su saludo en quechua para abrir el pitch, con permiso | 18:00 |
 | ⏳ | Papá y familia: más grabaciones en el formulario | continuo |
 | ⬜ | Pasar el documento de Anthropic sobre agentes | cuando lo tenga |
 | ⬜ | Devpost: borrador, marcar Anthropic + People-First + Microsoft + Cartesia | 21:00 |
-| ⬜ | Repo público: **las fotos de `context/photos/` están en el historial de git** (borrarlas hoy no basta). Decidir: reescribir el historial o publicar un repo nuevo limpio. Y si el transcript de la entrevista queda | 21:00 |
+| ✅ | Repo: se queda este. Fotos y transcript de la entrevista a `.gitignore` (Freddy 16:51: el historial no importa, los créditos vencen) | — |
 | ⬜ | Ensayo del pitch con cronómetro (30 s / 3:00 / 2:00) | 22:00 |
 | ⬜ | Video de la demo, abre con el momento de la negativa | dom 05:00 |
 
 ### Ricardo (los mensajes van por Freddy)
 | | Tarea | Para |
 |---|---|---|
-| ⏳ | 🔴 Línea base congelada de reconocimiento y traducción, hablante de prueba separado | 15:00 (atrasado: confirmar) |
+| ✅ | Línea base: ASR WER 68,9 % (54,1 % normalizado), 175 clips, hablante aparte · traducción chrF++ 42,31 | — |
+| 🔴 | **TAREA MUY IMPORTANTE (Freddy, 16:51): el número de DESPUÉS del ajuste fino** (mismo hablante de prueba, mismo script), para el pitch y el Devpost | al terminar el entrenamiento |
 | ⏳ | Partir los datos en entrenamiento / banco / prueba antes de entrenar | 15:00 |
 | ⏳ | NLLB-200 ajustado + ruta `/traducir` (`texto, de, a` → `{traduccion}`) | 19:00 |
 | ⏳ | omniASR ajustado con los audios completos (papá + formulario) | 19:00 |
@@ -135,6 +136,15 @@
 | dom 10:30–12:30 | Jurado en la mesa (los dos, todo el tiempo) |
 
 ---
+
+## Mediciones: criterios y presupuesto (Freddy 16:51)
+
+| | Tarea | Para |
+|---|---|---|
+| ✅ | Criterios con pesos y compuertas: `evals/CRITERIOS.md` | — |
+| ⏳ | Auditar el banco de ataques + registrar costo real por corrida + `puntuar.py` (sin gastar API) | 18:00 |
+| ⏳ | Bajar el tiempo del crítico sin perder precisión | 18:00 |
+| ⬜ | Afinar dentro del tope de **$30** (ver estimación de lo gastado) | — |
 
 ## Pendientes conocidos del intérprete
 
