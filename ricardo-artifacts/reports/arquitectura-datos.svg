@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" width="1180" height="560" font-family="Archivo, Helvetica, Arial, sans-serif">
-  <rect width="1180" height="560" fill="#f4f3ee"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 712" width="1180" height="712" font-family="Archivo, Helvetica, Arial, sans-serif">
+  <rect width="1180" height="712" fill="#f4f3ee"/>
   <text x="28" y="40" font-size="20" font-weight="700" fill="#16160f">De la voz de la familia al número del pitch</text>
   <text x="28" y="62" font-size="12.5" fill="#4e4d45">Arquitectura de datos. La regla que sostiene todo: la voz de prueba nunca entra al entrenamiento.</text>
 
@@ -98,8 +98,8 @@
   <g>
     <rect x="606" y="362" width="236" height="100" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
     <text x="620" y="390" font-size="13" font-weight="600" fill="#16160f">reports/*.json</text>
-    <text x="620" y="411" font-size="11.5" fill="#4e4d45">asr · tts · lid</text>
-    <text x="620" y="429" font-size="11.5" fill="#4e4d45">traduccion · detector</text>
+    <text x="620" y="411" font-size="11.5" fill="#4e4d45">asr · lid · traduccion</text>
+    <text x="620" y="429" font-size="11.5" fill="#4e4d45">guarda · auditoria</text>
     <text x="620" y="447" font-size="11" fill="#86847a">un archivo por número</text>
   </g>
   <path d="M842 412 H 888" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
@@ -112,9 +112,41 @@
     <text x="902" y="431" font-size="11.5" fill="#4e4d45">si un número sale malo, se muestra</text>
   </g>
 
-  <rect x="28" y="486" width="1124" height="54" rx="3" fill="#ffffff" stroke="#c4c2b6"/>
-  <text x="44" y="510" font-size="12.5" font-weight="700" fill="#16160f">Qué se ajusta y qué no</text>
-  <text x="44" y="530" font-size="12" fill="#4e4d45">Se ajustan los dos modelos de Meta: omniASR (entender chanka) y mms-tts-quy (hablar chanka). mms-lid ya acierta 6/6 y se deja quieto. Cartesia y Claude no se ajustan: se usan como vienen.</text>
+
+  <!-- fila 4: como se mide cada cosa, y contra que verdad -->
+  <text x="28" y="496" font-size="13.5" font-weight="700" fill="#16160f">Cada cosa se mide contra una verdad distinta</text>
+  <text x="28" y="514" font-size="11.5" fill="#4e4d45">Hasta el 24-oct las dos auditorías solo se comparaban entre sí, y eso no prueba nada si las dos se equivocan igual. Estas tres sí tienen referencia.</text>
+
+  <g>
+    <rect x="28" y="530" width="356" height="98" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
+    <rect x="28" y="530" width="356" height="5" fill="#1f6fd0"/>
+    <text x="42" y="558" font-size="13" font-weight="600" fill="#16160f">medir_asr.py · entender</text>
+    <text x="42" y="578" font-size="11.5" fill="#4e4d45">verdad: el escrito corregido en /corregir</text>
+    <text x="42" y="596" font-size="11.5" fill="#4e4d45">WER y CER · corte por hablante</text>
+    <text x="42" y="614" font-size="11" fill="#86847a">aparte: préstamos y números</text>
+  </g>
+
+  <g>
+    <rect x="404" y="530" width="356" height="98" rx="3" fill="#ffffff" stroke="#c8372f" stroke-width="2"/>
+    <rect x="404" y="530" width="356" height="5" fill="#c8372f"/>
+    <text x="418" y="558" font-size="13" font-weight="600" fill="#16160f">medir_traduccion.py · traducir</text>
+    <text x="418" y="578" font-size="11.5" fill="#4e4d45">verdad: 100 pares verificados, fuera del train</text>
+    <text x="418" y="596" font-size="11.5" fill="#4e4d45">chrF++ (no BLEU: el quechua aglutina)</text>
+    <text x="418" y="614" font-size="11" font-weight="700" fill="#c8372f">base sin ajustar: chrF++ 42.31</text>
+  </g>
+
+  <g>
+    <rect x="780" y="530" width="372" height="98" rx="3" fill="#ffffff" stroke="#8a4fbd" stroke-width="2"/>
+    <rect x="780" y="530" width="372" height="5" fill="#8a4fbd"/>
+    <text x="794" y="558" font-size="13" font-weight="600" fill="#16160f">medir_guarda.py · no dejar pasar errores</text>
+    <text x="794" y="578" font-size="11.5" fill="#4e4d45">verdad: se inyecta un error clínico a propósito</text>
+    <text x="794" y="596" font-size="11.5" fill="#4e4d45">dosis cambiada · negación borrada · condición</text>
+    <text x="794" y="614" font-size="11" font-weight="700" fill="#8a4fbd">0/6 falsos bloqueos · 3/6 fugas</text>
+  </g>
+
+  <rect x="28" y="644" width="1124" height="54" rx="3" fill="#ffffff" stroke="#c4c2b6"/>
+  <text x="44" y="668" font-size="12.5" font-weight="700" fill="#16160f">Qué se ajusta y qué no</text>
+  <text x="44" y="688" font-size="12" fill="#4e4d45">Se ajustan los dos modelos de Meta: omniASR (entender chanka) y mms-tts-quy (hablar chanka). mms-lid ya acierta 6/6 y se deja quieto. Cartesia y Claude no se ajustan: se usan como vienen.</text>
 
   <defs>
     <marker id="f" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#c4c2b6"/></marker>
