@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaski · prueba de visión</title>
+<style>
+  :root{color-scheme:light;--papel:#f4f3ee;--blanco:#fff;--tinta:#16160f;--tinta2:#4e4d45;
+        --mute:#86847a;--linea:#dedcd2;--regla:#c4c2b6;--acento:#1f6fd0;--rojo:#c8372f;--verde:#1b9476}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papel);color:var(--tinta);
+       font:15px/1.45 Archivo,-apple-system,Helvetica,Arial,sans-serif;padding:22px 18px 60px}
+  .caja{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+  header{display:flex;gap:14px;align-items:center}
+  header img{width:64px;height:64px;object-fit:contain}
+  h1{font-size:24px;margin:0;font-weight:700;letter-spacing:-.02em}
+  .sub{color:var(--tinta2);font-size:13.5px;margin:2px 0 0}
+  .rejilla{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+  @media(max-width:820px){.rejilla{grid-template-columns:1fr}}
+  .panel{background:var(--blanco);border:1px solid var(--linea);box-shadow:0 1px 3px rgba(22,22,15,.07)}
+  .panel h2{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);
+            margin:0;padding:11px 14px;border-bottom:1px solid var(--linea);font-weight:600}
+  .cuerpo{padding:14px;display:flex;flex-direction:column;gap:12px}
+  video,canvas,img#vista{width:100%;background:#111;border:1px solid var(--regla);aspect-ratio:4/3;object-fit:cover}
+  .fila{display:flex;gap:8px;flex-wrap:wrap}
+  button{font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border:1px solid var(--regla);
+         background:var(--blanco);color:var(--tinta);cursor:pointer}
+  button.principal{background:var(--acento);border-color:var(--acento);color:#fff}
+  button:disabled{opacity:.5;cursor:default}
+  input[type=text],select{font:inherit;font-size:13px;padding:9px 10px;border:1px solid var(--regla);
+                          background:var(--blanco);width:100%}
+  label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  .campo{display:flex;flex-direction:column;gap:5px}
+  .ficha{display:flex;flex-direction:column;gap:11px}
+  .nombre{font-size:21px;font-weight:700;margin:0;line-height:1.2}
+  .pares{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .par dt{font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600;margin:0 0 2px}
+  .par dd{margin:0;font-size:15px;font-weight:600;font-variant-numeric:tabular-nums}
+  .bloque{border-top:1px solid var(--linea);padding-top:11px}
+  .bloque h3{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:0 0 5px;font-weight:600}
+  .bloque p{margin:0;font-size:15px;line-height:1.5}
+  .chanka{color:var(--acento)}
+  .aviso{font-size:12px;color:var(--mute);margin-top:4px}
+  .sello{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+         padding:5px 10px;border:1px solid}
+  .ok{color:var(--verde);border-color:var(--verde)}
+  .duda{color:var(--rojo);border-color:var(--rojo)}
+  ul{margin:4px 0 0;padding-left:18px;font-size:14px}
+  .meta{font-size:11.5px;color:var(--mute);border-top:1px solid var(--linea);padding-top:9px;
+        font-variant-numeric:tabular-nums}
+  .vacio{color:var(--mute);font-size:14px}
+  pre{background:var(--papel);border:1px solid var(--linea);padding:10px;font-size:11.5px;
+      overflow-x:auto;margin:0}
+</style>
+</head>
+<body>
+<div class="caja">
+  <header>
+    <img id="avatar" src="/chaski/reposo.png" alt="Chaski" onerror="this.style.display='none'">
+    <div>
+      <h1>Chaski · prueba de visión</h1>
+      <p class="sub">Enfoca una caja de medicamento o una receta. Claude la lee y explica para qué sirve.
+        <b>Si no está seguro, no adivina.</b></p>
+    </div>
+  </header>
+
+  <div class="rejilla">
+    <section class="panel">
+      <h2>Cámara o archivo</h2>
+      <div class="cuerpo">
+        <video id="camara" autoplay playsinline muted></video>
+        <img id="vista" hidden alt="imagen elegida">
+        <div class="fila">
+          <button id="encender">Encender cámara</button>
+          <button id="disparar" class="principal" disabled>Tomar foto</button>
+          <button id="elegir">Subir foto</button>
+          <input id="archivo" type="file" accept="image/*" hidden>
+        </div>
+        <div class="campo">
+          <label for="dicho">Lo que dijo la enfermera (opcional)</label>
+          <input id="dicho" type="text" placeholder="paracetamol de 500, una cada ocho horas">
+        </div>
+        <div class="campo">
+          <label for="modelo">Modelo</label>
+          <select id="modelo">
+            <option value="claude-haiku-4-5">claude-haiku-4-5 · el más liviano</option>
+            <option value="claude-sonnet-5">claude-sonnet-5 · para comparar</option>
+            <option value="claude-opus-5">claude-opus-5 · el más capaz</option>
+          </select>
+        </div>
+        <canvas id="lienzo" hidden></canvas>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Lo que leyó Chaski</h2>
+      <div class="cuerpo" id="salida"><p class="vacio">Toma una foto o sube una imagen.</p></div>
+    </section>
+  </div>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const camara = $('#camara'), vista = $('#vista'), lienzo = $('#lienzo'), salida = $('#salida');
+let flujo = null;
+
+$('#encender').onclick = async () => {
+  try {
+    flujo = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment', width:1280}});
+    camara.srcObject = flujo; camara.hidden = false; vista.hidden = true; $('#disparar').disabled = false;
+  } catch (e) { pintarError('No se pudo abrir la cámara: ' + e.message); }
+};
+
+$('#disparar').onclick = () => {
+  lienzo.width = camara.videoWidth; lienzo.height = camara.videoHeight;
+  lienzo.getContext('2d').drawImage(camara, 0, 0);
+  lienzo.toBlob((b) => { mostrar(b); enviar(b); }, 'image/jpeg', 0.92);
+};
+
+$('#elegir').onclick = () => $('#archivo').click();
+$('#archivo').onchange = (e) => { const f = e.target.files[0]; if (f) { mostrar(f); enviar(f); } };
+
+function mostrar(blob) {
+  vista.src = URL.createObjectURL(blob); vista.hidden = false; camara.hidden = true;
+}
+
+function avatar(estado) {
+  const img = $('#avatar'); if (img) img.src = '/chaski/' + estado + '.png';
+}
+
+async function enviar(blob) {
+  avatar('escuchando');
+  salida.innerHTML = '<p class="vacio">Chaski está leyendo…</p>';
+  const cuerpo = new FormData();
+  cuerpo.append('imagen', blob, 'foto.jpg');
+  cuerpo.append('dicho', $('#dicho').value);
+  cuerpo.append('modelo', $('#modelo').value);
+  const t0 = performance.now();
+  try {
+    const r = await fetch('/ver', {method:'POST', body:cuerpo});
+    const d = await r.json();
+    if (d.error) return pintarError(d.error);
+    pintar(d, Math.round(performance.now() - t0));
+  } catch (e) { pintarError(e.message); }
+}
+
+function pintarError(msg) {
+  avatar('no_entendi');
+  salida.innerHTML = `<div class="sello duda">No se pudo leer</div><pre>${msg}</pre>`;
+}
+
+function pintar(d, msTotal) {
+  avatar(d.seguro ? 'hablando' : 'no_entendi');
+  const sello = d.seguro
+    ? '<span class="sello ok">Leído con seguridad</span>'
+    : '<span class="sello duda">No está seguro · no inventa</span>';
+  const noLeido = (d.no_leido || []).length
+    ? `<div class="bloque"><h3>No se pudo leer</h3><ul>${d.no_leido.map(x=>`<li>${x}</li>`).join('')}</ul></div>` : '';
+  const avisos = (d.advertencias || []).length
+    ? `<div class="bloque"><h3>Advertencias</h3><ul>${d.advertencias.map(x=>`<li>${x}</li>`).join('')}</ul></div>` : '';
+  const coincide = d.coincide_con_lo_dicho === null ? '' :
+    `<div class="bloque"><h3>Contra lo que dijo la enfermera</h3><p>${
+      d.coincide_con_lo_dicho ? 'Coincide.' :
+      '<b style="color:var(--rojo)">NO coincide con lo que dijo la enfermera.</b>'}</p></div>`;
+  const chanka = d.para_que_sirve_chanka
+    ? `<div class="bloque"><h3>En quechua chanka</h3><p class="chanka">${d.para_que_sirve_chanka}</p>
+       <p class="aviso">Sin auditar todavía: lo revisa la auditoría de retraducción antes de decirlo en voz alta.</p></div>`
+    : `<div class="bloque"><h3>En quechua chanka</h3><p class="vacio">Claude no se animó a decirlo. Es la respuesta correcta cuando duda.</p></div>`;
+
+  salida.innerHTML = `
+    <div class="ficha">
+      ${sello}
+      <p class="nombre">${d.medicamento || 'Medicamento no identificado'}</p>
+      <dl class="pares">
+        <div class="par"><dt>Concentración</dt><dd>${d.concentracion || '—'}</dd></div>
+        <div class="par"><dt>Presentación</dt><dd>${d.presentacion || '—'}</dd></div>
+      </dl>
+      <div class="bloque"><h3>Para qué sirve</h3><p>${d.para_que_sirve || '—'}</p></div>
+      ${chanka}${coincide}${avisos}${noLeido}
+      <div class="meta">${d.modelo} · ${d.segundos}s en Claude · ${msTotal}ms de extremo a extremo ·
+        ${d.tokens_entrada} tokens de entrada, ${d.tokens_salida} de salida</div>
+    </div>`;
+}
+</script>
+</body>
+</html>
