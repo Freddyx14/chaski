@@ -141,18 +141,25 @@ function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
     if (!consent) { setError("Marque la casilla para aceptar."); return; }
     if (sabe === null) { setError("Díganos si escribe en quechua."); return; }
     setEnviando(true);
+    let r: Response;
     try {
-      const r = await fetch("/api/participantes", {
+      r = await fetch("/api/participantes", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ consentimiento: true, sabe_escribir_quechua: sabe, nombre, sexo, edad, lugar }),
       });
-      if (!r.ok) throw new Error();
-      onListo(await r.json());
     } catch {
+      // fetch only throws when the request never reached the server.
       setError("No se pudo guardar. Revise su internet e intente de nuevo.");
       setEnviando(false);
+      return;
     }
+    if (!r.ok) {
+      setError("No se pudo guardar por un problema nuestro, no de su internet. Intente en unos minutos.");
+      setEnviando(false);
+      return;
+    }
+    onListo(await r.json());
   }
 
   return (
