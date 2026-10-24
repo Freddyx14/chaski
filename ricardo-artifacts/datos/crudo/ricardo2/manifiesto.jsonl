@@ -1,3 +1,3 @@
 # revisado a mano: la transcripcion es verdad de referencia
-{"persona": "ricardo2", "bloque": "E", "numero": 83, "audio": "datos/crudo/ricardo2/ricardo2_E_076.wav", "transcripcion": "Ñuqallaymi, doctor", "castellano": "Buenos días, doctor", "segundos": 3.72, "consentimiento": true, "origen": "aprendiz", "inicio": 0.0, "fin": 0.0}
-{"persona": "ricardo2", "bloque": "E", "numero": 84, "audio": "datos/crudo/ricardo2/ricardo2_E_077.wav", "transcripcion": "hamullachkani, doctora", "castellano": "Buenos días, doctora", "segundos": 3.76, "consentimiento": true, "origen": "aprendiz", "inicio": 0.0, "fin": 0.0}
+{"persona": "ricardo2", "bloque": "E", "numero": 83, "audio": "datos/crudo/ricardo2/ricardo2_E_076.wav", "transcripcion": "Ñuqallaymi, doctor", "castellano": "Buenos días, doctor", "segundos": 3.72, "consentimiento": true, "origen": "", "inicio": 0.0, "fin": 0.0}
+{"persona": "ricardo2", "bloque": "E", "numero": 84, "audio": "datos/crudo/ricardo2/ricardo2_E_077.wav", "transcripcion": "hamullachkani, doctora", "castellano": "Buenos días, doctora", "segundos": 3.76, "consentimiento": true, "origen": "", "inicio": 0.0, "fin": 0.0}

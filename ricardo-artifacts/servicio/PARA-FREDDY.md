@@ -201,3 +201,58 @@ Tardan 2.8 s y 4.7 s.
 `proxima_cita` sino en `dudas`, y en el resumen de paciente sí apareció en `texto_para_decir`. Puede
 ser lo que querías —se dijo con aviso, así que dudar es razonable— pero son dos criterios distintos
 entre roles. El prompt es tuyo; yo no lo toqué.
+
+
+---
+
+## `/ver` ya arma la receta (sáb 24-oct)
+
+Para la feature del medicamento. `/ver` seguía devolviendo qué es y para qué sirve; ahora también
+devuelve **la posología y la indicación lista para traducir**, con la misma forma que usa la
+auditoría, así que entra por el camino de siempre sin tratarla aparte.
+
+Con la caja de paracetamol de prueba:
+
+```json
+{
+ "medicamento": "Paracetamol", "concentracion": "500 mg",
+ "para_que_sirve": "Baja la fiebre y calma el dolor de cabeza, músculos y otras molestias.",
+ "cantidad": 1.0, "cada_horas": 8.0, "dias": null,
+ "indicacion": "Tome 1 tableta cada 8 horas.",
+ "posologia_de": "caja",
+ "confirmar": true,
+ "porque_confirmar": "la pauta viene impresa en la caja, es la del fabricante para adultos; confírmela o corríjala para este paciente",
+ "advertencias": ["Mantener fuera del alcance de los niños", "No exceder 4 tabletas al día"],
+ "faltan": []
+}
+```
+
+### Los tres campos que te importan para la pantalla
+
+**`posologia_de`** dice de dónde salieron los números, y los tres casos se tratan distinto:
+
+| | Qué significa | Qué debería hacer la app |
+|---|---|---|
+| `"receta"` | lo recetó alguien para **este** paciente | usarlo |
+| `"caja"` | es la pauta del fabricante **para un adulto cualquiera** | **pedir confirmación** |
+| `"falta"` | no estaba en ningún lado | pedirle los dos números a la enfermera |
+
+La diferencia entre `receta` y `caja` es la que más importa. La caja dice qué es el medicamento, no
+cuánto le toca a quien está enfrente: un niño, una embarazada o alguien que ya toma otra cosa
+necesitan otra pauta. Por eso `confirmar: true` y el motivo ya escrito en castellano, listo para
+mostrar.
+
+**`faltan`** es la lista de los campos que hay que pedir (`cantidad`, `cada_horas`). Es exactamente
+los dos parámetros que decía Ricardo: cada cuántas horas y cuántos días.
+
+**`indicacion`** es la frase lista para traducir. **No la escribe el modelo**: la arma una plantilla
+en código a partir de los números ya leídos. Una plantilla no puede cambiar una dosis mientras
+redacta. El modelo lee; componer es de código.
+
+Pasa por `/turno/enfermera` como cualquier otro texto, así que la auditoría la revisa igual.
+
+### Lo que no hace, a propósito
+
+No deduce una dosis del nombre del medicamento ni de lo que suele indicarse. Si no está escrita,
+`posologia_de: "falta"` y los campos en null. Una dosis inventada que suena razonable es el peor
+error que este sistema puede cometer, y es el que más fácil pasa desapercibido.
