@@ -5,6 +5,10 @@
 
 ## 📍 Estado actual (act. 2026-10-23, Friday 18:30 PT)
 
+- **Build (23:30 PT Fri):** Rimay confirmed by both (Ricardo's extortion idea dropped; his own results showed the
+  escalation model loses to the baseline). Plan: `plan/plan-completo.md`. First code in `app/`: the blind
+  back-translation audit (T2), 20 tests green, **not yet run against the real API** (needs the Cal Hacks key).
+  Ricardo's VM has a 40 GB GPU → fine-tuning runs there.
 - **Product chosen by Freddy (21:30 PT):** A + V2 → "Rimay" (working name), Chanka interpreter for pregnant
   women at the Pilpichaca health post with prescription-photo reading. Product doc: `ideas/producto.md`;
   evidence: `research/papers.md`. Architecture not written yet.
