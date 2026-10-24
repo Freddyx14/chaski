@@ -137,7 +137,7 @@ tr:last-child td{border-bottom:none}
 <div class="wrap">
 
   <header class="hero">
-    <span class="stamp">SOT-3 · vie 23 oct, 23:50 PT · sincronizado con SOT.md</span>
+    <span class="stamp">SOT-4 · sáb 24 oct, 00:20 PT · sincronizado con SOT.md</span>
     <h1>Rimay, el intérprete quechua de bolsillo de la posta</h1>
     <p class="lede">La enfermera habla en castellano y Rimay lo dice en quechua chanka. El paciente responde, Rimay detecta que es quechua y se lo dice a ella en castellano. Antes de hablar se audita: si una dosis o una fecha cambió, no lo dice.</p>
     <div class="quote">
@@ -153,7 +153,7 @@ tr:last-child td{border-bottom:none}
     <div class="screens">
 
       <div class="screen">
-        <span class="who">La enfermera · app Rimay</span>
+        <span class="who">La enfermera · app Rimay en su iPhone</span>
         <div class="phone">
           <div class="bar"><div class="avatar">R</div><div><strong>Consulta · Don Teodoro</strong><div class="small">presión alta</div></div></div>
           <div class="bubble out turn">
@@ -238,7 +238,7 @@ tr:last-child td{border-bottom:none}
           <div class="arrow">↓</div>
           <div class="step gate"><span class="n">3 · compuerta</span><h3>Entender lo que quiso decir</h3><p>Lo dice en castellano con su nivel de seguridad. Si no entiende, pide repetir: nunca inventa.</p><div><span class="tag">Claude</span></div></div>
           <div class="arrow">↓</div>
-          <div class="step"><span class="n">4 · mostrar</span><h3>En pantalla y en voz</h3><div><span class="tag">voz castellano: por decidir</span></div></div>
+          <div class="step"><span class="n">4 · mostrar</span><h3>En pantalla y en voz</h3><div><span class="tag">voz castellano: Cartesia</span></div></div>
         </div>
       </div>
     </div>
@@ -287,9 +287,10 @@ tr:last-child td{border-bottom:none}
           <tr><td>Entender voz castellano</td><td><span class="tag">Whisper u Omnilingual spa</span></td><td><span class="pill p-warn">por decidir</span></td></tr>
           <tr><td>Detectar idioma</td><td><span class="tag">facebook/mms-lid-512</span></td><td><span class="pill p-ok">incluye quy y spa · verificado</span></td></tr>
           <tr><td>Hablar quechua</td><td><span class="tag">facebook/mms-tts-quy</span></td><td><span class="pill p-ok">voz base probada</span></td></tr>
-          <tr><td>Hablar castellano</td><td><span class="tag">Cartesia (candidato)</span></td><td><span class="pill p-warn">por decidir</span></td></tr>
+          <tr><td>Hablar castellano</td><td><span class="tag">Cartesia</span></td><td><span class="pill p-ok">decidido · suma su track</span></td></tr>
           <tr><td>Entrenar y servir modelos</td><td><span class="tag">VM de Ricardo · GPU 40 GB</span></td><td><span class="pill p-warn">probar hoy</span></td></tr>
-          <tr><td>La app</td><td><span class="tag">web en el celular</span></td><td><span class="pill p-warn">recomendado · por confirmar</span></td></tr>
+          <tr><td>La app</td><td><span class="tag">iOS nativa · Expo</span><span class="tag">TestFlight</span></td><td><span class="pill p-ok">decidido · plan B: Expo en el iPhone de Freddy</span></td></tr>
+          <tr><td>Conexión app ↔ modelos</td><td><span class="tag">VM por HTTPS público</span></td><td><span class="pill p-warn">sábado temprano</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -319,6 +320,11 @@ tr:last-child td{border-bottom:none}
           <tr><td>D11</td><td>Detección automática de idioma</td><td>Nadie toca un botón para cambiar de idioma</td></tr>
           <tr><td>D12</td><td>Entender la intención, estilo Wispr Flow</td><td>Lo dicho a medias llega claro de los dos lados</td></tr>
           <tr><td>D13</td><td>SOT.md es la fuente de verdad; esta página se sincroniza con él</td><td>Pedido de Freddy</td></tr>
+          <tr><td>D14</td><td>App nativa de iOS por TestFlight</td><td>Freddy tiene la cuenta Apple Developer</td></tr>
+          <tr><td>D15</td><td>El modelo de Claude se elige midiendo velocidad y acierto</td><td>En vivo, la espera importa tanto como el acierto</td></tr>
+          <tr><td>D16</td><td>Cartesia para la voz en castellano</td><td>Sus créditos y su track</td></tr>
+          <tr><td>D17</td><td>Avatar que presenta Rimay</td><td>Más familiar para el paciente</td></tr>
+          <tr><td>D18</td><td>La mamá de Freddy prueba por videollamada y, si puede, aparece en el pitch</td><td>Usuaria real, voz real</td></tr>
         </tbody>
       </table>
     </div>
@@ -326,28 +332,65 @@ tr:last-child td{border-bottom:none}
       <table class="dec">
         <thead><tr><th>#</th><th>Por decidir</th><th>Recomendación</th></tr></thead>
         <tbody>
-          <tr><td>P1</td><td>¿App web o nativa?</td><td>Web en el celular: misma experiencia, ahorra un día</td></tr>
-          <tr><td>P2</td><td>¿Qué modelo de Claude en la conversación?</td><td>Medir la espera; si Opus tarda, uno más rápido para entender y Opus para auditar</td></tr>
-          <tr><td>P3</td><td>¿Voz en castellano?</td><td>Cartesia si suena bien y es rápida (suma su track)</td></tr>
-          <tr><td>P4</td><td>Nombre final</td><td>Decidirlo con la mamá de Freddy</td></tr>
+          <tr><td>P2</td><td>¿Qué modelo de Claude en la conversación?</td><td>Medir Opus 5, Sonnet 5 y Haiku 4.5 en el mismo set; quedarse con el más rápido que no pierda acierto</td></tr>
+          <tr><td>P4</td><td>Nombre final</td><td>Rimay, Rimanakuy, Uyariy, Chaski, Yanapay o Tinkuy · significado y escritura los confirma la mamá de Freddy</td></tr>
+          <tr><td>P5</td><td>¿Cómo es el avatar?</td><td>Ver H; co-diseñarlo con la mamá de Freddy</td></tr>
+          <tr><td>P6</td><td>¿La mamá de Freddy puede el domingo de 12:30 a 14:30 (Lima)?</td><td>Preguntarle hoy</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="small">D1–D3 y D7 (track, repo, descarte de incendios, GPU) están en el SOT.</p>
+    <p class="small">D1–D3 y D7 (track, repo, descarte de incendios, GPU) están en el SOT. P1 y P3 quedaron cerradas por D14 y D16.</p>
   </section>
 
   <section class="sec" id="g">
-    <h2><span class="letter">G</span>De ahora al domingo</h2>
-    <div class="timeline">
-      <div class="t"><span class="when">vie 23:50</span><span>Mensaje a la familia, consentimientos. Ricardo prueba los modelos en su GPU. <strong>Dormir a la 1:00.</strong></span></div>
-      <div class="t"><span class="when">sáb 05–08</span><span>Las familias graban en Perú (7–10 AM allá)</span></div>
-      <div class="t"><span class="when">sáb 09:00</span><span>Primer número de reconocimiento. App grabando y reproduciendo</span></div>
-      <div class="t"><span class="when">sáb 12:30</span><span>Workshop de Anthropic (agentes)</span></div>
-      <div class="t"><span class="when">sáb 18:00</span><span>Una conversación completa en los dos sentidos, aunque sea fea. Si no, se recorta</span></div>
-      <div class="t"><span class="when">sáb 21:00</span><span>Borrador en Devpost</span></div>
-      <div class="t hard"><span class="when">dom 07:00</span><span>Se congelan los números</span></div>
-      <div class="t hard"><span class="when">dom 09:00</span><span><strong>Entrega</strong> · jurado de 10:30 a 12:30</span></div>
+    <h2><span class="letter">G</span>Pendientes y plan del sábado</h2>
+    <div class="loops">
+      <div class="loop">
+        <h3>Esta noche, antes de dormir</h3>
+        <ol>
+          <li>Freddy: mensaje a la familia con el protocolo y el pedido de consentimiento</li>
+          <li>Freddy: preguntarle a su mamá por la videollamada del sábado y el pitch del domingo</li>
+          <li>Freddy: mandarle el audio de prueba y la lista de nombres</li>
+          <li>Los dos: reclamar créditos de Claude y de Cartesia</li>
+          <li>Ricardo: confirmar que la VM corre los tres modelos de voz</li>
+          <li><strong>Dormir a la 1:00</strong></li>
+        </ol>
+      </div>
     </div>
+    <div class="timeline">
+      <div class="t"><span class="when">sáb 05–08</span><span>Las familias graban en Perú (7–10 AM allá)</span></div>
+      <div class="t"><span class="when">sáb 07:30</span><span>Ricardo: audios listos y hablante de prueba separado · Freddy: app Expo, micrófono y parlante, <strong>primer build a TestFlight</strong></span></div>
+      <div class="t"><span class="when">sáb 08:30</span><span>VM con HTTPS público: la app manda un audio y recibe texto</span></div>
+      <div class="t"><span class="when">sáb 09:00</span><span>Primer número de reconocimiento · Cartesia en la app</span></div>
+      <div class="t"><span class="when">sáb 10:30</span><span>Medir modelos de Claude (velocidad y acierto)</span></div>
+      <div class="t"><span class="when">sáb 12:30</span><span>Workshop de Anthropic</span></div>
+      <div class="t"><span class="when">sáb 13:30</span><span>Ajuste fino + detección de idioma · turno enfermera → paciente en la app</span></div>
+      <div class="t"><span class="when">sáb 16:00</span><span>Turno paciente → enfermera + «¿me lo repite?»</span></div>
+      <div class="t"><span class="when">sáb 17:00</span><span><strong>Videollamada con la mamá de Freddy</strong>: prueba real</span></div>
+      <div class="t"><span class="when">sáb 18:00</span><span>Conversación completa en los dos sentidos; después, el avatar</span></div>
+      <div class="t"><span class="when">sáb 21:00</span><span>Borrador en Devpost, repo público, README con lo de Cartesia</span></div>
+      <div class="t"><span class="when">dom 05:00</span><span>Grabar el video de la demo (respaldo si falla el wifi)</span></div>
+      <div class="t hard"><span class="when">dom 07:00</span><span>Se congelan los números</span></div>
+      <div class="t hard"><span class="when">dom 09:00</span><span><strong>Entrega</strong> · jurado de 10:30 a 12:30, la mamá de Freddy por videollamada si puede</span></div>
+    </div>
+  </section>
+
+  <section class="sec" id="h">
+    <h2><span class="letter">H</span>El avatar</h2>
+    <p>Rimay se presenta solo, en quechua, y le explica al paciente que va a ayudar a la enfermera a entenderle. Su forma cambia según lo que pasa en la consulta.</p>
+    <div class="flow">
+      <div class="step"><span class="n">presentarse</span><h3>Saluda en quechua</h3><p>Primera consulta: confianza</p></div>
+      <div class="step"><span class="n">escuchando</span><h3>Ondas de sonido</h3><p>El paciente sabe que puede hablar</p></div>
+      <div class="step"><span class="n">pensando</span><h3>Gesto breve</h3><p>Cubre la espera de los modelos</p></div>
+      <div class="step"><span class="n">hablando</span><h3>La boca sigue el audio</h3><p>Se ve quién habla</p></div>
+      <div class="step gate"><span class="n">no entendí</span><h3>Pide repetir</h3><p>Nunca inventa</p></div>
+    </div>
+    <div class="people">
+      <div class="person"><h3>Opción 1 · Persona</h3><p class="small">Una técnica o promotora de salud andina. Lo más cercano; riesgo de estereotipo.</p></div>
+      <div class="person"><h3>Opción 2 · Animal andino</h3><p class="small">Vicuña, alpaca o cuy. Juguetón y neutro; riesgo de sentirse infantil.</p></div>
+      <div class="person"><h3>Opción 3 · Forma con textil andino</h3><p class="small">Un círculo con iconografía de tejido que late al hablar. Sin estereotipo; menos personaje.</p></div>
+    </div>
+    <div class="callout"><strong>Recomendación:</strong> opción 2 o 3, co-diseñada con la mamá de Freddy. Va después de la conversación completa: es lo primero que se recorta si el núcleo no está.</div>
   </section>
 
   <section class="feedback">
