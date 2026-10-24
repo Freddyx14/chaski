@@ -115,8 +115,8 @@ exactly what didn't match. In a clinic, a confident wrong answer is worse than n
 "Meta's open speech models are the ears and the mouth; we're fine-tuning them on [N] phrases our families recorded
 yesterday [X% → Y% on a voice it never heard — ONLY if Ricardo's results file shows it; otherwise: 'we measured the
 baseline and the fine-tune is running']. Claude is the brain: Opus interprets, Sonnet checks. We seeded 165 errors —
-wrong doses, flipped negations, swapped medicines. Asking Claude 'is this translation right?' blocks two out of three
-correct sentences. Chaski caught all 165, and blocks one in ten."
+wrong doses, flipped negations, swapped medicines. Just asking Claude 'is this right?' catches them too, but blocks one in
+four correct sentences and can't tell you why. Chaski caught all 165, blocks one in ten, and always names what failed."
 
 **B6 · Close (2:35–3:00) · Freddy**
 [Show the summary screen.] "At the end the nurse gets a clinical note and the patient gets instructions to take home,

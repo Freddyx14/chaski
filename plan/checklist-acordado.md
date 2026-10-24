@@ -149,7 +149,8 @@
 | **Chaski integrado, crítico Sonnet, versión final** (205 casos, incluye agua/té) | **165 de 165 errores atrapados (100 %) · 4 de 40 frases correctas bloqueadas (10 %)** | `evals/ataques/resultados/chaski-2026-10-24-1606.json` |
 | Chaski, crítico Sonnet, antes de integrar (200 casos) | 160 de 160 · 3 de 40 (7,5 %) | `…/chaski-2026-10-24-1518.json` |
 | Chaski, crítico Haiku + código (misma muestra) | 153 de 160 (96 %) · 7 de 40 bloqueos falsos (18 %); falla en diagnósticos agregados (14/20) | `…/chaski-2026-10-24-1513.json` |
-| Claude como juez simple (misma muestra) | 150 de 160 (94 %) · **26 de 40 bloqueos falsos (65 %)** | `…/juez_claude-2026-10-24-1513.json` |
+| Claude como juez simple, Haiku | 150 de 160 (94 %) · 26 de 40 bloqueos falsos (65 %) | `…/juez_claude-2026-10-24-1513.json` |
+| **Claude como juez simple, Sonnet (misma muestra final)** | **165 de 165 · 11 de 40 bloqueos falsos (27,5 %)**, sin decir qué falló | `…/juez_claude-2026-10-24-1644.json` |
 | Sin barreras (piso) | 0 % | `…/sin_barreras-…` |
 | Intérprete, acción correcta | Opus 98 % · Sonnet 94 % · Haiku 88 % | `evals/interprete/resultados/` |
 | RAG, acierto a la primera | híbrido 88 % vs palabras 70 % | `evals/banco/resultados/` |

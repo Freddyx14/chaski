@@ -42,8 +42,9 @@ and for patients. It doesn't just translate; it interprets:
 
 ## Measured, not claimed
 - **Seeded-error bank** (wrong doses, flipped negations, swapped medicines, units, days, vehicles, invented advice):
-  no guards catch 0%; asking Claude "is this translation right?" catches 94% but blocks 65% of correct sentences;
-  **Chaski caught 165/165 and blocks 10% of correct ones** (and those fail safe: it stays quiet and says why).
+  no guards catch 0%; asking Sonnet "is this translation right?" also catches 165/165 but blocks 27.5% of correct
+  sentences and can't say why; **Chaski caught 165/165, blocks 10% of correct ones, and every block names the fact
+  that failed** (dose, negation, what it's taken with), so the nurse knows what to fix.
 - **Interpreter**, 48 real scenarios: Opus 98% correct action with zero invented clinical data; Sonnet 94%; Haiku 88%.
 - **Retrieval**: hybrid RAG finds the right phrase first 88% of the time vs 70% for keyword search.
 - **Speech baseline** (before fine-tuning, one family speaker held out): Quechua ASR WER 68.9% (54.1% with spelling
