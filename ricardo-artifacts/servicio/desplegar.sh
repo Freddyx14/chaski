@@ -26,11 +26,16 @@ ssh_ "mkdir -p $DESTINO/servicio $DESTINO/voz $DESTINO/chaski $DESTINO/rimay $DE
 # escribe ahi las grabaciones nuevas, asi que bajarlas ANTES de copiar nada es
 # lo primero que hace el despliegue. Si no, el rsync de ida las pisa con la
 # copia vieja de la laptop y se pierde lo grabado.
+# `--update` en las dos direcciones: rsync solo pisa un archivo si el de origen
+# es MAS NUEVO. Hace falta porque los manifiestos los escriben los dos lados
+# —aqui al importar del formulario, alla al corregir en /corregir— y sin esa
+# bandera la bajada revivia la copia vieja de la instancia encima de lo recien
+# importado. Paso exactamente eso: 80 clips de p24 volvieron a ser 36.
 echo "-- 2/6 trayendo de vuelta lo que se grabo en la instancia"
 if ssh_ "test -d $DESTINO/datos/crudo" 2>/dev/null; then
-  rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" \
+  rsync -az --update -e "ssh -i $LLAVE -o BatchMode=yes" \
     "$MAQUINA:$DESTINO/datos/crudo/" "$RAIZ/datos/crudo/"
-  rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" \
+  rsync -az --update -e "ssh -i $LLAVE -o BatchMode=yes" \
     "$MAQUINA:$DESTINO/datos/corpus/" "$RAIZ/datos/corpus/" 2>/dev/null || true
   echo "   $(find "$RAIZ/datos/crudo" -name '*.wav' | wc -l | tr -d ' ') wav en la laptop"
 else
@@ -50,9 +55,8 @@ rsync -az --delete -e "ssh -i $LLAVE -o BatchMode=yes" \
 rsync -az --delete -e "ssh -i $LLAVE -o BatchMode=yes" \
   --exclude '__pycache__' --exclude '*.pyc' \
   "$RAIZ/../app/rimay/" "$MAQUINA:$DESTINO/rimay/"
-# Sin --delete: lo grabado alla ya se bajo arriba, pero si algo entro entre
-# medio, que no se borre.
-rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" "$RAIZ/datos/" "$MAQUINA:$DESTINO/datos/"
+# Sin --delete y con --update, por lo mismo que la bajada.
+rsync -az --update -e "ssh -i $LLAVE -o BatchMode=yes" "$RAIZ/datos/" "$MAQUINA:$DESTINO/datos/"
 # El avatar de Chaski. `app.py` lo busca en ../design/chaski relativo a su cwd,
 # así que del lado de la instancia cuelga de /opt/dlami/nvme/chaski/design.
 # Copia de solo lectura del diseño de Freddy: no se edita aquí.

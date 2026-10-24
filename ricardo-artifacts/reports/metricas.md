@@ -64,6 +64,64 @@ python voz/medir_traduccion.py --etiqueta ajustado  --frases 100
 Ambas corridas se acumulan en `reports/traduccion.json` y la segunda imprime el
 delta. Mismo set, mismo corte, misma métrica: es una comparación honesta.
 
+## 2b. La verdad de referencia es distinta en cada persona, y está bien
+
+Cuatro personas leyeron la misma indicación castellana —«Tome una pastilla cada ocho horas»— y
+escribieron cuatro cosas distintas:
+
+```
+p16  pusaq horapi juk pastillata upyay
+p17  Sapa pusaq horamanta huk pastillata upyana
+p18  Huk pastillata upyay, sapa pusaq horaspi
+p19  Sapa pusaq ura pasaqtin, huk pastillata upyay
+```
+
+Hay tres clases de diferencia ahí, y **solo una es ruido**:
+
+| | Qué es | ¿Error del modelo? |
+|---|---|---|
+| `juk` vs `huk` | la misma palabra escrita distinto | **no** |
+| p18 pone el objeto primero | otro orden, misma indicación | **no** |
+| `horapi` / `horamanta` / `ura pasaqtin` | maneras distintas de decir lo mismo | **no** |
+
+Las tres bajan el WER y ninguna es un fallo de reconocimiento. El quechua no tiene una norma
+ortográfica asentada y cada quien escribe como le enseñaron.
+
+**Que la referencia sea por hablante no es un problema: es lo correcto.** Cada persona transcribió su
+propio audio, así que su texto es la verdad *para ese audio*. El problema aparecería solo si se
+comparara a una persona contra la escritura de otra, y eso no lo hacemos.
+
+Lo que sí se puede quitar es la primera clase. `voz/ortografia.py` lleva las dos escrituras a la
+ortografía trivocálica del quechua sureño —`a i u`, `w` en vez de `hu`, `h` en vez de `j`, `k/q` en
+vez de `c/qu`— y se aplica **a los dos lados**, hipótesis y referencia. Aplicarlo a uno solo sería
+hacer trampa.
+
+Medido sobre los mismos 175 clips de la línea base:
+
+| | WER | CER | clips perfectos |
+|---|---|---|---|
+| escritura tal cual | 68.9 % | 15.6 % | 13/175 |
+| ortografía normalizada | **54.1 %** | **11.6 %** | **33/175** |
+
+**14.8 puntos del WER eran deletreo, no reconocimiento.** Y los clips reconocidos perfectos pasan de
+13 a 33: una quinta parte del conjunto de prueba se estaba contando como error por cómo se escribe.
+
+Ejemplos de lo que arregla, todos del conjunto de prueba:
+
+```
+ref  Juk quillapi kutimunki      oyó  huk killapi kutimunki
+ref  Carniquita apamunki         oyó  karnikita apamunki
+ref  Kimsa gotata sotoykuy       oyó  kimsa gotata sutuykuy
+```
+
+**Se reportan los dos números, siempre.** El estricto es el conservador y es el que va en el pitch si
+hay que elegir uno; el normalizado es el que mide reconocer. Dar solo el bueno sería elegir el que
+conviene.
+
+Y una consecuencia para el entrenamiento, no solo para medir: **el objetivo también se normaliza**.
+Si no, el modelo aprende contra un blanco móvil —la misma palabra con cuatro escrituras— y gasta
+capacidad en adivinar quién escribió.
+
 ## 2. ASR — `voz/medir_asr.py`
 
 Aquí la referencia es el texto escrito que acompaña cada audio, el que sale

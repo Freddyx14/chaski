@@ -31,6 +31,8 @@ from pathlib import Path
 
 import httpx
 
+from voz.ortografia import normalizar as normalizar_ortografia
+
 INSTANCIA = "http://127.0.0.1:8010"
 SALIDA = Path("reports/asr.json")
 
@@ -50,9 +52,9 @@ def distancia(a: list, b: list) -> int:
     return fila[-1]
 
 
-def tasas(referencia: str, hipotesis: str) -> tuple[int, int, int, int]:
+def tasas(referencia: str, hipotesis: str, normalizador=normalizar) -> tuple[int, int, int, int]:
     """Devuelve (errores de palabra, palabras, errores de letra, letras)."""
-    r, h = normalizar(referencia), normalizar(hipotesis)
+    r, h = normalizador(referencia), normalizador(hipotesis)
     rp, hp = r.split(), h.split()
     return distancia(rp, hp), len(rp), distancia(list(r), list(h)), len(r)
 
@@ -85,7 +87,8 @@ def medir(origen: str, etiqueta: str, modelo: str = "omniASR_LLM_300M") -> dict:
         raise SystemExit(f"{origen} no tiene clips con transcripción corregida")
 
     lista = prestamos()
-    acumulado = {"ep": 0, "p": 0, "el": 0, "l": 0}
+    acumulado = {"ep": 0, "p": 0, "el": 0, "l": 0,
+                 "eo": 0, "po": 0, "elo": 0, "lo": 0}
     por_persona: dict[str, dict] = {}
     aciertos_prestamo = fallos_prestamo = 0
     detalle = []
@@ -96,6 +99,13 @@ def medir(origen: str, etiqueta: str, modelo: str = "omniASR_LLM_300M") -> dict:
             ep, p, el, l = tasas(f["texto"], oido)
             acumulado["ep"] += ep; acumulado["p"] += p
             acumulado["el"] += el; acumulado["l"] += l
+            # El mismo clip con la escritura normalizada. Se reportan los dos
+            # numeros siempre: el estricto castiga que `juk` y `huk` se escriban
+            # distinto, que no es un error del modelo; el normalizado mide
+            # reconocer. Dar solo el bueno seria elegir el que conviene.
+            eo, po, lo_, llo = tasas(f["texto"], oido, normalizar_ortografia)
+            acumulado["eo"] += eo; acumulado["po"] += po
+            acumulado["elo"] += lo_; acumulado["lo"] += llo
             quien = f.get("persona", "?")
             fila = por_persona.setdefault(quien, {"ep": 0, "p": 0, "el": 0, "l": 0, "clips": 0})
             fila["ep"] += ep; fila["p"] += p; fila["el"] += el; fila["l"] += l; fila["clips"] += 1
@@ -117,6 +127,10 @@ def medir(origen: str, etiqueta: str, modelo: str = "omniASR_LLM_300M") -> dict:
         "origen": origen, "clips": len(filas),
         "wer": round(acumulado["ep"] / acumulado["p"], 4) if acumulado["p"] else None,
         "cer": round(acumulado["el"] / acumulado["l"], 4) if acumulado["l"] else None,
+        "wer_ortografia": (round(acumulado["eo"] / acumulado["po"], 4)
+                           if acumulado["po"] else None),
+        "cer_ortografia": (round(acumulado["elo"] / acumulado["lo"], 4)
+                           if acumulado["lo"] else None),
         "por_persona": {k: {"clips": v["clips"],
                             "wer": round(v["ep"] / v["p"], 4) if v["p"] else None,
                             "cer": round(v["el"] / v["l"], 4) if v["l"] else None}
@@ -142,7 +156,10 @@ def main() -> None:
     args = p.parse_args()
     c = medir(args.origen, args.etiqueta, args.modelo)
     print(f"\n{c['etiqueta']} · {c['modelo']} · {c['clips']} clips")
-    print(f"  WER {c['wer']:.1%}   CER {c['cer']:.1%}")
+    print(f"  WER {c['wer']:.1%}   CER {c['cer']:.1%}   (escritura tal cual)")
+    if c.get("wer_ortografia") is not None:
+        print(f"  WER {c['wer_ortografia']:.1%}   CER {c['cer_ortografia']:.1%}   "
+              f"(ortografia normalizada)")
     if c["prestamos"]["evaluados"]:
         print(f"  préstamos del castellano: {c['prestamos']['acertados']}"
               f"/{c['prestamos']['evaluados']} bien ({c['prestamos']['tasa_acierto']:.1%})")
