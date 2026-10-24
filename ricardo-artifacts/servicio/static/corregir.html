@@ -58,6 +58,7 @@
       <option value="B">B · respuestas libres</option>
       <option value="E">E · extra verificadas</option>
     </select>
+    <button id="grabar">🎙 Grabar</button>
     <input id="archivo" type="file" accept="audio/*,video/*" style="font-size:12px">
     <input id="cuantas" type="number" min="0" placeholder="¿cuántas frases?" style="width:140px" title="cuántas frases trae esta nota; vacío = las que faltan">
     <button id="subir" class="principal">Subir y partir</button>
@@ -292,14 +293,46 @@ $('#transcribirTodo').onclick = async () => {
   pintar();
 };
 
-$('#subir').onclick = async () => {
-  const f = $('#archivo').files[0];
+// --- grabar la nota desde el navegador ---
+let grabadora = null, trozosAudio = [], relojGrabacion = null;
+
+$('#grabar').onclick = async () => {
+  if (grabadora && grabadora.state === 'recording') { grabadora.stop(); return; }
   const quien = $('#nombrePersona').value.trim();
-  if (!f || !quien) { $('#estadoSubida').textContent = 'Falta el archivo o el identificador.'; return; }
-  $('#subir').disabled = true;
+  if (!quien) { $('#estadoSubida').textContent = 'Primero pon el identificador de la persona.'; return; }
+  try {
+    const flujo = await navigator.mediaDevices.getUserMedia({audio:{
+      echoCancellation:false, noiseSuppression:false, autoGainControl:false}});
+    trozosAudio = [];
+    grabadora = new MediaRecorder(flujo);
+    grabadora.ondataavailable = e => { if (e.data.size) trozosAudio.push(e.data); };
+    grabadora.onstop = async () => {
+      flujo.getTracks().forEach(t => t.stop());
+      clearInterval(relojGrabacion);
+      $('#grabar').classList.remove('malo');
+      $('#grabar').textContent = '🎙 Grabar';
+      const blob = new Blob(trozosAudio, {type:'audio/webm'});
+      await enviarNota(new File([blob], 'nota.webm', {type:'audio/webm'}), quien);
+    };
+    grabadora.start();
+    const t0 = Date.now();
+    relojGrabacion = setInterval(() => {
+      const s = Math.round((Date.now() - t0) / 1000);
+      $('#estadoSubida').textContent = `grabando ${Math.floor(s/60)}:${String(s%60).padStart(2,'0')} · ` +
+        'di el código, espera un segundito, di la frase, y dos segundos de pausa';
+    }, 500);
+    $('#grabar').classList.add('malo');
+    $('#grabar').textContent = '⏹ Detener';
+  } catch (e) {
+    $('#estadoSubida').textContent = 'No se pudo abrir el micrófono: ' + e.message;
+  }
+};
+
+async function enviarNota(archivo, quien) {
+  $('#subir').disabled = true; $('#grabar').disabled = true;
   $('#estadoSubida').textContent = 'Convirtiendo y partiendo por los silencios…';
   const cuerpo = new FormData();
-  cuerpo.append('audio', f, f.name);
+  cuerpo.append('audio', archivo, archivo.name);
   cuerpo.append('persona', quien);
   cuerpo.append('bloque', $('#bloqueNuevo').value);
   cuerpo.append('esperadas', $('#cuantas').value || '0');
@@ -309,13 +342,21 @@ $('#subir').onclick = async () => {
     $('#estadoSubida').innerHTML =
       `${d.clips_nuevos} clips nuevos (del ${d.desde}) · ${Math.round(d.segundos)}s · ` +
       `${d.clips_total} en total` +
+      (d.codigos_unidos ? ` · ${d.codigos_unidos} códigos unidos a su frase` : '') +
       (d.coincide ? ' · <span class="listo">coincide con lo esperado</span>'
                   : ` · <b style="color:var(--rojo)">se esperaban ${d.esperadas}</b>, revisa antes de usarlo`);
     const sel = $('#persona');
     if (![...sel.options].some(o => o.value === quien)) sel.add(new Option(quien, quien));
     sel.value = quien; persona = quien; await cargar();
   } catch (e) { $('#estadoSubida').textContent = 'Falló: ' + e.message; }
-  finally { $('#subir').disabled = false; }
+  finally { $('#subir').disabled = false; $('#grabar').disabled = false; }
+}
+
+$('#subir').onclick = async () => {
+  const f = $('#archivo').files[0];
+  const quien = $('#nombrePersona').value.trim();
+  if (!f || !quien) { $('#estadoSubida').textContent = 'Falta el archivo o el identificador.'; return; }
+  await enviarNota(f, quien);
 };
 
 $('#exportar').onclick = async () => {
