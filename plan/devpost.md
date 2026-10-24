@@ -30,7 +30,7 @@ and for patients. It doesn't just translate; it interprets:
 ## How we built it
 - **Ears and mouth (open models, fine-tuned):** Meta MMS language ID, Omnilingual ASR for Quechua, MMS-TTS for the
   Quechua voice, NLLB-200 for translation, fine-tuned on recordings our families made this weekend through a web form
-  we built (text + audio, with consent). Cartesia handles the Spanish side (ears in ~0.5 s and voice).
+  we built (text + audio, with consent). Cartesia handles the Spanish side (ink-whisper transcribed 3.5 s of speech in 480 ms, and the Spanish voice).
 - **Brain (Claude):** Opus 5 is the interpreter: one structured call decides among five actions. Sonnet 5 is the
   critic. Code decides: the model proposes, deterministic guards dispose, and every failure fails closed.
 - **Guardrails before speaking:** the polish can't change or add a fact; numbers, medicine names, units, negation and
@@ -46,7 +46,8 @@ and for patients. It doesn't just translate; it interprets:
   **Chaski caught 165/165 and blocks 10% of correct ones** (and those fail safe: it stays quiet and says why).
 - **Interpreter**, 48 real scenarios: Opus 98% correct action with zero invented clinical data; Sonnet 94%; Haiku 88%.
 - **Retrieval**: hybrid RAG finds the right phrase first 88% of the time vs 70% for keyword search.
-- **Speech**: [baseline WER/CER and fine-tuned result on a held-out speaker — only from Ricardo's results file].
+- **Speech baseline** (before fine-tuning, one family speaker held out): Quechua ASR WER 68.9% (54.1% with spelling
+  normalized) on 175 clips; translation chrF++ 42.31 on 30 verified pairs. [Fine-tuned result: only from Ricardo's results file.]
 
 ## Challenges we ran into
 There is almost no open Chanka Quechua data — Common Voice has three minutes of it — so our families became the
