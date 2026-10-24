@@ -1,6 +1,6 @@
 # Rimay — fuente de verdad (SOT)
 
-> **Versión SOT-10 · sábado 24 de octubre de 2026, 09:05 PT**
+> **Versión SOT-11 · sábado 24 de octubre de 2026, 09:15 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-11 (sáb 09:15).** **Rimay sirve a los dos lados (D27)**: lo puede usar el personal de salud o el paciente quechuahablante. Onboarding de tres pasos: idioma → nombre → ¿personal de salud o paciente? La interfaz sale en el idioma elegido. El rol cambia solo el texto de algunas pantallas, el prompt del agente y el tipo de resumen; el núcleo es el mismo. Las pantallas en quechua las redacta Claude y **las revisa la mamá de Freddy** antes del pitch.
 - **SOT-10 (sáb 09:05).** **UI: se construye sobre el tablero de Pencil (D26)**, con 11 ajustes para el flujo real: estado «Pensando» con pasos, texto antes que voz, modo ensayo en ámbar (rojo solo para dato crítico), tocar para hablar (no mantener), quién habla en el botón y alternancia automática, franja textil, historial de la consulta, boca de Chaski con el volumen real. Detalle: `design/specs/02-pulido-ui.md`. La app vive en `movil/` (Expo SDK 58). También se registra D25 (cuadernillo + NLLB-200).
 - **SOT-9 (sáb 07:50).** **Paleta decidida (D24)**: «Chaski + textil», tokens en `design/tokens.json`. Loops de Chaski listos: escuchando y presentarse cierran solos, pensando y no_entendi en ping-pong; hablando se hace en la app alternando reposo/hablando con el volumen del audio. Entrevista Mom Test a la mamá de Freddy en `plan/entrevista-personal-salud.md`. Voz con emoción y clonación al backlog. **Corrección:** la GPU es una A10G de 23 GB, no 40 (medido por Ricardo).
 - **SOT-8 (sáb 01:50).** **Foco cerrado (D23):** traducción literal + ajuste fino de reconocimiento y voz. Las tres formas de interpretar que propuso Freddy van al backlog (§13). Además: los videos de Chaski se piden con el cuadro ya en 16:9 (`avatar/estados-16x9/`), porque en cuadrado Flow hacía zoom.
@@ -37,7 +38,7 @@ Antes de decir algo, Rimay se audita: si una dosis, una hora o una fecha cambió
 
 | | |
 |---|---|
-| **Usuaria principal** | El personal de salud de la posta (enfermera, técnico, obstetra) |
+| **Quién la usa** | **Los dos lados (D27)**: el personal de salud de la posta (enfermera, técnico, obstetra) **o** el paciente quechuahablante, en su propio celular |
 | **Quien se beneficia** | Los pacientes quechuahablantes de la **posta de Pilpichaca (Huancavelica)**, en cualquier atención: niño, fiebre, diarrea, presión, diabetes, embarazo, adulto mayor |
 | **Dónde** | En la consulta, cara a cara, con el celular entre los dos |
 | **Forma** | **App nativa de iOS**, instalada por TestFlight con la cuenta Apple Developer de Freddy. Los modelos de voz corren en la GPU de Ricardo |
@@ -161,6 +162,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
 | D25 | sáb 08:35 | **El cuadernillo pide escribir la frase en quechua y leer en voz alta exactamente lo escrito** (75 frases, foto de cada hoja + una nota de voz por frase). Traducción: **NLLB-200 de Meta** (`facebook/nllb-200-distilled-600M`, incluye `quy_Latn`, licencia no comercial) ajustado con esos pares | Traducir, entender y hablar necesitan **texto escrito**: con solo voz habría que transcribir ~450 audios. Así cada persona trae su texto y su audio alineados. Omnilingual MT (Meta, mar-2026) no tiene pesos publicados |
+| D27 | sáb 09:05 | **Rimay es para los dos lados: personal de salud y paciente.** Onboarding: (1) idioma, castellano o quechua; (2) nombre; (3) ¿personal de salud o paciente? La interfaz va en el idioma elegido. El rol cambia algunos textos de la vista, el system prompt del agente y el resumen final (nota clínica para el personal, instrucciones para llevar a casa para el paciente). No son dos apps | Freddy: un paciente que no habla castellano también llega a un servicio de salud y merece los mismos beneficios, el resumen de lo que escuchó y la auditoría con Claude |
 | D26 | sáb 09:05 | **La UI se construye sobre el tablero de Pencil** (`design/rimay-pen.png`), con los ajustes de `design/specs/02-pulido-ui.md`. La app está en `movil/` | Elección de Freddy entre Pencil y Claude Design; los ajustes salen de los tiempos reales del servicio (~5 s por turno) y de la tasa de bloqueos del modo estricto |
 | D24 | sáb 07:48 | **Paleta «Chaski + textil»**: fondo crudo `#F6F4F1`, acción teal `#0E6B64` (6.4:1), quechua canela `#A85A2A` (5.0:1), rojo solo para bloqueo, avisos siempre con ícono, una franja textil escalonada como único adorno. Tokens: `design/tokens.json` | Reutiliza lo diseñado, es la más segura y combina con el fondo cálido de Chaski; la franja da la identidad que faltaba |
 | D23 | sáb 01:40 | **El foco del fin de semana es la traducción literal** (modo 1 abajo) **más el ajuste fino de reconocimiento y voz en chanka**. Los modos 2 y 3 van al backlog | Lo que se puede hacer bien en 30 horas; los otros modos se suman si sobra tiempo |
