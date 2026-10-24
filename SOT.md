@@ -285,6 +285,15 @@ Un intérprete de verdad no solo traduce. Freddy y Ricardo identificaron tres mo
 | **2 · Mediado** | La enfermera le pide a Rimay que le haga entender algo al paciente; Rimay decide **cómo** decirlo para que se entienda | «Explícale que no puede dejar el tratamiento aunque se sienta bien» → Rimay arma el mensaje en quechua adaptado al paciente | backlog |
 | **3 · Preguntas al intérprete** | La enfermera le pregunta algo **a Rimay**, no al paciente, y Rimay responde a ella sin traducirlo | «¿Qué quiso decir con eso?» / «¿Te dijo cuántos días lleva con fiebre?» | backlog |
 
+### Backlog: voz con emoción y clonación de voz (idea de Freddy, sáb 07:42)
+
+| Idea | Qué es | Por qué suma | Notas |
+|---|---|---|---|
+| **Emoción en la voz** | Que Chaski hable calmado, cálido o con urgencia según lo que dice (una señal de alarma no suena igual que un saludo) | Más natural y más claro para el paciente | Cartesia controla emoción en castellano (*por verificar el detalle*); en quechua depende de lo que permita MMS-TTS ajustado |
+| **Clonar voces** | Con unos segundos de muestra, la traducción sale **con la voz de quien habló**: la enfermera «habla quechua» con su voz, el paciente «habla castellano» con la suya | Complejidad técnica visible para el jurado; la conversación se siente entre personas, no con una máquina | La voz de Chaski ya es un primer paso (ajuste con la voz de la mamá de Freddy, F5). Cartesia ofrece clonación de voz (*por verificar*). **Consentimiento explícito de cada voz** |
+
+**Prioridad:** después del núcleo (D23). Es un «extra» para el pitch si sobra tiempo.
+
 **Lo difícil, cuando se haga:** saber en cada turno si lo que se dijo es **para traducir** o **para el intérprete**.
 Freddy lo imagina como una **orquestación de agentes** (un agente que clasifica la intención y deriva al traductor,
 al mediador o al que responde), y mencionó `/jev-ai` como inspiración. *(Por evaluar: no está decidido.)*
