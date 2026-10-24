@@ -50,3 +50,25 @@ def test_la_distancia_de_palabras_cuenta_cambios():
     assert distancia_palabras(a, a) == 0
     assert distancia_palabras(a, _palabras("Huk pastillata upyay sapa pusaq")) == 1
     assert distancia_palabras(a, _palabras("mana imapas")) == 6
+
+
+def test_el_importador_acepta_los_nombres_del_formulario():
+    """El formulario manda `audio`, `transcripcion` y `numero_global`; el contrato
+    original decía `audio_url`, `quechua_escrito` y `numero`. Valen los dos."""
+    from voz.importar_formulario import campo
+    del_formulario = {"persona": "p1", "bloque": "C", "numero": 1, "numero_global": 1,
+                      "audio": "https://x/a.webm", "transcripcion": "Huk pastillata",
+                      "castellano": "Tome una pastilla", "audio_segundos": 3.4}
+    assert campo(del_formulario, "audio") == "https://x/a.webm"
+    assert campo(del_formulario, "texto") == "Huk pastillata"
+    assert campo(del_formulario, "segundos") == 3.4
+
+    del_contrato = {"persona": "p1", "numero": 7, "audio_url": "https://x/b.webm",
+                    "quechua_escrito": "Yakuwan upyay"}
+    assert campo(del_contrato, "audio") == "https://x/b.webm"
+    assert campo(del_contrato, "texto") == "Yakuwan upyay"
+
+
+def test_numero_global_manda_sobre_numero():
+    from voz.importar_formulario import campo
+    assert campo({"numero": 1, "numero_global": 26}, "numero") == 26

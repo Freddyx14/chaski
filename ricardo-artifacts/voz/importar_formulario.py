@@ -32,7 +32,25 @@ from voz.contrato import Grabacion, escribir_manifiesto
 from voz.ingesta import convertir
 
 RAIZ = Path("datos/crudo")
-OBLIGATORIOS = ("persona", "numero", "audio_url")
+# El formulario desplegado usa `audio`, `transcripcion` y `numero_global`; el
+# contrato original decia `audio_url`, `quechua_escrito` y `numero`. Se aceptan
+# las dos formas: el importador es liberal con lo que recibe.
+ALIAS = {
+    "audio": ("audio_url", "audio", "url", "blob_url"),
+    "texto": ("quechua_escrito", "transcripcion", "quechua", "quechua_texto"),
+    "numero": ("numero_global", "numero", "n"),
+    "bloque": ("parte", "bloque"),
+    "castellano": ("castellano", "frase_castellano"),
+    "segundos": ("segundos", "audio_segundos", "duracion"),
+}
+
+
+def campo(fila: dict, cual: str):
+    for nombre in ALIAS[cual]:
+        valor = fila.get(nombre)
+        if valor not in (None, ""):
+            return valor
+    return None
 
 
 def leer_lineas(origen: str) -> list[dict]:
@@ -70,7 +88,9 @@ def importar(origen: str, solo: str = "") -> dict:
 
     with httpx.Client() as cliente:
         for fila in filas:
-            if any(c not in fila for c in OBLIGATORIOS):
+            url = campo(fila, "audio")
+            numero_crudo = campo(fila, "numero")
+            if not fila.get("persona") or numero_crudo is None or not url:
                 saltadas += 1
                 continue
             persona = str(fila["persona"]).strip()
@@ -80,21 +100,21 @@ def importar(origen: str, solo: str = "") -> dict:
                 sin_consentimiento += 1
                 continue
 
-            numero = int(fila["numero"])
-            bloque = fila.get("parte") or parte_de(numero)
+            numero = int(numero_crudo)
+            bloque = campo(fila, "bloque") or parte_de(numero)
             carpeta = RAIZ / persona
             carpeta.mkdir(parents=True, exist_ok=True)
             destino = carpeta / f"{persona}_{bloque}_{numero:03d}.wav"
 
             try:
-                datos = bajar(fila["audio_url"], cliente)
+                datos = bajar(url, cliente)
             except Exception as e:
                 print(f"  {persona} #{numero}: no se pudo bajar el audio ({str(e)[:60]})",
                       file=sys.stderr)
                 saltadas += 1
                 continue
             crudo = tempfile.NamedTemporaryFile(
-                suffix=Path(fila["audio_url"]).suffix or ".webm", delete=False)
+                suffix=Path(str(url).split("?")[0]).suffix or ".webm", delete=False)
             crudo.write(datos)
             crudo.close()
             try:
@@ -108,9 +128,9 @@ def importar(origen: str, solo: str = "") -> dict:
                 # Lo que la persona ESCRIBIO es la verdad de referencia que ella
                 # misma declaro. El etiquetador sirve para comprobar que el audio
                 # dice eso, no para inventarlo de cero.
-                transcripcion=str(fila.get("quechua_escrito", "")).strip(),
-                castellano=str(fila.get("castellano", "")).strip(),
-                segundos=round(float(fila.get("segundos") or segundos), 2),
+                transcripcion=str(campo(fila, "texto") or "").strip(),
+                castellano=str(campo(fila, "castellano") or "").strip(),
+                segundos=round(float(campo(fila, "segundos") or segundos), 2),
                 consentimiento=True))
 
     for persona, grabaciones in por_persona.items():

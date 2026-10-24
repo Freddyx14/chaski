@@ -121,6 +121,21 @@ y arma el manifiesto.
 | `consentimiento` | **sí** | **si es `false` o falta, la fila NO entra al corpus** |
 | `parte` | no | `C`, `M`, `N`, `B` o `E`; si falta se deduce del número |
 
+**El formulario desplegado usa otros nombres, y el importador acepta los dos.** No hay que cambiar nada
+de un lado ni del otro:
+
+| Lo que manda el formulario | Lo que también se acepta |
+|---|---|
+| `audio` | `audio_url`, `url`, `blob_url` |
+| `transcripcion` | `quechua_escrito`, `quechua`, `quechua_texto` |
+| `numero_global` | `numero`, `n` |
+| `bloque` | `parte` |
+| `audio_segundos` | `segundos`, `duracion` |
+
+**`numero_global` manda sobre `numero`**, porque el cuadernillo numera corrido de 1 a 175 y el
+etiquetador empareja la referencia con ese número. `numero` en el export del formulario es el índice
+dentro del bloque, que no sirve para emparejar.
+
 Importar:
 
 ```bash
