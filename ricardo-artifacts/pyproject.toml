@@ -1,0 +1,9 @@
+[project]
+name = "rimay-voz"
+version = "0.1.0"
+description = "Sesion A de Ricardo: voz en quechua chanka para Rimay. Cal Hacks 13.0."
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
