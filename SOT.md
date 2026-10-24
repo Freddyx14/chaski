@@ -1,6 +1,6 @@
 # Rimay — fuente de verdad (SOT)
 
-> **Versión SOT-9 · sábado 24 de octubre de 2026, 07:50 PT**
+> **Versión SOT-10 · sábado 24 de octubre de 2026, 09:05 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/rimay-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-10 (sáb 09:05).** **UI: se construye sobre el tablero de Pencil (D26)**, con 11 ajustes para el flujo real: estado «Pensando» con pasos, texto antes que voz, modo ensayo en ámbar (rojo solo para dato crítico), tocar para hablar (no mantener), quién habla en el botón y alternancia automática, franja textil, historial de la consulta, boca de Chaski con el volumen real. Detalle: `design/specs/02-pulido-ui.md`. La app vive en `movil/` (Expo SDK 58). También se registra D25 (cuadernillo + NLLB-200).
 - **SOT-9 (sáb 07:50).** **Paleta decidida (D24)**: «Chaski + textil», tokens en `design/tokens.json`. Loops de Chaski listos: escuchando y presentarse cierran solos, pensando y no_entendi en ping-pong; hablando se hace en la app alternando reposo/hablando con el volumen del audio. Entrevista Mom Test a la mamá de Freddy en `plan/entrevista-personal-salud.md`. Voz con emoción y clonación al backlog. **Corrección:** la GPU es una A10G de 23 GB, no 40 (medido por Ricardo).
 - **SOT-8 (sáb 01:50).** **Foco cerrado (D23):** traducción literal + ajuste fino de reconocimiento y voz. Las tres formas de interpretar que propuso Freddy van al backlog (§13). Además: los videos de Chaski se piden con el cuadro ya en 16:9 (`avatar/estados-16x9/`), porque en cuadrado Flow hacía zoom.
 - **SOT-7 (sáb 01:05).** **Chaski tiene sus 6 cuadros** (reposo + 5 estados) en `avatar/estados/`, generados desde la especificación JSON `avatar/chaski.json` (identidad fija + un bloque por estado; los prompts salen de ahí, en `avatar/prompts/`). Para cambiar algo de Chaski se edita el JSON y se regenera.
@@ -160,6 +161,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
 | D25 | sáb 08:35 | **El cuadernillo pide escribir la frase en quechua y leer en voz alta exactamente lo escrito** (75 frases, foto de cada hoja + una nota de voz por frase). Traducción: **NLLB-200 de Meta** (`facebook/nllb-200-distilled-600M`, incluye `quy_Latn`, licencia no comercial) ajustado con esos pares | Traducir, entender y hablar necesitan **texto escrito**: con solo voz habría que transcribir ~450 audios. Así cada persona trae su texto y su audio alineados. Omnilingual MT (Meta, mar-2026) no tiene pesos publicados |
+| D26 | sáb 09:05 | **La UI se construye sobre el tablero de Pencil** (`design/rimay-pen.png`), con los ajustes de `design/specs/02-pulido-ui.md`. La app está en `movil/` | Elección de Freddy entre Pencil y Claude Design; los ajustes salen de los tiempos reales del servicio (~5 s por turno) y de la tasa de bloqueos del modo estricto |
 | D24 | sáb 07:48 | **Paleta «Chaski + textil»**: fondo crudo `#F6F4F1`, acción teal `#0E6B64` (6.4:1), quechua canela `#A85A2A` (5.0:1), rojo solo para bloqueo, avisos siempre con ícono, una franja textil escalonada como único adorno. Tokens: `design/tokens.json` | Reutiliza lo diseñado, es la más segura y combina con el fondo cálido de Chaski; la franja da la identidad que faltaba |
 | D23 | sáb 01:40 | **El foco del fin de semana es la traducción literal** (modo 1 abajo) **más el ajuste fino de reconocimiento y voz en chanka**. Los modos 2 y 3 van al backlog | Lo que se puede hacer bien en 30 horas; los otros modos se suman si sobra tiempo |
 | D22 | sáb 00:54 | **El avatar es Chaski: la vicuña 3D con audífonos y micrófono de intérprete y bufanda teal** (`avatar/opciones/2d-3d-audifonos.png`) | Se entiende de un vistazo que interpreta y traduce |
