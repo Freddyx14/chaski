@@ -135,12 +135,14 @@ def estilos():
                                textColor=colors.HexColor("#4e4d45"), spaceAfter=10),
         "celda": ParagraphStyle("c", parent=base["Normal"], fontSize=12.5, leading=17),
         "seccion": ParagraphStyle("s", parent=base["Heading2"], fontSize=14, spaceBefore=16,
-                                  spaceAfter=4, textColor=colors.HexColor("#16160f")),
+                                  spaceAfter=4, textColor=colors.HexColor("#16160f"), keepWithNext=1),
     }
 
 
 def tabla(filas, anchos, est):
-    t = Table(filas, colWidths=anchos, repeatRows=1)
+    escribir = len(anchos) == 3 and filas and filas[0][-1] == "Escríbalo en quechua"
+    alto = [None] + [1.35 * cm] * (len(filas) - 1) if escribir else None
+    t = Table(filas, colWidths=anchos, repeatRows=1, rowHeights=alto)
     t.setStyle(TableStyle([
         ("FONTSIZE", (0, 0), (-1, -1), 12.5),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.HexColor("#86847a")),
@@ -153,6 +155,13 @@ def tabla(filas, anchos, est):
         ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
         ("LEFTPADDING", (0, 0), (-1, -1), 2),
     ]))
+    if escribir:
+        t.setStyle(TableStyle([
+            ("BOX", (2, 1), (2, -1), 0.4, colors.HexColor("#b9b6a8")),
+            ("LINEBELOW", (2, 1), (2, -1), 0.4, colors.HexColor("#b9b6a8")),
+            ("BACKGROUND", (2, 1), (2, -1), colors.HexColor("#fbfaf6")),
+            ("VALIGN", (0, 1), (1, -1), "MIDDLE"),
+        ]))
     return t
 
 
@@ -195,29 +204,34 @@ def main() -> None:
 
     nota_comun = (
         "<b>¿Para qué sirve?</b> Estamos haciendo una app para que el personal de las postas pueda hablar "
-        "con los pacientes en quechua. Cada frase que usted grabe le enseña dos cosas: a <b>traducir</b> "
-        "bien del castellano al quechua en temas de salud, y a <b>entender y pronunciar</b> el quechua chanka.<br/><br/>"
-        "<b>Cómo grabar, en 4 pasos</b><br/>"
+        "con los pacientes en quechua. Con lo que usted escriba y grabe, la app aprende tres cosas: a "
+        "<b>traducir</b> bien del castellano al quechua en temas de salud, a <b>entender</b> el quechua "
+        "hablado y a <b>hablarlo</b>.<br/><br/>"
+        "<b>Cómo hacerlo, en 4 pasos</b><br/>"
         "1. Lea la frase en castellano.<br/>"
-        "2. En WhatsApp, mantenga presionado el micrófono para grabar una nota de voz.<br/>"
-        "3. Diga el <b>número</b> en castellano y después la frase <b>en quechua</b>, como usted la diría "
-        "en la posta, con sus propias palabras.<br/>"
-        "4. Suelte y envíe. <b>Una nota de voz por frase</b>, a la persona que le pasó este documento.<br/><br/>"
-        "<b>Ejemplo.</b> Usted ve: «3 · Tómela con agua, no con té». Graba: «tres» y luego la frase en quechua.<br/><br/>"
-        "<b>No tiene que escribir nada.</b> Si no sabe cómo se dice algo, sáltelo. "
-        "Lugar tranquilo, el celular cerca de la boca. Las partes 1 a 4 toman unos 25 minutos; "
-        "la parte 5 es solo si le queda tiempo.")
+        "2. <b>Escríbala en quechua</b> en el espacio de la derecha, como usted la diría en la posta.<br/>"
+        "3. En WhatsApp, grabe una nota de voz: diga el <b>número</b> en castellano y después "
+        "<b>lea en voz alta exactamente lo que escribió</b>. Una nota de voz por frase.<br/>"
+        "4. Al terminar, <b>tómele una foto a cada hoja</b> y envíela, junto con las notas de voz, "
+        "a la persona que le pasó este documento.<br/><br/>"
+        "<b>Ejemplo.</b> Usted ve «3 · Tómela con agua, no con té». La escribe en quechua en el espacio. "
+        "Graba: «tres» y lee lo que escribió.<br/><br/>"
+        "<b>Importante:</b> lo que dice en el audio tiene que ser <b>igual</b> a lo que escribió. "
+        "Si no sabe cómo se dice algo, sáltelo. Si no puede escribir en quechua, grabe igual y avise. "
+        "Lugar tranquilo, el celular cerca de la boca. Las partes 1 a 4 toman unos 60 minutos; "
+        "la parte 5 es solo si le queda tiempo (ahí ya está escrito, solo se lee).")
 
     def parte(titulo, letra, lista, texto=lambda x: x):
         ini, _ = rango[letra]
-        return (titulo, [["N.º", "Frase en castellano"]] +
-                [[str(ini + i), P(texto(x))] for i, x in enumerate(lista)], [1.4 * cm, 15 * cm])
+        return (titulo, [["N.º", "En castellano", "Escríbalo en quechua"]] +
+                [[str(ini + i), P(texto(x)), ""] for i, x in enumerate(lista)],
+                [1.2 * cm, 6.6 * cm, 8.6 * cm])
 
     bloques = [
-        parte("Parte 1 · Lo que dice la enfermera · dígalo en quechua", "C", CLINICAS),
-        parte("Parte 2 · Medicinas · dígalo en quechua (el nombre de la medicina, como lo dice la gente)", "M", MEDICAMENTOS),
-        parte("Parte 3 · Números y días · dígalo en quechua", "N", NUMEROS),
-        parte("Parte 4 · Lo que dice el paciente · dígalo en quechua", "B", LIBRES),
+        parte("Parte 1 · Lo que dice la enfermera", "C", CLINICAS),
+        parte("Parte 2 · Medicinas (el nombre de la medicina, como lo dice la gente)", "M", MEDICAMENTOS),
+        parte("Parte 3 · Números y días", "N", NUMEROS),
+        parte("Parte 4 · Lo que dice el paciente", "B", LIBRES),
         ("Parte 5 · Extra, solo si le queda tiempo · lea en voz alta la columna en quechua",
          [["N.º", "Castellano", "Quechua chanka"]] +
          [[str(rango["E"][0] + i), P(f["castellano"]), P(f["chanka"])] for i, f in enumerate(verificadas)],
