@@ -18,7 +18,8 @@ import {
 import { usePerfil, type Perfil } from '@/rimay/perfil';
 import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/rimay/textos';
 import { C, ESCALA } from '@/rimay/tokens';
-import { Aviso, Boton, Etiqueta, FranjaTextil, Icono, Tarjeta } from '@/rimay/ui';
+import { Manta } from '@/rimay/manta';
+import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/rimay/ui';
 import { bocaAbierta, envolvente, type Envolvente } from '@/rimay/wav';
 
 // WAV 16 kHz mono 16 bits: lo que piden el detector de idioma y el reconocimiento (CONTRATO.md §1).
@@ -239,7 +240,7 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
       <Encabezado t={t} />
-      <FranjaTextil />
+      <Manta variante="faja" escala={1.3} />
       <ScrollView contentContainerStyle={e.cuerpo} bounces={false}>
         {protagonista ? (
           <View style={e.centro}>

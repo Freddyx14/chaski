@@ -53,7 +53,12 @@ Sin la línea base no hay «cuánto mejoramos», y ese número es el pitch. Rica
 - **Un solo script** que corre lo mismo antes y después y escribe un archivo fechado (p. ej. `reports/linea-base.json` con el commit), para que el «después» sea el mismo comando con otro modelo.
 - Paso 0 y paso 1 de abajo SON esta línea base: que queden guardados así, con las fallas, antes de las 13:30.
 
-### Dos rutas que la app ya llama (pegar en `servicio/app.py`)
+### 🔴 URGENTE · Dos rutas que la app ya llama (pegar en `servicio/app.py`) — pedido de Freddy, sáb 09:31
+La app iOS ya está en TestFlight y sin estas rutas el resumen y la detección de idioma no funcionan. **Cuando las pegues, haz push** (y avisa por el grupo).
+- [ ] `/resumen`
+- [ ] `/idioma`
+- [ ] Levantar el túnel HTTPS donde corre el servicio: `cloudflared tunnel --url http://localhost:8000` y pasarle la dirección a Freddy
+
 La lógica del resumen ya está en `app/rimay/resumen.py` con pruebas; solo falta exponerla. `/idioma` reenvía a la instancia, que ya lo tiene.
 
 ```python

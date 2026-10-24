@@ -11,7 +11,8 @@ import { Chaski } from '@/rimay/chaski';
 import { nuevaConsulta, useTurnos } from '@/rimay/consulta';
 import { usePerfil } from '@/rimay/perfil';
 import { C, ESCALA } from '@/rimay/tokens';
-import { Aviso, Boton, FranjaTextil, Tarjeta } from '@/rimay/ui';
+import { Manta } from '@/rimay/manta';
+import { Aviso, Boton, Tarjeta } from '@/rimay/ui';
 
 const EJEMPLO: Resumen = {
   rol: 'personal',
@@ -67,7 +68,7 @@ export default function PantallaResumen() {
   const paraPaciente = rol === 'paciente';
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
-      <FranjaTextil />
+      <Manta variante="faja" escala={1.3} />
       <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
         <View style={e.fila}>
           <Chaski estado={r ? 'presentarse' : error ? 'no_entendi' : 'pensando'} tam={96} />

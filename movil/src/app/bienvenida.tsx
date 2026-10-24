@@ -9,7 +9,8 @@ import { Chaski } from '@/rimay/chaski';
 import { guardarPerfil, type Idioma, type Rol } from '@/rimay/perfil';
 import { textos } from '@/rimay/textos';
 import { C, ESCALA } from '@/rimay/tokens';
-import { Boton, FranjaTextil, Icono } from '@/rimay/ui';
+import { Manta } from '@/rimay/manta';
+import { Boton, Icono } from '@/rimay/ui';
 
 export default function Bienvenida() {
   const [paso, setPaso] = useState<1 | 2 | 3>(1);
@@ -24,11 +25,14 @@ export default function Bienvenida() {
 
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
-      <FranjaTextil />
+      {/* La manta de gala abre la pantalla; Chaski se sienta encima. */}
+      <View style={e.heroe}>
+        <Manta variante="gala" escala={paso === 1 ? 2.1 : 1.4} />
+      </View>
       <KeyboardAvoidingView behavior="padding" style={{ flex: 1 }}>
         <View style={e.cuerpo}>
-          <View style={{ alignItems: 'center' }}>
-            <Chaski estado="presentarse" tam={paso === 1 ? 220 : 160} />
+          <View style={[e.chaskiSobreManta, { marginTop: paso === 1 ? -120 : -90 }]}>
+            <Chaski estado="presentarse" tam={paso === 1 ? 210 : 150} />
           </View>
           <Text style={e.marca}>Rimay</Text>
           <View style={e.puntos}>
@@ -97,7 +101,9 @@ function Opcion({ titulo, detalle, quechua, icono, onPress }: {
 
 const e = StyleSheet.create({
   pantalla: { flex: 1, backgroundColor: C.ground },
-  cuerpo: { flex: 1, padding: 16, gap: 12, justifyContent: 'center' },
+  cuerpo: { flex: 1, padding: 16, gap: 12 },
+  heroe: { overflow: 'hidden' },
+  chaskiSobreManta: { alignSelf: 'center', padding: 6, borderRadius: 34, backgroundColor: C.ground },
   marca: { fontSize: ESCALA.display, fontWeight: '700', color: C.ink, textAlign: 'center' },
   puntos: { flexDirection: 'row', gap: 6, justifyContent: 'center', marginBottom: 8 },
   punto: { width: 8, height: 8, borderRadius: 4, backgroundColor: C.border },

@@ -9,24 +9,6 @@ export function Icono({ nombre, color, tam = 20 }: { nombre: SymbolViewProps['na
   return <SymbolView name={nombre} tintColor={color} size={tam} resizeMode="scaleAspectFit" style={{ width: tam, height: tam }} />;
 }
 
-/** La franja textil escalonada: el único adorno de la app (regla de tokens.json). Dos filas desfasadas
- *  forman el escalón de los tejidos andinos. */
-export function FranjaTextil() {
-  const fila = (desfase: number) => (
-    <View style={{ flexDirection: 'row', height: 4 }}>
-      {Array.from({ length: 50 }).map((_, i) => (
-        <View key={i} style={{ width: 8, height: 4, backgroundColor: (i + desfase) % 3 === 0 ? C.textileB : C.textileA }} />
-      ))}
-    </View>
-  );
-  return (
-    <View style={estilos.franja} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      {fila(0)}
-      {fila(1)}
-    </View>
-  );
-}
-
 export function Etiqueta({ idioma }: { idioma: 'castellano' | 'quechua' }) {
   const q = idioma === 'quechua';
   return (
@@ -87,7 +69,6 @@ export function Aviso({ tipo, texto }: { tipo: 'ok' | 'warn' | 'block'; texto: s
 }
 
 export const estilos = StyleSheet.create({
-  franja: { height: 8, overflow: 'hidden' },
   etiqueta: { height: 28, borderRadius: 14, paddingHorizontal: 12, justifyContent: 'center', alignSelf: 'flex-start' },
   etiquetaTexto: { fontSize: ESCALA.mini, fontWeight: '600' },
   tarjeta: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderRadius: 20, padding: 16 },
