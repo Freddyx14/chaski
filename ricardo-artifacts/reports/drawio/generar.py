@@ -13,12 +13,21 @@ Ahora no pueden desincronizarse, porque son dos salidas del mismo objeto.
 El XML del .drawio va sin comprimir a propósito: draw.io por defecto lo guarda
 comprimido en base64 y entonces el diff de git es ilegible.
 
-Se corre desde la raíz de ricardo-artifacts:
+Se corre desde la raíz de ricardo-artifacts (Pillow es para reducir el arte de
+Chaski a 64 px):
 
-    python reports/drawio/generar.py
+    uv run --with pillow python reports/drawio/generar.py
 """
+import sys
 from pathlib import Path
 from xml.sax.saxutils import escape
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from iconos import cargar as cargar_iconos  # noqa: E402
+
+ICONOS = cargar_iconos()
+LADO_ICONO = 26
+SANGRIA_ICONO = 42
 
 FONDO = "#F4F3EE"
 CAJA = ("rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor={b};strokeWidth=2;"
@@ -82,19 +91,29 @@ class Lienzo:
         """
         tam = float(d.get("fontSize", 11))
         sangria = 0 if "text" in d else float(d.get("spacingLeft", 10))
-        util = w if "text" in d else w - sangria * 2
+        util = w if "text" in d else w - sangria - 10
         lineas = 0
         for cruda in valor.split("\n"):
             lineas += 1 if not cruda else len(_partir(cruda, util, tam))
         return float(d.get("spacingTop", 6)) + lineas * tam * 1.45 + 6
 
-    def caja(self, valor, estilo, x, y, w, h):
+    def caja(self, valor, estilo, x, y, w, h, icono=None):
+        """Una caja. Con `icono`, el dibujo va arriba a la izquierda y el texto se corre.
+
+        En draw.io eso es `shape=label` con una imagen; en el SVG es un <image>
+        y una sangría. La imagen viaja incrustada en los dos, no por archivo.
+        """
         self.n += 1
         i = f"n{self.n}"
+        if icono and icono in ICONOS:
+            estilo = estilo + (f"shape=label;image={ICONOS[icono]['drawio']};"
+                               f"imageWidth={LADO_ICONO};imageHeight={LADO_ICONO};"
+                               f"imageAlign=left;imageVerticalAlign=top;"
+                               f"spacingLeft={SANGRIA_ICONO};")
         d = _estilo(estilo)
-        if valor and not d.get("shape"):
+        if valor and not d.get("shape") or icono:
             h = max(h, round(self._alto_minimo(valor, d, w)))
-        self.nodos.append({"id": i, "valor": valor, "estilo": estilo, "d": d,
+        self.nodos.append({"id": i, "valor": valor, "estilo": estilo, "d": d, "icono": icono,
                            "x": x, "y": y, "w": w, "h": h})
         return i
 
@@ -156,7 +175,7 @@ class Lienzo:
         es_texto = "text" in d
         sangria = 0 if es_texto else float(d.get("spacingLeft", 10))
         arriba = float(d.get("spacingTop", 6))
-        ancho_util = nd["w"] - sangria * 2 if not es_texto else nd["w"]
+        ancho_util = nd["w"] - sangria - 10 if not es_texto else nd["w"]
 
         lineas = []
         crudas = nd["valor"].split("\n")
@@ -196,6 +215,13 @@ class Lienzo:
 
             if "text" in d:
                 pass
+            elif forma == "label" or not forma:
+                partes.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{relleno}" '
+                              f'stroke="{borde}" stroke-width="{grosor}"{guion}/>')
+                partes.append(f'<rect x="{x}" y="{y}" width="{w}" height="4" fill="{borde}"/>')
+                if nd.get("icono") in ICONOS:
+                    partes.append(f'<image href="{ICONOS[nd["icono"]]["svg"]}" x="{x + 10}" '
+                                  f'y="{y + 10}" width="{LADO_ICONO}" height="{LADO_ICONO}"/>')
             elif forma == "cylinder3":
                 r = 9
                 partes.append(
@@ -209,16 +235,11 @@ class Lienzo:
                               f'fill="#D05C17" stroke="#FFFFFF" stroke-width="2"/>'
                               f'<text x="{x + w / 2}" y="{y + h / 2 + 4}" font-size="11" '
                               f'font-weight="700" fill="#FFFFFF" text-anchor="middle">EC2</text>')
-            else:
-                partes.append(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="{relleno}" '
-                              f'stroke="{borde}" stroke-width="{grosor}"{guion}/>')
-                partes.append(f'<rect x="{x}" y="{y}" width="{w}" height="4" fill="{borde}"/>')
-
             if nd["valor"] and not forma.startswith("mxgraph.aws4"):
                 if forma == "cylinder3":
                     tam = float(d.get("fontSize", 11))
                     lineas = nd["valor"].split("\n")
-                    y0 = y + h / 2 - (len(lineas) - 1) * tam * 0.72
+                    y0 = y + 10 + h / 2 - (len(lineas) - 1) * tam * 0.72
                     for k, linea in enumerate(lineas):
                         peso = ' font-weight="700"' if k == 0 else ""
                         partes.append(f'<text x="{x + w / 2}" y="{y0 + k * tam * 1.45:.1f}" '
@@ -271,13 +292,13 @@ d.caja("Arquitectura de datos. La regla que sostiene todo: la voz de prueba nunc
 
 d.caja("1 · Recolección", TXT.format(s=13, c="#16160F", f=1), 40, 92, 300, 20)
 cua = d.caja("Cuadernillos\n\n175 frases numeradas\nseis bloques: A B C M N E\nSe escribe primero, se graba después",
-             CAJA.format(b="#8C8C7A"), 40, 118, 220, 96)
+             CAJA.format(b="#8C8C7A"), 40, 118, 220, 96, icono="cuaderno")
 frm = d.caja("Formulario (Freddy)\n\nVercel · la familia sube audio\ny cómo se escribe\nNo lo tocamos desde aquí",
-             CAJA.format(b="#1B9476"), 290, 118, 220, 96)
+             CAJA.format(b="#1B9476"), 290, 118, 220, 96, icono="formulario")
 cor = d.caja("/corregir (Ricardo)\n\nTranscribe, yo corrijo el escrito\nParte y une si cortó mal\nVerifica audio contra texto",
-             CAJA.format(b="#1F6FD0"), 540, 118, 230, 96)
+             CAJA.format(b="#1F6FD0"), 540, 118, 230, 96, icono="etiqueta")
 man = d.caja("manifiesto.jsonl\n\npersona · bloque · numero\naudio · transcripcion · castellano\nsegundos · consentimiento",
-             CAJA.format(b="#8C8C7A"), 800, 118, 240, 96)
+             CAJA.format(b="#8C8C7A"), 800, 118, 240, 96, icono="disco")
 d.flecha(cua, frm); d.flecha(frm, cor); d.flecha(cor, man)
 
 d.caja("2 · Partición POR HABLANTE, nunca por frase",
@@ -288,7 +309,6 @@ va = d.caja("validación\n\n12 % del entrenamiento\nElige hiperparámetros",
             CAJA.format(b="#8C8C7A"), 300, 266, 220, 76)
 pr = d.caja("prueba · una persona entera\n\nVoz que el modelo NUNCA escuchó\nSe toca una sola vez, al final",
             CAJA.format(b="#C8372F") + "strokeWidth=3;", 550, 266, 300, 76)
-d.flecha(man, tr)
 
 d.caja("3 · Tres pasos, tres números — se reportan los tres salga lo que salga",
        TXT.format(s=13, c="#16160F", f=1), 40, 368, 700, 20)
@@ -306,16 +326,16 @@ d.caja("Hasta el 24-oct la auditoría no tenía ninguna: solo se comparaba con l
        TXT.format(s=11, c="#4E4D45", f=0), 40, 514, 1000, 18)
 
 m1 = d.caja("medir_asr.py — entender\n\nVerdad: el escrito corregido en /corregir\nWER y CER · corte por hablante\nAparte: préstamos y números",
-            CAJA.format(b="#1F6FD0"), 40, 542, 300, 100)
+            CAJA.format(b="#1F6FD0"), 40, 542, 300, 100, icono="medir")
 m2 = d.caja("medir_traduccion.py — traducir\n\nVerdad: 100 pares verificados, fuera del train\nchrF++, no BLEU: el quechua aglutina\nBase sin ajustar: chrF++ 42.31",
-            CAJA.format(b="#C8372F"), 370, 542, 320, 100)
+            CAJA.format(b="#C8372F"), 370, 542, 320, 100, icono="medir")
 m3 = d.caja("medir_guarda.py — no dejar pasar errores\n\nVerdad: se inyecta un error clínico a propósito\nDosis cambiada · negación borrada · condición\n0/6 falsos bloqueos · 3/6 FUGAS",
-            CAJA.format(b="#8A4FBD") + "strokeWidth=3;", 720, 542, 330, 100)
+            CAJA.format(b="#8A4FBD") + "strokeWidth=3;", 720, 542, 330, 100, icono="guarda")
 m4 = d.caja("medir_auditoria.py — estabilidad\n\nLa misma frase, varias corridas\nBloqueo · estabilidad · mediana\nLa de 4 llamadas da: sí, no, sí",
-            CAJA.format(b="#8C8C7A"), 1080, 542, 300, 100)
+            CAJA.format(b="#8C8C7A"), 1080, 542, 300, 100, icono="medir")
 
 rep = d.caja("reports/*.json\n\nasr · lid · traduccion · guarda · auditoria\nUn archivo por número",
-             CAJA.format(b="#8C8C7A"), 370, 676, 320, 76)
+             CAJA.format(b="#8C8C7A"), 370, 676, 320, 76, icono="disco")
 pit = d.caja("La página y el pitch\n\nLeen esos JSON y nada más.\nSi un número sale malo, se muestra igual.",
              CAJA.format(b="#C8372F"), 720, 676, 330, 76)
 for m in (m1, m2, m3, m4):
@@ -339,35 +359,35 @@ f.caja("Un turno de consulta, de micrófono a parlante",
 f.caja("Tiempos medidos el 24-oct-2026 en la A10G. Azul: Meta, en nuestra GPU, lo ajustamos. Verde: Cartesia. Rojo: Claude.",
        TXT.format(s=12, c="#4E4D45", f=0), 40, 48, 950, 20)
 
-mic = f.caja("Micrófono\n\niPhone o navegador\n16 kHz mono", CAJA.format(b="#8C8C7A"), 40, 170, 170, 76)
+mic = f.caja("Micrófono\n\niPhone o navegador\n16 kHz mono", CAJA.format(b="#8C8C7A"), 40, 170, 170, 76, icono="micro")
 lid = f.caja("mms-lid-512\n\n¿quechua o castellano?\n49 ms · 6/6 aciertos\nNo se ajusta: ya acierta",
-             CAJA.format(b="#1F6FD0"), 250, 160, 210, 96)
+             CAJA.format(b="#1F6FD0"), 250, 160, 210, 96, icono="gpu")
 f.flecha(mic, lid)
 
 stt_es = f.caja("Cartesia ink-whisper\n\nEntiende castellano\nNube de Cartesia",
-                CAJA.format(b="#1B9476"), 510, 90, 210, 76)
+                CAJA.format(b="#1B9476"), 510, 90, 210, 76, icono="cartesia")
 stt_qu = f.caja("omniASR_LLM_300M\n\nEntiende chanka\n1.71 s para 15.8 s de audio\nEL NÚCLEO: esto ajustamos",
-                CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 510, 250, 210, 96)
+                CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 510, 250, 210, 96, icono="gpu")
 f.flecha(lid, stt_es, "castellano", "strokeColor=#1B9476;fontColor=#1B9476;")
 f.flecha(lid, stt_qu, "quechua", "strokeColor=#1F6FD0;fontColor=#1F6FD0;")
 
 cla = f.caja("Claude\n\nTraduce y audita\nsonnet-5 traduce · haiku-4-5 extrae hechos\n7–12 s: el cuello de botella\nGlosario cacheado en el system",
-             CAJA.format(b="#C8372F"), 770, 160, 240, 116)
+             CAJA.format(b="#C8372F"), 770, 160, 240, 116, icono="claude")
 f.flecha(stt_es, cla); f.flecha(stt_qu, cla)
 
 aud = f.caja("La guarda\n\nRetraduce a ciegas y compara los hechos\nSi cambió una dosis, no se dice\nMedido: 0/6 falsos bloqueos, 3/6 fugas",
-             CAJA.format(b="#8A4FBD") + "strokeWidth=3;", 770, 320, 240, 110)
+             CAJA.format(b="#8A4FBD") + "strokeWidth=3;", 770, 320, 240, 110, icono="guarda")
 f.flecha(cla, aud)
 
 tts_es = f.caja("Cartesia Sonic 3.6\n\nHabla castellano · streaming",
-                CAJA.format(b="#1B9476"), 1070, 120, 220, 70)
+                CAJA.format(b="#1B9476"), 1070, 120, 220, 70, icono="cartesia")
 tts_qu = f.caja("mms-tts-quy\n\nHabla chanka\nSe ajusta con la voz de la mamá de Freddy",
-                CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 1070, 230, 220, 90)
+                CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 1070, 230, 220, 90, icono="gpu")
 f.flecha(aud, tts_es, "a la enfermera", "strokeColor=#1B9476;fontColor=#1B9476;")
 f.flecha(aud, tts_qu, "al paciente", "strokeColor=#1F6FD0;fontColor=#1F6FD0;")
 
 par = f.caja("Parlante\n\nTexto primero, audio después:\nse lee antes de que termine de hablar",
-             CAJA.format(b="#8C8C7A"), 1340, 170, 210, 90)
+             CAJA.format(b="#8C8C7A"), 1340, 170, 210, 90, icono="parlante")
 f.flecha(tts_es, par); f.flecha(tts_qu, par)
 
 f.caja("Por qué Cartesia no puede hacer el lado quechua\n\n"
@@ -390,39 +410,37 @@ g.caja("Arquitectura de despliegue · 24-oct-2026 18:00 UTC · desde hoy la lapt
        TXT.format(s=12, c="#4E4D45", f=0), 40, 48, 950, 20)
 
 app = g.caja("App de Chaski (Freddy)\n\niOS · consume la URL pública\nNo cambió nada el 24-oct",
-             CAJA.format(b="#8C8C7A"), 40, 110, 200, 84)
+             CAJA.format(b="#8C8C7A"), 40, 110, 200, 84, icono="chaski")
 nav = g.caja("Navegador\n\nGET /flujo · demo y pruebas",
-             CAJA.format(b="#8C8C7A"), 40, 214, 200, 64)
+             CAJA.format(b="#8C8C7A"), 40, 214, 200, 64, icono="navegador")
 g.caja("Etiquetador /corregir\n\nSigue en la laptop: lee audio local.\nAbre su propio túnel SSH.",
-       CAJA.format(b="#8C8C7A") + "dashed=1;", 40, 298, 200, 84)
+       CAJA.format(b="#8C8C7A") + "dashed=1;", 40, 298, 200, 84, icono="etiqueta")
 
 ng = g.caja("ngrok · borde HTTPS\n\nunsubmitted-wally-relatable\n.ngrok-free.dev\n\n"
             "Dominio reservado: no cambia\nentre reinicios",
-            CAJA.format(b="#5A5A52"), 290, 110, 210, 140)
+            CAJA.format(b="#5A5A52"), 290, 110, 210, 140, icono="ngrok")
 g.flecha(app, ng); g.flecha(nav, ng)
 
 g.caja("Instancia EC2 g5.xlarge · 44.220.107.99 · NVIDIA A10G 23 GB",
        "rounded=0;html=1;fillColor=#FAF9F5;strokeColor=#8A4FBD;strokeWidth=2;dashed=1;dashPattern=8 4;"
        "verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=12;fontStyle=1;fontColor=#8A4FBD;",
        550, 92, 450, 560)
-g.caja("", "sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=#F78E04;gradientDirection=north;"
-       "fillColor=#D05C17;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;"
-       "align=center;html=1;fontSize=10;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.ec2;",
-       930, 100, 52, 52)
+g.caja("", "rounded=0;html=1;fillColor=none;strokeColor=none;", 930, 100, 40, 40,
+       icono="ec2")
 
 g.caja("Agente de ngrok\n\nCorre aquí dentro, no en la laptop",
-       CAJA.format(b="#5A5A52"), 578, 150, 320, 56)
+       CAJA.format(b="#5A5A52"), 578, 150, 320, 56, icono="ngrok")
 orq = g.caja("Orquestador · puerto 8080\n\nservicio/app.py · FastAPI\n"
              "/turno/paciente · /turno/enfermera · /ver · /escuchar\n"
              "venv propio: fastapi · anthropic · httpx\n\n"
              "venv SEPARADO del de los modelos, a propósito",
-             CAJA.format(b="#8A4FBD"), 578, 228, 394, 130)
+             CAJA.format(b="#8A4FBD"), 578, 228, 394, 130, icono="servidor")
 voz = g.caja("Servicio de voz · puerto 8000\n\ninstancia.py · los tres modelos de Meta en GPU\n"
              "omniASR_LLM_300M · mms-lid-512 · mms-tts-quy\n"
              "torch==2.8.0 · fairseq2 · numpy~=1.23 — clavados\n"
              "Un pip install encima lo rompe. Ya pasó una vez.\n"
              "LID 49 ms · ASR 1.71 s para 15.8 s · pico 3.41 GB de 23",
-             CAJA.format(b="#1F6FD0"), 578, 404, 394, 136)
+             CAJA.format(b="#1F6FD0"), 578, 404, 394, 136, icono="gpu")
 g.flecha(ng, orq)
 g.flecha(orq, voz, "127.0.0.1\nno sale a internet",
          "strokeColor=#8A4FBD;strokeWidth=3;fontColor=#8A4FBD;fontStyle=1;")
@@ -436,10 +454,10 @@ g.caja("/opt/dlami/nvme\n229 GB · 9 %\nTodo vive aquí\nEFÍMERO: se borra al p
 
 ant = g.caja("API de Anthropic\n\ntraducir · auditar · leer cajas\nsonnet-5 · haiku-4-5\n\n"
              "7–12 s por turno: el cuello de botella real",
-             CAJA.format(b="#C8372F"), 1050, 228, 220, 130)
+             CAJA.format(b="#C8372F"), 1050, 228, 220, 130, icono="claude")
 car = g.caja("API de Cartesia\n\nSonic 3.6 · habla castellano\nink-whisper · lo entiende\n\n"
              "Sin quechua: por eso el quechua es nuestro",
-             CAJA.format(b="#1B9476"), 1050, 404, 220, 136)
+             CAJA.format(b="#1B9476"), 1050, 404, 220, 136, icono="cartesia")
 g.flecha(orq, ant, "", "strokeColor=#C8C5B8;dashed=1;")
 g.flecha(orq, car, "", "strokeColor=#C8C5B8;dashed=1;")
 

@@ -7,8 +7,10 @@
 > **Los diagramas vienen en dos formatos.** El `.svg` es el que se ve aquí mismo y en GitHub. El
 > `.drawio` de `reports/drawio/` es el editable: se abre en [draw.io](https://app.diagrams.net) con
 > *File → Open*, o con la extensión de draw.io en VS Code, y trae las figuras como objetos movibles.
-> Los tres se regeneran con `python reports/drawio/generar.py`, así que conviene editar el script si
-> el cambio es de contenido, y draw.io si es de posición.
+> Los tres se regeneran con `uv run --with pillow python reports/drawio/generar.py` (Pillow es para
+> reducir el arte de Chaski a 64 px), así que conviene editar el script si el cambio es de contenido,
+> y draw.io si es de posición. Los iconos van incrustados como data URI en los dos formatos: no hay
+> archivos sueltos que se pierdan al mover el diagrama de carpeta.
 
 > **Cambio de hoy:** el orquestador ya no corre en la laptop de Ricardo. Vive en la instancia, al lado
 > de los modelos. La URL pública es la misma y Freddy no cambia nada. Ver la sección 2.

@@ -6,29 +6,36 @@
 <text x="40" y="112.2" font-size="13.0" fill="#16160F" font-weight="700">1 · Recolección</text>
 <rect x="40" y="118" width="220" height="108" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="40" y="118" width="220" height="4" fill="#8C8C7A"/>
-<text x="50" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cuadernillos</text>
-<text x="50" y="166.9" font-size="11.0" fill="#4E4D45">175 frases numeradas</text>
-<text x="50" y="182.8" font-size="11.0" fill="#4E4D45">seis bloques: A B C M N E</text>
-<text x="50" y="198.8" font-size="11.0" fill="#4E4D45">Se escribe primero, se graba</text>
-<text x="50" y="214.8" font-size="11.0" fill="#4E4D45">después</text>
-<rect x="290" y="118" width="220" height="96" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNNCAyLjVoMTNhMiAyIDAgMDEyIDJ2MTdINmEyIDIgMCAwMS0yLTJ6IiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM4QzhDN0EiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICAgIDxwYXRoIGQ9Ik04IDIuNXYxOSIgc3Ryb2tlPSIjOEM4QzdBIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICA8ZyBzdHJva2U9IiM4QzhDN0EiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTEgOGg1TTExIDExLjVoNU0xMSAxNWgzIi8+PC9nPjwvc3ZnPg==" x="50" y="128" width="26" height="26"/>
+<text x="82" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cuadernillos</text>
+<text x="82" y="166.9" font-size="11.0" fill="#4E4D45">175 frases numeradas</text>
+<text x="82" y="182.8" font-size="11.0" fill="#4E4D45">seis bloques: A B C M N E</text>
+<text x="82" y="198.8" font-size="11.0" fill="#4E4D45">Se escribe primero, se graba</text>
+<text x="82" y="214.8" font-size="11.0" fill="#4E4D45">después</text>
+<rect x="290" y="118" width="220" height="108" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
 <rect x="290" y="118" width="220" height="4" fill="#1B9476"/>
-<text x="300" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Formulario (Freddy)</text>
-<text x="300" y="166.9" font-size="11.0" fill="#4E4D45">Vercel · la familia sube audio</text>
-<text x="300" y="182.8" font-size="11.0" fill="#4E4D45">y cómo se escribe</text>
-<text x="300" y="198.8" font-size="11.0" fill="#4E4D45">No lo tocamos desde aquí</text>
-<rect x="540" y="118" width="230" height="96" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSI0IiB5PSIyLjUiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxOSIgcng9IjIiIGZpbGw9IiNGRkZGRkYiCiAgICAgIHN0cm9rZT0iIzFCOTQ3NiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz48cmVjdCB4PSI4LjUiIHk9IjEiIHdpZHRoPSI3IiBoZWlnaHQ9IjMuNSIgcng9IjEuMiIKICAgICAgZmlsbD0iIzFCOTQ3NiIvPjxnIHN0cm9rZT0iIzFCOTQ3NiIgc3Ryb2tlLXdpZHRoPSIxLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICAgIDxwYXRoIGQ9Ik04IDEwaDhNOCAxMy41aDhNOCAxN2g1Ii8+PC9nPjwvc3ZnPg==" x="300" y="128" width="26" height="26"/>
+<text x="332" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Formulario (Freddy)</text>
+<text x="332" y="166.9" font-size="11.0" fill="#4E4D45">Vercel · la familia sube</text>
+<text x="332" y="182.8" font-size="11.0" fill="#4E4D45">audio</text>
+<text x="332" y="198.8" font-size="11.0" fill="#4E4D45">y cómo se escribe</text>
+<text x="332" y="214.8" font-size="11.0" fill="#4E4D45">No lo tocamos desde aquí</text>
+<rect x="540" y="118" width="230" height="108" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="540" y="118" width="230" height="4" fill="#1F6FD0"/>
-<text x="550" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">/corregir (Ricardo)</text>
-<text x="550" y="166.9" font-size="11.0" fill="#4E4D45">Transcribe, yo corrijo el escrito</text>
-<text x="550" y="182.8" font-size="11.0" fill="#4E4D45">Parte y une si cortó mal</text>
-<text x="550" y="198.8" font-size="11.0" fill="#4E4D45">Verifica audio contra texto</text>
-<rect x="800" y="118" width="240" height="96" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMi41IDExLjVWMy41YTEgMSAwIDAxMS0xaDhsMTAgMTAtOSA5eiIgZmlsbD0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlPSIjMUY2RkQwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgICA8Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iMS45IiBmaWxsPSIjMUY2RkQwIi8+PC9zdmc+" x="550" y="128" width="26" height="26"/>
+<text x="582" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">/corregir (Ricardo)</text>
+<text x="582" y="166.9" font-size="11.0" fill="#4E4D45">Transcribe, yo corrijo el</text>
+<text x="582" y="182.8" font-size="11.0" fill="#4E4D45">escrito</text>
+<text x="582" y="198.8" font-size="11.0" fill="#4E4D45">Parte y une si cortó mal</text>
+<text x="582" y="214.8" font-size="11.0" fill="#4E4D45">Verifica audio contra texto</text>
+<rect x="800" y="118" width="240" height="108" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="800" y="118" width="240" height="4" fill="#8C8C7A"/>
-<text x="810" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">manifiesto.jsonl</text>
-<text x="810" y="166.9" font-size="11.0" fill="#4E4D45">persona · bloque · numero</text>
-<text x="810" y="182.8" font-size="11.0" fill="#4E4D45">audio · transcripcion · castellano</text>
-<text x="810" y="198.8" font-size="11.0" fill="#4E4D45">segundos · consentimiento</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1LjUiIHJ4PSI5IiByeT0iMy4yIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiM1QTVBNTIiCiAgICAgIHN0cm9rZS13aWR0aD0iMS44Ii8+PHBhdGggZD0iTTMgNS41djEzYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4ydi0xMyIgZmlsbD0ibm9uZSIKICAgICAgc3Ryb2tlPSIjNUE1QTUyIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4yIgogICAgICBmaWxsPSJub25lIiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS40Ii8+PC9zdmc+" x="810" y="128" width="26" height="26"/>
+<text x="842" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">manifiesto.jsonl</text>
+<text x="842" y="166.9" font-size="11.0" fill="#4E4D45">persona · bloque · numero</text>
+<text x="842" y="182.8" font-size="11.0" fill="#4E4D45">audio · transcripcion ·</text>
+<text x="842" y="198.8" font-size="11.0" fill="#4E4D45">castellano</text>
+<text x="842" y="214.8" font-size="11.0" fill="#4E4D45">segundos · consentimiento</text>
 <text x="40" y="260.2" font-size="13.0" fill="#16160F" font-weight="700">2 · Partición POR HABLANTE, nunca por frase</text>
 <rect x="40" y="266" width="230" height="76" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="40" y="266" width="230" height="4" fill="#1F6FD0"/>
@@ -62,33 +69,39 @@
 <text x="40" y="532.0" font-size="11.0" fill="#4E4D45">Hasta el 24-oct la auditoría no tenía ninguna: solo se comparaba con la de Freddy, y eso no prueba nada si las dos se equivocan igual.</text>
 <rect x="40" y="542" width="300" height="100" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="40" y="542" width="300" height="4" fill="#1F6FD0"/>
-<text x="50" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_asr.py — entender</text>
-<text x="50" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: el escrito corregido en /corregir</text>
-<text x="50" y="606.9" font-size="11.0" fill="#4E4D45">WER y CER · corte por hablante</text>
-<text x="50" y="622.8" font-size="11.0" fill="#4E4D45">Aparte: préstamos y números</text>
-<rect x="370" y="542" width="320" height="100" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+PGcgZmlsbD0iIzVBNUE1MiI+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjEzIiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMC42Ii8+PHJlY3QgeD0iMTAuNSIgeT0iOSIgd2lkdGg9IjMiIGhlaWdodD0iMTAiIHJ4PSIwLjYiLz4KICAgICAgPHJlY3QgeD0iMTUiIHk9IjUuNSIgd2lkdGg9IjMiIGhlaWdodD0iMTMuNSIgcng9IjAuNiIvPjwvZz48L3N2Zz4=" x="50" y="552" width="26" height="26"/>
+<text x="82" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_asr.py — entender</text>
+<text x="82" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: el escrito corregido en /corregir</text>
+<text x="82" y="606.9" font-size="11.0" fill="#4E4D45">WER y CER · corte por hablante</text>
+<text x="82" y="622.8" font-size="11.0" fill="#4E4D45">Aparte: préstamos y números</text>
+<rect x="370" y="542" width="320" height="108" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="370" y="542" width="320" height="4" fill="#C8372F"/>
-<text x="380" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_traduccion.py — traducir</text>
-<text x="380" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: 100 pares verificados, fuera del train</text>
-<text x="380" y="606.9" font-size="11.0" fill="#4E4D45">chrF++, no BLEU: el quechua aglutina</text>
-<text x="380" y="622.8" font-size="11.0" fill="#4E4D45">Base sin ajustar: chrF++ 42.31</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+PGcgZmlsbD0iIzVBNUE1MiI+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjEzIiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMC42Ii8+PHJlY3QgeD0iMTAuNSIgeT0iOSIgd2lkdGg9IjMiIGhlaWdodD0iMTAiIHJ4PSIwLjYiLz4KICAgICAgPHJlY3QgeD0iMTUiIHk9IjUuNSIgd2lkdGg9IjMiIGhlaWdodD0iMTMuNSIgcng9IjAuNiIvPjwvZz48L3N2Zz4=" x="380" y="552" width="26" height="26"/>
+<text x="412" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_traduccion.py — traducir</text>
+<text x="412" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: 100 pares verificados, fuera del</text>
+<text x="412" y="606.9" font-size="11.0" fill="#4E4D45">train</text>
+<text x="412" y="622.8" font-size="11.0" fill="#4E4D45">chrF++, no BLEU: el quechua aglutina</text>
+<text x="412" y="638.8" font-size="11.0" fill="#4E4D45">Base sin ajustar: chrF++ 42.31</text>
 <rect x="720" y="542" width="330" height="100" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="3"/>
 <rect x="720" y="542" width="330" height="4" fill="#8A4FBD"/>
-<text x="730" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_guarda.py — no dejar pasar errores</text>
-<text x="730" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: se inyecta un error clínico a propósito</text>
-<text x="730" y="606.9" font-size="11.0" fill="#4E4D45">Dosis cambiada · negación borrada · condición</text>
-<text x="730" y="622.8" font-size="11.0" fill="#4E4D45">0/6 falsos bloqueos · 3/6 FUGAS</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="730" y="552" width="26" height="26"/>
+<text x="762" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_guarda.py — no dejar pasar errores</text>
+<text x="762" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: se inyecta un error clínico a propósito</text>
+<text x="762" y="606.9" font-size="11.0" fill="#4E4D45">Dosis cambiada · negación borrada · condición</text>
+<text x="762" y="622.8" font-size="11.0" fill="#4E4D45">0/6 falsos bloqueos · 3/6 FUGAS</text>
 <rect x="1080" y="542" width="300" height="100" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="1080" y="542" width="300" height="4" fill="#8C8C7A"/>
-<text x="1090" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_auditoria.py — estabilidad</text>
-<text x="1090" y="590.9" font-size="11.0" fill="#4E4D45">La misma frase, varias corridas</text>
-<text x="1090" y="606.9" font-size="11.0" fill="#4E4D45">Bloqueo · estabilidad · mediana</text>
-<text x="1090" y="622.8" font-size="11.0" fill="#4E4D45">La de 4 llamadas da: sí, no, sí</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+PGcgZmlsbD0iIzVBNUE1MiI+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjEzIiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMC42Ii8+PHJlY3QgeD0iMTAuNSIgeT0iOSIgd2lkdGg9IjMiIGhlaWdodD0iMTAiIHJ4PSIwLjYiLz4KICAgICAgPHJlY3QgeD0iMTUiIHk9IjUuNSIgd2lkdGg9IjMiIGhlaWdodD0iMTMuNSIgcng9IjAuNiIvPjwvZz48L3N2Zz4=" x="1090" y="552" width="26" height="26"/>
+<text x="1122" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_auditoria.py — estabilidad</text>
+<text x="1122" y="590.9" font-size="11.0" fill="#4E4D45">La misma frase, varias corridas</text>
+<text x="1122" y="606.9" font-size="11.0" fill="#4E4D45">Bloqueo · estabilidad · mediana</text>
+<text x="1122" y="622.8" font-size="11.0" fill="#4E4D45">La de 4 llamadas da: sí, no, sí</text>
 <rect x="370" y="676" width="320" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="370" y="676" width="320" height="4" fill="#8C8C7A"/>
-<text x="380" y="693.0" font-size="11.0" fill="#4E4D45" font-weight="700">reports/*.json</text>
-<text x="380" y="724.9" font-size="11.0" fill="#4E4D45">asr · lid · traduccion · guarda · auditoria</text>
-<text x="380" y="740.9" font-size="11.0" fill="#4E4D45">Un archivo por número</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1LjUiIHJ4PSI5IiByeT0iMy4yIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiM1QTVBNTIiCiAgICAgIHN0cm9rZS13aWR0aD0iMS44Ii8+PHBhdGggZD0iTTMgNS41djEzYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4ydi0xMyIgZmlsbD0ibm9uZSIKICAgICAgc3Ryb2tlPSIjNUE1QTUyIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4yIgogICAgICBmaWxsPSJub25lIiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS40Ii8+PC9zdmc+" x="380" y="686" width="26" height="26"/>
+<text x="412" y="693.0" font-size="11.0" fill="#4E4D45" font-weight="700">reports/*.json</text>
+<text x="412" y="724.9" font-size="11.0" fill="#4E4D45">asr · lid · traduccion · guarda · auditoria</text>
+<text x="412" y="740.9" font-size="11.0" fill="#4E4D45">Un archivo por número</text>
 <rect x="720" y="676" width="330" height="76" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="720" y="676" width="330" height="4" fill="#C8372F"/>
 <text x="730" y="693.0" font-size="11.0" fill="#4E4D45" font-weight="700">La página y el pitch</text>
@@ -101,14 +114,13 @@
 <text x="52" y="852.9" font-size="11.0" fill="#4E4D45">mms-lid ya acierta 6/6 y se deja quieto. Cartesia y Claude no se ajustan: se usan como vienen.</text>
 <text x="52" y="884.8" font-size="11.0" fill="#4E4D45">Y son dos ajustes distintos: entender quiere MUCHAS voces; hablar quiere UNA sola voz consistente,</text>
 <text x="52" y="900.7" font-size="11.0" fill="#4E4D45">la de la mamá de Freddy. Por eso todos graban, pero la voz de Chaski sale de una sola persona.</text>
-<path d="M260 172 L275 172 L275 166 L290 166" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M510 166 L525 166 L525 166 L540 166" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M770 166 L785 166 L785 166 L800 166" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M920 214 L920 240 L155 240 L155 266" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M260 172 L275 172 L275 172 L290 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M510 172 L525 172 L525 172 L540 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M770 172 L785 172 L785 172 L800 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M290 429 L305 429 L305 429 L320 429" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M570 429 L585 429 L585 429 L600 429" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M340 592 L355 592 L355 714 L370 714" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
-<path d="M530 642 L530 659 L530 659 L530 676" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
+<path d="M530 650 L530 663 L530 663 L530 676" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
 <path d="M885 642 L885 659 L530 659 L530 676" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
 <path d="M1230 642 L1230 659 L530 659 L530 676" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>
 <path d="M690 714 L705 714 L705 714 L720 714" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>

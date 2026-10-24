@@ -3,75 +3,90 @@
 <rect width="1500" height="700" fill="#F4F3EE"/>
 <text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">Chaski — dónde corre cada cosa</text>
 <text x="40" y="66.8" font-size="12.0" fill="#4E4D45">Arquitectura de despliegue · 24-oct-2026 18:00 UTC · desde hoy la laptop de Ricardo ya no está en la cadena</text>
-<rect x="40" y="110" width="200" height="84" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<rect x="40" y="110" width="200" height="92" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="40" y="110" width="200" height="4" fill="#8C8C7A"/>
-<text x="50" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">App de Chaski (Freddy)</text>
-<text x="50" y="158.9" font-size="11.0" fill="#4E4D45">iOS · consume la URL pública</text>
-<text x="50" y="174.8" font-size="11.0" fill="#4E4D45">No cambió nada el 24-oct</text>
-<rect x="40" y="214" width="200" height="64" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<image href="data:image/png;base64,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" x="50" y="120" width="26" height="26"/>
+<text x="82" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">App de Chaski (Freddy)</text>
+<text x="82" y="158.9" font-size="11.0" fill="#4E4D45">iOS · consume la URL</text>
+<text x="82" y="174.8" font-size="11.0" fill="#4E4D45">pública</text>
+<text x="82" y="190.8" font-size="11.0" fill="#4E4D45">No cambió nada el 24-oct</text>
+<rect x="40" y="214" width="200" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="40" y="214" width="200" height="4" fill="#8C8C7A"/>
-<text x="50" y="231.0" font-size="11.0" fill="#4E4D45" font-weight="700">Navegador</text>
-<text x="50" y="262.9" font-size="11.0" fill="#4E4D45">GET /flujo · demo y pruebas</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIxLjUiIHk9IjMuNSIgd2lkdGg9IjIxIiBoZWlnaHQ9IjE3IiByeD0iMiIgZmlsbD0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlPSIjNUE1QTUyIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxwYXRoIGQ9Ik0xLjUgOC41aDIxIiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+CiAgICAgIDxjaXJjbGUgY3g9IjUiIGN5PSI2IiByPSIxIiBmaWxsPSIjNUE1QTUyIi8+PGNpcmNsZSBjeD0iOCIgY3k9IjYiIHI9IjEiIGZpbGw9IiM1QTVBNTIiLz48L3N2Zz4=" x="50" y="224" width="26" height="26"/>
+<text x="82" y="231.0" font-size="11.0" fill="#4E4D45" font-weight="700">Navegador</text>
+<text x="82" y="262.9" font-size="11.0" fill="#4E4D45">GET /flujo · demo y</text>
+<text x="82" y="278.9" font-size="11.0" fill="#4E4D45">pruebas</text>
 <rect x="40" y="298" width="200" height="92" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2" stroke-dasharray="8 4"/>
 <rect x="40" y="298" width="200" height="4" fill="#8C8C7A"/>
-<text x="50" y="315.0" font-size="11.0" fill="#4E4D45" font-weight="700">Etiquetador /corregir</text>
-<text x="50" y="346.9" font-size="11.0" fill="#4E4D45">Sigue en la laptop: lee audio</text>
-<text x="50" y="362.9" font-size="11.0" fill="#4E4D45">local.</text>
-<text x="50" y="378.8" font-size="11.0" fill="#4E4D45">Abre su propio túnel SSH.</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMi41IDExLjVWMy41YTEgMSAwIDAxMS0xaDhsMTAgMTAtOSA5eiIgZmlsbD0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlPSIjMUY2RkQwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgICA8Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iMS45IiBmaWxsPSIjMUY2RkQwIi8+PC9zdmc+" x="50" y="308" width="26" height="26"/>
+<text x="82" y="315.0" font-size="11.0" fill="#4E4D45" font-weight="700">Etiquetador /corregir</text>
+<text x="82" y="346.9" font-size="11.0" fill="#4E4D45">Sigue en la laptop: lee</text>
+<text x="82" y="362.9" font-size="11.0" fill="#4E4D45">audio local.</text>
+<text x="82" y="378.8" font-size="11.0" fill="#4E4D45">Abre su propio túnel SSH.</text>
 <rect x="290" y="110" width="210" height="140" fill="#FFFFFF" stroke="#5A5A52" stroke-width="2"/>
 <rect x="290" y="110" width="210" height="4" fill="#5A5A52"/>
-<text x="300" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">ngrok · borde HTTPS</text>
-<text x="300" y="158.9" font-size="11.0" fill="#4E4D45">unsubmitted-wally-relatable</text>
-<text x="300" y="174.8" font-size="11.0" fill="#4E4D45">.ngrok-free.dev</text>
-<text x="300" y="206.8" font-size="11.0" fill="#4E4D45">Dominio reservado: no cambia</text>
-<text x="300" y="222.7" font-size="11.0" fill="#4E4D45">entre reinicios</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkuNSA0djdjMCA1LjUtNCA5LjItOS41IDEwLjVDNi41IDIxLjcgMi41IDE4IDIuNSAxMi41di03eiIKICAgICAgZmlsbD0iIzVBNUE1MiIvPjxnIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiPgogICAgICA8cGF0aCBkPSJNNy41IDEyaDlNMTMgOC41bDMuNSAzLjVMMTMgMTUuNSIvPjwvZz48L3N2Zz4=" x="300" y="120" width="26" height="26"/>
+<text x="332" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">ngrok · borde HTTPS</text>
+<text x="332" y="158.9" font-size="11.0" fill="#4E4D45">unsubmitted-wally-relatable</text>
+<text x="332" y="174.8" font-size="11.0" fill="#4E4D45">.ngrok-free.dev</text>
+<text x="332" y="206.8" font-size="11.0" fill="#4E4D45">Dominio reservado: no</text>
+<text x="332" y="222.7" font-size="11.0" fill="#4E4D45">cambia</text>
+<text x="332" y="238.6" font-size="11.0" fill="#4E4D45">entre reinicios</text>
 <rect x="550" y="92" width="450" height="560" fill="#FAF9F5" stroke="#8A4FBD" stroke-width="2" stroke-dasharray="8 4"/>
 <rect x="550" y="92" width="450" height="4" fill="#8A4FBD"/>
 <text x="562" y="110.0" font-size="12.0" fill="#8A4FBD" font-weight="700">Instancia EC2 g5.xlarge · 44.220.107.99 · NVIDIA A10G 23 GB</text>
-<rect x="930" y="100" width="52" height="52" rx="4" fill="#D05C17" stroke="#FFFFFF" stroke-width="2"/><text x="956.0" y="130.0" font-size="11" font-weight="700" fill="#FFFFFF" text-anchor="middle">EC2</text>
+<rect x="930" y="100" width="40" height="40" fill="none" stroke="none" stroke-width="1"/>
+<rect x="930" y="100" width="40" height="4" fill="none"/>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIxIiB5PSIxIiB3aWR0aD0iMjIiIGhlaWdodD0iMjIiIHJ4PSIzIiBmaWxsPSIjRDA1QzE3Ii8+CiAgICAgIDxyZWN0IHg9IjYuNSIgeT0iNi41IiB3aWR0aD0iMTEiIGhlaWdodD0iMTEiIHJ4PSIxLjUiIGZpbGw9IiNGRkZGRkYiLz4KICAgICAgPGcgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEuNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgICAgPHBhdGggZD0iTTkgMS41djRNMTIgMS41djRNMTUgMS41djRNOSAxOC41djRNMTIgMTguNXY0TTE1IDE4LjV2NCIvPgogICAgICA8cGF0aCBkPSJNMS41IDloNE0xLjUgMTJoNE0xLjUgMTVoNE0xOC41IDloNE0xOC41IDEyaDRNMTguNSAxNWg0Ii8+PC9nPjwvc3ZnPg==" x="940" y="110" width="26" height="26"/>
 <rect x="578" y="150" width="320" height="60" fill="#FFFFFF" stroke="#5A5A52" stroke-width="2"/>
 <rect x="578" y="150" width="320" height="4" fill="#5A5A52"/>
-<text x="588" y="167.0" font-size="11.0" fill="#4E4D45" font-weight="700">Agente de ngrok</text>
-<text x="588" y="198.9" font-size="11.0" fill="#4E4D45">Corre aquí dentro, no en la laptop</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkuNSA0djdjMCA1LjUtNCA5LjItOS41IDEwLjVDNi41IDIxLjcgMi41IDE4IDIuNSAxMi41di03eiIKICAgICAgZmlsbD0iIzVBNUE1MiIvPjxnIHN0cm9rZT0iI0ZGRkZGRiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiPgogICAgICA8cGF0aCBkPSJNNy41IDEyaDlNMTMgOC41bDMuNSAzLjVMMTMgMTUuNSIvPjwvZz48L3N2Zz4=" x="588" y="160" width="26" height="26"/>
+<text x="620" y="167.0" font-size="11.0" fill="#4E4D45" font-weight="700">Agente de ngrok</text>
+<text x="620" y="198.9" font-size="11.0" fill="#4E4D45">Corre aquí dentro, no en la laptop</text>
 <rect x="578" y="228" width="394" height="130" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="578" y="228" width="394" height="4" fill="#8A4FBD"/>
-<text x="588" y="245.0" font-size="11.0" fill="#4E4D45" font-weight="700">Orquestador · puerto 8080</text>
-<text x="588" y="276.9" font-size="11.0" fill="#4E4D45">servicio/app.py · FastAPI</text>
-<text x="588" y="292.9" font-size="11.0" fill="#4E4D45">/turno/paciente · /turno/enfermera · /ver · /escuchar</text>
-<text x="588" y="308.8" font-size="11.0" fill="#4E4D45">venv propio: fastapi · anthropic · httpx</text>
-<text x="588" y="340.7" font-size="11.0" fill="#4E4D45">venv SEPARADO del de los modelos, a propósito</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyLjUiIHk9IjMiIHdpZHRoPSIxOSIgaGVpZ2h0PSI3IiByeD0iMS41IiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM4QTRGQkQiIHN0cm9rZS13aWR0aD0iMS44Ii8+PHJlY3QgeD0iMi41IiB5PSIxNCIgd2lkdGg9IjE5IiBoZWlnaHQ9IjciIHJ4PSIxLjUiCiAgICAgIGZpbGw9IiNGRkZGRkYiIHN0cm9rZT0iIzhBNEZCRCIgc3Ryb2tlLXdpZHRoPSIxLjgiLz4KICAgICAgPGNpcmNsZSBjeD0iNiIgY3k9IjYuNSIgcj0iMS4zIiBmaWxsPSIjOEE0RkJEIi8+PGNpcmNsZSBjeD0iNiIgY3k9IjE3LjUiIHI9IjEuMyIgZmlsbD0iIzhBNEZCRCIvPgogICAgICA8ZyBzdHJva2U9IiM4QTRGQkQiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTAgNi41aDhNMTAgMTcuNWg4Ii8+PC9nPjwvc3ZnPg==" x="588" y="238" width="26" height="26"/>
+<text x="620" y="245.0" font-size="11.0" fill="#4E4D45" font-weight="700">Orquestador · puerto 8080</text>
+<text x="620" y="276.9" font-size="11.0" fill="#4E4D45">servicio/app.py · FastAPI</text>
+<text x="620" y="292.9" font-size="11.0" fill="#4E4D45">/turno/paciente · /turno/enfermera · /ver · /escuchar</text>
+<text x="620" y="308.8" font-size="11.0" fill="#4E4D45">venv propio: fastapi · anthropic · httpx</text>
+<text x="620" y="340.7" font-size="11.0" fill="#4E4D45">venv SEPARADO del de los modelos, a propósito</text>
 <rect x="578" y="404" width="394" height="136" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="578" y="404" width="394" height="4" fill="#1F6FD0"/>
-<text x="588" y="421.0" font-size="11.0" fill="#4E4D45" font-weight="700">Servicio de voz · puerto 8000</text>
-<text x="588" y="452.9" font-size="11.0" fill="#4E4D45">instancia.py · los tres modelos de Meta en GPU</text>
-<text x="588" y="468.9" font-size="11.0" fill="#4E4D45">omniASR_LLM_300M · mms-lid-512 · mms-tts-quy</text>
-<text x="588" y="484.8" font-size="11.0" fill="#4E4D45">torch==2.8.0 · fairseq2 · numpy~=1.23 — clavados</text>
-<text x="588" y="500.8" font-size="11.0" fill="#4E4D45">Un pip install encima lo rompe. Ya pasó una vez.</text>
-<text x="588" y="516.7" font-size="11.0" fill="#4E4D45">LID 49 ms · ASR 1.71 s para 15.8 s · pico 3.41 GB de 23</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMUY2RkQwIi8+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjgiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIvPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNOSAxMGg2TTkgMTIuNWg2Ii8+PC9nPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNNyAxLjV2Mi41TTEyIDEuNXYyLjVNMTcgMS41djIuNU03IDIwdjIuNU0xMiAyMHYyLjVNMTcgMjB2Mi41Ii8+PC9nPjwvc3ZnPg==" x="588" y="414" width="26" height="26"/>
+<text x="620" y="421.0" font-size="11.0" fill="#4E4D45" font-weight="700">Servicio de voz · puerto 8000</text>
+<text x="620" y="452.9" font-size="11.0" fill="#4E4D45">instancia.py · los tres modelos de Meta en GPU</text>
+<text x="620" y="468.9" font-size="11.0" fill="#4E4D45">omniASR_LLM_300M · mms-lid-512 · mms-tts-quy</text>
+<text x="620" y="484.8" font-size="11.0" fill="#4E4D45">torch==2.8.0 · fairseq2 · numpy~=1.23 — clavados</text>
+<text x="620" y="500.8" font-size="11.0" fill="#4E4D45">Un pip install encima lo rompe. Ya pasó una vez.</text>
+<text x="620" y="516.7" font-size="11.0" fill="#4E4D45">LID 49 ms · ASR 1.71 s para 15.8 s · pico 3.41 GB de 23</text>
 <path d="M578 565 a90.0 9 0 0 1 180 0 v68 a90.0 9 0 0 1 -180 0 z" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/><path d="M578 565 a90.0 9 0 0 0 180 0" fill="none" stroke="#C8372F" stroke-width="2"/>
-<text x="668.0" y="577.4" font-size="10.0" fill="#4E4D45" text-anchor="middle" font-weight="700">/ · 145 GB</text>
-<text x="668.0" y="591.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">90 % lleno</text>
-<text x="668.0" y="606.4" font-size="10.0" fill="#4E4D45" text-anchor="middle">No poner nada aquí</text>
-<text x="668.0" y="620.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">Persiste al parar</text>
+<text x="668.0" y="587.4" font-size="10.0" fill="#4E4D45" text-anchor="middle" font-weight="700">/ · 145 GB</text>
+<text x="668.0" y="601.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">90 % lleno</text>
+<text x="668.0" y="616.4" font-size="10.0" fill="#4E4D45" text-anchor="middle">No poner nada aquí</text>
+<text x="668.0" y="630.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">Persiste al parar</text>
 <path d="M792 565 a90.0 9 0 0 1 180 0 v68 a90.0 9 0 0 1 -180 0 z" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/><path d="M792 565 a90.0 9 0 0 0 180 0" fill="none" stroke="#1B9476" stroke-width="2"/>
-<text x="882.0" y="577.4" font-size="10.0" fill="#4E4D45" text-anchor="middle" font-weight="700">/opt/dlami/nvme</text>
-<text x="882.0" y="591.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">229 GB · 9 %</text>
-<text x="882.0" y="606.4" font-size="10.0" fill="#4E4D45" text-anchor="middle">Todo vive aquí</text>
-<text x="882.0" y="620.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">EFÍMERO: se borra al parar</text>
-<rect x="1050" y="228" width="220" height="130" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<text x="882.0" y="587.4" font-size="10.0" fill="#4E4D45" text-anchor="middle" font-weight="700">/opt/dlami/nvme</text>
+<text x="882.0" y="601.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">229 GB · 9 %</text>
+<text x="882.0" y="616.4" font-size="10.0" fill="#4E4D45" text-anchor="middle">Todo vive aquí</text>
+<text x="882.0" y="630.9" font-size="10.0" fill="#4E4D45" text-anchor="middle">EFÍMERO: se borra al parar</text>
+<rect x="1050" y="228" width="220" height="140" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="1050" y="228" width="220" height="4" fill="#C8372F"/>
-<text x="1060" y="245.0" font-size="11.0" fill="#4E4D45" font-weight="700">API de Anthropic</text>
-<text x="1060" y="276.9" font-size="11.0" fill="#4E4D45">traducir · auditar · leer cajas</text>
-<text x="1060" y="292.9" font-size="11.0" fill="#4E4D45">sonnet-5 · haiku-4-5</text>
-<text x="1060" y="324.8" font-size="11.0" fill="#4E4D45">7–12 s por turno: el cuello de</text>
-<text x="1060" y="340.7" font-size="11.0" fill="#4E4D45">botella real</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="1060" y="238" width="26" height="26"/>
+<text x="1092" y="245.0" font-size="11.0" fill="#4E4D45" font-weight="700">API de Anthropic</text>
+<text x="1092" y="276.9" font-size="11.0" fill="#4E4D45">traducir · auditar · leer</text>
+<text x="1092" y="292.9" font-size="11.0" fill="#4E4D45">cajas</text>
+<text x="1092" y="308.8" font-size="11.0" fill="#4E4D45">sonnet-5 · haiku-4-5</text>
+<text x="1092" y="340.7" font-size="11.0" fill="#4E4D45">7–12 s por turno: el cuello</text>
+<text x="1092" y="356.6" font-size="11.0" fill="#4E4D45">de botella real</text>
 <rect x="1050" y="404" width="220" height="136" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
 <rect x="1050" y="404" width="220" height="4" fill="#1B9476"/>
-<text x="1060" y="421.0" font-size="11.0" fill="#4E4D45" font-weight="700">API de Cartesia</text>
-<text x="1060" y="452.9" font-size="11.0" fill="#4E4D45">Sonic 3.6 · habla castellano</text>
-<text x="1060" y="468.9" font-size="11.0" fill="#4E4D45">ink-whisper · lo entiende</text>
-<text x="1060" y="500.8" font-size="11.0" fill="#4E4D45">Sin quechua: por eso el quechua es</text>
-<text x="1060" y="516.7" font-size="11.0" fill="#4E4D45">nuestro</text>
+<image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iIzFCOTQ3NiIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgICAgPHBhdGggZD0iTTUuNSAxMnYwTTguNSA4LjV2N00xMS41IDUuNXYxM00xNC41IDh2OE0xNy41IDEwLjV2MyIvPjwvZz48L3N2Zz4=" x="1060" y="414" width="26" height="26"/>
+<text x="1092" y="421.0" font-size="11.0" fill="#4E4D45" font-weight="700">API de Cartesia</text>
+<text x="1092" y="452.9" font-size="11.0" fill="#4E4D45">Sonic 3.6 · habla castellano</text>
+<text x="1092" y="468.9" font-size="11.0" fill="#4E4D45">ink-whisper · lo entiende</text>
+<text x="1092" y="500.8" font-size="11.0" fill="#4E4D45">Sin quechua: por eso el</text>
+<text x="1092" y="516.7" font-size="11.0" fill="#4E4D45">quechua es nuestro</text>
 <rect x="40" y="412" width="470" height="189" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="40" y="412" width="470" height="4" fill="#8A4FBD"/>
 <text x="52" y="431.0" font-size="11.0" fill="#4E4D45" font-weight="700">Lo que cambió hoy</text>
@@ -82,12 +97,12 @@
 <text x="52" y="542.6" font-size="11.0" fill="#4E4D45">La URL es la misma: Freddy no cambia una línea.</text>
 <text x="52" y="574.5" font-size="11.0" fill="#4E4D45">Se despliega con `bash servicio/desplegar.sh`, re-ejecutable.</text>
 <text x="52" y="590.5" font-size="11.0" fill="#4E4D45">Las claves viajan por stdin a .env con chmod 600; nunca por git.</text>
-<path d="M240 152 L265 152 L265 180 L290 180" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M240 246 L265 246 L265 180 L290 180" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M240 156 L265 156 L265 180 L290 180" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M240 252 L265 252 L265 180 L290 180" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M500 180 L539 180 L539 293 L578 293" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M775 358 L775 381 L775 381 L775 404" fill="none" stroke="#8A4FBD" stroke-width="3" marker-end="url(#m8A4FBD)"/>
 <text x="775" y="375" font-size="11.0" fill="#8A4FBD" text-anchor="middle">127.0.0.1</text>
 <text x="775" y="389" font-size="11.0" fill="#8A4FBD" text-anchor="middle">no sale a internet</text>
-<path d="M972 293 L1011 293 L1011 293 L1050 293" fill="none" stroke="#C8C5B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mC8C5B8)"/>
+<path d="M972 293 L1011 293 L1011 298 L1050 298" fill="none" stroke="#C8C5B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mC8C5B8)"/>
 <path d="M972 293 L1011 293 L1011 472 L1050 472" fill="none" stroke="#C8C5B8" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#mC8C5B8)"/>
 </svg>
