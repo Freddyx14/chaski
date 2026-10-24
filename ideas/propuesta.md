@@ -1,5 +1,7 @@
 # Propuesta — Cal Hacks 13.0 (versión al viernes 23 de octubre, 20:00 PT)
 
+> ⚠️ **Superado.** Incendios se descartó (D3). Fuente de verdad: [`SOT.md`](../SOT.md).
+
 > Documento para alinear al equipo (Freddy + Ricardo). Resume todo lo avanzado hasta ahora.
 > Las fuentes de cada dato están en `research/`. El detalle de cada idea descartada, en los otros archivos de `ideas/`.
 

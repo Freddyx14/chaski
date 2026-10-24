@@ -37,8 +37,8 @@ Temas (la lista final la ajusta la mamá de Freddy, que sabe qué se dice de ver
 1. **Saludo y presentación**: «Buenos días, soy la enfermera de la posta», «¿Cómo se siente hoy?».
 2. **Medicinas**: «Tome una pastilla cada día después del almuerzo», «No deje de tomarla aunque se sienta bien», «Tómela con agua, no con té ni café».
 3. **Citas**: «Su próximo control es en un mes», «Venga en ayunas», «Traiga su carné».
-4. **Señales de alarma del embarazo**: **la lista oficial del MINSA**, frase por frase (pendiente de conseguir la fuente). Son las más importantes: que las graben todas las personas.
-5. **Preguntas de la enfermera**: «¿Tiene dolor?», «¿Desde cuándo?», «¿El bebé se mueve?».
+4. **Señales de «vuelva ya» por tipo de atención** (salud general, decidido el 23-oct): niño con fiebre o diarrea, presión alta, diabetes, embarazo, adulto mayor. Cada lista sale de la fuente oficial del MINSA o de lo que dice la mamá de Freddy en la posta. Son las más importantes: que las graben todas las personas.
+5. **Preguntas de la enfermera**: «¿Tiene dolor?», «¿Desde cuándo?», «¿Tiene fiebre?», «¿Está comiendo bien?», «¿El bebé se mueve?».
 6. **Números, días y horas**: uno a diez, días de la semana, «en la mañana», «cada ocho horas». Ahí es donde un error es más peligroso.
 
 Meta por persona: **150 a 300 frases** (~20–40 min). Con 4–5 personas: 1,000+ audios.

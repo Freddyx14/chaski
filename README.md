@@ -10,6 +10,7 @@ Team: Freddy Ñañez · Ricardo Acuña
 
 | Path | What |
 |---|---|
+| **`SOT.md`** | **Source of truth: the product, every decision, open questions. Start here** |
 | `account.md` | Project status, deadlines, judging criteria, team |
 | `context/` | Hacker guide and photos of the Anthropic track slides |
 | `research/` | Sourced research: Andean wildfires, education and politics in Peru, sponsor tracks |

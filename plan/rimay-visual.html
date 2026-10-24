@@ -1,0 +1,359 @@
+<title>Rimay, el mapa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --ground:#F3F5F2; --surface:#FFFFFF; --ink:#18221F; --muted:#5B6A65; --line:#D8DFDB;
+  --accent:#0E6B64; --accent-soft:#DCEEEB; --wa:#E7F6E3; --wa-out:#D3F0CB;
+  --ok:#1E7A3E; --ok-soft:#DDF2E3; --warn:#9A5B00; --warn-soft:#FBEBD0; --bad:#B02344; --bad-soft:#F8DDE4;
+  --tag:#EEF1EF;
+  --display:"Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body:"Source Sans 3", "Helvetica Neue", system-ui, sans-serif;
+  --mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --ground:#111816; --surface:#19221F; --ink:#E6EEEA; --muted:#9AABA4; --line:#2C3833;
+    --accent:#4FC2B6; --accent-soft:#163A36; --wa:#1E2D24; --wa-out:#24402E;
+    --ok:#6BD48E; --ok-soft:#173523; --warn:#F2B356; --warn-soft:#3A2B12; --bad:#F2789A; --bad-soft:#3D1823;
+    --tag:#232E2A;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --ground:#111816; --surface:#19221F; --ink:#E6EEEA; --muted:#9AABA4; --line:#2C3833;
+  --accent:#4FC2B6; --accent-soft:#163A36; --wa:#1E2D24; --wa-out:#24402E;
+  --ok:#6BD48E; --ok-soft:#173523; --warn:#F2B356; --warn-soft:#3A2B12; --bad:#F2789A; --bad-soft:#3D1823;
+  --tag:#232E2A;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:400 16px/1.55 var(--body);padding-inline:20px;padding-block:28px 64px}
+.wrap{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:56px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.05;font-weight:700;letter-spacing:-.01em}
+h2{font-size:1.6rem;font-weight:700;display:flex;align-items:baseline;gap:12px}
+h3{font-size:1.08rem;font-weight:700}
+p{margin:0;max-width:68ch}
+.muted{color:var(--muted)}
+.letter{font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:2px 8px;letter-spacing:.04em}
+.sec{display:flex;flex-direction:column;gap:20px}
+.mono{font-family:var(--mono);font-size:.82rem}
+.tag{display:inline-block;font-family:var(--mono);font-size:.74rem;background:var(--tag);color:var(--ink);border-radius:5px;padding:2px 7px;margin:2px 4px 2px 0}
+
+/* hero */
+.hero{display:flex;flex-direction:column;gap:16px}
+.hero .lede{font-size:1.2rem;max-width:60ch}
+.quote{border-left:3px solid var(--accent);padding:4px 0 4px 16px;font-size:1.05rem;max-width:62ch}
+.quote .qu{font-family:var(--display);font-size:1.25rem}
+
+/* three screens */
+.screens{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;align-items:start}
+.screen{display:flex;flex-direction:column;gap:10px}
+.screen .who{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.phone{background:var(--surface);border:1px solid var(--line);border-radius:26px;padding:14px;display:flex;flex-direction:column;gap:8px;min-height:420px}
+.phone .bar{display:flex;align-items:center;gap:10px;padding-bottom:8px;border-bottom:1px solid var(--line)}
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--surface);display:grid;place-items:center;font-weight:700;font-size:.85rem;flex:none}
+.bubble{max-width:88%;border-radius:12px;padding:8px 10px;font-size:.9rem;line-height:1.4}
+.in{background:var(--wa);align-self:flex-start}
+.out{background:var(--wa-out);align-self:flex-end}
+.audio{display:flex;align-items:center;gap:8px}
+.play{width:26px;height:26px;border-radius:50%;background:var(--accent);flex:none;position:relative}
+.play::after{content:"";position:absolute;left:10px;top:7px;border-left:9px solid var(--surface);border-top:6px solid transparent;border-bottom:6px solid transparent}
+.wave{flex:1;height:18px;background:repeating-linear-gradient(90deg,var(--accent) 0 2px,transparent 2px 5px);opacity:.55;border-radius:3px;min-width:90px}
+.small{font-size:.76rem;color:var(--muted)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.panel .head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.row{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:11px 14px;border-bottom:1px solid var(--line);font-size:.9rem}
+.row:last-child{border-bottom:none}
+.pill{font-size:.74rem;font-weight:600;border-radius:999px;padding:2px 9px;white-space:nowrap;align-self:start}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-bad{background:var(--bad-soft);color:var(--bad)}
+.results{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.metric{display:flex;flex-direction:column;gap:6px}
+.metric .label{font-size:.88rem;font-weight:600}
+.bars{display:grid;grid-template-columns:70px 1fr;gap:6px 10px;align-items:center;font-size:.78rem}
+.track{height:12px;border-radius:4px;background:repeating-linear-gradient(45deg,var(--tag) 0 6px,transparent 6px 12px);border:1px dashed var(--line)}
+.pending{font-family:var(--mono);font-size:.72rem;color:var(--warn)}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;counter-reset:step}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative}
+.step .n{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.step.gate{border-color:var(--bad);border-width:2px}
+.step.gate .n{color:var(--bad)}
+.step p{font-size:.92rem}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--surface);border:1px solid var(--line)}
+.legend .lg-gate::before{border:2px solid var(--bad)}
+
+/* two loops */
+.loops{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.loop{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.loop ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.loop li{font-size:.94rem}
+.loop .tagline{font-size:.88rem;color:var(--muted)}
+.callout{background:var(--accent-soft);border-radius:10px;padding:12px 14px;font-size:.92rem}
+
+/* tech table */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.9rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.76rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+tr:last-child td{border-bottom:none}
+
+/* people + timeline */
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.person{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.person ul{margin:0;padding-left:18px;font-size:.92rem;display:flex;flex-direction:column;gap:4px}
+.timeline{display:flex;flex-direction:column;gap:0;border-left:2px solid var(--line);margin-left:6px}
+.t{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:8px 0 8px 18px;position:relative;font-size:.94rem}
+.t::before{content:"";position:absolute;left:-7px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+.t.hard::before{background:var(--bad);border-color:var(--bad)}
+.t .when{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding-top:2px}
+.feedback{background:var(--surface);border:1px dashed var(--accent);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+@media (max-width:520px){ .t{grid-template-columns:1fr;gap:2px} }
+</style>
+
+<style>
+.stamp{display:inline-flex;gap:8px;align-items:center;font-family:var(--mono);font-size:.78rem;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:3px 12px;font-weight:600;width:fit-content}
+.turn{display:flex;flex-direction:column;gap:4px}
+.speaker{font-size:.72rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+.said{font-size:.86rem;color:var(--muted);font-style:italic}
+.check{font-size:.74rem;font-weight:600}
+.check.ok{color:var(--ok)} .check.bad{color:var(--bad)} .check.warn{color:var(--warn)}
+.lanes{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.lane{display:flex;flex-direction:column;gap:10px}
+.lane .flow{grid-template-columns:1fr}
+.lane h3{display:flex;gap:8px;align-items:baseline}
+.arrow{font-family:var(--mono);color:var(--muted);text-align:center;font-size:.9rem;line-height:1}
+.dec{font-size:.88rem}
+.dec td:first-child{font-family:var(--mono);color:var(--muted);white-space:nowrap}
+.listen{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.speakerdot{width:56px;height:56px;border-radius:50%;background:var(--accent-soft);display:grid;place-items:center;font-size:1.4rem}
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="stamp">SOT-3 · vie 23 oct, 23:50 PT · sincronizado con SOT.md</span>
+    <h1>Rimay, el intérprete quechua de bolsillo de la posta</h1>
+    <p class="lede">La enfermera habla en castellano y Rimay lo dice en quechua chanka. El paciente responde, Rimay detecta que es quechua y se lo dice a ella en castellano. Antes de hablar se audita: si una dosis o una fecha cambió, no lo dice.</p>
+    <div class="quote">
+      <div class="qu">¿Allinllanchu, mamáy?</div>
+      <div class="small">«¿Está bien, señora?» · voz chanka real de Meta, ya probada (<span class="mono">muestras/mms-tts-quy/</span>)</div>
+    </div>
+    <p class="muted">Para quién: el personal de salud de la posta de Pilpichaca (Huancavelica), y sus pacientes quechuahablantes en cualquier atención. La mamá de Freddy es la única enfermera que habla quechua ahí. En toda Huancavelica hay 52 servidores bilingües certificados.</p>
+  </header>
+
+  <section class="sec" id="a">
+    <h2><span class="letter">A</span>Lo que ve cada persona</h2>
+    <p class="muted">Una conversación de ejemplo en la consulta. El celular está entre la enfermera y el paciente.</p>
+    <div class="screens">
+
+      <div class="screen">
+        <span class="who">La enfermera · app Rimay</span>
+        <div class="phone">
+          <div class="bar"><div class="avatar">R</div><div><strong>Consulta · Don Teodoro</strong><div class="small">presión alta</div></div></div>
+          <div class="bubble out turn">
+            <span class="speaker">Enfermera · castellano</span>
+            <span class="said">«eh… tome esta, la pastillita, una en la mañana y… otra en la noche, una semana»</span>
+            <span>Tome 1 pastilla 2 veces al día, en la mañana y en la noche, durante 7 días.</span>
+            <span class="check ok">✓ auditado: dosis, horas y días coinciden</span>
+          </div>
+          <div class="bubble in turn">
+            <span class="speaker">Rimay dice en quechua</span>
+            <div class="audio"><div class="play"></div><div class="wave"></div><span class="small">0:08</span></div>
+          </div>
+          <div class="bubble in turn">
+            <span class="speaker">Paciente · detectado: quechua</span>
+            <div class="audio"><div class="play"></div><div class="wave"></div><span class="small">0:05</span></div>
+            <span>Quiere decir: «¿Y si me olvido la de la noche?»</span>
+            <span class="check warn">◐ seguridad media: confirme con él</span>
+          </div>
+          <div class="bubble out turn">
+            <span class="speaker">Enfermera · castellano</span>
+            <span>Si se olvida, la toma apenas se acuerde, pero nunca dos juntas.</span>
+            <span class="check bad">✕ no dicho: la retraducción perdió «nunca dos juntas». Revise la frase</span>
+          </div>
+          <div class="bubble in turn">
+            <span class="speaker">¿Me lo repite?</span>
+            <span>Repitió: pastilla ✓ · mañana y noche ✓ · 7 días ✗</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen">
+        <span class="who">El paciente · escucha</span>
+        <div class="listen">
+          <div class="speakerdot">🔊</div>
+          <strong>No necesita pantalla, ni leer, ni descargar nada</strong>
+          <p class="small">Escucha a Rimay por el parlante del celular de la enfermera, en su idioma, y responde hablando. Rimay reconoce solo si habló en quechua o en castellano.</p>
+        </div>
+      </div>
+
+      <div class="screen">
+        <span class="who">El jurado · página de resultados</span>
+        <div class="results">
+          <div class="metric"><span class="label">1 · Errores entendiendo chanka hablado</span>
+            <div class="bars"><span>Meta, tal cual</span><div class="track"></div><span>+ vocabulario</span><div class="track"></div><span>+ ajuste fino</span><div class="track"></div></div>
+            <span class="pending">por medir el sábado · con una voz que el modelo nunca escuchó</span></div>
+          <div class="metric"><span class="label">2 · Errores al traducir al chanka</span>
+            <div class="bars"><span>Google</span><div class="track"></div><span>Claude</span><div class="track"></div></div>
+            <span class="pending">por medir · lo califica la enfermera</span></div>
+          <div class="metric"><span class="label">3 · Errores que la auditoría atrapa</span>
+            <div class="bars"><span>atrapados</span><div class="track"></div></div>
+            <span class="pending">por medir</span></div>
+          <div class="metric"><span class="label">Además: acierto al detectar el idioma · segundos de espera por turno</span>
+            <span class="pending">por medir</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec" id="b">
+    <h2><span class="letter">B</span>Qué pasa por dentro en cada turno</h2>
+    <div class="legend"><span>paso normal</span><span class="lg-gate">compuerta: si falla, Rimay no habla y le muestra a la enfermera qué revisar</span></div>
+    <div class="lanes">
+      <div class="lane">
+        <h3>Enfermera → paciente</h3>
+        <div class="flow">
+          <div class="step"><span class="n">1 · oír</span><h3>Voz en castellano → texto</h3><div><span class="tag">por decidir: Whisper u Omnilingual</span></div></div>
+          <div class="arrow">↓</div>
+          <div class="step"><span class="n">2 · entender</span><h3>Lo que quiso decir (estilo Wispr Flow)</h3><p>Sin muletillas, números explícitos. No inventa ni quita datos.</p><div><span class="tag">Claude</span></div></div>
+          <div class="arrow">↓</div>
+          <div class="step gate"><span class="n">3 · compuerta</span><h3>Traducir y auditar</h3><p>Traduce al chanka, otra llamada retraduce a ciegas, código compara dosis, horas, días y citas.</p><div><span class="tag">✅ construido · 20 pruebas</span></div></div>
+          <div class="arrow">↓</div>
+          <div class="step"><span class="n">4 · hablar</span><h3>Texto chanka → voz</h3><div><span class="tag">mms-tts-quy ajustado</span></div></div>
+        </div>
+      </div>
+      <div class="lane">
+        <h3>Paciente → enfermera</h3>
+        <div class="flow">
+          <div class="step"><span class="n">1 · ¿qué idioma?</span><h3>Quechua o castellano</h3><p>Solo, sin botones.</p><div><span class="tag">mms-lid-512 · quy / spa</span></div></div>
+          <div class="arrow">↓</div>
+          <div class="step"><span class="n">2 · oír</span><h3>Voz en quechua → texto</h3><p>El modelo que ajusta Ricardo con las voces de las familias.</p><div><span class="tag">Omnilingual quy + KenLM</span></div></div>
+          <div class="arrow">↓</div>
+          <div class="step gate"><span class="n">3 · compuerta</span><h3>Entender lo que quiso decir</h3><p>Lo dice en castellano con su nivel de seguridad. Si no entiende, pide repetir: nunca inventa.</p><div><span class="tag">Claude</span></div></div>
+          <div class="arrow">↓</div>
+          <div class="step"><span class="n">4 · mostrar</span><h3>En pantalla y en voz</h3><div><span class="tag">voz castellano: por decidir</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="c">
+    <h2><span class="letter">C</span>Dos ciclos: el producto y el entrenamiento</h2>
+    <p>La app (B) funciona con modelos que ya existen. Lo técnicamente difícil es el segundo ciclo: lograr que entiendan y hablen chanka de posta, y medirlo con honestidad.</p>
+    <div class="loops">
+      <div class="loop">
+        <h3>Ciclo 1 · La app</h3>
+        <span class="tagline">Freddy · lo que la enfermera usa el lunes</span>
+        <ol>
+          <li>Entender a la enfermera (estilo Wispr Flow)</li>
+          <li>Traducir y auditar antes de hablar</li>
+          <li>Entender al paciente y decir qué tan seguro está</li>
+          <li>«¿Me lo repite?» al cerrar la consulta</li>
+          <li>Cada corrección de la enfermera entra al glosario</li>
+        </ol>
+      </div>
+      <div class="loop">
+        <h3>Ciclo 2 · Entrenamiento y medición</h3>
+        <span class="tagline">Ricardo · lo que llama la atención del jurado</span>
+        <ol>
+          <li>Las familias graban frases de posta y respuestas libres en chanka</li>
+          <li>Una persona queda fuera, solo para medir</li>
+          <li>Paso 0: modelo de Meta tal cual → error inicial</li>
+          <li>Paso 1: + vocabulario de la posta</li>
+          <li>Paso 2: + ajuste fino con las familias, en la GPU de 40 GB</li>
+          <li>Detección de idioma medida con las mismas grabaciones</li>
+          <li>Voz de Rimay con la voz de la mamá de Freddy</li>
+        </ol>
+      </div>
+    </div>
+    <div class="callout"><strong>Dónde se cruzan:</strong> el reconocimiento que entrena Ricardo es el paso 2 de la columna «paciente → enfermera». La evaluación de traducción la califica la mamá de Freddy.</div>
+  </section>
+
+  <section class="sec" id="d">
+    <h2><span class="letter">D</span>La tecnología, pieza por pieza</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Pieza</th><th>Qué usamos</th><th>Estado</th></tr></thead>
+        <tbody>
+          <tr><td>Traducir, entender, auditar</td><td><span class="tag">Claude Opus 5</span><span class="tag">Python</span></td><td><span class="pill p-ok">auditoría hecha · 20 pruebas</span></td></tr>
+          <tr><td>Entender voz quechua</td><td><span class="tag">Meta Omnilingual ASR quy</span><span class="tag">KenLM</span><span class="tag">ajuste fino</span></td><td><span class="pill p-warn">sábado</span></td></tr>
+          <tr><td>Entender voz castellano</td><td><span class="tag">Whisper u Omnilingual spa</span></td><td><span class="pill p-warn">por decidir</span></td></tr>
+          <tr><td>Detectar idioma</td><td><span class="tag">facebook/mms-lid-512</span></td><td><span class="pill p-ok">incluye quy y spa · verificado</span></td></tr>
+          <tr><td>Hablar quechua</td><td><span class="tag">facebook/mms-tts-quy</span></td><td><span class="pill p-ok">voz base probada</span></td></tr>
+          <tr><td>Hablar castellano</td><td><span class="tag">Cartesia (candidato)</span></td><td><span class="pill p-warn">por decidir</span></td></tr>
+          <tr><td>Entrenar y servir modelos</td><td><span class="tag">VM de Ricardo · GPU 40 GB</span></td><td><span class="pill p-warn">probar hoy</span></td></tr>
+          <tr><td>La app</td><td><span class="tag">web en el celular</span></td><td><span class="pill p-warn">recomendado · por confirmar</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec" id="e">
+    <h2><span class="letter">E</span>Quién hace qué</h2>
+    <div class="people">
+      <div class="person"><h3>Freddy</h3><ul><li>Claude: entender, traducir, auditar, «¿me lo repite?»</li><li>La app</li><li>Evaluación de traducción con su mamá</li><li>Pitch y Devpost</li></ul></div>
+      <div class="person"><h3>Ricardo</h3><ul><li>Datos de voz</li><li>Reconocimiento: pasos 0, 1 y 2</li><li>Detección de idioma</li><li>Voz de Rimay</li><li>Métricas y gráficos</li></ul></div>
+      <div class="person"><h3>Las familias</h3><ul><li>Graban frases de posta y respuestas libres en chanka</li><li>La mamá de Freddy transcribe, revisa el glosario y califica a ciegas</li></ul></div>
+    </div>
+  </section>
+
+  <section class="sec" id="f">
+    <h2><span class="letter">F</span>Decisiones tomadas y por tomar</h2>
+    <div class="tablewrap">
+      <table class="dec">
+        <thead><tr><th>#</th><th>Decisión</th><th>Por qué</th></tr></thead>
+        <tbody>
+          <tr><td>D4</td><td>Quechua en salud</td><td>La mamá de Freddy es la única enfermera quechuahablante de la posta</td></tr>
+          <tr><td>D5</td><td>Ajuste fino con voces de las familias, medido antes y después</td><td>Da el núcleo técnico</td></tr>
+          <tr><td>D6</td><td>Rimay sobre corredores de extorsión</td><td>El modelo de escalamiento no le ganó al baseline</td></tr>
+          <tr><td>D8</td><td>Salud general, no solo gestantes</td><td>La comunidad es la posta</td></tr>
+          <tr><td>D9</td><td>Usuaria principal: el personal de salud</td><td>Se usa en la consulta, cara a cara</td></tr>
+          <tr><td>D10</td><td>App de intérprete con voz en los dos sentidos</td><td>Conversación en vivo, no WhatsApp</td></tr>
+          <tr><td>D11</td><td>Detección automática de idioma</td><td>Nadie toca un botón para cambiar de idioma</td></tr>
+          <tr><td>D12</td><td>Entender la intención, estilo Wispr Flow</td><td>Lo dicho a medias llega claro de los dos lados</td></tr>
+          <tr><td>D13</td><td>SOT.md es la fuente de verdad; esta página se sincroniza con él</td><td>Pedido de Freddy</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tablewrap">
+      <table class="dec">
+        <thead><tr><th>#</th><th>Por decidir</th><th>Recomendación</th></tr></thead>
+        <tbody>
+          <tr><td>P1</td><td>¿App web o nativa?</td><td>Web en el celular: misma experiencia, ahorra un día</td></tr>
+          <tr><td>P2</td><td>¿Qué modelo de Claude en la conversación?</td><td>Medir la espera; si Opus tarda, uno más rápido para entender y Opus para auditar</td></tr>
+          <tr><td>P3</td><td>¿Voz en castellano?</td><td>Cartesia si suena bien y es rápida (suma su track)</td></tr>
+          <tr><td>P4</td><td>Nombre final</td><td>Decidirlo con la mamá de Freddy</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="small">D1–D3 y D7 (track, repo, descarte de incendios, GPU) están en el SOT.</p>
+  </section>
+
+  <section class="sec" id="g">
+    <h2><span class="letter">G</span>De ahora al domingo</h2>
+    <div class="timeline">
+      <div class="t"><span class="when">vie 23:50</span><span>Mensaje a la familia, consentimientos. Ricardo prueba los modelos en su GPU. <strong>Dormir a la 1:00.</strong></span></div>
+      <div class="t"><span class="when">sáb 05–08</span><span>Las familias graban en Perú (7–10 AM allá)</span></div>
+      <div class="t"><span class="when">sáb 09:00</span><span>Primer número de reconocimiento. App grabando y reproduciendo</span></div>
+      <div class="t"><span class="when">sáb 12:30</span><span>Workshop de Anthropic (agentes)</span></div>
+      <div class="t"><span class="when">sáb 18:00</span><span>Una conversación completa en los dos sentidos, aunque sea fea. Si no, se recorta</span></div>
+      <div class="t"><span class="when">sáb 21:00</span><span>Borrador en Devpost</span></div>
+      <div class="t hard"><span class="when">dom 07:00</span><span>Se congelan los números</span></div>
+      <div class="t hard"><span class="when">dom 09:00</span><span><strong>Entrega</strong> · jurado de 10:30 a 12:30</span></div>
+    </div>
+  </section>
+
+  <section class="feedback">
+    <h3>Para tu feedback</h3>
+    <p>Dime por letra qué tiene sentido y qué no. Cada cambio entra primero a <span class="mono">SOT.md</span> y después a esta página, con la misma versión.</p>
+    <p class="small">Fuente de verdad: <span class="mono">SOT.md</span> · calendario: <span class="mono">plan/plan-completo.md</span> · grabación: <span class="mono">plan/recoleccion-de-voz.md</span></p>
+  </section>
+
+</div>
