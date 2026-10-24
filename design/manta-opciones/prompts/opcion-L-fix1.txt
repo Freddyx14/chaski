@@ -1,0 +1,17 @@
+FIX PASS ON OPTION L (keep everything else exactly as it is). Fix these defects only:
+1. Screen 1: there is an empty gap of ~80pt between the Chaski card and the "Rimay" wordmark. Move the wordmark,
+   progress rombos, questions and the ornament row up so the gap is 20pt, and keep the two language rows with at
+   least 28pt of space above the home indicator (today the home indicator touches the "Runasimi" row).
+2. Screen 1: the ornament row above the language options is made of round dots. Redraw it as a row of small
+   STEPPED CROSSES (mini chakanas, 10pt, built from 2pt pixels: a plus with stepped corners) alternating
+   magenta #E4007C, yellow #FFC41F, turquoise #00A6B4, cobalt #2546B0, 4pt apart. No circles anywhere.
+3. Screen 1: the language-row left motif is three round dots. Redraw it as a vertical stack of three tiny
+   stepped crosses (6pt, 2pt pixels), cobalt for Castellano and cinnamon #A85A2A for Runasimi.
+4. Screens 2 and 3: the chakana before "Rimay" reads as a blob. Redraw it as a crisp 18pt stepped Andean cross
+   (three steps per arm, 2pt pixel grid, cobalt #2546B0 outline with a white center square).
+5. Screen 3: the home indicator overlaps the "Habla usted · castellano" pill. Move the mic group, labels and the
+   pill up so the pill bottom sits 24pt above the home indicator.
+6. All three Chaski cards: make D's octagonal stepped silhouette clearer — the corner cut should be larger
+   (about 18% of the side, in 4 pixel steps) so the frame reads as a stepped octagon, with the nested cobalt /
+   yellow / magenta lines following it.
+Verify: no element touches the home indicator, no circles in the textile motifs, everything inside the frames.

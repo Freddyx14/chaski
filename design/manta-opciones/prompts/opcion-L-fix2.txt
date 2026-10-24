@@ -1,0 +1,12 @@
+FIX PASS 2 ON OPTION L (keep everything else exactly as it is):
+1. RENAME. The product is now called CHASKI (the vicuña is also Chaski). Replace every visible "Rimay" with
+   "Chaski": the onboarding wordmark "Chaski"; the header title on screens 2 and 3 "Chaski"; screen 2 small text
+   "Chaski ya lo dijo en voz alta."; screen 3 body "Hable en castellano. Chaski se lo dirá en quechua al paciente
+   y le avisará si algo no se entendió." Also update the board subtitle to: "La dirección final: la silueta
+   escalonada de D con el marco multicolor y la chakana de I. El producto se llama Chaski." and the screen label
+   "2 · Rimay habla" to "2 · Chaski habla".
+2. Screen 1: there is still ~120pt of empty space between "¿Ima simitam rimanki?" and the ornament row. Move the
+   ornament row and both language rows up so that gap is 32pt; the free space goes to the bottom, above the
+   home indicator.
+3. Screen 2: the bottom buttons touch the home indicator. Move them up so their bottom edge is 24pt above it.
+Verify every "Rimay" is gone from the board, no element touches a home indicator, all inside the frames.

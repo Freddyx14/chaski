@@ -105,16 +105,6 @@ placeholder is kept. The option title and rationale are on the board. Report any
 """.strip()
 
 OPCIONES = {
-    "C": ("Lliclla en la mesa",
-          "Un bloque grande de manta arriba, como una lliclla extendida, y tarjetas blancas encima.",
-          """BOLD HERO. The top part of every screen is a big block of manta, like a lliclla spread on the
-table of the health post: on screen 1 the manta covers the top 46% of the screen (full bleed, from the status
-bar down), built faithfully from manta-ref-6: white ground bands alternating with 6–14pt bright stripes and two
-18pt motif bands of rombo chains outlined in black; Chaski's card (220pt) sits overlapping the lower edge of the
-manta, half on the cloth half on the ground, with a 6pt white outline. On screens 2 and 3 the manta block is
-shorter (top 150pt, behind the header and the upper half of Chaski's card); the header text sits on a white
-pill so it stays legible. Below the manta everything is calm #F6F4F1 with white cards. The status bar sits on
-white. This is the boldest identity of the five while keeping the consultation content untouched."""),
     "D": ("El motivo es la interfaz",
           "Los rombos y zigzags se vuelven los componentes: progreso, medidor de audio, etiquetas, divisores.",
           """MOTIF AS UI. No stripe bands at all. Instead the Andean motifs ARE the interface components, drawn on
@@ -127,43 +117,6 @@ stepped shapes instead of circles; the onboarding option rows have a 6pt rombo c
 for Castellano, cinnamon #A85A2A for Runasimi). On screen 2 the audit row keeps its green, but its four checks
 are inside tiny stepped badges. Typography and spacing stay calm. The founder should see the culture in every
 component, not as decoration."""),
-    "E": ("Fiesta",
-          "Fondos de color de la manta con tarjetas blancas encima: cálido y festivo, sin perder la lectura.",
-          """FULL COLOR WARMTH. The ground of each screen is a deep manta color instead of off-white: screen 1
-deep magenta #B0005F, screen 2 cobalt #1F3A94, screen 3 purple #55216F — each overlaid with a very subtle
-tone-on-tone rombo lattice (same hue, +8% lightness, 12% coverage) so the ground feels woven. A 10pt bright
-stripe band (yellow/orange/green/turquoise/white) runs under the header. All text on the colored ground is
-white; all content sits in white cards (radius 24) so the medical content keeps its calm. The audit row stays
-green on its own white card with 12pt of white around it. The primary buttons stay teal #0E6B64 but get a 2pt
-white outline so they read on dark grounds; secondary buttons are white. The status bar text is white. Chaski's
-card gets a 6pt white frame. This is the warmest, most festive option; it must still pass contrast (white text on
-the grounds ≥ 4.5:1)."""),
-    "G": ("Fiesta geométrica",
-          "D sobre E: los motivos hechos interfaz encima de los fondos de color de la manta.",
-          """D + E, FREDDY'S EXPLICIT ASK. Take option E's grounds — screen 1 deep magenta #B0005F, screen 2 cobalt
-#1F3A94, screen 3 purple #55216F, each with a subtle tone-on-tone rombo lattice (same hue +8% lightness, 12%
-coverage) — and put option D's motif-as-interface components on top: onboarding progress = three rombos (current
-filled yellow #FFC41F with thread-black outline, others white outline); Chaski's card has stepped (escalonado)
-corners instead of round ones, with a 4pt white stepped frame; the quechua tag has a tiny rombo at its left;
-dividers inside cards are a 4pt stepped zigzag in #E4DED8; the mic (teal #0E6B64, 96pt, 2pt white outline) is
-wrapped by a ring of 12 small rombos in yellow/turquoise/pink/white; the side buttons are white stepped octagons;
-the onboarding option rows carry a 6pt rombo chain on their left edge (cobalt for Castellano, cinnamon #A85A2A for
-Runasimi). Every text on a colored ground is white (≥4.5:1). All medical content stays in white cards (radius 24),
-and the audit row sits on its own white card with 12pt of white around it, no motif touching it. Festive AND
-geometric: the founder's two favourites in one."""),
-    "H": ("Tocapu",
-          "Cada componente vive en una celda de tocapu: la cuadrícula inca de símbolos, multicolor.",
-          """TOCAPU GRID AS THE COMPONENT LANGUAGE. Tocapus are the square symbol cells of Inca tunics: a grid of
-squares, each holding a different small geometric sign (stepped cross, checkerboard, concentric square, diagonal
-bands, small rombo, S-hook), each cell a different solid manta color (magenta, yellow, turquoise, cobalt, orange,
-green, purple) with thread-black or white signs. Use this everywhere, sparsely but clearly: a header row of 8
-tocapu cells (each 20pt) under the header instead of a stripe; Chaski's card sits inside a 6pt tocapu border
-(cells of 6pt); the onboarding progress is three tocapu cells (current filled, others outlined); the quechua
-tag carries a tocapu cell as its leading icon; the Receta and Resumen side buttons are 56pt square tocapu cells
-(rounded 10) with the camera and checklist glyphs inside; the mic stays a teal circle but stands on a 3x3 tocapu
-plinth band beneath it; the onboarding option rows each start with a 40pt tocapu cell icon (cobalt cell with a
-white stepped sign for Castellano, cinnamon cell with a white rombo for Runasimi). Ground stays #F6F4F1 with white
-cards. More colors and more signs than D, organized in a strict grid so it stays calm."""),
     "I": ("Chakana",
           "La cruz andina escalonada ordena todo: el anillo del micrófono, el marco de Chaski y el progreso.",
           """CHAKANA + ESCALONADO. The chakana (stepped Andean cross, three steps per arm, with a central circle or
@@ -176,29 +129,35 @@ inside cards are a thin stepped line (escalera) in #E4DED8. The onboarding optio
 (three steps) in cobalt / cinnamon. Section labels and the "Habla usted · castellano" pill use stepped ends
 instead of round ends. Ground #F6F4F1, white cards, the audit row untouched. More color than D (four manta
 colors in every stepped element), one disciplined motif family."""),
-    "J": ("Pallay",
-          "La densidad del cinturón tejido aplicada a los componentes: bordes llenos de motivos en botones y etiquetas.",
-          """PALLAY DENSITY. Pallay is the dense pick-up weave of belts and mantas: tight rows of tiny motifs.
-Apply that density as BORDERS of the components themselves, not as background: the primary "Seguir" button and the
-mic button get a 6pt pallay rim (micro rombos and S-hooks in yellow/magenta/turquoise on thread black, pixel 2pt);
-the onboarding option rows get a 6pt pallay band along their top edge (each row a different color family:
-cobalt/turquoise for Castellano, orange/magenta for Runasimi); the quechua tag is a short woven pallay strip with
-the label on a cinnamon center; the audio/level elements and the progress become pallay strips that fill with
-color as they advance (3 segments, current filled multicolor, rest #E4DED8 checker); Chaski's card has a 10pt pallay
-band along its bottom with small llamas and q'antu flowers (pixel motifs) on thread black; a 12pt pallay belt with
-ganchos en S runs under the header. Ground #F6F4F1, white cards, the audit row plain and untouched with 12pt of
-calm around it. The most motif-dense option, but every motif lives on an edge so text areas stay clean."""),
-    "K": ("Lliclla geométrica",
-          "D más C: componentes de motivo y un héroe de lliclla repleto de figuras andinas.",
-          """D + C, MY BEST BET. Screen 1 gets a big lliclla hero covering the top 44% (full bleed): white ground with
-bright stripe bands and FIVE different motif bands, each a different family — rombo chain, ganchos en S, stepped
-zigzag (qenqo/river), a row of small llamas with q'antu flowers, an eight-pointed star (estrella de ocho puntas)
-band — drawn crisp on a pixel grid in the manta palette with thread-black outlines; Chaski's card (220pt, stepped
-corners) overlaps its lower edge with a 6pt white frame. Screens 2 and 3 get a shorter lliclla (top 140pt behind the
-header, header text on a white pill) with two motif bands. Then D's component language below: progress as three
-rombos, the quechua tag with a tiny rombo, stepped-zigzag dividers in #E4DED8, the mic wrapped in a ring of 12
-rombos (turquoise/yellow/magenta), stepped-octagon side buttons, option rows with a 6pt rombo chain on the left
-edge. Calm #F6F4F1 ground and white cards below the hero; the audit row untouched with 12pt of calm."""),
+    "L": ("D + I",
+          "La dirección final: la silueta escalonada de D con el marco multicolor y la chakana de I.",
+          """FINAL DIRECTION — D + I. Combine the two options the founder picked (attached opcion-D.png and
+opcion-I.png). Follow these exact component choices:
+- CHASKI CARD: D's pixel-stepped silhouette (corners cut in pixel steps, an octagonal stepped shape, not a
+  rounded square) PLUS I's nested multicolor stepped frame that follows that same stepped outline: three
+  concentric 4pt stepped lines, outer cobalt #2546B0, middle yellow #FFC41F, inner magenta #E4007C, 3pt of
+  cream between lines. The image sits inside the innermost line.
+- HEADER (screens 2 and 3): I's small 18pt chakana glyph in cobalt #2546B0 right before "Rimay".
+- ONBOARDING PROGRESS: D's three pixel rombos under the wordmark — the current one filled magenta #E4007C with a
+  thread-black #1A1A1A outline, the other two outlined in #CFC8C0.
+- ABOVE THE LANGUAGE OPTIONS: I's multicolor stepped ornament row (a row of small stepped crosses/steps in
+  magenta, yellow, turquoise, cobalt, repeating, 12pt tall, full content width).
+- LANGUAGE ROWS: D's left motif column (a vertical stack of small stepped crosses / rombos, 4 units tall, 6pt
+  wide) — cobalt #2546B0 for "Castellano", cinnamon #A85A2A for "Runasimi".
+- QUECHUA TAG: I's stepped ends (the pill ends are cut in two steps instead of round) in cinnamon #A85A2A, with
+  D's tiny white rombo inside at the left of the label "Quechua chanka".
+- CARD DIVIDER (inside the Quechua card): D's pixel zigzag line, 4pt tall, in #E4DED8.
+- AUDIT ROW: exactly D's: green #DDF2E3 panel with the shield-check title and the four checks as small chips
+  (white-ish chips with #1E7A3E text). NO motif touches it; 12pt of plain cream around it.
+- MIC (screen 3): the teal #0E6B64 96pt circle with white mic glyph sits at the center of I's nested
+  multicolor chakana ring (150pt stepped cross outline, alternating turquoise #00A6B4 and yellow #FFC41F outer
+  steps with a magenta #E4007C inner step), and outside it D's small rombo constellation: 8 small rombos
+  (6pt) in turquoise/yellow/magenta spaced around, sparse — do not crowd.
+- SIDE BUTTONS (Receta / Resumen): D's stepped-octagon shape, 56pt, white with 1pt #E4DED8 border, glyph
+  #5B6A65, label 13pt below.
+Ground cream #F6F4F1, white cards, teal is the only action color, red only means "no lo dije" (not shown here).
+Studio-grade: crisp pixel geometry, consistent pixel unit (2pt) across all motifs, generous calm space, the
+content (Quechua card and audit row) is the most legible thing on screen 2."""),
 }
 
 
