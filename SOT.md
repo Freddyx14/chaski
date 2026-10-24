@@ -59,7 +59,7 @@ Antes de decir algo, Chaski se audita: si una dosis, una hora o una fecha cambi�
 
 ### Por qué importa
 Una indicación que no se entiende es un tratamiento que no funciona: dosis equivocada, pastilla que se deja, control
-al que no se vuelve. En Pilpichaca, la mamá de Freddy es la única enfermera que habla quechua. En toda Huancavelica hay
+al que no se vuelve. En la posta de Pilpichaca el 90 % de los pacientes habla quechua y solo 3 de 6 del personal lo habla (entrevista a la mamá de Freddy, 24-oct; `research/entrevistas/`). En toda Huancavelica hay
 **52 servidores públicos bilingües certificados** (~1 por cada 4,000 quechuahablantes). Solo el **1%** de los
 establecimientos de salud del país tiene atención intercultural. Fuentes: `research/problemas-lenguas-originarias.md`.
 
@@ -148,7 +148,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D1 | vie 18:30 | Track principal: Anthropic «Claude for Public Benefit» | Freddy y Ricardo son peruanos; el track premia una comunidad concreta |
 | D2 | vie 19:30 | Repo en la cuenta personal `Freddyx14/cal-hacks` (hoy `Freddyx14/chaski`, D30), Ricardo invitado | No es un cliente de Loopmind |
 | D3 | vie 20:20 | Se descarta incendios | La detección ya la resuelve Satellites on Fire (US$2.7M) |
-| D4 | vie 21:10 | Rumbo: quechua en salud | La mamá de Freddy es la única enfermera quechuahablante de la posta de Pilpichaca |
+| D4 | vie 21:10 | Rumbo: quechua en salud | La mamá de Freddy es enfermera quechuahablante en la posta de Pilpichaca (corregido 24-oct: son 3 de 6 del personal, no la única) |
 | D5 | vie 22:40 | Ajuste fino de voz con las familias, medido antes y después | Padres de Freddy y papá de Ricardo hablan chanka; da el núcleo técnico |
 | D6 | vie 23:08 | Chaski sobre corredores de extorsión | El propio análisis de Ricardo mostró que el modelo de escalamiento no le gana al baseline |
 | D7 | vie 23:08 | El entrenamiento corre en la VM de Ricardo (**GPU A10G, 23 GB**; se dijo 40, Ricardo midió 23) | Alcanza: el ASR usa 3.4 GB |
