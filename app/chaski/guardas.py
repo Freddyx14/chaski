@@ -8,7 +8,7 @@ malformed result is a block («no pude verificar»), never a pass.
   B2  pulido_conserva_hechos   the polished text changed a critical fact of the transcript
   B3  pulido_conserva_hechos   the polished text added a critical fact that was not said
       pulido_sin_terminos_nuevos  same, in plain code: no new number, medicine, unit; negation kept
-  B4  terminos_fijos           numbers, medicine names, units and negation survive into the Quechua
+  B4  terminos_fijos           numbers, medicine names, units, vehicles and negation survive into the Quechua
   C   sin_agregados            the critic found advice, a diagnosis or a different addressee the source lacked
 """
 from __future__ import annotations
@@ -257,6 +257,43 @@ _PARTES_QUY = ("uma", "wiksa", "wiqsa", "wixa", "wisa", "ñawi", "nawi", "rinri"
                "simi", "qara", "rurun", "wawa tiyana")
 
 
+# Vehicles (what a medicine is taken with). Spanish «con agua» needs a water word in the Quechua, and
+# so on. Added after the live audit of 2026-10-24 approved «Unuwan upyaykuy, manan téwanchu» read back
+# as «Bebe con uno». Chanka words, TO BE CONFIRMED BY THE NURSE: unu / yaku (yacu) = agua, lichi
+# (leche loanword) = leche, te / ti / mate (loanwords) = té, jugo / hugo = jugo. The suffix list covers
+# the forms seen in the form: yakuwan, yacuta, tehawan, tehuancho, tiwanchu, téwanchu, unuwan.
+_SUFIJOS_VEHICULO = r"(?:ha|cha|cito|lla)?(?:wan|huan|ta|pi|man|chu|cho|lla|qa|ka|n|m|mi|ri|si|tawan)*"
+_VEHICULOS_QUY = {
+    "agua": re.compile(r"^(?:unu|yaku|yacu|yaco|yaku)" + _SUFIJOS_VEHICULO + r"$"),
+    "leche": re.compile(r"^(?:lichi|leche|lechi|lichhi|leeche)" + _SUFIJOS_VEHICULO + r"$"),
+    "te": re.compile(r"^(?:te|ti|mate|tecito)" + _SUFIJOS_VEHICULO + r"$"),
+    "jugo": re.compile(r"^(?:jugo|hugo|jugu|hugu)" + _SUFIJOS_VEHICULO + r"$"),
+}
+_VEHICULOS_ES = {"agua": "agua", "aguita": "agua", "leche": "leche", "lechita": "leche", "te": "te",
+                 "tecito": "te", "mate": "te", "matecito": "te", "jugo": "jugo", "juguito": "jugo"}
+_RELLENO_ES = {"el", "la", "un", "una", "su", "poco", "de", "bastante", "abundante", "mucha", "mucho", "algo"}
+
+
+def vehiculos_castellano(texto: str) -> set[str]:
+    """Vehicles the Spanish names after «con» / «en»: «Tómela con agua, no con té» → {'agua', 'te'}."""
+    ps = palabras(texto)
+    salida = set()
+    for i, p in enumerate(ps):
+        if p not in ("con", "en"):
+            continue
+        j = i + 1
+        while j < len(ps) and ps[j] in _RELLENO_ES:
+            j += 1
+        if j < len(ps) and ps[j] in _VEHICULOS_ES:
+            salida.add(_VEHICULOS_ES[ps[j]])
+    return salida
+
+
+def vehiculos_quechua(texto: str) -> set[str]:
+    """Vehicles a Quechua text names: «Unuwan upyaykuy, manan téwanchu» → {'agua', 'te'}."""
+    return {clase for p in palabras(texto) for clase, rx in _VEHICULOS_QUY.items() if rx.match(p)}
+
+
 def tiene_negacion_quechua(texto: str) -> bool:
     return any(_NEGACION_QUY.match(p) or p.endswith(("chu", "cho")) for p in palabras(texto))
 
@@ -329,6 +366,8 @@ def terminos_fijos(texto_es: str, texto_quy: str, hechos: Hechos | None = None) 
     - Medicines: each medicine named in Spanish appears as a loanword; the Quechua names no other
       known medicine.
     - Units: if the Quechua names a unit (pastilla, kuchara, sutu...), it is one the Spanish said.
+    - Vehicles: «con agua» needs unu / yaku in the Quechua, «con leche» lichi, «con té» te / tewan; if
+      the Spanish names a vehicle, the Quechua names no other one.
     - Negation: a negated instruction in Spanish needs ama / mana / -chu in the Quechua.
     """
     capa = "B4 términos fijos"
@@ -370,6 +409,13 @@ def terminos_fijos(texto_es: str, texto_quy: str, hechos: Hechos | None = None) 
         for u in sorted(u_quy - u_es):
             problemas.append(f"unidad «{u}» en el quechua, el castellano dice {', '.join(sorted(u_es))}")
 
+    v_es, v_quy = vehiculos_castellano(texto_es), vehiculos_quechua(texto_quy)
+    for v in sorted(v_es - v_quy):
+        problemas.append(f"el castellano dice «con {v}» y el quechua no lo nombra")
+    if v_es:
+        for v in sorted(v_quy - v_es):
+            problemas.append(f"el quechua nombra «{v}», el castellano dice {', '.join(sorted(v_es))}")
+
     negado = tiene_negacion_castellano(texto_es) or bool(hechos is not None and hechos.prohibiciones)
     if negado and not tiene_negacion_quechua(texto_quy):
         problemas.append("el castellano tiene una negación y el quechua no (ama / mana / -chu)")
@@ -397,7 +443,7 @@ def pulido_conserva_hechos(hechos_transcripcion: Hechos, hechos_pulido: Hechos) 
     for d in comparar(hechos_transcripcion, hechos_pulido):
         texto = f"{d.campo}: {d.original} → {d.retraducido}"
         es_conteo = d.campo.endswith("(cantidad)") or "cantidad de señales" in d.campo
-        nuevo = (d.original in ("(no estaba)", "None", "(ninguna)")
+        nuevo = (d.original in ("(no estaba)", "None", "(ninguna)", "(ninguno)")
                  or (es_conteo and _num(d.retraducido) > _num(d.original)))
         (agregados if nuevo else cambiados).append(texto)
     pares, _, _ = emparejar(hechos_transcripcion.medicamentos, hechos_pulido.medicamentos)

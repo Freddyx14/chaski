@@ -1,4 +1,6 @@
-from chaski.hechos import Hechos, Medicamento, comparar
+import pytest
+
+from chaski.hechos import Hechos, Medicamento, comparar, vehiculo_canonico, vehiculos_prohibidos
 
 
 def med(**kw):
@@ -167,3 +169,60 @@ def test_embarazo_perdido_bloquea():
 
 def test_embarazo_igual_no_bloquea():
     assert comparar(b6(embarazo=True), b6(embarazo=True)) == []
+
+
+# --- Vehículo: con qué se toma (hueco medido en vivo el 24-oct) ------------------------------
+
+def test_hechos_viejos_sin_vehiculo_siguen_validos():
+    assert Medicamento(nombre="x", cantidad=None, unidad=None, cada_horas=None, dias=None, momento=None).vehiculo is None
+
+
+def test_caso_vivo_bebe_con_uno_no_con_el_bloquea():
+    # «Tómela con agua, no con té» → quy «Unuwan upyaykuy, manan téwanchu» → retro «Bebe con uno, no con él».
+    original = b6(meds=[med(nombre="", vehiculo="agua")], prohibiciones=["tomar con té"])
+    for vehiculo_retro in ("uno", None):
+        retro = b6(meds=[med(nombre="", vehiculo=vehiculo_retro)], prohibiciones=["beber con él"])
+        campos = [d.campo for d in comparar(original, retro)]
+        assert "medicamento.vehiculo" in campos and "prohibiciones (vehículo)" in campos
+
+
+def test_agüita_es_agua_y_no_bloquea():
+    original = b6(meds=[med(nombre="", vehiculo="agua")], prohibiciones=["tomar con té"])
+    retro = b6(meds=[med(nombre="", vehiculo="con agüita")], prohibiciones=["tomarla con un tecito"])
+    assert comparar(original, retro) == []
+
+
+def test_vehiculo_cambiado_bloquea():
+    difs = comparar(hechos([med(vehiculo="agua")]), hechos([med(vehiculo="leche")]))
+    assert [(d.campo, d.original, d.retraducido) for d in difs] == [("sulfato ferroso.vehiculo", "agua", "leche")]
+
+
+def test_vehiculo_que_desaparece_o_aparece_bloquea():
+    assert [d.campo for d in comparar(hechos([med(vehiculo="agua")]), hechos([med()]))] == ["sulfato ferroso.vehiculo"]
+    assert [d.campo for d in comparar(hechos([med()]), hechos([med(vehiculo="jugo")]))] == ["sulfato ferroso.vehiculo"]
+
+
+def test_sin_vehiculo_en_ningun_lado_no_bloquea():
+    assert comparar(hechos([med(vehiculo=None)]), hechos([med(vehiculo="")])) == []
+
+
+def test_negacion_de_vehiculo_sigue_siendo_prohibicion():
+    difs = comparar(b6(prohibiciones=["tomar con leche"]), b6(prohibiciones=[]))
+    assert [d.campo for d in difs] == ["prohibiciones (cantidad)"]
+    difs = comparar(b6(prohibiciones=["tomar con leche"]), b6(prohibiciones=["tomar con agua"]))
+    assert [(d.campo, d.original, d.retraducido) for d in difs] == [("prohibiciones (vehículo)", "leche", "agua")]
+
+
+@pytest.mark.parametrize("texto,canonico", [
+    ("agua", "agua"), ("con agüita", "agua"), ("Agua tibia", "agua"), ("unu", "agua"), ("yaku", "agua"),
+    ("la leche", "leche"), ("lichi", "leche"), ("té", "te"), ("un mate", "te"), ("tecito", "te"),
+    ("jugos", "jugo"), ("con su comida", "comida"), ("sola", "solo"),
+    ("uno", "uno"), ("él", "el"), (None, None), ("", None),
+])
+def test_vehiculo_canonico(texto, canonico):
+    assert vehiculo_canonico(texto) == canonico
+
+
+def test_te_pronombre_no_es_vehiculo_prohibido():
+    h = b6(prohibiciones=["te olvides de la pastilla", "tomar con té", "mezclar con un poco de leche"])
+    assert vehiculos_prohibidos(h) == {"te", "leche"}
