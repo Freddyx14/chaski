@@ -60,6 +60,43 @@ def salud():
             "traductor_de_freddy": HAY_TRADUCTOR}
 
 
+@aplicacion.get("/flujo")
+def pagina_flujo():
+    return FileResponse(AQUI / "static" / "flujo.html")
+
+
+@aplicacion.get("/muestras")
+def muestras():
+    """Los audios en chanka que pueden hacer de paciente."""
+    carpeta = Path("datos/prueba_minima")
+    return {"audios": sorted(p.name for p in carpeta.glob("quy_*.wav"))} if carpeta.exists() else {"audios": []}
+
+
+@aplicacion.get("/muestras/{nombre}")
+def muestra(nombre: str):
+    ruta = Path("datos/prueba_minima") / nombre
+    return FileResponse(ruta) if ruta.exists() else JSONResponse({"error": "no existe"}, 404)
+
+
+@aplicacion.post("/turno/paciente")
+async def turno_paciente(audio: UploadFile = File(...)):
+    from servicio.flujo import turno_del_paciente
+    try:
+        return turno_del_paciente(await audio.read(), audio.filename or "turno.wav")
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/turno/enfermera")
+def turno_enfermera(texto: str = Form(...), modo_ensayo: bool = Form(True),
+                    forzar: bool = Form(False)):
+    from servicio.flujo import turno_de_la_enfermera
+    try:
+        return turno_de_la_enfermera(texto, modo_ensayo=modo_ensayo, forzar=forzar)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.post("/traducir")
 def traducir(texto: str = Form(...)):
     """Castellano -> chanka, con la auditoria de retraduccion de Freddy.

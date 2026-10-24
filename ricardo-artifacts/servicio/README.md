@@ -74,3 +74,69 @@ falso positivo del lado seguro. Vale la pena que Freddy lo vea.
 (extraer hechos, traducir, retraducir, extraer otra vez). Para un intérprete en vivo es demasiado. Esa es
 exactamente la decisión D15 del SOT: medir los tres modelos y quedarse con el más rápido que no pierda
 acierto en la auditoría. Las llamadas 1 y 2 podrían ir en paralelo con las 3 y 4 de la frase anterior.
+
+## El flujo completo: `/flujo`
+
+```
+http://localhost:8000/flujo
+```
+
+Antes hay que abrir el túnel a la GPU, porque los modelos de voz viven ahí:
+
+```bash
+ssh -i ~/.ssh/id_rsa_aws -N -L 8010:localhost:8000 ubuntu@44.220.107.99
+```
+
+### Cómo está desplegado el servicio de voz
+
+Sin tocar el grupo de seguridad y sin certificados:
+
+1. `scp` de `servicio/instancia.py` al NVMe de la instancia.
+2. `uvicorn instancia:aplicacion --host 127.0.0.1 --port 8000` — **solo escucha en localhost**, así que
+   desde fuera de la instancia no se alcanza.
+3. Un túnel de SSH (`-L 8010:localhost:8000`) lo trae a la Mac como si fuera local.
+4. El servicio local (`servicio/app.py`) le habla a `http://127.0.0.1:8010`.
+
+Los modelos se cargan **perezosamente**: el primer turno paga la carga, los siguientes no.
+
+### Medido el 24-oct, ciclo completo
+
+**Turno del paciente** (audio en chanka → lo que la enfermera lee):
+
+| Paso | Modelo | Tiempo |
+|---|---|---|
+| Detectar idioma | `mms-lid-512` | 482 ms (152 ms el modelo; el resto es el túnel) |
+| Oír | `omniASR_LLM_300M` | 1,926 ms |
+| Pasar a castellano | `claude-haiku-4-5` | 3,169 ms |
+| **Total** | | **5.6 s** |
+
+**Turno de la enfermera** (castellano → chanka hablado):
+
+| Paso | Modelo | Tiempo |
+|---|---|---|
+| Traducir, retraducir a ciegas y auditar | `claude-opus-5` × 4 llamadas | **30,552 ms** |
+| Hablar | `mms-tts-quy` | 470 ms |
+
+**La auditoría se come el 98% del turno.** No es el modelo: son cuatro llamadas en serie.
+
+### Dos bloqueos falsos que hay que arreglar
+
+| Caso | Por qué bloqueó | Qué pasa de verdad |
+|---|---|---|
+| «Tome una tableta cada ocho horas, después de comer» | «cambió un dato crítico: medicamento» | El original dice **tableta**, la retraducción dice **pastilla**. Son sinónimos, y la comparación los lee como medicamentos distintos |
+| «Si hay sangrado, venga a la posta» | «términos sin traducción segura: posta» | «posta», «en ayunas» y «carné» van a salir en cada frase de una posta. Si cada una bloquea, el sistema se calla siempre |
+
+Con 9 frases probadas en tres modelos, **la auditoría aprobó 1**. Esto es de Freddy
+(`rimay.hechos.comparar` y `rimay.auditoria.decidir`) y es más urgente que elegir modelo.
+
+### Modo ensayo
+
+Mientras los modelos no estén ajustados, la página trae dos salidas, y las dos dejan rastro:
+
+- **Modo ensayo** (activado): si el bloqueo es **solo** por términos sin traducción segura, se dice igual
+  con un aviso en pantalla. Un dato crítico cambiado **sigue bloqueando**.
+- **«Decirlo igual (solo ensayo)»**: aparece cuando sí hay bloqueo duro. Es una decisión humana explícita,
+  se marca como `forzado: true` en la respuesta, y el aviso dice que en producción no existe.
+
+Verificado: forzando «Tome una tableta cada ocho horas» salió
+`Huk tabletata upyakunki sapa pusaq horaspi.` con 171 KB de audio en chanka.

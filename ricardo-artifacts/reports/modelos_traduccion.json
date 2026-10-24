@@ -1,0 +1,74 @@
+[
+ {
+  "modelo": "claude-opus-5",
+  "frase": "Baja la fiebre y calma el dolor de",
+  "s": 24.0,
+  "enviar": false,
+  "motivo": "cambió un dato crítico: medicamento, medicamen",
+  "quechua": "Kay hampiqa rupapakuyta uraykachin, uma nanayt"
+ },
+ {
+  "modelo": "claude-opus-5",
+  "frase": "Si hay sangrado, venga a la posta ",
+  "s": 12.1,
+  "enviar": false,
+  "motivo": "términos sin traducción segura: posta",
+  "quechua": "Yawar lluqsimuptinqa, chaylla postaman hamuyku"
+ },
+ {
+  "modelo": "claude-opus-5",
+  "frase": "Su control es el lunes. Venga en a",
+  "s": 13.6,
+  "enviar": false,
+  "motivo": "términos sin traducción segura: en ayunas, car",
+  "quechua": "Controlniki lunes punchawmi kanqa. Manaraq ima"
+ },
+ {
+  "modelo": "claude-sonnet-5",
+  "frase": "Baja la fiebre y calma el dolor de",
+  "s": 35.0,
+  "enviar": false,
+  "motivo": "cambió un dato crítico: medicamento",
+  "quechua": "Ruphayta uraykuchin, uma nanayniykitapas hamac"
+ },
+ {
+  "modelo": "claude-sonnet-5",
+  "frase": "Si hay sangrado, venga a la posta ",
+  "s": 10.8,
+  "enviar": true,
+  "motivo": "los datos críticos coinciden",
+  "quechua": "Sichus yawarniyki wiqimunman chayqa, usqhaylla"
+ },
+ {
+  "modelo": "claude-sonnet-5",
+  "frase": "Su control es el lunes. Venga en a",
+  "s": 18.5,
+  "enviar": false,
+  "motivo": "términos sin traducción segura: en ayunas",
+  "quechua": "Control-niykiqa lunes p'unchawmi kanqa. Mana m"
+ },
+ {
+  "modelo": "claude-haiku-4-5",
+  "frase": "Baja la fiebre y calma el dolor de",
+  "s": 11.8,
+  "enviar": false,
+  "motivo": "cambió un dato crítico: medicamento, medicamen",
+  "quechua": "Nanayta aymuyta hamunqa, uma nanayta saqinqa. "
+ },
+ {
+  "modelo": "claude-haiku-4-5",
+  "frase": "Si hay sangrado, venga a la posta ",
+  "s": 7.2,
+  "enviar": false,
+  "motivo": "cambió un dato crítico: ir_ya_si (cantidad de ",
+  "quechua": "Ismuña kananpaq, kunan kunan posta-man haykuy."
+ },
+ {
+  "modelo": "claude-haiku-4-5",
+  "frase": "Su control es el lunes. Venga en a",
+  "s": 6.7,
+  "enviar": false,
+  "motivo": "términos sin traducción segura: llip'iywan (en",
+  "quechua": "Lunispi ama llip'iywan yaykuy. Imapanpis karne"
+ }
+]

@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaski · flujo completo</title>
+<style>
+  :root{color-scheme:light;--papel:#f4f3ee;--blanco:#fff;--tinta:#16160f;--tinta2:#4e4d45;
+        --mute:#86847a;--linea:#dedcd2;--regla:#c4c2b6;--acento:#1f6fd0;--rojo:#c8372f;
+        --verde:#1b9476;--ambar:#a86b14}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papel);color:var(--tinta);
+       font:15px/1.45 Archivo,-apple-system,Helvetica,Arial,sans-serif;padding:20px 18px 70px}
+  .caja{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+  header{display:flex;gap:14px;align-items:center}
+  header img{width:62px;height:62px;object-fit:contain}
+  h1{font-size:23px;margin:0;font-weight:700;letter-spacing:-.02em}
+  .sub{color:var(--tinta2);font-size:13.5px;margin:3px 0 0}
+  .rejilla{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  @media(max-width:880px){.rejilla{grid-template-columns:1fr}}
+  .panel{background:var(--blanco);border:1px solid var(--linea);box-shadow:0 1px 3px rgba(22,22,15,.07)}
+  .panel h2{font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);
+            margin:0;padding:11px 14px;border-bottom:1px solid var(--linea);font-weight:600;
+            display:flex;justify-content:space-between;align-items:center}
+  .cuerpo{padding:14px;display:flex;flex-direction:column;gap:11px}
+  button{font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border:1px solid var(--regla);
+         background:var(--blanco);color:var(--tinta);cursor:pointer}
+  button.principal{background:var(--acento);border-color:var(--acento);color:#fff}
+  button:disabled{opacity:.45;cursor:default}
+  .fila{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  textarea{font:inherit;font-size:14px;padding:10px;border:1px solid var(--regla);width:100%;
+           min-height:74px;resize:vertical}
+  label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  .paso{border-left:3px solid var(--linea);padding:7px 0 7px 11px}
+  .paso .que{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);font-weight:600}
+  .paso .texto{font-size:15px;margin:3px 0 0;line-height:1.45}
+  .paso.quechua{border-color:var(--acento)}
+  .paso.quechua .texto{color:var(--acento)}
+  .paso.ok{border-color:var(--verde)}
+  .paso.mal{border-color:var(--rojo)}
+  .ms{font-size:11px;color:var(--mute);font-variant-numeric:tabular-nums;margin-left:auto}
+  .sello{display:inline-flex;gap:6px;font-size:11.5px;font-weight:700;padding:4px 9px;border:1px solid;width:fit-content}
+  .s-ok{color:var(--verde);border-color:var(--verde)}
+  .s-mal{color:var(--rojo);border-color:var(--rojo)}
+  .s-aviso{color:var(--ambar);border-color:var(--ambar)}
+  .vacio{color:var(--mute);font-size:14px}
+  .reloj{display:flex;gap:14px;flex-wrap:wrap;border-top:1px solid var(--linea);padding-top:9px;
+         font-size:11.5px;color:var(--mute);font-variant-numeric:tabular-nums}
+  .reloj b{color:var(--tinta)}
+  audio{width:100%;margin-top:6px}
+  .nota{font-size:12px;color:var(--mute);line-height:1.45}
+  .conmutador{display:flex;gap:7px;align-items:center;font-size:12px;color:var(--tinta2)}
+</style>
+</head>
+<body>
+<div class="caja">
+  <header>
+    <img id="avatar" src="/chaski/reposo.png" alt="Chaski" onerror="this.style.display='none'">
+    <div>
+      <h1>Chaski · flujo completo</h1>
+      <p class="sub">El paciente habla chanka, tú contestas en castellano. Cada paso muestra qué modelo
+        lo hizo y cuánto tardó.</p>
+    </div>
+  </header>
+
+  <div class="rejilla">
+    <section class="panel">
+      <h2>1 · El paciente habla en quechua <span class="ms" id="relojPaciente"></span></h2>
+      <div class="cuerpo">
+        <div class="fila">
+          <select id="muestra" style="flex:1;padding:9px;border:1px solid var(--regla);font:inherit;font-size:13px"></select>
+          <button id="azar">Al azar</button>
+        </div>
+        <audio id="audioPaciente" controls></audio>
+        <button id="escuchar" class="principal">Chaski escucha y traduce</button>
+        <div id="salidaPaciente"><p class="vacio">Elige un audio y pulsa el botón.</p></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>2 · Tú contestas en castellano <span class="ms" id="relojEnfermera"></span></h2>
+      <div class="cuerpo">
+        <label for="respuesta">Lo que le dices al paciente</label>
+        <textarea id="respuesta" placeholder="Tome una tableta cada ocho horas, después de comer."></textarea>
+        <div class="fila">
+          <button id="dictar">🎙 Dictar</button>
+          <button id="decir" class="principal">Chaski lo dice en quechua</button>
+        </div>
+        <div class="conmutador">
+          <input type="checkbox" id="ensayo" checked>
+          <label for="ensayo" style="text-transform:none;letter-spacing:0;font-size:12px;color:var(--tinta2)">
+            Modo ensayo: si solo bloquea por términos sin traducción segura, lo dice igual con aviso
+          </label>
+        </div>
+        <div id="salidaEnfermera"><p class="vacio">Escribe o dicta una indicación.</p></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="panel">
+    <h2>Presupuesto de espera</h2>
+    <div class="cuerpo">
+      <div class="reloj" id="presupuesto"><span class="vacio">Todavía no hay turnos medidos.</span></div>
+      <p class="nota">Los modelos de voz corren en la A10G por un túnel SSH. La traducción y la auditoría
+        corren en Claude. Nada está ajustado todavía: estos números son el punto de partida.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+let ultimo = {paciente: null, enfermera: null};
+
+function avatar(e) { const i = $('#avatar'); if (i) i.src = '/chaski/' + e + '.png'; }
+
+fetch('/muestras').then(r => r.json()).then(d => {
+  const sel = $('#muestra');
+  sel.innerHTML = d.audios.map(a => `<option value="${a}">${a}</option>`).join('')
+    || '<option value="">no hay audios en datos/prueba_minima</option>';
+  cargarAudio();
+});
+$('#muestra').onchange = cargarAudio;
+$('#azar').onclick = () => {
+  const sel = $('#muestra');
+  if (sel.options.length) { sel.selectedIndex = Math.floor(Math.random() * sel.options.length); cargarAudio(); }
+};
+function cargarAudio() {
+  const n = $('#muestra').value;
+  if (n) $('#audioPaciente').src = '/muestras/' + n;
+}
+
+$('#escuchar').onclick = async () => {
+  const n = $('#muestra').value;
+  if (!n) return;
+  avatar('escuchando');
+  $('#escuchar').disabled = true;
+  $('#salidaPaciente').innerHTML = '<p class="vacio">Detectando idioma, transcribiendo y traduciendo…</p>';
+  try {
+    const wav = await (await fetch('/muestras/' + n)).blob();
+    const cuerpo = new FormData();
+    cuerpo.append('audio', wav, n);
+    const t0 = performance.now();
+    const d = await (await fetch('/turno/paciente', {method:'POST', body:cuerpo})).json();
+    if (d.error) throw new Error(d.error);
+    ultimo.paciente = d;
+    pintarPaciente(d, Math.round(performance.now() - t0));
+    avatar(d.seguro ? 'hablando' : 'no_entendi');
+  } catch (e) {
+    $('#salidaPaciente').innerHTML = `<div class="sello s-mal">Falló: ${e.message}</div>`;
+    avatar('no_entendi');
+  } finally { $('#escuchar').disabled = false; }
+};
+
+function pintarPaciente(d, msTotal) {
+  $('#relojPaciente').textContent = msTotal + ' ms';
+  const dudas = (d.dudas || []).length
+    ? `<div class="paso mal"><span class="que">Lo que Chaski no entendió</span>
+       <p class="texto">${d.dudas.join(' · ')}</p></div>` : '';
+  $('#salidaPaciente').innerHTML = `
+    <div class="paso"><span class="que">Idioma detectado · mms-lid-512 · ${d.pasos.idioma_ms} ms</span>
+      <p class="texto"><b>${d.idioma.codigo}</b> con confianza ${d.idioma.confianza}</p></div>
+    <div class="paso quechua"><span class="que">Lo que oyó · ${d.modelo_asr} · ${d.pasos.entender_ms} ms</span>
+      <p class="texto">${d.chanka_oido}</p></div>
+    <div class="paso ${d.seguro ? 'ok' : 'mal'}">
+      <span class="que">Lo que la enfermera lee · ${d.modelo_texto} · ${d.pasos.traducir_ms} ms</span>
+      <p class="texto"><b>${d.castellano || '—'}</b></p>
+      <p class="nota">Literal: ${d.literal || '—'}</p></div>
+    ${dudas}
+    ${d.seguro ? '' : '<div class="sello s-aviso">Chaski no está seguro del sentido</div>'}`;
+  presupuesto();
+}
+
+// dictado con el reconocimiento del navegador, para no gastar creditos de Cartesia en ensayo
+$('#dictar').onclick = () => {
+  const R = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!R) { alert('Este navegador no tiene dictado. Escríbelo a mano o usa Chrome.'); return; }
+  const rec = new R();
+  rec.lang = 'es-PE'; rec.interimResults = false;
+  rec.onresult = (e) => { $('#respuesta').value = e.results[0][0].transcript; };
+  rec.onerror = (e) => alert('Dictado: ' + e.error);
+  rec.start();
+};
+
+$('#decir').onclick = () => decir(false);
+
+async function decir(forzar) {
+  const texto = $('#respuesta').value.trim();
+  if (!texto) return;
+  avatar('escuchando');
+  $('#decir').disabled = true;
+  $('#salidaEnfermera').innerHTML = '<p class="vacio">Traduciendo, retraduciendo a ciegas y auditando…</p>';
+  try {
+    const cuerpo = new FormData();
+    cuerpo.append('texto', texto);
+    cuerpo.append('modo_ensayo', $('#ensayo').checked ? 'true' : 'false');
+    cuerpo.append('forzar', forzar ? 'true' : 'false');
+    const t0 = performance.now();
+    const d = await (await fetch('/turno/enfermera', {method:'POST', body:cuerpo})).json();
+    if (d.error) throw new Error(d.error);
+    ultimo.enfermera = d;
+    pintarEnfermera(d, Math.round(performance.now() - t0));
+    avatar(d.se_dice ? 'hablando' : 'no_entendi');
+  } catch (e) {
+    $('#salidaEnfermera').innerHTML = `<div class="sello s-mal">Falló: ${e.message}</div>`;
+    avatar('no_entendi');
+  } finally { $('#decir').disabled = false; }
+}
+
+function pintarEnfermera(d, msTotal) {
+  $('#relojEnfermera').textContent = msTotal + ' ms';
+  const sello = d.aprobado_por_auditoria
+    ? '<div class="sello s-ok">La auditoría lo aprueba</div>'
+    : (d.se_dice ? `<div class="sello s-aviso">Se dice con aviso · ${d.motivo}</div>`
+                 : `<div class="sello s-mal">BLOQUEADO · ${d.motivo}</div>`);
+  const audio = d.audio_wav_b64
+    ? `<audio controls autoplay src="data:audio/wav;base64,${d.audio_wav_b64}"></audio>`
+    : '<p class="nota">No se genera audio: no se dice en voz alta.</p>';
+  const inseguros = (d.terminos_inseguros || []).length
+    ? `<p class="nota">Términos sin traducción segura: <b>${d.terminos_inseguros.join(', ')}</b></p>` : '';
+  $('#salidaEnfermera').innerHTML = `
+    <div class="paso quechua"><span class="que">En chanka · ${d.pasos.auditoria_ms} ms de auditoría</span>
+      <p class="texto">${d.quechua}</p></div>
+    <div class="paso"><span class="que">Retraducción a ciegas · otra llamada que nunca vio el original</span>
+      <p class="texto">${d.retraduccion}</p></div>
+    ${sello}
+    ${d.aviso ? `<p class="nota">${d.aviso}</p>` : ''}
+    ${(!d.se_dice) ? '<button id="forzar" style="margin-top:6px">Decirlo igual (solo ensayo)</button>' : ''}
+    ${inseguros}
+    <div class="paso ok"><span class="que">Voz de Chaski · mms-tts-quy · ${d.pasos.hablar_ms || '—'} ms</span>
+      ${audio}</div>`;
+  presupuesto();
+  const f = document.getElementById('forzar');
+  if (f) f.onclick = () => decir(true);
+}
+
+function presupuesto() {
+  const p = ultimo.paciente, e = ultimo.enfermera;
+  const partes = [];
+  if (p) partes.push(`<span>idioma <b>${p.pasos.idioma_ms} ms</b></span>
+    <span>oír <b>${p.pasos.entender_ms} ms</b></span>
+    <span>traducir <b>${p.pasos.traducir_ms} ms</b></span>`);
+  if (e) partes.push(`<span>auditar <b>${e.pasos.auditoria_ms} ms</b></span>
+    <span>hablar <b>${e.pasos.hablar_ms || '—'} ms</b></span>`);
+  if (p && e) partes.push(`<span>ciclo completo <b>${Math.round(p.total_ms + e.total_ms)} ms</b></span>`);
+  $('#presupuesto').innerHTML = partes.join('') || '<span class="vacio">Todavía no hay turnos medidos.</span>';
+}
+</script>
+</body>
+</html>
