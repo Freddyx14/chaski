@@ -2,9 +2,11 @@
 import { File, Paths } from 'expo-file-system';
 
 import { leerServidor } from './config';
+import { contextoActual, guardarContexto } from './consulta';
 import type { Rol } from './perfil';
+import bancoReal from '../../../app/chaski/banco.json';
 import bancoDemo from './banco-demo.json';
-import { frasesConTag, type FraseBanco, type RespuestaEnfermera, type RespuestaEscuchar, type RespuestaPaciente } from './modelo';
+import { esReintentable, frasesConTag, type FraseBanco, type RespuestaEnfermera, type RespuestaEscuchar, type RespuestaPaciente } from './modelo';
 
 export class SinServidor extends Error {}
 
@@ -12,18 +14,52 @@ export class SinServidor extends Error {}
 // Esta cabecera la salta; con otros túneles se ignora.
 const CABECERAS = { 'ngrok-skip-browser-warning': '1' };
 
+/**
+ * Un fallo de red o del servicio, con la ruta y el tipo para la línea gris de la pantalla de error
+ * («/ver · 502», «/turno/enfermera · sin respuesta en 90 s»): así se distingue un reinicio del servicio de un
+ * problema de red del teléfono.
+ */
+export class FalloServicio extends Error {
+  constructor(readonly ruta: string, readonly tipo: string, readonly reintentable: boolean) {
+    super(`${ruta} · ${tipo}`);
+  }
+}
+
+const ESPERA_REINTENTO_MS = 2000;
+
+async function pedirUnaVez<T>(base: string, ruta: string, cuerpo: FormData, segundos: number): Promise<T> {
+  const corte = new AbortController();
+  const reloj = setTimeout(() => corte.abort(), segundos * 1000);
+  let r: Response;
+  try {
+    r = await fetch(`${base}${ruta}`, { method: 'POST', body: cuerpo, signal: corte.signal, headers: CABECERAS });
+  } catch (e) {
+    const agotado = (e as Error)?.name === 'AbortError';
+    throw new FalloServicio(ruta, agotado ? `sin respuesta en ${segundos} s` : 'sin conexión', true);
+  } finally {
+    clearTimeout(reloj);
+  }
+  let d: any = null;
+  try {
+    d = await r.json();
+  } catch {
+    throw new FalloServicio(ruta, String(r.status), esReintentable(r.status) || !r.ok);
+  }
+  if (!r.ok) throw new FalloServicio(ruta, String(r.status), esReintentable(r.status));
+  if (d?.error) throw new Error(d.error);
+  return d as T;
+}
+
+/** POST con UN reintento automático a los ~2 s si falló la red o el servicio se estaba reiniciando. */
 async function pedir<T>(ruta: string, cuerpo: FormData, segundos = 90): Promise<T> {
   const base = await leerServidor();
   if (!base) throw new SinServidor('Falta la dirección del servicio');
-  const corte = new AbortController();
-  const reloj = setTimeout(() => corte.abort(), segundos * 1000);
   try {
-    const r = await fetch(`${base}${ruta}`, { method: 'POST', body: cuerpo, signal: corte.signal, headers: CABECERAS });
-    const d = await r.json();
-    if (!r.ok || d?.error) throw new Error(d?.error ?? `HTTP ${r.status}`);
-    return d as T;
-  } finally {
-    clearTimeout(reloj);
+    return await pedirUnaVez<T>(base, ruta, cuerpo, segundos);
+  } catch (e) {
+    if (!(e instanceof FalloServicio) || !e.reintentable) throw e;
+    await new Promise((ok) => setTimeout(ok, ESPERA_REINTENTO_MS));
+    return pedirUnaVez<T>(base, ruta, cuerpo, segundos);
   }
 }
 
@@ -44,23 +80,46 @@ export function idioma(uri: string) {
   return pedir<{ codigo: string; confianza: number }>('/idioma', conAudio(uri), 8);
 }
 
-/** Castellano → auditoría → quechua. Sin audio: la voz se pide aparte para mostrar el texto antes. */
-export function turnoEnfermera(texto: string, rol: Rol) {
+/** El modo de la consulta que el intérprete recibe en `contexto.modo` (D35). */
+export type Modo = 'consulta' | 'emergencia' | 'receta';
+
+/** `contexto` del turno anterior, como JSON en el form, con el modo puesto. Lo pide el orquestador. */
+function conContexto(f: FormData, modo?: Modo) {
+  const c = contextoActual();
+  if (c || modo) f.append('contexto', JSON.stringify({ ...(c ?? {}), ...(modo ? { modo } : {}) }));
+}
+
+async function turno<T extends { contexto?: unknown }>(ruta: string, f: FormData): Promise<T> {
+  const r = await pedir<T>(ruta, f, 120);
+  guardarContexto(r.contexto);
+  return r;
+}
+
+/**
+ * Castellano → intérprete → traducción → barreras → crítico (contrato `Resultado`). Hasta que el servicio
+ * cambie, devuelve la forma vieja (auditoría sola); `modelo.ts` entiende las dos.
+ * `traduccionSembrada`: SOLO para el ensayo de la negativa (D37). Reemplaza la traducción para mostrar que la
+ * barrera atrapa el error; la pantalla lo dice en claro y nunca se presenta como un error real del traductor.
+ */
+export function turnoEnfermera(texto: string, rol: Rol, opciones: { modo?: Modo; traduccionSembrada?: string } = {}) {
   const f = new FormData();
   f.append('texto', texto);
-  // D27: el rol elige el prompt del agente y el resumen. El servicio lo ignora hasta que lo use.
+  // D27: el rol elige el prompt del agente y el resumen.
   f.append('rol', rol);
   f.append('modo_ensayo', 'true');
   f.append('rapido', 'true');
   f.append('con_audio', 'false');
-  return pedir<RespuestaEnfermera>('/turno/enfermera', f, 120);
+  if (opciones.traduccionSembrada) f.append('traduccion_sembrada', opciones.traduccionSembrada);
+  conContexto(f, opciones.modo);
+  return turno<RespuestaEnfermera>('/turno/enfermera', f);
 }
 
 /** Audio del paciente → idioma, lo que se oyó en chanka y lo que quiso decir. */
-export function turnoPaciente(uri: string, rol: Rol) {
+export function turnoPaciente(uri: string, rol: Rol, opciones: { modo?: Modo } = {}) {
   const f = conAudio(uri);
   f.append('rol', rol);
-  return pedir<RespuestaPaciente>('/turno/paciente', f, 120);
+  conContexto(f, opciones.modo);
+  return turno<RespuestaPaciente>('/turno/paciente', f);
 }
 
 /** Texto en quechua → WAV (mms-tts-quy). Devuelve el archivo local y sus bytes, para la boca de Chaski. */
@@ -81,8 +140,15 @@ export async function voz(quechua: string): Promise<{ uri: string; bytes: Uint8A
 export async function salud(): Promise<Record<string, unknown>> {
   const base = await leerServidor();
   if (!base) throw new SinServidor('Falta la dirección del servicio');
-  const r = await fetch(`${base}/salud`, { headers: CABECERAS });
-  return r.json();
+  const corte = new AbortController();
+  const reloj = setTimeout(() => corte.abort(), 8000);
+  try {
+    const r = await fetch(`${base}/salud`, { headers: CABECERAS, signal: corte.signal });
+    if (!r.ok) throw new FalloServicio('/salud', String(r.status), true);
+    return await r.json();
+  } finally {
+    clearTimeout(reloj);
+  }
 }
 
 export type Lectura = {
@@ -133,7 +199,7 @@ export function resumen(turnos: { lado: string; castellano: string; quechua: str
 
 /**
  * El banco de frases verificadas (D34, §4). Primero el servicio (`GET /banco?tag=`); si no responde, la
- * copia local. Cuando exista app/chaski/banco.json, reemplazar `banco-demo.json` por ese archivo.
+ * copia empaquetada de app/chaski/banco.json.
  */
 export async function banco(tag: string): Promise<{ frases: FraseBanco[]; origen: 'servicio' | 'local' }> {
   try {
@@ -150,7 +216,9 @@ export async function banco(tag: string): Promise<{ frases: FraseBanco[]; origen
       }
     }
   } catch {}
-  return { frases: frasesConTag(bancoDemo.frases as FraseBanco[], tag), origen: 'local' };
+  // Copia empaquetada del banco real (app/chaski/banco.json, por watchFolders); el fixture es el último recurso.
+  const local = Array.isArray(bancoReal) && bancoReal.length ? (bancoReal as FraseBanco[]) : (bancoDemo.frases as FraseBanco[]);
+  return { frases: frasesConTag(local, tag), origen: 'local' };
 }
 
 /** Audio de una frase del banco: el verificado si existe; si no, la voz de Chaski con su quechua revisado. */

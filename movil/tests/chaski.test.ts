@@ -4,10 +4,12 @@ import assert from 'node:assert/strict';
 
 import { base64ABytes, bocaAbierta, envolvente } from '../src/chaski/wav.ts';
 import {
-  fraseRevisada, frasesConTag, leerInterprete, type FraseBanco,
+  AVISO_LENTO_MS, esReintentable, esResultado, explicarBloqueo, negacionEn, pacienteDesdeResultado, pasoPorTiempo, revisadoPorCritico,
+  fraseRevisada, frasesConTag, leerInterprete, type FraseBanco, type Resultado,
   fueCastellano, ladoDetectado, nombreDelCampo, siguienteLado, veredictoEnfermera,
   type RespuestaEnfermera, type RespuestaPaciente,
 } from '../src/chaski/modelo.ts';
+import bancoReal from '../../app/chaski/banco.json' with { type: 'json' };
 import { comprobarRepeticion, faltantes, indicacionDesdeHechos, numerosEn, type HechosReceta } from '../src/chaski/receta.ts';
 
 function wav(muestras: number[], frecuencia = 16000): Uint8Array {
@@ -237,4 +239,101 @@ test('«¿me lo repite?» marca lo que falta', () => {
   assert.deepEqual(r.map((c) => c.ok), [true, true, true, false]);
   assert.equal(r[3].nombre, 'Por cuántos días');
   assert.ok(comprobarRepeticion(PARACETAMOL, 'el paracetamol, uno cada 8 horas, tres días').every((c) => c.ok));
+});
+
+// ---- contrato final (Resultado) ------------------------------------------------------------
+
+const BASE_R: Resultado = {
+  estado: 'dicho', accion: 'traducir', motivo: '', para: 'paciente', idioma_salida: 'quy',
+  texto_pulido: 'Tome con agua', texto_salida: 'Yakuwan upyay', modelos: { principal: 'opus', critico: 'haiku' },
+  contexto: { historial: [{ rol: 'personal', texto: 'Tome con agua' }], modo: 'consulta' },
+};
+
+test('reconoce el contrato nuevo y convive con el viejo', () => {
+  assert.equal(esResultado(BASE_R), true);
+  assert.equal(esResultado({ quechua: 'q', se_dice: true }), false);
+  assert.equal(esResultado({ estado: 'otro' }), false);
+});
+
+test('dicho con el contrato nuevo: quechua de texto_salida e insignia del crítico', () => {
+  const v = veredictoEnfermera('Tome con agua', BASE_R);
+  assert.equal(v.tipo, 'dicho');
+  if (v.tipo === 'dicho') { assert.equal(v.quechua, 'Yakuwan upyay'); assert.equal(v.critico, true); }
+  assert.equal(revisadoPorCritico({ ...BASE_R, modelos: { principal: 'opus', critico: null } }), false);
+  assert.equal(revisadoPorCritico({ ...BASE_R, estado: 'bloqueado' }), false);
+});
+
+test('ámbar trae su aviso; rojo solo para bloqueado', () => {
+  const v = veredictoEnfermera('x', { ...BASE_R, estado: 'dicho_con_aviso', aviso: 'posta como préstamo' });
+  assert.equal(v.tipo, 'dicho_con_aviso');
+  if (v.tipo === 'dicho_con_aviso') assert.equal(v.aviso, 'posta como préstamo');
+});
+
+test('bloqueado gana a cualquier acción y se explica en palabras simples', () => {
+  const r: Resultado = { ...BASE_R, estado: 'bloqueado', accion: 'repreguntar', texto_salida: '',
+    motivo: 'cambió un dato crítico: paracetamol.cada_horas', paso_fallido: 'guardas' };
+  assert.equal(leerInterprete(r).tipo, 'traducir');
+  const v = veredictoEnfermera('Tome paracetamol cada 8 horas', r);
+  assert.equal(v.tipo, 'bloqueado');
+  if (v.tipo === 'bloqueado') assert.equal(v.razon, 'no coincidió la frecuencia');
+});
+
+test('la negativa del ensayo: «se perdió la prohibición (no con té)»', () => {
+  assert.equal(explicarBloqueo('guardas', 'cambió un dato crítico: prohibiciones', 'Tómela con agua, no con té'),
+    'se perdió la prohibición (no con té)');
+  assert.equal(explicarBloqueo('B4', 'el castellano tiene una negación y el quechua no (ama / mana / -chu)'),
+    'se perdió la prohibición');
+  assert.equal(negacionEn('Nunca dos juntas.'), 'nunca dos juntas');
+});
+
+test('nombres de pasos y campos a castellano llano', () => {
+  assert.equal(explicarBloqueo(null, 'cambió un dato crítico: medicamento, medicamento'), 'no coincidió el medicamento');
+  assert.equal(explicarBloqueo(null, 'x.cantidad'), 'no coincidió la dosis');
+  assert.equal(explicarBloqueo(null, 'x.dias'), 'no coincidieron los días');
+  assert.equal(explicarBloqueo(null, 'unidad «cucharada» en el quechua'), 'no coincidió la unidad (pastilla, cucharada…)');
+  assert.equal(explicarBloqueo(null, 'el pulido agregó un dato: después de comer'), 'iba a agregar algo que nadie dijo');
+  assert.equal(explicarBloqueo(null, 'cambió a quién se le habla: paciente → personal'), 'cambió a quién se le habla');
+  assert.equal(explicarBloqueo('decidir', 'No pude verificar esto: TimeoutError'), 'no pude verificarlo');
+  assert.equal(explicarBloqueo('critico', 'el crítico lo frenó'), 'el revisor encontró un problema');
+  assert.equal(explicarBloqueo(null, ''), 'algo cambió al traducir');
+});
+
+test('el turno del paciente con el contrato nuevo', () => {
+  const r = pacienteDesdeResultado({ ...BASE_R, idioma_salida: 'spa', texto_salida: 'Me duele la barriga', para: 'personal',
+    contexto: { historial: [{ rol: 'paciente', texto: 'wiksay nanan' }] }, estado: 'dicho_con_aviso', aviso: 'no dijo desde cuándo' });
+  assert.equal(r.castellano, 'Me duele la barriga');
+  assert.equal(r.chanka_oido, 'wiksay nanan');
+  assert.equal(r.seguro, false);
+  assert.deepEqual(r.dudas, ['no dijo desde cuándo']);
+});
+
+test('repreguntar con el contrato nuevo usa texto_salida como quechua', () => {
+  const v = leerInterprete({ ...BASE_R, accion: 'repreguntar', texto_salida: 'Hayk\'aqmantataq?', texto_pulido: '¿Desde cuándo?', dato_faltante: 'desde cuándo' });
+  assert.equal(v.tipo, 'pregunta');
+  if (v.tipo === 'pregunta') assert.equal(v.quechua, "Hayk'aqmantataq?");
+});
+
+test('los pasos del «Pensando» avanzan con el tiempo y avisa si tarda', () => {
+  assert.deepEqual([0, 1400, 1600, 4000, 11000].map(pasoPorTiempo), [0, 0, 1, 2, 2]);
+  assert.equal(AVISO_LENTO_MS, 6000);
+});
+
+test('banco real: sin revisar o falta_quechua NUNCA se reproduce', () => {
+  const real: FraseBanco = { id: 'emg-dolor-donde', es: '¿Dónde le duele?', quy: '', audio: null,
+    tags: ['emergencia', 'falta_quechua'], revisado: false };
+  assert.equal(fraseRevisada(real), false);
+  assert.equal(fraseRevisada({ ...real, quy: 'Maypitaq nanasunki?', tags: ['emergencia'], revisado: false }), false);
+  assert.equal(fraseRevisada({ ...real, quy: 'Maypitaq nanasunki?', tags: ['emergencia', 'falta_quechua'], revisado: true }), false);
+  assert.equal(fraseRevisada({ ...real, quy: 'Maypitaq nanasunki?', tags: ['emergencia'], revisado: true }), true);
+});
+
+test('el banco real de hoy: ninguna frase de emergencia se puede reproducir todavía', () => {
+  const emerg = frasesConTag(bancoReal as FraseBanco[], 'emergencia');
+  assert.ok(emerg.length >= 20);
+  assert.equal(emerg.filter(fraseRevisada).length, 0);
+});
+
+test('reintento automático solo para red caída o servicio reiniciándose', () => {
+  assert.deepEqual([null, 502, 503, 504].map(esReintentable), [true, true, true, true]);
+  assert.deepEqual([400, 404, 500, 422].map(esReintentable), [false, false, false, false]);
 });

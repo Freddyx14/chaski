@@ -11,5 +11,7 @@ config.watchFolders = [
   path.resolve(__dirname, '../avatar'),
   // url.json: la dirección del túnel que publica Ricardo con servicio/publicar_url.sh.
   path.resolve(__dirname, '../ricardo-artifacts/servicio'),
+  // banco.json: el banco real de frases verificadas (D34), empaquetado como respaldo de GET /banco.
+  path.resolve(__dirname, '../app/chaski'),
 ];
 module.exports = config;

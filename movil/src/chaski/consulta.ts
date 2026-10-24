@@ -14,7 +14,22 @@ export function agregarTurno(t: Omit<Turno, 'id' | 'hora'>) {
   avisar();
 }
 
+/**
+ * El `contexto` que devuelve /turno/* (historial, modo, repreguntas): se guarda tal cual y se manda de vuelta
+ * en el siguiente turno. Es del servicio; la app no lo interpreta. Se borra al terminar la consulta.
+ */
+let contexto: Record<string, unknown> | null = null;
+
+export function contextoActual(): Record<string, unknown> | null {
+  return contexto;
+}
+
+export function guardarContexto(c: unknown) {
+  if (c && typeof c === 'object') contexto = c as Record<string, unknown>;
+}
+
 export function nuevaConsulta() {
+  contexto = null;
   turnos = [];
   inicio = Date.now();
   avisar();

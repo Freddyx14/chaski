@@ -14,7 +14,103 @@ export type FraseBanco = {
   audio?: string | null;
   tags: string[];
   fuente?: string;
+  /** app/chaski/banco.json: false hasta que la enfermera la revisa. Una frase sin revisar NUNCA se dice. */
+  revisado?: boolean;
+  split?: string;
 };
+
+// ---- Contrato final de /turno/* (app/chaski/orquestador.py, clase `Resultado`) ----------------------
+
+export type Estado = 'dicho' | 'dicho_con_aviso' | 'bloqueado';
+
+export type Resultado = {
+  estado: Estado;
+  accion: Accion | null;
+  motivo: string;
+  dato_faltante?: string | null;
+  frase_banco_id?: string | null;
+  para: 'personal' | 'paciente';
+  idioma_salida: 'spa' | 'quy';
+  texto_pulido?: string;
+  /** Lo que se dice, en idioma_salida. Vacío si bloqueado. */
+  texto_salida?: string;
+  /** Audio verificado del banco, cuando accion == usar_frase_banco. */
+  audio?: string | null;
+  aviso?: string | null;
+  motor?: string | null;
+  respaldo?: boolean;
+  modelos?: { principal?: string | null; critico?: string | null };
+  paso_fallido?: string | null;
+  ms?: Record<string, number>;
+  /** El estado de la consulta: la app lo guarda y lo devuelve en el siguiente turno. */
+  contexto?: { historial?: { rol: string; texto: string }[]; modo?: string; repreguntas_seguidas?: string[] };
+};
+
+/** ¿La respuesta trae el contrato nuevo? Hasta que el servicio cambie, conviven las dos formas. */
+export function esResultado(r: unknown): r is Resultado {
+  return !!r && typeof r === 'object' && typeof (r as Resultado).estado === 'string'
+    && ['dicho', 'dicho_con_aviso', 'bloqueado'].includes((r as Resultado).estado);
+}
+
+/** «Revisado por el crítico»: el crítico corrió y el turno no quedó bloqueado. */
+export function revisadoPorCritico(r: unknown): boolean {
+  return esResultado(r) && !!r.modelos?.critico && r.estado !== 'bloqueado';
+}
+
+/** La negación de una frase en castellano, para mostrar qué prohibición se perdió: «no con té». */
+export function negacionEn(texto: string): string | null {
+  const m = texto.match(/\b(no|nunca|ni)\s+([^,.;:!?]{1,24})/i);
+  return m ? `${m[1].toLowerCase()} ${m[2].trim()}` : null;
+}
+
+/**
+ * Por qué Chaski no lo dijo, en palabras simples, desde `paso_fallido` + `motivo` del orquestador y las
+ * barreras (app/chaski/guardas.py). Lo específico gana a lo general; nunca se muestra jerga técnica.
+ */
+export function explicarBloqueo(paso: string | null | undefined, motivo: string | null | undefined, original = ''): string {
+  const m = (motivo ?? '').toLowerCase();
+  const p = (paso ?? '').toLowerCase();
+  if (/prohibici|negaci|ama \/ mana|quitó una negación/.test(m)) {
+    const neg = negacionEn(original);
+    return neg ? `se perdió la prohibición (${neg})` : 'se perdió la prohibición';
+  }
+  if (/cada_horas|frecuencia|horario|cada cu[aá]ntas horas/.test(m)) return 'no coincidió la frecuencia';
+  if (/cantidad|dosis/.test(m)) return 'no coincidió la dosis';
+  if (/\bdias\b|d[ií]as|duraci/.test(m)) return 'no coincidieron los días';
+  if (/proxima_cita|cita|control/.test(m)) return 'no coincidió la fecha del control';
+  if (/medicamento|nombra «/.test(m)) return 'no coincidió el medicamento';
+  if (/unidad/.test(m)) return 'no coincidió la unidad (pastilla, cucharada…)';
+  if (/parte del cuerpo|cuerpo/.test(m)) return 'cambió la parte del cuerpo';
+  if (/alergi/.test(m)) return 'cambió lo de la alergia';
+  if (/embaraz/.test(m)) return 'cambió lo del embarazo';
+  if (/\bvía\b|\bvia\b/.test(m)) return 'cambió cómo se toma';
+  if (/a quién se le habla/.test(m)) return 'cambió a quién se le habla';
+  if (/no se oyó nada/.test(m)) return 'no se oyó nada';
+  if (/no se oyó bien/.test(m)) return 'no se oyó bien un dato importante';
+  if (/agreg|nada nuevo|que no se dijo|no estaba/.test(m)) return 'iba a agregar algo que nadie dijo';
+  if (/número|numero/.test(m)) return 'cambió un número';
+  if (/no pude verificar|error|timeout|mal formada/.test(m)) return 'no pude verificarlo';
+  if (p.includes('critico')) return 'el revisor encontró un problema';
+  if (p.includes('guardas') || /^b\d/.test(p)) return 'una barrera de seguridad lo frenó';
+  if (p.includes('traducir')) return 'la traducción no se pudo revisar';
+  if (p.includes('decidir')) return 'no pude entender el turno';
+  return 'algo cambió al traducir';
+}
+
+/** ¿Vale la pena reintentar? Red caída o sin respuesta (null), o el servicio reiniciándose (502/503/504). */
+export function esReintentable(status: number | null): boolean {
+  return status === null || status === 502 || status === 503 || status === 504;
+}
+
+/** Los pasos del «Pensando», por tiempo transcurrido (la respuesta no llega por partes). */
+export const UMBRALES_PASOS_MS = [0, 1500, 3500] as const;
+export const AVISO_LENTO_MS = 6000;
+
+export function pasoPorTiempo(ms: number): number {
+  let paso = 0;
+  UMBRALES_PASOS_MS.forEach((u, i) => { if (ms >= u) paso = i; });
+  return paso;
+}
 
 /**
  * Los campos de la `Decision` que traen /turno/enfermera y /turno/paciente cuando el intérprete está
@@ -22,7 +118,15 @@ export type FraseBanco = {
  * El servicio puede mandarlos sueltos o dentro de `decision`.
  */
 export type CamposDecision = {
-  accion?: Accion;
+  accion?: Accion | null;
+  // Campos del contrato final (Resultado) que pueden venir en cualquiera de las dos formas.
+  estado?: Estado;
+  texto_salida?: string;
+  audio?: string | null;
+  modelos?: Resultado['modelos'];
+  paso_fallido?: string | null;
+  ms?: Record<string, number>;
+  contexto?: Resultado['contexto'];
   para?: 'personal' | 'paciente';
   idioma_salida?: 'spa' | 'quy';
   texto_pulido?: string;
@@ -75,17 +179,19 @@ export function nombreDelCampo(campo: string): string {
 export const CASILLAS = ['Medicamento', 'Dosis', 'Horario', 'Días'] as const;
 
 export type Veredicto =
-  | { tipo: 'dicho'; quechua: string; castellano: string; casillas: { nombre: string; ok: boolean }[] }
+  | { tipo: 'dicho'; quechua: string; castellano: string; casillas: { nombre: string; ok: boolean }[];
+      critico?: boolean }
   | { tipo: 'dicho_con_aviso'; quechua: string; castellano: string; terminos: string[];
-      casillas: { nombre: string; ok: boolean }[] }
+      casillas: { nombre: string; ok: boolean }[]; aviso?: string | null; critico?: boolean }
   | { tipo: 'bloqueado'; castellano: string; diferencias: { nombre: string; dijo: string; decia: string }[];
-      terminos: string[]; casillasOk: string[] };
+      terminos: string[]; casillasOk: string[]; razon?: string };
 
 /**
  * Qué pantalla toca después del turno de la enfermera.
  * Rojo solo si NO se dijo (regla de design/tokens.json). Si se dijo con dudas de términos, ámbar.
  */
-export function veredictoEnfermera(castellano: string, r: RespuestaEnfermera): Veredicto {
+export function veredictoEnfermera(castellano: string, r: RespuestaEnfermera | Resultado): Veredicto {
+  if (esResultado(r)) return veredictoResultado(castellano, r);
   const fallados = new Set(r.diferencias.map((d) => nombreDelCampo(d.campo)));
   const casillas = CASILLAS.map((nombre) => ({ nombre, ok: !fallados.has(nombre) }));
   if (!r.se_dice) {
@@ -127,22 +233,31 @@ export function leerInterprete(
   banco: FraseBanco[] = [],
 ): Interprete {
   const d = { ...r, ...(r.decision ?? {}) };
+  // Bloqueado gana a cualquier acción: lo bloqueado nunca se dice (lo muestra el veredicto).
+  if (esResultado(r) && r.estado === 'bloqueado') return { tipo: 'traducir' };
   if (!d.accion || d.accion === 'traducir') return { tipo: 'traducir' };
   if (!ACCIONES.includes(d.accion)) return { tipo: 'no_entendi', motivo: 'Respuesta del intérprete no reconocida' };
   const motivo = (d.motivo ?? '').trim();
-  const texto = (d.texto_pulido ?? '').trim();
+  const nuevo = esResultado(r) ? r : null;
+  const texto = (d.texto_pulido ?? '').trim()
+    || (nuevo && nuevo.idioma_salida === 'spa' ? (nuevo.texto_salida ?? '').trim() : '');
+  const quechua = r.quechua || (nuevo && nuevo.idioma_salida === 'quy' ? nuevo.texto_salida || null : null);
   switch (d.accion) {
     case 'repreguntar':
-      if (!texto && !r.quechua) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la pregunta' };
+      if (!texto && !quechua) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la pregunta' };
       return {
-        tipo: 'pregunta', para: d.para ?? 'paciente', texto, quechua: r.quechua || null, motivo,
+        tipo: 'pregunta', para: d.para ?? 'paciente', texto, quechua: quechua || null, motivo,
         dato: d.dato_faltante ?? null, audioB64: d.audio_wav_b64 ?? null,
       };
     case 'responder':
       if (!texto) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la respuesta' };
       return { tipo: 'respuesta', texto, motivo, audioB64: d.audio_wav_b64 ?? null };
     case 'usar_frase_banco': {
-      const frase = d.frase_banco ?? banco.find((f) => f.id === d.frase_banco_id);
+      const frase = d.frase_banco ?? banco.find((f) => f.id === d.frase_banco_id)
+        ?? (nuevo && (nuevo.audio || nuevo.texto_salida)
+          ? { id: nuevo.frase_banco_id ?? 'banco', es: nuevo.texto_pulido ?? '', quy: nuevo.texto_salida ?? '',
+              audio: nuevo.audio ?? null, tags: [] }
+          : undefined);
       if (!frase || !fraseRevisada(frase)) return { tipo: 'no_entendi', motivo: 'La frase verificada no está disponible' };
       return { tipo: 'frase', frase };
     }
@@ -153,6 +268,8 @@ export function leerInterprete(
 
 /** Una frase del banco solo se dice si su quechua ya existe (no es un marcador pendiente de revisión). */
 export function fraseRevisada(f: FraseBanco): boolean {
+  // Seguridad (checklist §6.4): sin revisar o sin quechua, NUNCA se reproduce.
+  if (f.revisado === false || (f.tags ?? []).includes('falta_quechua')) return false;
   const q = (f.quy ?? '').trim();
   return !!f.audio || (q.length > 0 && !q.startsWith('['));
 }
@@ -160,6 +277,44 @@ export function fraseRevisada(f: FraseBanco): boolean {
 /** Las frases de una etiqueta, en el orden del banco. */
 export function frasesConTag(banco: FraseBanco[], tag: string): FraseBanco[] {
   return banco.filter((f) => (f.tags ?? []).includes(tag));
+}
+
+/** El contrato nuevo: el estado lo decide el orquestador (código), la app solo lo muestra. */
+export function veredictoResultado(castellano: string, r: Resultado): Veredicto {
+  const casillas = CASILLAS.map((nombre) => ({ nombre, ok: true }));
+  if (r.estado === 'bloqueado') {
+    return {
+      tipo: 'bloqueado', castellano, diferencias: [], terminos: [], casillasOk: [],
+      razon: explicarBloqueo(r.paso_fallido, r.motivo, castellano),
+    };
+  }
+  const quechua = r.idioma_salida === 'quy' ? (r.texto_salida ?? '') : '';
+  const critico = revisadoPorCritico(r);
+  if (r.estado === 'dicho_con_aviso') {
+    return { tipo: 'dicho_con_aviso', quechua, castellano, terminos: [], casillas, aviso: r.aviso ?? null, critico };
+  }
+  return { tipo: 'dicho', quechua, castellano, casillas, critico };
+}
+
+/**
+ * Turno del paciente con el contrato nuevo → lo que la pantalla ya sabe mostrar. Lo que oyó en quechua
+ * sale del último renglón del paciente en `contexto`, porque `Resultado` no lo trae aparte.
+ */
+export function pacienteDesdeResultado(r: Resultado): RespuestaPaciente {
+  const oido = [...(r.contexto?.historial ?? [])].reverse().find((h) => h.rol === 'paciente')?.texto ?? '';
+  return {
+    accion: r.accion, para: r.para, idioma_salida: r.idioma_salida, texto_pulido: r.texto_pulido,
+    motivo: r.motivo, dato_faltante: r.dato_faltante, frase_banco_id: r.frase_banco_id,
+    estado: r.estado, texto_salida: r.texto_salida, audio: r.audio, modelos: r.modelos,
+    paso_fallido: r.paso_fallido, ms: r.ms, contexto: r.contexto,
+    idioma: null,
+    chanka_oido: oido,
+    castellano: r.idioma_salida === 'spa' ? (r.texto_salida ?? '') : (r.texto_pulido ?? ''),
+    literal: '',
+    dudas: r.aviso ? [r.aviso] : [],
+    seguro: r.estado === 'dicho',
+    total_ms: r.ms?.total ?? 0,
+  };
 }
 
 function legible(v: string): string {
