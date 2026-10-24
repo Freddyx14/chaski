@@ -141,7 +141,8 @@ def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
         grabaciones.append(Grabacion(
             persona=persona, bloque=bloque, numero=i, audio=str(destino),
             transcripcion="", castellano=ref.get("castellano", ""),
-            segundos=round(t.largo, 2), consentimiento=False))
+            segundos=round(t.largo, 2), consentimiento=False,
+            origen=str(completo), inicio=round(t.inicio, 3), fin=round(t.fin, 3)))
     escribir_manifiesto(manifiesto, grabaciones,
                         cabecera="sin revisar: falta transcripcion y consentimiento")
     return {"persona": persona, "bloque": bloque, "clips_nuevos": len(trozos),
@@ -164,6 +165,8 @@ def clips(persona: str) -> list[dict]:
     for g in leer_manifiesto(manifiesto):
         ref = referencias(g.bloque).get(g.numero, {})
         salida.append({"nombre": g.nombre, "audio": g.audio, "numero": g.numero,
+                       "origen": g.origen, "inicio": g.inicio, "fin": g.fin,
+                       "recortable": bool(g.origen and Path(g.origen).exists()),
                        "bloque": g.bloque, "castellano": g.castellano or ref.get("castellano", ""),
                        "chanka_esperado": ref.get("chanka_esperado", ""),
                        "transcripcion": g.transcripcion, "segundos": g.segundos,
@@ -287,3 +290,107 @@ def recodificar(persona: str, numero_actual: int, bloque_actual: str,
         nuevas.append(g)
     escribir_manifiesto(manifiesto, nuevas, cabecera="identificadores revisados a mano")
     return {"hecho": True, "choca_con": f"{bloque_nuevo}{numero_nuevo}" if chocado else None}
+
+
+# --- volver a cortar lo que el silencio corto mal -------------------------
+
+
+def _reescribir(persona: str, grabaciones: list) -> None:
+    escribir_manifiesto(RAIZ / persona / "manifiesto.jsonl", grabaciones,
+                        cabecera="cortes revisados a mano")
+
+
+def _rehacer_audio(g: Grabacion) -> Grabacion:
+    """Vuelve a recortar el clip desde la nota original con sus tiempos."""
+    from voz.segmentar import recortar
+
+    recortar(Path(g.origen), Path(g.audio), g.inicio, g.fin - g.inicio)
+    return Grabacion(persona=g.persona, bloque=g.bloque, numero=g.numero, audio=g.audio,
+                     transcripcion=g.transcripcion, castellano=g.castellano,
+                     segundos=round(g.fin - g.inicio, 2), consentimiento=g.consentimiento,
+                     origen=g.origen, inicio=g.inicio, fin=g.fin)
+
+
+def ajustar(persona: str, bloque: str, numero: int,
+            inicio: float | None = None, fin: float | None = None) -> dict:
+    """Mueve el principio o el final de un clip. Tiempos absolutos de la nota."""
+    grabaciones = leer_manifiesto(RAIZ / persona / "manifiesto.jsonl")
+    nuevas = []
+    for g in grabaciones:
+        if g.bloque == bloque and g.numero == numero:
+            if not g.origen:
+                return {"error": "este clip no guarda de dónde salió; súbelo otra vez"}
+            g = Grabacion(**{**asdict_grabacion(g),
+                             "inicio": round(inicio if inicio is not None else g.inicio, 3),
+                             "fin": round(fin if fin is not None else g.fin, 3)})
+            if g.fin - g.inicio < 0.2:
+                return {"error": "el clip quedaría en menos de 0.2 s"}
+            g = _rehacer_audio(g)
+        nuevas.append(g)
+    _reescribir(persona, nuevas)
+    return {"hecho": True}
+
+
+def asdict_grabacion(g: Grabacion) -> dict:
+    return {"persona": g.persona, "bloque": g.bloque, "numero": g.numero, "audio": g.audio,
+            "transcripcion": g.transcripcion, "castellano": g.castellano,
+            "segundos": g.segundos, "consentimiento": g.consentimiento,
+            "origen": g.origen, "inicio": g.inicio, "fin": g.fin}
+
+
+def partir(persona: str, bloque: str, numero: int, en_segundo: float) -> dict:
+    """Parte un clip en dos. `en_segundo` es relativo al clip, no a la nota.
+
+    Pasa cuando dos frases quedaron en el mismo clip porque la pausa fue corta.
+    El segundo pedazo queda al final con el siguiente numero libre: su codigo se
+    arregla despues con «Detectar del audio».
+    """
+    grabaciones = leer_manifiesto(RAIZ / persona / "manifiesto.jsonl")
+    objetivo = next((g for g in grabaciones if g.bloque == bloque and g.numero == numero), None)
+    if objetivo is None:
+        return {"error": "no existe ese clip"}
+    if not objetivo.origen:
+        return {"error": "este clip no guarda de dónde salió; súbelo otra vez"}
+    corte = objetivo.inicio + en_segundo
+    if corte - objetivo.inicio < 0.2 or objetivo.fin - corte < 0.2:
+        return {"error": "el corte deja un pedazo de menos de 0.2 s"}
+
+    libre = max((g.numero for g in grabaciones if g.bloque == bloque), default=0) + 1
+    nuevas = []
+    for g in grabaciones:
+        if g.bloque == bloque and g.numero == numero:
+            primero = Grabacion(**{**asdict_grabacion(g), "fin": round(corte, 3)})
+            nuevas.append(_rehacer_audio(primero))
+        else:
+            nuevas.append(g)
+    cola = Grabacion(**{**asdict_grabacion(objetivo), "numero": libre,
+                        "inicio": round(corte, 3), "transcripcion": "", "castellano": "",
+                        "audio": str(RAIZ / persona / f"{persona}_{bloque}_{libre:03d}.wav")})
+    nuevas.append(_rehacer_audio(cola))
+    _reescribir(persona, nuevas)
+    return {"hecho": True, "nuevo": f"{bloque}{libre}"}
+
+
+def unir(persona: str, bloque: str, numero: int) -> dict:
+    """Une un clip con el que le sigue en la nota.
+
+    Pasa cuando una sola frase quedo partida en dos porque el hablante dudo.
+    """
+    grabaciones = leer_manifiesto(RAIZ / persona / "manifiesto.jsonl")
+    del_bloque = sorted([g for g in grabaciones if g.bloque == bloque and g.origen],
+                        key=lambda g: g.inicio)
+    pos = next((k for k, g in enumerate(del_bloque) if g.numero == numero), None)
+    if pos is None or pos + 1 >= len(del_bloque):
+        return {"error": "no hay un clip siguiente en la misma nota"}
+    actual, siguiente = del_bloque[pos], del_bloque[pos + 1]
+    if actual.origen != siguiente.origen:
+        return {"error": "el siguiente clip viene de otra nota"}
+
+    fundido = _rehacer_audio(Grabacion(**{**asdict_grabacion(actual), "fin": siguiente.fin}))
+    nuevas = [fundido if (g.bloque == bloque and g.numero == actual.numero) else g
+              for g in grabaciones
+              if not (g.bloque == bloque and g.numero == siguiente.numero)]
+    Path(siguiente.audio).unlink(missing_ok=True)
+    _reescribir(persona, nuevas)
+    return {"hecho": True, "unido_con": f"{bloque}{siguiente.numero}",
+            "segundos": fundido.segundos}

@@ -29,6 +29,11 @@ class Grabacion:
     castellano: str = ""
     segundos: float = 0.0
     consentimiento: bool = False
+    # De donde salio el clip dentro de la nota larga. Sin esto, un corte malo
+    # solo se puede descartar; con esto se puede volver a cortar.
+    origen: str = ""
+    inicio: float = 0.0
+    fin: float = 0.0
 
     def __post_init__(self) -> None:
         if self.bloque not in BLOQUES:

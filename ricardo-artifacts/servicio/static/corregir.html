@@ -78,7 +78,9 @@
   </div>
 
   <p class="nota"><kbd>⌘ Enter</kbd> guarda y pasa al siguiente · <kbd>Espacio</kbd> vuelve a escuchar ·
-    «No sirve» descarta el clip (ruido, cortado, dos frases juntas).</p>
+    «No sirve» descarta el clip. Si el corte salió mal: <b>«Partir aquí»</b> usa la posición del
+    reproductor, <b>«Unir con el siguiente»</b> pega dos pedazos de la misma frase, y los botones de
+    inicio y fin mueven el corte de dos en dos décimas.</p>
   <p class="nota" id="salidaExportar"></p>
 </div>
 
@@ -125,6 +127,17 @@ function pintar() {
       <span class="cual" id="estadoCodigo"></span>
     </div>
     <audio id="audio" controls autoplay src="/corpus/audio?ruta=${encodeURIComponent(c.audio)}"></audio>
+    ${c.recortable ? `
+    <div class="barra" style="gap:6px">
+      <span class="cual">corte ${c.inicio}s → ${c.fin}s</span>
+      <button id="inicioMenos" title="empezar antes">inicio −0.2</button>
+      <button id="inicioMas" title="empezar después">inicio +0.2</button>
+      <button id="finMenos" title="terminar antes">fin −0.2</button>
+      <button id="finMas" title="terminar después">fin +0.2</button>
+      <button id="partir" class="principal" title="parte el clip donde está el cursor del audio">Partir aquí</button>
+      <button id="unir">Unir con el siguiente</button>
+      <span class="cual" id="estadoCorte"></span>
+    </div>` : '<p class="nota">Este clip no guarda de dónde salió: no se puede recortar. Súbelo otra vez para poder hacerlo.</p>'}
     ${c.chanka_esperado ? `<p class="oido" style="border-color:var(--verde)"><b>Debería decir:</b> ${c.chanka_esperado}</p>` : ''}
     <p class="oido" id="oido">${c.transcripcion ? 'Guardado: ' + c.transcripcion : 'Sin transcribir todavía.'}</p>
     <div class="campo">
@@ -140,12 +153,51 @@ function pintar() {
     </div>`;
   $('#oir').onclick = transcribir;
   $('#detectar').onclick = detectarCodigo;
+  if (c.recortable) {
+    $('#inicioMenos').onclick = () => ajustar({inicio: c.inicio - 0.2});
+    $('#inicioMas').onclick  = () => ajustar({inicio: c.inicio + 0.2});
+    $('#finMenos').onclick   = () => ajustar({fin: c.fin - 0.2});
+    $('#finMas').onclick     = () => ajustar({fin: c.fin + 0.2});
+    $('#partir').onclick     = partirAqui;
+    $('#unir').onclick       = unirSiguiente;
+  }
   $('#recodificar').onclick = () => recodificar(false);
   $('#guardar').onclick = () => guardar(false);
   $('#descartar').onclick = () => guardar(true);
   $('#anterior').onclick = () => { i = Math.max(0, i-1); pintar(); };
   $('#siguiente').onclick = () => { i = Math.min(clips.length-1, i+1); pintar(); };
   $('#texto').focus();
+}
+
+async function corte(ruta, extra) {
+  const c = clips[i];
+  const cuerpo = new FormData();
+  cuerpo.append('persona', persona);
+  cuerpo.append('bloque', c.bloque);
+  cuerpo.append('numero', c.numero);
+  for (const [k, v] of Object.entries(extra)) cuerpo.append(k, v);
+  const d = await (await fetch(ruta, {method:'POST', body:cuerpo})).json();
+  if (d.error) { $('#estadoCorte').innerHTML = `<b style="color:var(--rojo)">${d.error}</b>`; return null; }
+  const n = i;
+  await cargar();
+  i = Math.min(n, clips.length - 1);
+  pintar();
+  return d;
+}
+
+const ajustar = (cambio) => corte('/corpus/ajustar', cambio);
+
+async function partirAqui() {
+  const a = $('#audio');
+  const t = a ? a.currentTime : 0;
+  if (t < 0.2) { $('#estadoCorte').textContent = 'Mueve el audio hasta donde quieres partir.'; return; }
+  const d = await corte('/corpus/partir', {en_segundo: t.toFixed(3)});
+  if (d) $('#estadoSubida').innerHTML = `partido · el segundo pedazo quedó como <b>${d.nuevo}</b>, revisa su código`;
+}
+
+async function unirSiguiente() {
+  const d = await corte('/corpus/unir', {});
+  if (d) $('#estadoSubida').innerHTML = `unido con ${d.unido_con} · ahora dura ${d.segundos}s`;
 }
 
 async function detectarCodigo(aplicar) {

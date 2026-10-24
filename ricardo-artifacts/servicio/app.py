@@ -196,6 +196,35 @@ def corpus_recodificar(persona: str = Form(...), bloque_actual: str = Form(...),
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
+@aplicacion.post("/corpus/ajustar")
+def corpus_ajustar(persona: str = Form(...), bloque: str = Form(...), numero: int = Form(...),
+                   inicio: float = Form(None), fin: float = Form(None)):
+    from servicio.corpus import ajustar
+    try:
+        return ajustar(persona, bloque, numero, inicio, fin)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/corpus/partir")
+def corpus_partir(persona: str = Form(...), bloque: str = Form(...), numero: int = Form(...),
+                  en_segundo: float = Form(...)):
+    from servicio.corpus import partir
+    try:
+        return partir(persona, bloque, numero, en_segundo)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/corpus/unir")
+def corpus_unir(persona: str = Form(...), bloque: str = Form(...), numero: int = Form(...)):
+    from servicio.corpus import unir
+    try:
+        return unir(persona, bloque, numero)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.post("/corpus/guardar")
 def corpus_guardar(persona: str = Form(...), numero: int = Form(...),
                    transcripcion: str = Form(""), consentimiento: bool = Form(True),
