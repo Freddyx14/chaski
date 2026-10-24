@@ -110,7 +110,7 @@ export default function Recolector() {
     return (
       <main className="wrap">
         <h1 className="big">¡Gracias!</h1>
-        <p>Usted guardó {hechas} de {TOTAL_OBLIGATORIAS} frases. Su ayuda enseña a Rimay a hablar quechua chanka.</p>
+        <p>Usted guardó {hechas} de {TOTAL_OBLIGATORIAS} frases. Su ayuda enseña a Chaski a hablar quechua chanka.</p>
         <p className="muted">Todo lo que grabó quedó guardado. Si vuelve a abrir este enlace, sigue donde se quedó.</p>
         {!terminoExtra && (
           <button className="btn primary" onClick={() => irA(primeraExtra)}>
@@ -176,9 +176,9 @@ function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
 
   return (
     <main className="wrap">
-      <h1 className="big">Rimay</h1>
+      <h1 className="big">Chaski</h1>
       <p className="lead">
-        Rimay es una aplicación que ayuda al personal de la posta a hablar con los pacientes en quechua.
+        Chaski es una aplicación que ayuda al personal de salud y a los pacientes a entenderse en castellano y quechua.
         Lo que usted escriba y grabe le enseña a traducir, entender y hablar quechua chanka.
       </p>
       <p>Le mostraremos frases en castellano. Escríbalas en quechua y luego léalas en voz alta para grabarlas. Puede cerrar y volver cuando quiera.</p>
@@ -203,7 +203,7 @@ function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
       <label className="consent card">
         <input type="checkbox" checked={consent} onChange={(e) => setConsent(e.target.checked)} />
         <span>
-          Acepto que mi voz y lo que escriba se usen para entrenar la aplicación Rimay y para mostrarla en
+          Acepto que mi voz y lo que escriba se usen para entrenar la aplicación Chaski y para mostrarla en
           Cal Hacks, un concurso de tecnología en Estados Unidos.
         </span>
       </label>

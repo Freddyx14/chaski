@@ -2,7 +2,7 @@ import { ensureSchema, sql, tokenOk, UUID_RE } from "@/lib/db";
 import { FRASES, TOTAL_OBLIGATORIAS } from "@/lib/frases";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Rimay · admin", robots: { index: false } };
+export const metadata = { title: "Chaski · admin", robots: { index: false } };
 
 type P = {
   id: string; codigo: string; nombre_opcional: string | null; sexo_opcional: string | null;
@@ -34,7 +34,7 @@ export default async function Admin({ searchParams }: { searchParams: Promise<{ 
 
   return (
     <main className="admin">
-      <h1>Rimay · datos</h1>
+      <h1>Chaski · datos</h1>
       <p>
         {ps.length} participantes · {totalAudios} audios · {(totalSeg / 60).toFixed(1)} min ·{" "}
         <a href={`/api/export?token=${t}`}>Exportar JSONL</a>

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Rimay · frases en quechua",
-  description: "Ayude a Rimay a aprender quechua chanka.",
+  title: "Chaski · frases en quechua",
+  description: "Ayude a Chaski a aprender quechua chanka.",
   robots: { index: false },
 };
 
