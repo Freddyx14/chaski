@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>El paciente responde</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}
+a{color:#0E6B64}a:hover{color:#0A524D}
+</style>
+</helmet>
+<div style="width: 402px; height: 874px; box-sizing: border-box; background: #F6F4F1; font-family: Inter, system-ui, sans-serif; color: #18221F; display: flex; flex-direction: column; gap: 20px; padding: 62px 16px 34px">
+  <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <div style="width: 28px; height: 28px; border-radius: 14px; background: #DCEEEB; color: #0E6B64; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center">DT</div>
+      <span style="font-size: 15px; font-weight: 500">Don Teodoro · presión alta</span>
+    </div>
+    <button aria-label="Resumen de la consulta" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #E4DED8; background: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 0">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5B6A65" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+    </button>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 16px">
+    <div style="width: 112px; height: 112px; border-radius: 22px; overflow: hidden; background: linear-gradient(#C5BAB1, #E2DBD5); flex-shrink: 0">
+      <img src="/_blob/f1c11b575d5bd97887980cd63b3aa158" alt="Chaski escuchando al paciente" style="width: 112px; height: 112px; object-fit: cover; display: block">
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px">
+      <span style="height: 28px; border-radius: 14px; padding: 0 12px; background: #C9763A; color: #FFFFFF; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center">Quechua chanka</span>
+      <span style="font-size: 13px; font-weight: 500; color: #5B6A65">Idioma detectado automáticamente</span>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; border: 1px solid #E4DED8; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 10px">
+    <span style="font-size: 13px; font-weight: 600; color: #6F7975; text-transform: uppercase; letter-spacing: 0.6px">Lo que dijo</span>
+    <p style="margin: 0; font-size: 17px; font-weight: 500; color: #5B6A65">[Respuesta del paciente en quechua]</p>
+    <div style="height: 1px; background: #E4DED8; margin: 6px 0"></div>
+    <span style="font-size: 13px; font-weight: 600; color: #6F7975; text-transform: uppercase; letter-spacing: 0.6px">Lo que quiso decir</span>
+    <p style="margin: 0; font-size: 24px; font-weight: 700; line-height: 1.3">¿Y si me olvido la pastilla de la noche?</p>
+    <span style="align-self: flex-start; margin-top: 4px; border-radius: 14px; padding: 6px 12px; background: #FBEBD0; color: #8A5100; font-size: 13px; font-weight: 600">Seguridad media · confírmelo con él</span>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="display: flex; gap: 12px">
+    <button style="flex: 1; height: 52px; border-radius: 26px; border: none; background: #0E6B64; color: #FFFFFF; font-family: Inter, system-ui, sans-serif; font-size: 17px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+      Responder
+    </button>
+    <button style="flex: 1; height: 52px; border-radius: 26px; border: 1px solid #E4DED8; background: #FFFFFF; color: #0E6B64; font-family: Inter, system-ui, sans-serif; font-size: 17px; font-weight: 600">Pedir que repita</button>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":402,"height":874}}'>
+class Component extends DCLogic {
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
