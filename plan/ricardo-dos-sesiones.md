@@ -1,9 +1,16 @@
 # Ricardo, partido en dos sesiones de Claude
 
-> Escrito el viernes 23 de octubre de 2026, después de decidir que el equipo va 100% con Rimay.
-> Depende de `plan-completo.md` (el plan de Freddy), `../ideas/producto.md` y
-> `../research/voz-quechua-modelos.md`. La propuesta de corredores de extorsión (`../Ricardo-idea/`) queda
-> cerrada y commiteada; no se trabaja más ahí.
+> **Actualizado contra SOT-3** (viernes 23 de octubre, 23:50 PT). Si esto contradice a `../SOT.md`, gana el
+> SOT. Depende también de `plan-completo.md` y `../research/voz-quechua-modelos.md`.
+> La propuesta de corredores de extorsión (`../Ricardo-idea/`) queda cerrada; no se trabaja más ahí.
+>
+> **Qué cambió con SOT-3, y por qué este documento se reescribió:**
+> - El producto ya no es WhatsApp para gestantes: es un **intérprete en vivo** que usa el personal de salud
+>   en la consulta (D9, D10). La usuaria principal es la enfermera.
+> - Entra una función nueva que es mía: **detección automática de idioma** por turno (F2, D11).
+> - **Sale la lectura de receta.** No existe en SOT-3. Lo que yo había puesto como B4 se elimina.
+> - La evaluación chanka-salud (F8) la arma Freddy con su mamá; **a mí me tocan las métricas y los gráficos**.
+> - El modelo base de reconocimiento es **Meta Omnilingual ASR `quy`**, no Whisper.
 
 ## Qué le toca a Ricardo, en una línea
 
@@ -11,8 +18,9 @@
 técnica.** Freddy tiene Claude, WhatsApp, el panel y el pitch. Ricardo tiene la voz, la visión y la
 medición.
 
-De las piezas de `plan-completo.md` §3, le corresponden P1, P2, P3, P5, la medición de T1 y T2, y los
-gráficos de P9.
+Según SOT-3 §5: **datos de voz, reconocimiento (pasos 0-1-2), detección de idioma, la voz de Rimay, y las
+métricas con sus gráficos.** Más el que no está escrito pero es suyo: **que los modelos corran en la VM
+con GPU de 40 GB** (D7).
 
 ## Por qué se parte en dos, y por dónde
 
@@ -21,29 +29,35 @@ producen conflictos a las tres de la mañana. Y el corte natural ya existe en el
 tiene su propio ciclo de datos y entrenamiento, y la medición depende de otras entradas y produce otras
 salidas.
 
+Y en carpeta aparte de `app/`, que es de Freddy, para que nadie pise al otro mientras los dos commitean:
+
 ```
-rimay/
-├── contrato/          # compartido, se escribe primero y no se toca sin avisar
-│   ├── datos.md       # formato {persona, bloque, numero, audio, transcripcion}
-│   └── entender.py    # la firma que el lado de Claude llama
-├── voz/               # SESIÓN A
-└── medicion/          # SESIÓN B
+ricardo-artifacts/
+├── CONTRATO.md        # compartido: formato de datos y las tres firmas
+├── voz/
+│   ├── contrato.py    # entender() · hablar() · idioma(), con versiones falsas
+│   ├── ingesta.py     # SESIÓN A
+│   └── ...            # SESIÓN A
+├── salida/            # SESIÓN B
+└── reports/           # los números, un JSON por número
 ```
+
+El código de Ricardo va en la rama `ricardo/voz` y entra a `main` por pull request. `app/` no se toca.
 
 ---
 
-## Sesión A · Voz
+## Sesión A · Entender la voz
 
-Dueña de `voz/`. Es la que tiene el riesgo técnico más alto y la que más tarda, así que arranca primero.
+Dueña de `ricardo-artifacts/voz/`. Riesgo técnico más alto y la que más tarda: arranca primero.
 
 | # | Tarea | Criterio de aprobación |
 |---|---|---|
 | A1 | **Ingesta** (P1): audios de WhatsApp → 16 kHz mono, nombrados, con su transcripción, y los conjuntos partidos **por hablante** | El conjunto de prueba no comparte ni una voz con el de entrenamiento. Se imprime quién quedó fuera |
-| A2 | **Línea base de reconocimiento** (P2, paso 0) | CER y WER del modelo sin tocar, sobre el conjunto de prueba. Es el número «antes» del pitch |
+| A2 | **Línea base de reconocimiento** (paso 0) con **Omnilingual ASR `quy`** | CER y WER del modelo sin tocar, sobre el conjunto de prueba. Es el número «antes» del pitch |
 | A3 | **Sesgo de vocabulario** (P2, paso 1): lista de términos de la posta, números, días, señales de alarma | Mejora medida sobre la línea base. Si no mejora, se dice y se queda la línea base |
 | A4 | **Ajuste fino** (P2, paso 2) | Solo si A3 ya está cerrado. Mejora medida sobre el mismo conjunto de prueba |
 | A5 | **`entender(audio) → texto`** | Freddy puede llamarla sin saber qué hay adentro. Es el contrato |
-| A6 | **Voz de Rimay** (P3): MMS-TTS `quy`, más los audios pregrabados de la mamá de Freddy para lo fijo | La mamá de Freddy escucha a ciegas y dice si se entiende. Su juicio manda sobre cualquier métrica |
+| A6 | **Reconocimiento del castellano** (P3 de SOT §7 queda en Freddy; este es el de voz): decidir entre Whisper y Omnilingual `spa` | Se mide la espera por turno, no solo el acierto: es un intérprete en vivo |
 
 **Regla de honestidad de esta sesión:** los tres números de voz (antes, con vocabulario, con ajuste fino)
 se miden **sobre la misma voz jamás vista**. Si el ajuste fino no mejora, se reporta que no mejoró.
@@ -55,22 +69,20 @@ modelo mediano en 16 GB es apretado. **Decidir esto en la primera hora, no a las
 
 ---
 
-## Sesión B · Medición y visión
+## Sesión B · Responder y medir
 
-Dueña de `medicion/`. Produce los números que van a la página y al pitch, y la lectura de la receta.
+Dueña de `ricardo-artifacts/salida/`. Produce la voz de Rimay, la detección de idioma y los números.
 
 | # | Tarea | Criterio de aprobación |
 |---|---|---|
-| B1 | **Arnés de evaluación chanka-salud** (T1): corre las indicaciones de prueba por cada sistema y guarda las salidas con su identificador | La mamá de Freddy califica **a ciegas**: no sabe qué salida es de quién. Sin eso la evaluación no vale |
-| B2 | **Métricas de T1**: exactitud y, sobre todo, **riesgo clínico** del error (cambió una dosis, una fecha, una señal de alarma) | Claude contra Google Translate, con la misma rúbrica, calificado por la misma persona. El protocolo sale de Kong et al. (2026) |
-| B3 | **Medición del detector** (T2): de los errores que la hablante encontró en B2, cuántos atrapó el detector de Freddy | Es el número del pitch: «atrapa X de cada 10». Se reporta también qué se le escapó |
-| B4 | **Lectura de receta con abstención** (P5): foto → medicamento, dosis, frecuencia, **y un umbral medido para callarse** | Se mide cuántas veces se abstiene y cuántas se equivoca cuando no se abstiene. Un sistema que nunca se abstiene no sirve |
-| B5 | **Gráficos de la página de resultados** (P9) | Reusa el marco de visualización de `../Ricardo-idea/viz`: tokens claros, canvas o SVG, sin modo oscuro |
+| B1 | **Detección de idioma** (F2): `facebook/mms-lid-512` limitado a `quy` y `spa`, por turno | Precisión medida sobre los audios de las familias **y** sobre castellano. Se reporta qué pasa con las frases mezcladas, que en la posta son normales |
+| B2 | **Voz de Rimay** (F5): `facebook/mms-tts-quy`, después ajustado con la voz de la mamá de Freddy | Ella escucha **a ciegas** y dice si se entiende. Su juicio manda sobre cualquier métrica |
+| B3 | **Espera por turno**: cuánto tarda cada paso del ciclo (idioma → reconocer → Claude → hablar) | Un intérprete que tarda ocho segundos por turno no se usa en una consulta. Se mide por paso para saber qué recortar |
+| B4 | **Métricas y `reports/`**: consolidar los números de A y los de Freddy en los JSON del contrato | Un JSON por número, y la página los lee sin tocar nada más |
+| B5 | **Gráficos de la página de resultados** | Reusa el marco de `../Ricardo-idea/viz`: tokens claros, canvas o SVG, sin modo oscuro |
 
-**Pendiente de acordar con Freddy:** en `plan-completo.md` §2 la lectura de la receta aparece del lado de
-Claude (Freddy) y en `ideas/producto.md` §11 (T4) aparece del lado de Ricardo. **Lo difícil de P5 no es
-leer la receta, es la abstención medida**, y eso es medición. Propuesta: B4 lo lleva la sesión B y Freddy
-revisa el prompt. Confirmarlo antes de que las dos sesiones escriban lo mismo.
+**Lo que ya no existe:** la lectura de receta con abstención. SOT-3 la sacó del producto. Si vuelve, vuelve
+como tarea nueva, no como arrastre.
 
 ---
 
@@ -90,8 +102,13 @@ Ninguna sesión cambia el contrato por su cuenta. Si hace falta, se cambia en lo
 
 ## Ramas
 
-**Nada de ramas por sesión.** Eso ya se probó esta noche y no sirvió: las carpetas son disjuntas, así que
-las dos sesiones commitean a `main`. La regla que las mantiene separadas es la carpeta, no la rama.
+Una rama para el código de Ricardo, `ricardo/voz`, que entra a `main` por pull request. Las dos sesiones
+trabajan en esa misma rama pero en **carpetas distintas** (`voz/` y `salida/`), así que no se pisan.
+La documentación de coordinación, como este archivo, va directo a `main` para que Freddy la lea sin
+esperar al PR.
+
+**Antes de abrir el PR:** `uv run --with pytest python -m pytest -q` en `ricardo-artifacts/` tiene que
+estar en verde, y el PR no debe duplicar nada de `app/`.
 
 ## Qué le dices a la otra sesión al abrirla
 
@@ -107,6 +124,24 @@ las dos sesiones commitean a `main`. La regla que las mantiene separadas es la c
 2. Sesión A sigue con A1 y A2, que son el camino crítico.
 3. Sesión B arranca con B1 en paralelo, contra el `entender` falso.
 4. Las dos se encuentran cuando A5 esté listo y se cambie la versión falsa por la real.
+
+## Dónde entrena, con números medidos
+
+`voz/bench_finetune.py` arma el modelo desde su configuración con pesos al azar y cronometra pasos de
+entrenamiento reales. No descarga nada, así que responde la pregunta antes de prender la instancia.
+
+Medido en el M4 de 16 GB, con `whisper-small` como referencia:
+
+| Configuración | Resultado |
+|---|---|
+| batch 2, MPS | **1.378 s por paso** · 1,000 clips × 3 épocas = 1,500 pasos → **34 min** |
+| batch 4, MPS | **No termina en 10 minutos.** No entra en 16 GB |
+
+Conclusión: para un modelo de ~185M de parámetros la máquina local alcanza. **La VM de 40 GB se justifica
+por el modelo real**, que es Omnilingual, no Whisper, y por correr varias configuraciones a la vez.
+**Pendiente:** medir Omnilingual con el mismo script. Es un codificador con CTC, no un modelo de
+codificador-decodificador como Whisper, así que su costo sí baja con audios cortos, mientras que el de
+Whisper no (procesa 30 s por clip aunque el audio dure 4).
 
 ## Lo que no se hace
 
