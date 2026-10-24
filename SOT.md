@@ -1,6 +1,6 @@
 # Chaski — fuente de verdad (SOT)
 
-> **Versión SOT-16 · sábado 24 de octubre de 2026, 13:05 PT**
+> **Versión SOT-17 · sábado 24 de octubre de 2026, 16:22 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/chaski-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-17 (sáb 16:22).** **Modelos del intérprete cerrados (D39)**: Opus 5 como principal y Sonnet 5 como crítico, por medición.
 - **SOT-16 (sáb 13:05).** **Chaski es un intérprete agente (D32–D37)**, acordado por Freddy y Ricardo tras la entrevista a la enfermera: una llamada de Claude decide entre traducir, repreguntar, responder, no_entendi o usar una frase verificada; NLLB ajustado traduce y Claude pule y audita; banco de frases verificadas (RAG y modo emergencia); modo emergencia y receta obligatorios en la demo; barreras antes de hablar con falla cerrada; glosario de palabras nuevas en el resumen. Detalle y reparto: `plan/arquitectura-interprete.md`.
 - **SOT-15 (sáb 11:20).** **Diseño cerrado (D31)**: queda L tal cual, con su movimiento, y el anillo de chakana del micrófono pasa a ser un **micrófono inti**: cuatro anillos concéntricos (cobalto, amarillo, turquesa, magenta; canela en el turno del paciente) con rayos escalonados cortos detrás, como el medallón de sol de la referencia de Freddy. Respira en reposo, una onda sale del centro con el volumen al escuchar y los rayos giran mientras piensa. Detalle: `design/specs/04-l-d-mas-i.md`.
 - **SOT-14 (sáb 11:05).** **La UI final es la opción L = D + I (D29)**, aprobada por Freddy y ya construida en `movil/`: Chaski en la silueta escalonada con tres hebras (cobalto, amarillo, magenta), el micrófono dentro de una chakana, crucecitas escalonadas como progreso y adornos, la etiqueta de idioma con puntas escalonadas y la auditoría en chips limpios. **Y está viva**: el anillo respira en reposo, se enciende con el volumen real al escuchar (en canela si habla el paciente), un brillo gira por la constelación mientras piensa, el marco de Chaski late con la voz y el quechua se revela palabra por palabra; con «Reducir movimiento» todo queda quieto. Reemplaza las bandas de D28. Detalle: `design/specs/04-l-d-mas-i.md`.
@@ -167,6 +168,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
 | D25 | sáb 08:35 | **El cuadernillo pide escribir la frase en quechua y leer en voz alta exactamente lo escrito** (75 frases, foto de cada hoja + una nota de voz por frase). Traducción: **NLLB-200 de Meta** (`facebook/nllb-200-distilled-600M`, incluye `quy_Latn`, licencia no comercial) ajustado con esos pares | Traducir, entender y hablar necesitan **texto escrito**: con solo voz habría que transcribir ~450 audios. Así cada persona trae su texto y su audio alineados. Omnilingual MT (Meta, mar-2026) no tiene pesos publicados |
+| D39 | sáb 16:20 | **Intérprete: Opus 5 principal, Sonnet 5 crítico** (por variable de entorno) | Opus acertó el 98 % sin inventar datos; Sonnet como crítico atrapó 165/165 con un 10 % de bloqueos falsos. Anthropic sugirió Haiku, pero mandan las mediciones. Confirmado por Freddy |
 | D37 | sáb 13:00 | **Barreras antes de hablar** (`plan/arquitectura-interprete.md` §2b): ocho capas, falla cerrada, el código decide; se mide con un banco de errores sembrados | En salud una frase segura y equivocada es peor que el silencio. Pedido de Freddy: es lo que define si lo hicimos bien |
 | D36 | sáb 13:00 | **Aprender quechua desde las consultas**: hoy glosario de palabras nuevas en el resumen; la plataforma de aprendizaje va al backlog y al pitch como visión | La enfermera lo pidió; el Estado capacita y el personal no aprende |
 | D35 | sáb 13:00 | **Modo emergencia y receta son obligatorios en la demo** | Son los dos dolores que la enfermera nombró: rapidez y medicamentos |
