@@ -63,6 +63,20 @@ CLINICAS = [
     "El resultado llega en tres días",
 ]
 
+# Prestamos del castellano. La prueba de humo del 24-oct mostro que ahi falla
+# omniASR: "doctor" -> "luctor", "jefelláy" -> "que fillay". Son palabras que NO
+# existen en quechua pero se pronuncian distinto cuando las dice un hablante de
+# chanka, y son justo las que no se pueden equivocar en una posta.
+MEDICAMENTOS = [
+    "paracetamol", "ibuprofeno", "amoxicilina", "naproxeno", "omeprazol",
+    "sulfato ferroso", "ácido fólico", "albendazol", "cotrimoxazol", "metformina",
+    "losartán", "salbutamol", "dexametasona", "suero oral", "vitamina C",
+    "jarabe", "tableta", "ampolla", "gotas", "cucharadita",
+    "cinco mililitros", "quinientos miligramos", "media tableta", "una ampolla",
+    "doctor", "doctora", "enfermera", "obstetra", "posta", "hospital",
+    "presión", "diabetes", "anemia", "control", "receta",
+]
+
 
 def traer_verificadas() -> list[dict]:
     filas: list[dict] = []
@@ -131,13 +145,16 @@ def main() -> None:
     linea = "_" * 34
 
     (DESTINO / "frases.json").write_text(json.dumps(
-        {"verificadas": verificadas, "clinicas_sin_traducir": CLINICAS},
+        {"verificadas": verificadas, "clinicas_sin_traducir": CLINICAS,
+         "medicamentos_y_prestamos": MEDICAMENTOS},
         ensure_ascii=False, indent=1), encoding="utf-8")
 
     nota_comun = (f"{len(verificadas)} frases verificadas vienen del conjunto "
                   "<b>makitty/quechua-chanka-unified-v2</b> (CC-BY-4.0). Las "
                   f"{len(CLINICAS)} frases clínicas van <b>sin traducir a propósito</b>: "
                   "el quechua lo pone la familia, no el equipo. "
+                  f"Las {len(MEDICAMENTOS)} palabras del bloque M son préstamos del castellano: "
+                  "<b>dígalas como las dice la gente en la posta</b>, no como las leería un locutor. "
                   "Grabe cada frase por separado, en un lugar silencioso, y diga el número antes.")
 
     construir("frases_quechua.pdf", "Rimay · frases en quechua chanka",
@@ -155,6 +172,9 @@ def main() -> None:
                 [1.2 * cm, 15 * cm]),
                ("Frases de la posta · sin traducción, usted pone el quechua",
                 [["#", "Castellano"]] + [[f"C{i}", P(t)] for i, t in enumerate(CLINICAS, 1)],
+                [1.2 * cm, 15 * cm]),
+               ("Medicamentos y préstamos · dígalos como se dicen en la posta",
+                [["#", "Palabra"]] + [[f"M{i}", P(t)] for i, t in enumerate(MEDICAMENTOS, 1)],
                 [1.2 * cm, 15 * cm])])
 
     construir("frases_ambos.pdf", "Rimay · castellano y quechua chanka",
@@ -167,10 +187,15 @@ def main() -> None:
                ("Frases de la posta · escriba el quechua en la columna vacía",
                 [["#", "Castellano", "Quechua chanka"]] +
                 [[f"C{i}", P(t), P(linea)] for i, t in enumerate(CLINICAS, 1)],
+                [1.1 * cm, 7.4 * cm, 7.7 * cm]),
+               ("Medicamentos y préstamos · escriba cómo suena en chanka",
+                [["#", "Castellano", "Cómo suena en chanka"]] +
+                [[f"M{i}", P(t), P(linea)] for i, t in enumerate(MEDICAMENTOS, 1)],
                 [1.1 * cm, 7.4 * cm, 7.7 * cm])])
 
-    total = len(verificadas) + len(CLINICAS)
-    print(f"{len(verificadas)} frases verificadas + {len(CLINICAS)} clínicas = {total} por persona")
+    total = len(verificadas) + len(CLINICAS) + len(MEDICAMENTOS)
+    print(f"{len(verificadas)} verificadas + {len(CLINICAS)} clínicas + "
+          f"{len(MEDICAMENTOS)} medicamentos = {total} por persona")
     for p in sorted(DESTINO.glob("*.pdf")):
         print(f"  {p}  {p.stat().st_size // 1024} KB")
     print(f"\nA 3.5 s por frase: {total * 3.5 / 60:.1f} min de audio por persona.")
