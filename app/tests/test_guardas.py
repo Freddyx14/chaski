@@ -263,3 +263,49 @@ def test_fail_closed_deja_pasar_un_veredicto_valido():
         return pasa("x")
 
     assert bien().ok is True
+
+
+# --- B4 vehículo: con qué se toma (caso vivo del 24-oct) ------------------------------------
+
+ES_AGUA_TE = "Tómela con agua, no con té"
+
+
+@pytest.mark.parametrize("quy", [
+    "Unuwan upyaykuy, manan téwanchu",          # caso vivo, versión correcta
+    "Yakuwan upyay manan tehawan",              # formulario p15
+    "Upyay yacuta manan tehuancho",             # formulario p16
+    "Yakuwan upyay, ama tewan upyaychu.",       # formulario p18
+    "Yakuwan upyay mana tiwanchu",              # formulario p19
+])
+def test_b4_vehiculo_correcto_pasa(quy):
+    v = terminos_fijos(ES_AGUA_TE, quy)
+    assert v.ok, v.detalle
+
+
+@pytest.mark.parametrize("quy,falta", [
+    ("Upyaykuy, manan téwanchu", "agua"),        # caso vivo sin la palabra del agua
+    ("Lechewan upyaykuy, manan téwanchu", "agua"),
+    ("Unuwan upyaykuy, manan lechewanchu", "te"),
+])
+def test_b4_vehiculo_perdido_o_cambiado_bloquea(quy, falta):
+    v = terminos_fijos(ES_AGUA_TE, quy)
+    assert not v.ok and any(f"con {falta}" in d for d in v.detalle), v.detalle
+
+
+def test_b4_vehiculo_cambiado_nombra_el_intruso():
+    v = terminos_fijos("Mézclelo con leche", "Lichiwan chaqruy")
+    assert v.ok, v.detalle
+    v = terminos_fijos("Mézclelo con leche", "Yakuwan chaqruy")
+    assert not v.ok and any("«agua»" in d for d in v.detalle) and any("con leche" in d for d in v.detalle)
+
+
+def test_b4_sin_vehiculo_en_castellano_no_exige_nada():
+    assert terminos_fijos("Tome la pastilla", "Pastillata upyay").ok
+
+
+def test_vehiculos_detectados():
+    from chaski.guardas import vehiculos_castellano, vehiculos_quechua
+    assert vehiculos_castellano("Tómela con un poco de agüita, no con mate") == {"agua", "te"}
+    assert vehiculos_castellano("No te olvides la pastilla") == set()
+    assert vehiculos_quechua("Unuwan upyaykuy, manan téwanchu") == {"agua", "te"}
+    assert vehiculos_quechua("Tiyay, tawa pastillata upyay") == set()

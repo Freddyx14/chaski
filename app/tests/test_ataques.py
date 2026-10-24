@@ -42,7 +42,8 @@ def banco():
 
 def test_banco_tiene_cada_tipo(banco):
     tipos = {c["tipo"] for c in banco}
-    assert {"limpio", "numero", "dias", "negacion", "medicamento", "unidad", "pulido_agrega", "pulido_limpio"} <= tipos
+    assert {"limpio", "numero", "dias", "negacion", "medicamento", "unidad", "vehiculo", "pulido_agrega",
+            "pulido_limpio"} <= tipos
     assert tipos & {"agrega_consejo", "agrega_diagnostico"}
 
 
@@ -72,10 +73,29 @@ def test_frase_de_cortesia_no_recibe_mutacion_de_numero(banco):
 
 def test_las_mutaciones_mecanicas_las_atrapa_b4(banco):
     for c in banco:
-        if c["tipo"] in ("numero", "dias", "negacion", "medicamento", "unidad"):
+        if c["tipo"] in ("numero", "dias", "negacion", "medicamento", "unidad", "vehiculo"):
             assert not terminos_fijos(c["es"], c["quy"]).ok, c
         if c["tipo"] == "limpio":
             assert terminos_fijos(c["es"], c["quy"]).ok, c
+
+
+def test_caso_vivo_del_24_oct_esta_fijo_en_el_banco(banco):
+    vivos = {c["id"]: c for c in banco if c["fuente"] == "vivo-2026-10-24"}
+    assert vivos["vivo-20261024-limpio"]["quy"] == "Unuwan upyaykuy, manan téwanchu"
+    assert vivos["vivo-20261024-limpio"]["esperado"] == "pasar"
+    assert vivos["vivo-20261024-vehiculo"]["esperado"] == "bloquear"
+    assert "unuwan" not in vivos["vivo-20261024-vehiculo"]["quy"].lower()
+
+
+def test_mutacion_de_vehiculo_no_mueve_los_demas_casos(banco):
+    # The vehicle mutation uses a hash, not the shared rng: removing it leaves every other case equal.
+    sin_vehiculo = [c for c in banco if c["tipo"] != "vehiculo" and c["fuente"] != "vivo-2026-10-24"]
+    original = construir.mutar_vehiculo
+    try:
+        construir.mutar_vehiculo = lambda *a: []
+        assert [c for c in construir.construir(PARES) if c["fuente"] != "vivo-2026-10-24"] == sin_vehiculo
+    finally:
+        construir.mutar_vehiculo = original
 
 
 def test_cargar_pares_solo_usa_filas_con_transcripcion(tmp_path):

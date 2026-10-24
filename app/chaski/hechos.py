@@ -5,8 +5,10 @@ a duration or a date changed between the original and the back-translation, the 
 
 B6 (plan/arquitectura-interprete.md §2b) adds the facts that used to slip through: prohibitions
 («no lo tome con té» vs «tómelo con té»), body parts, allergies, the route of each medicine and
-pregnancy. They are compared as counts or as code-normalised canonical values, never as free
-wording, so a legitimate paraphrase does not block.
+pregnancy. The vehicle of each medicine (what it is taken with: agua, leche, té...) was added after a
+live audit on 2026-10-24 approved «Unuwan upyaykuy, manan téwanchu» whose back-translation was «Bebe con
+uno, no con él»: the water was lost and nothing compared it. They are compared as counts or as
+code-normalised canonical values, never as free wording, so a legitimate paraphrase does not block.
 """
 from __future__ import annotations
 
@@ -30,10 +32,19 @@ class Medicamento(BaseModel):
         "frotar, crema, pomada), 'ojos' (gotas en los ojos), 'oidos' (gotas en el oído), 'inyectable' "
         "(inyección, ampolla, vacuna), 'otra' (vía distinta a las anteriores). null si el texto no lo dice "
         "ni lo indica el verbo"))
+    vehiculo: str | None = Field(default=None, description=(
+        "Con qué se toma o se mezcla el medicamento, SOLO si el texto lo indica en positivo, en una palabra y "
+        "en minúsculas, usando una de estas: 'agua', 'leche', 'jugo', 'té', 'comida', 'solo' (sin nada). "
+        "«tómela con agua» → 'agua'; «con agüita» → 'agua'; «mézclelo en la leche» → 'leche'; «con un mate» → "
+        "'té'; «con la comida» → 'comida'. Si el texto dice otra cosa ('con uno', 'con él'), copia esa palabra "
+        "tal cual, sin corregirla. Lo que se prohíbe («no con té») NO va aquí, va en prohibiciones. null si el "
+        "texto no dice con qué se toma"))
 
 
 class Hechos(BaseModel):
-    medicamentos: list[Medicamento] = Field(description="Cada medicamento indicado. Lista vacía si no hay")
+    medicamentos: list[Medicamento] = Field(description=(
+        "Cada medicamento indicado. Una instrucción de tomar algo sin nombrarlo («tómela con agua») cuenta como "
+        "un medicamento con nombre vacío. Lista vacía si no hay"))
     proxima_cita_en_dias: int | None = Field(description="En cuántos días debe volver. 'en un mes' → 30. null si no se dice")
     ir_ya_si: list[str] = Field(description="Señales por las que debe volver de inmediato, cada una en 2 a 5 palabras. Lista vacía si no se mencionan")
     prohibiciones: list[str] = Field(default_factory=list, description=(
@@ -142,6 +153,54 @@ def conjunto_alergias(h: Hechos) -> set[str]:
     return {a for a in (alergia_canonica(x) for x in h.alergias) if a}
 
 
+# Vehicle synonyms → one canonical value (accent-free, lowercase). Spanish words plus the Chanka ones
+# a translation may leave untranslated (unu / yaku = agua, lichi = leche). Chanka list to be confirmed
+# by the nurse. «uno» is deliberately NOT agua: it is the misreading of «unu» measured on 2026-10-24.
+_VEHICULOS = {
+    "agua": "agua", "aguita": "agua", "agua hervida": "agua", "agua tibia": "agua", "agua fria": "agua",
+    "unu": "agua", "yaku": "agua", "yacu": "agua",
+    "leche": "leche", "lechita": "leche", "lechi": "leche", "lichi": "leche",
+    "jugo": "jugo", "juguito": "jugo", "zumo": "jugo",
+    "te": "te", "tecito": "te", "mate": "te", "matecito": "te", "infusion": "te", "agua de hierbas": "te",
+    "comida": "comida", "comidas": "comida", "alimento": "comida", "alimentos": "comida",
+    "solo": "solo", "sola": "solo", "sin nada": "solo", "nada": "solo",
+}
+_CANONICOS_PROHIBIBLES = set(_VEHICULOS.values()) - {"solo"}
+# Words between the preposition and the vehicle: «con un poco de leche», «en su jugo».
+_RELLENO_VEHICULO = {"el", "la", "los", "las", "un", "una", "su", "sus", "poco", "de", "del", "bastante", "mucho",
+                     "mucha", "algo"}
+
+
+def vehiculo_canonico(vehiculo: str | None) -> str | None:
+    """'con agüita' → 'agua', 'un mate' → 'te', 'uno' → 'uno' (unknown kept, so it differs), '' → None."""
+    n = _sin_articulo(vehiculo)
+    while n.startswith(("con ", "en ")):
+        n = _sin_articulo(n.split(" ", 1)[1])
+    if not n:
+        return None
+    if n in _VEHICULOS:
+        return _VEHICULOS[n]
+    primera = n.split()[0]
+    return _VEHICULOS.get(primera, _VEHICULOS.get(_singular(primera), n))
+
+
+def vehiculos_prohibidos(h: Hechos) -> set[str]:
+    """Canonical vehicles named inside the prohibitions after «con» / «en»: «tomar con té» → {'te'}.
+
+    Requiring the preposition keeps the pronoun «te» («no te olvides») from reading as té.
+    """
+    salida = set()
+    for p in h.prohibiciones:
+        ws = _norm(p).split()
+        for i, w in enumerate(ws):
+            if w not in ("con", "en"):
+                continue
+            resto = [x for x in ws[i + 1:] if x not in _RELLENO_VEHICULO]
+            if resto and (v := vehiculo_canonico(" ".join(resto[:2]))) in _CANONICOS_PROHIBIBLES:
+                salida.add(v)
+    return salida
+
+
 def _mismo_numero(a: float | None, b: float | None) -> bool:
     if a is None or b is None:
         return a is None and b is None
@@ -180,7 +239,9 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
     The free-text 'momento' and the warning-sign wording are not compared here: they are paraphrased
     legitimately in translation, and the fixed warning signs are reviewed by a human instead.
     B6: prohibitions by count, body parts and allergies as sets of canonical values, the route of
-    each paired medicine when both sides state one, and pregnancy exactly.
+    each paired medicine when both sides state one, and pregnancy exactly. The vehicle of each paired
+    medicine is compared canonically and also when it vanishes on one side; the vehicles named inside
+    the prohibitions are compared as a set.
     """
     difs: list[Diferencia] = []
 
@@ -210,6 +271,10 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
         # Two different stated routes are (oral vs piel, ojos vs oídos).
         if med.via is not None and otro.via is not None and med.via != otro.via:
             difs.append(Diferencia(campo=f"{nombre}.via", original=med.via, retraducido=otro.via))
+        # Unlike the route, a vehicle that disappears IS a change: «con agua» → «con uno» / nothing.
+        va, vb = vehiculo_canonico(med.vehiculo), vehiculo_canonico(otro.vehiculo)
+        if va != vb:
+            difs.append(Diferencia(campo=f"{nombre}.vehiculo", original=str(va), retraducido=str(vb)))
 
     for sobrante in restantes:
         difs.append(Diferencia(campo="medicamento", original="(no estaba)", retraducido=sobrante.nombre))
@@ -220,6 +285,13 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
         difs.append(Diferencia(campo="prohibiciones (cantidad)",
                                original=str(len(original.prohibiciones)),
                                retraducido=str(len(retraducido.prohibiciones))))
+    # «no con té» → «no con él»: same count, but the forbidden vehicle was lost. Only checked when
+    # the counts match; a different count already blocks.
+    pa, pb = vehiculos_prohibidos(original), vehiculos_prohibidos(retraducido)
+    mismo_conteo = len(original.prohibiciones) == len(retraducido.prohibiciones)
+    if mismo_conteo and pa != pb:
+        difs.append(Diferencia(campo="prohibiciones (vehículo)", original=", ".join(sorted(pa)) or "(ninguno)",
+                               retraducido=", ".join(sorted(pb)) or "(ninguno)"))
     for campo, conjunto in (("partes_cuerpo", conjunto_partes), ("alergias", conjunto_alergias)):
         a, b = conjunto(original), conjunto(retraducido)
         if a != b:
