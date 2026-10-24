@@ -106,25 +106,28 @@ nothing changed." [Chaski speaks Quechua.]
 model transcribes it, Claude corrects the transcript with the context of the consultation, and the nurse reads it in Spanish."
 
 **B4 · The moment (1:35–2:05) · Freddy**
-"Now watch what happens when it isn't sure." [The scripted dose sentence.] [Red block on screen.]
-"The dose didn't survive the round trip. So Chaski doesn't say it. It tells the nurse exactly which part didn't match.
-In a clinic, a confident wrong answer is worse than no answer. Chaski would rather stay quiet."
+"Now let's simulate the translator making a mistake." [Rehearsal shortcut: «Tómela con agua, no con té», with the
+Quechua «no» removed. Say out loud that it is simulated.] [Red block on screen.]
+"The Quechua lost the 'not'. Now it says 'take it with tea'. Chaski caught it before speaking, and tells the nurse
+exactly what didn't match. In a clinic, a confident wrong answer is worse than no answer. Chaski would rather stay quiet."
 
 **B5 · How it's built (2:05–2:35) · Ricardo**
-"Meta's open speech models are the ears and the mouth. Out of the box they get [X]% of Chanka words wrong. Our
-families in Huancavelica recorded [N] phrases last night, we fine-tuned on them, and on a voice the model had never
-heard it dropped to [Y]%. Claude is the brain: it corrects what the ears heard, audits every translation, and writes
-the summary at the end."
+"Meta's open speech models are the ears and the mouth; we're fine-tuning them on [N] phrases our families recorded
+yesterday [X% → Y% on a voice it never heard — ONLY if Ricardo's results file shows it; otherwise: 'we measured the
+baseline and the fine-tune is running']. Claude is the brain: Opus interprets, Sonnet checks. We seeded 165 errors —
+wrong doses, flipped negations, swapped medicines. Asking Claude 'is this translation right?' blocks two out of three
+correct sentences. Chaski caught all 165, and blocks one in ten."
 
 **B6 · Close (2:35–3:00) · Freddy**
 [Show the summary screen.] "At the end the nurse gets a clinical note and the patient gets instructions to take home,
-in their language. It works for both sides — a nurse or a patient can open it. Anthropic says it wants Claude to work
+in their language, plus the new Quechua words from that visit, so the staff learn the language one patient at a time.
+It works for both sides — a nurse or a patient can open it. Anthropic says it wants Claude to work
 in languages left out of its training data, and admits it hasn't measured whether that's happening. We built that, and
 we measured it. Monday, it goes to my mother's health post."
 
 ### The 30-second version
-"My mother is the only nurse who speaks Quechua at her health post in the Peruvian Andes. Chaski is the interpreter
-for when she's not there: the nurse speaks Spanish, the patient hears Quechua, and back. Claude checks every
+"At my mother's health center in the Peruvian Andes, nine in ten patients speak Quechua and one in five staff do.
+Chaski is the interpreter for when nobody is there: the nurse speaks Spanish, the patient hears Quechua, and back. Claude checks every
 translation by translating it back blind — and if a dose doesn't match, Chaski refuses to say it. Want to see it?"
 
 ---
@@ -161,7 +164,9 @@ greeting + one sentence about her work at the 17:00 call, with her consent. If s
 | Question | One-breath answer |
 |---|---|
 | How do you know the Quechua is right? | Blind back-translation + a code check of drug, dose and frequency. And a native nurse reviewed the glossary and the screens |
-| What happens when it's wrong? | It refuses and tells the nurse which part failed. Show it |
+| What happens when it's wrong? | It refuses and tells the nurse which part failed. Show it. 165/165 seeded errors caught, 10% false blocks (`evals/ataques/resultados/chaski-2026-10-24-1606.json`) |
+| Why Opus and Sonnet, not Haiku? | We measured: Opus picked the right action 98% with zero invented clinical data (Haiku 88%, Sonnet 94%). As critic, Sonnet caught 160/160 vs Haiku 96% with 18% false blocks. Anthropic suggested Haiku for speed; the numbers decided |
+| What if a bank phrase is wrong? | A phrase is only spoken after a native nurse reviews it. Today the reviewed set is [N]; the rest show as pending |
 | Where does Claude fail here? | It can sound fluent in Quechua and be wrong. So it never speaks unchecked and never fills in a dose |
 | Why not Google Translate / ChatGPT? | Errors grow as the language gets rarer (Kong 2026), and neither tells you when it's wrong |
 | What does Claude do that plain MT can't? | Corrects the speech transcript with the consultation's context, audits itself, judges whether the patient understood, writes the summary |
