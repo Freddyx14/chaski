@@ -46,7 +46,7 @@
 
 ## ▶️ Cómo retomar
 
-1. `git pull` en `clients/calhacks-2026` (Ricardo empuja seguido a `main`).
+1. `git pull` en `clients/chaski` (Ricardo empuja seguido a `main`).
 2. Leer el bloque «Qué cambió» al inicio de `SOT.md` y este HANDOFF.
 3. Ver si el subagente del formulario terminó (`form/README.md`) → mandar el link a la familia → empezar la app iOS.
 

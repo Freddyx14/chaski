@@ -144,7 +144,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | # | Cuándo (PT) | Decisión | Por qué |
 |---|---|---|---|
 | D1 | vie 18:30 | Track principal: Anthropic «Claude for Public Benefit» | Freddy y Ricardo son peruanos; el track premia una comunidad concreta |
-| D2 | vie 19:30 | Repo en la cuenta personal `Freddyx14/cal-hacks`, Ricardo invitado | No es un cliente de Loopmind |
+| D2 | vie 19:30 | Repo en la cuenta personal `Freddyx14/cal-hacks` (hoy `Freddyx14/chaski`, D30), Ricardo invitado | No es un cliente de Loopmind |
 | D3 | vie 20:20 | Se descarta incendios | La detección ya la resuelve Satellites on Fire (US$2.7M) |
 | D4 | vie 21:10 | Rumbo: quechua en salud | La mamá de Freddy es la única enfermera quechuahablante de la posta de Pilpichaca |
 | D5 | vie 22:40 | Ajuste fino de voz con las familias, medido antes y después | Padres de Freddy y papá de Ricardo hablan chanka; da el núcleo técnico |

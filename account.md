@@ -77,7 +77,7 @@ Research: `research/peru-incendios-andes.md` · tracks to stack: `research/track
 | `ideas/` | Brainstorm and the chosen idea |
 | `app/` | The code |
 
-**This whole folder is its own git repo** → `github.com/Freddyx14/cal-hacks` (Freddy's personal account,
+**This whole folder is its own git repo** → `github.com/Freddyx14/chaski` (antes `cal-hacks`, renombrado el 24-oct por D30) (Freddy's personal account,
 private for now; **make public before judging**, and drop `context/photos/` first since they carry the
 Claude credits QR). Collaborators invited 2026-10-23: `ricardoamielmai`, `ricardoamiel` (write). The
 Loopmind repo ignores the folder. Docs get pushed as they're written (Freddy, 2026-10-23).
