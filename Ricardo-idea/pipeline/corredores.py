@@ -14,8 +14,12 @@ TOLERANCIA_VECINO = 25.0  # metros; dos corredores que se tocan son vecinos
 
 
 def _primero(valor):
-    """OSM a veces trae listas en name y highway."""
-    return valor[0] if isinstance(valor, list) else valor
+    """OSM trae listas en name y highway, y el PBF trae NaN, que es truthy."""
+    if isinstance(valor, list):
+        valor = valor[0] if valor else None
+    if valor is None or valor != valor or valor == "":   # valor != valor detecta NaN
+        return None
+    return valor
 
 
 def _geometria(G, u, v, datos):
@@ -35,16 +39,7 @@ def _partir(linea, largo_max=LARGO_MAX):
     return [substring(linea, i * paso, (i + 1) * paso) for i in range(n)]
 
 
-def construir_corredores(G) -> gpd.GeoDataFrame:
-    grupos = {}
-    for u, v, datos in G.edges(data=True):
-        nombre = _primero(datos.get("name"))
-        clave = nombre or f"sin_nombre_{min(u, v)}_{max(u, v)}"
-        grupo = grupos.setdefault(clave, {"geoms": [], "jerarquia": None, "nodos": set()})
-        grupo["geoms"].append(_geometria(G, u, v, datos))
-        grupo["jerarquia"] = grupo["jerarquia"] or _primero(datos.get("highway"))
-        grupo["nodos"].update((u, v))
-
+def _desde_grupos(grupos: dict) -> gpd.GeoDataFrame:
     filas = []
     for i, (nombre, grupo) in enumerate(sorted(grupos.items())):
         unida = linemerge(grupo["geoms"])
@@ -71,6 +66,37 @@ def construir_corredores(G) -> gpd.GeoDataFrame:
                 "geometry": tramo,
             })
     return gpd.GeoDataFrame(salida, geometry="geometry", crs=UTM_LIMA).to_crs("epsg:4326")
+
+
+def construir_corredores(G) -> gpd.GeoDataFrame:
+    """Corredores a partir de un grafo de networkx u osmnx."""
+    grupos = {}
+    for u, v, datos in G.edges(data=True):
+        nombre = _primero(datos.get("name"))
+        clave = nombre or f"sin_nombre_{min(u, v)}_{max(u, v)}"
+        grupo = grupos.setdefault(clave, {"geoms": [], "jerarquia": None, "nodos": set()})
+        grupo["geoms"].append(_geometria(G, u, v, datos))
+        grupo["jerarquia"] = grupo["jerarquia"] or _primero(datos.get("highway"))
+        grupo["nodos"].update((u, v))
+    return _desde_grupos(grupos)
+
+
+def construir_corredores_desde_lineas(lineas: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+    """Corredores a partir de las lineas del PBF de OSM (capa 'lines').
+
+    Se usa cuando Overpass no responde. El grado queda en 0 porque el PBF no
+    trae la topologia de nodos; los vecinos se calculan igual por geometria.
+    """
+    grupos = {}
+    for fila in lineas.itertuples():
+        nombre = _primero(getattr(fila, "name", None))
+        # Las vias sin nombre van todas al mismo grupo: linemerge las une en
+        # cadenas contiguas. Una clave por via dejaba corredores de 150 m.
+        clave = nombre or "sin_nombre"
+        grupo = grupos.setdefault(clave, {"geoms": [], "jerarquia": None, "nodos": set()})
+        grupo["geoms"].append(fila.geometry)
+        grupo["jerarquia"] = grupo["jerarquia"] or _primero(getattr(fila, "highway", None))
+    return _desde_grupos(grupos)
 
 
 def vecinos(gdf: gpd.GeoDataFrame, tolerancia_m: float = TOLERANCIA_VECINO) -> dict:

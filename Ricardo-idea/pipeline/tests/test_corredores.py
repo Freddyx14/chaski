@@ -52,3 +52,51 @@ def test_corredor_muy_largo_se_parte():
     gdf = construir_corredores(G)
     assert len(gdf) >= 2, "una via de 2.2 km debe partirse en varios corredores"
     assert gdf["largo_m"].max() <= 900
+
+
+def test_construye_desde_lineas_de_osm():
+    """Ruta alterna: cuando Overpass no responde, las vias salen del PBF de
+    Geofabrik como GeoDataFrame de lineas en vez de grafo de networkx."""
+    import geopandas as gpd
+    from shapely.geometry import LineString
+
+    from pipeline.corredores import construir_corredores_desde_lineas
+
+    lineas = gpd.GeoDataFrame(
+        [
+            {"name": "AV TEST", "highway": "primary",
+             "geometry": LineString([(-77.000, -12.0), (-77.001, -12.0)])},
+            {"name": "AV TEST", "highway": "primary",
+             "geometry": LineString([(-77.001, -12.0), (-77.002, -12.0)])},
+            {"name": "JR RAMAL", "highway": "residential",
+             "geometry": LineString([(-77.002, -12.0), (-77.002, -12.002)])},
+        ],
+        geometry="geometry", crs="epsg:4326")
+    gdf = construir_corredores_desde_lineas(lineas)
+    assert set(gdf["nombre"]) == {"AV TEST", "JR RAMAL"}
+    av = gdf[gdf["nombre"] == "AV TEST"]
+    assert len(av) == 1
+    assert 200 < av.iloc[0]["largo_m"] < 240
+
+
+def test_lineas_sin_nombre_no_rompen_el_agrupado():
+    """El PBF trae NaN en name, y NaN es truthy: si no se normaliza, la clave del
+    grupo queda en float y el ordenado revienta."""
+    import geopandas as gpd
+    import numpy as np
+    from shapely.geometry import LineString
+
+    from pipeline.corredores import construir_corredores_desde_lineas
+
+    lineas = gpd.GeoDataFrame(
+        [
+            {"name": np.nan, "highway": "residential",
+             "geometry": LineString([(-77.000, -12.0), (-77.001, -12.0)])},
+            {"name": "AV TEST", "highway": "primary",
+             "geometry": LineString([(-77.001, -12.0), (-77.002, -12.0)])},
+        ],
+        geometry="geometry", crs="epsg:4326")
+    gdf = construir_corredores_desde_lineas(lineas)
+    assert len(gdf) == 2
+    assert sum(n.startswith("sin_nombre") for n in gdf["nombre"]) == 1
+

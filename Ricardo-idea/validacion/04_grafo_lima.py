@@ -8,12 +8,25 @@ import osmnx as ox
 print("osmnx", ox.__version__, flush=True)
 ox.settings.use_cache=True
 ox.settings.cache_folder="data/osm_cache"
+ox.settings.requests_timeout=300
+ox.settings.overpass_url="https://overpass.kumi.systems/api/interpreter"  # el publico devolvia 502
 # Lima Metropolitana aproximada: sur de Lurin a norte de Ancon, costa a Chosica
 W,S,E,N=-77.20,-12.35,-76.70,-11.70
-try:
-    G=ox.graph.graph_from_bbox(bbox=(W,S,E,N), network_type="drive", simplify=True, retain_all=False)
-except TypeError:
-    G=ox.graph_from_bbox(north=N, south=S, east=E, west=W, network_type="drive", simplify=True)
+ESPEJOS=["https://overpass.kumi.systems/api/interpreter",
+         "https://overpass-api.de/api/interpreter",
+         "https://overpass.osm.ch/api/interpreter"]
+G=None
+for intento,url in enumerate(ESPEJOS*3):
+    ox.settings.overpass_url=url
+    try:
+        G=ox.graph.graph_from_bbox(bbox=(W,S,E,N), network_type="drive", simplify=True, retain_all=False)
+        print("ok con", url, flush=True); break
+    except Exception as e:
+        espera=min(60, 5*2**intento)
+        print(f"fallo {url}: {type(e).__name__} {str(e)[:80]} | reintento en {espera}s", flush=True)
+        time.sleep(espera)
+if G is None:
+    raise SystemExit("todos los espejos de Overpass fallaron")
 print(f"grafo: {G.number_of_nodes()} nodos, {G.number_of_edges()} aristas, {time.time()-t0:.0f}s", flush=True)
 ox.save_graphml(G,"data/lima_drive.graphml")
 largos=[d.get("length",0) for _,_,d in G.edges(data=True)]
