@@ -89,6 +89,11 @@ def cargar_banco(ruta: Path, limite: int | None) -> list[dict]:
     casos = [json.loads(l) for l in ruta.read_text(encoding="utf-8").splitlines() if l.strip()]
     if limite is None:
         return casos
+    # Shuffle with a fixed seed before taking N per type: the bank is ordered by source, so "the first N"
+    # was all one family member (p15, the least standard spelling) and inflated false blocks (24-oct).
+    import random
+    casos = casos[:]
+    random.Random(13).shuffle(casos)
     por_tipo: dict[str, int] = {}
     elegidos = []
     for c in casos:
