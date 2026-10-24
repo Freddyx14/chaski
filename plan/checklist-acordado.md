@@ -82,7 +82,7 @@
 | ⬜ | Confianza por palabra o N mejores en `/entender` (barrera B1) | 19:00 |
 | ⬜ | Audios de emergencia con la voz de Chaski donde no haya grabación | 19:00 |
 | ⬜ | Ruta `GET /banco?tag=` (lista en `evals/banco/RUTA_PARA_RICARDO.md`) | 19:00 |
-| ⬜ | **Integración**: `/turno/*` llama a `interpretar()` (fragmento en el reporte del orquestador; `contexto` llega como string JSON) | 19:00–21:00 |
+| ⬜ | **Integración**: pegar lo de `app/chaski/PARA_RICARDO.md` (~3 líneas por ruta) y avisar por el grupo antes de reiniciar · 🔁 mensaje 15:40 | 19:00 |
 | ✅ | `/resumen` y `/idioma` vivos · túnel fijo | — |
 
 ### Sesión ui-ux (🔁 15:20, plazo 19:00)
@@ -106,10 +106,10 @@
 | ✅ | Banco de frases + RAG híbrido (216 frases, 88 % / 95 %) | — |
 | ✅ | Mediciones: intérprete × 3 modelos, ataques (piso / juez / Chaski), RAG | — |
 | ✅ | Juez simple y Sonnet como crítico en la misma muestra → **Sonnet: 160/160 y 7,5 % de bloqueos falsos** | — |
-| ⏳ | Conectar barreras, banco y **el mismo crítico que medimos** dentro del orquestador (había un crítico duplicado sin medir) + `servicio.py` y `PARA_RICARDO.md` | 17:15 |
-| ⏳ | Ensayo de la negativa: `traduccion_sembrada` → `Resultado.sembrada` · `Resultado.texto_original` (pedidos de ui-ux 15:25) | 17:15 |
-| ⏳ | 🔴 Hueco real (curl de ui-ux): se perdió «con agua» y pasó. Agregar el **vehículo** (agua, leche, té, comida) a los hechos + barrera en código + caso en el banco de ataques | 16:45 |
-| ⬜ | Re-correr el banco de ataques con todo integrado (incluye vehículo) para el número final | 18:00 |
+| ✅ | Conectar barreras, banco y **el mismo crítico que medimos** dentro del orquestador (había un crítico duplicado sin medir) + `servicio.py` y `PARA_RICARDO.md` | 17:15 |
+| ✅ | Ensayo de la negativa: `traduccion_sembrada` → `Resultado.sembrada` · `Resultado.texto_original` (pedidos de ui-ux 15:25) | 17:15 |
+| ✅ | 🔴 Hueco real (curl de ui-ux): se perdió «con agua» y pasó. Agregar el **vehículo** (agua, leche, té, comida) a los hechos + barrera en código + caso en el banco de ataques | 16:45 |
+| ⏳ | Re-correr el banco de ataques con todo integrado (incluye vehículo) para el número final | 16:15 |
 | ⬜ | Bajar los bloqueos falsos (18 %): revisar uno por uno cuáles son errores reales de la familia | 17:30 |
 | ⬜ | Correr el banco de ataques completo (784) con el crítico elegido para el número final | 18:00 |
 | ⬜ | Línea del pitch con los números finales y la visión de aprender quechua | 18:30 |
@@ -131,6 +131,12 @@
 | dom 10:30–12:30 | Jurado en la mesa (los dos, todo el tiempo) |
 
 ---
+
+## Pendientes conocidos del intérprete
+
+- 0 de 216 frases del banco revisadas: el intérprete no reproduce ninguna hasta que la mamá revise.
+- Las respuestas de Chaski al personal en castellano (repreguntar / responder) solo pasan por las barreras de código, no por el crítico.
+- La dirección quechua → castellano usa el mismo crítico, pero no está medida.
 
 ## E · Números que ya podemos decir (con su archivo)
 
