@@ -1,0 +1,76 @@
+{"texto": "¿dónde te duele, mamita?", "esperado": ["emg-dolor-donde"], "split": "dev"}
+{"texto": "a ver, ¿dónde es el dolor?", "esperado": ["emg-dolor-donde"], "split": "test"}
+{"texto": "donde le duele señora", "esperado": ["emg-dolor-donde"], "split": "dev"}
+{"texto": "¿en qué parte le duele?", "esperado": ["emg-dolor-donde"], "split": "test"}
+{"texto": "¿qué te duele, mamita?", "esperado": ["emg-dolor-que"], "split": "dev"}
+{"texto": "¿qué cosa le está doliendo?", "esperado": ["emg-dolor-que"], "split": "test"}
+{"texto": "muéstreme con el dedito", "esperado": ["emg-senale"], "split": "dev"}
+{"texto": "señáleme con su dedo", "esperado": ["emg-senale"], "split": "test"}
+{"texto": "¿desde cuándo se siente mal?", "esperado": ["emg-desde-cuando"], "split": "dev"}
+{"texto": "desde cuando esta enfermito", "esperado": ["emg-desde-cuando"], "split": "test"}
+{"texto": "¿hace cuánto que está así de enfermo?", "esperado": ["emg-desde-cuando"], "split": "dev"}
+{"texto": "¿es alérgica a alguna medicina?", "esperado": ["emg-alergia"], "split": "test"}
+{"texto": "alguna pastilla le hace daño, es alergico?", "esperado": ["emg-alergia"], "split": "dev"}
+{"texto": "¿usted está embarazada, señora?", "esperado": ["emg-embarazo"], "split": "test"}
+{"texto": "¿está esperando bebé?", "esperado": ["emg-embarazo", "cmp-100"], "split": "dev"}
+{"texto": "¿con quién ha venido?", "esperado": ["emg-acompanante"], "split": "test"}
+{"texto": "¿vino solita o con alguien?", "esperado": ["emg-acompanante"], "split": "dev"}
+{"texto": "¿tiene algún familiar aquí?", "esperado": ["emg-familia-aqui"], "split": "test"}
+{"texto": "¿respira bien?", "esperado": ["emg-respira"], "split": "dev"}
+{"texto": "¿le cuesta respirar?", "esperado": ["emg-respira", "cmp-132"], "split": "test"}
+{"texto": "¿tiene calentura?", "esperado": ["emg-fiebre"], "split": "dev"}
+{"texto": "¿ha tenido fiebre o le dan escalofrios?", "esperado": ["emg-fiebre"], "split": "test"}
+{"texto": "¿le dio fiebre?", "esperado": ["emg-fiebre"], "split": "dev"}
+{"texto": "¿ha vomitado?", "esperado": ["emg-vomito"], "split": "test"}
+{"texto": "vomito algo", "esperado": ["emg-vomito"], "split": "dev"}
+{"texto": "¿se tomó alguna pastilla?", "esperado": ["emg-medicamento-tomo"], "split": "test"}
+{"texto": "¿ha tomado algún remedio?", "esperado": ["emg-medicamento-tomo"], "split": "dev"}
+{"texto": "¿se cayó?", "esperado": ["emg-caida"], "split": "test"}
+{"texto": "¿se ha golpeado?", "esperado": ["emg-caida"], "split": "dev"}
+{"texto": "¿le duele la cabeza, papá?", "esperado": ["emg-cabeza"], "split": "test"}
+{"texto": "¿tiene dolor de cabeza?", "esperado": ["emg-cabeza", "cmp-116"], "split": "dev"}
+{"texto": "¿le duele la barriga?", "esperado": ["emg-abdomen", "cmp-077"], "split": "test"}
+{"texto": "¿le duele la panza?", "esperado": ["emg-abdomen", "cmp-077"], "split": "dev"}
+{"texto": "¿se marea?", "esperado": ["emg-mareos"], "split": "test"}
+{"texto": "¿cómo se llama?", "esperado": ["emg-nombre"], "split": "dev"}
+{"texto": "cual es su nombre", "esperado": ["emg-nombre"], "split": "test"}
+{"texto": "¿cuántos años tiene usted?", "esperado": ["emg-edad"], "split": "dev"}
+{"texto": "¿qué edad tiene?", "esperado": ["emg-edad"], "split": "test"}
+{"texto": "le voy a tomar la presión", "esperado": ["emg-presion", "cmp-053"], "split": "dev"}
+{"texto": "le vamos a poner una vía", "esperado": ["emg-via"], "split": "test"}
+{"texto": "le voy a poner el suerito", "esperado": ["emg-suero"], "split": "dev"}
+{"texto": "no se mueva", "esperado": ["emg-no-moverse"], "split": "test"}
+{"texto": "no tenga miedo", "esperado": ["emg-no-miedo"], "split": "dev"}
+{"texto": "tranquila, no se preocupe, la vamos a ayudar", "esperado": ["emg-tranquilo"], "split": "test"}
+{"texto": "¿tiene tos?", "esperado": ["cmp-038"], "split": "dev"}
+{"texto": "¿le silba el pecho?", "esperado": ["cmp-041"], "split": "test"}
+{"texto": "abra la boquita", "esperado": ["cmp-044", "cmp-144"], "split": "dev"}
+{"texto": "saque la lengüita", "esperado": ["cmp-145"], "split": "test"}
+{"texto": "quítese la ropita", "esperado": ["cmp-146", "cmp-043"], "split": "dev"}
+{"texto": "respire hondo", "esperado": ["cmp-153", "cmp-170"], "split": "test"}
+{"texto": "¿tiene hambre, come bien?", "esperado": ["cmp-073"], "split": "dev"}
+{"texto": "¿orina bien?", "esperado": ["cmp-033"], "split": "test"}
+{"texto": "¿le arde al orinar?", "esperado": ["cmp-085", "cmp-087"], "split": "dev"}
+{"texto": "¿cuándo fue su última regla?", "esperado": ["cmp-094"], "split": "test"}
+{"texto": "¿le está dando pecho a su bebé?", "esperado": ["cmp-105", "cmp-106"], "split": "dev"}
+{"texto": "¿duerme bien?", "esperado": ["cmp-133"], "split": "test"}
+{"texto": "le voy a poner una inyección", "esperado": ["cmp-218"], "split": "dev"}
+{"texto": "le vamos a sacar sangre", "esperado": ["cmp-217"], "split": "test"}
+{"texto": "¿tiene sed, quiere agüita?", "esperado": ["cmp-233"], "split": "dev"}
+{"texto": "¿quiere ir al baño?", "esperado": ["cmp-237"], "split": "test"}
+{"texto": "¿qué ha comido hoy?", "esperado": ["cmp-238"], "split": "dev"}
+{"texto": "¿cómo amaneció?", "esperado": ["cmp-223"], "split": "test"}
+{"texto": "¿y ahorita cómo se siente?", "esperado": ["cmp-234"], "split": "dev"}
+{"texto": "venga mañana sin comer nada", "esperado": ["cmp-196"], "split": "test"}
+{"texto": "¿cuánto pesa su bebé?", "esperado": [], "split": "dev"}
+{"texto": "le voy a dar paracetamol cada ocho horas", "esperado": [], "split": "test"}
+{"texto": "¿tiene seguro integral SIS?", "esperado": [], "split": "dev"}
+{"texto": "firme aquí por favor", "esperado": [], "split": "test"}
+{"texto": "¿a qué hora comió por última vez?", "esperado": [], "split": "dev"}
+{"texto": "¿le duele el oído?", "esperado": [], "split": "test"}
+{"texto": "su hijo necesita una radiografía de tórax mañana", "esperado": [], "split": "dev"}
+{"texto": "¿fuma o toma alcohol?", "esperado": [], "split": "test"}
+{"texto": "¿tiene diabetes?", "esperado": [], "split": "dev"}
+{"texto": "espere afuera un ratito", "esperado": [], "split": "test"}
+{"texto": "el doctor viene en diez minutos", "esperado": [], "split": "dev"}
+{"texto": "¿tiene diarrea?", "esperado": [], "split": "test"}
