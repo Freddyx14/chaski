@@ -1,0 +1,2445 @@
+{
+  "version": "2.18",
+  "children": [
+    {
+      "type": "frame",
+      "id": "cHhNh",
+      "x": 0,
+      "y": 0,
+      "name": "Board C",
+      "width": 1590,
+      "fill": "$board-bg",
+      "layout": "vertical",
+      "gap": 52,
+      "padding": 120,
+      "children": [
+        {
+          "type": "frame",
+          "id": "O7CpV",
+          "name": "Board Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "children": [
+            {
+              "type": "text",
+              "id": "XP7bJ",
+              "name": "Option Title",
+              "fill": "$ink",
+              "content": "C · Lliclla en la mesa",
+              "lineHeight": 1.2,
+              "fontFamily": "$font",
+              "fontSize": 40,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "O22lo",
+              "name": "Option Rationale",
+              "fill": "$ink-2",
+              "textGrowth": "fixed-width",
+              "width": 1200,
+              "content": "Un bloque grande de manta arriba, como una lliclla extendida, y tarjetas blancas encima.",
+              "lineHeight": 1.45,
+              "fontFamily": "$font",
+              "fontSize": 20
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Xvixr",
+          "name": "Screens Row",
+          "gap": 72,
+          "children": [
+            {
+              "type": "frame",
+              "id": "Hk3HR",
+              "name": "Col 1 · Idioma",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "ChGc0",
+                  "name": "Label 1 · Idioma",
+                  "fill": "$ink-2",
+                  "content": "1 · Idioma",
+                  "fontFamily": "$font",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "y8aDpS",
+                  "name": "Screen 1 · Idioma",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 44,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "T2E7h",
+                      "x": 0,
+                      "y": 54,
+                      "name": "Manta",
+                      "clip": true,
+                      "width": 402,
+                      "height": 348,
+                      "fill": "#FFFFFF",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "j0zus",
+                          "name": "Banda blanca 0",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hWBWn",
+                          "name": "Franja 1",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#E4007C"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "K84n1t",
+                          "name": "Franja 2",
+                          "width": "fill_container",
+                          "height": 4,
+                          "fill": "#F27BB4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "J2yGv",
+                          "name": "Banda blanca 3",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ySOMu",
+                          "name": "Franja 4",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#F26B21"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "SZBEc",
+                          "name": "Franja 5",
+                          "width": "fill_container",
+                          "height": 11,
+                          "fill": "#FFC41F"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "uWRi1",
+                          "name": "Banda blanca 6",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Csl9t",
+                          "name": "Franja 7",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "nYE5i",
+                          "name": "Rombos 8",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 21,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "hAdQ9",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro magenta",
+                              "geometry": "M3 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#E4007C",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "WZD9y",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro amarillo",
+                              "geometry": "M11 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#FFC41F",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "neGg0",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro turquesa",
+                              "geometry": "M19 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#00A6B4",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "d0vKvb",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Contorno negro",
+                              "geometry": "M3 0h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m1 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 21
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bPYwC",
+                          "name": "Franja 9",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "l9j9P3",
+                          "name": "Banda blanca 10",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "IKkM2",
+                          "name": "Franja 11",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#12A150"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qffJw",
+                          "name": "Franja 12",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#8CC63F"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "y6xFzV",
+                          "name": "Franja 13",
+                          "width": "fill_container",
+                          "height": 10,
+                          "fill": "#00A6B4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "dW88F",
+                          "name": "Banda blanca 14",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GybSc",
+                          "name": "Trenza 15",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 12,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "K66arW",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Trenza negra",
+                              "geometry": "M0 0h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                4
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 12
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "F2T8m",
+                          "name": "Banda blanca 16",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "DxqBA",
+                          "name": "Franja 17",
+                          "width": "fill_container",
+                          "height": 11,
+                          "fill": "#2546B0"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YA2gk",
+                          "name": "Franja 18",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#6C2A8C"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ZRC9p",
+                          "name": "Banda blanca 19",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "HU12m",
+                          "name": "Franja 20",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "cFHOG",
+                          "name": "Ganchos en S 21",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 21,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "a2kue",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Gancho naranja",
+                              "geometry": "M1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#F26B21",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "A5bus7",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Gancho cobalto",
+                              "geometry": "M8 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m11-6h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#2546B0",
+                              "width": 402,
+                              "height": 21
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "qU1en",
+                          "name": "Franja 22",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "WgzlX",
+                          "name": "Banda blanca 23",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CObW3",
+                          "name": "Franja 24",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#D7261E"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VP3ae",
+                          "name": "Franja 25",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#F27BB4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "c24P2m",
+                          "name": "Banda blanca 26",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "J6JMw6",
+                          "name": "Franja 27",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hbysk",
+                          "name": "Zigzag escalonado 28",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 21,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "yqu0B",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Zigzag",
+                              "geometry": "M0 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1-2h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z m1 0h1v1h-1z m0 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#12A150",
+                              "width": 402,
+                              "height": 21
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wsqqs",
+                          "name": "Franja 29",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Y4CGMe",
+                          "name": "Banda blanca 30",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "j4SnO",
+                          "name": "Franja 31",
+                          "width": "fill_container",
+                          "height": 8,
+                          "fill": "#00A6B4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "WXmQc",
+                          "name": "Franja 32",
+                          "width": "fill_container",
+                          "height": 12,
+                          "fill": "#2546B0"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "m5FNF",
+                          "name": "Banda blanca 33",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VSC7f",
+                          "name": "Franja 34",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "c5GZ2D",
+                          "name": "Llamas 35",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 21,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "cjdFG",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Llama negra",
+                              "geometry": "M4 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "VniyH",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Llama purpura",
+                              "geometry": "M12 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z m16-6h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m0 1h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-4 1h1v1h-1z m3 0h1v1h-1z m-3 1h1v1h-1z m3 0h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#6C2A8C",
+                              "width": 402,
+                              "height": 21
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "HxBcm",
+                          "name": "Franja 36",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "EXy1R",
+                          "name": "Banda blanca 37",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "G1UiY",
+                          "name": "Banda blanca 38",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "y6bWAe",
+                          "name": "Franja 39",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#E4007C"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ebRWC",
+                          "name": "Franja 40",
+                          "width": "fill_container",
+                          "height": 4,
+                          "fill": "#F27BB4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "St3Bm",
+                          "name": "Banda blanca 41",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Pu4Is",
+                          "name": "Franja 42",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#F26B21"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gurKB",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Status Bar",
+                      "width": 402,
+                      "height": 54,
+                      "padding": [
+                        0,
+                        28
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "k7ZJF1",
+                          "name": "Hora",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "$font",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zXBC3",
+                          "name": "Glifos",
+                          "gap": 7,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "QFZPV",
+                              "name": "Senal",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "signal",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "FSdCS",
+                              "name": "Wifi",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "QN1I5",
+                              "name": "Bateria",
+                              "width": 25,
+                              "height": 17,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "x01stN",
+                      "x": 134,
+                      "y": 861,
+                      "name": "Home Indicator",
+                      "fill": "$ink",
+                      "width": 134,
+                      "height": 5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "LvCTZ",
+                      "x": 96,
+                      "y": 297,
+                      "name": "Chaski Card",
+                      "clip": true,
+                      "width": 210,
+                      "height": 210,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "ref/chaski-presentarse.png",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 28,
+                      "stroke": "#FFFFFF",
+                      "strokeWidth": 6,
+                      "strokeAlignment": "outer"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JQda0",
+                      "x": 16,
+                      "y": 512,
+                      "name": "Onboarding Content",
+                      "width": 370,
+                      "layout": "vertical",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Qhb0B",
+                          "name": "Wordmark",
+                          "fill": "$ink",
+                          "content": "Rimay",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$font",
+                          "fontSize": 34,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "C6fE7h",
+                          "name": "Progreso",
+                          "gap": 8,
+                          "padding": [
+                            14,
+                            0,
+                            0,
+                            0
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "ellipse",
+                              "id": "rQStb",
+                              "name": "Punto 1",
+                              "fill": "$teal",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "ellipse",
+                              "id": "KR3AP",
+                              "name": "Punto 2",
+                              "fill": "$border",
+                              "width": 8,
+                              "height": 8
+                            },
+                            {
+                              "type": "ellipse",
+                              "id": "ZPwVp",
+                              "name": "Punto 3",
+                              "fill": "$border",
+                              "width": 8,
+                              "height": 8
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NlLbY",
+                          "name": "Pregunta",
+                          "layout": "vertical",
+                          "gap": 2,
+                          "padding": [
+                            22,
+                            0,
+                            0,
+                            0
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "JoKJu",
+                              "name": "Pregunta ES",
+                              "fill": "$ink",
+                              "content": "¿Qué idioma habla?",
+                              "lineHeight": 1.25,
+                              "textAlign": "center",
+                              "fontFamily": "$font",
+                              "fontSize": 24,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Ogeqm",
+                              "name": "Pregunta QU",
+                              "fill": "$cinnamon",
+                              "content": "¿Ima simitam rimanki?",
+                              "lineHeight": 1.25,
+                              "textAlign": "center",
+                              "fontFamily": "$font",
+                              "fontSize": 24,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "E0CvmX",
+                          "name": "Opciones",
+                          "width": "fill_container",
+                          "layout": "vertical",
+                          "gap": 12,
+                          "padding": [
+                            26,
+                            0,
+                            0,
+                            0
+                          ],
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "QG3c4",
+                              "name": "Opcion Castellano",
+                              "width": "fill_container",
+                              "height": 72,
+                              "fill": "$surface",
+                              "cornerRadius": 20,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "padding": [
+                                0,
+                                20
+                              ],
+                              "justifyContent": "space_between",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "F1i62U",
+                                  "name": "Texto",
+                                  "layout": "vertical",
+                                  "gap": 2,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "ovU3u",
+                                      "name": "Titulo",
+                                      "fill": "$ink",
+                                      "content": "Castellano",
+                                      "lineHeight": 1.25,
+                                      "fontFamily": "$font",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "WvsEm",
+                                  "name": "Chevron",
+                                  "width": 20,
+                                  "height": 20,
+                                  "icon": "chevron-right",
+                                  "library": "lucide",
+                                  "fill": "$ink-3"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "skEp1",
+                              "name": "Opcion Runasimi",
+                              "width": "fill_container",
+                              "height": 72,
+                              "fill": "$surface",
+                              "cornerRadius": 20,
+                              "stroke": "$border",
+                              "strokeWidth": 1,
+                              "padding": [
+                                0,
+                                20
+                              ],
+                              "justifyContent": "space_between",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "svDkD",
+                                  "name": "Texto",
+                                  "layout": "vertical",
+                                  "gap": 2,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "O3W6t",
+                                      "name": "Titulo",
+                                      "fill": "$cinnamon",
+                                      "content": "Runasimi",
+                                      "lineHeight": 1.25,
+                                      "fontFamily": "$font",
+                                      "fontSize": 20,
+                                      "fontWeight": "700"
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "AZ44G",
+                                      "name": "Subtitulo",
+                                      "fill": "$ink-2",
+                                      "content": "Quechua chanka",
+                                      "lineHeight": 1.3,
+                                      "fontFamily": "$font",
+                                      "fontSize": 13
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "icon",
+                                  "id": "C6FEJF",
+                                  "name": "Chevron",
+                                  "width": 20,
+                                  "height": 20,
+                                  "icon": "chevron-right",
+                                  "library": "lucide",
+                                  "fill": "$ink-3"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "mdPKB",
+              "name": "Col 2 · Rimay habla",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "wa7WB",
+                  "name": "Label 2 · Rimay habla",
+                  "fill": "$ink-2",
+                  "content": "2 · Rimay habla",
+                  "fontFamily": "$font",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "GjufS",
+                  "name": "Screen 2 · Rimay habla",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 44,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "u9PhQH",
+                      "x": 0,
+                      "y": 54,
+                      "name": "Manta",
+                      "clip": true,
+                      "width": 402,
+                      "height": 150,
+                      "fill": "#FFFFFF",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "EVQAP",
+                          "name": "Banda blanca 0",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hwYBx",
+                          "name": "Franja 1",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#E4007C"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "M9hB2J",
+                          "name": "Franja 2",
+                          "width": "fill_container",
+                          "height": 4,
+                          "fill": "#F27BB4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "TjEm9",
+                          "name": "Banda blanca 3",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "mOVmd",
+                          "name": "Franja 4",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#F26B21"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "bIKlO",
+                          "name": "Franja 5",
+                          "width": "fill_container",
+                          "height": 11,
+                          "fill": "#FFC41F"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "p7r0U",
+                          "name": "Banda blanca 6",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "xXk3z",
+                          "name": "Franja 7",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "o3WEdZ",
+                          "name": "Rombos 8",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 21,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "S63Wx",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro magenta",
+                              "geometry": "M3 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#E4007C",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "mHKLs",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro amarillo",
+                              "geometry": "M11 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#FFC41F",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "G21WrM",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro turquesa",
+                              "geometry": "M19 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#00A6B4",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "SGrxv",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Contorno negro",
+                              "geometry": "M3 0h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m1 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 21
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "NDE3Y",
+                          "name": "Franja 9",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "wmovq",
+                          "name": "Banda blanca 10",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "RhqlX",
+                          "name": "Franja 11",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#12A150"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CqGRV",
+                          "name": "Franja 12",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#8CC63F"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "MJYMR",
+                          "name": "Franja 13",
+                          "width": "fill_container",
+                          "height": 10,
+                          "fill": "#00A6B4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "J3ozf",
+                          "name": "Banda blanca 14",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YczUN",
+                          "name": "Trenza 15",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 12,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "JM6uo",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Trenza negra",
+                              "geometry": "M0 0h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                4
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 12
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vrvLC",
+                          "name": "Banda blanca 16",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "ZCMHe",
+                          "name": "Franja 17",
+                          "width": "fill_container",
+                          "height": 11,
+                          "fill": "#2546B0"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Mt0G9",
+                          "name": "Franja 18",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#6C2A8C"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "wzrlj",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Status Bar",
+                      "width": 402,
+                      "height": 54,
+                      "padding": [
+                        0,
+                        28
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "scZpE",
+                          "name": "Hora",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "$font",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YdaN9",
+                          "name": "Glifos",
+                          "gap": 7,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "DrkhE",
+                              "name": "Senal",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "signal",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "TDdDI",
+                              "name": "Wifi",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "JR2t6",
+                              "name": "Bateria",
+                              "width": 25,
+                              "height": 17,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "B84nB5",
+                      "x": 134,
+                      "y": 861,
+                      "name": "Home Indicator",
+                      "fill": "$ink",
+                      "width": 134,
+                      "height": 5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "idQIO",
+                      "x": 16,
+                      "y": 60,
+                      "name": "Header Pill",
+                      "width": 370,
+                      "height": 52,
+                      "fill": "$surface",
+                      "cornerRadius": 26,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "Of0Vo",
+                          "name": "Titulo Header",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Q6I3S",
+                              "name": "Rimay",
+                              "fill": "$ink",
+                              "content": "Rimay",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "WL3w6",
+                              "name": "Sesion",
+                              "fill": "$ink-2",
+                              "content": "Consulta · 3:12",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 13
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CYA8I",
+                          "name": "Boton Resumen",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "ZUrGb",
+                              "name": "Icono Documento",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "file-text",
+                              "library": "lucide",
+                              "fill": "$ink-2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Effwd",
+                      "x": 101,
+                      "y": 140,
+                      "name": "Chaski Card",
+                      "clip": true,
+                      "width": 200,
+                      "height": 200,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "ref/chaski-hablando.png",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 28,
+                      "stroke": "#FFFFFF",
+                      "strokeWidth": 6,
+                      "strokeAlignment": "outer"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Q2E3Sz",
+                      "x": 16,
+                      "y": 360,
+                      "name": "Contenido Consulta",
+                      "width": 370,
+                      "layout": "vertical",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "A9aHq",
+                          "name": "Fila Idioma",
+                          "width": "fill_container",
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "H7rKc1",
+                              "name": "Tag Quechua",
+                              "height": 28,
+                              "fill": "$cinnamon",
+                              "cornerRadius": 14,
+                              "padding": [
+                                0,
+                                14
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "jmPgK",
+                                  "name": "Tag Texto",
+                                  "fill": "#FFFFFF",
+                                  "content": "Quechua chanka",
+                                  "fontFamily": "$font",
+                                  "fontSize": 13,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "lYVTQ",
+                          "name": "Tarjeta Traduccion",
+                          "width": "fill_container",
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
+                          "gap": 14,
+                          "padding": 18,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "Qt4ui",
+                              "name": "Quechua",
+                              "fill": "$ink",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "[Indicación en quechua chanka]",
+                              "lineHeight": 1.3,
+                              "fontFamily": "$font",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "rectangle",
+                              "id": "tui5V",
+                              "name": "Divisor",
+                              "fill": "$border",
+                              "width": "fill_container",
+                              "height": 1
+                            },
+                            {
+                              "type": "frame",
+                              "id": "h3XhxG",
+                              "name": "Castellano",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "OM3lC",
+                                  "name": "Frase ES",
+                                  "fill": "$ink-2",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Tome una pastilla dos veces al día, en la mañana y en la noche, durante siete días.",
+                                  "lineHeight": 1.45,
+                                  "fontFamily": "$font",
+                                  "fontSize": 15
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "wefIE",
+                                  "name": "Nota",
+                                  "fill": "$ink-3",
+                                  "textGrowth": "fixed-width",
+                                  "width": "fill_container",
+                                  "content": "Rimay ya lo dijo en voz alta.",
+                                  "lineHeight": 1.35,
+                                  "fontFamily": "$font",
+                                  "fontSize": 13
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "zU3gg",
+                          "name": "Fila Auditoria",
+                          "width": "fill_container",
+                          "fill": "$ok-bg",
+                          "cornerRadius": 16,
+                          "layout": "vertical",
+                          "gap": 6,
+                          "padding": 14,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "A50XFA",
+                              "name": "Encabezado Auditoria",
+                              "gap": 8,
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "UOjGb",
+                                  "name": "Escudo",
+                                  "width": 18,
+                                  "height": 18,
+                                  "icon": "shield-check",
+                                  "library": "lucide",
+                                  "fill": "$ok-fg"
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "cdEiD",
+                                  "name": "Auditado",
+                                  "fill": "$ok-fg",
+                                  "content": "Auditado antes de hablar",
+                                  "lineHeight": 1.25,
+                                  "fontFamily": "$font",
+                                  "fontSize": 15,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "K5VwQ",
+                              "name": "Checks",
+                              "fill": "$ok-fg",
+                              "content": "✓ Medicamento   ✓ Dosis   ✓ Horario   ✓ Días",
+                              "lineHeight": 1.3,
+                              "fontFamily": "$font",
+                              "fontSize": 13,
+                              "fontWeight": "500"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "EUxc7",
+                      "x": 16,
+                      "y": 793,
+                      "name": "Acciones",
+                      "width": 370,
+                      "height": 52,
+                      "gap": 12,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "g946B",
+                          "name": "Boton Repetir audio",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "fill": "$surface",
+                          "cornerRadius": 26,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "gap": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "IUH98",
+                              "name": "Icono",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "volume-2",
+                              "library": "lucide",
+                              "fill": "$teal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "LDvNS",
+                              "name": "Etiqueta",
+                              "fill": "$teal",
+                              "content": "Repetir audio",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 17,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CI3DZ",
+                          "name": "Boton Seguir",
+                          "width": "fill_container",
+                          "height": "fill_container",
+                          "fill": "$teal",
+                          "cornerRadius": 26,
+                          "gap": 8,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "K39TC4",
+                              "name": "Icono",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "mic",
+                              "library": "lucide",
+                              "fill": "#FFFFFF"
+                            },
+                            {
+                              "type": "text",
+                              "id": "d2rBg",
+                              "name": "Etiqueta",
+                              "fill": "#FFFFFF",
+                              "content": "Seguir",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 17,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "OGJyO",
+              "name": "Col 3 · Listo para hablar",
+              "layout": "vertical",
+              "gap": 14,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "FPhRI",
+                  "name": "Label 3 · Listo para hablar",
+                  "fill": "$ink-2",
+                  "content": "3 · Listo para hablar",
+                  "fontFamily": "$font",
+                  "fontSize": 18,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "frame",
+                  "id": "w82BPR",
+                  "name": "Screen 3 · Listo para hablar",
+                  "clip": true,
+                  "width": 402,
+                  "height": 874,
+                  "fill": "$ground",
+                  "cornerRadius": 44,
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "lEphG",
+                      "x": 0,
+                      "y": 54,
+                      "name": "Manta",
+                      "clip": true,
+                      "width": 402,
+                      "height": 150,
+                      "fill": "#FFFFFF",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "ElAg7",
+                          "name": "Banda blanca 0",
+                          "width": "fill_container",
+                          "height": 16,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "hZT5w",
+                          "name": "Franja 1",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#E4007C"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BFqv8",
+                          "name": "Franja 2",
+                          "width": "fill_container",
+                          "height": 4,
+                          "fill": "#F27BB4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "O6Mf4",
+                          "name": "Banda blanca 3",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "gvkTK",
+                          "name": "Franja 4",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#F26B21"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "j62Ms",
+                          "name": "Franja 5",
+                          "width": "fill_container",
+                          "height": 11,
+                          "fill": "#FFC41F"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "rRX4c",
+                          "name": "Banda blanca 6",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "x70Jg",
+                          "name": "Franja 7",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "AQfaY",
+                          "name": "Rombos 8",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 21,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "SzOhG",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro magenta",
+                              "geometry": "M3 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#E4007C",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "M9qbhC",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro amarillo",
+                              "geometry": "M11 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#FFC41F",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "nx6YA",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Centro turquesa",
+                              "geometry": "M19 1h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z m24-4h1v1h-1z m-1 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-3 1h1v1h-1z m1 0h1v1h-1z m1 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#00A6B4",
+                              "width": 402,
+                              "height": 21
+                            },
+                            {
+                              "type": "path",
+                              "id": "kTxM6",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Contorno negro",
+                              "geometry": "M3 0h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m6 0h1v1h-1z m-5 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z m8-6h1v1h-1z m-1 1h1v1h-1z m2 0h1v1h-1z m-3 1h1v1h-1z m4 0h1v1h-1z m-5 1h1v1h-1z m1 1h1v1h-1z m4 0h1v1h-1z m-3 1h1v1h-1z m2 0h1v1h-1z m-1 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                7
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 21
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "szvU5",
+                          "name": "Franja 9",
+                          "width": "fill_container",
+                          "height": 2,
+                          "fill": "#1A1A1A"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "VPdzl",
+                          "name": "Banda blanca 10",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "Vbk5h",
+                          "name": "Franja 11",
+                          "width": "fill_container",
+                          "height": 9,
+                          "fill": "#12A150"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "H0TPzf",
+                          "name": "Franja 12",
+                          "width": "fill_container",
+                          "height": 5,
+                          "fill": "#8CC63F"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "YlgiZ",
+                          "name": "Franja 13",
+                          "width": "fill_container",
+                          "height": 10,
+                          "fill": "#00A6B4"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CmaTw",
+                          "name": "Banda blanca 14",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "enpoB",
+                          "name": "Trenza 15",
+                          "clip": true,
+                          "width": "fill_container",
+                          "height": 12,
+                          "fill": "#FFFFFF",
+                          "layout": "none",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "YFgLf",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Trenza negra",
+                              "geometry": "M0 0h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1 1h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z m1-3h1v1h-1z m0 1h1v1h-1z m1-1h1v1h-1z m0 1h1v1h-1z",
+                              "viewBox": [
+                                0,
+                                0,
+                                134,
+                                4
+                              ],
+                              "fill": "#1A1A1A",
+                              "width": 402,
+                              "height": 12
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "yJFXj",
+                          "name": "Banda blanca 16",
+                          "width": "fill_container",
+                          "height": 6,
+                          "fill": "#FFFFFF"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "y8Xz7m",
+                          "name": "Franja 17",
+                          "width": "fill_container",
+                          "height": 11,
+                          "fill": "#2546B0"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BCAUj",
+                          "name": "Franja 18",
+                          "width": "fill_container",
+                          "height": 7,
+                          "fill": "#6C2A8C"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gUVzm",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Status Bar",
+                      "width": 402,
+                      "height": 54,
+                      "padding": [
+                        0,
+                        28
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "dYIjF",
+                          "name": "Hora",
+                          "fill": "$ink",
+                          "content": "9:41",
+                          "fontFamily": "$font",
+                          "fontSize": 17,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "BYYY6",
+                          "name": "Glifos",
+                          "gap": 7,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "Ifb9Q",
+                              "name": "Senal",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "signal",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "a5Bw2n",
+                              "name": "Wifi",
+                              "width": 17,
+                              "height": 17,
+                              "icon": "wifi",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "YRvPR",
+                              "name": "Bateria",
+                              "width": 25,
+                              "height": 17,
+                              "icon": "battery-full",
+                              "library": "lucide",
+                              "fill": "$ink"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 3,
+                      "id": "Kc96E",
+                      "x": 134,
+                      "y": 861,
+                      "name": "Home Indicator",
+                      "fill": "$ink",
+                      "width": 134,
+                      "height": 5
+                    },
+                    {
+                      "type": "frame",
+                      "id": "sZEGS",
+                      "x": 16,
+                      "y": 60,
+                      "name": "Header Pill",
+                      "width": 370,
+                      "height": 52,
+                      "fill": "$surface",
+                      "cornerRadius": 26,
+                      "stroke": "$border",
+                      "strokeWidth": 1,
+                      "padding": [
+                        0,
+                        16
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "UadQm",
+                          "name": "Titulo Header",
+                          "layout": "vertical",
+                          "gap": 1,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "f0NWom",
+                              "name": "Rimay",
+                              "fill": "$ink",
+                              "content": "Rimay",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 20,
+                              "fontWeight": "700"
+                            },
+                            {
+                              "type": "text",
+                              "id": "uO7OA",
+                              "name": "Sesion",
+                              "fill": "$ink-2",
+                              "content": "Consulta · 3:12",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 13
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "kCGIT",
+                          "name": "Boton Resumen",
+                          "width": 40,
+                          "height": 40,
+                          "fill": "$surface",
+                          "cornerRadius": 20,
+                          "stroke": "$border",
+                          "strokeWidth": 1,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "RKD5h",
+                              "name": "Icono Documento",
+                              "width": 18,
+                              "height": 18,
+                              "icon": "file-text",
+                              "library": "lucide",
+                              "fill": "$ink-2"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "YF5jO",
+                      "x": 81,
+                      "y": 140,
+                      "name": "Chaski Card",
+                      "clip": true,
+                      "width": 240,
+                      "height": 240,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "ref/chaski-reposo.png",
+                        "mode": "fill"
+                      },
+                      "cornerRadius": 28,
+                      "stroke": "#FFFFFF",
+                      "strokeWidth": 6,
+                      "strokeAlignment": "outer"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "fLRYy",
+                      "x": 16,
+                      "y": 402,
+                      "name": "Estado",
+                      "width": 370,
+                      "layout": "vertical",
+                      "gap": 10,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "u7q97",
+                          "name": "Titulo Estado",
+                          "fill": "$ink",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "Listo para interpretar",
+                          "lineHeight": 1.25,
+                          "textAlign": "center",
+                          "fontFamily": "$font",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "fqsUI",
+                          "name": "Descripcion",
+                          "fill": "$ink-2",
+                          "textGrowth": "fixed-width",
+                          "width": 300,
+                          "content": "Hable en castellano. Rimay se lo dirá en quechua al paciente y le avisará si algo no se entendió.",
+                          "lineHeight": 1.45,
+                          "textAlign": "center",
+                          "fontFamily": "$font",
+                          "fontSize": 15
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "kHYgz",
+                      "x": 16,
+                      "y": 648,
+                      "name": "Controles",
+                      "width": 370,
+                      "layout": "vertical",
+                      "gap": 14,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "AeOTl",
+                          "name": "Fila Microfono",
+                          "width": "fill_container",
+                          "gap": 28,
+                          "justifyContent": "center",
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "zG3Mk",
+                              "name": "Receta",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": [
+                                20,
+                                0,
+                                0,
+                                0
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "NJvU2",
+                                  "name": "Circulo",
+                                  "width": 56,
+                                  "height": 56,
+                                  "fill": "$surface",
+                                  "cornerRadius": 28,
+                                  "stroke": "$border",
+                                  "strokeWidth": 1,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "q3plO",
+                                      "name": "Icono",
+                                      "width": 22,
+                                      "height": 22,
+                                      "icon": "camera",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "DnTGt",
+                                  "name": "Etiqueta",
+                                  "fill": "$ink-2",
+                                  "content": "Receta",
+                                  "lineHeight": 1.2,
+                                  "fontFamily": "$font",
+                                  "fontSize": 13
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "l4d2e",
+                              "name": "Boton Microfono",
+                              "width": 96,
+                              "height": 96,
+                              "fill": "$teal",
+                              "cornerRadius": 48,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "icon",
+                                  "id": "Yr4Oh",
+                                  "name": "Icono Microfono",
+                                  "width": 36,
+                                  "height": 36,
+                                  "icon": "mic",
+                                  "library": "lucide",
+                                  "fill": "#FFFFFF"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "JCGSb",
+                              "name": "Resumen",
+                              "layout": "vertical",
+                              "gap": 6,
+                              "padding": [
+                                20,
+                                0,
+                                0,
+                                0
+                              ],
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "H4UL7q",
+                                  "name": "Circulo",
+                                  "width": 56,
+                                  "height": 56,
+                                  "fill": "$surface",
+                                  "cornerRadius": 28,
+                                  "stroke": "$border",
+                                  "strokeWidth": 1,
+                                  "justifyContent": "center",
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "icon",
+                                      "id": "BZ5L3",
+                                      "name": "Icono",
+                                      "width": 22,
+                                      "height": 22,
+                                      "icon": "list-checks",
+                                      "library": "lucide",
+                                      "fill": "$ink-2"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "text",
+                                  "id": "SVh5D",
+                                  "name": "Etiqueta",
+                                  "fill": "$ink-2",
+                                  "content": "Resumen",
+                                  "lineHeight": 1.2,
+                                  "fontFamily": "$font",
+                                  "fontSize": 13
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "Z3O8rm",
+                          "name": "Toque para hablar",
+                          "fill": "$teal",
+                          "content": "Toque para hablar",
+                          "lineHeight": 1.2,
+                          "fontFamily": "$font",
+                          "fontSize": 15,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "JFN7j",
+                          "name": "Pill Direccion",
+                          "height": 32,
+                          "fill": "$chip-bg",
+                          "cornerRadius": 16,
+                          "gap": 6,
+                          "padding": [
+                            0,
+                            12
+                          ],
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon",
+                              "id": "HYGRZ",
+                              "name": "Intercambio",
+                              "width": 14,
+                              "height": 14,
+                              "icon": "arrow-left-right",
+                              "library": "lucide",
+                              "fill": "$ink-2"
+                            },
+                            {
+                              "type": "text",
+                              "id": "r7uzes",
+                              "name": "Direccion",
+                              "fill": "$ink-2",
+                              "content": "Habla usted · castellano",
+                              "lineHeight": 1.2,
+                              "fontFamily": "$font",
+                              "fontSize": 13,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variables": {
+    "board-bg": {
+      "type": "color",
+      "value": "#E9E6E1"
+    },
+    "ground": {
+      "type": "color",
+      "value": "#F6F4F1"
+    },
+    "surface": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "border": {
+      "type": "color",
+      "value": "#E4DED8"
+    },
+    "ink": {
+      "type": "color",
+      "value": "#18221F"
+    },
+    "ink-2": {
+      "type": "color",
+      "value": "#5B6A65"
+    },
+    "ink-3": {
+      "type": "color",
+      "value": "#6F7975"
+    },
+    "teal": {
+      "type": "color",
+      "value": "#0E6B64"
+    },
+    "teal-press": {
+      "type": "color",
+      "value": "#0A524D"
+    },
+    "teal-tint": {
+      "type": "color",
+      "value": "#DCEEEB"
+    },
+    "cinnamon": {
+      "type": "color",
+      "value": "#A85A2A"
+    },
+    "ok-bg": {
+      "type": "color",
+      "value": "#DDF2E3"
+    },
+    "ok-fg": {
+      "type": "color",
+      "value": "#1E7A3E"
+    },
+    "chip-bg": {
+      "type": "color",
+      "value": "#ECEFEC"
+    },
+    "font": {
+      "type": "string",
+      "value": "Inter"
+    }
+  },
+  "fileToken": "7ed7799c-34d4-488e-afe8-f0374aa09620"
+}
