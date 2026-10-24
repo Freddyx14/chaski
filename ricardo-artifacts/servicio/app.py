@@ -152,6 +152,46 @@ def turno_enfermera(texto: str = Form(...), modo_ensayo: bool = Form(True),
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
+@aplicacion.post("/idioma")
+async def idioma(audio: UploadFile = File(...)):
+    """Solo detección de idioma, sin Claude: la app decide de qué lado va el turno.
+
+    Reenvía al servicio de voz, que ya tiene `mms-lid-512` cargado. Son 49 ms de
+    mediana, así que la app puede preguntarlo en cada turno en vez de alternar
+    los lados a mano.
+    """
+    import httpx
+
+    from servicio.flujo import INSTANCIA
+    try:
+        with httpx.Client(timeout=30) as cli:
+            r = cli.post(f"{INSTANCIA}/idioma",
+                         files={"audio": (audio.filename or "turno.wav",
+                                          await audio.read(), "audio/wav")})
+            return r.json()
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/resumen")
+def resumen(turnos: str = Form(...), rol: str = Form("personal")):
+    """F11: el resumen de la consulta, según quién lo lee (D27).
+
+    `turnos` llega como JSON: [{lado, castellano, quechua, estado}], con estado en
+    dicho · dicho_con_aviso · bloqueado · entendido · con_dudas. La regla que
+    importa vive en `chaski.resumen`: lo que la auditoría bloqueó no puede salir
+    como indicación, porque nunca se le dijo al paciente.
+    """
+    import anthropic
+
+    from chaski.resumen import Turno, resumir, texto_para_decir
+    try:
+        r = resumir(anthropic.Anthropic(), [Turno(**t) for t in json.loads(turnos)], rol)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+    return {**r.model_dump(), "texto_para_decir": texto_para_decir(r)}
+
+
 @aplicacion.get("/corregir")
 def pagina_corregir():
     return FileResponse(AQUI / "static" / "corregir.html")
