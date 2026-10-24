@@ -91,9 +91,9 @@ def test_ensayo_correcto_pasa_guardas_y_critico():
     r = servicio.turno(TE, "spa", "personal", None, traduccion_sembrada=QUY_BIEN, dependencias=deps(c))
     assert r["estado"] == "dicho", r["motivo"]
     assert r["sembrada"] is True and r["texto_salida"] == QUY_BIEN and r["idioma_salida"] == "quy"
-    # Polish differs from the transcript (a final period): both critic paths ran, 4 + 3 calls, on the critic model.
+    # Polish differs from the transcript (a final period): both critic paths ran, 6 calls (the Spanish facts are shared), on the critic model.
     criticas = [k for k in c.llamadas if k["output_format"] is not DecisionModelo]
-    assert len(criticas) == critico.LLAMADAS_TRADUCCION + critico.LLAMADAS_PULIDO
+    assert len(criticas) == critico.LLAMADAS_AMBOS
     assert {k["model"] for k in criticas} == {orquestador.MODELO_CRITICO}
     retro = next(k for k in criticas if k["output_format"] is Retraduccion)
     assert retro["messages"][0]["content"] == QUY_BIEN  # blind
@@ -275,5 +275,5 @@ def test_revisar_con_pulido_y_quechua_suma_llamadas_y_el_pulido_manda():
     c = FakeClient(traducir(), agregados=Agregados(consejos_nuevos=["descanse"], diagnosticos_nuevos=[],
                                                     destinatario_original="paciente", destinatario_version="paciente"))
     r = critico.revisar(c, TE_PULIDO, quechua=QUY_BIEN, transcripcion=TE, modelo="m")
-    assert not r.veredicto.ok and r.llamadas == 7 and r.pulido is not None
+    assert not r.veredicto.ok and r.llamadas == critico.LLAMADAS_AMBOS and r.pulido is not None
     assert r.veredicto == r.pulido.veredicto
