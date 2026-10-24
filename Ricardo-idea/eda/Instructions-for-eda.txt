@@ -1,0 +1,49 @@
+We have a complete dataset of crimes in metropolitan lima city between 2018 to 2025.
+
+The filenames is: delitos_lima_metropolitana_completo_2018-25.csv
+Is a large datasete, there is aprox 1.7 gb, so we need to explore this data
+using polars or duckdb (do by the 2 forms, duckdb with sql queries and polars
+with pandas functions)
+
+The complete work is to explore this dataset with complete details, to found 
+insights for next steps with this data (is sufficient to construct a model to predict
+crime?, or what is a possible output using this data, need to match with more indicators,
+etc).
+
+Do not use dashes (--, —, –, -), italic or put in the words "`word`" to highlight,
+only use bold if is necessary. (in the .md, .ipynb, etc)
+
+The idea are 3 outputs:
+
+1. A readme-workplan.md. the workplan of how we need to do, like an AS-IS or TO-BE
+to understand what is the plan of explore the data.
+2. A readme-guide.md, complete functions need to use for do a complete eda in this
+dataset based on the dataset we give. The idea is to construct a TEMPLATE we could
+reuse over and over with different datasets of this style, the idea is of course
+do this if we have TARGET or NOT TARGET, so the idea is do 2 templates for supervised
+and unsupervised.
+3. The eda-generated.ipynb, the complete notebook with the eda, here implement the
+template, and we need to have a result can be interpreted (each plot need to be 
+interpretated) this for make a call to action, and as a final do a ML model, depends
+if is more accurate do clustering, make clustering, else run a siple ML model
+like log reg, random forest or xgboost, JUSTIFY the target.
+
+Structure of the pipeline: (you can create little function to run in each cell, and make
+a super function call complete_eda that call the other functions)
+
+- Start by  explore the columns and create a data dictionary in .csv of the meaning
+of each columns (in spanish by preference).
+- Understand timestamp and geolocation data, is important to determine if is possible
+create a hand-craft model (supervised ML with simṕle models or tree based models, or
+unsupervised via clustering to find relations in the data)
+- Make a complete and documented EDA in .ipynb, step by step following this pipeline:
+=> charge the data
+=> statistics
+=> NA values
+=> Find if is benefit to us convert some datatypes, some idea is to reduce the 
+precision, using float32 or something like that, also gc.collect() to free memory
+=> plot numeric columns with boxplots/histograms and plot with barplots category
+=> see correllation between numeric columns
+=> bivariate graphics to understand relation between columns
+=> plot timeline evolution 
+=> Cluster by year and/or localization
