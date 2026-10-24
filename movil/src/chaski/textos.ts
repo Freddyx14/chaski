@@ -5,6 +5,9 @@
 // marca con `// ✓` al final. Ojo: «rimay» aquí es el VERBO (hablar), no el nombre de la app (D30).
 import type { Idioma, Perfil, Rol } from './perfil';
 
+/** «a el paciente» → «al paciente»: la contracción del castellano. */
+const a = (quien: string) => (quien.startsWith('el ') ? `al ${quien.slice(3)}` : `a ${quien}`);
+
 const es = {
   elegirIdioma: '¿Qué idioma habla?',
   suNombre: '¿Cómo se llama?',
@@ -18,8 +21,8 @@ const es = {
   empezar: 'Empezar',
   hola: (n: string) => `Hola, ${n}`,
   listo: 'Listo para interpretar',
-  explicaYo: (otro: string) => `Hable en castellano. Chaski se lo dirá en quechua a ${otro} y le avisará si algo no se entendió.`,
-  explicaYoQuechua: (otro: string) => `Hable en quechua. Chaski le dirá a ${otro} lo que usted quiso decir.`,
+  explicaYo: (otro: string) => `Hable en castellano. Chaski se lo dirá en quechua ${a(otro)} y le avisará si algo no se entendió.`,
+  explicaYoQuechua: (otro: string) => `Hable en quechua. Chaski le dirá ${a(otro)} lo que usted quiso decir.`,
   explicaOtro: (otro: string, idioma: string) => `Ahora habla ${otro}, en ${idioma}. Chaski le dirá a usted lo que quiso decir.`,
   tocarHablar: 'Toque para hablar',
   tocarTerminar: 'Toque para terminar',
