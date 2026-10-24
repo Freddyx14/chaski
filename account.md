@@ -5,6 +5,8 @@
 
 ## 📍 Estado actual (act. 2026-10-23, Friday 18:30 PT)
 
+- **Scope (23:33 PT Fri, Freddy):** general health care at the Pilpichaca health post, NOT only pregnant women.
+  Community = Quechua-speaking patients of that post. More family voices = more data.
 - **Build (23:30 PT Fri):** Rimay confirmed by both (Ricardo's extortion idea dropped; his own results showed the
   escalation model loses to the baseline). Plan: `plan/plan-completo.md`. First code in `app/`: the blind
   back-translation audit (T2), 20 tests green, **not yet run against the real API** (needs the Cal Hacks key).

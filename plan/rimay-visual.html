@@ -120,8 +120,8 @@ tr:last-child td{border-bottom:none}
 
   <header class="hero">
     <span class="small mono">Cal Hacks 13.0 · Freddy + Ricardo · entrega domingo 25, 9:00 AM</span>
-    <h1>Rimay lleva la posta a la casa de la gestante, en quechua chanka</h1>
-    <p class="lede">La enfermera da una indicación en castellano. La gestante la escucha en su celular, en su idioma, y la repite con su voz. Si no entendió, la enfermera se entera.</p>
+    <h1>Rimay lleva la posta a la casa del paciente, en quechua chanka</h1>
+    <p class="lede">La enfermera da una indicación en castellano. El paciente la escucha en su celular, en su idioma, y la repite con su voz. Si no entendió, la enfermera se entera. Para cualquier atención: control de niño, fiebre, presión, diabetes, embarazo, adultos mayores.</p>
     <div class="quote">
       <div class="qu">¿Allinllanchu, mamáy?</div>
       <div class="small">«¿Está bien, señora?» · audio real generado con el modelo chanka de Meta (<span class="mono">muestras/mms-tts-quy/</span>)</div>
@@ -135,7 +135,7 @@ tr:last-child td{border-bottom:none}
     <div class="screens">
 
       <div class="screen">
-        <span class="who">La gestante · WhatsApp</span>
+        <span class="who">El paciente · WhatsApp</span>
         <div class="phone">
           <div class="bar"><div class="avatar">R</div><div><strong>Posta de Pilpichaca</strong><div class="small">vía Rimay</div></div></div>
           <div class="bubble in">
@@ -143,7 +143,7 @@ tr:last-child td{border-bottom:none}
             <div class="small">Audio en chanka: su medicina, cada cuánto, hasta cuándo, cuándo volver.</div>
           </div>
           <div class="bubble in"><div class="audio"><div class="play"></div><div class="wave"></div><span class="small">0:18</span></div>
-            <div class="small">Señales de alarma: grabadas una vez y revisadas por la enfermera.</div></div>
+            <div class="small">Cuándo volver de inmediato: señales fijas por cada tipo de atención, revisadas por la enfermera.</div></div>
           <div class="bubble in">«¿Me lo repites?» <span class="small">(en audio, en chanka)</span></div>
           <div class="bubble out"><div class="audio"><div class="play"></div><div class="wave"></div><span class="small">0:09</span></div>
             <div class="small">Ella responde con su voz, en quechua.</div></div>
@@ -155,10 +155,10 @@ tr:last-child td{border-bottom:none}
         <span class="who">La enfermera · panel</span>
         <div class="panel">
           <div class="head"><strong>Hoy, 6 indicaciones</strong><span class="small">Pilpichaca</span></div>
-          <div class="row"><span>María Q. · sulfato ferroso<br><span class="small">repitió todo bien</span></span><span class="pill p-ok">Entendió</span></div>
-          <div class="row"><span>Rosa H. · ácido fólico<br><span class="small">no dijo cuándo volver</span></span><span class="pill p-warn">Llamar</span></div>
-          <div class="row"><span>Juana C. · indicación nueva<br><span class="small">la retraducción cambió «cada 8 horas»</span></span><span class="pill p-bad">No enviado</span></div>
-          <div class="row"><span>Lucía T. · control<br><span class="small">aún no responde</span></span><span class="pill p-warn">Esperando</span></div>
+          <div class="row"><span>María Q. · gestante, sulfato ferroso<br><span class="small">repitió todo bien</span></span><span class="pill p-ok">Entendió</span></div>
+          <div class="row"><span>Don Teodoro · presión alta<br><span class="small">no dijo cada cuánto tomar la pastilla</span></span><span class="pill p-warn">Llamar</span></div>
+          <div class="row"><span>Juana C. · su hijo, diarrea<br><span class="small">la retraducción cambió «cada 8 horas»</span></span><span class="pill p-bad">No enviado</span></div>
+          <div class="row"><span>Lucía T. · control de niño<br><span class="small">aún no responde</span></span><span class="pill p-warn">Esperando</span></div>
         </div>
         <div class="panel">
           <div class="head"><strong>Nueva indicación</strong></div>
@@ -194,8 +194,8 @@ tr:last-child td{border-bottom:none}
       <div class="step gate"><span class="n">2 · compuerta</span><h3>¿Se leyó bien la receta?</h3><p>Si no está seguro de una dosis, no adivina: le pregunta a ella.</p><div><span class="tag">Claude visión</span></div></div>
       <div class="step"><span class="n">3 · traducción</span><h3>Castellano → chanka</h3><p>Con el glosario que revisa la mamá de Freddy.</p><div><span class="tag">Claude</span><span class="tag">glosario</span></div></div>
       <div class="step gate"><span class="n">4 · compuerta</span><h3>Rimay se audita</h3><p>Otra llamada retraduce a ciegas. Código compara dosis, horas, días, cita. Si algo cambió, se bloquea.</p><div><span class="tag">✅ ya construido</span></div></div>
-      <div class="step"><span class="n">5 · voz</span><h3>Chanka → audio</h3><p>Voz chanka, ajustada con la voz de la enfermera. Señales de alarma pregrabadas.</p><div><span class="tag">MMS-TTS quy</span></div></div>
-      <div class="step"><span class="n">6 · envío</span><h3>WhatsApp</h3><p>Audio + texto a la gestante.</p><div><span class="tag">WhatsApp Cloud API</span></div></div>
+      <div class="step"><span class="n">5 · voz</span><h3>Chanka → audio</h3><p>Voz chanka, ajustada con la voz de la enfermera. Señales de «vuelva ya» pregrabadas.</p><div><span class="tag">MMS-TTS quy</span></div></div>
+      <div class="step"><span class="n">6 · envío</span><h3>WhatsApp</h3><p>Audio + texto al paciente.</p><div><span class="tag">WhatsApp Cloud API</span></div></div>
       <div class="step"><span class="n">7 · respuesta</span><h3>Ella repite con su voz</h3><p>Nota de voz en quechua → texto.</p><div><span class="tag">Omnilingual ASR quy</span></div></div>
       <div class="step gate"><span class="n">8 · compuerta</span><h3>¿Entendió lo importante?</h3><p>¿Dijo la medicina, la hora, cuándo volver? Si falta algo, avisa a la enfermera.</p><div><span class="tag">Claude</span></div></div>
     </div>
@@ -209,7 +209,7 @@ tr:last-child td{border-bottom:none}
         <h3>Ciclo 1 · Producto</h3>
         <span class="tagline">Freddy · lo que usa la enfermera el lunes</span>
         <ol>
-          <li>Indicación → auditoría → audio → WhatsApp</li>
+          <li>Indicación (de cualquier atención) → auditoría → audio → WhatsApp</li>
           <li>«¿Me lo repites?» → aviso a la enfermera</li>
           <li>Panel de la enfermera</li>
           <li>Cada corrección suya entra al glosario</li>

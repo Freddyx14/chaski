@@ -3,6 +3,13 @@
 > Qué es el producto, no cómo se construye. La arquitectura va en otro documento.
 > Las cifras vienen de `research/problemas-lenguas-originarias.md` y los papers de `research/papers.md`.
 > «Rimay» significa «hablar» en quechua. Es un nombre de trabajo: lo decidimos con la mamá de Freddy.
+>
+> ⚠️ **Alcance decidido por Freddy (viernes 23, 23:33 PT): salud general, no solo gestantes.** La comunidad es
+> **los pacientes quechuahablantes de la posta de Pilpichaca**, cualquiera sea su atención: control de niño, fiebre,
+> diarrea, presión alta, diabetes, embarazo, adultos mayores. Donde este documento dice «gestante», léase «paciente»;
+> el embarazo queda como uno de los tipos de atención. Las señales de alarma fijas (F3) pasan a ser **señales de
+> «vuelva ya» por tipo de atención**, cada lista revisada por la mamá de Freddy. Más voces familiares = más datos
+> para cubrir más vocabulario.
 
 ---
 

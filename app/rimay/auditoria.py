@@ -57,7 +57,7 @@ SISTEMA_EXTRAER = (
 
 SISTEMA_TRADUCIR = (
     "Traduces indicaciones de una enfermera de la posta de Pilpichaca (Huancavelica, Perú) al quechua chanka "
-    "(variedad Ayacucho-Chanka, la que se habla en Huancavelica) para una gestante que la va a escuchar en audio. "
+    "(variedad Ayacucho-Chanka, la que se habla en Huancavelica) para un paciente que la va a escuchar en audio. "
     "Usa un registro oral, simple y respetuoso, como hablaría la enfermera. "
     "No agregues consejos, advertencias ni datos que no estén en el original, y no quites ninguno. "
     "Cada número, dosis, frecuencia y fecha tiene que quedar exacto. "
