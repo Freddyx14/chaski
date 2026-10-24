@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 
 import { base64ABytes, bocaAbierta, envolvente } from '../src/chaski/wav.ts';
 import {
-  AVISO_LENTO_MS, esReintentable, esResultado, explicarBloqueo, negacionEn, pacienteDesdeResultado, pasoPorTiempo, revisadoPorCritico,
+  AVISO_LENTO_MS, esEnsayo, esReintentable, esResultado, explicarBloqueo, negacionEn, pacienteDesdeResultado, pasoPorTiempo, revisadoPorCritico,
   fraseRevisada, frasesConTag, leerInterprete, type FraseBanco, type Resultado,
   fueCastellano, ladoDetectado, nombreDelCampo, siguienteLado, veredictoEnfermera,
   type RespuestaEnfermera, type RespuestaPaciente,
@@ -336,4 +336,24 @@ test('el banco real de hoy: ninguna frase de emergencia se puede reproducir toda
 test('reintento automático solo para red caída o servicio reiniciándose', () => {
   assert.deepEqual([null, 502, 503, 504].map(esReintentable), [true, true, true, true]);
   assert.deepEqual([400, 404, 500, 422].map(esReintentable), [false, false, false, false]);
+});
+
+test('la insignia del crítico no sale en repreguntar ni responder', () => {
+  assert.equal(revisadoPorCritico({ ...BASE_R, accion: 'repreguntar' }), false);
+  assert.equal(revisadoPorCritico({ ...BASE_R, accion: 'responder' }), false);
+  assert.equal(revisadoPorCritico({ ...BASE_R, accion: 'traducir' }), true);
+  assert.equal(revisadoPorCritico({ ...BASE_R, accion: null }), true);
+});
+
+test('el paciente usa texto_original y cae al historial si falta', () => {
+  const con = pacienteDesdeResultado({ ...BASE_R, idioma_salida: 'spa', texto_original: 'wiksay nanan',
+    contexto: { historial: [{ rol: 'paciente', texto: 'otra cosa' }] } });
+  assert.equal(con.chanka_oido, 'wiksay nanan');
+  const sin = pacienteDesdeResultado({ ...BASE_R, idioma_salida: 'spa', contexto: { historial: [{ rol: 'paciente', texto: 'otra cosa' }] } });
+  assert.equal(sin.chanka_oido, 'otra cosa');
+});
+
+test('sembrada del servicio marca el ensayo', () => {
+  assert.equal(esEnsayo({ ...BASE_R, sembrada: true }), true);
+  assert.equal(esEnsayo(BASE_R), false);
 });

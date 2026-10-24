@@ -32,6 +32,10 @@ export type Resultado = {
   para: 'personal' | 'paciente';
   idioma_salida: 'spa' | 'quy';
   texto_pulido?: string;
+  /** Lo que se oyó, en el idioma de origen. */
+  texto_original?: string;
+  /** Ensayo: la traducción la sembró la app, no la hizo el traductor. */
+  sembrada?: boolean;
   /** Lo que se dice, en idioma_salida. Vacío si bloqueado. */
   texto_salida?: string;
   /** Audio verificado del banco, cuando accion == usar_frase_banco. */
@@ -52,9 +56,18 @@ export function esResultado(r: unknown): r is Resultado {
     && ['dicho', 'dicho_con_aviso', 'bloqueado'].includes((r as Resultado).estado);
 }
 
-/** «Revisado por el crítico»: el crítico corrió y el turno no quedó bloqueado. */
+/**
+ * «Revisado por el crítico»: solo cuando se TRADUJO (o no viene acción), corrió el crítico y no quedó bloqueado.
+ * Repreguntar y responder son respuestas de Chaski al personal: pasan las barreras de código, no el crítico.
+ */
 export function revisadoPorCritico(r: unknown): boolean {
-  return esResultado(r) && !!r.modelos?.critico && r.estado !== 'bloqueado';
+  return esResultado(r) && (r.accion == null || r.accion === 'traducir')
+    && !!r.modelos?.critico && r.estado !== 'bloqueado';
+}
+
+/** ¿Este turno fue un ensayo con traducción sembrada? Lo dice el servicio, no solo la app. */
+export function esEnsayo(r: unknown): boolean {
+  return esResultado(r) && r.sembrada === true;
 }
 
 /** La negación de una frase en castellano, para mostrar qué prohibición se perdió: «no con té». */
@@ -301,7 +314,8 @@ export function veredictoResultado(castellano: string, r: Resultado): Veredicto 
  * sale del último renglón del paciente en `contexto`, porque `Resultado` no lo trae aparte.
  */
 export function pacienteDesdeResultado(r: Resultado): RespuestaPaciente {
-  const oido = [...(r.contexto?.historial ?? [])].reverse().find((h) => h.rol === 'paciente')?.texto ?? '';
+  const oido = r.texto_original
+    || ([...(r.contexto?.historial ?? [])].reverse().find((h) => h.rol === 'paciente')?.texto ?? '');
   return {
     accion: r.accion, para: r.para, idioma_salida: r.idioma_salida, texto_pulido: r.texto_pulido,
     motivo: r.motivo, dato_faltante: r.dato_faltante, frase_banco_id: r.frase_banco_id,

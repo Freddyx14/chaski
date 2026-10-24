@@ -15,7 +15,7 @@ import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinServidor, turn
 import { Chaski, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
-  AVISO_LENTO_MS, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
+  AVISO_LENTO_MS, esEnsayo, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
   pasoPorTiempo, siguienteLado, veredictoEnfermera,
   type Interprete, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/chaski/modelo';
@@ -229,17 +229,19 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
    */
   async function decirTexto(texto: string, sembrada?: string) {
     const r = await turnoEnfermera(texto, perfil.rol, { traduccionSembrada: sembrada });
+    // El letrero de ensayo sale si la app lo pidió o si el servicio dice que la traducción fue sembrada.
+    const ensayoReal = !!sembrada || esEnsayo(r);
     const ia = leerInterprete(r);
-    if (ia.tipo !== 'traducir' && !sembrada) return interpretar(ia, 'castellano', texto, r.quechua);
+    if (ia.tipo !== 'traducir' && !ensayoReal) return interpretar(ia, 'castellano', texto, r.quechua);
     const v = veredictoEnfermera(texto, r);
     agregarTurno({ lado: 'castellano', castellano: texto, quechua: r.quechua ?? r.texto_salida ?? '', estado: v.tipo });
     if (v.tipo === 'bloqueado') {
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-      setFase({ f: 'bloqueado', v, ensayo: sembrada ? 'servicio' : undefined });
+      setFase({ f: 'bloqueado', v, ensayo: ensayoReal ? 'servicio' : undefined });
       return;
     }
-    setFase({ f: 'dicho', v, vozLista: false, ensayo: !!sembrada });
-    if (sembrada) return; // el ensayo no debería pasar: si pasó, se muestra y no se dice
+    setFase({ f: 'dicho', v, vozLista: false, ensayo: ensayoReal });
+    if (ensayoReal) return; // un ensayo nunca se le dice al paciente
     setLado(siguienteLado('castellano'));
     await decir(v.quechua);
     setFase((p) => (p.f === 'dicho' ? { ...p, vozLista: true } : p));
