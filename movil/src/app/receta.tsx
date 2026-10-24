@@ -14,11 +14,11 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 import Animated, { FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { turnoEnfermera, turnoPaciente, ver, voz, type Lectura } from '@/chaski/api';
+import { FalloServicio, turnoEnfermera, turnoPaciente, ver, voz, type Lectura } from '@/chaski/api';
 import { Chaski } from '@/chaski/chaski';
 import { agregarTurno, useTurnos } from '@/chaski/consulta';
 import { GRABACION } from '@/chaski/grabacion';
-import { leerInterprete, veredictoEnfermera, type Veredicto } from '@/chaski/modelo';
+import { esResultado, leerInterprete, pacienteDesdeResultado, veredictoEnfermera, type Veredicto } from '@/chaski/modelo';
 import { MarcaChaski } from '@/chaski/motivos';
 import { usePerfil } from '@/chaski/perfil';
 import {
@@ -123,8 +123,8 @@ function Receta() {
         dias: l.dias ?? null,
       });
       setPaso({ p: 'datos' });
-    } catch {
-      setError(t.sinConexion);
+    } catch (e) {
+      setError(e instanceof FalloServicio ? `${t.sinConexion} (${t.detalleError(e.ruta, e.tipo)})` : t.sinConexion);
       setPaso({ p: 'foto' });
     }
   }
@@ -135,7 +135,7 @@ function Receta() {
     setError(null);
     setPaso({ p: 'diciendo' });
     try {
-      const r = await turnoEnfermera(texto, rol);
+      const r = await turnoEnfermera(texto, rol, { modo: 'receta' });
       // Una indicación de receta solo se dice traducida y auditada; cualquier otra acción del intérprete la frena.
       const ia = leerInterprete(r);
       if (ia.tipo !== 'traducir') {
@@ -175,7 +175,8 @@ function Receta() {
     if (!uri) return;
     setPaso({ p: 'juzgando' });
     try {
-      const r = await turnoPaciente(uri, rol);
+      const crudo = await turnoPaciente(uri, rol, { modo: 'receta' });
+      const r = esResultado(crudo) ? pacienteDesdeResultado(crudo) : crudo;
       agregarTurno({ lado: 'quechua', castellano: r.castellano, quechua: r.chanka_oido, estado: r.seguro ? 'entendido' : 'con_dudas' });
       setPaso({ p: 'resultado', checks: comprobarRepeticion(hechos, r.castellano), dijo: r.castellano });
     } catch {

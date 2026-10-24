@@ -89,21 +89,36 @@ export default function Emergencia() {
               <Pressable
                 accessibilityRole="button"
                 accessibilityLabel={f.es}
+                accessibilityState={{ disabled: !lista }}
+                // Seguridad (§6.4): sin revisar o sin quechua, el botón no suena. Se ve, pero está deshabilitado.
+                disabled={!lista}
                 onPress={() => tocar(f)}
                 style={({ pressed }) => [
                   e.boton,
                   activa && { borderColor: C.action, borderWidth: 3, backgroundColor: C.actionTint },
                   pressed && { backgroundColor: C.actionTint },
-                  !lista && { opacity: 0.65 },
+                  !lista && { opacity: 0.55, backgroundColor: C.ground, borderStyle: 'dashed' },
                 ]}>
-                <View style={[e.icono, { backgroundColor: activa ? C.action : C.actionTint }]}>
-                  <Icono nombre={activa ? 'speaker.wave.3.fill' : 'speaker.wave.2.fill'} color={activa ? C.surface : C.action} tam={20} />
+                <View style={e.filaIcono}>
+                  <View style={[e.icono, { backgroundColor: !lista ? C.castellanoTag : activa ? C.action : C.actionTint }]}>
+                    <Icono
+                      nombre={!lista ? 'speaker.slash.fill' : activa ? 'speaker.wave.3.fill' : 'speaker.wave.2.fill'}
+                      color={!lista ? C.inkTertiary : activa ? C.surface : C.action}
+                      tam={20}
+                    />
+                  </View>
+                  {lista && f.revisado && (
+                    <View style={e.revisado}>
+                      <Icono nombre="checkmark.seal.fill" color={C.ok} tam={12} />
+                      <Text style={e.revisadoTexto}>{t.revisadaEnfermera}</Text>
+                    </View>
+                  )}
                 </View>
                 <Text style={e.es}>{f.es}</Text>
                 {lista ? (
                   <Text style={e.quy}>{f.quy}</Text>
                 ) : (
-                  <Text style={e.pendiente}>{t.faltaRevisar}</Text>
+                  <Text style={e.pendiente}>{t.pendienteRevision}</Text>
                 )}
               </Pressable>
               {fallo === f.id && (
@@ -120,6 +135,7 @@ export default function Emergencia() {
         {origen === 'local' && pendientes > 0 && (
           <Text style={e.nota}>{t.bancoLocal(pendientes)}</Text>
         )}
+        {origen === 'servicio' && pendientes > 0 && <Text style={e.nota}>{t.bancoLocal(pendientes)}</Text>}
         <Boton
           icono="mic.fill"
           texto={t.escucharRespuesta}
@@ -143,6 +159,9 @@ const e = StyleSheet.create({
     minHeight: 150, borderRadius: 20, backgroundColor: C.surface, borderWidth: 1, borderColor: C.border,
     padding: 14, gap: 8,
   },
+  filaIcono: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
+  revisado: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: C.okTint, borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
+  revisadoTexto: { fontSize: 11, fontWeight: '700', color: C.ok },
   icono: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   es: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink, lineHeight: 25 },
   quy: { fontSize: ESCALA.chico, fontWeight: '600', color: C.quechua },

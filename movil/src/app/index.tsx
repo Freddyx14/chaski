@@ -11,11 +11,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { audioDeFrase, escuchar, idioma, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
+import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
 import { Chaski, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
-  fueCastellano, ladoDetectado, leerInterprete, siguienteLado, veredictoEnfermera,
+  AVISO_LENTO_MS, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
+  pasoPorTiempo, siguienteLado, veredictoEnfermera,
   type Interprete, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/chaski/modelo';
 import { usePerfil, type Perfil } from '@/chaski/perfil';
@@ -31,16 +32,17 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { GRABACION } from '@/chaski/grabacion';
+import { FRASE_NEGATIVA_DEMO, useEnsayo } from '@/chaski/ensayo';
 
 
 type Fase =
   | { f: 'listo' }
   | { f: 'grabando' }
-  | { f: 'pensando'; lado: Lado; paso: number; oido?: string }
-  | { f: 'dicho'; v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean }
-  | { f: 'bloqueado'; v: Extract<Veredicto, { tipo: 'bloqueado' }> }
+  | { f: 'pensando'; lado: Lado; paso: number; oido?: string; desde?: number }
+  | { f: 'dicho'; v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean; ensayo?: boolean }
+  | { f: 'bloqueado'; v: Extract<Veredicto, { tipo: 'bloqueado' }>; ensayo?: 'servicio' | 'sin_conexion' }
   | { f: 'paciente'; r: RespuestaPaciente }
-  | { f: 'error'; mensaje: string; sinServidor: boolean }
+  | { f: 'error'; mensaje: string; sinServidor: boolean; detalle?: string; prueba?: 'probando' | 'responde' | 'no_responde' }
   // Intérprete agente (D32): las acciones que no son «traducir».
   | { f: 'pregunta'; d: Extract<Interprete, { tipo: 'pregunta' }>; lado: Lado }
   | { f: 'respuesta'; d: Extract<Interprete, { tipo: 'respuesta' }> }
@@ -68,6 +70,30 @@ const DEMO: Record<string, Fase> = {
       terminos_inseguros: ['posta'], diferencias: [], se_dice: true, aviso: null, total_ms: 0,
     }) as Extract<Veredicto, { tipo: 'dicho_con_aviso' }>,
   },
+  // Contrato final (Resultado): bloqueo en palabras simples, ámbar con su aviso, insignia del crítico.
+  negativa: {
+    f: 'bloqueado', ensayo: 'servicio',
+    v: veredictoEnfermera(FRASE_NEGATIVA_DEMO.es, {
+      estado: 'bloqueado', accion: 'traducir', motivo: 'cambió un dato crítico: prohibiciones', para: 'paciente',
+      idioma_salida: 'quy', paso_fallido: 'guardas', modelos: { principal: 'claude-opus-5', critico: null },
+    }) as Extract<Veredicto, { tipo: 'bloqueado' }>,
+  },
+  critico: {
+    f: 'dicho', vozLista: true,
+    v: veredictoEnfermera(DEMO_CASTELLANO, {
+      estado: 'dicho', accion: 'traducir', motivo: '', para: 'paciente', idioma_salida: 'quy',
+      texto_salida: '[Indicación en quechua chanka]', modelos: { principal: 'claude-opus-5', critico: 'claude-haiku-4-5' },
+    }) as Extract<Veredicto, { tipo: 'dicho' }>,
+  },
+  aviso2: {
+    f: 'dicho', vozLista: true,
+    v: veredictoEnfermera('Si hay sangrado, venga a la posta.', {
+      estado: 'dicho_con_aviso', accion: 'traducir', motivo: '', para: 'paciente', idioma_salida: 'quy',
+      texto_salida: '[Indicación en quechua chanka]', aviso: '«posta» se dijo como préstamo del castellano',
+      modelos: { principal: 'claude-opus-5', critico: 'claude-haiku-4-5' },
+    }) as Extract<Veredicto, { tipo: 'dicho_con_aviso' }>,
+  },
+  lento: { f: 'pensando', lado: 'castellano', paso: 2, oido: DEMO_CASTELLANO, desde: -7000 },
   bloqueado: {
     f: 'bloqueado',
     v: veredictoEnfermera('Tome una pastilla cada 8 horas, nunca dos juntas.', {
@@ -83,7 +109,7 @@ const DEMO: Record<string, Fase> = {
       castellano: '¿Y si me olvido la pastilla de la noche?', literal: '', dudas: [], seguro: false, total_ms: 0,
     },
   },
-  error: { f: 'error', mensaje: 'No pude conectarme. Vuelva a intentarlo.', sinServidor: false },
+  error: { f: 'error', mensaje: 'No pude conectarme. Vuelva a intentarlo.', sinServidor: false, detalle: '/turno/enfermera · 502' },
   pregunta: {
     f: 'pregunta', lado: 'quechua',
     d: leerInterprete({ accion: 'repreguntar', para: 'paciente', texto_pulido: '¿Desde cuándo le duele la barriga?',
@@ -129,6 +155,7 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   const [lado, setLado] = useState<Lado>(ladoInicial ?? perfil.idioma);
   const [env, setEnv] = useState<Envolvente | null>(null);
   const ultimoAudio = useRef<string | null>(null);
+  const ensayo = useEnsayo();
 
   const grabadora = useAudioRecorder(GRABACION);
   const estadoGrabadora = useAudioRecorderState(grabadora, 80);
@@ -185,39 +212,67 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   // ---- turnos -----------------------------------------------------------------------------
   async function turnoDeLaEnfermera(uri: string) {
     try {
-      setFase({ f: 'pensando', lado: 'castellano', paso: 0 });
+      const desde = Date.now();
+      setFase({ f: 'pensando', lado: 'castellano', paso: 0, desde });
       const { texto } = await escuchar(uri);
       if (!texto.trim()) throw new Error('No le escuché bien');
-      setFase({ f: 'pensando', lado: 'castellano', paso: 1, oido: texto });
-      const avance = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 2 } : p)), 1800);
-      const r = await turnoEnfermera(texto, perfil.rol);
-      clearTimeout(avance);
-      const ia = leerInterprete(r);
-      if (ia.tipo !== 'traducir') return interpretar(ia, 'castellano', texto, r.quechua);
-      const v = veredictoEnfermera(texto, r);
-      agregarTurno({ lado: 'castellano', castellano: texto, quechua: r.quechua, estado: v.tipo });
-      if (v.tipo === 'bloqueado') {
-        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
-        setFase({ f: 'bloqueado', v });
-        return;
-      }
-      setFase({ f: 'dicho', v, vozLista: false });
-      setLado(siguienteLado('castellano'));
-      await decir(v.quechua);
-      setFase((p) => (p.f === 'dicho' ? { ...p, vozLista: true } : p));
+      setFase({ f: 'pensando', lado: 'castellano', paso: 1, oido: texto, desde });
+      await decirTexto(texto);
     } catch (e) {
       fallar(e);
     }
   }
 
+  /**
+   * El turno del personal con un texto ya oído. `sembrada` es solo para el ensayo de la negativa: reemplaza la
+   * traducción para mostrar que la barrera la atrapa, y la pantalla lo dice en claro.
+   */
+  async function decirTexto(texto: string, sembrada?: string) {
+    const r = await turnoEnfermera(texto, perfil.rol, { traduccionSembrada: sembrada });
+    const ia = leerInterprete(r);
+    if (ia.tipo !== 'traducir' && !sembrada) return interpretar(ia, 'castellano', texto, r.quechua);
+    const v = veredictoEnfermera(texto, r);
+    agregarTurno({ lado: 'castellano', castellano: texto, quechua: r.quechua ?? r.texto_salida ?? '', estado: v.tipo });
+    if (v.tipo === 'bloqueado') {
+      await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+      setFase({ f: 'bloqueado', v, ensayo: sembrada ? 'servicio' : undefined });
+      return;
+    }
+    setFase({ f: 'dicho', v, vozLista: false, ensayo: !!sembrada });
+    if (sembrada) return; // el ensayo no debería pasar: si pasó, se muestra y no se dice
+    setLado(siguienteLado('castellano'));
+    await decir(v.quechua);
+    setFase((p) => (p.f === 'dicho' ? { ...p, vozLista: true } : p));
+  }
+
+  /** Ensayo de la negativa (D37): manda la frase fija al servicio REAL con la traducción errada sembrada. */
+  async function ensayarNegativa() {
+    const desde = Date.now();
+    setFase({ f: 'pensando', lado: 'castellano', paso: 1, oido: FRASE_NEGATIVA_DEMO.es, desde });
+    try {
+      await decirTexto(FRASE_NEGATIVA_DEMO.es, FRASE_NEGATIVA_DEMO.quySembrado);
+    } catch {
+      // Sin servicio: el mismo resultado de ejemplo, con un letrero que dice que es de ejemplo.
+      setFase({
+        f: 'bloqueado', ensayo: 'sin_conexion',
+        v: { tipo: 'bloqueado', castellano: FRASE_NEGATIVA_DEMO.es, diferencias: [], terminos: [], casillasOk: [],
+          razon: explicarBloqueo('guardas', 'cambió un dato crítico: prohibiciones', FRASE_NEGATIVA_DEMO.es) },
+      });
+    }
+  }
+
   async function turnoDelPaciente(uri: string) {
     try {
-      setFase({ f: 'pensando', lado: 'quechua', paso: 0 });
-      const avance = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 1 } : p)), 700);
-      const avance2 = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 2 } : p)), 2600);
-      const r = await turnoPaciente(uri, perfil.rol);
-      clearTimeout(avance);
-      clearTimeout(avance2);
+      setFase({ f: 'pensando', lado: 'quechua', paso: 0, desde: Date.now() });
+      const crudo = await turnoPaciente(uri, perfil.rol);
+      // Contrato final: bloqueado no se le muestra al personal como si fuera lo que dijo el paciente.
+      if (esResultado(crudo) && crudo.estado === 'bloqueado') {
+        await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
+        setFase({ f: 'bloqueado', v: veredictoEnfermera('', crudo) as Extract<Veredicto, { tipo: 'bloqueado' }> });
+        setLado('quechua');
+        return;
+      }
+      const r = esResultado(crudo) ? pacienteDesdeResultado(crudo) : crudo;
       if (fueCastellano(r)) {
         // Detección automática (D11): el turno se habló en castellano aunque tocaba quechua.
         setLado('castellano');
@@ -308,7 +363,19 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
         : String((e as Error)?.message ?? '').includes('escuché')
           ? t.noEscuche
           : t.sinConexion,
+      // La única línea técnica, en gris: ruta y estado, para distinguir un reinicio del servicio de la red del teléfono.
+      detalle: e instanceof FalloServicio ? t.detalleError(e.ruta, e.tipo) : undefined,
     });
+  }
+
+  async function probarConexion() {
+    setFase((p) => (p.f === 'error' ? { ...p, prueba: 'probando' } : p));
+    let ok = false;
+    try {
+      await salud();
+      ok = true;
+    } catch {}
+    setFase((p) => (p.f === 'error' ? { ...p, prueba: ok ? 'responde' : 'no_responde' } : p));
   }
 
   function reintentar() {
@@ -359,6 +426,8 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
         {fase.f === 'grabando' && <Medidor nivel={nivelVoz} tinte={lado} t={t} />}
 
         {fase.f === 'pensando' && <Pensando fase={fase} t={t} />}
+        {fase.f === 'bloqueado' && fase.ensayo && <LetreroEnsayo sinConexion={fase.ensayo === 'sin_conexion'} t={t} />}
+        {fase.f === 'dicho' && fase.ensayo && <LetreroEnsayo noBloqueo t={t} />}
 
         {fase.f === 'dicho' && <Dicho v={fase.v} vozLista={fase.vozLista || hablandoDemo} hablando={hablando} progreso={progresoVoz} t={t} />}
 
@@ -374,6 +443,9 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
         {fase.f === 'error' && (
           <View style={e.centroTexto}>
             <Text style={e.titulo}>{fase.mensaje}</Text>
+            {fase.detalle ? <Text style={e.detalleError}>{fase.detalle}</Text> : null}
+            {fase.prueba === 'responde' && <Aviso tipo="ok" texto={t.servicioResponde} />}
+            {fase.prueba === 'no_responde' && <Aviso tipo="warn" texto={t.servicioNoResponde} />}
           </View>
         )}
       </ScrollView>
@@ -420,6 +492,10 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
             {fase.sinServidor
               ? <Boton texto={t.conectar} icono="link" onPress={() => router.push('/ajustes')} />
               : <Boton texto={t.reintentar} icono="arrow.clockwise" onPress={reintentar} />}
+            {!fase.sinServidor && (
+              <Boton tipo="secundario" icono="antenna.radiowaves.left.and.right" texto={fase.prueba === 'probando' ? '…' : t.probarConexion}
+                onPress={probarConexion} deshabilitado={fase.prueba === 'probando'} />
+            )}
             <Boton tipo="texto" texto={t.volver} onPress={() => setFase({ f: 'listo' })} />
           </View>
         )}
@@ -432,6 +508,12 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
               </View>
             </AnilloInti>
           </View>
+        )}
+        {fase.f === 'listo' && ensayo && (
+          <Pressable accessibilityRole="button" onPress={ensayarNegativa} style={e.chipEnsayo}>
+            <Icono nombre="theatermasks.fill" color={C.ink} tam={14} />
+            <Text style={e.chipEnsayoTexto}>{t.ensayoChip}</Text>
+          </Pressable>
         )}
         {(fase.f === 'listo' || fase.f === 'grabando') && (
           <Microfono
@@ -634,8 +716,29 @@ function Medidor({ nivel, tinte, t }: { nivel: number; tinte: Lado; t: Textos })
   );
 }
 
+/** El ensayo de la negativa siempre se dice en claro: nunca se presenta como un error real del traductor. */
+function LetreroEnsayo({ sinConexion, noBloqueo, t }: { sinConexion?: boolean; noBloqueo?: boolean; t: Textos }) {
+  return (
+    <View style={e.ensayo}>
+      <Icono nombre="theatermasks.fill" color={C.ink} tam={16} />
+      <Text style={e.ensayoTexto}>
+        {noBloqueo ? t.ensayoNoBloqueo : sinConexion ? t.ensayoSinConexion : t.ensayoLetrero}
+      </Text>
+    </View>
+  );
+}
+
 function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Textos }) {
   const pasos = fase.lado === 'castellano' ? t.pasosCastellano : t.pasosQuechua;
+  // Pasos reales por tiempo transcurrido (Opus + crítico ≈ 5–6 s, p95 ~11 s): nunca silencio.
+  const [ahora, setAhora] = useState(Date.now());
+  useEffect(() => {
+    const i = setInterval(() => setAhora(Date.now()), 250);
+    return () => clearInterval(i);
+  }, []);
+  const transcurrido = fase.desde ? ahora - fase.desde : 0;
+  const paso = fase.desde ? Math.max(fase.paso, pasoPorTiempo(transcurrido)) : fase.paso;
+  const lento = transcurrido >= AVISO_LENTO_MS;
   return (
     <View style={{ gap: 12, marginTop: 16 }}>
       {fase.oido ? (
@@ -646,22 +749,25 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
       ) : null}
       <Tarjeta estilo={{ gap: 10 }}>
         {pasos.map((p, i) => {
-          const hecho = i < fase.paso;
-          const ahora = i === fase.paso;
+          const hecho = i < paso;
+          const actual = i === paso;
           return (
             <View key={p} style={e.paso}>
               {/* Cada paso cumplido entra con un resorte chico: se siente que avanzó. */}
               <Animated.View key={hecho ? 'hecho' : 'falta'} entering={hecho ? ZoomIn.springify().damping(12) : undefined}>
                 <Icono
-                  nombre={hecho ? 'checkmark.circle.fill' : ahora ? 'ellipsis.circle' : 'circle'}
-                  color={hecho ? C.ok : ahora ? C.action : C.border}
+                  nombre={hecho ? 'checkmark.circle.fill' : actual ? 'ellipsis.circle' : 'circle'}
+                  color={hecho ? C.ok : actual ? C.action : C.border}
                   tam={20}
                 />
               </Animated.View>
-              <Text style={[e.pasoTexto, { color: hecho || ahora ? C.ink : C.inkTertiary }]}>{p}</Text>
+              <Text style={[e.pasoTexto, { color: hecho || actual ? C.ink : C.inkTertiary }]}>{p}</Text>
             </View>
           );
         })}
+        {lento && (
+          <Animated.Text entering={FadeInDown.springify().damping(18)} style={e.mini}>{t.puedeTardar}</Animated.Text>
+        )}
       </Tarjeta>
     </View>
   );
@@ -708,11 +814,17 @@ function Dicho({ v, vozLista, hablando, progreso, t }: {
           <Text style={[e.auditoriaTitulo, { color: C.ok }]}>{t.auditado}</Text>
         </View>
         <Casillas casillas={v.casillas} />
+        {v.critico && (
+          <Animated.View entering={ZoomIn.delay(700).springify().damping(14)} style={e.critico}>
+            <Icono nombre="checkmark.seal.fill" color={C.ok} tam={14} />
+            <Text style={e.criticoTexto}>{t.revisadoCritico}</Text>
+          </Animated.View>
+        )}
       </View>
       {v.tipo === 'dicho_con_aviso' && (
         <Aviso
           tipo="warn"
-          texto={v.terminos.length ? t.dichoConAviso(v.terminos.join(', ')) : t.dichoConAvisoSolo}
+          texto={v.aviso ? v.aviso : v.terminos.length ? t.dichoConAviso(v.terminos.join(', ')) : t.dichoConAvisoSolo}
         />
       )}
     </Animated.View>
@@ -733,13 +845,17 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
   const temblor = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
-      <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>{t.noLoDije}</Text>
+      <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>
+        {v.razon ? t.chaskiNoLoDijo(v.razon) : t.noLoDije}
+      </Text>
       <Text style={[e.explicacion, { alignSelf: 'center' }]}>{t.reviseParte}</Text>
-      <Tarjeta>
-        <Etiqueta idioma="castellano" />
-        <Text style={[e.cuerpoTexto, { marginTop: 8 }]}>{v.castellano}</Text>
-      </Tarjeta>
-      {v.diferencias.length > 0 ? (
+      {v.castellano ? (
+        <Tarjeta>
+          <Etiqueta idioma="castellano" />
+          <Text style={[e.cuerpoTexto, { marginTop: 8 }]}>{v.castellano}</Text>
+        </Tarjeta>
+      ) : null}
+      {v.razon ? null : v.diferencias.length > 0 ? (
         v.diferencias.map((d, i) => (
           <Animated.View key={i} style={[e.comparacion, temblor]}>
             <Text style={[e.rotulo, { color: C.block }]}>{d.nombre.toUpperCase()}</Text>
@@ -807,6 +923,13 @@ function primeraMayuscula(s: string) {
 }
 
 const e = StyleSheet.create({
+  detalleError: { fontSize: ESCALA.mini, color: C.inkTertiary, fontVariant: ['tabular-nums'] },
+  critico: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-start', backgroundColor: C.surface, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1, borderColor: C.okTint },
+  criticoTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.ok },
+  ensayo: { flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: C.castellanoTag, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8, marginTop: 12 },
+  ensayoTexto: { fontSize: ESCALA.mini, fontWeight: '600', color: C.ink, flexShrink: 1 },
+  chipEnsayo: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center', backgroundColor: C.castellanoTag, borderRadius: 16, paddingHorizontal: 12, paddingVertical: 6, marginBottom: 8 },
+  chipEnsayoTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.ink },
   fila: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   rotuloAccion: { fontSize: ESCALA.chico, fontWeight: '700', color: C.action },
   chipDato: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-start', backgroundColor: C.warnTint, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 5 },
