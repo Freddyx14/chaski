@@ -98,6 +98,19 @@ export function fueCastellano(r: RespuestaPaciente, umbral = 0.8): boolean {
   return r.idioma?.codigo === 'spa' && (r.idioma.confianza ?? 0) >= umbral;
 }
 
+/**
+ * El lado del turno según el detector de idioma (D11). Con confianza baja, o si el detector falló,
+ * se queda el lado esperado por la alternancia: la mezcla castellano-quechua es normal en la posta.
+ */
+export function ladoDetectado(
+  det: { codigo: string; confianza: number } | null, esperado: Lado, umbral = 0.8,
+): Lado {
+  if (!det || (det.confianza ?? 0) < umbral) return esperado;
+  if (det.codigo === 'spa') return 'castellano';
+  if (det.codigo === 'quy') return 'quechua';
+  return esperado;
+}
+
 export type Turno = {
   id: number;
   lado: Lado;

@@ -9,11 +9,11 @@ import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { escuchar, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
+import { escuchar, idioma, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
 import { Chaski, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
-  fueCastellano, siguienteLado, veredictoEnfermera, type Lado, type RespuestaPaciente, type Veredicto,
+  fueCastellano, ladoDetectado, siguienteLado, veredictoEnfermera, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/chaski/modelo';
 import { usePerfil, type Perfil } from '@/chaski/perfil';
 import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/chaski/textos';
@@ -159,7 +159,13 @@ function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
     const uri = grabadora.uri;
     if (!uri) return fallar(new Error('sin audio'));
     ultimoAudio.current = uri;
-    if (lado === 'castellano') return turnoDeLaEnfermera(uri);
+    // D11: el detector decide quién habló; si falla o duda, manda la alternancia.
+    let quien = lado;
+    try {
+      quien = ladoDetectado(await idioma(uri), lado);
+    } catch {}
+    if (quien !== lado) setLado(quien);
+    if (quien === 'castellano') return turnoDeLaEnfermera(uri);
     return turnoDelPaciente(uri);
   }
 

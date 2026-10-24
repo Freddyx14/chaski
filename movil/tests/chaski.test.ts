@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 
 import { base64ABytes, bocaAbierta, envolvente } from '../src/chaski/wav.ts';
 import {
-  fueCastellano, nombreDelCampo, siguienteLado, veredictoEnfermera,
+  fueCastellano, ladoDetectado, nombreDelCampo, siguienteLado, veredictoEnfermera,
   type RespuestaEnfermera, type RespuestaPaciente,
 } from '../src/chaski/modelo.ts';
 
@@ -160,4 +160,12 @@ test('nivelEn lee la envolvente en el instante del audio', () => {
   assert.equal(nivelEn(env, 0.06), 1);
   assert.equal(nivelEn(env, 0.9), 0);
   assert.equal(nivelEn(null, 0.1), 0);
+});
+
+test('el detector de idioma decide el lado solo con confianza alta', () => {
+  assert.equal(ladoDetectado({ codigo: 'quy', confianza: 1 }, 'castellano'), 'quechua');
+  assert.equal(ladoDetectado({ codigo: 'spa', confianza: 0.95 }, 'quechua'), 'castellano');
+  assert.equal(ladoDetectado({ codigo: 'spa', confianza: 0.5 }, 'quechua'), 'quechua');
+  assert.equal(ladoDetectado(null, 'quechua'), 'quechua');
+  assert.equal(ladoDetectado({ codigo: 'eng', confianza: 1 }, 'castellano'), 'castellano');
 });

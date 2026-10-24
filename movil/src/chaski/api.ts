@@ -7,13 +7,17 @@ import type { RespuestaEnfermera, RespuestaEscuchar, RespuestaPaciente } from '.
 
 export class SinServidor extends Error {}
 
+// El servicio va por ngrok gratuito, que a veces responde con una página de aviso en vez de la API.
+// Esta cabecera la salta; con otros túneles se ignora.
+const CABECERAS = { 'ngrok-skip-browser-warning': '1' };
+
 async function pedir<T>(ruta: string, cuerpo: FormData, segundos = 90): Promise<T> {
   const base = await leerServidor();
   if (!base) throw new SinServidor('Falta la dirección del servicio');
   const corte = new AbortController();
   const reloj = setTimeout(() => corte.abort(), segundos * 1000);
   try {
-    const r = await fetch(`${base}${ruta}`, { method: 'POST', body: cuerpo, signal: corte.signal });
+    const r = await fetch(`${base}${ruta}`, { method: 'POST', body: cuerpo, signal: corte.signal, headers: CABECERAS });
     const d = await r.json();
     if (!r.ok || d?.error) throw new Error(d?.error ?? `HTTP ${r.status}`);
     return d as T;
@@ -32,6 +36,11 @@ function conAudio(uri: string, nombre = 'turno.wav'): FormData {
 /** Voz de la enfermera → texto (Cartesia ink-whisper). */
 export function escuchar(uri: string) {
   return pedir<RespuestaEscuchar>('/escuchar', conAudio(uri));
+}
+
+/** Solo el idioma del audio (D11), sin Claude: ~60-150 ms. Decide de qué lado va el turno. */
+export function idioma(uri: string) {
+  return pedir<{ codigo: string; confianza: number }>('/idioma', conAudio(uri), 8);
 }
 
 /** Castellano → auditoría → quechua. Sin audio: la voz se pide aparte para mostrar el texto antes. */
@@ -59,7 +68,7 @@ export async function voz(quechua: string): Promise<{ uri: string; bytes: Uint8A
   if (!base) throw new SinServidor('Falta la dirección del servicio');
   const f = new FormData();
   f.append('texto', quechua);
-  const r = await fetch(`${base}/voz`, { method: 'POST', body: f });
+  const r = await fetch(`${base}/voz`, { method: 'POST', body: f, headers: CABECERAS });
   if (!r.ok) throw new Error(`voz HTTP ${r.status}`);
   const bytes = new Uint8Array(await r.arrayBuffer());
   const archivo = new File(Paths.cache, `voz-${Date.now()}.wav`);
@@ -71,7 +80,7 @@ export async function voz(quechua: string): Promise<{ uri: string; bytes: Uint8A
 export async function salud(): Promise<Record<string, unknown>> {
   const base = await leerServidor();
   if (!base) throw new SinServidor('Falta la dirección del servicio');
-  const r = await fetch(`${base}/salud`);
+  const r = await fetch(`${base}/salud`, { headers: CABECERAS });
   return r.json();
 }
 

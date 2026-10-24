@@ -30,11 +30,12 @@ La app habla con `ricardo-artifacts/servicio/app.py`. iOS no acepta HTTP plano, 
 el servicio se abre un túnel:
 
 ```bash
+# hoy: ngrok fijo en la instancia de Ricardo, publicado en ricardo-artifacts/servicio/url.json
 cloudflared tunnel --url http://localhost:8000
 ```
 
 Copia la dirección `https://….trycloudflare.com` en Ajustes → «Guardar y probar». Cambia cada vez que se abre
-el túnel. Rutas que usa: `/escuchar`, `/turno/enfermera`, `/turno/paciente`, `/voz`, `/ver`, `/resumen`, `/salud`.
+el túnel. Rutas que usa: `/idioma` (decide quién habló en cada turno, D11; si falla, manda la alternancia), `/escuchar`, `/turno/enfermera`, `/turno/paciente`, `/voz`, `/ver`, `/resumen`, `/salud`.
 
 ## Modo demo (sin servicio)
 
@@ -69,4 +70,4 @@ Para cada build nuevo, sube `ios.buildNumber` en `app.json`.
 
 - Los textos en quechua de `src/chaski/textos.ts` son **borrador**: los revisa la mamá de Freddy.
 - «¿Me lo repite?» (F6) espera su ruta en el servicio.
-- Detección de idioma por turno (`/idioma`): mientras no exista, los turnos alternan solos y se pueden cambiar a mano.
+
