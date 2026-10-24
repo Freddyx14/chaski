@@ -46,17 +46,6 @@ curl -sf -X POST "$BASE/api/respuestas" -F participante_id="$PID" -F numero_glob
 AURL=$(python3 -c 'import json,sys;print(json.load(open(sys.argv[1]))["audio_url"] or "")' "$TMP/r.json")
 [ -n "$AURL" ] && pass "audio stored" || fail "no audio_url returned"
 
-echo "3b. resume by code returns the same participant with its saved answer"
-curl -sf "$BASE/api/retomar?codigo=$COD" > "$TMP/ret.json" || fail "resume by code"
-python3 - "$TMP/ret.json" "$PID" <<'PY' || fail "resume payload"
-import json, sys
-d = json.load(open(sys.argv[1]))
-assert d["id"] == sys.argv[2], d["id"]
-assert [r["numero_global"] for r in d["respuestas"]] == [1], d["respuestas"]
-PY
-code=$(curl -s -o /dev/null -w '%{http_code}' "$BASE/api/retomar?codigo=p999999")
-[ "$code" = 404 ] && pass "resume works, unknown code is 404" || fail "unknown code gave $code"
-
 echo "4. audio bytes round-trip"
 curl -sf "$AURL" -o "$TMP/back.wav" || fail "download audio"
 cmp -s "$TMP/tono.wav" "$TMP/back.wav" && pass "downloaded audio == uploaded" || fail "audio differs"

@@ -9,6 +9,7 @@ type Pantalla = "cargando" | "bienvenida" | "frase" | "partes" | "gracias";
 
 const LS_PARTICIPANTE = "rimay.participante";
 const LS_INDICE = "rimay.indice";
+const LS_BORRADOR = "rimay.borrador";
 const MAX_SEGUNDOS = 90;
 const ULTIMA_OBLIGATORIA = FRASES.findLastIndex((f) => f.bloque !== "E");
 
@@ -38,15 +39,12 @@ export default function Recolector() {
 
   // Resume where they left off.
   useEffect(() => {
-    const desdeEnlace = new URLSearchParams(window.location.search).get("p");
-    const id = desdeEnlace ?? lsGet(LS_PARTICIPANTE);
+    const id = lsGet(LS_PARTICIPANTE);
     if (!id) { setPantalla("bienvenida"); return; }
     fetch(`/api/participantes/${id}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((d) => {
-        lsSet(LS_PARTICIPANTE, d.id);
-        retomar(d, desdeEnlace ? null : lsGet(LS_INDICE));
-        if (desdeEnlace) window.history.replaceState(null, "", window.location.pathname);
+        retomar(d, lsGet(LS_INDICE));
       })
       .catch((status) => {
         if (status === 404) lsDel(LS_PARTICIPANTE);
@@ -56,8 +54,8 @@ export default function Recolector() {
 
   useEffect(() => { if (part) lsSet(LS_INDICE, String(indice)); }, [indice, part]);
 
-  // Loads a participant and lands on the first phrase they have not saved yet,
-  // unless this same browser remembers where they were.
+  // Progress lives on the server and this browser remembers who they are, so opening the
+  // link again lands exactly where they left off. Nothing to remember, no code to type.
   function retomar(d: Participante & { respuestas: Guardada[] }, indiceLocal: string | null) {
     const mapa = new Map(d.respuestas.map((g) => [g.numero_global, g]));
     setPart({ id: d.id, codigo: d.codigo, sabe_escribir_quechua: d.sabe_escribir_quechua });
@@ -91,7 +89,6 @@ export default function Recolector() {
   if (pantalla === "bienvenida" || !part) {
     return (
       <Bienvenida
-        onRetomar={(d) => { lsSet(LS_PARTICIPANTE, d.id); retomar(d, null); window.scrollTo({ top: 0 }); }}
         onListo={(p) => {
           lsSet(LS_PARTICIPANTE, p.id);
           setPart(p);
@@ -112,7 +109,7 @@ export default function Recolector() {
       <main className="wrap">
         <h1 className="big">¡Gracias!</h1>
         <p>Usted guardó {hechas} de {TOTAL_OBLIGATORIAS} frases. Su ayuda enseña a Rimay a hablar quechua chanka.</p>
-        <EnlaceRetomar part={part} />
+        <p className="muted">Todo lo que grabó quedó guardado. Si vuelve a abrir este enlace, sigue donde se quedó.</p>
         {!terminoExtra && (
           <button className="btn primary" onClick={() => irA(primeraExtra)}>
             Seguir con la parte extra (opcional)
@@ -130,56 +127,19 @@ export default function Recolector() {
       indice={indice}
       guardada={guardadas.get(FRASES[indice].global)}
       guardadas={guardadas}
-      onGuardada={(g) => {
+      onGuardada={(g, avanzar = true) => {
         setGuardadas((m) => new Map(m).set(g.numero_global, g));
-        siguiente();
+        if (avanzar) siguiente();
       }}
       onSaltar={siguiente}
-      onSaltarTodo={() => { setPantalla("gracias"); window.scrollTo({ top: 0 }); }}
       onAnterior={() => indice > 0 && irA(indice - 1)}
       onPartes={() => setPantalla("partes")}
     />
   );
 }
 
-function Retomar({ onRetomar }: { onRetomar: (d: Participante & { respuestas: Guardada[] }) => void }) {
-  const [codigo, setCodigo] = useState("");
-  const [error, setError] = useState("");
-  const [buscando, setBuscando] = useState(false);
-  async function buscar() {
-    setError("");
-    const c = codigo.trim().toLowerCase().replace(/\s+/g, "");
-    if (!/^p?\d+$/.test(c)) { setError("Escriba su código, por ejemplo p4."); return; }
-    setBuscando(true);
-    try {
-      const r = await fetch(`/api/retomar?codigo=${encodeURIComponent(c.startsWith("p") ? c : `p${c}`)}`);
-      if (r.status === 404) { setError("No encontramos ese código. Revíselo e intente de nuevo."); return; }
-      if (!r.ok) { setError("No se pudo buscar por un problema nuestro. Intente en unos minutos."); return; }
-      onRetomar(await r.json());
-    } catch {
-      setError("No se pudo buscar. Revise su internet e intente de nuevo.");
-    } finally {
-      setBuscando(false);
-    }
-  }
-  return (
-    <details className="card">
-      <summary>¿Ya empezó antes? Siga donde se quedó</summary>
-      <label className="retomar">
-        Escriba su código (aparece arriba de cada frase, por ejemplo p4)
-        <input value={codigo} onChange={(e) => setCodigo(e.target.value)} inputMode="text" autoCapitalize="none" autoComplete="off" />
-      </label>
-      {error && <p className="error">{error}</p>}
-      <button className="btn" disabled={buscando} onClick={buscar}>{buscando ? "Buscando…" : "Seguir donde me quedé"}</button>
-    </details>
-  );
-}
-
-function Bienvenida({ onListo, onRetomar }: {
-  onListo: (p: Participante) => void; onRetomar: (d: Participante & { respuestas: Guardada[] }) => void;
-}) {
+function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
   const [consent, setConsent] = useState(false);
-  const [sabe, setSabe] = useState<boolean | null>(null);
   const [nombre, setNombre] = useState("");
   const [sexo, setSexo] = useState("");
   const [edad, setEdad] = useState("");
@@ -190,14 +150,13 @@ function Bienvenida({ onListo, onRetomar }: {
   async function empezar() {
     setError("");
     if (!consent) { setError("Marque la casilla para aceptar."); return; }
-    if (sabe === null) { setError("Díganos si escribe en quechua."); return; }
     setEnviando(true);
     let r: Response;
     try {
       r = await fetch("/api/participantes", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ consentimiento: true, sabe_escribir_quechua: sabe, nombre, sexo, edad, lugar }),
+        body: JSON.stringify({ consentimiento: true, nombre, sexo, edad, lugar }),
       });
     } catch {
       // fetch only throws when the request never reached the server.
@@ -221,14 +180,6 @@ function Bienvenida({ onListo, onRetomar }: {
         Lo que usted escriba y grabe le enseña a traducir, entender y hablar quechua chanka.
       </p>
       <p>Le mostraremos frases en castellano. Escríbalas en quechua y luego léalas en voz alta para grabarlas. Puede cerrar y volver cuando quiera.</p>
-
-      <fieldset className="card">
-        <legend>¿Usted escribe en quechua?</legend>
-        <div className="row">
-          <button type="button" className={`btn choice ${sabe === true ? "on" : ""}`} onClick={() => setSabe(true)}>Sí</button>
-          <button type="button" className={`btn choice ${sabe === false ? "on" : ""}`} onClick={() => setSabe(false)}>No, solo hablo</button>
-        </div>
-      </fieldset>
 
       <details className="card">
         <summary>Datos opcionales (puede dejarlos en blanco)</summary>
@@ -259,8 +210,6 @@ function Bienvenida({ onListo, onRetomar }: {
       <button className="btn primary" disabled={enviando} onClick={empezar}>
         {enviando ? "Un momento…" : "Empezar"}
       </button>
-
-      <Retomar onRetomar={onRetomar} />
     </main>
   );
 }
@@ -308,25 +257,35 @@ function Partes({ guardadas, onElegir, onVolver }: {
   );
 }
 
-function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, onSaltarTodo, onAnterior, onPartes }: {
+function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, onAnterior, onPartes }: {
   part: Participante; indice: number; guardada?: Guardada; guardadas: Map<number, Guardada>;
-  onGuardada: (g: Guardada) => void; onSaltar: () => void; onSaltarTodo: () => void; onAnterior: () => void; onPartes: () => void;
+  onGuardada: (g: Guardada, avanzar?: boolean) => void; onSaltar: () => void; onAnterior: () => void; onPartes: () => void;
 }) {
   const f = FRASES[indice];
   const esExtra = f.bloque === ("E" as Bloque);
-  const [texto, setTexto] = useState(guardada?.quechua_texto && !esExtra ? guardada.quechua_texto : "");
+  const claveBorrador = `${LS_BORRADOR}.${part.id}.${f.global}`;
+  // What they typed survives closing the browser before saving.
+  const [texto, setTexto] = useState(
+    esExtra ? "" : lsGet(claveBorrador) ?? guardada?.quechua_texto ?? "",
+  );
   const rec = useGrabadora();
   const [enviando, setEnviando] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    if (esExtra) return;
+    if (texto && texto !== (guardada?.quechua_texto ?? "")) lsSet(claveBorrador, texto);
+    else lsDel(claveBorrador);
+  }, [texto, esExtra, claveBorrador, guardada]);
+
   const tieneAudioPrevio = !!guardada?.audio_url && !rec.blob;
+  const textoNuevo = !esExtra && texto.trim() !== (guardada?.quechua_texto ?? "").trim() && !!texto.trim();
+  const hayPendiente = !!rec.blob || textoNuevo;
   const puedeGuardar = !enviando && rec.estado !== "grabando" &&
     (esExtra ? !!rec.blob || tieneAudioPrevio : !!texto.trim() || !!rec.blob || tieneAudioPrevio);
 
-  async function guardar() {
+  async function enviar(): Promise<Guardada | null> {
     setError("");
-    if (esExtra && !rec.blob && !tieneAudioPrevio) { setError("Grabe la frase antes de guardar."); return; }
-    if (!esExtra && !texto.trim() && !rec.blob && !tieneAudioPrevio) { setError("Escriba la frase o grábela."); return; }
     setEnviando(true);
     try {
       const fd = new FormData();
@@ -338,31 +297,59 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
         fd.set("audio", rec.blob, `audio.${ext}`);
         fd.set("audio_segundos", String(rec.segundos));
       }
-      const r = await fetch("/api/respuestas", { method: "POST", body: fd });
+      let r: Response;
+      try {
+        r = await fetch("/api/respuestas", { method: "POST", body: fd });
+      } catch {
+        setError("No se pudo guardar. Revise su internet e intente de nuevo.");
+        return null;
+      }
       if (!r.ok) {
         const d = await r.json().catch(() => ({}));
-        throw new Error(d.error || "No se pudo guardar.");
+        setError(d.error && r.status < 500 ? d.error : "No se pudo guardar por un problema nuestro. Intente de nuevo.");
+        return null;
       }
-      onGuardada(await r.json());
-    } catch (e) {
-      setError(e instanceof Error && e.message ? `${e.message} Revise su internet e intente de nuevo.` : "No se pudo guardar.");
+      const g = (await r.json()) as Guardada;
+      lsDel(claveBorrador);
+      return g;
+    } finally {
       setEnviando(false);
     }
   }
 
-  return (
-    <main className="wrap">
-      <div className="top">
-        <button className="link" onClick={onPartes}>☰ Partes</button>
-        <span className="muted">Código {part.codigo}</span>
-      </div>
-      <Progreso indice={indice} guardadas={guardadas} />
+  async function guardar() {
+    if (esExtra && !rec.blob && !tieneAudioPrevio) { setError("Grabe la frase antes de guardar."); return; }
+    if (!esExtra && !texto.trim() && !rec.blob && !tieneAudioPrevio) { setError("Escriba la frase o grábela."); return; }
+    const g = await enviar();
+    if (g) onGuardada(g);
+  }
 
-      <div className="frase card">
+  // Leaving a phrase never throws away what they did: anything unsaved is saved first.
+  async function salir(ir: () => void) {
+    if (rec.estado === "grabando") rec.detener();
+    if (hayPendiente) {
+      const g = await enviar();
+      if (!g) return;
+      onGuardada(g, false);
+    }
+    ir();
+  }
+
+  return (
+    <main className="wrap frase-pantalla">
+      <header className="cabecera">
+        <div className="top">
+          <button className="link" onClick={() => salir(onPartes)} disabled={enviando}>☰ Partes</button>
+          <span className="muted small">Se guarda solo</span>
+        </div>
+        <Progreso indice={indice} guardadas={guardadas} />
+      </header>
+
+      <div className="frase">
         <div className="num">{f.global}</div>
         <p className="es">{f.castellano}</p>
         {esExtra && <p className="qu-given">{f.chanka}</p>}
-        {guardada && <p className="ok">✓ Ya guardada. Puede cambiarla.</p>}
+        {guardada && <p className="ok">✓ Guardada. Puede cambiarla.</p>}
       </div>
 
       {esExtra ? (
@@ -370,7 +357,7 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
       ) : (
         <>
           <label className="field">
-            <span>Escríbalo en quechua{part.sabe_escribir_quechua ? "" : " (si puede)"}</span>
+            <span>Escríbalo en quechua</span>
             <textarea
               value={texto}
               onChange={(e) => setTexto(e.target.value)}
@@ -378,7 +365,8 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
               autoCapitalize="sentences"
               autoCorrect="off"
               spellCheck={false}
-              placeholder={part.sabe_escribir_quechua ? "" : "Si no escribe quechua, solo grabe la frase"}
+              enterKeyHint="done"
+              placeholder="Si no sabe escribirla, solo grábela"
             />
           </label>
           <p className="regla">
@@ -391,16 +379,16 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
 
       <Grabadora rec={rec} audioPrevio={tieneAudioPrevio ? guardada!.audio_url! : null} />
 
-      {error && <p className="error">{error}</p>}
-      <button className="btn primary" disabled={!puedeGuardar} onClick={guardar}>
-        {enviando ? "Guardando…" : "Guardar y seguir"}
-      </button>
-      <div className="row">
-        <button className="btn" onClick={onAnterior} disabled={indice === 0 || enviando}>← Anterior</button>
-        <button className="btn" onClick={onSaltar} disabled={enviando}>Saltar →</button>
+      <div className="acciones">
+        {error && <p className="error">{error}</p>}
+        <button className="btn primary" disabled={!puedeGuardar} onClick={guardar}>
+          {enviando ? "Guardando…" : "Guardar y seguir"}
+        </button>
+        <div className="row">
+          <button className="btn" onClick={() => salir(onAnterior)} disabled={indice === 0 || enviando}>← Anterior</button>
+          <button className="btn" onClick={() => salir(onSaltar)} disabled={enviando}>Saltar →</button>
+        </div>
       </div>
-      <button className="btn" onClick={onSaltarTodo} disabled={enviando}>Saltar todo y terminar</button>
-      {!esExtra && <p className="muted small center">Si no sabe una frase, toque «Saltar». Lo que ya guardó no se pierde.</p>}
     </main>
   );
 }
@@ -507,24 +495,3 @@ function Grabadora({ rec, audioPrevio }: { rec: Rec; audioPrevio: string | null 
   );
 }
 
-function EnlaceRetomar({ part }: { part: Participante }) {
-  const [copiado, setCopiado] = useState(false);
-  const enlace = typeof window === "undefined" ? "" : `${window.location.origin}/?p=${part.id}`;
-  const wa = `https://wa.me/?text=${encodeURIComponent(`Mi enlace para seguir con Rimay: ${enlace}`)}`;
-  return (
-    <div className="card">
-      <p>Su código es <b>{part.codigo}</b>. Con él puede volver y seguir donde se quedó, desde cualquier teléfono.</p>
-      <div className="row" style={{ marginTop: 10 }}>
-        <a className="btn" href={wa} target="_blank" rel="noreferrer">Enviarme el enlace por WhatsApp</a>
-        <button
-          className="btn"
-          onClick={() => {
-            navigator.clipboard?.writeText(enlace).then(() => setCopiado(true)).catch(() => setCopiado(false));
-          }}
-        >
-          {copiado ? "Copiado" : "Copiar enlace"}
-        </button>
-      </div>
-    </div>
-  );
-}
