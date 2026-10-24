@@ -1,2 +1,2 @@
 # audio de prueba para estrenar el corrector
-{"persona": "p0", "bloque": "A", "numero": 1, "audio": "datos/prueba_minima/quy_todas.wav", "transcripcion": "", "castellano": "(cinco frases seguidas, audio de prueba)", "segundos": 15.84, "consentimiento": false}
+{"persona": "p0", "bloque": "A", "numero": 1, "audio": "datos/prueba_minima/quy_todas.wav", "transcripcion": "", "castellano": "(cinco frases seguidas, audio de prueba)", "segundos": 15.84, "consentimiento": false, "origen": "aprendiz"}

@@ -1,0 +1,14 @@
+{
+ "_nota": "Quien es quien en el formulario. Identificado por Ricardo el 24-oct a partir de lo que grabo cada uno. Lo que diga `rol` decide si una grabacion entra al entrenamiento: solo `nativo` entra. `aprendiz` son pruebas nuestras; se guardan para probar la tuberia, nunca para entrenar ni para medir.",
+ "_por_confirmar": "p17, p18 y p19 son de la familia de Freddy y las identifico Ricardo por descarte. Antes de usar p18 como la voz de Chaski hay que confirmarselo a Freddy: el ajuste de mms-tts-quy va con UNA sola voz y tiene que ser la de su mama.",
+ "p16": {"quien": "papa de Ricardo", "rol": "nativo", "nota": "completo los 175"},
+ "p17": {"quien": "papa de Freddy", "rol": "nativo", "nota": "74 grabados, 73 sin escribir: van por /corregir"},
+ "p18": {"quien": "mama de Freddy (por confirmar)", "rol": "nativo", "nota": "completo los 175. Si se confirma, es la voz de Chaski"},
+ "p19": {"quien": "familiar de Freddy", "rol": "nativo", "nota": "74 grabados, 66 sin escribir: van por /corregir"},
+ "p24": {"quien": "familiar de Freddy", "rol": "nativo", "nota": "en proceso, 39 de 175"},
+ "p15": {"quien": "prueba del papa de Ricardo", "rol": "aprendiz", "nota": "escribio 74 pero casi no grabo; p16 es su corrida buena"},
+ "p20": {"quien": "Ricardo", "rol": "aprendiz", "nota": "prueba propia"},
+ "p0": {"quien": "Ricardo", "rol": "aprendiz", "nota": "prueba propia"},
+ "ricardo": {"quien": "Ricardo", "rol": "aprendiz", "nota": "prueba propia"},
+ "ricardo2": {"quien": "Ricardo", "rol": "aprendiz", "nota": "prueba propia"}
+}
