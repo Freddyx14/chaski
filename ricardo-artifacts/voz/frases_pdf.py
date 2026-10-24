@@ -68,36 +68,40 @@ CLINICAS = [
 # existen en quechua pero se pronuncian distinto cuando las dice un hablante de
 # chanka, y son justo las que no se pueden equivocar en una posta.
 MEDICAMENTOS = [
-    "paracetamol", "ibuprofeno", "amoxicilina", "naproxeno", "omeprazol",
-    "sulfato ferroso", "ácido fólico", "albendazol", "cotrimoxazol", "metformina",
-    "losartán", "salbutamol", "dexametasona", "suero oral", "vitamina C",
-    "jarabe", "tableta", "ampolla", "gotas", "cucharadita",
-    "cinco mililitros", "quinientos miligramos", "media tableta", "una ampolla",
-    "doctor", "doctora", "enfermera", "obstetra", "posta", "hospital",
-    "presión", "diabetes", "anemia", "control", "receta",
+    "Tome paracetamol", "Tome ibuprofeno", "Tome amoxicilina", "Tome omeprazol en ayunas",
+    "Tome sulfato ferroso", "Tome ácido fólico", "Tome albendazol", "Tome metformina",
+    "Tome losartán", "Use el salbutamol", "Dele suero oral", "Tome vitamina C",
+    "Tome el jarabe", "Tome una tableta", "Le voy a poner una ampolla", "Póngale tres gotas",
+    "Una cucharadita de jarabe", "Cinco mililitros de jarabe", "Pastilla de quinientos miligramos",
+    "Media tableta", "El doctor lo va a ver", "La doctora la va a atender",
+    "La enfermera le va a explicar", "La obstetra la va a revisar", "Vaya a la posta",
+    "Lo vamos a llevar al hospital", "Le voy a medir la presión", "Usted tiene diabetes",
+    "Usted tiene anemia", "Venga a su control", "Aquí está su receta",
 ]
 
 # Numeros y tiempos: de ellos dependen las dosis y los dias, que es lo que no puede fallar.
 NUMEROS = [
-    "Los números del uno al diez, seguidos",
-    "Los días de la semana, del lunes al domingo",
-    "En la mañana, en la tarde, en la noche",
-    "Cada ocho horas, cada doce horas, una vez al día",
-    "Una semana, dos semanas, un mes",
+    "Cuente del uno al diez",
+    "Diga los días de la semana, del lunes al domingo",
+    "Tome la pastilla en la mañana, en la tarde y en la noche",
+    "Tome la pastilla cada ocho horas",
+    "Tome la pastilla cada doce horas",
+    "Vuelva en una semana",
+    "Vuelva en un mes",
 ]
 
 # Bloque B: respuestas libres, como responderia un paciente. Es lo que Rimay tiene que
 # entender en la consulta real, y es lo que se mide con la persona que el modelo no escucho.
 LIBRES = [
-    "La enfermera le dijo: «tome una pastilla cada ocho horas por siete días». Repita con sus palabras qué tiene que hacer",
-    "Cuente dónde le duele y desde cuándo",
-    "Diga qué pastillas o remedios está tomando ahora",
-    "Cuente cómo se siente hoy",
-    "Pregúntele a la enfermera qué hacer si se olvida la pastilla",
-    "Cuente que su hijo tiene fiebre o diarrea y desde cuándo",
-    "Diga que no entendió y pida que le repitan",
-    "Pregunte cuándo es su próximo control",
-    "Cuente si es alérgico a algún remedio",
+    "La enfermera le dice: «Tome una pastilla cada ocho horas por siete días. ¿Me lo repite?». Repítalo con sus palabras",
+    "La enfermera le pregunta: «¿Dónde le duele y desde cuándo?». Responda",
+    "La enfermera le pregunta: «¿Qué remedios está tomando ahora?». Responda",
+    "La enfermera le pregunta: «¿Cómo se siente hoy?». Responda",
+    "Pregúntele a la enfermera qué hace si se olvida la pastilla",
+    "La enfermera le pregunta: «¿Qué tiene su hijo?». Responda que tiene fiebre o diarrea, y desde cuándo",
+    "Dígale a la enfermera que no entendió y que por favor le repita",
+    "Pregúntele a la enfermera cuándo es su próximo control",
+    "La enfermera le pregunta: «¿Es alérgico a algún remedio?». Responda",
     "Despídase de la enfermera y agradézcale",
 ]
 
@@ -123,11 +127,11 @@ def traer_verificadas() -> list[dict]:
 def estilos():
     base = getSampleStyleSheet()
     return {
-        "titulo": ParagraphStyle("t", parent=base["Title"], fontSize=19, spaceAfter=6),
-        "nota": ParagraphStyle("n", parent=base["Normal"], fontSize=9.5, leading=13,
+        "titulo": ParagraphStyle("t", parent=base["Title"], fontSize=21, spaceAfter=8),
+        "nota": ParagraphStyle("n", parent=base["Normal"], fontSize=11.5, leading=16,
                                textColor=colors.HexColor("#4e4d45"), spaceAfter=10),
-        "celda": ParagraphStyle("c", parent=base["Normal"], fontSize=10.5, leading=14),
-        "seccion": ParagraphStyle("s", parent=base["Heading2"], fontSize=12, spaceBefore=14,
+        "celda": ParagraphStyle("c", parent=base["Normal"], fontSize=12.5, leading=17),
+        "seccion": ParagraphStyle("s", parent=base["Heading2"], fontSize=14, spaceBefore=16,
                                   spaceAfter=4, textColor=colors.HexColor("#16160f")),
     }
 
@@ -135,7 +139,7 @@ def estilos():
 def tabla(filas, anchos, est):
     t = Table(filas, colWidths=anchos, repeatRows=1)
     t.setStyle(TableStyle([
-        ("FONTSIZE", (0, 0), (-1, -1), 10.5),
+        ("FONTSIZE", (0, 0), (-1, -1), 12.5),
         ("TEXTCOLOR", (0, 0), (-1, 0), colors.HexColor("#86847a")),
         ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
         ("FONTSIZE", (0, 0), (-1, 0), 8.5),
@@ -168,63 +172,59 @@ def main() -> None:
     P = lambda s: Paragraph(s, est["celda"])
     linea = "_" * 34
 
+    # Lo que ve la persona: numeros simples, 1, 2, 3... Lo que usa el etiquetador: (bloque, numero).
+    numeracion, n = {}, 0
+    for letra, lista in (("C", CLINICAS), ("M", MEDICAMENTOS), ("N", NUMEROS), ("B", LIBRES), ("E", verificadas)):
+        for i in range(1, len(lista) + 1):
+            n += 1
+            numeracion[str(n)] = [letra, i]
+    rango = {}
+    n = 0
+    for letra, lista in (("C", CLINICAS), ("M", MEDICAMENTOS), ("N", NUMEROS), ("B", LIBRES), ("E", verificadas)):
+        rango[letra] = (n + 1, n + len(lista)); n += len(lista)
+
     (DESTINO / "frases.json").write_text(json.dumps(
         {"verificadas": verificadas, "clinicas_sin_traducir": CLINICAS,
          "medicamentos_y_prestamos": MEDICAMENTOS, "numeros_y_tiempos": NUMEROS,
-         "respuestas_libres": LIBRES},
+         "respuestas_libres": LIBRES,
+         "numeracion": numeracion},
         ensure_ascii=False, indent=1), encoding="utf-8")
 
     nota_comun = (
-        "<b>Cómo grabar.</b> Lugar silencioso, el celular a un palmo de la boca. "
-        "<b>Una nota de voz por frase</b>, enviada a la persona del equipo que le compartió este documento. "
-        "En cada nota, primero diga el código en castellano («C uno», «M cinco», «B tres») y después "
-        "la frase <b>en quechua chanka, como la diría en la posta</b>: natural, no leyendo como locutor. "
-        "<b>No hace falta escribir nada</b>: el texto lo corrige después una hablante de quechua, en pantalla.<br/><br/>"
-        "<b>Orden.</b> Primero C, M, N y B (lo importante, unos 25 minutos). "
-        "El bloque «Extra» es solo si le queda tiempo.")
+        "<b>¿Para qué sirve?</b> Estamos haciendo una app para que el personal de las postas pueda hablar "
+        "con los pacientes en quechua. Cada frase que usted grabe le enseña dos cosas: a <b>traducir</b> "
+        "bien del castellano al quechua en temas de salud, y a <b>entender y pronunciar</b> el quechua chanka.<br/><br/>"
+        "<b>Cómo grabar, en 4 pasos</b><br/>"
+        "1. Lea la frase en castellano.<br/>"
+        "2. En WhatsApp, mantenga presionado el micrófono para grabar una nota de voz.<br/>"
+        "3. Diga el <b>número</b> en castellano y después la frase <b>en quechua</b>, como usted la diría "
+        "en la posta, con sus propias palabras.<br/>"
+        "4. Suelte y envíe. <b>Una nota de voz por frase</b>, a la persona que le pasó este documento.<br/><br/>"
+        "<b>Ejemplo.</b> Usted ve: «3 · Tómela con agua, no con té». Graba: «tres» y luego la frase en quechua.<br/><br/>"
+        "<b>No tiene que escribir nada.</b> Si no sabe cómo se dice algo, sáltelo. "
+        "Lugar tranquilo, el celular cerca de la boca. Las partes 1 a 4 toman unos 25 minutos; "
+        "la parte 5 es solo si le queda tiempo.")
 
-    construir("frases_quechua.pdf", "Rimay · frases en quechua chanka",
-              nota_comun + " <b>Este cuadernillo es para leer en voz alta.</b>",
-              [("Frases verificadas",
-                [["#", "Quechua chanka"]] + [[str(i), P(f["chanka"])]
-                                             for i, f in enumerate(verificadas, 1)],
-                [1.2 * cm, 15 * cm])])
+    def parte(titulo, letra, lista, texto=lambda x: x):
+        ini, _ = rango[letra]
+        return (titulo, [["N.º", "Frase en castellano"]] +
+                [[str(ini + i), P(texto(x))] for i, x in enumerate(lista)], [1.4 * cm, 15 * cm])
 
-    construir("frases_castellano.pdf", "Rimay · frases en castellano",
-              nota_comun + " <b>Diga cada frase en chanka, como la diría en la posta.</b>",
-              [("Frases verificadas",
-                [["#", "Castellano"]] + [[str(i), P(f["castellano"])]
-                                         for i, f in enumerate(verificadas, 1)],
-                [1.2 * cm, 15 * cm]),
-               ("Frases de la posta · dígalas en quechua con sus palabras",
-                [["#", "Castellano"]] +
-                [[str(i), P(t)] for i, t in enumerate(CLINICAS, len(verificadas) + 1)],
-                [1.2 * cm, 15 * cm]),
-               ("Medicamentos y préstamos · dígalos como se dicen en la posta",
-                [["#", "Palabra"]] +
-                [[str(i), P(t)]
-                 for i, t in enumerate(MEDICAMENTOS, len(verificadas) + len(CLINICAS) + 1)],
-                [1.2 * cm, 15 * cm])])
-
-    construir("frases_ambos.pdf", "Rimay · frases para grabar en quechua chanka",
-              nota_comun,
-              [("C · Frases de la posta · dígalas en chanka",
-                [["#", "Castellano"]] + [[f"C{i}", P(t)] for i, t in enumerate(CLINICAS, 1)],
-                [1.2 * cm, 15 * cm]),
-               ("M · Medicamentos y palabras del castellano · dígalas como se dicen en la posta",
-                [["#", "Palabra"]] + [[f"M{i}", P(t)] for i, t in enumerate(MEDICAMENTOS, 1)],
-                [1.2 * cm, 15 * cm]),
-               ("N · Números y tiempos · una nota por línea",
-                [["#", "Qué decir en chanka"]] + [[f"N{i}", P(t)] for i, t in enumerate(NUMEROS, 1)],
-                [1.2 * cm, 15 * cm]),
-               ("B · Respuestas libres · responda como lo haría un paciente, con sus palabras",
-                [["#", "Qué hacer"]] + [[f"B{i}", P(t)] for i, t in enumerate(LIBRES, 1)],
-                [1.2 * cm, 15 * cm]),
-               ("Extra · solo si le queda tiempo · lea en voz alta la columna en chanka",
-                [["#", "Castellano", "Quechua chanka"]] +
-                [[f"E{i}", P(f["castellano"]), P(f["chanka"])]
-                 for i, f in enumerate(verificadas, 1)],
-                [1.2 * cm, 7.3 * cm, 7.7 * cm])])
+    bloques = [
+        parte("Parte 1 · Lo que dice la enfermera · dígalo en quechua", "C", CLINICAS),
+        parte("Parte 2 · Medicinas · dígalo en quechua (el nombre de la medicina, como lo dice la gente)", "M", MEDICAMENTOS),
+        parte("Parte 3 · Números y días · dígalo en quechua", "N", NUMEROS),
+        parte("Parte 4 · Ahora usted es el paciente · responda en quechua con sus palabras", "B", LIBRES),
+        ("Parte 5 · Extra, solo si le queda tiempo · lea en voz alta la columna en quechua",
+         [["N.º", "Castellano", "Quechua chanka"]] +
+         [[str(rango["E"][0] + i), P(f["castellano"]), P(f["chanka"])] for i, f in enumerate(verificadas)],
+         [1.4 * cm, 7.2 * cm, 7.6 * cm]),
+    ]
+    construir("frases_ambos.pdf", "Ayúdenos a enseñarle quechua a Rimay", nota_comun, bloques)
+    construir("frases_castellano.pdf", "Ayúdenos a enseñarle quechua a Rimay", nota_comun, bloques[:4])
+    construir("frases_quechua.pdf", "Rimay · frases para leer en quechua chanka",
+              "Lea en voz alta cada frase. Una nota de voz por frase: diga el número y después la frase.",
+              [bloques[4]])
 
     total = len(CLINICAS) + len(MEDICAMENTOS) + len(NUMEROS) + len(LIBRES)
     print(f"{len(CLINICAS)} clínicas + {len(MEDICAMENTOS)} medicamentos + {len(NUMEROS)} números + "

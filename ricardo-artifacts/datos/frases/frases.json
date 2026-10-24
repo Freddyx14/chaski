@@ -529,59 +529,751 @@
   "El resultado llega en tres días"
  ],
  "medicamentos_y_prestamos": [
-  "paracetamol",
-  "ibuprofeno",
-  "amoxicilina",
-  "naproxeno",
-  "omeprazol",
-  "sulfato ferroso",
-  "ácido fólico",
-  "albendazol",
-  "cotrimoxazol",
-  "metformina",
-  "losartán",
-  "salbutamol",
-  "dexametasona",
-  "suero oral",
-  "vitamina C",
-  "jarabe",
-  "tableta",
-  "ampolla",
-  "gotas",
-  "cucharadita",
-  "cinco mililitros",
-  "quinientos miligramos",
-  "media tableta",
-  "una ampolla",
-  "doctor",
-  "doctora",
-  "enfermera",
-  "obstetra",
-  "posta",
-  "hospital",
-  "presión",
-  "diabetes",
-  "anemia",
-  "control",
-  "receta"
+  "Tome paracetamol",
+  "Tome ibuprofeno",
+  "Tome amoxicilina",
+  "Tome omeprazol en ayunas",
+  "Tome sulfato ferroso",
+  "Tome ácido fólico",
+  "Tome albendazol",
+  "Tome metformina",
+  "Tome losartán",
+  "Use el salbutamol",
+  "Dele suero oral",
+  "Tome vitamina C",
+  "Tome el jarabe",
+  "Tome una tableta",
+  "Le voy a poner una ampolla",
+  "Póngale tres gotas",
+  "Una cucharadita de jarabe",
+  "Cinco mililitros de jarabe",
+  "Pastilla de quinientos miligramos",
+  "Media tableta",
+  "El doctor lo va a ver",
+  "La doctora la va a atender",
+  "La enfermera le va a explicar",
+  "La obstetra la va a revisar",
+  "Vaya a la posta",
+  "Lo vamos a llevar al hospital",
+  "Le voy a medir la presión",
+  "Usted tiene diabetes",
+  "Usted tiene anemia",
+  "Venga a su control",
+  "Aquí está su receta"
  ],
  "numeros_y_tiempos": [
-  "Los números del uno al diez, seguidos",
-  "Los días de la semana, del lunes al domingo",
-  "En la mañana, en la tarde, en la noche",
-  "Cada ocho horas, cada doce horas, una vez al día",
-  "Una semana, dos semanas, un mes"
+  "Cuente del uno al diez",
+  "Diga los días de la semana, del lunes al domingo",
+  "Tome la pastilla en la mañana, en la tarde y en la noche",
+  "Tome la pastilla cada ocho horas",
+  "Tome la pastilla cada doce horas",
+  "Vuelva en una semana",
+  "Vuelva en un mes"
  ],
  "respuestas_libres": [
-  "La enfermera le dijo: «tome una pastilla cada ocho horas por siete días». Repita con sus palabras qué tiene que hacer",
-  "Cuente dónde le duele y desde cuándo",
-  "Diga qué pastillas o remedios está tomando ahora",
-  "Cuente cómo se siente hoy",
-  "Pregúntele a la enfermera qué hacer si se olvida la pastilla",
-  "Cuente que su hijo tiene fiebre o diarrea y desde cuándo",
-  "Diga que no entendió y pida que le repitan",
-  "Pregunte cuándo es su próximo control",
-  "Cuente si es alérgico a algún remedio",
+  "La enfermera le dice: «Tome una pastilla cada ocho horas por siete días. ¿Me lo repite?». Repítalo con sus palabras",
+  "La enfermera le pregunta: «¿Dónde le duele y desde cuándo?». Responda",
+  "La enfermera le pregunta: «¿Qué remedios está tomando ahora?». Responda",
+  "La enfermera le pregunta: «¿Cómo se siente hoy?». Responda",
+  "Pregúntele a la enfermera qué hace si se olvida la pastilla",
+  "La enfermera le pregunta: «¿Qué tiene su hijo?». Responda que tiene fiebre o diarrea, y desde cuándo",
+  "Dígale a la enfermera que no entendió y que por favor le repita",
+  "Pregúntele a la enfermera cuándo es su próximo control",
+  "La enfermera le pregunta: «¿Es alérgico a algún remedio?». Responda",
   "Despídase de la enfermera y agradézcale"
- ]
+ ],
+ "numeracion": {
+  "1": [
+   "C",
+   1
+  ],
+  "2": [
+   "C",
+   2
+  ],
+  "3": [
+   "C",
+   3
+  ],
+  "4": [
+   "C",
+   4
+  ],
+  "5": [
+   "C",
+   5
+  ],
+  "6": [
+   "C",
+   6
+  ],
+  "7": [
+   "C",
+   7
+  ],
+  "8": [
+   "C",
+   8
+  ],
+  "9": [
+   "C",
+   9
+  ],
+  "10": [
+   "C",
+   10
+  ],
+  "11": [
+   "C",
+   11
+  ],
+  "12": [
+   "C",
+   12
+  ],
+  "13": [
+   "C",
+   13
+  ],
+  "14": [
+   "C",
+   14
+  ],
+  "15": [
+   "C",
+   15
+  ],
+  "16": [
+   "C",
+   16
+  ],
+  "17": [
+   "C",
+   17
+  ],
+  "18": [
+   "C",
+   18
+  ],
+  "19": [
+   "C",
+   19
+  ],
+  "20": [
+   "C",
+   20
+  ],
+  "21": [
+   "C",
+   21
+  ],
+  "22": [
+   "C",
+   22
+  ],
+  "23": [
+   "C",
+   23
+  ],
+  "24": [
+   "C",
+   24
+  ],
+  "25": [
+   "C",
+   25
+  ],
+  "26": [
+   "M",
+   1
+  ],
+  "27": [
+   "M",
+   2
+  ],
+  "28": [
+   "M",
+   3
+  ],
+  "29": [
+   "M",
+   4
+  ],
+  "30": [
+   "M",
+   5
+  ],
+  "31": [
+   "M",
+   6
+  ],
+  "32": [
+   "M",
+   7
+  ],
+  "33": [
+   "M",
+   8
+  ],
+  "34": [
+   "M",
+   9
+  ],
+  "35": [
+   "M",
+   10
+  ],
+  "36": [
+   "M",
+   11
+  ],
+  "37": [
+   "M",
+   12
+  ],
+  "38": [
+   "M",
+   13
+  ],
+  "39": [
+   "M",
+   14
+  ],
+  "40": [
+   "M",
+   15
+  ],
+  "41": [
+   "M",
+   16
+  ],
+  "42": [
+   "M",
+   17
+  ],
+  "43": [
+   "M",
+   18
+  ],
+  "44": [
+   "M",
+   19
+  ],
+  "45": [
+   "M",
+   20
+  ],
+  "46": [
+   "M",
+   21
+  ],
+  "47": [
+   "M",
+   22
+  ],
+  "48": [
+   "M",
+   23
+  ],
+  "49": [
+   "M",
+   24
+  ],
+  "50": [
+   "M",
+   25
+  ],
+  "51": [
+   "M",
+   26
+  ],
+  "52": [
+   "M",
+   27
+  ],
+  "53": [
+   "M",
+   28
+  ],
+  "54": [
+   "M",
+   29
+  ],
+  "55": [
+   "M",
+   30
+  ],
+  "56": [
+   "M",
+   31
+  ],
+  "57": [
+   "N",
+   1
+  ],
+  "58": [
+   "N",
+   2
+  ],
+  "59": [
+   "N",
+   3
+  ],
+  "60": [
+   "N",
+   4
+  ],
+  "61": [
+   "N",
+   5
+  ],
+  "62": [
+   "N",
+   6
+  ],
+  "63": [
+   "N",
+   7
+  ],
+  "64": [
+   "B",
+   1
+  ],
+  "65": [
+   "B",
+   2
+  ],
+  "66": [
+   "B",
+   3
+  ],
+  "67": [
+   "B",
+   4
+  ],
+  "68": [
+   "B",
+   5
+  ],
+  "69": [
+   "B",
+   6
+  ],
+  "70": [
+   "B",
+   7
+  ],
+  "71": [
+   "B",
+   8
+  ],
+  "72": [
+   "B",
+   9
+  ],
+  "73": [
+   "B",
+   10
+  ],
+  "74": [
+   "E",
+   1
+  ],
+  "75": [
+   "E",
+   2
+  ],
+  "76": [
+   "E",
+   3
+  ],
+  "77": [
+   "E",
+   4
+  ],
+  "78": [
+   "E",
+   5
+  ],
+  "79": [
+   "E",
+   6
+  ],
+  "80": [
+   "E",
+   7
+  ],
+  "81": [
+   "E",
+   8
+  ],
+  "82": [
+   "E",
+   9
+  ],
+  "83": [
+   "E",
+   10
+  ],
+  "84": [
+   "E",
+   11
+  ],
+  "85": [
+   "E",
+   12
+  ],
+  "86": [
+   "E",
+   13
+  ],
+  "87": [
+   "E",
+   14
+  ],
+  "88": [
+   "E",
+   15
+  ],
+  "89": [
+   "E",
+   16
+  ],
+  "90": [
+   "E",
+   17
+  ],
+  "91": [
+   "E",
+   18
+  ],
+  "92": [
+   "E",
+   19
+  ],
+  "93": [
+   "E",
+   20
+  ],
+  "94": [
+   "E",
+   21
+  ],
+  "95": [
+   "E",
+   22
+  ],
+  "96": [
+   "E",
+   23
+  ],
+  "97": [
+   "E",
+   24
+  ],
+  "98": [
+   "E",
+   25
+  ],
+  "99": [
+   "E",
+   26
+  ],
+  "100": [
+   "E",
+   27
+  ],
+  "101": [
+   "E",
+   28
+  ],
+  "102": [
+   "E",
+   29
+  ],
+  "103": [
+   "E",
+   30
+  ],
+  "104": [
+   "E",
+   31
+  ],
+  "105": [
+   "E",
+   32
+  ],
+  "106": [
+   "E",
+   33
+  ],
+  "107": [
+   "E",
+   34
+  ],
+  "108": [
+   "E",
+   35
+  ],
+  "109": [
+   "E",
+   36
+  ],
+  "110": [
+   "E",
+   37
+  ],
+  "111": [
+   "E",
+   38
+  ],
+  "112": [
+   "E",
+   39
+  ],
+  "113": [
+   "E",
+   40
+  ],
+  "114": [
+   "E",
+   41
+  ],
+  "115": [
+   "E",
+   42
+  ],
+  "116": [
+   "E",
+   43
+  ],
+  "117": [
+   "E",
+   44
+  ],
+  "118": [
+   "E",
+   45
+  ],
+  "119": [
+   "E",
+   46
+  ],
+  "120": [
+   "E",
+   47
+  ],
+  "121": [
+   "E",
+   48
+  ],
+  "122": [
+   "E",
+   49
+  ],
+  "123": [
+   "E",
+   50
+  ],
+  "124": [
+   "E",
+   51
+  ],
+  "125": [
+   "E",
+   52
+  ],
+  "126": [
+   "E",
+   53
+  ],
+  "127": [
+   "E",
+   54
+  ],
+  "128": [
+   "E",
+   55
+  ],
+  "129": [
+   "E",
+   56
+  ],
+  "130": [
+   "E",
+   57
+  ],
+  "131": [
+   "E",
+   58
+  ],
+  "132": [
+   "E",
+   59
+  ],
+  "133": [
+   "E",
+   60
+  ],
+  "134": [
+   "E",
+   61
+  ],
+  "135": [
+   "E",
+   62
+  ],
+  "136": [
+   "E",
+   63
+  ],
+  "137": [
+   "E",
+   64
+  ],
+  "138": [
+   "E",
+   65
+  ],
+  "139": [
+   "E",
+   66
+  ],
+  "140": [
+   "E",
+   67
+  ],
+  "141": [
+   "E",
+   68
+  ],
+  "142": [
+   "E",
+   69
+  ],
+  "143": [
+   "E",
+   70
+  ],
+  "144": [
+   "E",
+   71
+  ],
+  "145": [
+   "E",
+   72
+  ],
+  "146": [
+   "E",
+   73
+  ],
+  "147": [
+   "E",
+   74
+  ],
+  "148": [
+   "E",
+   75
+  ],
+  "149": [
+   "E",
+   76
+  ],
+  "150": [
+   "E",
+   77
+  ],
+  "151": [
+   "E",
+   78
+  ],
+  "152": [
+   "E",
+   79
+  ],
+  "153": [
+   "E",
+   80
+  ],
+  "154": [
+   "E",
+   81
+  ],
+  "155": [
+   "E",
+   82
+  ],
+  "156": [
+   "E",
+   83
+  ],
+  "157": [
+   "E",
+   84
+  ],
+  "158": [
+   "E",
+   85
+  ],
+  "159": [
+   "E",
+   86
+  ],
+  "160": [
+   "E",
+   87
+  ],
+  "161": [
+   "E",
+   88
+  ],
+  "162": [
+   "E",
+   89
+  ],
+  "163": [
+   "E",
+   90
+  ],
+  "164": [
+   "E",
+   91
+  ],
+  "165": [
+   "E",
+   92
+  ],
+  "166": [
+   "E",
+   93
+  ],
+  "167": [
+   "E",
+   94
+  ],
+  "168": [
+   "E",
+   95
+  ],
+  "169": [
+   "E",
+   96
+  ],
+  "170": [
+   "E",
+   97
+  ],
+  "171": [
+   "E",
+   98
+  ],
+  "172": [
+   "E",
+   99
+  ],
+  "173": [
+   "E",
+   100
+  ]
+ }
 }
