@@ -42,6 +42,17 @@
 - [x] La VM corre Omnilingual `quy` y `mms-lid-512` (medido: 49 ms detección, 1.7 s por 16 s de audio; GPU A10G 23 GB, no 40)
 - [x] **Preguntas y frases que graban las familias** (`ricardo-artifacts/datos/frases/*.pdf`, con 35 préstamos del castellano): lista final en castellano por tema, bloque A (frases de posta) y bloque B (respuestas libres), sobre `plan/recoleccion-de-voz.md`, y mandarla a Freddy para la familia
 
+### 🔴 CRÍTICO · Línea base ANTES de cualquier ajuste fino (pedido de Freddy, sáb 09:13)
+Sin la línea base no hay «cuánto mejoramos», y ese número es el pitch. Ricardo diseña el sistema; lo mínimo que tiene que cumplir:
+- **Un conjunto de prueba congelado**: el hablante que el modelo nunca escuchó, separado ANTES de entrenar nada, y no se toca más.
+- **Medir cada modelo tal cual viene, sin ajuste**, y guardar sus fallas, no solo el promedio:
+  - Reconocimiento (Omnilingual `quy`): CER y WER, con las peores frases y en qué fallan (préstamos del castellano, números, nombres de medicamentos).
+  - Traducción (NLLB-200 y Claude): chrF o BLEU, más los **hechos críticos** que se pierden (dosis, frecuencia, medicamento) con la auditoría F4.
+  - Voz (`mms-tts-quy`): ida y vuelta, el audio generado pasa por el reconocimiento y se mide su CER; más la nota de la mamá de Freddy.
+  - Detección de idioma: acierto castellano/quechua.
+- **Un solo script** que corre lo mismo antes y después y escribe un archivo fechado (p. ej. `reports/linea-base.json` con el commit), para que el «después» sea el mismo comando con otro modelo.
+- Paso 0 y paso 1 de abajo SON esta línea base: que queden guardados así, con las fallas, antes de las 13:30.
+
 ### Sábado
 - [ ] 07:30 · Recibir audios, convertir a 16 kHz mono, nombrar, separar al hablante de prueba
 - [ ] 08:30 · VM con HTTPS público; endpoint de voz → texto para la app
