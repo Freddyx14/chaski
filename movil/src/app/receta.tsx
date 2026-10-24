@@ -15,7 +15,7 @@ import { Aviso, Boton, Tarjeta } from '@/rimay/ui';
 
 export default function Receta() {
   const turnos = useTurnos();
-  const dicho = [...turnos].reverse().find((t) => t.lado === 'enfermera')?.castellano ?? '';
+  const dicho = [...turnos].reverse().find((t) => t.lado === 'castellano')?.castellano ?? '';
   const [foto, setFoto] = useState<string | null>(null);
   const [lectura, setLectura] = useState<Lectura | null>(null);
   const [leyendo, setLeyendo] = useState(false);

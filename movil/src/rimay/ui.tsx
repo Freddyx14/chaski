@@ -9,22 +9,20 @@ export function Icono({ nombre, color, tam = 20 }: { nombre: SymbolViewProps['na
   return <SymbolView name={nombre} tintColor={color} size={tam} resizeMode="scaleAspectFit" style={{ width: tam, height: tam }} />;
 }
 
-/** La franja textil escalonada: el único adorno de la app (regla de tokens.json). */
+/** La franja textil escalonada: el único adorno de la app (regla de tokens.json). Dos filas desfasadas
+ *  forman el escalón de los tejidos andinos. */
 export function FranjaTextil() {
-  const bloques = Array.from({ length: 40 });
+  const fila = (desfase: number) => (
+    <View style={{ flexDirection: 'row', height: 4 }}>
+      {Array.from({ length: 50 }).map((_, i) => (
+        <View key={i} style={{ width: 8, height: 4, backgroundColor: (i + desfase) % 3 === 0 ? C.textileB : C.textileA }} />
+      ))}
+    </View>
+  );
   return (
     <View style={estilos.franja} accessibilityElementsHidden importantForAccessibility="no-hide-descendants">
-      {bloques.map((_, i) => (
-        <View
-          key={i}
-          style={{
-            width: 12,
-            height: i % 4 === 1 || i % 4 === 2 ? 6 : 3,
-            alignSelf: i % 2 ? 'flex-end' : 'flex-start',
-            backgroundColor: i % 2 ? C.textileB : C.textileA,
-          }}
-        />
-      ))}
+      {fila(0)}
+      {fila(1)}
     </View>
   );
 }
@@ -89,7 +87,7 @@ export function Aviso({ tipo, texto }: { tipo: 'ok' | 'warn' | 'block'; texto: s
 }
 
 export const estilos = StyleSheet.create({
-  franja: { flexDirection: 'row', height: 6, overflow: 'hidden' },
+  franja: { height: 8, overflow: 'hidden' },
   etiqueta: { height: 28, borderRadius: 14, paddingHorizontal: 12, justifyContent: 'center', alignSelf: 'flex-start' },
   etiquetaTexto: { fontSize: ESCALA.mini, fontWeight: '600' },
   tarjeta: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderRadius: 20, padding: 16 },

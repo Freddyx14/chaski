@@ -2,6 +2,7 @@
 import { File, Paths } from 'expo-file-system';
 
 import { leerServidor } from './config';
+import type { Rol } from './perfil';
 import type { RespuestaEnfermera, RespuestaEscuchar, RespuestaPaciente } from './modelo';
 
 export class SinServidor extends Error {}
@@ -34,9 +35,11 @@ export function escuchar(uri: string) {
 }
 
 /** Castellano → auditoría → quechua. Sin audio: la voz se pide aparte para mostrar el texto antes. */
-export function turnoEnfermera(texto: string) {
+export function turnoEnfermera(texto: string, rol: Rol) {
   const f = new FormData();
   f.append('texto', texto);
+  // D27: el rol elige el prompt del agente y el resumen. El servicio lo ignora hasta que lo use.
+  f.append('rol', rol);
   f.append('modo_ensayo', 'true');
   f.append('rapido', 'true');
   f.append('con_audio', 'false');
@@ -44,8 +47,10 @@ export function turnoEnfermera(texto: string) {
 }
 
 /** Audio del paciente → idioma, lo que se oyó en chanka y lo que quiso decir. */
-export function turnoPaciente(uri: string) {
-  return pedir<RespuestaPaciente>('/turno/paciente', conAudio(uri), 120);
+export function turnoPaciente(uri: string, rol: Rol) {
+  const f = conAudio(uri);
+  f.append('rol', rol);
+  return pedir<RespuestaPaciente>('/turno/paciente', f, 120);
 }
 
 /** Texto en quechua → WAV (mms-tts-quy). Devuelve el archivo local y sus bytes, para la boca de Chaski. */

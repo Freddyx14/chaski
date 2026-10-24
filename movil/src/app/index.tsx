@@ -4,7 +4,7 @@ import {
   useAudioRecorderState, requestRecordingPermissionsAsync, type RecordingOptions,
 } from 'expo-audio';
 import * as Haptics from 'expo-haptics';
-import { router } from 'expo-router';
+import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,6 +15,8 @@ import { agregarTurno, inicioDeConsulta } from '@/rimay/consulta';
 import {
   fueCastellano, siguienteLado, veredictoEnfermera, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/rimay/modelo';
+import { usePerfil, type Perfil } from '@/rimay/perfil';
+import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/rimay/textos';
 import { C, ESCALA } from '@/rimay/tokens';
 import { Aviso, Boton, Etiqueta, FranjaTextil, Icono, Tarjeta } from '@/rimay/ui';
 import { bocaAbierta, envolvente, type Envolvente } from '@/rimay/wav';
@@ -37,8 +39,6 @@ const GRABACION: RecordingOptions = {
   web: {},
 };
 
-const PASOS_ENFERMERA = ['Le escuché', 'Traduciendo al quechua', 'Revisando dosis, horas y días'];
-const PASOS_PACIENTE = ['Detectando el idioma', 'Escuchando en quechua', 'Entendiendo lo que quiso decir'];
 
 type Fase =
   | { f: 'listo' }
@@ -49,9 +49,65 @@ type Fase =
   | { f: 'paciente'; r: RespuestaPaciente }
   | { f: 'error'; mensaje: string; sinServidor: boolean };
 
-export default function Consulta() {
-  const [fase, setFase] = useState<Fase>({ f: 'listo' });
-  const [lado, setLado] = useState<Lado>('enfermera');
+// Modo demo: rimay:///?demo=<estado>&idioma=quechua&rol=paciente muestra un estado con datos de ejemplo,
+// sin servicio. Sirve para revisar pantallas y como respaldo de la demo si falla el wifi.
+const DEMO_CASTELLANO = 'Tome una pastilla dos veces al día, en la mañana y en la noche, durante siete días.';
+const DEMO: Record<string, Fase> = {
+  listo: { f: 'listo' },
+  grabando: { f: 'grabando' },
+  pensando: { f: 'pensando', lado: 'castellano', paso: 2, oido: DEMO_CASTELLANO },
+  dicho: {
+    f: 'dicho', vozLista: true,
+    v: veredictoEnfermera(DEMO_CASTELLANO, {
+      quechua: '[Indicación en quechua chanka]', retraduccion: '', aprobado_por_auditoria: true, motivo: null,
+      terminos_inseguros: [], diferencias: [], se_dice: true, aviso: null, total_ms: 0,
+    }) as Extract<Veredicto, { tipo: 'dicho' }>,
+  },
+  aviso: {
+    f: 'dicho', vozLista: true,
+    v: veredictoEnfermera('Si hay sangrado, venga a la posta.', {
+      quechua: '[Indicación en quechua chanka]', retraduccion: '', aprobado_por_auditoria: false, motivo: null,
+      terminos_inseguros: ['posta'], diferencias: [], se_dice: true, aviso: null, total_ms: 0,
+    }) as Extract<Veredicto, { tipo: 'dicho_con_aviso' }>,
+  },
+  bloqueado: {
+    f: 'bloqueado',
+    v: veredictoEnfermera('Tome una pastilla cada 8 horas, nunca dos juntas.', {
+      quechua: '', retraduccion: '', aprobado_por_auditoria: false, motivo: null, terminos_inseguros: [],
+      diferencias: [{ campo: 'paracetamol.cantidad', original: '1.0', retraducido: '2.0' }],
+      se_dice: false, aviso: null, total_ms: 0,
+    }) as Extract<Veredicto, { tipo: 'bloqueado' }>,
+  },
+  paciente: {
+    f: 'paciente',
+    r: {
+      idioma: { codigo: 'quy', confianza: 0.97 }, chanka_oido: '[Respuesta del paciente en quechua]',
+      castellano: '¿Y si me olvido la pastilla de la noche?', literal: '', dudas: [], seguro: false, total_ms: 0,
+    },
+  },
+  error: { f: 'error', mensaje: 'No pude conectarme. Vuelva a intentarlo.', sinServidor: false },
+};
+
+export default function Pantalla() {
+  const perfil = usePerfil();
+  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string }>();
+  if (q.demo && DEMO[q.demo]) {
+    const demo: Perfil = {
+      idioma: q.idioma === 'quechua' ? 'quechua' : 'castellano',
+      rol: q.rol === 'paciente' ? 'paciente' : 'personal',
+      nombre: 'Rosa',
+    };
+    return <Consulta key={q.demo + (q.idioma ?? '') + (q.rol ?? '')} perfil={demo} inicial={DEMO[q.demo]} />;
+  }
+  if (perfil === undefined) return <View style={e.pantalla} />;
+  if (perfil === null) return <Redirect href="/bienvenida" />;
+  return <Consulta perfil={perfil} />;
+}
+
+function Consulta({ perfil, inicial }: { perfil: Perfil; inicial?: Fase }) {
+  const t = textos(perfil.idioma);
+  const [fase, setFase] = useState<Fase>(inicial ?? { f: 'listo' });
+  const [lado, setLado] = useState<Lado>(perfil.idioma);
   const [env, setEnv] = useState<Envolvente | null>(null);
   const ultimoAudio = useRef<string | null>(null);
 
@@ -85,29 +141,29 @@ export default function Consulta() {
     const uri = grabadora.uri;
     if (!uri) return fallar(new Error('sin audio'));
     ultimoAudio.current = uri;
-    if (lado === 'enfermera') return turnoDeLaEnfermera(uri);
+    if (lado === 'castellano') return turnoDeLaEnfermera(uri);
     return turnoDelPaciente(uri);
   }
 
   // ---- turnos -----------------------------------------------------------------------------
   async function turnoDeLaEnfermera(uri: string) {
     try {
-      setFase({ f: 'pensando', lado: 'enfermera', paso: 0 });
+      setFase({ f: 'pensando', lado: 'castellano', paso: 0 });
       const { texto } = await escuchar(uri);
       if (!texto.trim()) throw new Error('No le escuché bien');
-      setFase({ f: 'pensando', lado: 'enfermera', paso: 1, oido: texto });
+      setFase({ f: 'pensando', lado: 'castellano', paso: 1, oido: texto });
       const avance = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 2 } : p)), 1800);
-      const r = await turnoEnfermera(texto);
+      const r = await turnoEnfermera(texto, perfil.rol);
       clearTimeout(avance);
       const v = veredictoEnfermera(texto, r);
-      agregarTurno({ lado: 'enfermera', castellano: texto, quechua: r.quechua, estado: v.tipo });
+      agregarTurno({ lado: 'castellano', castellano: texto, quechua: r.quechua, estado: v.tipo });
       if (v.tipo === 'bloqueado') {
         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
         setFase({ f: 'bloqueado', v });
         return;
       }
       setFase({ f: 'dicho', v, vozLista: false });
-      setLado(siguienteLado('enfermera'));
+      setLado(siguienteLado('castellano'));
       await decir(v.quechua);
       setFase((p) => (p.f === 'dicho' ? { ...p, vozLista: true } : p));
     } catch (e) {
@@ -117,23 +173,23 @@ export default function Consulta() {
 
   async function turnoDelPaciente(uri: string) {
     try {
-      setFase({ f: 'pensando', lado: 'paciente', paso: 0 });
+      setFase({ f: 'pensando', lado: 'quechua', paso: 0 });
       const avance = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 1 } : p)), 700);
       const avance2 = setTimeout(() => setFase((p) => (p.f === 'pensando' ? { ...p, paso: 2 } : p)), 2600);
-      const r = await turnoPaciente(uri);
+      const r = await turnoPaciente(uri, perfil.rol);
       clearTimeout(avance);
       clearTimeout(avance2);
       if (fueCastellano(r)) {
-        // Detección automática (D11): habló la enfermera aunque el turno era del paciente.
-        setLado('enfermera');
+        // Detección automática (D11): el turno se habló en castellano aunque tocaba quechua.
+        setLado('castellano');
         return turnoDeLaEnfermera(uri);
       }
       agregarTurno({
-        lado: 'paciente', castellano: r.castellano, quechua: r.chanka_oido,
+        lado: 'quechua', castellano: r.castellano, quechua: r.chanka_oido,
         estado: r.seguro ? 'entendido' : 'con_dudas',
       });
       setFase({ f: 'paciente', r });
-      setLado('enfermera');
+      setLado('castellano');
     } catch (e) {
       fallar(e);
     }
@@ -157,17 +213,17 @@ export default function Consulta() {
       f: 'error',
       sinServidor,
       mensaje: sinServidor
-        ? 'Falta conectar Rimay con el servicio.'
+        ? t.sinServidor
         : String((e as Error)?.message ?? '').includes('escuché')
-          ? 'No le escuché bien. Hable un poco más cerca.'
-          : 'No pude conectarme. Vuelva a intentarlo.',
+          ? t.noEscuche
+          : t.sinConexion,
     });
   }
 
   function reintentar() {
     const uri = ultimoAudio.current;
     if (!uri) return setFase({ f: 'listo' });
-    return lado === 'enfermera' ? turnoDeLaEnfermera(uri) : turnoDelPaciente(uri);
+    return lado === 'castellano' ? turnoDeLaEnfermera(uri) : turnoDelPaciente(uri);
   }
 
   // ---- qué se ve ----------------------------------------------------------------------------
@@ -182,20 +238,20 @@ export default function Consulta() {
 
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
-      <Encabezado />
+      <Encabezado t={t} />
       <FranjaTextil />
       <ScrollView contentContainerStyle={e.cuerpo} bounces={false}>
         {protagonista ? (
           <View style={e.centro}>
-            <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : 200} boca={boca} />
+            <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : fase.f === 'bloqueado' ? 150 : 200} boca={boca} />
           </View>
         ) : (
           <View style={e.filaChica}>
             <Chaski estado={estadoChaski} tam={112} />
             <View style={{ gap: 6, flex: 1 }}>
-              <Etiqueta idioma={fase.f === 'paciente' || lado === 'paciente' ? 'quechua' : 'castellano'} />
+              <Etiqueta idioma={fase.f === 'paciente' ? 'quechua' : lado} />
               <Text style={e.secundario}>
-                {fase.f === 'grabando' ? 'Escuchando…' : fase.f === 'paciente' ? 'Idioma detectado automáticamente' : ''}
+                {fase.f === 'grabando' ? t.escuchando : fase.f === 'paciente' ? t.idiomaDetectado : ''}
               </Text>
             </View>
           </View>
@@ -203,24 +259,20 @@ export default function Consulta() {
 
         {fase.f === 'listo' && (
           <View style={e.centroTexto}>
-            <Text style={e.titulo}>Listo para interpretar</Text>
-            <Text style={e.explicacion}>
-              {lado === 'enfermera'
-                ? 'Hable en castellano. Rimay lo dirá en quechua y le avisará si algo no se entendió.'
-                : 'Ahora habla el paciente, en quechua. Rimay le dirá a usted lo que quiso decir.'}
-            </Text>
+            <Text style={e.titulo}>{t.listo}</Text>
+            <Text style={e.explicacion}>{explicacion(perfil, lado, t)}</Text>
           </View>
         )}
 
-        {fase.f === 'grabando' && <Medidor nivel={estadoGrabadora.metering} />}
+        {fase.f === 'grabando' && <Medidor nivel={estadoGrabadora.metering} t={t} />}
 
-        {fase.f === 'pensando' && <Pensando fase={fase} />}
+        {fase.f === 'pensando' && <Pensando fase={fase} t={t} />}
 
-        {fase.f === 'dicho' && <Dicho v={fase.v} vozLista={fase.vozLista} hablando={hablando} />}
+        {fase.f === 'dicho' && <Dicho v={fase.v} vozLista={fase.vozLista} hablando={hablando} t={t} />}
 
-        {fase.f === 'bloqueado' && <Bloqueado v={fase.v} />}
+        {fase.f === 'bloqueado' && <Bloqueado v={fase.v} t={t} />}
 
-        {fase.f === 'paciente' && <Paciente r={fase.r} />}
+        {fase.f === 'paciente' && <Paciente r={fase.r} t={t} />}
 
         {fase.f === 'error' && (
           <View style={e.centroTexto}>
@@ -232,34 +284,36 @@ export default function Consulta() {
       <View style={e.pie}>
         {fase.f === 'dicho' && (
           <View style={e.filaBotones}>
-            <Boton tipo="secundario" icono="speaker.wave.2.fill" texto="Repetir audio" onPress={repetirAudio} deshabilitado={!fase.vozLista} flex />
-            <Boton icono="mic.fill" texto="Seguir" onPress={() => setFase({ f: 'listo' })} flex />
+            <Boton tipo="secundario" icono="speaker.wave.2.fill" texto={t.repetirAudio} onPress={repetirAudio} deshabilitado={!fase.vozLista} flex />
+            <Boton icono="mic.fill" texto={t.seguirConsulta} onPress={() => setFase({ f: 'listo' })} flex />
           </View>
         )}
         {fase.f === 'bloqueado' && (
           <View style={{ gap: 8 }}>
-            <Boton alto={56} texto="Decirlo de otra forma" icono="mic.fill" onPress={() => { setLado('enfermera'); empezar(); }} />
-            <Boton tipo="texto" texto="Lo explico yo" onPress={() => { setLado('enfermera'); setFase({ f: 'listo' }); }} />
+            <Boton alto={56} texto={t.decirloOtraForma} icono="mic.fill" onPress={() => { setLado('castellano'); empezar(); }} />
+            <Boton tipo="texto" texto={t.loExplicoYo} onPress={() => { setLado('castellano'); setFase({ f: 'listo' }); }} />
           </View>
         )}
         {fase.f === 'paciente' && (
           <View style={e.filaBotones}>
-            <Boton icono="mic.fill" texto="Responder" onPress={() => { setLado('enfermera'); empezar(); }} flex />
-            <Boton tipo="secundario" texto="Pedir que repita" onPress={() => { setLado('paciente'); setFase({ f: 'listo' }); }} flex />
+            <Boton icono="mic.fill" texto={t.responder} onPress={() => { setLado('castellano'); empezar(); }} flex />
+            <Boton tipo="secundario" texto={t.pedirQueRepita} onPress={() => { setLado('quechua'); setFase({ f: 'listo' }); }} flex />
           </View>
         )}
         {fase.f === 'error' && (
           <View style={{ gap: 8 }}>
             {fase.sinServidor
-              ? <Boton texto="Conectar el servicio" icono="link" onPress={() => router.push('/ajustes')} />
-              : <Boton texto="Reintentar" icono="arrow.clockwise" onPress={reintentar} />}
-            <Boton tipo="texto" texto="Volver" onPress={() => setFase({ f: 'listo' })} />
+              ? <Boton texto={t.conectar} icono="link" onPress={() => router.push('/ajustes')} />
+              : <Boton texto={t.reintentar} icono="arrow.clockwise" onPress={reintentar} />}
+            <Boton tipo="texto" texto={t.volver} onPress={() => setFase({ f: 'listo' })} />
           </View>
         )}
         {(fase.f === 'listo' || fase.f === 'grabando') && (
           <Microfono
             grabando={fase.f === 'grabando'}
             lado={lado}
+            perfil={perfil}
+            t={t}
             onPress={fase.f === 'grabando' ? terminar : empezar}
             onCambiarLado={() => fase.f === 'listo' && setLado(siguienteLado(lado))}
             onReceta={() => router.push('/receta')}
@@ -272,7 +326,13 @@ export default function Consulta() {
 
 // ---- piezas -------------------------------------------------------------------------------
 
-function Encabezado() {
+function explicacion(p: Perfil, lado: Lado, t: Textos): string {
+  const otro = otraPersona(p.rol, t);
+  if (lado !== p.idioma) return t.explicaOtro(otro, lado === 'castellano' ? t.castellano : t.quechua);
+  return p.idioma === 'castellano' ? t.explicaYo(otro) : t.explicaYoQuechua(otro);
+}
+
+function Encabezado({ t }: { t: Textos }) {
   const [ahora, setAhora] = useState(Date.now());
   useEffect(() => {
     const t = setInterval(() => setAhora(Date.now()), 1000);
@@ -284,7 +344,7 @@ function Encabezado() {
     <View style={e.encabezado}>
       <Pressable onLongPress={() => router.push('/ajustes')} style={e.marca} accessibilityHint="Mantenga presionado para ajustes">
         <Text style={e.marcaTexto}>Rimay</Text>
-        <Text style={e.reloj}>Consulta · {reloj}</Text>
+        <Text style={e.reloj}>{t.consulta} · {reloj}</Text>
       </Pressable>
       <Pressable accessibilityLabel="Ver la conversación" onPress={() => router.push('/historial')} style={e.botonRedondo}>
         <Icono nombre="doc.text" color={C.inkSecondary} tam={18} />
@@ -293,8 +353,8 @@ function Encabezado() {
   );
 }
 
-function Microfono({ grabando, lado, onPress, onCambiarLado, onReceta }: {
-  grabando: boolean; lado: Lado; onPress: () => void; onCambiarLado: () => void; onReceta: () => void;
+function Microfono({ grabando, lado, perfil, t, onPress, onCambiarLado, onReceta }: {
+  grabando: boolean; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void;
 }) {
   return (
     <View style={{ alignItems: 'center', gap: 12 }}>
@@ -305,7 +365,7 @@ function Microfono({ grabando, lado, onPress, onCambiarLado, onReceta }: {
               <Icono nombre="camera" color={C.inkSecondary} tam={22} />
             </Pressable>
           )}
-          {!grabando && <Text style={e.lateralTexto}>Receta</Text>}
+          {!grabando && <Text style={e.lateralTexto}>{t.receta}</Text>}
         </View>
         <Pressable
           accessibilityRole="button"
@@ -320,25 +380,25 @@ function Microfono({ grabando, lado, onPress, onCambiarLado, onReceta }: {
         </Pressable>
         <View style={e.lateral} />
       </View>
-      <Text style={e.microTexto}>{grabando ? 'Toque para terminar' : 'Toque para hablar'}</Text>
+      <Text style={e.microTexto}>{grabando ? t.tocarTerminar : t.tocarHablar}</Text>
       <Pressable onPress={onCambiarLado} disabled={grabando} style={e.lado} accessibilityHint="Toque para cambiar quién habla">
         <Icono nombre="arrow.left.arrow.right" color={C.inkSecondary} tam={14} />
         <Text style={e.ladoTexto}>
-          {lado === 'enfermera' ? 'Habla la enfermera · castellano' : 'Habla el paciente · quechua'}
+          {primeraMayuscula(t.habla(quienHabla(perfil, lado, t), lado === 'castellano' ? t.castellano : t.quechua))}
         </Text>
       </Pressable>
     </View>
   );
 }
 
-function Medidor({ nivel }: { nivel?: number }) {
+function Medidor({ nivel, t }: { nivel?: number; t: Textos }) {
   // metering viene en dB (-160..0). Se lleva a 0..1 y se dibuja como barras.
   const n = nivel === undefined ? 0 : Math.max(0, Math.min(1, (nivel + 55) / 50));
   const [historia, setHistoria] = useState<number[]>(Array(24).fill(0));
   useEffect(() => setHistoria((h) => [...h.slice(1), n]), [n]);
   return (
     <Tarjeta estilo={{ marginTop: 16, alignItems: 'center' }}>
-      <Text style={e.secundario}>Hable con normalidad. Toque el botón cuando termine.</Text>
+      <Text style={e.secundario}>{t.hableNormal}</Text>
       <View style={e.barras}>
         {historia.map((v, i) => (
           <View key={i} style={[e.barra, { height: 6 + v * 26 }]} />
@@ -348,8 +408,8 @@ function Medidor({ nivel }: { nivel?: number }) {
   );
 }
 
-function Pensando({ fase }: { fase: Extract<Fase, { f: 'pensando' }> }) {
-  const pasos = fase.lado === 'enfermera' ? PASOS_ENFERMERA : PASOS_PACIENTE;
+function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Textos }) {
+  const pasos = fase.lado === 'castellano' ? t.pasosCastellano : t.pasosQuechua;
   return (
     <View style={{ gap: 12, marginTop: 16 }}>
       {fase.oido ? (
@@ -391,8 +451,8 @@ function Casillas({ casillas }: { casillas: { nombre: string; ok: boolean }[] })
   );
 }
 
-function Dicho({ v, vozLista, hablando }: {
-  v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean; hablando: boolean;
+function Dicho({ v, vozLista, hablando, t }: {
+  v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean; hablando: boolean; t: Textos;
 }) {
   return (
     <View style={{ gap: 12, marginTop: 12 }}>
@@ -402,51 +462,60 @@ function Dicho({ v, vozLista, hablando }: {
         <View style={e.separador} />
         <Text style={e.secundario}>{v.castellano}</Text>
         <Text style={[e.mini, { marginTop: 8 }]}>
-          {!vozLista ? 'Preparando la voz…' : hablando ? 'Rimay está hablando…' : 'Rimay ya lo dijo en voz alta.'}
+          {!vozLista ? t.preparandoVoz : hablando ? t.hablandoAhora : t.yaLoDijo}
         </Text>
       </Tarjeta>
       <View style={[e.auditoria, { backgroundColor: C.okTint }]}>
         <View style={e.paso}>
           <Icono nombre="checkmark.shield.fill" color={C.ok} tam={18} />
-          <Text style={[e.auditoriaTitulo, { color: C.ok }]}>Auditado antes de hablar</Text>
+          <Text style={[e.auditoriaTitulo, { color: C.ok }]}>{t.auditado}</Text>
         </View>
         <Casillas casillas={v.casillas} />
       </View>
       {v.tipo === 'dicho_con_aviso' && (
         <Aviso
           tipo="warn"
-          texto={v.terminos.length
-            ? `Dicho con aviso: revise ${v.terminos.join(', ')}`
-            : 'Dicho con aviso: confírmelo con el paciente'}
+          texto={v.terminos.length ? t.dichoConAviso(v.terminos.join(', ')) : t.dichoConAvisoSolo}
         />
       )}
     </View>
   );
 }
 
-function Bloqueado({ v }: { v: Extract<Veredicto, { tipo: 'bloqueado' }> }) {
+function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: Textos }) {
   return (
     <View style={{ gap: 12, marginTop: 12 }}>
-      <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>No lo dije: algo cambió al traducir</Text>
-      <Text style={[e.explicacion, { alignSelf: 'center' }]}>Revise esta parte antes de que Rimay la diga al paciente.</Text>
+      <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>{t.noLoDije}</Text>
+      <Text style={[e.explicacion, { alignSelf: 'center' }]}>{t.reviseParte}</Text>
+      <Tarjeta>
+        <Etiqueta idioma="castellano" />
+        <Text style={[e.cuerpoTexto, { marginTop: 8 }]}>{v.castellano}</Text>
+      </Tarjeta>
       {v.diferencias.length > 0 ? (
         v.diferencias.map((d, i) => (
           <View key={i} style={e.comparacion}>
-            <Text style={e.rotulo}>{d.nombre.toUpperCase()} · USTED DIJO</Text>
-            <Text style={e.valor}>{d.dijo}</Text>
-            <Text style={[e.rotulo, { marginTop: 10 }]}>LA TRADUCCIÓN DECÍA</Text>
-            <Text style={[e.valor, { color: C.block }]}>{d.decia}</Text>
+            <Text style={[e.rotulo, { color: C.block }]}>{d.nombre.toUpperCase()}</Text>
+            <View style={e.dosColumnas}>
+              <View style={{ flex: 1 }}>
+                <Text style={e.rotulo}>{t.ustedDijo}</Text>
+                <Text style={e.valor}>{d.dijo}</Text>
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={e.rotulo}>{t.traduccionDecia}</Text>
+                <Text style={[e.valor, { color: C.block }]}>{d.decia}</Text>
+              </View>
+            </View>
           </View>
         ))
       ) : (
         <View style={e.comparacion}>
-          <Text style={e.rotulo}>PALABRAS SIN TRADUCCIÓN SEGURA</Text>
+          <Text style={e.rotulo}>{t.sinTraduccionSegura}</Text>
           <Text style={e.valor}>{v.terminos.join(', ')}</Text>
         </View>
       )}
       {v.casillasOk.length > 0 && (
         <Tarjeta>
-          <Text style={e.rotulo}>LO DEMÁS ESTÁ BIEN</Text>
+          <Text style={e.rotulo}>{t.loDemasBien}</Text>
           <Casillas casillas={v.casillasOk.map((nombre) => ({ nombre, ok: true }))} />
         </Tarjeta>
       )}
@@ -454,21 +523,25 @@ function Bloqueado({ v }: { v: Extract<Veredicto, { tipo: 'bloqueado' }> }) {
   );
 }
 
-function Paciente({ r }: { r: RespuestaPaciente }) {
+function Paciente({ r, t }: { r: RespuestaPaciente; t: Textos }) {
   return (
     <Tarjeta estilo={{ marginTop: 16, gap: 6 }}>
-      <Text style={e.rotulo}>LO QUE DIJO</Text>
-      <Text style={[e.cuerpoTexto, { color: C.inkSecondary }]}>{r.chanka_oido || '(no se oyó con claridad)'}</Text>
-      <Text style={[e.rotulo, { marginTop: 16 }]}>LO QUE QUISO DECIR</Text>
-      <Text style={e.significado}>{r.castellano || 'No lo entendí. Pídale que lo repita.'}</Text>
+      <Text style={e.rotulo}>{t.loQueDijo}</Text>
+      <Text style={[e.cuerpoTexto, { color: C.inkSecondary }]}>{r.chanka_oido || t.noSeOyo}</Text>
+      <Text style={[e.rotulo, { marginTop: 16 }]}>{t.loQueQuisoDecir}</Text>
+      <Text style={e.significado}>{r.castellano || t.noLoEntendi}</Text>
       <View style={{ marginTop: 12, gap: 8 }}>
         {r.seguro
-          ? <Aviso tipo="ok" texto="Rimay lo entendió con seguridad" />
-          : <Aviso tipo="warn" texto="Seguridad media · confírmelo con él" />}
-        {r.dudas.length > 0 && <Text style={e.mini}>No entendí: {r.dudas.join(' · ')}</Text>}
+          ? <Aviso tipo="ok" texto={t.entendidoSeguro} />
+          : <Aviso tipo="warn" texto={t.seguridadMedia} />}
+        {r.dudas.length > 0 && <Text style={e.mini}>{t.noEntendi}: {r.dudas.join(' · ')}</Text>}
       </View>
     </Tarjeta>
   );
+}
+
+function primeraMayuscula(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 const e = StyleSheet.create({
@@ -493,6 +566,7 @@ const e = StyleSheet.create({
   rotulo: { fontSize: ESCALA.mini, fontWeight: '600', color: C.inkTertiary, letterSpacing: 0.6 },
   valor: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink, marginTop: 2 },
   comparacion: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderLeftWidth: 4, borderLeftColor: C.block, borderRadius: 16, padding: 16 },
+  dosColumnas: { flexDirection: 'row', gap: 16, marginTop: 8 },
   auditoria: { borderRadius: 16, padding: 14, gap: 8 },
   auditoriaTitulo: { fontSize: ESCALA.chico, fontWeight: '600' },
   casillas: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },

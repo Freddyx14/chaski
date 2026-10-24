@@ -6,6 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { salud } from '@/rimay/api';
 import { guardarServidor, leerServidor } from '@/rimay/config';
+import { guardarPerfil } from '@/rimay/perfil';
 import { C, ESCALA } from '@/rimay/tokens';
 import { Aviso, Boton } from '@/rimay/ui';
 
@@ -46,6 +47,7 @@ export default function Ajustes() {
         />
         <Boton texto="Guardar y probar" onPress={probar} />
         {estado && <Aviso {...estado} />}
+        <Boton tipo="secundario" texto="Cambiar idioma, nombre o rol" onPress={async () => { await guardarPerfil(null); router.replace('/bienvenida'); }} />
         <Boton tipo="texto" texto="Cerrar" onPress={() => router.back()} />
       </View>
     </SafeAreaView>

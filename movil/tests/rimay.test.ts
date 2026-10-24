@@ -85,8 +85,8 @@ test('nombres de campos', () => {
 });
 
 test('turnos alternan', () => {
-  assert.equal(siguienteLado('enfermera'), 'paciente');
-  assert.equal(siguienteLado('paciente'), 'enfermera');
+  assert.equal(siguienteLado('castellano'), 'quechua');
+  assert.equal(siguienteLado('quechua'), 'castellano');
 });
 
 test('solo se reencamina a castellano con confianza alta', () => {

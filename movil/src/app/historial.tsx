@@ -4,6 +4,8 @@ import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { nuevaConsulta, useTurnos } from '@/rimay/consulta';
+import { usePerfil } from '@/rimay/perfil';
+import { quienHabla, textos } from '@/rimay/textos';
 import type { Turno } from '@/rimay/modelo';
 import { C, ESCALA } from '@/rimay/tokens';
 import { Aviso, Boton, Etiqueta, Tarjeta } from '@/rimay/ui';
@@ -18,6 +20,12 @@ const AVISO: Record<Turno['estado'], { tipo: 'ok' | 'warn' | 'block'; texto: str
 
 export default function Historial() {
   const turnos = useTurnos();
+  const perfil = usePerfil();
+  const t = textos(perfil?.idioma ?? 'castellano');
+  const quien = (lado: 'castellano' | 'quechua') => {
+    const q = perfil ? quienHabla(perfil, lado, t) : lado;
+    return q.charAt(0).toUpperCase() + q.slice(1);
+  };
   return (
     <SafeAreaView style={e.pantalla} edges={['top', 'bottom']}>
       <View style={e.encabezado}>
@@ -29,26 +37,26 @@ export default function Historial() {
         keyExtractor={(t) => String(t.id)}
         contentContainerStyle={{ padding: 16, gap: 12 }}
         ListEmptyComponent={<Text style={e.vacio}>Todavía no hay turnos en esta consulta.</Text>}
-        renderItem={({ item: t }) => (
+        renderItem={({ item: turno }) => (
           <Tarjeta estilo={{ gap: 8 }}>
             <View style={e.fila}>
-              <Text style={e.quien}>{t.lado === 'enfermera' ? 'Enfermera' : 'Paciente'}</Text>
-              <Text style={e.hora}>{t.hora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' })}</Text>
+              <Text style={e.quien}>{quien(turno.lado)}</Text>
+              <Text style={e.hora}>{turno.hora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' })}</Text>
             </View>
-            {t.lado === 'enfermera' ? (
+            {turno.lado === 'castellano' ? (
               <>
-                <Text style={e.texto}>{t.castellano}</Text>
-                {t.estado !== 'bloqueado' && <Etiqueta idioma="quechua" />}
-                {t.estado !== 'bloqueado' && <Text style={e.secundario}>{t.quechua}</Text>}
+                <Text style={e.texto}>{turno.castellano}</Text>
+                {turno.estado !== 'bloqueado' && <Etiqueta idioma="quechua" />}
+                {turno.estado !== 'bloqueado' && <Text style={e.secundario}>{turno.quechua}</Text>}
               </>
             ) : (
               <>
                 <Etiqueta idioma="quechua" />
-                <Text style={e.secundario}>{t.quechua}</Text>
-                <Text style={e.texto}>{t.castellano}</Text>
+                <Text style={e.secundario}>{turno.quechua}</Text>
+                <Text style={e.texto}>{turno.castellano}</Text>
               </>
             )}
-            <Aviso {...AVISO[t.estado]} />
+            <Aviso {...AVISO[turno.estado]} />
           </Tarjeta>
         )}
       />

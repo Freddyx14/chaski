@@ -82,11 +82,12 @@ function legible(v: string): string {
   return v.replace(/\.0$/, '');
 }
 
-export type Lado = 'enfermera' | 'paciente';
+/** Cada turno se identifica por el idioma en que se habló (D27: el usuario puede ser de cualquiera de los dos lados). */
+export type Lado = 'castellano' | 'quechua';
 
-/** Después de un turno, habla el otro. La enfermera puede cambiarlo a mano. */
+/** Después de un turno, habla el otro. Se puede cambiar a mano. */
 export function siguienteLado(quienHablo: Lado): Lado {
-  return quienHablo === 'enfermera' ? 'paciente' : 'enfermera';
+  return quienHablo === 'castellano' ? 'quechua' : 'castellano';
 }
 
 /**
