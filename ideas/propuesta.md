@@ -129,6 +129,24 @@ una etiqueta nueva para el modelo, y las correcciones al quechua mejoran las pla
 
 ---
 
+### Competencia: ¿no existe ya esto? (detalle en `research/competencia.md`)
+
+- **Satellites on Fire** (Argentina) levantó **$2.7M** en abril de 2026. Detecta incendios **35 minutos antes que NASA**
+  y lo vende por hectárea a empresas forestales, eléctricas, aseguradoras y gobiernos. No encontramos que cubra Perú,
+  ni que llegue a comunidades o hable quechua.
+- **FireSat** (Earth Fire Alliance) firmó en setiembre con comunidades asháninkas del río Ene, en la Amazonía, no en los Andes.
+  La misma nota advierte: **«la detección no garantiza por sí sola una respuesta efectiva»**.
+- Un proyecto de curso en GitHub ya calcula el área quemada de estos incendios con Sentinel-2. **El núcleo 1 no es novedad**;
+  sirve como función, no como titular.
+
+**Conclusión:** la detección ya está resuelta y es un negocio. **Lo que nadie resuelve es la última milla**: que la alerta
+llegue al comunero en quechua, que responda con su voz y que eso se vuelva registro oficial. Y en la puna, donde casi todo
+foco es una quema intencional, la pregunta clave no es «¿hay fuego?», sino **«¿es una quema planificada o se está escapando?»**.
+Por eso el núcleo 2 sigue siendo el titular técnico.
+
+**Frase para el pitch:** *«Una startup argentina levantó 2.7 millones de dólares para detectar incendios 35 minutos antes que
+la NASA. En Huancavelica, la alerta sigue sin llegar al comunero. La detección está resuelta. La última milla, no.»*
+
 ## 4. Los datos (lo que ya se probó)
 
 - **Servidor de mapas de SERFOR:** respondió en vivo, **sin llave**: 155 focos de calor de las últimas 24 h, 97,376 incendios y cicatrices históricas, **3,090 límites de comunidades campesinas**.
