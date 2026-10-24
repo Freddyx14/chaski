@@ -1,56 +1,72 @@
-# Welcome to your Expo app 👋
+# Rimay · app iOS (Expo SDK 58)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Intérprete castellano ↔ quechua chanka para la posta de Pilpichaca. Diseño: tablero de Pencil (D26) con los
+ajustes de `../design/specs/02-pulido-ui.md`; para los dos lados, personal de salud o paciente (D27).
+Colores **solo** desde `../design/tokens.json`; Chaski desde `../avatar/` (sin copias, por `metro.config.js`).
 
-## Get started
+## Pantallas
 
-1. Install dependencies
+| Ruta | Qué |
+|---|---|
+| `bienvenida` | Onboarding: idioma → nombre → ¿personal de salud o paciente? |
+| `index` | La consulta: listo, grabando, pensando, dicho, dicho con aviso, bloqueado, respuesta del paciente, error |
+| `receta` | Foto de la receta o la caja → Claude visión (`/ver`) |
+| `historial` | Los turnos de la consulta |
+| `resumen` | Nota clínica (personal) o lo que hay que hacer en casa (paciente), con audio en quechua auditado |
+| `ajustes` | Dirección del servicio y cambio de perfil. Se entra con un **toque largo en «Rimay»** |
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Correr
 
 ```bash
-npm run reset-project
+npm install
+npx expo start --go --ios          # simulador con Expo Go
+npm test                           # lógica pura (node --test)
+npx tsc --noEmit
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+## El servicio (HTTPS)
 
-### Other setup steps
+La app habla con `ricardo-artifacts/servicio/app.py`. iOS no acepta HTTP plano, así que en la máquina donde corre
+el servicio se abre un túnel:
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+```bash
+cloudflared tunnel --url http://localhost:8000
+```
 
-## Learn more
+Copia la dirección `https://….trycloudflare.com` en Ajustes → «Guardar y probar». Cambia cada vez que se abre
+el túnel. Rutas que usa: `/escuchar`, `/turno/enfermera`, `/turno/paciente`, `/voz`, `/ver`, `/resumen`, `/salud`.
 
-To learn more about developing your project with Expo, look at the following resources:
+## Modo demo (sin servicio)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+Cada estado se abre con un enlace, para revisar pantallas o como respaldo si falla el wifi del jurado:
 
-## Join the community
+```
+rimay:///?demo=listo|grabando|pensando|dicho|aviso|bloqueado|paciente|error   [&idioma=quechua] [&rol=paciente]
+rimay:///resumen?demo=1&rol=personal|paciente
+```
 
-Join our community of developers creating universal apps.
+En el simulador con Expo Go: `xcrun simctl openurl booted "exp://127.0.0.1:8081/--/?demo=dicho"`.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## TestFlight
+
+Por Xcode con la llave de App Store Connect, no por EAS (se traba en preguntas interactivas). Bundle
+`lat.loopmind.rimay`, equipo `P7493694QL`.
+
+```bash
+npx expo prebuild -p ios --clean
+xcodebuild -workspace ios/Rimay.xcworkspace -scheme Rimay -configuration Release \
+  -destination 'generic/platform=iOS' -archivePath build/Rimay.xcarchive archive \
+  DEVELOPMENT_TEAM=P7493694QL CODE_SIGNING_ALLOWED=NO
+xcodebuild -exportArchive -archivePath build/Rimay.xcarchive -exportOptionsPlist ExportOptions.plist \
+  -exportPath build/export -allowProvisioningUpdates \
+  -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_PB2L3A68T7.p8 \
+  -authenticationKeyID PB2L3A68T7 -authenticationKeyIssuerID 4bd118b5-a814-4813-997a-e7a61e89ee82
+```
+
+Para cada build nuevo, sube `ios.buildNumber` en `app.json`.
+
+## Pendiente
+
+- Los textos en quechua de `src/rimay/textos.ts` son **borrador**: los revisa la mamá de Freddy.
+- «¿Me lo repite?» (F6) espera su ruta en el servicio.
+- Detección de idioma por turno (`/idioma`): mientras no exista, los turnos alternan solos y se pueden cambiar a mano.

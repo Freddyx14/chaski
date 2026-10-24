@@ -4,11 +4,11 @@
     "slug": "rimay",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/rimay-icon.png",
     "scheme": "rimay",
     "userInterfaceStyle": "light",
     "ios": {
-      "icon": "./assets/expo.icon",
+      "icon": "./assets/images/rimay-icon.png",
       "bundleIdentifier": "lat.loopmind.rimay",
       "supportsTablet": false,
       "infoPlist": {
@@ -16,7 +16,8 @@
         "NSCameraUsageDescription": "Rimay lee la receta o la caja del medicamento.",
         "NSPhotoLibraryUsageDescription": "Rimay lee la foto de una receta o de una caja.",
         "ITSAppUsesNonExemptEncryption": false
-      }
+      },
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,14 +32,6 @@
       "expo-router",
       "expo-video",
       [
-        "expo-splash-screen",
-        {
-          "backgroundColor": "#F6F4F1",
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 160
-        }
-      ],
-      [
         "expo-audio",
         {
           "microphonePermission": "Rimay escucha la consulta para interpretarla entre castellano y quechua."
@@ -49,6 +42,14 @@
         {
           "cameraPermission": "Rimay lee la receta o la caja del medicamento.",
           "photosPermission": "Rimay lee la foto de una receta o de una caja."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#F6F4F1",
+          "image": "./assets/images/rimay-icon.png",
+          "imageWidth": 180
         }
       ]
     ],

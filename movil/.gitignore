@@ -45,3 +45,4 @@ example
 # Prebuild nativo (se regenera)
 /ios
 /android
+/build
