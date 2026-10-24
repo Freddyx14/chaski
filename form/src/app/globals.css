@@ -88,3 +88,5 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --bg: #faf7f2; }
 }
+a.btn { display: flex; align-items: center; justify-content: center; text-align: center; text-decoration: none; }
+.retomar { display: flex; flex-direction: column; gap: 4px; margin: 12px 0 10px; font-size: 18px; }

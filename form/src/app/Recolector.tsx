@@ -38,16 +38,15 @@ export default function Recolector() {
 
   // Resume where they left off.
   useEffect(() => {
-    const id = lsGet(LS_PARTICIPANTE);
+    const desdeEnlace = new URLSearchParams(window.location.search).get("p");
+    const id = desdeEnlace ?? lsGet(LS_PARTICIPANTE);
     if (!id) { setPantalla("bienvenida"); return; }
     fetch(`/api/participantes/${id}`)
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((d) => {
-        setPart({ id: d.id, codigo: d.codigo, sabe_escribir_quechua: d.sabe_escribir_quechua });
-        setGuardadas(new Map((d.respuestas as Guardada[]).map((g) => [g.numero_global, g])));
-        const i = Number(lsGet(LS_INDICE) ?? 0);
-        setIndice(Number.isFinite(i) && i >= 0 && i < FRASES.length ? i : 0);
-        setPantalla("frase");
+        lsSet(LS_PARTICIPANTE, d.id);
+        retomar(d, desdeEnlace ? null : lsGet(LS_INDICE));
+        if (desdeEnlace) window.history.replaceState(null, "", window.location.pathname);
       })
       .catch((status) => {
         if (status === 404) lsDel(LS_PARTICIPANTE);
@@ -56,6 +55,21 @@ export default function Recolector() {
   }, []);
 
   useEffect(() => { if (part) lsSet(LS_INDICE, String(indice)); }, [indice, part]);
+
+  // Loads a participant and lands on the first phrase they have not saved yet,
+  // unless this same browser remembers where they were.
+  function retomar(d: Participante & { respuestas: Guardada[] }, indiceLocal: string | null) {
+    const mapa = new Map(d.respuestas.map((g) => [g.numero_global, g]));
+    setPart({ id: d.id, codigo: d.codigo, sabe_escribir_quechua: d.sabe_escribir_quechua });
+    setGuardadas(mapa);
+    const local = Number(indiceLocal);
+    const pendiente = FRASES.findIndex((f) => f.bloque !== "E" && !mapa.has(f.global));
+    const i = indiceLocal !== null && Number.isFinite(local) && local >= 0 && local < FRASES.length
+      ? local
+      : pendiente === -1 ? ULTIMA_OBLIGATORIA : pendiente;
+    setIndice(i);
+    setPantalla(pendiente === -1 && indiceLocal === null ? "gracias" : "frase");
+  }
 
   const irA = useCallback((i: number) => {
     setIndice(i);
@@ -77,6 +91,7 @@ export default function Recolector() {
   if (pantalla === "bienvenida" || !part) {
     return (
       <Bienvenida
+        onRetomar={(d) => { lsSet(LS_PARTICIPANTE, d.id); retomar(d, null); window.scrollTo({ top: 0 }); }}
         onListo={(p) => {
           lsSet(LS_PARTICIPANTE, p.id);
           setPart(p);
@@ -97,7 +112,7 @@ export default function Recolector() {
       <main className="wrap">
         <h1 className="big">¡Gracias!</h1>
         <p>Usted guardó {hechas} de {TOTAL_OBLIGATORIAS} frases. Su ayuda enseña a Rimay a hablar quechua chanka.</p>
-        <p className="muted">Su código es <b>{part.codigo}</b>.</p>
+        <EnlaceRetomar part={part} />
         {!terminoExtra && (
           <button className="btn primary" onClick={() => irA(primeraExtra)}>
             Seguir con la parte extra (opcional)
@@ -120,13 +135,49 @@ export default function Recolector() {
         siguiente();
       }}
       onSaltar={siguiente}
+      onSaltarTodo={() => { setPantalla("gracias"); window.scrollTo({ top: 0 }); }}
       onAnterior={() => indice > 0 && irA(indice - 1)}
       onPartes={() => setPantalla("partes")}
     />
   );
 }
 
-function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
+function Retomar({ onRetomar }: { onRetomar: (d: Participante & { respuestas: Guardada[] }) => void }) {
+  const [codigo, setCodigo] = useState("");
+  const [error, setError] = useState("");
+  const [buscando, setBuscando] = useState(false);
+  async function buscar() {
+    setError("");
+    const c = codigo.trim().toLowerCase().replace(/\s+/g, "");
+    if (!/^p?\d+$/.test(c)) { setError("Escriba su código, por ejemplo p4."); return; }
+    setBuscando(true);
+    try {
+      const r = await fetch(`/api/retomar?codigo=${encodeURIComponent(c.startsWith("p") ? c : `p${c}`)}`);
+      if (r.status === 404) { setError("No encontramos ese código. Revíselo e intente de nuevo."); return; }
+      if (!r.ok) { setError("No se pudo buscar por un problema nuestro. Intente en unos minutos."); return; }
+      onRetomar(await r.json());
+    } catch {
+      setError("No se pudo buscar. Revise su internet e intente de nuevo.");
+    } finally {
+      setBuscando(false);
+    }
+  }
+  return (
+    <details className="card">
+      <summary>¿Ya empezó antes? Siga donde se quedó</summary>
+      <label className="retomar">
+        Escriba su código (aparece arriba de cada frase, por ejemplo p4)
+        <input value={codigo} onChange={(e) => setCodigo(e.target.value)} inputMode="text" autoCapitalize="none" autoComplete="off" />
+      </label>
+      {error && <p className="error">{error}</p>}
+      <button className="btn" disabled={buscando} onClick={buscar}>{buscando ? "Buscando…" : "Seguir donde me quedé"}</button>
+    </details>
+  );
+}
+
+function Bienvenida({ onListo, onRetomar }: {
+  onListo: (p: Participante) => void; onRetomar: (d: Participante & { respuestas: Guardada[] }) => void;
+}) {
   const [consent, setConsent] = useState(false);
   const [sabe, setSabe] = useState<boolean | null>(null);
   const [nombre, setNombre] = useState("");
@@ -208,6 +259,8 @@ function Bienvenida({ onListo }: { onListo: (p: Participante) => void }) {
       <button className="btn primary" disabled={enviando} onClick={empezar}>
         {enviando ? "Un momento…" : "Empezar"}
       </button>
+
+      <Retomar onRetomar={onRetomar} />
     </main>
   );
 }
@@ -255,9 +308,9 @@ function Partes({ guardadas, onElegir, onVolver }: {
   );
 }
 
-function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, onAnterior, onPartes }: {
+function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, onSaltarTodo, onAnterior, onPartes }: {
   part: Participante; indice: number; guardada?: Guardada; guardadas: Map<number, Guardada>;
-  onGuardada: (g: Guardada) => void; onSaltar: () => void; onAnterior: () => void; onPartes: () => void;
+  onGuardada: (g: Guardada) => void; onSaltar: () => void; onSaltarTodo: () => void; onAnterior: () => void; onPartes: () => void;
 }) {
   const f = FRASES[indice];
   const esExtra = f.bloque === ("E" as Bloque);
@@ -346,7 +399,8 @@ function FraseView({ part, indice, guardada, guardadas, onGuardada, onSaltar, on
         <button className="btn" onClick={onAnterior} disabled={indice === 0 || enviando}>← Anterior</button>
         <button className="btn" onClick={onSaltar} disabled={enviando}>Saltar →</button>
       </div>
-      {!esExtra && <p className="muted small center">Si no sabe una frase, toque «Saltar».</p>}
+      <button className="btn" onClick={onSaltarTodo} disabled={enviando}>Saltar todo y terminar</button>
+      {!esExtra && <p className="muted small center">Si no sabe una frase, toque «Saltar». Lo que ya guardó no se pierde.</p>}
     </main>
   );
 }
@@ -449,6 +503,28 @@ function Grabadora({ rec, audioPrevio }: { rec: Rec; audioPrevio: string | null 
         </>
       )}
       {rec.error && <p className="error">{rec.error}</p>}
+    </div>
+  );
+}
+
+function EnlaceRetomar({ part }: { part: Participante }) {
+  const [copiado, setCopiado] = useState(false);
+  const enlace = typeof window === "undefined" ? "" : `${window.location.origin}/?p=${part.id}`;
+  const wa = `https://wa.me/?text=${encodeURIComponent(`Mi enlace para seguir con Rimay: ${enlace}`)}`;
+  return (
+    <div className="card">
+      <p>Su código es <b>{part.codigo}</b>. Con él puede volver y seguir donde se quedó, desde cualquier teléfono.</p>
+      <div className="row" style={{ marginTop: 10 }}>
+        <a className="btn" href={wa} target="_blank" rel="noreferrer">Enviarme el enlace por WhatsApp</a>
+        <button
+          className="btn"
+          onClick={() => {
+            navigator.clipboard?.writeText(enlace).then(() => setCopiado(true)).catch(() => setCopiado(false));
+          }}
+        >
+          {copiado ? "Copiado" : "Copiar enlace"}
+        </button>
+      </div>
     </div>
   );
 }
