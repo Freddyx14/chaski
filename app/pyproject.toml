@@ -1,0 +1,16 @@
+[project]
+name = "rimay"
+version = "0.1.0"
+description = "Health-post instructions in Chanka Quechua, with self-audit before sending. Cal Hacks 13.0."
+requires-python = ">=3.11"
+dependencies = [
+    "anthropic>=1.0",
+    "pydantic>=2.7",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
