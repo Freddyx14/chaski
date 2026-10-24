@@ -25,6 +25,7 @@ import datetime as dt
 import json
 import os
 import sys
+import time
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from types import SimpleNamespace
@@ -112,8 +113,23 @@ def llamadas_estimadas(casos: list[dict], modo: str) -> int:
     return sum(critico.LLAMADAS_PULIDO if c.get("pulido") is not None else critico.LLAMADAS_TRADUCCION for c in casos)
 
 
+def percentil(valores: list[float], p: float) -> float | None:
+    """Nearest rank, the same definition as evals/interprete/correr.py so the two runners' p50/p95 compare."""
+    if not valores:
+        return None
+    orden = sorted(valores)
+    return round(orden[max(0, min(len(orden) - 1, round(p / 100 * len(orden) + 0.5) - 1))], 1)
+
+
 def evaluar(caso: dict, modo: str, client, modelo_critico: str, modelo_juez: str) -> dict:
-    """One case → {bloqueado, motivo}. Any error blocks (fail closed), and the error is recorded."""
+    """One case → {bloqueado, motivo, ms}. Any error blocks (fail closed), and the error is recorded."""
+    t0 = time.perf_counter()
+    salida = _evaluar(caso, modo, client, modelo_critico, modelo_juez)
+    salida["ms"] = round((time.perf_counter() - t0) * 1000, 1)
+    return salida
+
+
+def _evaluar(caso: dict, modo: str, client, modelo_critico: str, modelo_juez: str) -> dict:
     try:
         if modo == "sin_barreras":
             return {"bloqueado": False, "motivo": "sin barreras"}
@@ -130,7 +146,8 @@ def evaluar(caso: dict, modo: str, client, modelo_critico: str, modelo_juez: str
         else:
             rc = critico.revisar(client, caso["es"], quechua=caso["quy"], modelo=modelo_critico)
         v = rc.veredicto
-        return {"bloqueado": not v.ok, "motivo": f"{v.capa}: {v.motivo}" if not v.ok else "pasó", "capa": v.capa}
+        return {"bloqueado": not v.ok, "motivo": f"{v.capa}: {v.motivo}" if not v.ok else "pasó", "capa": v.capa,
+                "ms_pasos": rc.ms}
     except Exception as e:  # noqa: BLE001
         return {"bloqueado": True, "motivo": f"no pude verificar: {type(e).__name__}: {e}"}
 
@@ -156,6 +173,9 @@ def resumir(casos: list[dict], salidas: list[dict]) -> dict:
         "limpios": len(limpios),
         "falsos_bloqueos": falsos,
         "tasa_falsos_bloqueos": round(falsos / len(limpios), 4) if limpios else None,
+        # Wall-clock of the critic per case (all its calls), with --hilos cases in flight at once.
+        "latencia_ms": {"p50": percentil([s["ms"] for s in salidas if "ms" in s], 50),
+                        "p95": percentil([s["ms"] for s in salidas if "ms" in s], 95)},
     }
 
 
@@ -170,6 +190,9 @@ def imprimir(res: dict, modo: str) -> None:
     if res["limpios"]:
         print(f"  Bloqueó por error {res['falsos_bloqueos']} de {res['limpios']} frases correctas "
               f"({100 * res['tasa_falsos_bloqueos']:.1f} %).")
+    lat = res.get("latencia_ms") or {}
+    if lat.get("p50") is not None:
+        print(f"  Latencia del crítico por caso: p50 {lat['p50']:.0f} ms · p95 {lat['p95']:.0f} ms")
 
 
 def main(argv: list[str] | None = None, cliente=None) -> int:
@@ -224,6 +247,9 @@ def main(argv: list[str] | None = None, cliente=None) -> int:
         "simulado": args.simulado,
         "fecha": ahora.isoformat(timespec="seconds"),
         "modelo_critico": args.modelo_critico if args.modo == "chaski" else None,
+        "critico_pasos": ({"modelo_hechos": critico.MODELO_HECHOS or args.modelo_critico, "pensar": critico.PENSAR,
+                           "max_tokens": critico.MAX_TOKENS} if args.modo == "chaski" else None),
+        "hilos": args.hilos,
         "modelo_juez": modelo_juez if args.modo == "juez_claude" else None,
         "limite_por_tipo": args.limite,
         "llamadas_estimadas": n_llamadas,
