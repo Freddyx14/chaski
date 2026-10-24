@@ -54,7 +54,7 @@
 | 27 | Abrir con 90 % pacientes quechuahablantes / ~20 % personal; **no** «la única enfermera» | — | ✅ corregido |
 | 28 | Saludo de la mamá grabado, con permiso | Freddy | ⬜ |
 | 29 | Revisión de la mamá: 10 frases de emergencia + textos quechua de la app + tabla de números | Freddy | ⬜ |
-| 30 | El momento de la negativa en la demo, que salga 5 de 5 | esta sesión + ui-ux | ⬜ elegir la frase del banco de ataques |
+| 30 | El momento de la negativa en la demo, que salga 5 de 5 | esta sesión + ui-ux | ✅ frase elegida: «Tómela con agua, no con té» sin el «ama…-chu» (bloqueó 16/16) · 🔁 ui-ux 15:20 · se dice que es un error simulado |
 | 31 | Marcar el premio de Anthropic en Devpost (+ People-First, Microsoft, Cartesia) | Freddy | ⬜ |
 | 32 | Video de la demo (lo ven sponsors que no pasan por la mesa) | Freddy | ⬜ dom 05:00 |
 | 33 | Repo público **sin** `context/photos/` y confirmar si el transcript de la entrevista puede quedar | Freddy | ⬜ |
