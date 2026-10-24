@@ -77,6 +77,30 @@ MEDICAMENTOS = [
     "presión", "diabetes", "anemia", "control", "receta",
 ]
 
+# Numeros y tiempos: de ellos dependen las dosis y los dias, que es lo que no puede fallar.
+NUMEROS = [
+    "Los números del uno al diez, seguidos",
+    "Los días de la semana, del lunes al domingo",
+    "En la mañana, en la tarde, en la noche",
+    "Cada ocho horas, cada doce horas, una vez al día",
+    "Una semana, dos semanas, un mes",
+]
+
+# Bloque B: respuestas libres, como responderia un paciente. Es lo que Rimay tiene que
+# entender en la consulta real, y es lo que se mide con la persona que el modelo no escucho.
+LIBRES = [
+    "La enfermera le dijo: «tome una pastilla cada ocho horas por siete días». Repita con sus palabras qué tiene que hacer",
+    "Cuente dónde le duele y desde cuándo",
+    "Diga qué pastillas o remedios está tomando ahora",
+    "Cuente cómo se siente hoy",
+    "Pregúntele a la enfermera qué hacer si se olvida la pastilla",
+    "Cuente que su hijo tiene fiebre o diarrea y desde cuándo",
+    "Diga que no entendió y pida que le repitan",
+    "Pregunte cuándo es su próximo control",
+    "Cuente si es alérgico a algún remedio",
+    "Despídase de la enfermera y agradézcale",
+]
+
 
 def traer_verificadas() -> list[dict]:
     filas: list[dict] = []
@@ -146,22 +170,18 @@ def main() -> None:
 
     (DESTINO / "frases.json").write_text(json.dumps(
         {"verificadas": verificadas, "clinicas_sin_traducir": CLINICAS,
-         "medicamentos_y_prestamos": MEDICAMENTOS},
+         "medicamentos_y_prestamos": MEDICAMENTOS, "numeros_y_tiempos": NUMEROS,
+         "respuestas_libres": LIBRES},
         ensure_ascii=False, indent=1), encoding="utf-8")
 
     nota_comun = (
-        f"<b>Lo primero: grabar.</b> Diga el número y después la frase, en un lugar silencioso. "
-        f"Las {len(verificadas)} frases del primer bloque ya están escritas en chanka: "
-        "solo hay que leerlas o decirlas. "
-        f"Los bloques C ({len(CLINICAS)} frases de la posta) y M ({len(MEDICAMENTOS)} medicamentos y "
-        "préstamos) van <b>sin traducir a propósito</b>: el quechua lo pone usted, no el equipo.<br/><br/>"
-        "<b>Escribir el quechua es opcional en el papel.</b> Si prefiere, grabe nomás: nosotros pasamos "
-        "el audio a texto con la computadora y después usted <b>corrige en pantalla</b>, que es mucho "
-        "más rápido que escribir todo a mano. Si le resulta más cómodo escribirlo aquí, también sirve.<br/><br/>"
-        "<b>Por qué pedimos las dos cosas.</b> El audio enseña a la máquina a <i>entender</i> cómo se "
-        "habla; el texto escrito le enseña cómo se <i>escribe</i> y cómo se traduce. Son dos aprendizajes "
-        "distintos y los dos hacen falta. Las palabras del bloque M son préstamos del castellano: "
-        "<b>dígalas como las dice la gente en la posta</b>, no como las leería un locutor.")
+        "<b>Cómo grabar.</b> Lugar silencioso, el celular a un palmo de la boca. "
+        "<b>Una nota de voz de WhatsApp por frase</b>, al chat de Freddy. "
+        "En cada nota, primero diga el código en castellano («C uno», «M cinco», «B tres») y después "
+        "la frase <b>en quechua chanka, como la diría en la posta</b>: natural, no leyendo como locutor. "
+        "<b>No hace falta escribir nada</b>: la mamá de Freddy corrige el texto después en pantalla.<br/><br/>"
+        "<b>Orden.</b> Primero C, M, N y B (lo importante, unos 25 minutos). "
+        "El bloque «Extra» es solo si le queda tiempo.")
 
     construir("frases_quechua.pdf", "Rimay · frases en quechua chanka",
               nota_comun + " <b>Este cuadernillo es para leer en voz alta.</b>",
@@ -183,25 +203,29 @@ def main() -> None:
                 [["#", "Palabra"]] + [[f"M{i}", P(t)] for i, t in enumerate(MEDICAMENTOS, 1)],
                 [1.2 * cm, 15 * cm])])
 
-    construir("frases_ambos.pdf", "Rimay · castellano y quechua chanka",
-              nota_comun + " <b>Revise cada par y corrija el quechua si hace falta.</b>",
-              [("Frases verificadas",
+    construir("frases_ambos.pdf", "Rimay · frases para grabar en quechua chanka",
+              nota_comun,
+              [("C · Frases de la posta · dígalas en chanka",
+                [["#", "Castellano"]] + [[f"C{i}", P(t)] for i, t in enumerate(CLINICAS, 1)],
+                [1.2 * cm, 15 * cm]),
+               ("M · Medicamentos y palabras del castellano · dígalas como se dicen en la posta",
+                [["#", "Palabra"]] + [[f"M{i}", P(t)] for i, t in enumerate(MEDICAMENTOS, 1)],
+                [1.2 * cm, 15 * cm]),
+               ("N · Números y tiempos · una nota por línea",
+                [["#", "Qué decir en chanka"]] + [[f"N{i}", P(t)] for i, t in enumerate(NUMEROS, 1)],
+                [1.2 * cm, 15 * cm]),
+               ("B · Respuestas libres · responda como lo haría un paciente, con sus palabras",
+                [["#", "Qué hacer"]] + [[f"B{i}", P(t)] for i, t in enumerate(LIBRES, 1)],
+                [1.2 * cm, 15 * cm]),
+               ("Extra · solo si le queda tiempo · lea en voz alta la columna en chanka",
                 [["#", "Castellano", "Quechua chanka"]] +
-                [[str(i), P(f["castellano"]), P(f["chanka"])]
+                [[f"E{i}", P(f["castellano"]), P(f["chanka"])]
                  for i, f in enumerate(verificadas, 1)],
-                [1.1 * cm, 7.4 * cm, 7.7 * cm]),
-               ("Frases de la posta · escriba el quechua en la columna vacía",
-                [["#", "Castellano", "Quechua chanka"]] +
-                [[f"C{i}", P(t), P(linea)] for i, t in enumerate(CLINICAS, 1)],
-                [1.1 * cm, 7.4 * cm, 7.7 * cm]),
-               ("Medicamentos y préstamos · escriba cómo suena en chanka",
-                [["#", "Castellano", "Cómo suena en chanka"]] +
-                [[f"M{i}", P(t), P(linea)] for i, t in enumerate(MEDICAMENTOS, 1)],
-                [1.1 * cm, 7.4 * cm, 7.7 * cm])])
+                [1.2 * cm, 7.3 * cm, 7.7 * cm])])
 
-    total = len(verificadas) + len(CLINICAS) + len(MEDICAMENTOS)
-    print(f"{len(verificadas)} verificadas + {len(CLINICAS)} clínicas + "
-          f"{len(MEDICAMENTOS)} medicamentos = {total} por persona")
+    total = len(CLINICAS) + len(MEDICAMENTOS) + len(NUMEROS) + len(LIBRES)
+    print(f"{len(CLINICAS)} clínicas + {len(MEDICAMENTOS)} medicamentos + {len(NUMEROS)} números + "
+          f"{len(LIBRES)} libres = {total} por persona (+ {len(verificadas)} extra opcionales)")
     for p in sorted(DESTINO.glob("*.pdf")):
         print(f"  {p}  {p.stat().st_size // 1024} KB")
     print(f"\nA 3.5 s por frase: {total * 3.5 / 60:.1f} min de audio por persona.")

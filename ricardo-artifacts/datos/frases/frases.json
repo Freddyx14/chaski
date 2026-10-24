@@ -564,5 +564,24 @@
   "anemia",
   "control",
   "receta"
+ ],
+ "numeros_y_tiempos": [
+  "Los números del uno al diez, seguidos",
+  "Los días de la semana, del lunes al domingo",
+  "En la mañana, en la tarde, en la noche",
+  "Cada ocho horas, cada doce horas, una vez al día",
+  "Una semana, dos semanas, un mes"
+ ],
+ "respuestas_libres": [
+  "La enfermera le dijo: «tome una pastilla cada ocho horas por siete días». Repita con sus palabras qué tiene que hacer",
+  "Cuente dónde le duele y desde cuándo",
+  "Diga qué pastillas o remedios está tomando ahora",
+  "Cuente cómo se siente hoy",
+  "Pregúntele a la enfermera qué hacer si se olvida la pastilla",
+  "Cuente que su hijo tiene fiebre o diarrea y desde cuándo",
+  "Diga que no entendió y pida que le repitan",
+  "Pregunte cuándo es su próximo control",
+  "Cuente si es alérgico a algún remedio",
+  "Despídase de la enfermera y agradézcale"
  ]
 }
