@@ -33,7 +33,12 @@ vacío, y por eso las grabaciones de las familias valen tanto.
 | Common Voice Ayacucho | **0.05 h** | quy | CC0 | sí |
 | Common Voice Puno | 35.41 h (5.18 validadas) | qxp | CC0 | casi seguro que sí |
 
-**El mejor candidato es claro: las 48 h transcritas de IWSLT 2026.** Es habla espontánea de radio, en
+> **Descartado el 24-oct.** Ricardo lo ve inviable para el plazo que tenemos, y tiene razón: hay que
+> pedirlo, esperar respuesta, y el ND obliga a una conversación de permisos que no cabe en el fin de
+> semana. Queda apuntado para después del hackathon, no para ahora. Lo de abajo explica por qué era
+> atractivo, por si se retoma.
+
+**El mejor candidato sería: las 48 h transcritas de IWSLT 2026.** Es habla espontánea de radio, en
 nuestra variedad, con transcripción, y es ~130 veces lo que tendríamos con las grabaciones familiares.
 
 **Pero la licencia tiene un ND.** CC BY-NC-**ND** es «sin obras derivadas», y un modelo ajustado con
@@ -134,9 +139,46 @@ revisor los borra; preferí dejarlos a inventar una heurística que borre frases
 1. ~~Bajar el Manual del CMP y parsearlo a pares.~~ **Hecho.**
 2. **Convertir Collao → Chanka** con reglas, y pasarle a la hablante solo lo dudoso.
 3. **Entrenar la traducción** con `spanish-to-quechua` (102 747 pares, quy) **menos nuestras 100**.
-4. **Pedir las 48 h de IWSLT 2026** para el ajuste de omniASR, y escribirle a Llamacha por el permiso
-   si esto pasa del hackathon.
+4. ~~Pedir las 48 h de IWSLT 2026.~~ **Descartado para el hackathon** (plazo y permisos). El ajuste de
+   omniASR va con las voces de las familias y nada más. Son menos horas, pero son de nuestra variedad
+   y de nuestro dominio, que es lo que ninguna de las 48 h tiene.
 5. **No tocar Common Voice.** Para `quy` son tres minutos, y ya están dentro del modelo.
 
 Lo que nadie tiene y nosotros sí vamos a tener: **habla clínica real en Chanka, de las familias.**
 Ese es el aporte, y los datasets de arriba son el piso sobre el que se apoya, no el reemplazo.
+
+
+## Candidatos de glosario, ya generados
+
+`voz/glosario_candidatos.py` convierte los 243 pares en
+`datos/frases/glosario_candidatos.json`: **152 candidatos**, de dos clases distintas, porque se
+revisan distinto.
+
+**111 de tipo `frase`** — el par completo, cuando la frase
+castellana es corta y se sostiene sola. Vienen emparejados del manual, así que son los confiables:
+
+```
+¿Cómo te llamas?        ¿Iman sutiyki?
+¿Tienes esposo?         ¿Qariyki kanchu?
+¿De dónde vienes?       ¿Maymanta jamunki?
+```
+
+**41 de tipo `termino`** — una palabra castellana con la
+quechua que más la acompaña, contada sobre los 243 pares. Esto es coocurrencia, no alineamiento, y se
+nota:
+
+```
+respire    samay             apoyo 5   ✓
+hijo       wawaykita         apoyo 5   ~ está flexionado: «a tu hijo», no «hijo»
+dolor      imatawantaq       apoyo 2   ✗ eso significa «¿con qué más?»
+```
+
+Dos límites que conviene decir antes de que alguien los descubra revisando:
+
+- **El quechua aglutina, así que la palabra suelta casi nunca aparece.** Lo que coocurre es
+  `wawaykita`, no `wawa`. Un glosario de raíces necesita a alguien que sepa quitar los sufijos.
+- **Con 243 pares la estadística es pobre.** Un `apoyo 2` es haber visto dos frases. Por eso cada
+  candidato sale con su apoyo y con ejemplos: para que se pueda descartar rápido, no para creerle.
+
+Nada de esto toca `app/chaski/glosario.json`. Ese archivo dice en su propia documentación que solo
+una hablante agrega entradas, y así se queda: esto es una lista para marcar sí o no.

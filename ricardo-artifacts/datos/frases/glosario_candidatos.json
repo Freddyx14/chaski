@@ -1,0 +1,1821 @@
+[
+ {
+  "castellano": "¿Cómo estás?",
+  "quechua": "¿Imayna kashanky?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 17,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cómo te llamas?",
+  "quechua": "¿Iman sutiyki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 17,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cuántos años tienes?",
+  "quechua": "¿Hayqa huatayoc kanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 17,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿De dónde eres?",
+  "quechua": "¿Maymanta kanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 17,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿De dónde vienes?",
+  "quechua": "¿Maymanta jamunki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 17,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tienes esposa?",
+  "quechua": "¿Warmiyki kanchu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tienes esposo?",
+  "quechua": "¿Qariyki kanchu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tienes hijos?",
+  "quechua": "¿Wawaykikuma kanchu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cuántos hombres, cuántas mujeres?",
+  "quechua": "¿Haykan kary, haykan warmy?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cuántos hijos muertos? ¿De qué?",
+  "quechua": "¿Hayka huawa huañuska'? ¿Imamanta?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Desde cuándo está enfermo?",
+  "quechua": "¿Haykakmanta onqoska kashanky?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Qué enfermedad tiene tu hijo?",
+  "quechua": "¿Amamanta onqoshan wawayki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 18,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cómo le comenzó?",
+  "quechua": "¿Imamanta kallarin?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Poco, fuerte o leve?",
+  "quechua": "¿Pistachu, sinchitachu o fuertetachu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cómo es el dolor?",
+  "quechua": "¿Imaynatatak nanasunky?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Se irradia?",
+  "quechua": "¿Purinchu nanayniyky?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Señale con el dedo",
+  "quechua": "Dedoykiwan willaway",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Con qué le calma?",
+  "quechua": "¿Iman wabtaq pisita nanasunky?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le duele la cabeza?",
+  "quechua": "¿Umayki nanan?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le punza?",
+  "quechua": "¿Usury jinachu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le late?",
+  "quechua": "¿Samay jinachu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 19,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le revienta?",
+  "quechua": "¿Particucuj jinachu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 20,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Toda la cabeza?",
+  "quechua": "¿Intirun umachu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 20,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿La mitad?",
+  "quechua": "¿Kusca umallachu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 20,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le duele la lengua?",
+  "quechua": "¿Kalloyki nanan?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 20,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le duele la espalda?",
+  "quechua": "¿Wasayki nanan?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 20,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿En descanso o en actividad?",
+  "quechua": "¿Samanki hina o ruwanki hina?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 20,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le duele el abdomen?",
+  "quechua": "¿Wiksachu nanan?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 21,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tiene \u0000ebre o escalofríos?",
+  "quechua": "¿Rupaychu japisunki o chirichu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 21,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Abre la boca",
+  "quechua": "Simiykita kichay",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 23,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Se agita cuando camina?",
+  "quechua": "¿Purinki jina ajitakunkichu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 24,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Con cuántas almohadas duerme?",
+  "quechua": "¿Jayka saunanawanmi puñunky?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 24,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Se despierta ahogándose cuando duerme?",
+  "quechua": "¿Rikchankijina tu'kayniykichu mana samachisunki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 24,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Ganas de llorar?",
+  "quechua": "¿Wakaytachu munanqui?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 24,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Ponga suelto el abdomen.",
+  "quechua": "Wicsaykita ama kuyuchiycho.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 25,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tiene apetito?",
+  "quechua": "¿Yarakasunkichu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 28,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le funciona bien el intestino?",
+  "quechua": "¿Allinchu cashan wicsayki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 29,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cuántos días le baja sangre?",
+  "quechua": "¿Jaykactac hamuran yawarniyki qepaman?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 33,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Es abundante los primeros días?",
+  "quechua": "¿Ashkachu kallarin hina yawarniyki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 33,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cuánto tiempo viene dando pecho?",
+  "quechua": "¿Jayk’actamantañatac ñuñuchishanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 34,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Es amarillo, con sangre?",
+  "quechua": "K’ellocho, yawarniyukcho",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 36,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le pican los genitales?",
+  "quechua": "¿Sansan nanan genitalniyki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 36,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Desde cuándo arrastra la pierna?",
+  "quechua": "¿Hayk’akmanta chaquiykita arrastranki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 37,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Saque la lengua, sople, silbe.",
+  "quechua": "¿Kalluykita urkumuy, pukuy, silvay?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 37,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tiene mareos?",
+  "quechua": "¿Umayki muyusunkichu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 38,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Camina a pasos cortos?",
+  "quechua": "¿Purinqui pisimanta pisi?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 38,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Se siente cansado?",
+  "quechua": "¿Saykuska kashanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 39,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Se encierra en su cuarto?",
+  "quechua": "¿Wasiykipichu sapayki kayra munanqui?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 39,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Pre\u0000ere no hablar?",
+  "quechua": "¿Manachu parlayta munanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 39,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Nada le llama la atención?",
+  "quechua": "¿Mana imapis atishawanchu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 39,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tiene di\u0000cultad para dormir?",
+  "quechua": "¿Manachu puñuyta atinqui?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 39,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Ha notado que habla sólo?",
+  "quechua": "¿Sapallanchu parlan?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 40,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Ahora voy a verlo.",
+  "quechua": "Kunan kawarusayki",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Abra la boca",
+  "quechua": "Kichay simiykita",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Saque la lengua",
+  "quechua": "Kalloykita urk’cuy",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Quítese la ropa",
+  "quechua": "P’achaykita ch’utikuy",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Respire por la nariz",
+  "quechua": "Sink’aykimanta samay",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Mire y vea bien",
+  "quechua": "K’awanky hina allintachu ricunki",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Por la noche ve bien?",
+  "quechua": "¿Tuta allintachu rikunki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 41,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Pase la saliva.",
+  "quechua": "Llausaykita mikuy.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 42,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le duele lo que toco?",
+  "quechua": "¿Nanasunkichu llankasayki chay?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 43,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tosa y respire varias veces.",
+  "quechua": "Ujuy pisimanta pisi asckjata",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 43,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Si camina rápido o despacio.",
+  "quechua": "Purishan tullkutachu o pismantachu chayta.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 44,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Deme su brazo izquierdo.",
+  "quechua": "Lloq’e makiykita apamuy.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 44,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Voy a tomarle la presión.",
+  "quechua": "Presinniykita kawasac imainas cashan chayta.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 44,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Levante las manos.",
+  "quechua": "Makiykita ukáriy altuma",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 47,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Saque la lengua.",
+  "quechua": "K’alloykita urkúmuy.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 47,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Cruce las piernas.",
+  "quechua": "Chaquiykita uckaj chaqui patama churay.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 47,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tenga limpio a su hijo.",
+  "quechua": "Wawaykita limpiuta chachiy.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 49,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Haga hervir el agua.",
+  "quechua": "Lecheta timpuchinayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 49,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Mañana viene en ayunas.",
+  "quechua": "Pakarin hamunki ama mikuspa.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 51,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tiene que traer orina.",
+  "quechua": "Hispaykita apamunky.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 51,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Trae orina en este frasco.",
+  "quechua": "Kay frascopi hispaskaikita apamunki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 51,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tiene que traer esputo.",
+  "quechua": "T’okasjaikita apamunki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 51,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tiene que traer sus heces.",
+  "quechua": "Akaykita apamunki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 52,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "No debe tener miedo.",
+  "quechua": "Ama manchacunkichu.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 52,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tiene que hospitalizarse.",
+  "quechua": "Hospitalisakunaiky.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le da miedo el hospital?",
+  "quechua": "Hospitalta manchakunkichu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Compre esto para su operación.",
+  "quechua": "Operacionnaykipak kayta rantimunki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tiene familia aquí?",
+  "quechua": "¿Kanchu familiayki kaypi?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Esta es su cama.",
+  "quechua": "Kaymi puñunayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cuál es su cama?",
+  "quechua": "¿Mayquenmi puñunayki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le sacaron radiografía?",
+  "quechua": "¿Radiogra\u0000ata orqorasunkichu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 53,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Aquí va a orinar.",
+  "quechua": "Kaypihisp’akunki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Póngase la bata.",
+  "quechua": "Churacuy batata.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Guarde su ropa.",
+  "quechua": "Pachaykita waqaychay.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Le voy a lavar.",
+  "quechua": "Hamuy makchisayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Le cortaré las uñas.",
+  "quechua": "Silluykita kuchusayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Le voy a poner enema.",
+  "quechua": "Enemata churasayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Le voy a sacar sangre.",
+  "quechua": "Yakarta orqosayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Le voy a inyectar.",
+  "quechua": "Inyecshonta churasayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Le voy a poner suero.",
+  "quechua": "Suerota churasayki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 54,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Hoy día no coma nada.",
+  "quechua": "Kuna p’unchay ama mikunkichu.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Está muy delicado.",
+  "quechua": "Manan allinchu cashanki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Cómo ha amanecido?",
+  "quechua": "¿Imaynataj pakarinki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Ya está mejor.",
+  "quechua": "Allinñan cashanki.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Está cómodo en la cama?",
+  "quechua": "¿Allinchu cashanki puñunapi?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "No se saque esto.",
+  "quechua": "Ama kayta orqocuychu.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "No trate de moverse.",
+  "quechua": "Ama cuyunkichu.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "No se agarre la herida",
+  "quechua": "Ama japicunkichu usurita.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 55,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Le ajusta la venda?",
+  "quechua": "Mat’isunkichu chumpi",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 56,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Sí me ajusta.",
+  "quechua": "Arí mat’iwan",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 56,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Tiene sed?",
+  "quechua": "¿Ch’aquisunkichu unu?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 56,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Y ahora, cómo se siente?",
+  "quechua": "¿Kunanry imaynataj kashanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 56,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Me siento mejor",
+  "quechua": "Allinñan cashani.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 57,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Tiene que caminar despacio.",
+  "quechua": "Chicamanta puriycachay.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 57,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Quiere ir al baño?",
+  "quechua": "¿Hisp’akchu riyta munanki?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 57,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "¿Qué ha comido?",
+  "quechua": "¿Imantan mikuranqui?",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 57,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "La herida se puede abrir.",
+  "quechua": "Usuriyki kicharukunma.",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 57,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Sayask’a",
+  "quechua": "Succhu",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 68,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "Huallc’o",
+  "quechua": "Pukuy",
+  "tipo": "frase",
+  "apoyo": 1,
+  "pagina": 71,
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "hijo",
+  "quechua": "wawaykita",
+  "tipo": "termino",
+  "apoyo": 5,
+  "veces_en_total": 5,
+  "confianza": 0.83,
+  "ejemplos": [
+   {
+    "castellano": "¿Qué enfermedad tiene tu hijo?",
+    "quechua": "¿Amamanta onqoshan wawayki?"
+   },
+   {
+    "castellano": "¿Es la primera vez que espera un hijo?",
+    "quechua": "Ñampaq wawaykitachu suyasanki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "deme",
+  "quechua": "apamuy",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 3,
+  "confianza": 0.75,
+  "ejemplos": [
+   {
+    "castellano": "Deme su brazo para ver su presión.",
+    "quechua": "Apamuy mojlleykita presion kjawanaypak"
+   },
+   {
+    "castellano": "Deme su mano para saber cuánto tiene.",
+    "quechua": "Apamuy makiykita kjawanaypak"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "hagan",
+  "quechua": "ruwanasunkispaq",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 3,
+  "confianza": 0.75,
+  "ejemplos": [
+   {
+    "castellano": "Para que le hagan el examen de sangre.",
+    "quechua": "Yawar examenta ruwanasunkispaq."
+   },
+   {
+    "castellano": "Para que le hagan el examen de orina.",
+    "quechua": "Unihisp’ay examenta ruwanasunkispaq."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "examen",
+  "quechua": "ruwanasunkispaq",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 3,
+  "confianza": 0.75,
+  "ejemplos": [
+   {
+    "castellano": "Para que le hagan el examen de sangre.",
+    "quechua": "Yawar examenta ruwanasunkispaq."
+   },
+   {
+    "castellano": "Para que le hagan el examen de orina.",
+    "quechua": "Unihisp’ay examenta ruwanasunkispaq."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "respire",
+  "quechua": "samay",
+  "tipo": "termino",
+  "apoyo": 5,
+  "veces_en_total": 6,
+  "confianza": 0.71,
+  "ejemplos": [
+   {
+    "castellano": "Respire / no respire / póngase de costado / siéntese",
+    "quechua": "Samay / ama samychu / teknemanta churakuy / tiyariy"
+   },
+   {
+    "castellano": "Respire por la nariz",
+    "quechua": "Sink’aykimanta samay"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "duele",
+  "quechua": "nanasunkichu",
+  "tipo": "termino",
+  "apoyo": 4,
+  "veces_en_total": 5,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Qué es lo que le duele?",
+    "quechua": "¿Imaykin nanan?"
+   },
+   {
+    "castellano": "¿Le duele la cabeza?",
+    "quechua": "¿Umayki nanan?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "viene",
+  "quechua": "hamunki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Qué es lo que le molesta o por qué viene?",
+    "quechua": "¿Iman nanasunqui imarayku hamunki?"
+   },
+   {
+    "castellano": "¿Cuánto tiempo mastica coca, ahora lo viene haciendo?",
+    "quechua": "¿Haykamantaña cocata akullinky, kunan acullisankichu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "dolor",
+  "quechua": "imatawantaq",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Cómo es el dolor?",
+    "quechua": "¿Imaynatatak nanasunky?"
+   },
+   {
+    "castellano": "¿Tiene dolor (ardor punzada) en el cuello?",
+    "quechua": "¿Karan o nanan kunkayki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "cabeza",
+  "quechua": "umaykichu",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Le duele la cabeza?",
+    "quechua": "¿Umayki nanan?"
+   },
+   {
+    "castellano": "¿Toda la cabeza?",
+    "quechua": "¿Intirun umachu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "orina",
+  "quechua": "hispanki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Orina bien de día / de noche?",
+    "quechua": "¿Hispanki allinta tuta / punchay?"
+   },
+   {
+    "castellano": "Cada vez que orina, ¿tiene ardor?",
+    "quechua": "¿Hispaqtiykikarasunkichu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "bien",
+  "quechua": "allintachu",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Orina bien de día / de noche?",
+    "quechua": "¿Hispanki allinta tuta / punchay?"
+   },
+   {
+    "castellano": "¿Le funciona bien el intestino y formado?",
+    "quechua": "¿Akashanki allyntachu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "aire",
+  "quechua": "ukumanta",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "se agita o le falta el aire para respirar?",
+    "quechua": "¿Uhunki hina saykunkichu manachu samayta atinki"
+   },
+   {
+    "castellano": "¿Siente de cuando en cuando [que] le falta aire?",
+    "quechua": "¿Samainiyki ratu tatu manan kanchu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "pecho",
+  "quechua": "pechoykita",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Siente que le ronca o le silba el pecho?",
+    "quechua": "¿Uhunki hina ronkankichu o silvankichu?"
+   },
+   {
+    "castellano": "¿Le duele el pecho cuando camina?",
+    "quechua": "¿Purijtiyki pechoykichu nansunki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "ropa",
+  "quechua": "pachaykita",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "Quítese la ropa, le voy a examinar",
+    "quechua": "Chutikuy pachaykita cawasayki imaynas cashanky"
+   },
+   {
+    "castellano": "Quítese la ropa",
+    "quechua": "P’achaykita ch’utikuy"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "boca",
+  "quechua": "simiykita",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "Abre la boca",
+    "quechua": "Simiykita kichay"
+   },
+   {
+    "castellano": "¿Le duele la boca cuando la abre?",
+    "quechua": "¿Simiyki nananchu kichactiyki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "camina",
+  "quechua": "purinki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Se agita cuando camina?",
+    "quechua": "¿Purinki jina ajitakunkichu?"
+   },
+   {
+    "castellano": "¿Le duele el pecho cuando camina?",
+    "quechua": "¿Purijtiyki pechoykichu nansunki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "hinchados",
+  "quechua": "chakiyki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Están sus pies hinchados? ¿En la mañana o en la tarde?",
+    "quechua": "Chakiyki punkiscachu cashan? ¿Tumantachu o"
+   },
+   {
+    "castellano": "los tiene permanentemente hinchados?",
+    "quechua": "Chakiyki punkisunkichu o punkiskapuni karan?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "meses",
+  "quechua": "killata",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Le viene sangre todos los meses?",
+    "quechua": "¿Yawarniyki jamón sapa killachu?"
+   },
+   {
+    "castellano": "o dos meses.",
+    "quechua": "Huaytayqui 40 hinaqa yawarniyki jamunka uk o iskay"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "hablar",
+  "quechua": "parlayta",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Ha cambiado su modo de hablar?",
+    "quechua": "¿Parlayniyki wacjinachu?"
+   },
+   {
+    "castellano": "¿Pre\u0000ere no hablar con nadie?",
+    "quechua": "¿Manachu piwampis parlayta munanki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "tres",
+  "quechua": "kinsa",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "Diga treinta y tres cada vez que le toque la espalda.",
+    "quechua": "Niy kinsachunka kinsayniyuc nispa sapa wasapi takajtiy."
+   },
+   {
+    "castellano": "Dele de mamar a su hijo cada tres horas.",
+    "quechua": "Wawaykita ñuñuchiy sapa kinsa horas."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "hondo",
+  "quechua": "ukumanta",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "Respire hondo y no tan rápido.",
+    "quechua": "Samay uk’umanta pisimanta pisi."
+   },
+   {
+    "castellano": "Respire hondo y bote el aire.",
+    "quechua": "Samay ukumanta y wikchuy samayta."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "cama",
+  "quechua": "puñunayki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "Esta es su cama.",
+    "quechua": "Kaymi puñunayki."
+   },
+   {
+    "castellano": "¿Cuál es su cama?",
+    "quechua": "¿Mayquenmi puñunayki?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "mejor",
+  "quechua": "allinñan",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "Ya está mejor.",
+    "quechua": "Allinñan cashanki."
+   },
+   {
+    "castellano": "Me siento mejor",
+    "quechua": "Allinñan cashani."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "ajusta",
+  "quechua": "mat",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 2,
+  "confianza": 0.67,
+  "ejemplos": [
+   {
+    "castellano": "¿Le ajusta la venda?",
+    "quechua": "Mat’isunkichu chumpi"
+   },
+   {
+    "castellano": "Sí me ajusta.",
+    "quechua": "Arí mat’iwan"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "derecho",
+  "quechua": "paña",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 4,
+  "confianza": 0.6,
+  "ejemplos": [
+   {
+    "castellano": "¿Le duele aquí en el lado derecho?",
+    "quechua": "¿Nanasunkicho kay paña ladupi?"
+   },
+   {
+    "castellano": "vientre del lado derecho.",
+    "quechua": "Umaykita churay lloqe laduma noka hapiykusac paña"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "lado",
+  "quechua": "paña",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 4,
+  "confianza": 0.6,
+  "ejemplos": [
+   {
+    "castellano": "¿Le duele aquí en el lado derecho?",
+    "quechua": "¿Nanasunkicho kay paña ladupi?"
+   },
+   {
+    "castellano": "vientre del lado derecho.",
+    "quechua": "Umaykita churay lloqe laduma noka hapiykusac paña"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "cada",
+  "quechua": "sapa",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 4,
+  "confianza": 0.6,
+  "ejemplos": [
+   {
+    "castellano": "Cada vez que orina, ¿tiene ardor?",
+    "quechua": "¿Hispaqtiykikarasunkichu?"
+   },
+   {
+    "castellano": "Diga treinta y tres cada vez que le toque la espalda.",
+    "quechua": "Niy kinsachunka kinsayniyuc nispa sapa wasapi takajtiy."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "ahora",
+  "quechua": "kunan",
+  "tipo": "termino",
+  "apoyo": 4,
+  "veces_en_total": 7,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "¿Cuánto tiempo mastica coca, ahora lo viene haciendo?",
+    "quechua": "¿Haykamantaña cocata akullinky, kunan acullisankichu?"
+   },
+   {
+    "castellano": "¿Ahora está más renegona o sensible para llorar?",
+    "quechua": "¿Kunan pisillamantachu koleranki ó wak’aychu"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "toco",
+  "quechua": "nanasunkichu",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 5,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "¿Le duele lo que toco?",
+    "quechua": "¿Nanasunkichu llankasayki chay?"
+   },
+   {
+    "castellano": "¿Le duele cuando le toco o aprieto?",
+    "quechua": "¿Nansunkichu ñatuyki hina?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "izquierdo",
+  "quechua": "lloq",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 5,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "Le voy a tocar el lado izquierdo del pecho.",
+    "quechua": "Lloq’e pechoykita tocasayki."
+   },
+   {
+    "castellano": "Deme su brazo izquierdo.",
+    "quechua": "Lloq’e makiykita apamuy."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "traer",
+  "quechua": "apamunki",
+  "tipo": "termino",
+  "apoyo": 3,
+  "veces_en_total": 5,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "Cada mes debes traer a tu hijo para pesarlo, examinarlo.",
+    "quechua": "Wawaykita sapa killa apamunki pesanapaq,"
+   },
+   {
+    "castellano": "Tiene que traer orina.",
+    "quechua": "Hispaykita apamunky."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "sangre",
+  "quechua": "yawar",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 3,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "amarillo, con sangre o totalmente con sangre?",
+    "quechua": "¿Uhuspa imata toqanki, ima color, yurac, komer, kello"
+   },
+   {
+    "castellano": "¿Alguna vez ha orinado sangre y con olor?",
+    "quechua": "¿Hisparankichu yawarta nanayman?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "brazo",
+  "quechua": "apamuy",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 3,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "Deme su brazo para ver su presión.",
+    "quechua": "Apamuy mojlleykita presion kjawanaypak"
+   },
+   {
+    "castellano": "Deme su brazo izquierdo.",
+    "quechua": "Lloq’e makiykita apamuy."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "rápido",
+  "quechua": "purishan",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 3,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "Late bien y está normal / Está como loco, late rápido",
+    "quechua": "Allintan purishan tulkutan purishan/ Loco jina purishan"
+   },
+   {
+    "castellano": "Respire hondo y no tan rápido.",
+    "quechua": "Samay uk’umanta pisimanta pisi."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "poner",
+  "quechua": "churasayki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 3,
+  "confianza": 0.5,
+  "ejemplos": [
+   {
+    "castellano": "Le voy a poner enema.",
+    "quechua": "Enemata churasayki."
+   },
+   {
+    "castellano": "Le voy a poner suero.",
+    "quechua": "Suerota churasayki."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "noche",
+  "quechua": "tuta",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 4,
+  "confianza": 0.4,
+  "ejemplos": [
+   {
+    "castellano": "¿Orina bien de día / de noche?",
+    "quechua": "¿Hispanki allinta tuta / punchay?"
+   },
+   {
+    "castellano": "¿Le baja poco o mucha cantidad de día o de noche?",
+    "quechua": "¿Hamun pisichu o asckachu, tutatchu o punchaychu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "vientre",
+  "quechua": "paña",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 4,
+  "confianza": 0.4,
+  "ejemplos": [
+   {
+    "castellano": "vientre del lado derecho.",
+    "quechua": "Umaykita churay lloqe laduma noka hapiykusac paña"
+   },
+   {
+    "castellano": "¿Tiene dolor en el vientre (abdomen)? ¿Cómo es?",
+    "quechua": "¿Nansunkichi wicsayki chaypi imaynatak?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "manos",
+  "quechua": "makiykita",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 4,
+  "confianza": 0.4,
+  "ejemplos": [
+   {
+    "castellano": "Levante las manos.",
+    "quechua": "Makiykita ukáriy altuma"
+   },
+   {
+    "castellano": "Lávese las manos antes de comer.",
+    "quechua": "Maqchikunayki makiykita mikunapaq."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "días",
+  "quechua": "yawarniyki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 6,
+  "confianza": 0.29,
+  "ejemplos": [
+   {
+    "castellano": "¿Días después, la deposición es casi blanca?",
+    "quechua": "¿Pakarinintin akanti yuractachu?"
+   },
+   {
+    "castellano": "¿Cuántos días le baja sangre?",
+    "quechua": "¿Jaykactac hamuran yawarniyki qepaman?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "regla",
+  "quechua": "yawarniyki",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 6,
+  "confianza": 0.29,
+  "ejemplos": [
+   {
+    "castellano": "¿Cuándo fue la última vez que vino tu regla?",
+    "quechua": "¿Haykactac hamuran yawarniyki qepaman?"
+   },
+   {
+    "castellano": "¿Cuántos meses no le viene la regla?",
+    "quechua": "¿Jayka killatac manua yawarniyki jamunchu?"
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ },
+ {
+  "castellano": "pies",
+  "quechua": "kunan",
+  "tipo": "termino",
+  "apoyo": 2,
+  "veces_en_total": 7,
+  "confianza": 0.25,
+  "ejemplos": [
+   {
+    "castellano": "¿Están sus pies hinchados? ¿En la mañana o en la tarde?",
+    "quechua": "Chakiyki punkiscachu cashan? ¿Tumantachu o"
+   },
+   {
+    "castellano": "Le voy a raspar la planta de los pies.",
+    "quechua": "Kunan chaki pampaykita rascariscayka."
+   }
+  ],
+  "fuente": "manual-semiologia-cmp-2020",
+  "revisado": false
+ }
+]
