@@ -5,6 +5,9 @@
 
 ## 📍 Estado actual (act. 2026-10-23, Friday 18:30 PT)
 
+- **⚠️ Source of truth is now `SOT.md` (SOT-3, 23:50 PT Fri).** Product = face-to-face Spanish↔Chanka interpreter
+  app for health staff (D9–D12). Every new decision goes there first; `plan/rimay-visual.html` is regenerated from it
+  with the same version stamp.
 - **Scope (23:33 PT Fri, Freddy):** general health care at the Pilpichaca health post, NOT only pregnant women.
   Community = Quechua-speaking patients of that post. More family voices = more data.
 - **Build (23:30 PT Fri):** Rimay confirmed by both (Ricardo's extortion idea dropped; his own results showed the

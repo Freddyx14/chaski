@@ -1,5 +1,7 @@
 # Rimay — plan completo para Cal Hacks 13.0
 
+> ⚠️ **Fuente de verdad del producto: [`SOT.md`](../SOT.md) (SOT-3).** Desde D9–D10 Rimay es una app de intérprete cara a cara para el personal de salud, no WhatsApp. Este archivo vale por su calendario, los recortes y la medición; donde diga «WhatsApp», «gestante» o «panel», ver el SOT.
+
 > Versión del viernes 23 de octubre, 23:00 PT. Entrega: **domingo 25, 9:00 AM PT** (quedan ~34 h).
 > Qué es el producto: `ideas/producto.md` · evidencia: `research/papers.md` · voz: `research/voz-quechua-modelos.md`
 > · recolección: `plan/recoleccion-de-voz.md` · criterios: `ideas/criterios.md`.

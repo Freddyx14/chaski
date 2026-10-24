@@ -1,5 +1,7 @@
 # Rimay (nombre de trabajo) — el problema, la solución y sus funciones
 
+> ⚠️ **Producto v1, superado por [`SOT.md`](../SOT.md) (SOT-3).** El producto ya no es WhatsApp ni solo gestantes: es una app de intérprete para el personal de salud. La evidencia de este documento sigue valiendo.
+
 > Qué es el producto, no cómo se construye. La arquitectura va en otro documento.
 > Las cifras vienen de `research/problemas-lenguas-originarias.md` y los papers de `research/papers.md`.
 > «Rimay» significa «hablar» en quechua. Es un nombre de trabajo: lo decidimos con la mamá de Freddy.

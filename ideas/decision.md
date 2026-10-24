@@ -1,5 +1,7 @@
 # Decisión — ¿qué construimos? (viernes 23, 21:00 PT)
 
+> ⚠️ **Histórico.** La decisión final está en [`SOT.md`](../SOT.md) §6.
+
 Medido contra `ideas/criterios.md`. Fuentes en `research/`.
 
 **La decisión:** qué idea construir en ~36 horas para ganar el track de Anthropic (y si se puede, uno general),
