@@ -1,0 +1,2695 @@
+[
+ {
+  "id": "emg-dolor-donde",
+  "es": "¿Dónde le duele?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "dolor",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-dolor-que",
+  "es": "¿Qué es lo que le duele?",
+  "quy": "¿Imaykin nanan?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-senale",
+  "es": "Señale con el dedo",
+  "quy": "Dedoykiwan willaway",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-desde-cuando",
+  "es": "¿Desde cuándo está enfermo?",
+  "quy": "¿Haykakmanta onqoska kashanky?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "motivo_consulta"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-alergia",
+  "es": "¿Es alérgico a algún medicamento?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "alergias",
+   "medicamentos",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-embarazo",
+  "es": "¿Está embarazada?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "embarazo",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-acompanante",
+  "es": "¿Vino con alguien?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "identificacion",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-familia-aqui",
+  "es": "¿Tiene familia aquí?",
+  "quy": "¿Kanchu familiayki kaypi?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-respira",
+  "es": "¿Puede respirar bien?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "respiratorio",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-fiebre",
+  "es": "¿Tiene fiebre o escalofríos?",
+  "quy": "¿Rupaychu japisunki o chirichu?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "fiebre"
+  ],
+  "fuente": "cmp-semiologia-2020 p.21",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-vomito",
+  "es": "¿Vomitó?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "digestivo",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-medicamento-tomo",
+  "es": "¿Tomó algún medicamento?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "medicamentos",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-caida",
+  "es": "¿Se cayó o se golpeó?",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "trauma",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-cabeza",
+  "es": "¿Le duele la cabeza?",
+  "quy": "¿Umayki nanan?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "dolor",
+   "cabeza"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-abdomen",
+  "es": "¿Le duele el abdomen?",
+  "quy": "¿Wiksachu nanan?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "dolor",
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.21",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-mareos",
+  "es": "¿Tiene mareos?",
+  "quy": "¿Umayki muyusunkichu?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "neurologico",
+   "cabeza"
+  ],
+  "fuente": "cmp-semiologia-2020 p.38",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-nombre",
+  "es": "¿Cómo te llamas?",
+  "quy": "¿Iman sutiyki?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.17",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-edad",
+  "es": "¿Cuántos años tienes?",
+  "quy": "¿Hayqa huatayoc kanki?",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.17",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-presion",
+  "es": "Voy a tomarle la presión.",
+  "quy": "Presinniykita kawasac imainas cashan chayta.",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "cardiovascular"
+  ],
+  "fuente": "cmp-semiologia-2020 p.44",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-via",
+  "es": "Voy a ponerle una vía.",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "procedimientos",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-suero",
+  "es": "Le voy a poner suero.",
+  "quy": "Suerota churasayki.",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-no-moverse",
+  "es": "No trate de moverse.",
+  "quy": "Ama cuyunkichu.",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-no-miedo",
+  "es": "No debe tener miedo.",
+  "quy": "Ama manchacunkichu.",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "calma"
+  ],
+  "fuente": "cmp-semiologia-2020 p.52",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "emg-tranquilo",
+  "es": "No se preocupe, estamos aquí para ayudarle.",
+  "quy": "",
+  "audio": null,
+  "tags": [
+   "emergencia",
+   "calma",
+   "falta_quechua"
+  ],
+  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-000",
+  "es": "¿Cómo estás?",
+  "quy": "¿Imayna kashanky?",
+  "audio": null,
+  "tags": [
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.17",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-003",
+  "es": "¿De dónde eres?",
+  "quy": "¿Maymanta kanki?",
+  "audio": null,
+  "tags": [
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.17",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-004",
+  "es": "¿De dónde vienes?",
+  "quy": "¿Maymanta jamunki?",
+  "audio": null,
+  "tags": [
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.17",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-005",
+  "es": "¿Tienes esposa?",
+  "quy": "¿Warmiyki kanchu?",
+  "audio": null,
+  "tags": [
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-006",
+  "es": "¿Tienes esposo?",
+  "quy": "¿Qariyki kanchu?",
+  "audio": null,
+  "tags": [
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-007",
+  "es": "¿Tienes hijos?",
+  "quy": "¿Wawaykikuma kanchu?",
+  "audio": null,
+  "tags": [
+   "identificacion",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-008",
+  "es": "¿Cuántos hombres, cuántas mujeres?",
+  "quy": "¿Haykan kary, haykan warmy?",
+  "audio": null,
+  "tags": [
+   "identificacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-009",
+  "es": "¿Cuántos hijos muertos? ¿De qué?",
+  "quy": "¿Hayka huawa huañuska'? ¿Imamanta?",
+  "audio": null,
+  "tags": [
+   "identificacion",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-010",
+  "es": "¿Por qué ha venido señor / señora / joven / señorita?",
+  "quy": "¿Imarayku hamushanqui tatay / mamay / wayna / sipas?",
+  "audio": null,
+  "tags": [
+   "motivo_consulta"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-011",
+  "es": "¿Qué es lo que le molesta o por qué viene?",
+  "quy": "¿Iman nanasunqui imarayku hamunki?",
+  "audio": null,
+  "tags": [
+   "motivo_consulta"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-013",
+  "es": "¿Qué enfermedad tiene tu hijo?",
+  "quy": "¿Amamanta onqoshan wawayki?",
+  "audio": null,
+  "tags": [
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.18",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-014",
+  "es": "¿Cómo le comenzó?",
+  "quy": "¿Imamanta kallarin?",
+  "audio": null,
+  "tags": [
+   "motivo_consulta"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-016",
+  "es": "¿Poco, fuerte o leve?",
+  "quy": "¿Pistachu, sinchitachu o fuertetachu?",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-017",
+  "es": "¿Cómo es el dolor?",
+  "quy": "¿Imaynatatak nanasunky?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-018",
+  "es": "¿Se irradia?",
+  "quy": "¿Purinchu nanayniyky?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-020",
+  "es": "¿Con qué le calma?",
+  "quy": "¿Iman wabtaq pisita nanasunky?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-022",
+  "es": "¿Le punza?",
+  "quy": "¿Usury jinachu?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-023",
+  "es": "¿Le late?",
+  "quy": "¿Samay jinachu?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.19",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-024",
+  "es": "¿Le revienta?",
+  "quy": "¿Particucuj jinachu?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.20",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-025",
+  "es": "¿Toda la cabeza?",
+  "quy": "¿Intirun umachu?",
+  "audio": null,
+  "tags": [
+   "cabeza"
+  ],
+  "fuente": "cmp-semiologia-2020 p.20",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-026",
+  "es": "¿La mitad?",
+  "quy": "¿Kusca umallachu?",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.20",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-027",
+  "es": "¿Le duele la lengua?",
+  "quy": "¿Kalloyki nanan?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.20",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-028",
+  "es": "¿Le duele la espalda?",
+  "quy": "¿Wasayki nanan?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.20",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-029",
+  "es": "¿En descanso o en actividad?",
+  "quy": "¿Samanki hina o ruwanki hina?",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.20",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-030",
+  "es": "¿Cuando tose le duele más?",
+  "quy": "¿Sorqan nanan ¿Uhunky hinachu nanan masta?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.21",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-033",
+  "es": "¿Orina bien de día / de noche?",
+  "quy": "¿Hispanki allinta tuta / punchay?",
+  "audio": null,
+  "tags": [
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.21",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-034",
+  "es": "¿Le funciona bien el intestino y formado?",
+  "quy": "¿Akashanki allyntachu?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.21",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-035",
+  "es": "¿Es cierto que a veces se despierta? ¿Cuántas veces?",
+  "quy": "¿Checkachu ricchanki ayka kuti?",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.21",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-037",
+  "es": "¿Tiene dolor (ardor punzada) en el cuello?",
+  "quy": "¿Karan o nanan kunkayki?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.22",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-038",
+  "es": "¿Tiene tos por momentos o constante?",
+  "quy": "¿Uhunki pisitachu o anchatachu uhunki?",
+  "audio": null,
+  "tags": [
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.22",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-041",
+  "es": "¿Siente que le ronca o le silba el pecho?",
+  "quy": "¿Uhunki hina ronkankichu o silvankichu?",
+  "audio": null,
+  "tags": [
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.22",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-042",
+  "es": "¿Tiene agitación por momentos o todo el día?",
+  "quy": "¿Saikunki hasktachu pisillatachu?",
+  "audio": null,
+  "tags": [
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.23",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-043",
+  "es": "Quítese la ropa, le voy a examinar",
+  "quy": "Chutikuy pachaykita cawasayki imaynas cashanky",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.23",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-044",
+  "es": "Abre la boca",
+  "quy": "Simiykita kichay",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.23",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-045",
+  "es": "¿Se agita cuando camina?",
+  "quy": "¿Purinki jina ajitakunkichu?",
+  "audio": null,
+  "tags": [
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-046",
+  "es": "¿Con cuántas almohadas duerme?",
+  "quy": "¿Jayka saunanawanmi puñunky?",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-047",
+  "es": "¿Se despierta ahogándose cuando duerme?",
+  "quy": "¿Rikchankijina tu'kayniykichu mana samachisunki?",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-048",
+  "es": "¿Le duele el pecho cuando camina?",
+  "quy": "¿Purijtiyki pechoykichu nansunki?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-049",
+  "es": "¿Qué hace para que el dolor pase?",
+  "quy": "¿Imatan ruwanky chay nanay pasanampaq?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-050",
+  "es": "Además de dolor, ¿qué otra cosa siente?",
+  "quy": "¿Nanaymanta imatawantaq sintinky?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-051",
+  "es": "¿Ganas de llorar?",
+  "quy": "¿Wakaytachu munanqui?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-052",
+  "es": "¿Siente que le palpita el pecho?",
+  "quy": "¿Pechuykicho saltakun?",
+  "audio": null,
+  "tags": [
+   "cardiovascular"
+  ],
+  "fuente": "cmp-semiologia-2020 p.24",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-053",
+  "es": "Deme su brazo para ver su presión.",
+  "quy": "Apamuy mojlleykita presion kjawanaypak",
+  "audio": null,
+  "tags": [
+   "cardiovascular",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-054",
+  "es": "Deme su mano para saber cuánto tiene.",
+  "quy": "Apamuy makiykita kjawanaypak",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-055",
+  "es": "Le voy a examinar su corazón.",
+  "quy": "Sonkoykita kjawasac imayna kaskanta",
+  "audio": null,
+  "tags": [
+   "cardiovascular",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-056",
+  "es": "Respire / no respire / póngase de costado / siéntese",
+  "quy": "Samay / ama samychu / teknemanta churakuy / tiyariy",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-057",
+  "es": "Ponga suelto el abdomen.",
+  "quy": "Wicsaykita ama kuyuchiycho.",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-058",
+  "es": "¿Le duele aquí en el lado derecho?",
+  "quy": "¿Nanasunkicho kay paña ladupi?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-059",
+  "es": "¿Están sus pies hinchados? ¿En la mañana o en la tarde?",
+  "quy": "Chakiyki punkiscachu cashan? ¿Tumantachu o",
+  "audio": null,
+  "tags": [
+   "cardiovascular"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-061",
+  "es": "Descúbrase la camisa para examinar su corazón.",
+  "quy": "Kichariy camisaykita soncoyki kawanapaj",
+  "audio": null,
+  "tags": [
+   "cardiovascular",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.25",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-062",
+  "es": "Late bien y está normal / Está como loco, late rápido",
+  "quy": "Allintan purishan tulkutan purishan/ Loco jina purishan",
+  "audio": null,
+  "tags": [
+   "cardiovascular"
+  ],
+  "fuente": "cmp-semiologia-2020 p.26",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-068",
+  "es": "¿El dolor en el pecho se ha vuelto permanente?",
+  "quy": "¿Qasco nanayniyki unaymanatañachu?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.27",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-069",
+  "es": "¿Es algo como que le aprisionaran o apretaran el pecho?",
+  "quy": "¿Matiykusunquimampis sonkoiykita hinatachu Yupanqui?",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.27",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-070",
+  "es": "¿Le duele la boca cuando la abre?",
+  "quy": "¿Simiyki nananchu kichactiyki?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-071",
+  "es": "¿Cómo está su dentadura, el diente le molesta o duele?",
+  "quy": "¿Imayna kashan kiruyqui, nanasunkichu?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "digestivo",
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-072",
+  "es": "¿Cuánto tiempo mastica coca, ahora lo viene haciendo?",
+  "quy": "¿Haykamantaña cocata akullinky, kunan acullisankichu?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-073",
+  "es": "¿Tiene apetito?",
+  "quy": "¿Yarakasunkichu?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-074",
+  "es": "¿Le repugna la comida o algunas en especial?",
+  "quy": "¿Millankunkichu mikunata o ima mikuyta?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-075",
+  "es": "¿No tiene deseos de comer, desde cuándo?",
+  "quy": "¿Mana mikuita munanquichu, haykacmanta?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-077",
+  "es": "¿Tiene dolor en el vientre (abdomen)? ¿Cómo es?",
+  "quy": "¿Nansunkichi wicsayki chaypi imaynatak?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.28",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-079",
+  "es": "¿Le funciona bien el intestino?",
+  "quy": "¿Allinchu cashan wicsayki?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.29",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-082",
+  "es": "¿Días después, la deposición es casi blanca?",
+  "quy": "¿Pakarinintin akanti yuractachu?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.30",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-085",
+  "es": "Cada vez que orina, ¿tiene ardor?",
+  "quy": "¿Hispaqtiykikarasunkichu?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.31",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-086",
+  "es": "¿Orina en las noches? ¿cuántas veces?",
+  "quy": "¿Hispanki tutallachu askata – hayka cutita?",
+  "audio": null,
+  "tags": [
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.31",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-087",
+  "es": "¿Algunas veces con ardor, dolor al terminar de orinar?",
+  "quy": "Nanasunkichu, karasunkichu haspaqtiykitukunki hina?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.31",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-088",
+  "es": "¿Su orina es de olor fuerte y turbia?",
+  "quy": "¿Hispayniyki asnachu o kellechu?",
+  "audio": null,
+  "tags": [
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.31",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-089",
+  "es": "¿Alguna vez ha orinado sangre y con olor?",
+  "quy": "¿Hisparankichu yawarta nanayman?",
+  "audio": null,
+  "tags": [
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.31",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-092",
+  "es": "¿Le viene sangre todos los meses?",
+  "quy": "¿Yawarniyki jamón sapa killachu?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.33",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-093",
+  "es": "¿Le baja poco o mucha cantidad de día o de noche?",
+  "quy": "¿Hamun pisichu o asckachu, tutatchu o punchaychu?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.33",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-094",
+  "es": "¿Cuándo fue la última vez que vino tu regla?",
+  "quy": "¿Haykactac hamuran yawarniyki qepaman?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.33",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-095",
+  "es": "¿Cuántos días le baja sangre?",
+  "quy": "¿Jaykactac hamuran yawarniyki qepaman?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.33",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-096",
+  "es": "¿Es abundante los primeros días?",
+  "quy": "¿Ashkachu kallarin hina yawarniyki?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.33",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-097",
+  "es": "¿O solo el primer o segundo día?",
+  "quy": "¿Iskay punchayllachu jamun aska?",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.33",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-099",
+  "es": "¿Cuántos meses no le viene la regla?",
+  "quy": "¿Jayka killatac manua yawarniyki jamunchu?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-100",
+  "es": "¿Es la primera vez que espera un hijo?",
+  "quy": "Ñampaq wawaykitachu suyasanki?",
+  "audio": null,
+  "tags": [
+   "embarazo",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-101",
+  "es": "¿Cómo fue su parto? ¿dónde y quién la ha atendido?",
+  "quy": "¿Ymayna onkokumki, maypy y pitak cuidarasunki?",
+  "audio": null,
+  "tags": [
+   "embarazo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-102",
+  "es": "¿Has tenido mucho dolor de cadera?",
+  "quy": "¿Tekeneyki anchatachu nansunki?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-103",
+  "es": "¿Se ha hinchado en los últimos meses?",
+  "quy": "¿Tekneiyki punkirkanchu iskay ultimo killata?",
+  "audio": null,
+  "tags": [
+   "embarazo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-104",
+  "es": "¿El niño o niña nació bien, hasta la fecha?",
+  "quy": "¿Wawayki allinchu cashan cunankama?",
+  "audio": null,
+  "tags": [
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-105",
+  "es": "¿Le da de lactar a su hijo?",
+  "quy": "¿Nuñuchinkichu wawaykita?",
+  "audio": null,
+  "tags": [
+   "embarazo",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-106",
+  "es": "¿Cuánto tiempo viene dando pecho?",
+  "quy": "¿Jayk’actamantañatac ñuñuchishanki?",
+  "audio": null,
+  "tags": [
+   "embarazo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.34",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-108",
+  "es": "¿Ahora está más renegona o sensible para llorar?",
+  "quy": "¿Kunan pisillamantachu koleranki ó wak’aychu",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.35",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-112",
+  "es": "¿Ha notado que le baja humedad por los genitales?",
+  "quy": "¿Jum’inchu ganitalniyki?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.35",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-113",
+  "es": "¿Es amarillo, con sangre?",
+  "quy": "K’ellocho, yawarniyukcho",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.36",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-114",
+  "es": "¿Le pican los genitales?",
+  "quy": "¿Sansan nanan genitalniyki?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.36",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-115",
+  "es": "¿Le sale pus por el pene?",
+  "quy": "¿Q’earachu hisp’anky?",
+  "audio": null,
+  "tags": [
+   "ginecologia"
+  ],
+  "fuente": "cmp-semiologia-2020 p.36",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-116",
+  "es": "¿Tiene dolor de cabeza y se acompaña de náuseas?",
+  "quy": "¿Umaykichu mansunkiy imatawantaq sintinky",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "cabeza"
+  ],
+  "fuente": "cmp-semiologia-2020 p.37",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-117",
+  "es": "Cuando le duele la cabeza ¿ve luces?",
+  "quy": "¿Umaykichu nansunkiy jina koillyrtachu rikunki?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "cabeza",
+   "neurologico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.37",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-118",
+  "es": "¿Desde cuándo arrastra la pierna?",
+  "quy": "¿Hayk’akmanta chaquiykita arrastranki?",
+  "audio": null,
+  "tags": [
+   "neurologico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.37",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-120",
+  "es": "Saque la lengua, sople, silbe.",
+  "quy": "¿Kalluykita urkumuy, pukuy, silvay?",
+  "audio": null,
+  "tags": [
+   "neurologico",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.37",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-124",
+  "es": "¿Camina a pasos cortos?",
+  "quy": "¿Purinqui pisimanta pisi?",
+  "audio": null,
+  "tags": [
+   "neurologico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.38",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-125",
+  "es": "¿Ha cambiado su modo de hablar?",
+  "quy": "¿Parlayniyki wacjinachu?",
+  "audio": null,
+  "tags": [
+   "neurologico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.38",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-127",
+  "es": "¿Se siente cansado?",
+  "quy": "¿Saykuska kashanki?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-128",
+  "es": "¿Prefiere no hablar con nadie?",
+  "quy": "¿Manachu piwampis parlayta munanki?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-129",
+  "es": "¿Se encierra en su cuarto?",
+  "quy": "¿Wasiykipichu sapayki kayra munanqui?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-130",
+  "es": "¿Prefiere no hablar?",
+  "quy": "¿Manachu parlayta munanki?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-131",
+  "es": "¿Nada le llama la atención?",
+  "quy": "¿Mana imapis atishawanchu?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-132",
+  "es": "¿Siente de cuando en cuando [que] le falta aire?",
+  "quy": "¿Samainiyki ratu tatu manan kanchu?",
+  "audio": null,
+  "tags": [
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-133",
+  "es": "¿Tiene dificultad para dormir?",
+  "quy": "¿Manachu puñuyta atinqui?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-134",
+  "es": "Pero si en el día, en su cuarto se duerme?",
+  "quy": "Punchayka wasiykipi puñuyta atinki",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.39",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-135",
+  "es": "¿Desde cuándo ve cosas extrañas que no son realidad?",
+  "quy": "¿Jayk’amanta kcawanqui ujinata?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-136",
+  "es": "¿Oye voces extrañas que hablan?",
+  "quy": "¿Uyarinkichu parlajta hina ninriyquipi imatataj runata?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-137",
+  "es": "¿Cree usted que el demonio se ha apoderado de Ud.?",
+  "quy": "¿Sacrachu cuerpokima huaycurckun?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-138",
+  "es": "¿Usted cree que es Dios o la Virgen?",
+  "quy": "¿Tatitucho yuyakunki o mamitachu?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-140",
+  "es": "¿Ha notado que habla sólo?",
+  "quy": "¿Sapallanchu parlan?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-141",
+  "es": "¿Cree que es otra persona o que es Dios?",
+  "quy": "¿Uk runachu kanki o tatituchu kayta munanki?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-142",
+  "es": "¿Cree que lo van a matar?",
+  "quy": "¿Wañuchisunquimanpis hinatachi Yupanqui?",
+  "audio": null,
+  "tags": [
+   "salud_mental"
+  ],
+  "fuente": "cmp-semiologia-2020 p.40",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-143",
+  "es": "Ahora voy a verlo.",
+  "quy": "Kunan kawarusayki",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-144",
+  "es": "Abra la boca",
+  "quy": "Kichay simiykita",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-145",
+  "es": "Saque la lengua",
+  "quy": "Kalloykita urk’cuy",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-146",
+  "es": "Quítese la ropa",
+  "quy": "P’achaykita ch’utikuy",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-147",
+  "es": "Respire por la nariz",
+  "quy": "Sink’aykimanta samay",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-148",
+  "es": "Mire y vea bien",
+  "quy": "K’awanky hina allintachu ricunki",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-149",
+  "es": "¿Por la noche ve bien?",
+  "quy": "¿Tuta allintachu rikunki?",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.41",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-150",
+  "es": "Pase la saliva.",
+  "quy": "Llausaykita mikuy.",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.42",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-151",
+  "es": "Voy a examinarlo o ver la espalda y el pecho.",
+  "quy": "K’awasayqui imaynas kashanki wasaykita y pechoykita.",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.43",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-152",
+  "es": "Diga treinta y tres cada vez que le toque la espalda.",
+  "quy": "Niy kinsachunka kinsayniyuc nispa sapa wasapi takajtiy.",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.43",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-153",
+  "es": "Respire hondo y no tan rápido.",
+  "quy": "Samay uk’umanta pisimanta pisi.",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.43",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-154",
+  "es": "¿Le duele lo que toco?",
+  "quy": "¿Nanasunkichu llankasayki chay?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.43",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-155",
+  "es": "Tosa y respire varias veces.",
+  "quy": "Ujuy pisimanta pisi asckjata",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.43",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-156",
+  "es": "Ahora voy a examinarle el corazón.",
+  "quy": "Kunan kawasayki soncoykita imainas kashan chaita.",
+  "audio": null,
+  "tags": [
+   "cardiovascular",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.44",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-157",
+  "es": "Le voy a tocar el lado izquierdo del pecho.",
+  "quy": "Lloq’e pechoykita tocasayki.",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.44",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-158",
+  "es": "Ahora voy a oír cómo camina su corazón.",
+  "quy": "Kuna kawasac imainatas purishan soncoykichayta.",
+  "audio": null,
+  "tags": [
+   "cardiovascular",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.44",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-159",
+  "es": "Si camina rápido o despacio.",
+  "quy": "Purishan tullkutachu o pismantachu chayta.",
+  "audio": null,
+  "tags": [
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.44",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-160",
+  "es": "Deme su brazo izquierdo.",
+  "quy": "Lloq’e makiykita apamuy.",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.44",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-162",
+  "es": "Voy a mirarle el abdomen o vientre.",
+  "quy": "Kcawariscayki wicsaykiurayta",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.45",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-163",
+  "es": "Respire para ver su desplazamiento.",
+  "quy": "Samay k’awanaypac imayna purin chayta.",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.45",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-164",
+  "es": "¿Le duele cuando le toco o aprieto?",
+  "quy": "¿Nansunkichu ñatuyki hina?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.45",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-165",
+  "es": "¿Le duele más cuando le quito la mano?",
+  "quy": "¿Anchata nansunki makiyta ukarini hina?",
+  "audio": null,
+  "tags": [
+   "dolor"
+  ],
+  "fuente": "cmp-semiologia-2020 p.45",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-166",
+  "es": "¿Ha visto estas venas o cosas azules en el vientre?",
+  "quy": "¿Ricunkichu venas azules wicsaykipi?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.45",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-168",
+  "es": "Le voy a dar unos golpecitos en su vientre.",
+  "quy": "Wicsa uraypi tacarisayki",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.46",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-169",
+  "es": "¿Le duele cuando le toco el lazo izquierdo?",
+  "quy": "¿Nanasunkichu lloq’e lado?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.46",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-170",
+  "es": "Respire hondo y bote el aire.",
+  "quy": "Samay ukumanta y wikchuy samayta.",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.46",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-171",
+  "es": "¿Le duele el lado derecho de su vientre cuando le toco?",
+  "quy": "¿Paña wicsayki nanasunkichu hap’ini hina?",
+  "audio": null,
+  "tags": [
+   "dolor",
+   "digestivo",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.46",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-172",
+  "es": "¿Cuándo respira hondo y cuándo bota el aire?",
+  "quy": "¿Ukumanta samanqui jinacho o samainiykita",
+  "audio": null,
+  "tags": [
+   "respiratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.46",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-174",
+  "es": "Levante las manos.",
+  "quy": "Makiykita ukáriy altuma",
+  "audio": null,
+  "tags": [
+   "neurologico",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.47",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-175",
+  "es": "Cierre los ojos.",
+  "quy": "Ñawiykita wisk’ay ó (ch’irmiy)",
+  "audio": null,
+  "tags": [
+   "neurologico",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.47",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-177",
+  "es": "Cruce las piernas.",
+  "quy": "Chaquiykita uckaj chaqui patama churay.",
+  "audio": null,
+  "tags": [
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.47",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-182",
+  "es": "Le voy a raspar la planta de los pies.",
+  "quy": "Kunan chaki pampaykita rascariscayka.",
+  "audio": null,
+  "tags": [
+   "neurologico",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.48",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-183",
+  "es": "Le voy a apretar los talones de los pies.",
+  "quy": "Kunan talonniykita nit’iykuskayki.",
+  "audio": null,
+  "tags": [
+   "neurologico",
+   "examen_fisico"
+  ],
+  "fuente": "cmp-semiologia-2020 p.48",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-185",
+  "es": "Dele de mamar a su hijo cada tres horas.",
+  "quy": "Wawaykita ñuñuchiy sapa kinsa horas.",
+  "audio": null,
+  "tags": [
+   "embarazo",
+   "indicaciones",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.49",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-186",
+  "es": "Tenga limpio a su hijo.",
+  "quy": "Wawaykita limpiuta chachiy.",
+  "audio": null,
+  "tags": [
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.49",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-187",
+  "es": "Haga hervir el agua.",
+  "quy": "Lecheta timpuchinayki.",
+  "audio": null,
+  "tags": [
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.49",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-188",
+  "es": "Lávese las manos antes de comer.",
+  "quy": "Maqchikunayki makiykita mikunapaq.",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.49",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-189",
+  "es": "Ahora que tiene diarrea, dele líquidos.",
+  "quy": "K’echawan kajtin ashka mateta q’onayki.",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.49",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-190",
+  "es": "Traiga a su hijo para vacunarlo.",
+  "quy": "Wawaykita vacunanapaj apamunki.",
+  "audio": null,
+  "tags": [
+   "indicaciones",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.49",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-191",
+  "es": "Al otro mes, dentro de tres meses.",
+  "quy": "Hamuq killata, kinsa killamanta.",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.50",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-192",
+  "es": "Cada mes debes traer a tu hijo para pesarlo, examinarlo.",
+  "quy": "Wawaykita sapa killa apamunki pesanapaq,",
+  "audio": null,
+  "tags": [
+   "examen_fisico",
+   "indicaciones",
+   "pediatria"
+  ],
+  "fuente": "cmp-semiologia-2020 p.50",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-193",
+  "es": "Para que le hagan el examen de sangre.",
+  "quy": "Yawar examenta ruwanasunkispaq.",
+  "audio": null,
+  "tags": [
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-194",
+  "es": "Para que le hagan el examen de orina.",
+  "quy": "Unihisp’ay examenta ruwanasunkispaq.",
+  "audio": null,
+  "tags": [
+   "urinario",
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-195",
+  "es": "Para que le hagan el examen de heces.",
+  "quy": "Hatúnhispáy examenta ruwanasunkispaq.",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-196",
+  "es": "Mañana viene en ayunas.",
+  "quy": "Pakarin hamunki ama mikuspa.",
+  "audio": null,
+  "tags": [
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-197",
+  "es": "Tiene que traer orina.",
+  "quy": "Hispaykita apamunky.",
+  "audio": null,
+  "tags": [
+   "urinario",
+   "laboratorio",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-198",
+  "es": "Trae orina en este frasco.",
+  "quy": "Kay frascopi hispaskaikita apamunki.",
+  "audio": null,
+  "tags": [
+   "urinario",
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-199",
+  "es": "Tiene que traer esputo.",
+  "quy": "T’okasjaikita apamunki.",
+  "audio": null,
+  "tags": [
+   "respiratorio",
+   "laboratorio",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.51",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-200",
+  "es": "Tiene que traer sus heces.",
+  "quy": "Akaykita apamunki.",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "laboratorio",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.52",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-202",
+  "es": "Trae dos personas para que te den sangre.",
+  "quy": "Apamunayki yscay runata yawar qonasunquipa.",
+  "audio": null,
+  "tags": [
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.52",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-203",
+  "es": "Tiene que hospitalizarse.",
+  "quy": "Hospitalisakunaiky.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-204",
+  "es": "¿Le da miedo el hospital?",
+  "quy": "Hospitalta manchakunkichu?",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-205",
+  "es": "Tiene que ir a la sala número 4.",
+  "quy": "Tawa cuartoman ronayki.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-206",
+  "es": "Compre esto para su operación.",
+  "quy": "Operacionnaykipak kayta rantimunki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-208",
+  "es": "Esta es su cama.",
+  "quy": "Kaymi puñunayki.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-209",
+  "es": "¿Cuál es su cama?",
+  "quy": "¿Mayquenmi puñunayki?",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-210",
+  "es": "¿Le sacaron radiografía?",
+  "quy": "¿Radiogra\u0000ata orqorasunkichu?",
+  "audio": null,
+  "tags": [
+   "laboratorio"
+  ],
+  "fuente": "cmp-semiologia-2020 p.53",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-211",
+  "es": "Aquí va a orinar.",
+  "quy": "Kaypihisp’akunki.",
+  "audio": null,
+  "tags": [
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-212",
+  "es": "Póngase la bata.",
+  "quy": "Churacuy batata.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-213",
+  "es": "Guarde su ropa.",
+  "quy": "Pachaykita waqaychay.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-214",
+  "es": "Le voy a lavar.",
+  "quy": "Hamuy makchisayki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-215",
+  "es": "Le cortaré las uñas.",
+  "quy": "Silluykita kuchusayki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-216",
+  "es": "Le voy a poner enema.",
+  "quy": "Enemata churasayki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-217",
+  "es": "Le voy a sacar sangre.",
+  "quy": "Yakarta orqosayki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-218",
+  "es": "Le voy a inyectar.",
+  "quy": "Inyecshonta churasayki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.54",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-220",
+  "es": "Hoy día no coma nada.",
+  "quy": "Kuna p’unchay ama mikunkichu.",
+  "audio": null,
+  "tags": [
+   "digestivo",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-221",
+  "es": "Le voy a llevar a operar.",
+  "quy": "Operacionma apasayki.",
+  "audio": null,
+  "tags": [
+   "procedimientos"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-222",
+  "es": "Está muy delicado.",
+  "quy": "Manan allinchu cashanki.",
+  "audio": null,
+  "tags": [
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-223",
+  "es": "¿Cómo ha amanecido?",
+  "quy": "¿Imaynataj pakarinki?",
+  "audio": null,
+  "tags": [
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-224",
+  "es": "Ya está mejor.",
+  "quy": "Allinñan cashanki.",
+  "audio": null,
+  "tags": [
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-225",
+  "es": "¿Está cómodo en la cama?",
+  "quy": "¿Allinchu cashanki puñunapi?",
+  "audio": null,
+  "tags": [
+   "hospitalizacion",
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-226",
+  "es": "¿Le hace frío por las noches?",
+  "quy": "¿Tuta anchata chiriwan?",
+  "audio": null,
+  "tags": [
+   "fiebre"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-227",
+  "es": "No se saque esto.",
+  "quy": "Ama kayta orqocuychu.",
+  "audio": null,
+  "tags": [
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-229",
+  "es": "No se agarre la herida",
+  "quy": "Ama japicunkichu usurita.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion",
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-230",
+  "es": "No hable, le va a doler más.",
+  "quy": "Ama parlaychu astawan nanasunki.",
+  "audio": null,
+  "tags": [
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.55",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-231",
+  "es": "¿Le ajusta la venda?",
+  "quy": "Mat’isunkichu chumpi",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.56",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-232",
+  "es": "Sí me ajusta.",
+  "quy": "Arí mat’iwan",
+  "audio": null,
+  "tags": [
+   "general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.56",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-233",
+  "es": "¿Tiene sed?",
+  "quy": "¿Ch’aquisunkichu unu?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.56",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-234",
+  "es": "¿Y ahora, cómo se siente?",
+  "quy": "¿Kunanry imaynataj kashanki?",
+  "audio": null,
+  "tags": [
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.56",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-235",
+  "es": "Me siento mejor",
+  "quy": "Allinñan cashani.",
+  "audio": null,
+  "tags": [
+   "estado_general"
+  ],
+  "fuente": "cmp-semiologia-2020 p.57",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-236",
+  "es": "Tiene que caminar despacio.",
+  "quy": "Chicamanta puriycachay.",
+  "audio": null,
+  "tags": [
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.57",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-237",
+  "es": "¿Quiere ir al baño?",
+  "quy": "¿Hisp’akchu riyta munanki?",
+  "audio": null,
+  "tags": [
+   "urinario"
+  ],
+  "fuente": "cmp-semiologia-2020 p.57",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-238",
+  "es": "¿Qué ha comido?",
+  "quy": "¿Imantan mikuranqui?",
+  "audio": null,
+  "tags": [
+   "digestivo"
+  ],
+  "fuente": "cmp-semiologia-2020 p.57",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-239",
+  "es": "La herida se puede abrir.",
+  "quy": "Usuriyki kicharukunma.",
+  "audio": null,
+  "tags": [
+   "hospitalizacion"
+  ],
+  "fuente": "cmp-semiologia-2020 p.57",
+  "revisado": false,
+  "split": "banco"
+ },
+ {
+  "id": "cmp-240",
+  "es": "Ahora está bien, así que puede irse.",
+  "quy": "Kunanka allin kashanki hinallaka ripuy.",
+  "audio": null,
+  "tags": [
+   "indicaciones"
+  ],
+  "fuente": "cmp-semiologia-2020 p.57",
+  "revisado": false,
+  "split": "banco"
+ }
+]

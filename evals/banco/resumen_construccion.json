@@ -1,0 +1,67 @@
+{
+ "total": 216,
+ "por_fuente": {
+  "chaski-emergencia": 10,
+  "cmp-semiologia-2020": 206
+ },
+ "por_tag": {
+  "alergias": 1,
+  "cabeza": 5,
+  "calma": 2,
+  "cardiovascular": 9,
+  "digestivo": 27,
+  "dolor": 33,
+  "embarazo": 7,
+  "emergencia": 24,
+  "estado_general": 8,
+  "examen_fisico": 36,
+  "falta_quechua": 10,
+  "fiebre": 2,
+  "general": 11,
+  "ginecologia": 9,
+  "hospitalizacion": 11,
+  "identificacion": 11,
+  "indicaciones": 19,
+  "laboratorio": 10,
+  "medicamentos": 2,
+  "motivo_consulta": 4,
+  "neurologico": 10,
+  "pediatria": 10,
+  "procedimientos": 9,
+  "respiratorio": 17,
+  "salud_mental": 18,
+  "trauma": 1,
+  "urinario": 11
+ },
+ "emergencia_con_quechua": 14,
+ "emergencia_falta_quechua": 10,
+ "cmp_filas_descartadas_por_parseo": 36,
+ "familia_bloque_E_vistas": 6,
+ "excluidas_por_fuga": [
+  {
+   "es": "¿Está bien, señora?",
+   "fuente": "familia p20"
+  },
+  {
+   "es": "¡Estoy bien, señor!",
+   "fuente": "familia p20"
+  },
+  {
+   "es": "Señor, ¿cómo está?",
+   "fuente": "familia p20"
+  },
+  {
+   "es": "Señora, estoy bien",
+   "fuente": "familia p20"
+  },
+  {
+   "es": "¿Cómo está, señor?",
+   "fuente": "familia p20"
+  },
+  {
+   "es": "¿Cómo está, señora?",
+   "fuente": "familia p20"
+  }
+ ],
+ "manifest_leido": true
+}
