@@ -1,0 +1,555 @@
+{
+ "weisburd2006_desplazamiento": {
+  "doi": "10.1111/j.1745-9125.2006.00057.x",
+  "ok": true,
+  "titulo": "DOES CRIME JUST MOVE AROUND THE CORNER? A CONTROLLED STUDY OF SPATIAL DISPLACEMENT AND DIFFUSION OF CRIME CONTROL BENEFITS*",
+  "anio": 2006,
+  "citas": 529,
+  "revista": "Criminology",
+  "autores": [
+   "David L. Weisburd",
+   "Laura Wyckoff",
+   "Justin T. Ready",
+   "John E. Eck"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "weisburd2004_tramos": {
+  "doi": "10.1111/j.1745-9125.2004.tb00521.x",
+  "ok": true,
+  "titulo": "TRAJECTORIES OF CRIME AT PLACES: A LONGITUDINAL STUDY OF STREET SEGMENTS IN THE CITY OF SEATTLE*",
+  "anio": 2004,
+  "citas": 858,
+  "revista": "Criminology",
+  "autores": [
+   "David L. Weisburd",
+   "Shawn David Bushway",
+   "Cynthia M. Lum",
+   "Sue‐Ming Yang"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "lee2017_concentracion": {
+  "doi": "10.1186/s40163-017-0069-x",
+  "ok": true,
+  "titulo": "How concentrated is crime at places? A systematic review from 1970 to 2015",
+  "anio": 2017,
+  "citas": 174,
+  "revista": "Crime Science",
+  "autores": [
+   "YongJei Lee",
+   "John E. Eck",
+   "O SooHyun",
+   "Natalie N. Martinez"
+  ],
+  "oa_url": "https://crimesciencejournal.biomedcentral.com/track/pdf/10.1186/s40163-017-0069-x",
+  "pdf": null
+ },
+ "mohler2011_hawkes": {
+  "doi": "10.1198/jasa.2011.ap09546",
+  "ok": true,
+  "titulo": "Self-Exciting Point Process Modeling of Crime",
+  "anio": 2011,
+  "citas": 894,
+  "revista": "Journal of the American Statistical Association",
+  "autores": [
+   "George Mohler",
+   "Martin B. Short",
+   "Paul Jeffrey Brantingham",
+   "Frederic Paik Schoenberg"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "mohler2015_rct": {
+  "doi": "10.1080/01621459.2015.1077710",
+  "ok": true,
+  "titulo": "Randomized Controlled Field Trials of Predictive Policing",
+  "anio": 2015,
+  "citas": 381,
+  "revista": "Journal of the American Statistical Association",
+  "autores": [
+   "George Mohler",
+   "Martin B. Short",
+   "Sean Malinowski",
+   "Mark Johnson"
+  ],
+  "oa_url": "https://escholarship.org/content/qt1br4975j/qt1br4975j.pdf?t=ojf69y",
+  "pdf": "papers/mohler2015_rct.pdf"
+ },
+ "reinhart2018_review": {
+  "doi": "10.1214/17-sts629",
+  "ok": true,
+  "titulo": "A Review of Self-Exciting Spatio-Temporal Point Processes and Their Applications",
+  "anio": 2018,
+  "citas": 172,
+  "revista": "Statistical Science",
+  "autores": [
+   "Alex Reinhart"
+  ],
+  "oa_url": "https://arxiv.org/pdf/1708.02647",
+  "pdf": "papers/reinhart2018_review.pdf"
+ },
+ "ratcliffe2008_nearrepeat": {
+  "doi": "10.1057/palgrave.sj.8350068",
+  "ok": true,
+  "titulo": "Near-Repeat Patterns in Philadelphia Shootings",
+  "anio": 2008,
+  "citas": 272,
+  "revista": "Security Journal",
+  "autores": [
+   "Jerry H. Ratcliffe",
+   "George F. Rengert"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "short2009_nearrepeat": {
+  "doi": "10.1007/s10940-009-9068-8",
+  "ok": true,
+  "titulo": "Measuring and Modeling Repeat and Near-Repeat Burglary Effects",
+  "anio": 2009,
+  "citas": 194,
+  "revista": "Journal of Quantitative Criminology",
+  "autores": [
+   "Martin B. Short",
+   "Maria Rita D'Orsogna",
+   "Paul Jeffrey Brantingham",
+   "George Tita"
+  ],
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s10940-009-9068-8.pdf",
+  "pdf": "papers/short2009_nearrepeat.pdf"
+ },
+ "kounadi2020_revision": {
+  "doi": "10.1186/s40163-020-00116-7",
+  "ok": true,
+  "titulo": "A systematic review on spatial crime forecasting",
+  "anio": 2020,
+  "citas": 123,
+  "revista": "Crime Science",
+  "autores": [
+   "Ourania Kounadi",
+   "Alina Ristea",
+   "Adelson de Araujo",
+   "Michael Leitner"
+  ],
+  "oa_url": "https://crimesciencejournal.biomedcentral.com/track/pdf/10.1186/s40163-020-00116-7",
+  "pdf": null
+ },
+ "mohler2020_ranking": {
+  "doi": "10.1186/s40163-020-00112-x",
+  "ok": true,
+  "titulo": "Learning to rank spatio-temporal event hotspots",
+  "anio": 2020,
+  "citas": 22,
+  "revista": "Crime Science",
+  "autores": [
+   "George Mohler",
+   "Michael D. Porter",
+   "Jeremy G. Carter",
+   "Gary D. Lafree"
+  ],
+  "oa_url": "https://crimesciencejournal.biomedcentral.com/track/pdf/10.1186/s40163-020-00112-x",
+  "pdf": null
+ },
+ "gu2024_gnn_calles": {
+  "doi": "10.3390/ijgi13070229",
+  "ok": true,
+  "titulo": "Graph Representation Learning for Street-Level Crime Prediction",
+  "anio": 2024,
+  "citas": 9,
+  "revista": "ISPRS International Journal of Geo-Information",
+  "autores": [
+   "Haishuo Gu",
+   "Jinguang Sui",
+   "Peng Chen"
+  ],
+  "oa_url": "https://www.mdpi.com/2220-9964/13/7/229/pdf?version=1719814861",
+  "pdf": null
+ },
+ "sui2024_gat_calles": {
+  "doi": "10.3390/app14209334",
+  "ok": true,
+  "titulo": "Deep Spatio-Temporal Graph Attention Network for Street-Level 110 Call Incident Prediction",
+  "anio": 2024,
+  "citas": 8,
+  "revista": "Applied Sciences",
+  "autores": [
+   "Jinguang Sui",
+   "Peng Chen",
+   "Haishuo Gu"
+  ],
+  "oa_url": "https://doi.org/10.3390/app14209334",
+  "pdf": null
+ },
+ "hakyemez2026_teoria": {
+  "doi": "10.1007/s12061-025-09789-6",
+  "ok": true,
+  "titulo": "Enhancing Deep Learning-based Crime Hotspot Predictions With Theory-based Environmental Risk Scores",
+  "anio": 2026,
+  "citas": 2,
+  "revista": "Applied Spatial Analysis and Policy",
+  "autores": [
+   "Tuğrul Cabir Hakyemez",
+   "Bertan Badur"
+  ],
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s12061-025-09789-6.pdf",
+  "pdf": "papers/hakyemez2026_teoria.pdf"
+ },
+ "jaitman2019_cifranegra": {
+  "doi": "10.1007/s41996-019-00042-0",
+  "ok": true,
+  "titulo": "The Dark Figure of Crime in Latin America and the Caribbean",
+  "anio": 2019,
+  "citas": 24,
+  "revista": "Journal of Economics Race and Policy",
+  "autores": [
+   "Laura Jaitman",
+   "María Victoria Anauati"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "khalfa2025_xai": {
+  "doi": "10.1007/s43762-025-00185-x",
+  "ok": true,
+  "titulo": "Comparing XAI techniques for interpreting short-term burglary predictions at micro-places",
+  "anio": 2025,
+  "citas": 6,
+  "revista": "Computational Urban Science",
+  "autores": [
+   "Robin Khalfa",
+   "Naomi Theinert",
+   "Wim Hardyns"
+  ],
+  "oa_url": "https://link.springer.com/content/pdf/10.1007/s43762-025-00185-x.pdf",
+  "pdf": "papers/khalfa2025_xai.pdf"
+ },
+ "chalfin2021_alumbrado": {
+  "doi": "10.1007/s10940-020-09490-6",
+  "ok": true,
+  "titulo": "Reducing Crime Through Environmental Design: Evidence from a Randomized Experiment of Street Lighting in New York City",
+  "anio": 2021,
+  "citas": 145,
+  "revista": "Journal of Quantitative Criminology",
+  "autores": [
+   "Aaron J. Chalfin",
+   "Benjamin Hansen",
+   "Jason Lerner",
+   "Lucie Parker"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "mitrebecerril2022_alumbrado": {
+  "doi": "10.1111/1745-9133.12599",
+  "ok": true,
+  "titulo": "Can deterrence persist? Long‐term evidence from a randomized experiment in street lighting",
+  "anio": 2022,
+  "citas": 26,
+  "revista": "Criminology & Public Policy",
+  "autores": [
+   "David Mitre‐Becerril",
+   "Sarah Tahamont",
+   "Jason Lerner",
+   "Aaron J. Chalfin"
+  ],
+  "oa_url": "https://doi.org/10.1111/1745-9133.12599",
+  "pdf": null
+ },
+ "kaplan2021_luz_percepcion": {
+  "doi": "10.1057/s41284-021-00296-0",
+  "ok": true,
+  "titulo": "Ambient lighting, use of outdoor spaces and perceptions of public safety: evidence from a survey experiment",
+  "anio": 2021,
+  "citas": 60,
+  "revista": "Security Journal",
+  "autores": [
+   "Jacob Kaplan",
+   "Aaron J. Chalfin"
+  ],
+  "oa_url": "https://link.springer.com/content/pdf/10.1057/s41284-021-00296-0.pdf",
+  "pdf": null
+ },
+ "gonzalez2026_peru_subregistro": {
+  "doi": "10.1016/j.ijlcj.2026.100859",
+  "ok": true,
+  "titulo": "Analyzing the relationship between homicides and police reports in Peru: A multivariate and cluster analysis with a spatial approach",
+  "anio": 2026,
+  "citas": 1,
+  "revista": "International journal of law, crime and justice",
+  "autores": [
+   "Luz Anamar González de la Rosa",
+   "Luis Javier Sánchez-Martínez"
+  ],
+  "oa_url": "https://doi.org/10.1016/j.ijlcj.2026.100859",
+  "pdf": null
+ },
+ "nardin2016_extorsion_abm": {
+  "doi": "10.1007/978-3-319-45169-5_7",
+  "ok": true,
+  "titulo": "An Agent-Based Model of Extortion Racketeering",
+  "anio": 2016,
+  "citas": 3,
+  "revista": "Computational social sciences",
+  "autores": [
+   "Luis G. Nardin",
+   "Giulia Andrighetto",
+   "Áron Székely",
+   "Valentina Punzo"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "lum2016_predecir_servir": {
+  "doi": "10.1111/j.1740-9713.2016.00960.x",
+  "ok": true,
+  "titulo": "To Predict and Serve?",
+  "anio": 2016,
+  "citas": 611,
+  "revista": "Significance",
+  "autores": [
+   "Kristian Lum",
+   "William Samuel Isaac"
+  ],
+  "oa_url": "https://rss.onlinelibrary.wiley.com/doi/pdfdirect/10.1111/j.1740-9713.2016.00960.x",
+  "pdf": null
+ },
+ "caplan2020_camorra_rtm": {
+  "doi": "10.1177/0886260517712275",
+  "ok": true,
+  "titulo": "Forecasting Organized Crime Homicides: Risk Terrain Modeling of Camorra Violence in Naples, Italy",
+  "anio": 2017,
+  "citas": 40,
+  "revista": "Journal of Interpersonal Violence",
+  "autores": [
+   "Marco Dugato",
+   "Francesco Calderoni",
+   "Giulia Berlusconi"
+  ],
+  "oa_url": "http://hdl.handle.net/10807/104293",
+  "pdf": null
+ },
+ "dorsogna2015_fisica_crimen": {
+  "doi": "10.1016/j.plrev.2014.11.001",
+  "ok": true,
+  "titulo": "Statistical physics of crime: A review",
+  "anio": 2014,
+  "citas": 280,
+  "revista": "Physics of Life Reviews",
+  "autores": [
+   "Maria Rita D'Orsogna",
+   "Matjaž Perc"
+  ],
+  "oa_url": "https://arxiv.org/pdf/1411.1743",
+  "pdf": "papers/dorsogna2015_fisica_crimen.pdf"
+ },
+ "cripav2021_calles": {
+  "doi": "10.1109/tvcg.2021.3111146",
+  "ok": true,
+  "titulo": "CriPAV: Street-Level Crime Patterns Analysis and Visualization",
+  "anio": 2021,
+  "citas": 30,
+  "revista": "IEEE Transactions on Visualization and Computer Graphics",
+  "autores": [
+   "Germain Garcia-Zanabria",
+   "Marcos M. Raimundo",
+   "Jorge Poco"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "crimanalyzer2019": {
+  "doi": "10.1109/tvcg.2019.2947515",
+  "ok": true,
+  "titulo": "CrimAnalyzer: Understanding Crime Patterns in São Paulo",
+  "anio": 2019,
+  "citas": 41,
+  "revista": "IEEE Transactions on Visualization and Computer Graphics",
+  "autores": [
+   "Germain Garcia-Zanabria",
+   "Jaqueline Silveira",
+   "Jorge Poco"
+  ],
+  "oa_url": "https://arxiv.org/pdf/2010.06517",
+  "pdf": "papers/crimanalyzer2019.pdf"
+ },
+ "mirante2020": {
+  "doi": "10.1109/sibgrapi51738.2020.00028",
+  "ok": true,
+  "titulo": "Mirante: A visualization tool for analyzing urban crimes",
+  "anio": 2020,
+  "citas": 18,
+  "revista": "SIBGRAPI Conference on Graphics, Patterns and Images (SIBGRAPI)",
+  "autores": [
+   "Germain Garcia-Zanabria",
+   "Erick Gomez-Nieto",
+   "Jaqueline Silveira"
+  ],
+  "oa_url": "https://hdl.handle.net/10438/31627",
+  "pdf": null
+ },
+ "countercrime2025": {
+  "doi": "10.1109/tvcg.2025.3586202",
+  "ok": true,
+  "titulo": "CounterCrime - Using Counterfactual Explanations to Explore Crime Reduction Scenarios",
+  "anio": 2025,
+  "citas": 3,
+  "revista": "IEEE Transactions on Visualization and Computer Graphics",
+  "autores": [
+   "Marcos M. Raimundo",
+   "Germain Garcia-Zanabria",
+   "Luís Gustavo Nonato"
+  ],
+  "oa_url": "https://doi.org/10.1109/tvcg.2025.3586202",
+  "pdf": null
+ },
+ "anomalias_grafo2025": {
+  "doi": "10.1109/sibgrapi67909.2025.11223398",
+  "ok": true,
+  "titulo": "Interactive Exploration and Explanation of Spatio-Temporal Anomalies with Graph-LLM Integration",
+  "anio": 2025,
+  "citas": 3,
+  "revista": "SIBGRAPI Conference on Graphics, Patterns and Images (SIBGRAPI)",
+  "autores": [
+   "Juanpablo Heredia",
+   "Leighton Estrada-Rayme",
+   "Jeremy Matos-Cangalaya"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "groundstory2026": {
+  "doi": "10.1145/3856820",
+  "ok": true,
+  "titulo": "GroundSTory: Interactive Storytelling for Grounded Spatiotemporal Anomaly Explanations with Graphs and Large Language Models",
+  "anio": 2026,
+  "citas": 0,
+  "revista": "ACM Transactions on Intelligent Systems and Technology",
+  "autores": [
+   "Juanpablo Heredia",
+   "Leighton Leandro Estrada-Rayme",
+   "Jeremy Matos-Cangalaya"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "manywaves2026": {
+  "doi": "10.1111/cgf.70653",
+  "ok": true,
+  "titulo": "ManyWaves: A Visual Analytics Approach for Exploring Multivariate Spatiotemporal Data Based on the Graph Wavelet Transform",
+  "anio": 2026,
+  "citas": 0,
+  "revista": "Computer Graphics Forum",
+  "autores": [
+   "Giovani Valdrighi",
+   "Germain Garcia-Zanabria",
+   "Mauro Diaz"
+  ],
+  "oa_url": "https://doi.org/10.1111/cgf.70653",
+  "pdf": null
+ },
+ "urbanclipatlas2026": {
+  "doi": "10.48550/arxiv.2604.15225",
+  "ok": true,
+  "titulo": "UrbanClipAtlas: A Visual Analytics Framework for Event and Scene Retrieval in Urban Videos",
+  "anio": 2026,
+  "citas": 0,
+  "revista": "arXiv (Cornell University)",
+  "autores": [
+   "Joel Perca",
+   "Luis Sante",
+   "Juanpablo Heredia"
+  ],
+  "oa_url": "https://arxiv.org/pdf/2604.15225",
+  "pdf": "papers/urbanclipatlas2026.pdf"
+ },
+ "granularidad_satelital2024": {
+  "doi": "10.1109/jstars.2024.3368018",
+  "ok": true,
+  "titulo": "Granularity at Scale: Estimating Neighborhood Socioeconomic Indicators From High-Resolution Orthographic Imagery and Hybrid Learning",
+  "anio": 2024,
+  "citas": 1,
+  "revista": "IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing",
+  "autores": [
+   "Ethan Brewer",
+   "Giovani Valdrighi",
+   "Parikshit Solunke"
+  ],
+  "oa_url": "https://arxiv.org/pdf/2309.16808",
+  "pdf": "papers/granularidad_satelital2024.pdf"
+ },
+ "graffiti17k2022": {
+  "doi": "10.5220/0010883300003124",
+  "ok": true,
+  "titulo": "17K-Graffiti: Spatial and Crime Data Assessments in São Paulo City",
+  "anio": 2022,
+  "citas": 6,
+  "revista": "International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications (VISIGRAPP)",
+  "autores": [
+   "Bahram Lavi",
+   "Eric K. Tokuda",
+   "Felipe Moreno-Vera"
+  ],
+  "oa_url": "https://doi.org/10.5220/0010883300003124",
+  "pdf": null
+ },
+ "zanabria_tesis2021": {
+  "doi": "10.11606/t.55.2021.tde-09042021-1614",
+  "ok": true,
+  "titulo": null,
+  "anio": null,
+  "citas": null,
+  "revista": null,
+  "autores": [],
+  "oa_url": null,
+  "pdf": null
+ },
+ "tensoranalyzer2022": {
+  "doi": "10.48550/arxiv.2210.02623",
+  "ok": true,
+  "titulo": "TensorAnalyzer: Identification of Urban Patterns in Big Cities using Non-Negative Tensor Factorization",
+  "anio": 2022,
+  "citas": 4,
+  "revista": "arXiv (Cornell University)",
+  "autores": [
+   "Silveira, Jaqueline",
+   "Germain Garcia-Zanabria",
+   "Afonso Paiva"
+  ],
+  "oa_url": "https://arxiv.org/pdf/2210.02623",
+  "pdf": "papers/tensoranalyzer2022.pdf"
+ },
+ "percepcion_streetview2021": {
+  "doi": "10.1145/3486622.3493975",
+  "ok": true,
+  "titulo": "Quantifying Urban Safety Perception on Street View Images",
+  "anio": 2021,
+  "citas": 11,
+  "revista": "IEEE/WIC/ACM International Conference on Web Intelligence",
+  "autores": [
+   "Felipe Moreno-Vera",
+   "Bahram Lavi",
+   "Jorge Poco"
+  ],
+  "oa_url": null,
+  "pdf": null
+ },
+ "taxivis2013": {
+  "doi": "10.1109/tvcg.2013.226",
+  "ok": true,
+  "titulo": "Visual Exploration of Big Spatio-Temporal Urban Data: A Study of New York City Taxi Trips",
+  "anio": 2013,
+  "citas": 521,
+  "revista": "IEEE Transactions on Visualization and Computer Graphics",
+  "autores": [
+   "Nivan Roberto Ferreira Júnior",
+   "Jorge Poco",
+   "Huy T. Vo"
+  ],
+  "oa_url": null,
+  "pdf": null
+ }
+}
