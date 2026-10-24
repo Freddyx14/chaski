@@ -4,179 +4,156 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Spectral:wght@400;600&display=swap">
 <style>
   :root {
-    --ground: #f3f3ef;
-    --surface: #fcfcfb;
-    --surface-2: #eceae3;
-    --ink: #15150f;
-    --ink-2: #52514a;
-    --ink-mute: #898781;
-    --line: #dedcd3;
-    --rule: #c7c5ba;
-    --accent: #2a78d6;
-    --seq-0: #d8e6f8;
-    --seq-1: #86b6ef;
-    --seq-2: #2a78d6;
-    --seq-3: #0d366b;
-    --critico: #d03b3b;
-    --aviso: #b5751a;
-    --sombra: 0 1px 2px rgba(20, 21, 15, .06);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ground: #111210;
-      --surface: #1a1a19;
-      --surface-2: #242421;
-      --ink: #f4f3ee;
-      --ink-2: #bfbdb2;
-      --ink-mute: #898781;
-      --line: #2e2e2a;
-      --rule: #3c3c36;
-      --accent: #3987e5;
-      --seq-0: #163254;
-      --seq-1: #1c5cab;
-      --seq-2: #3987e5;
-      --seq-3: #9ec5f4;
-      --critico: #e66767;
-      --aviso: #d9a033;
-      --sombra: none;
-    }
-  }
-  :root[data-theme="dark"] {
-    --ground: #111210;
-    --surface: #1a1a19;
-    --surface-2: #242421;
-    --ink: #f4f3ee;
-    --ink-2: #bfbdb2;
-    --ink-mute: #898781;
-    --line: #2e2e2a;
-    --rule: #3c3c36;
-    --accent: #3987e5;
-    --seq-0: #163254;
-    --seq-1: #1c5cab;
-    --seq-2: #3987e5;
-    --seq-3: #9ec5f4;
-    --critico: #e66767;
-    --aviso: #d9a033;
-    --sombra: none;
+    color-scheme: light;
+    --papel: #f4f3ee;
+    --superficie: #ffffff;
+    --superficie-2: #eceae2;
+    --tinta: #16160f;
+    --tinta-2: #4e4d45;
+    --tinta-mute: #86847a;
+    --linea: #dedcd2;
+    --regla: #c4c2b6;
+    --acento: #1f6fd0;
+    --seq-0: #cfe2f8;
+    --seq-1: #7fb2ec;
+    --seq-2: #1f6fd0;
+    --seq-3: #0c3466;
+    --critico: #c8372f;
+    --aviso: #a86b14;
+    --sombra: 0 1px 3px rgba(22, 22, 15, .08);
+    --sombra-flote: 0 8px 28px rgba(22, 22, 15, .18);
   }
 
   body {
-    background: var(--ground);
-    color: var(--ink);
+    background: var(--papel);
+    color: var(--tinta);
     font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
-    padding-block: 28px 56px;
+    padding-block: 30px 60px;
     padding-left: 20px;
     padding-right: 20px;
     line-height: 1.45;
   }
-  .envoltura { max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+  .envoltura { max-width: 1500px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
 
-  header { display: flex; flex-direction: column; gap: 10px; }
-  .eyebrow {
-    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--ink-mute); font-weight: 600;
+  .eyebrow { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--tinta-mute); font-weight: 600; margin: 0; }
+  h1 { font-size: clamp(30px, 5vw, 52px); margin: 6px 0 14px; font-weight: 700; letter-spacing: -.02em; }
+  .entrada {
+    font-family: Spectral, Georgia, serif;
+    font-size: clamp(16px, 1.45vw, 20px);
+    line-height: 1.52;
+    color: var(--tinta-2);
+    margin: 0;
+    max-width: none;
   }
-  h1 { font-size: clamp(26px, 4vw, 38px); margin: 0; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; }
-  .bajada {
-    font-family: Spectral, Georgia, serif; font-size: 16px; color: var(--ink-2);
-    max-width: 66ch; margin: 0;
-  }
-  .bajada b { color: var(--ink); font-weight: 600; }
+  .entrada b { color: var(--tinta); font-weight: 600; }
+  .entrada .rojo { color: var(--critico); font-weight: 600; }
 
   .aviso {
-    display: flex; gap: 10px; align-items: flex-start;
-    border-left: 3px solid var(--aviso); background: var(--surface);
-    padding: 11px 14px; font-size: 13px; color: var(--ink-2); max-width: 78ch;
+    border-left: 3px solid var(--aviso); background: var(--superficie);
+    padding: 12px 16px; font-size: 14px; color: var(--tinta-2); margin: 0;
   }
-  .aviso strong { color: var(--ink); font-weight: 600; }
+  .aviso strong { color: var(--tinta); font-weight: 600; }
 
-  .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
-  .cifra { background: var(--surface); padding: 12px 14px; }
-  .cifra dt { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; margin: 0 0 4px; }
-  .cifra dd { margin: 0; font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
-  .cifra .nota { display: block; font-size: 12px; font-weight: 500; color: var(--ink-2); letter-spacing: 0; }
+  .cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 1px; background: var(--linea); border: 1px solid var(--linea); }
+  .cifra { background: var(--superficie); padding: 13px 16px; }
+  .cifra dt { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--tinta-mute); font-weight: 600; margin: 0 0 3px; }
+  .cifra dd { margin: 0; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
+  .cifra .nota { display: block; font-size: 12px; font-weight: 500; color: var(--tinta-2); letter-spacing: 0; }
 
-  .controles { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .grupo { display: flex; border: 1px solid var(--rule); background: var(--surface); }
-  .grupo button {
-    font: inherit; font-size: 12px; font-weight: 600; padding: 7px 12px;
-    background: transparent; color: var(--ink-2); border: 0; cursor: pointer;
+  /* ---------- mapa ---------- */
+  .mapa-marco {
+    position: relative;
+    height: clamp(460px, 74vh, 880px);
+    background: var(--superficie);
+    border: 1px solid var(--regla);
+    box-shadow: var(--sombra);
+    overflow: hidden;
+    touch-action: none;
   }
-  .grupo button + button { border-left: 1px solid var(--line); }
-  .grupo button[aria-pressed="true"] { background: var(--accent); color: #fff; }
-  .grupo button:focus-visible, .enlace:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .rango { font-size: 12px; color: var(--ink-2); font-variant-numeric: tabular-nums; margin-left: auto; }
-  .enlace { font: inherit; font-size: 12px; font-weight: 600; color: var(--accent); background: none; border: 0; cursor: pointer; padding: 7px 0; }
+  #mapa { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; display: block; }
 
-  .tablero { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 16px; align-items: start; }
-  @media (max-width: 860px) { .tablero { grid-template-columns: 1fr; } }
-
-  .panel { background: var(--surface); border: 1px solid var(--line); box-shadow: var(--sombra); }
-  .panel h2 {
-    font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-mute);
-    margin: 0; padding: 11px 14px; border-bottom: 1px solid var(--line); font-weight: 600;
+  .flota { position: absolute; z-index: 3; background: var(--superficie); border: 1px solid var(--regla); box-shadow: var(--sombra); }
+  .capas { top: 12px; left: 12px; display: flex; }
+  .capas button, .metricas button {
+    font: inherit; font-size: 12px; font-weight: 600; padding: 8px 13px;
+    background: transparent; color: var(--tinta-2); border: 0; cursor: pointer;
   }
-  .lienzo-caja { position: relative; aspect-ratio: 4 / 3; max-width: 100%; }
-  #mapa { position: absolute; inset: 0; width: 100%; height: 100%; cursor: crosshair; }
-  .leyenda { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--line); font-size: 11px; color: var(--ink-2); flex-wrap: wrap; }
-  .barra-leyenda { height: 8px; width: 150px; background: linear-gradient(90deg, var(--seq-0), var(--seq-1), var(--seq-2), var(--seq-3)); }
+  .capas button + button, .metricas button + button { border-left: 1px solid var(--linea); }
+  .capas button[aria-pressed="true"], .metricas button[aria-pressed="true"] { background: var(--acento); color: #fff; }
+  .metricas { top: 12px; right: 12px; display: flex; }
+  button:focus-visible, .enlace:focus-visible { outline: 2px solid var(--acento); outline-offset: 2px; }
 
-  .ficha { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
-  .ficha .nombre { font-size: 17px; font-weight: 700; margin: 0; line-height: 1.25; text-wrap: balance; }
-  .ficha .sub { font-size: 12px; color: var(--ink-mute); margin: 0; }
-  .pares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .par dt { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); font-weight: 600; margin: 0 0 2px; }
+  .leyenda { left: 12px; bottom: 12px; padding: 9px 12px; display: flex; align-items: center; gap: 9px; font-size: 11px; color: var(--tinta-2); }
+  .barra-leyenda { height: 8px; width: 140px; background: linear-gradient(90deg, var(--seq-0), var(--seq-1), var(--seq-2), var(--seq-3)); }
+  .credito { right: 12px; bottom: 12px; padding: 6px 10px; font-size: 10px; color: var(--tinta-mute); border: 0; background: rgba(255, 255, 255, .82); box-shadow: none; }
+
+  .tarjeta {
+    position: absolute; z-index: 5; width: min(330px, calc(100% - 24px));
+    box-shadow: var(--sombra-flote); display: none;
+  }
+  .tarjeta[data-abierta="true"] { display: block; }
+  .tarjeta header { display: flex; gap: 10px; align-items: flex-start; padding: 13px 14px 0; }
+  .tarjeta h3 { font-size: 16px; margin: 0; font-weight: 700; line-height: 1.22; flex: 1; }
+  .tarjeta .cerrar { font: inherit; font-size: 18px; line-height: 1; background: none; border: 0; color: var(--tinta-mute); cursor: pointer; padding: 0 2px; }
+  .tarjeta .donde { font-size: 12px; color: var(--tinta-mute); padding: 2px 14px 10px; margin: 0; }
+  .pares { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 14px 10px; }
+  .par dt { font-size: 9px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-mute); font-weight: 600; margin: 0 0 1px; }
   .par dd { margin: 0; font-size: 19px; font-weight: 700; font-variant-numeric: tabular-nums; }
   .par dd.viol { color: var(--critico); }
-  .vacio { color: var(--ink-mute); font-size: 13px; font-family: Spectral, Georgia, serif; }
+  .patrones { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linea); }
+  .patrones li { padding: 8px 14px; font-size: 13px; color: var(--tinta-2); border-bottom: 1px solid var(--linea); display: flex; gap: 8px; align-items: baseline; }
+  .patrones li:last-child { border-bottom: 0; }
+  .patrones .marca { font-weight: 700; color: var(--tinta); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .patrones .marca.sube { color: var(--critico); }
+  .patrones .marca.baja { color: #1d7a3d; }
+  .tarjeta svg { padding: 4px 10px 10px; }
 
-  .lista { list-style: none; margin: 0; padding: 0; max-height: 262px; overflow-y: auto; }
-  .lista li { border-top: 1px solid var(--line); }
-  .lista li:first-child { border-top: 0; }
-  .lista button {
-    width: 100%; text-align: left; font: inherit; background: none; border: 0; cursor: pointer;
-    padding: 8px 14px; display: flex; gap: 10px; align-items: baseline; color: var(--ink);
+  .tooltip {
+    position: fixed; pointer-events: none; z-index: 9; background: var(--superficie);
+    border: 1px solid var(--regla); padding: 7px 10px; font-size: 12px; box-shadow: var(--sombra);
+    max-width: 250px; opacity: 0; transition: opacity .09s;
   }
-  .lista button:hover, .lista button:focus-visible { background: var(--surface-2); outline: none; }
-  .lista .n { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 14px; min-width: 2.2em; }
-  .lista .et { font-size: 13px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tooltip b { display: block; font-size: 13px; }
+  .tooltip span { color: var(--tinta-2); font-variant-numeric: tabular-nums; }
 
-  .graficas { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 16px; }
-  @media (max-width: 860px) { .graficas { grid-template-columns: 1fr; } }
-  .grafica-caja { padding: 12px 14px 6px; }
+  .pie-mapa { display: flex; flex-wrap: wrap; gap: 12px; align-items: baseline; font-size: 13px; color: var(--tinta-2); }
+  .pie-mapa .rango { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--tinta); }
+  .enlace { font: inherit; font-size: 13px; font-weight: 600; color: var(--acento); background: none; border: 0; cursor: pointer; padding: 0; }
+
+  .graficas { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 18px; }
+  @media (max-width: 880px) { .graficas { grid-template-columns: 1fr; } }
+  .panel { background: var(--superficie); border: 1px solid var(--linea); box-shadow: var(--sombra); }
+  .panel h2 { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--tinta-mute); margin: 0; padding: 11px 14px; border-bottom: 1px solid var(--linea); font-weight: 600; }
+  .grafica-caja { padding: 12px 14px 4px; }
   svg { display: block; max-width: 100%; }
-  .ayuda { font-size: 12px; color: var(--ink-mute); padding: 0 14px 12px; margin: 0; }
+  .ayuda { font-size: 12px; color: var(--tinta-mute); padding: 0 14px 12px; margin: 0; }
 
   .tabla-caja { overflow-x: auto; }
   table { border-collapse: collapse; width: 100%; font-size: 13px; }
-  th, td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  th, td { text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--linea); font-variant-numeric: tabular-nums; white-space: nowrap; }
   th:first-child, td:first-child { text-align: left; }
-  thead th { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-mute); }
+  thead th { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-mute); }
 
-  footer { font-size: 12px; color: var(--ink-mute); border-top: 1px solid var(--line); padding-top: 14px; max-width: 78ch; }
-  footer code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--ink-2); }
-
-  .tooltip {
-    position: fixed; pointer-events: none; z-index: 9; background: var(--surface);
-    border: 1px solid var(--rule); padding: 7px 9px; font-size: 12px; box-shadow: var(--sombra);
-    max-width: 240px; opacity: 0; transition: opacity .09s;
-  }
-  .tooltip b { display: block; font-size: 13px; }
-  .tooltip span { color: var(--ink-2); font-variant-numeric: tabular-nums; }
+  footer { font-size: 12px; color: var(--tinta-mute); border-top: 1px solid var(--linea); padding-top: 14px; }
+  footer code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; color: var(--tinta-2); }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 
 <div class="envoltura">
   <header>
-    <p class="eyebrow">Denuncias registradas por la PNP · 2018 – junio 2025</p>
+    <p class="eyebrow">Denuncias registradas por la PNP · enero 2018 – junio 2025</p>
     <h1>Corredores de Lima</h1>
-    <p class="bajada">Extorsión y violencia armada por tramo de avenida, no por distrito. De 3,137,221 denuncias,
-      <b>1,236,864 tienen una coordenada que apunta a un lugar real</b>; el resto cae en puntos de volcado,
-      casi siempre la comisaría. El peor de esos puntos concentra 127,922 hechos.</p>
+    <p class="entrada">Extorsión y violencia armada por tramo de avenida, no por distrito. De
+      <b>3,137,221 denuncias</b>, solo <b>1,236,864 tienen una coordenada que apunta a un lugar real</b>;
+      el resto cae en puntos de volcado, casi siempre la comisaría que tomó la denuncia. El peor de esos
+      puntos concentra <span class="rojo">127,922 hechos</span> en diez centímetros cuadrados. Lo que ves
+      aquí es lo que queda después de sacarlos: cada tramo coloreado es una cuadra donde alguien fue a
+      denunciar y la dirección se pudo ubicar.</p>
   </header>
 
   <p class="aviso"><strong>Esto no predice nada.</strong> Describe lo que llegó al registro. La extorsión se
-    denuncia entre 1 y 2 veces de cada 10, así que un corredor sin denuncias no es un corredor sin cobro.</p>
+    denuncia entre 1 y 2 veces de cada 10, así que un corredor en blanco no es un corredor sin cobro: es un
+    corredor sin denuncias.</p>
 
   <dl class="cifras">
     <div class="cifra"><dt>Corredores con hechos</dt><dd id="c-corredores">—</dd></div>
@@ -185,73 +162,61 @@
     <div class="cifra"><dt>Coordenada usable en 2025</dt><dd>3.2%<span class="nota">era 46.8% en 2018</span></dd></div>
   </dl>
 
-  <div class="controles">
-    <div class="grupo" role="group" aria-label="Qué se muestra en el mapa">
+  <section class="mapa-marco" id="marco">
+    <canvas id="mapa"></canvas>
+    <div class="flota capas" role="group" aria-label="Capa de fondo">
+      <button type="button" data-capa="satelite" aria-pressed="true">Satélite</button>
+      <button type="button" data-capa="calles" aria-pressed="false">Calles</button>
+    </div>
+    <div class="flota metricas" role="group" aria-label="Qué se colorea">
       <button type="button" data-metrica="ext" aria-pressed="true">Extorsión</button>
-      <button type="button" data-metrica="viol" aria-pressed="false">Violencia armada</button>
+      <button type="button" data-metrica="viol" aria-pressed="false">Arma o daños</button>
     </div>
-    <div class="grupo" role="group" aria-label="Cómo se normaliza">
-      <button type="button" data-norma="km" aria-pressed="true">Por kilómetro</button>
-      <button type="button" data-norma="abs" aria-pressed="false">Conteo</button>
+    <div class="flota leyenda">
+      <span>0</span>
+      <div class="barra-leyenda" role="img" aria-label="Escala de color, de menos a más denuncias por kilómetro"></div>
+      <span id="leyenda-max">—</span>
+      <span style="color:var(--tinta-mute)">por km de vía</span>
     </div>
-    <button type="button" class="enlace" id="btn-tabla">Ver datos en tabla</button>
+    <p class="flota credito">Imagen: Esri World Imagery · Vías: OpenStreetMap</p>
+    <article class="tarjeta flota" id="tarjeta" data-abierta="false" aria-live="polite"></article>
+  </section>
+
+  <div class="pie-mapa">
+    <span>Haz clic en cualquier tramo para ver sus patrones. Rueda o pellizco para acercar.</span>
     <span class="rango" id="rango">todo el periodo</span>
-  </div>
-
-  <div class="tablero">
-    <section class="panel">
-      <h2>Mapa de corredores · pasa el cursor, haz clic para fijar</h2>
-      <div class="lienzo-caja"><canvas id="mapa"></canvas></div>
-      <div class="leyenda">
-        <span id="leyenda-min">0</span>
-        <div class="barra-leyenda" role="img" aria-label="Escala de color de menor a mayor"></div>
-        <span id="leyenda-max">—</span>
-        <span style="margin-left:auto">Rueda o pellizco para acercar</span>
-      </div>
-    </section>
-
-    <div style="display:flex;flex-direction:column;gap:16px">
-      <section class="panel">
-        <h2>Corredor seleccionado</h2>
-        <div class="ficha" id="ficha">
-          <p class="vacio">Ningún corredor seleccionado. Haz clic en el mapa o elige uno de la lista.</p>
-        </div>
-      </section>
-      <section class="panel">
-        <h2 id="titulo-lista">Corredores con más denuncias</h2>
-        <ul class="lista" id="lista" aria-labelledby="titulo-lista"></ul>
-      </section>
-    </div>
+    <button type="button" class="enlace" id="btn-tabla">Ver datos en tabla</button>
+    <button type="button" class="enlace" id="btn-reset">Reiniciar vista</button>
   </div>
 
   <div class="graficas">
     <section class="panel">
-      <h2>Denuncias por mes · arrastra para filtrar el mapa</h2>
-      <div class="grafica-caja"><svg id="serie" role="img" aria-label="Serie mensual de denuncias de extorsión y de violencia armada"></svg></div>
-      <p class="ayuda">Doble clic para volver a todo el periodo. El corte de junio de 2025 es el fin del archivo.</p>
+      <h2>Denuncias por mes · arrastra sobre la gráfica para filtrar el mapa</h2>
+      <div class="grafica-caja"><svg id="serie" role="img" aria-label="Serie mensual de denuncias de extorsión y de violencia armada en Lima"></svg></div>
+      <p class="ayuda">Doble clic para volver a todo el periodo. El corte de junio de 2025 es el fin del archivo, no una caída del delito.</p>
     </section>
     <section class="panel">
       <h2>Qué fracción de la extorsión tiene coordenada usable</h2>
       <div class="grafica-caja"><svg id="calidad" role="img" aria-label="Porcentaje de denuncias de extorsión con coordenada utilizable, por año"></svg></div>
-      <p class="ayuda">El registro pierde precisión geográfica justo cuando el delito se multiplica.</p>
+      <p class="ayuda">El registro pierde precisión geográfica justo cuando el delito se multiplica por diecisiete.</p>
     </section>
   </div>
 
   <section class="panel" id="panel-tabla" hidden>
-    <h2>Los 30 corredores con más denuncias en el rango</h2>
+    <h2>Los 30 corredores con más denuncias en el rango activo</h2>
     <div class="tabla-caja">
       <table>
-        <thead><tr><th>Corredor</th><th>Distrito</th><th>Largo (m)</th><th>Extorsión</th><th>Violencia</th><th>Ext/km</th></tr></thead>
+        <thead><tr><th>Corredor</th><th>Distrito</th><th>Largo (m)</th><th>Extorsión</th><th>Arma o daños</th><th>Ext/km</th></tr></thead>
         <tbody id="tabla-cuerpo"></tbody>
       </table>
     </div>
   </section>
 
   <footer>
-    Fuente: denuncias de la PNP geolocalizadas, 2018-01 a 2025-06. Los corredores salen del grafo vial de
-    OpenStreetMap (extracto de Geofabrik) y cada hecho se engancha al tramo más cercano dentro de 80 m
-    (97.8% de los hechos; distancia mediana 6.3 m). Se excluyen los puntos de volcado: coordenadas exactas
-    que superan 200 hechos, o que acumulan más del 2% de los hechos de su distrito.
+    Denuncias de la PNP geolocalizadas, 2018-01 a 2025-06. Los corredores salen del grafo vial de
+    OpenStreetMap (extracto de Geofabrik) y cada hecho se engancha al tramo más cercano dentro de 80 m:
+    97.8% de los hechos, distancia mediana 6.3 m. Se excluyen los puntos de volcado, definidos como
+    coordenadas exactas con más de 200 hechos o con más del 2% de los hechos de su distrito.
     Código y validaciones: <code>Ricardo-idea/pipeline</code>, <code>Ricardo-idea/validacion</code>.
   </footer>
 </div>
@@ -260,25 +225,59 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script src="datos/corredores.js"></script>
 <script src="datos/series.js"></script>
+<script src="datos/vias.js"></script>
 <script src="datos/meta.js"></script>
+<script src="datos/satelite.js"></script>
 <script>
 (function () {
   const ID = 0, NOMBRE = 1, DISTRITO = 2, LARGO = 3, EXT = 4, VIOL = 5, COORDS = 7;
   const corredores = window.CORREDORES || [];
   const series = window.SERIES || {};
+  const vias = window.VIAS || [];
   const calidad = window.CALIDAD || [];
   const totales = window.TOTALES || [];
+  const SAT = window.SATELITE;
 
-  const estado = { metrica: 'ext', norma: 'km', desde: null, hasta: null, elegido: null, resaltado: null };
-  const token = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-  const fmt = (v) => d3.format(',')(v).replace(/,/g, ' ');
+  const estado = { capa: 'satelite', metrica: 'ext', desde: null, hasta: null, elegido: null, sobre: null };
+  const tok = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const fmt = (v) => d3.format(',')(Math.round(v)).replace(/,/g, ' ');
+  const fmt1 = d3.format('.1f');
 
-  const geometria = {
-    type: 'MultiLineString',
-    coordinates: corredores.map((c) => c[COORDS]),
-  };
+  // ---- proyeccion Web Mercator alineada al mosaico -------------------------
+  const MUNDO = 256 * 2 ** SAT.z;
+  const factor = SAT.px_ancho / (SAT.ancho_tiles * 256);
+  const origenX = SAT.x0 * 256, origenY = SAT.y0 * 256;
+  function proyectar(lon, lat) {
+    const wx = (lon + 180) / 360 * MUNDO;
+    const phi = lat * Math.PI / 180;
+    const wy = (1 - Math.log(Math.tan(phi) + 1 / Math.cos(phi)) / Math.PI) / 2 * MUNDO;
+    return [(wx - origenX) * factor, (wy - origenY) * factor];
+  }
 
-  // --- conteos del rango activo -------------------------------------------
+  // precalcular geometria en pixeles de imagen
+  const trazos = corredores.map((c) => c[COORDS].map(([lon, lat]) => proyectar(lon, lat)));
+  const trazosVias = vias.map((linea) => linea.map(([lon, lat]) => proyectar(lon, lat)));
+  const centros = trazos.map((t) => t[Math.floor(t.length / 2)]);
+
+  // malla para vecinos: celdas de 400 px de imagen (~500 m)
+  const CELDA = 400;
+  const malla = new Map();
+  centros.forEach(([x, y], i) => {
+    const k = `${Math.floor(x / CELDA)}|${Math.floor(y / CELDA)}`;
+    if (!malla.has(k)) malla.set(k, []);
+    malla.get(k).push(i);
+  });
+  function cerca(i) {
+    const [x, y] = centros[i];
+    const cx = Math.floor(x / CELDA), cy = Math.floor(y / CELDA);
+    const salida = [];
+    for (let a = -1; a <= 1; a++) for (let b = -1; b <= 1; b++) {
+      for (const j of malla.get(`${cx + a}|${cy + b}`) || []) if (j !== i) salida.push(j);
+    }
+    return salida;
+  }
+
+  // ---- conteos del rango activo -------------------------------------------
   const conteo = new Map();
   function recontar() {
     conteo.clear();
@@ -292,92 +291,116 @@
       conteo.set(c[ID], { ext, viol });
     }
   }
-
-  const valor = (c) => {
+  const porKm = (c, bruto) => bruto / Math.max(c[LARGO] / 1000, 0.03);
+  function valor(c) {
     const q = conteo.get(c[ID]) || { ext: 0, viol: 0 };
-    const bruto = estado.metrica === 'ext' ? q.ext : q.viol;
-    return estado.norma === 'km' ? bruto / Math.max(c[LARGO] / 1000, 0.03) : bruto;
-  };
+    return porKm(c, estado.metrica === 'ext' ? q.ext : q.viol);
+  }
 
-  // --- mapa ----------------------------------------------------------------
+  // ---- lienzo --------------------------------------------------------------
+  const marco = document.getElementById('marco');
   const lienzo = document.getElementById('mapa');
   const ctx = lienzo.getContext('2d');
   const pick = document.createElement('canvas');
   const pctx = pick.getContext('2d', { willReadFrequently: true });
-  let proyeccion = d3.geoMercator(), trazo = d3.geoPath(proyeccion, ctx);
-  let transformacion = d3.zoomIdentity, escalaColor = () => token('--seq-1');
+  const imagen = new Image();
+  let imagenLista = false;
+  imagen.onload = () => { imagenLista = true; dibujar(); };
+  imagen.src = 'datos/satelite.jpg';
+
+  let base = d3.zoomIdentity, transformacion = d3.zoomIdentity, maxEscala = 1;
   const dpr = () => Math.min(window.devicePixelRatio || 1, 2);
 
   function dimensionar() {
-    const caja = lienzo.getBoundingClientRect();
+    const caja = marco.getBoundingClientRect();
     const r = dpr();
     lienzo.width = Math.round(caja.width * r);
     lienzo.height = Math.round(caja.height * r);
-    pick.width = lienzo.width;
-    pick.height = lienzo.height;
-    proyeccion.fitExtent([[14, 14], [caja.width - 14, caja.height - 14]], geometria);
+    pick.width = lienzo.width; pick.height = lienzo.height;
+    const k = Math.min(caja.width / SAT.px_ancho, caja.height / SAT.px_alto);
+    base = d3.zoomIdentity
+      .translate((caja.width - SAT.px_ancho * k) / 2, (caja.height - SAT.px_alto * k) / 2)
+      .scale(k);
     dibujar();
   }
 
-  function color(v, max) {
-    if (!(v > 0)) return token('--line');
-    const rampa = d3.interpolateRgbBasis([token('--seq-0'), token('--seq-1'), token('--seq-2'), token('--seq-3')]);
+  function colorDe(v, max) {
+    if (!(v > 0)) return null;
+    const rampa = d3.interpolateRgbBasis([tok('--seq-0'), tok('--seq-1'), tok('--seq-2'), tok('--seq-3')]);
     return rampa(Math.min(Math.sqrt(v / max), 1));
   }
 
+  function linea(c, puntos) {
+    c.beginPath();
+    c.moveTo(puntos[0][0], puntos[0][1]);
+    for (let i = 1; i < puntos.length; i++) c.lineTo(puntos[i][0], puntos[i][1]);
+  }
+
   function dibujar() {
+    const caja = marco.getBoundingClientRect();
     const r = dpr();
-    const caja = lienzo.getBoundingClientRect();
+    const t = { k: base.k * transformacion.k, x: base.x * transformacion.k + transformacion.x, y: base.y * transformacion.k + transformacion.y };
     const valores = corredores.map(valor);
-    const max = d3.quantile(valores.filter((v) => v > 0).sort(d3.ascending), 0.98) || 1;
-    escalaColor = (v) => color(v, max);
-    document.getElementById('leyenda-max').textContent =
-      estado.norma === 'km' ? `${d3.format('.1f')(max)} por km o más` : `${Math.round(max)} o más`;
+    const positivos = valores.filter((v) => v > 0).sort(d3.ascending);
+    const max = d3.quantile(positivos, 0.97) || 1;
+    document.getElementById('leyenda-max').textContent = fmt1(max) + ' o más';
 
     for (const c of [ctx, pctx]) {
       c.setTransform(r, 0, 0, r, 0, 0);
       c.clearRect(0, 0, caja.width, caja.height);
       c.save();
-      c.translate(transformacion.x, transformacion.y);
-      c.scale(transformacion.k, transformacion.k);
+      c.translate(t.x, t.y);
+      c.scale(t.k, t.k);
+      c.lineCap = 'round';
+      c.lineJoin = 'round';
     }
-    ctx.fillStyle = token('--surface');
-    ctx.fillRect(-9e4, -9e4, 1.8e5, 1.8e5);
 
-    trazo = d3.geoPath(proyeccion, ctx);
-    const trazoPick = d3.geoPath(proyeccion, pctx);
-    const base = 0.9 / transformacion.k;
+    if (estado.capa === 'satelite') {
+      ctx.fillStyle = '#0d1116';
+      ctx.fillRect(0, 0, SAT.px_ancho, SAT.px_alto);
+      if (imagenLista) ctx.drawImage(imagen, 0, 0, SAT.px_ancho, SAT.px_alto);
+      ctx.fillStyle = 'rgba(10, 14, 20, .34)';
+      ctx.fillRect(0, 0, SAT.px_ancho, SAT.px_alto);
+    } else {
+      ctx.fillStyle = tok('--superficie');
+      ctx.fillRect(0, 0, SAT.px_ancho, SAT.px_alto);
+      ctx.strokeStyle = estado.capa === 'calles' ? '#cfcdc2' : 'rgba(255,255,255,.35)';
+      ctx.lineWidth = 1.1 / t.k;
+      for (const puntos of trazosVias) { linea(ctx, puntos); ctx.stroke(); }
+    }
 
-    corredores.forEach((c, i) => {
-      const v = valores[i];
-      const geo = { type: 'LineString', coordinates: c[COORDS] };
-      ctx.beginPath();
-      trazo(geo);
-      ctx.strokeStyle = escalaColor(v);
-      ctx.lineWidth = (v > 0 ? 1.9 : base) / transformacion.k;
-      ctx.stroke();
+    if (estado.capa === 'satelite') {
+      ctx.strokeStyle = 'rgba(255,255,255,.22)';
+      ctx.lineWidth = 0.9 / t.k;
+      for (const puntos of trazosVias) { linea(ctx, puntos); ctx.stroke(); }
+    }
 
-      pctx.beginPath();
-      trazoPick(geo);
+    trazos.forEach((puntos, i) => {
+      const color = colorDe(valores[i], max);
+      if (color) {
+        linea(ctx, puntos);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = Math.max(2.2 / t.k, 0.9);
+        ctx.stroke();
+      }
+      linea(pctx, puntos);
       pctx.strokeStyle = `rgb(${(i >> 16) & 255},${(i >> 8) & 255},${i & 255})`;
-      pctx.lineWidth = 9 / transformacion.k;
+      pctx.lineWidth = 10 / t.k;
       pctx.stroke();
     });
 
-    for (const id of [estado.elegido, estado.resaltado]) {
-      if (id == null) continue;
-      const c = corredores[id];
-      ctx.beginPath();
-      trazo({ type: 'LineString', coordinates: c[COORDS] });
-      ctx.strokeStyle = id === estado.elegido ? token('--critico') : token('--ink');
-      ctx.lineWidth = 3.4 / transformacion.k;
+    for (const [i, estilo] of [[estado.sobre, tok('--tinta')], [estado.elegido, tok('--critico')]]) {
+      if (i == null) continue;
+      linea(ctx, trazos[i]);
+      ctx.strokeStyle = estado.capa === 'satelite' && i === estado.sobre ? '#ffffff' : estilo;
+      ctx.lineWidth = 4.2 / t.k;
       ctx.stroke();
     }
     ctx.restore();
     pctx.restore();
   }
 
-  function enCursor(evento) {
+  function indiceEn(evento) {
     const caja = lienzo.getBoundingClientRect();
     const r = dpr();
     const x = Math.round((evento.clientX - caja.left) * r);
@@ -389,119 +412,162 @@
     return i >= 0 && i < corredores.length ? i : null;
   }
 
+  // ---- patrones de un corredor --------------------------------------------
+  function patrones(i) {
+    const c = corredores[i];
+    const q = conteo.get(c[ID]);
+    const filas = [];
+
+    const ordenados = corredores.map((o, j) => ({ j, v: valor(o) })).sort((a, b) => b.v - a.v);
+    const puesto = ordenados.findIndex((o) => o.j === i) + 1;
+    const conDato = ordenados.filter((o) => o.v > 0).length;
+    filas.push([`#${puesto}`, `de ${fmt(conDato)} corredores con denuncias, por ${estado.metrica === 'ext' ? 'extorsión' : 'hechos con arma'} por km`]);
+
+    const delDistrito = corredores.filter((o) => o[DISTRITO] === c[DISTRITO]);
+    const mediana = d3.median(delDistrito.map((o) => porKm(o, conteo.get(o[ID]).ext))) || 0;
+    const mio = porKm(c, q.ext);
+    if (mediana > 0) {
+      const razon = mio / mediana;
+      filas.push([`${fmt1(razon)}×`, `la mediana de ${c[DISTRITO]} (${fmt1(mediana)} por km)`, razon >= 1.5 ? 'sube' : null]);
+    }
+    const totalDistrito = d3.sum(delDistrito, (o) => conteo.get(o[ID]).ext);
+    if (totalDistrito > 0) {
+      filas.push([`${fmt1(100 * q.ext / totalDistrito)}%`, `de la extorsión denunciada en ${c[DISTRITO]}`]);
+    }
+
+    const serie = series[c[ID]] || [];
+    const meses = totales.map((t) => t.mes);
+    const ultimos = meses.slice(-12), previos = meses.slice(-24, -12);
+    const suma = (lista) => d3.sum(serie.filter((d) => lista.includes(d[0])), (d) => d[1]);
+    const a = suma(ultimos), b = suma(previos);
+    if (a + b > 0) {
+      const cambio = b === 0 ? null : 100 * (a - b) / b;
+      filas.push([
+        cambio === null ? `+${fmt(a)}` : `${cambio >= 0 ? '+' : ''}${fmt1(cambio)}%`,
+        cambio === null ? 'denuncias nuevas: antes no tenía ninguna' : 'últimos 12 meses contra los 12 anteriores',
+        cambio === null || cambio > 10 ? 'sube' : cambio < -10 ? 'baja' : null,
+      ]);
+    }
+    const pico = serie.slice().sort((x, y) => y[1] - x[1])[0];
+    if (pico && pico[1] > 0) filas.push([`${pico[1]}`, `denuncias en ${pico[0]}, su peor mes`]);
+
+    const vecinos = cerca(i);
+    const extVecinos = d3.sum(vecinos, (j) => conteo.get(corredores[j][ID]).ext);
+    const violVecinos = d3.sum(vecinos, (j) => conteo.get(corredores[j][ID]).viol);
+    filas.push([`${fmt(extVecinos)} / ${fmt(violVecinos)}`, `extorsión y hechos con arma a 500 m a la redonda (${vecinos.length} tramos)`]);
+
+    return filas;
+  }
+
+  const tarjeta = document.getElementById('tarjeta');
+  function elegir(i, evento) {
+    estado.elegido = i;
+    const c = corredores[i];
+    const q = conteo.get(c[ID]);
+    tarjeta.innerHTML = `
+      <header>
+        <h3>${c[NOMBRE] || 'Vía sin nombre'}</h3>
+        <button type="button" class="cerrar" aria-label="Cerrar">×</button>
+      </header>
+      <p class="donde">${c[DISTRITO]} · ${fmt(c[LARGO])} m de vía</p>
+      <dl class="pares">
+        <div class="par"><dt>Extorsión</dt><dd>${fmt(q.ext)}</dd></div>
+        <div class="par"><dt>Arma o daños</dt><dd class="viol">${fmt(q.viol)}</dd></div>
+        <div class="par"><dt>Ext / km</dt><dd>${fmt1(porKm(c, q.ext))}</dd></div>
+      </dl>
+      <ul class="patrones">
+        ${patrones(i).map(([marca, texto, clase]) =>
+          `<li><span class="marca ${clase || ''}">${marca}</span><span>${texto}</span></li>`).join('')}
+      </ul>
+      <svg id="chispa" role="img" aria-label="Denuncias mensuales de este corredor"></svg>`;
+    tarjeta.dataset.abierta = 'true';
+    tarjeta.querySelector('.cerrar').addEventListener('click', cerrar);
+
+    const caja = marco.getBoundingClientRect();
+    const ancho = tarjeta.offsetWidth || 330;
+    const x = evento ? evento.clientX - caja.left : caja.width - ancho - 16;
+    const y = evento ? evento.clientY - caja.top : 70;
+    tarjeta.style.left = Math.max(12, Math.min(x + 16, caja.width - ancho - 12)) + 'px';
+    tarjeta.style.top = Math.max(60, Math.min(y, caja.height - 300)) + 'px';
+
+    chispa(c[ID], ancho - 20);
+    dibujar();
+  }
+  function cerrar() { tarjeta.dataset.abierta = 'false'; estado.elegido = null; dibujar(); }
+
+  function chispa(id, ancho) {
+    const datos = series[id] || [];
+    const svg = d3.select('#chispa');
+    const alto = 64;
+    svg.attr('viewBox', `0 0 ${ancho} ${alto}`).attr('width', ancho).attr('height', alto).selectAll('*').remove();
+    if (!datos.length) return;
+    const x = d3.scalePoint().domain(totales.map((t) => t.mes)).range([2, ancho - 2]);
+    const maxv = d3.max(datos, (d) => Math.max(d[1], d[2])) || 1;
+    const y = d3.scaleLinear().domain([0, maxv]).range([alto - 15, 5]);
+    svg.append('path')
+      .attr('d', d3.line().x((d) => x(d[0]) ?? 0).y((d) => y(d[1]))(datos))
+      .attr('fill', 'none').attr('stroke', tok('--acento')).attr('stroke-width', 1.6);
+    svg.append('g').selectAll('circle').data(datos.filter((d) => d[2] > 0)).join('circle')
+      .attr('cx', (d) => x(d[0]) ?? 0).attr('cy', (d) => y(d[2])).attr('r', 2.6)
+      .attr('fill', tok('--critico'));
+    svg.append('text').attr('x', 2).attr('y', alto - 2)
+      .attr('fill', tok('--tinta-mute')).attr('font-size', 9.5)
+      .text(`línea: extorsión al mes · puntos: hechos con arma o daños`);
+  }
+
+  // ---- interaccion ---------------------------------------------------------
   const tooltip = document.getElementById('tooltip');
   lienzo.addEventListener('mousemove', (e) => {
-    const i = enCursor(e);
-    if (i === estado.resaltado) { if (i != null) mover(e); return; }
-    estado.resaltado = i;
+    const i = indiceEn(e);
+    if (i === estado.sobre) { if (i != null) mover(e); return; }
+    estado.sobre = i;
     if (i == null) { tooltip.style.opacity = 0; dibujar(); return; }
     const c = corredores[i];
     const q = conteo.get(c[ID]);
     tooltip.innerHTML = `<b>${c[NOMBRE] || 'Vía sin nombre'}</b>
       <span>${c[DISTRITO]} · ${fmt(c[LARGO])} m</span><br>
-      <span>${fmt(q.ext)} extorsión · ${fmt(q.viol)} con arma o daños</span>`;
+      <span>${fmt(q.ext)} extorsión · ${fmt(q.viol)} con arma o daños</span><br>
+      <span style="color:var(--acento)">clic para ver sus patrones</span>`;
     tooltip.style.opacity = 1;
     mover(e);
     dibujar();
   });
-  lienzo.addEventListener('mouseleave', () => {
-    estado.resaltado = null; tooltip.style.opacity = 0; dibujar();
-  });
+  lienzo.addEventListener('mouseleave', () => { estado.sobre = null; tooltip.style.opacity = 0; dibujar(); });
   function mover(e) {
-    tooltip.style.left = Math.min(e.clientX + 14, window.innerWidth - 250) + 'px';
-    tooltip.style.top = Math.min(e.clientY + 14, window.innerHeight - 90) + 'px';
+    tooltip.style.left = Math.min(e.clientX + 14, window.innerWidth - 260) + 'px';
+    tooltip.style.top = Math.min(e.clientY + 14, window.innerHeight - 110) + 'px';
   }
   lienzo.addEventListener('click', (e) => {
-    const i = enCursor(e);
-    if (i != null) elegir(i);
+    const i = indiceEn(e);
+    if (i != null) elegir(i, e); else cerrar();
   });
 
-  d3.select(lienzo).call(d3.zoom().scaleExtent([1, 60]).on('zoom', (e) => {
+  const zoom = d3.zoom().scaleExtent([1, 120]).on('zoom', (e) => {
     transformacion = e.transform;
     dibujar();
-  }));
+  });
+  d3.select(lienzo).call(zoom);
+  document.getElementById('btn-reset').addEventListener('click', () => {
+    d3.select(lienzo).transition().duration(400).call(zoom.transform, d3.zoomIdentity);
+  });
 
-  // --- ficha, lista y tabla -------------------------------------------------
-  function elegir(i) {
-    estado.elegido = i;
-    const c = corredores[i];
-    const q = conteo.get(c[ID]);
-    const ficha = document.getElementById('ficha');
-    ficha.innerHTML = `
-      <div>
-        <p class="nombre">${c[NOMBRE] || 'Vía sin nombre'}</p>
-        <p class="sub">${c[DISTRITO]} · ${fmt(c[LARGO])} m de vía</p>
-      </div>
-      <dl class="pares">
-        <div class="par"><dt>Extorsión</dt><dd>${fmt(q.ext)}</dd></div>
-        <div class="par"><dt>Arma o daños</dt><dd class="viol">${fmt(q.viol)}</dd></div>
-        <div class="par"><dt>Ext / km</dt><dd>${d3.format('.1f')(q.ext / Math.max(c[LARGO] / 1000, 0.03))}</dd></div>
-      </dl>
-      <svg id="chispa" role="img" aria-label="Denuncias mensuales de este corredor"></svg>`;
-    chispa(c[ID]);
+  document.querySelectorAll('[data-capa]').forEach((b) => b.addEventListener('click', () => {
+    estado.capa = b.dataset.capa;
+    document.querySelectorAll('[data-capa]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
     dibujar();
-  }
+  }));
+  document.querySelectorAll('[data-metrica]').forEach((b) => b.addEventListener('click', () => {
+    estado.metrica = b.dataset.metrica;
+    document.querySelectorAll('[data-metrica]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+    actualizar();
+  }));
+  document.getElementById('btn-tabla').addEventListener('click', (e) => {
+    const panel = document.getElementById('panel-tabla');
+    panel.hidden = !panel.hidden;
+    e.target.textContent = panel.hidden ? 'Ver datos en tabla' : 'Ocultar la tabla';
+  });
 
-  function chispa(id) {
-    const datos = series[id] || [];
-    const svg = d3.select('#chispa');
-    const ancho = document.getElementById('ficha').clientWidth - 28;
-    const alto = 62;
-    svg.attr('viewBox', `0 0 ${ancho} ${alto}`).attr('width', ancho).attr('height', alto).selectAll('*').remove();
-    if (!datos.length) { return; }
-    const meses = totales.map((t) => t.mes);
-    const x = d3.scalePoint().domain(meses).range([2, ancho - 2]);
-    const maxv = d3.max(datos, (d) => Math.max(d[1], d[2])) || 1;
-    const y = d3.scaleLinear().domain([0, maxv]).range([alto - 14, 4]);
-    svg.append('path')
-      .attr('d', d3.line().x((d) => x(d[0]) ?? 0).y((d) => y(d[1]))(datos))
-      .attr('fill', 'none').attr('stroke', token('--accent')).attr('stroke-width', 1.6);
-    svg.append('g').selectAll('circle').data(datos.filter((d) => d[2] > 0)).join('circle')
-      .attr('cx', (d) => x(d[0]) ?? 0).attr('cy', (d) => y(d[2])).attr('r', 2.6)
-      .attr('fill', token('--critico'));
-    svg.append('text').attr('x', 2).attr('y', alto - 2)
-      .attr('fill', token('--ink-mute')).attr('font-size', 10)
-      .text(`máximo ${maxv} en un mes · puntos rojos = hechos con arma o daños`);
-  }
-
-  function ordenados() {
-    return corredores
-      .map((c, i) => ({ c, i, v: valor(c), q: conteo.get(c[ID]) }))
-      .filter((d) => d.v > 0)
-      .sort((a, b) => b.v - a.v);
-  }
-
-  function pintarLista() {
-    const top = ordenados().slice(0, 30);
-    const lista = d3.select('#lista');
-    lista.selectAll('li').data(top, (d) => d.c[ID]).join(
-      (enter) => {
-        const li = enter.append('li');
-        const b = li.append('button').attr('type', 'button').on('click', (_, d) => elegir(d.i));
-        b.append('span').attr('class', 'n');
-        b.append('span').attr('class', 'et');
-        return li;
-      },
-      (update) => update,
-      (exit) => exit.remove(),
-    ).select('button')
-      .each(function (d) {
-        const unidad = estado.norma === 'km' ? d3.format('.1f')(d.v) : fmt(d.v);
-        d3.select(this).select('.n').text(unidad);
-        d3.select(this).select('.et')
-          .text(`${d.c[NOMBRE] || 'Vía sin nombre'} · ${d.c[DISTRITO]}`);
-      });
-
-    document.getElementById('titulo-lista').textContent =
-      estado.metrica === 'ext' ? 'Corredores con más extorsión' : 'Corredores con más violencia armada';
-
-    const cuerpo = d3.select('#tabla-cuerpo');
-    cuerpo.selectAll('tr').data(top, (d) => d.c[ID]).join('tr').html((d) => `
-      <td>${d.c[NOMBRE] || 'Vía sin nombre'}</td><td>${d.c[DISTRITO]}</td>
-      <td>${fmt(d.c[LARGO])}</td><td>${fmt(d.q.ext)}</td><td>${fmt(d.q.viol)}</td>
-      <td>${d3.format('.1f')(d.q.ext / Math.max(d.c[LARGO] / 1000, 0.03))}</td>`);
-  }
-
+  // ---- cifras, tabla y graficas -------------------------------------------
   function pintarCifras() {
     let ext = 0, viol = 0, con = 0;
     for (const c of corredores) {
@@ -514,119 +580,98 @@
     document.getElementById('c-viol').textContent = fmt(viol);
   }
 
-  // --- serie mensual con brush ---------------------------------------------
+  function pintarTabla() {
+    const top = corredores.map((c, i) => ({ c, i, v: valor(c), q: conteo.get(c[ID]) }))
+      .filter((d) => d.v > 0).sort((a, b) => b.v - a.v).slice(0, 30);
+    d3.select('#tabla-cuerpo').selectAll('tr').data(top, (d) => d.c[ID]).join('tr').html((d) => `
+      <td>${d.c[NOMBRE] || 'Vía sin nombre'}</td><td>${d.c[DISTRITO]}</td>
+      <td>${fmt(d.c[LARGO])}</td><td>${fmt(d.q.ext)}</td><td>${fmt(d.q.viol)}</td>
+      <td>${fmt1(porKm(d.c, d.q.ext))}</td>`);
+  }
+
   function serieMensual() {
     const svg = d3.select('#serie');
-    const caja = document.querySelector('#serie').parentElement.clientWidth;
-    const ancho = Math.max(caja, 260), alto = 180;
-    const m = { arriba: 10, derecha: 8, abajo: 22, izquierda: 34 };
+    const ancho = Math.max(document.querySelector('#serie').parentElement.clientWidth, 280);
+    const alto = 190, m = { arriba: 12, derecha: 8, abajo: 22, izquierda: 36 };
     svg.attr('viewBox', `0 0 ${ancho} ${alto}`).attr('width', ancho).attr('height', alto).selectAll('*').remove();
-
     const x = d3.scaleBand().domain(totales.map((d) => d.mes)).range([m.izquierda, ancho - m.derecha]).padding(0.12);
-    const y = d3.scaleLinear().domain([0, d3.max(totales, (d) => d.ext) || 1]).nice()
-      .range([alto - m.abajo, m.arriba]);
-
+    const y = d3.scaleLinear().domain([0, d3.max(totales, (d) => d.ext) || 1]).nice().range([alto - m.abajo, m.arriba]);
+    const eje = (g) => g.selectAll('text').attr('fill', tok('--tinta-mute')).attr('font-size', 10);
     svg.append('g').attr('transform', `translate(0,${alto - m.abajo})`)
       .call(d3.axisBottom(x).tickValues(totales.map((d) => d.mes).filter((s) => s.endsWith('-01')))
         .tickFormat((s) => s.slice(0, 4)).tickSizeOuter(0))
-      .call((g) => g.selectAll('text').attr('fill', token('--ink-mute')).attr('font-size', 10))
-      .call((g) => g.selectAll('line,path').attr('stroke', token('--rule')));
+      .call(eje).call((g) => g.selectAll('line,path').attr('stroke', tok('--regla')));
     svg.append('g').attr('transform', `translate(${m.izquierda},0)`)
       .call(d3.axisLeft(y).ticks(4).tickSizeOuter(0))
-      .call((g) => g.selectAll('text').attr('fill', token('--ink-mute')).attr('font-size', 10))
-      .call((g) => g.selectAll('line,path').attr('stroke', token('--rule')));
-
+      .call(eje).call((g) => g.selectAll('line,path').attr('stroke', tok('--regla')));
     svg.append('g').selectAll('rect').data(totales).join('rect')
       .attr('x', (d) => x(d.mes)).attr('width', x.bandwidth())
       .attr('y', (d) => y(d.ext)).attr('height', (d) => y(0) - y(d.ext))
-      .attr('fill', token('--accent'));
+      .attr('fill', tok('--acento'));
     svg.append('path')
       .attr('d', d3.line().x((d) => x(d.mes) + x.bandwidth() / 2).y((d) => y(d.viol))(totales))
-      .attr('fill', 'none').attr('stroke', token('--critico')).attr('stroke-width', 1.6);
-    svg.append('text').attr('x', m.izquierda + 4).attr('y', m.arriba + 10)
-      .attr('fill', token('--ink-2')).attr('font-size', 11)
+      .attr('fill', 'none').attr('stroke', tok('--critico')).attr('stroke-width', 1.6);
+    svg.append('text').attr('x', m.izquierda + 4).attr('y', m.arriba + 9)
+      .attr('fill', tok('--tinta-2')).attr('font-size', 11)
       .text('barras: extorsión · línea roja: hechos con arma o daños');
 
-    const brush = d3.brushX()
-      .extent([[m.izquierda, m.arriba], [ancho - m.derecha, alto - m.abajo]])
+    const brush = d3.brushX().extent([[m.izquierda, m.arriba], [ancho - m.derecha, alto - m.abajo]])
       .on('end', (evento) => {
         if (!evento.selection) { estado.desde = estado.hasta = null; }
         else {
           const [a, b] = evento.selection;
-          const dentro = totales.map((d) => d.mes)
-            .filter((mes) => x(mes) + x.bandwidth() >= a && x(mes) <= b);
+          const dentro = totales.map((d) => d.mes).filter((mes) => x(mes) + x.bandwidth() >= a && x(mes) <= b);
           if (!dentro.length) return;
           estado.desde = dentro[0]; estado.hasta = dentro[dentro.length - 1];
         }
-        document.getElementById('rango').textContent = estado.desde
-          ? `${estado.desde} a ${estado.hasta}` : 'todo el periodo';
+        document.getElementById('rango').textContent =
+          estado.desde ? `${estado.desde} a ${estado.hasta}` : 'todo el periodo';
         actualizar();
       });
-    svg.append('g').call(brush)
-      .call((g) => g.select('.selection').attr('fill', token('--ink')).attr('fill-opacity', 0.1)
-        .attr('stroke', token('--ink-2')));
+    svg.append('g').call(brush).call((g) => g.select('.selection')
+      .attr('fill', tok('--tinta')).attr('fill-opacity', 0.1).attr('stroke', tok('--tinta-2')));
   }
 
   function graficaCalidad() {
     const svg = d3.select('#calidad');
-    const caja = document.querySelector('#calidad').parentElement.clientWidth;
-    const ancho = Math.max(caja, 240), alto = 180;
-    const m = { arriba: 10, derecha: 8, abajo: 22, izquierda: 32 };
+    const ancho = Math.max(document.querySelector('#calidad').parentElement.clientWidth, 240);
+    const alto = 190, m = { arriba: 12, derecha: 8, abajo: 22, izquierda: 34 };
     svg.attr('viewBox', `0 0 ${ancho} ${alto}`).attr('width', ancho).attr('height', alto).selectAll('*').remove();
     const x = d3.scaleBand().domain(calidad.map((d) => d.anio)).range([m.izquierda, ancho - m.derecha]).padding(0.2);
     const y = d3.scaleLinear().domain([0, 50]).range([alto - m.abajo, m.arriba]);
-    svg.append('g').attr('transform', `translate(0,${alto - m.abajo})`)
-      .call(d3.axisBottom(x).tickSizeOuter(0))
-      .call((g) => g.selectAll('text').attr('fill', token('--ink-mute')).attr('font-size', 10))
-      .call((g) => g.selectAll('line,path').attr('stroke', token('--rule')));
+    const eje = (g) => g.selectAll('text').attr('fill', tok('--tinta-mute')).attr('font-size', 10);
+    svg.append('g').attr('transform', `translate(0,${alto - m.abajo})`).call(d3.axisBottom(x).tickSizeOuter(0))
+      .call(eje).call((g) => g.selectAll('line,path').attr('stroke', tok('--regla')));
     svg.append('g').attr('transform', `translate(${m.izquierda},0)`)
       .call(d3.axisLeft(y).ticks(3).tickFormat((v) => v + '%').tickSizeOuter(0))
-      .call((g) => g.selectAll('text').attr('fill', token('--ink-mute')).attr('font-size', 10))
-      .call((g) => g.selectAll('line,path').attr('stroke', token('--rule')));
+      .call(eje).call((g) => g.selectAll('line,path').attr('stroke', tok('--regla')));
     svg.append('g').selectAll('rect').data(calidad).join('rect')
       .attr('x', (d) => x(d.anio)).attr('width', x.bandwidth())
       .attr('y', (d) => y(d.pct_usable)).attr('height', (d) => y(0) - y(d.pct_usable))
-      .attr('fill', (d) => (d.pct_usable < 20 ? token('--critico') : token('--seq-2')));
-    svg.append('g').selectAll('text.v').data(calidad).join('text').attr('class', 'v')
+      .attr('fill', (d) => (d.pct_usable < 20 ? tok('--critico') : tok('--seq-2')));
+    svg.append('g').selectAll('text.v').data(calidad).join('text')
       .attr('x', (d) => x(d.anio) + x.bandwidth() / 2).attr('y', (d) => y(d.pct_usable) - 4)
       .attr('text-anchor', 'middle').attr('font-size', 10)
-      .attr('fill', (d) => (d.pct_usable < 20 ? token('--critico') : token('--ink-2')))
-      .text((d) => d3.format('.1f')(d.pct_usable) + '%');
+      .attr('fill', (d) => (d.pct_usable < 20 ? tok('--critico') : tok('--tinta-2')))
+      .text((d) => fmt1(d.pct_usable) + '%');
   }
 
   function actualizar() {
     recontar();
     pintarCifras();
-    pintarLista();
+    pintarTabla();
     dibujar();
-    if (estado.elegido != null) elegir(estado.elegido);
+    if (estado.elegido != null) elegir(estado.elegido, null);
   }
-
-  document.querySelectorAll('[data-metrica]').forEach((b) => b.addEventListener('click', () => {
-    estado.metrica = b.dataset.metrica;
-    document.querySelectorAll('[data-metrica]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
-    actualizar();
-  }));
-  document.querySelectorAll('[data-norma]').forEach((b) => b.addEventListener('click', () => {
-    estado.norma = b.dataset.norma;
-    document.querySelectorAll('[data-norma]').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
-    actualizar();
-  }));
-  document.getElementById('btn-tabla').addEventListener('click', (e) => {
-    const panel = document.getElementById('panel-tabla');
-    panel.hidden = !panel.hidden;
-    e.target.textContent = panel.hidden ? 'Ver datos en tabla' : 'Ocultar la tabla';
-  });
 
   recontar();
   pintarCifras();
-  pintarLista();
+  pintarTabla();
   serieMensual();
   graficaCalidad();
   dimensionar();
-  // abre con el corredor de más extorsión ya seleccionado
-  const primero = ordenados()[0];
-  if (primero) elegir(primero.i);
+  const lider = corredores.map((c, i) => ({ i, v: valor(c) })).sort((a, b) => b.v - a.v)[0];
+  if (lider) elegir(lider.i, null);
 
   let temporizador;
   window.addEventListener('resize', () => {
