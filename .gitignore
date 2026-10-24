@@ -16,3 +16,5 @@ data/raw/
 # PDFs de papers y CSV pesados (no versionar)
 Ricardo-idea/papers/*.pdf
 Ricardo-idea/*.csv
+data/
+.superpowers/
