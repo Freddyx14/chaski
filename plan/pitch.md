@@ -70,9 +70,11 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 | # | Number | Source | Use |
 |---|---|---|---|
-| **★** | **Huancavelica: ~206,000 people with Quechua as first language, 52 certified bilingual public servants in the whole region. One per ~4,000 people** | Census 2017 via UNICEF · El Peruano 16-Jul-2026 · our division (`research/problemas-lenguas-originarias.md`) | B2 |
+| **★** | **At her health center, 90% of patients speak Quechua. About 20% of the 36 staff do**, and not fluently | Interview with the nurse, 24-Oct (`research/entrevistas/2026-10-24-enfermera-pilpichaca.md`): «el 90% hablan quechua» · «será el 20%. De todo el personal» | **B2, the lead.** First-hand, from our named community |
+| ★b | Huancavelica: ~206,000 people with Quechua as first language, 52 certified bilingual public servants in the whole region. One per ~4,000 | Census 2017 via UNICEF · El Peruano 16-Jul-2026 · our division (`research/problemas-lenguas-originarias.md`) | Q&A "is it just one clinic?" |
+| ★c | **A consultation in Spanish takes 30–40 min; in Quechua, up to an hour or more.** Instructions get repeated up to 4 times | Interview: «un paciente normal, 30 a 40 minutos … será por una hora hasta un poco más» · «Repetirlo 2, 3 veces, hasta 4 veces» | B2 or Q&A. Our measurable "before" for Microsoft |
 | ★★ | **Before → after**: Meta's speech model on Chanka, error rate X% → Y% on a speaker it never heard | Ricardo's frozen baseline. **Smoke test today: WER 38.5%, CER 10.7%** (small set, not the baseline) | B5. If Ricardo's number isn't ready, say the smoke test as "before" and *don't* claim an after |
-| 2 | Mom is the only Quechua-speaking nurse at the Pilpichaca health post | Freddy | B1 |
+| 2 | ~~Mom is the only Quechua-speaking nurse~~ **Wrong.** She said 3 of the 6 nurses speak Quechua. Today the translator is whoever is on shift: a nurse, a technician, **the driver**, or a relative. Otherwise signs and drawings. Nobody there knew the government's 1812 interpreter line | Interview: «hay 3 enfermeras que hablan quechua» · «Acá también habla el chofer» · «es como una persona muda» · «nunca lo hemos usado» | B1/B2 |
 | 3 | GPT-4 on real ER discharge instructions: at least one error in 16% (Spanish), 24% (Chinese), **56% (Russian)** of sets; worse as the language gets rarer | Kong et al. 2026, *BMJ Quality & Safety* | B2 or Q&A |
 | 4 | 3.7 M Peruvians have Quechua as first language (13.9%) | Census 2017 | Q&A "is it big?" |
 | 5 | Clinicians already fight this by hand with back-translation, pre-translated phrases and teach-back | Mehandru et al. 2022, FAccT | Q&A "why this design?" |
@@ -86,14 +88,14 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 **B1 · Hook (0:00–0:20) · Freddy**
 [Play Mom's recorded greeting in Quechua, 4 s — or Freddy says it.]
-"That's my mother. She's a nurse at the health post in Pilpichaca, in the Andes of Huancavelica, Peru, and she's the
-only person there who speaks Quechua — the language most of her patients grew up with."
+"That's my mother. She's a nurse at the health center in Pilpichaca, in the Andes of Huancavelica, Peru. Nine out of
+ten of her patients speak Quechua. Only about one in five of the staff do. Most of them come from the coast."
 
 **B2 · Problem (0:20–0:45) · Freddy**
-"In the whole region there are 52 certified bilingual public servants for 206,000 Quechua speakers. One for every
-four thousand people. So when my mother is off shift, a grandmother gets a prescription explained in a language she
-doesn't speak. [Mom's real case, one sentence, from the 17:00 interview.] And 'just use ChatGPT' isn't safe: even in
-Russian, it got discharge instructions wrong more than half the time. Quechua barely exists in its training data."
+"So today the interpreter is whoever is around. Another nurse, a technician, the ambulance driver. If nobody is, they
+use gestures and drawings. My mother told me they break a pill into four in front of the patient to show the dose.
+A consultation that takes forty minutes in Spanish takes an hour or more in Quechua. And 'just use ChatGPT' isn't
+safe: even in Russian, it got discharge instructions wrong more than half the time. Quechua barely exists in its training data."
 
 **B3 · Demo, the flow (0:45–1:35) · Freddy + Ricardo**
 "This is Chaski." [Phone toward the judge. Chaski the vicuña waves.] "The nurse speaks Spanish."
@@ -146,7 +148,7 @@ the demo video loaded · **phone hotspot, not venue Wi-Fi** · second phone with
 | Nurse turn | **Takes ~15 s today.** Dead air | Narrate over Chaski's "thinking" steps (it's in the script). Push the fast path: measure Haiku/Sonnet for this turn (D15) |
 | Patient answer | Loud hall, live mic | Pre-recorded family clip played next to the mic. Language detection already measured at 1.0 on Quechua |
 | The refusal | Has to happen every time | Pick the sentence in rehearsal, confirm it blocks **5/5** |
-| Summary | `/resumen` still missing on Ricardo's side | If it's not live by 18:00, cut it from the demo and show it on the video |
+| Summary | `/resumen` is live now (commit f0b752a) | Test it in the 10:15 warm-up |
 | Anything breaks | — | One sentence: "the connection dropped, here's the recording from this morning", then the video. Never more than one sentence of apology |
 
 **Mom live (D18):** judging 10:30–12:30 PT = 12:30–14:30 Lima. A live video call in a loud hall is risky. Record her
@@ -166,7 +168,9 @@ greeting + one sentence about her work at the 17:00 call, with her consent. If s
 | How do you know it improved? | A frozen test speaker the model never heard, same script before and after |
 | Privacy / consent? | Recordings are from consenting family volunteers, no patient data. [Decide and say only what's true: are consultation audios stored?] |
 | Replacing interpreters? | There's one per ~4,000 people. It's for when nobody is there. The government's 1812 hotline needs staff to call and wait |
-| Who uses it Monday? How does it scale? | My mother's health post first. Then the regional health office (DIRESA Huancavelica). [Sharpen with the interview] |
+| Who uses it Monday? How does it scale? | The staff who don't speak Quechua at the Pilpichaca health center (≈80% of 36). The same health zone covers 10 more posts. Then the regional health office (DIRESA Huancavelica) |
+| How would you measure impact there? | MINSA's daily HIS form already records each patient's language. So we can count Quechua consultations and compare their length (today 30–40 min vs up to an hour+) and how often instructions get repeated |
+| Has a bad translation hurt someone there? | Honest answer: she couldn't recall one. They avoid it by repeating 3–4 times and taking an hour. The cost today is time and dignity; the risk with AI is Kong 2026 |
 | How do you measure impact? | We log blocked translations, nurse corrections and repeat requests per consultation. [Confirm with the ui-ux session what the app logs] |
 | Offline? | Not yet, needs signal. Honest limitation, on-device is next |
 | Why Chanka? | It's Huancavelica and Ayacucho's Quechua; models are trained on Cusco Quechua. We found no paper evaluating LLMs on Chanka |
@@ -182,7 +186,8 @@ greeting + one sentence about her work at the 17:00 call, with her consent. If s
 | A dose sentence that blocks 5/5 | Freddy + ui-ux session | 15:00 |
 | Nurse turn under ~5 s, or rehearsed narration | ui-ux session + Ricardo (D15) | 16:00 |
 | `/resumen` and `/idioma` live | Ricardo | 18:00 |
-| Mom: a real case in one sentence + the recorded greeting, with consent | Freddy, 17:00 call | 18:00 |
+| ~~Mom's interview~~ done 12:00 (`research/entrevistas/`). Still missing: her recorded greeting, with consent | Freddy | 18:00 |
+| Agree with Ricardo which "agentic interpreter" features go in (`plan/propuesta-interprete-agente.md`) | Freddy + Ricardo | 14:00 |
 | Decide: are consultation audios stored? | Freddy | 18:00 |
 | Opt into Anthropic, People-First, Microsoft, Cartesia on Devpost | Freddy | 21:00 draft |
 | README: where Claude is used and why · Cartesia features · known limits · no keys | ui-ux session | 21:00 |
