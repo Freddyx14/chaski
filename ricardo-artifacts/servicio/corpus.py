@@ -25,9 +25,18 @@ RAIZ = Path("datos/crudo")
 INSTANCIA = "http://127.0.0.1:8010"
 
 
-def referencias() -> dict:
-    """Lo que el cuadernillo dice que deberia haberse dicho, por numero.
+BLOQUES_CUADERNILLO = {
+    "C": "clinicas_sin_traducir",
+    "M": "medicamentos_y_prestamos",
+    "N": "numeros_y_tiempos",
+    "B": "respuestas_libres",
+}
 
+
+def referencias(bloque: str = "") -> dict:
+    """Lo que el cuadernillo dice que deberia haberse dicho, por (bloque, numero).
+
+    Las claves siguen los codigos del cuadernillo de Freddy: C1, M5, N3, B2, E7.
     Se MUESTRA al corregir, no se da por bueno: la persona pudo decir otra cosa,
     y lo que manda es lo que de verdad se oye en el audio.
     """
@@ -35,16 +44,20 @@ def referencias() -> dict:
     if not ruta.exists():
         return {}
     d = json.loads(ruta.read_text(encoding="utf-8"))
-    salida = {}
+    salida: dict[tuple[str, int], dict] = {}
+    for letra, clave in BLOQUES_CUADERNILLO.items():
+        for i, t in enumerate(d.get(clave, []), 1):
+            salida[(letra, i)] = {"castellano": t, "chanka_esperado": ""}
     for i, f in enumerate(d.get("verificadas", []), 1):
-        salida[i] = {"castellano": f["castellano"], "chanka_esperado": f["chanka"]}
-    base = len(d.get("verificadas", []))
-    for i, t in enumerate(d.get("clinicas_sin_traducir", []), base + 1):
-        salida[i] = {"castellano": t, "chanka_esperado": ""}
-    base += len(d.get("clinicas_sin_traducir", []))
-    for i, t in enumerate(d.get("medicamentos_y_prestamos", []), base + 1):
-        salida[i] = {"castellano": t, "chanka_esperado": ""}
+        salida[("E", i)] = {"castellano": f["castellano"], "chanka_esperado": f["chanka"]}
+    if bloque:
+        return {k[1]: v for k, v in salida.items() if k[0] == bloque}
     return salida
+
+
+def cuantas(bloque: str) -> int:
+    """Cuantas frases trae ese bloque del cuadernillo."""
+    return len(referencias(bloque))
 
 
 def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
@@ -78,7 +91,7 @@ def recibir_nota(persona: str, bloque: str, datos: bytes, nombre: str,
     total = convertir(crudo.name, completo)
     Path(crudo.name).unlink(missing_ok=True)
 
-    refs = referencias()
+    refs = referencias(bloque)
     if not esperadas:
         esperadas = max(len(refs) - desde + 1, 1)
     trozos, diagnostico = mejor_particion(completo, total, esperadas)
@@ -110,10 +123,9 @@ def clips(persona: str) -> list[dict]:
     manifiesto = RAIZ / persona / "manifiesto.jsonl"
     if not manifiesto.exists():
         return []
-    refs = referencias()
     salida = []
     for g in leer_manifiesto(manifiesto):
-        ref = refs.get(g.numero, {})
+        ref = referencias(g.bloque).get(g.numero, {})
         salida.append({"nombre": g.nombre, "audio": g.audio, "numero": g.numero,
                        "bloque": g.bloque, "castellano": g.castellano or ref.get("castellano", ""),
                        "chanka_esperado": ref.get("chanka_esperado", ""),

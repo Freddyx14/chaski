@@ -196,11 +196,14 @@ def main() -> None:
                 [["#", "Castellano"]] + [[str(i), P(f["castellano"])]
                                          for i, f in enumerate(verificadas, 1)],
                 [1.2 * cm, 15 * cm]),
-               ("Frases de la posta · sin traducción, usted pone el quechua",
-                [["#", "Castellano"]] + [[f"C{i}", P(t)] for i, t in enumerate(CLINICAS, 1)],
+               ("Frases de la posta · dígalas en quechua con sus palabras",
+                [["#", "Castellano"]] +
+                [[str(i), P(t)] for i, t in enumerate(CLINICAS, len(verificadas) + 1)],
                 [1.2 * cm, 15 * cm]),
                ("Medicamentos y préstamos · dígalos como se dicen en la posta",
-                [["#", "Palabra"]] + [[f"M{i}", P(t)] for i, t in enumerate(MEDICAMENTOS, 1)],
+                [["#", "Palabra"]] +
+                [[str(i), P(t)]
+                 for i, t in enumerate(MEDICAMENTOS, len(verificadas) + len(CLINICAS) + 1)],
                 [1.2 * cm, 15 * cm])])
 
     construir("frases_ambos.pdf", "Rimay · frases para grabar en quechua chanka",

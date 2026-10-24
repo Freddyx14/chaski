@@ -10,7 +10,11 @@ import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-BLOQUES = ("A", "B")
+# Los bloques salen del cuadernillo (voz/frases_pdf.py), que es de Freddy:
+#   C frases de la posta · M medicamentos y prestamos · N numeros y tiempos
+#   B respuestas libres  · E extra, las verificadas que ya estan en chanka
+# A queda por compatibilidad con los primeros clips de prueba.
+BLOQUES = ("A", "B", "C", "M", "N", "E")
 FRECUENCIA_HZ = 16000
 
 

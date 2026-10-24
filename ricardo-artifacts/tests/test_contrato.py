@@ -9,8 +9,14 @@ def test_nombre_estable():
 
 
 def test_bloque_invalido():
+    """C, M, N, B y E son los bloques del cuadernillo; cualquier otra letra no."""
     with pytest.raises(ValueError):
-        Grabacion(persona="p1", bloque="C", numero=1, audio="x.wav")
+        Grabacion(persona="p1", bloque="Z", numero=1, audio="x.wav")
+
+
+def test_acepta_los_bloques_del_cuadernillo():
+    for letra in ("C", "M", "N", "B", "E"):
+        assert Grabacion(persona="p1", bloque=letra, numero=3, audio="x.wav").bloque == letra
 
 
 def test_ida_y_vuelta_json(tmp_path):

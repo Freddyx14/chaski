@@ -51,7 +51,13 @@
   <div class="barra" style="background:var(--blanco);border:1px solid var(--linea);padding:12px 14px">
     <label for="archivo" style="margin:0">Nota de voz</label>
     <input id="nombrePersona" type="text" placeholder="p1" style="width:80px">
-    <select id="bloqueNuevo" style="width:auto"><option value="A">bloque A</option><option value="B">bloque B</option></select>
+    <select id="bloqueNuevo" style="width:auto">
+      <option value="C">C · frases de la posta</option>
+      <option value="M">M · medicamentos</option>
+      <option value="N">N · números y tiempos</option>
+      <option value="B">B · respuestas libres</option>
+      <option value="E">E · extra verificadas</option>
+    </select>
     <input id="archivo" type="file" accept="audio/*,video/*" style="font-size:12px">
     <input id="cuantas" type="number" min="0" placeholder="¿cuántas frases?" style="width:140px" title="cuántas frases trae esta nota; vacío = las que faltan">
     <button id="subir" class="principal">Subir y partir</button>
@@ -104,7 +110,7 @@ function pintar() {
   $('#tarjeta').innerHTML = `
     <div class="cabecera">
       <p class="castellano">${c.castellano || '<span style="color:var(--mute)">(sin frase de origen)</span>'}</p>
-      <span class="cual">${i+1} / ${clips.length} · ${c.nombre} · ${c.segundos}s
+      <span class="cual">${c.bloque}${c.numero} · ${i+1} / ${clips.length} · ${c.segundos}s
         ${c.revisado ? '· <span class="listo">revisado</span>' : ''}</span>
     </div>
     <audio id="audio" controls autoplay src="/corpus/audio?ruta=${encodeURIComponent(c.audio)}"></audio>
