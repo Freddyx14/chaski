@@ -143,7 +143,7 @@
 |---|---|---|
 | ✅ | Criterios con pesos y compuertas: `evals/CRITERIOS.md` | — |
 | ⏳ | Auditar el banco de ataques + registrar costo real por corrida + `puntuar.py` (sin gastar API) | 18:00 |
-| ⏳ | Bajar el tiempo del crítico sin perder precisión | 18:00 |
+| ✅ | Tiempo del crítico: p50 9 s → ~2,7 s, p95 34 s → ~3,6 s, misma precisión; turno completo p50 6,5 s · 🔁 ui-ux 17:00 | — |
 | ⬜ | Afinar dentro del tope de **$30** (ver estimación de lo gastado) | — |
 
 ## Pendientes conocidos del intérprete
@@ -166,3 +166,4 @@
 | RAG, acierto a la primera | híbrido 88 % vs palabras 70 % | `evals/banco/resultados/` |
 | Pacientes quechuahablantes / personal que habla quechua | 90 % / ~20 % | entrevista |
 | Consulta en castellano / en quechua | 30–40 min / hasta 1 h o más | entrevista |
+| Médicos que empiezan el SERUMS con al menos quechua o aimara básico | 14,4 % (84 de 584, encuesta 2016) | Bendezu-Quispe 2020 · `research/personal-salud-quechua.md` |
