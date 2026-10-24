@@ -1,78 +1,141 @@
-# Checklist de todo lo acordado (vivo) · sáb 24-oct, 15:20 PT
+# Chaski · todo lo acordado y quién hace qué (vivo) · sáb 24-oct, 15:25 PT
 
-> **Por qué existe:** Freddy, 15:13: *«it is supposed that you took notes of all the things I told you … the things I
-> told you and we agreed on are very important»*. Cada cosa que Freddy pide o acordamos entra acá con dueño y estado,
-> en el mismo turno. Detalle técnico en `plan/arquitectura-interprete.md`, decisiones en `SOT.md`.
+> **Por qué existe.** Freddy, 15:13 y 15:15: *«the things I told you and we agreed on are very important … document
+> everything, like the checklist … split it into tasks so we don't miss any task»*. Regla: cada cosa que Freddy pide o
+> acordamos entra acá **en el mismo turno**, con dueño, hora y estado; lo que le toca a otra sesión se le pasa en el acto.
+> Detalle técnico: `plan/arquitectura-interprete.md` · decisiones formales: `SOT.md` · pitch: `plan/pitch.md`.
 >
-> Estado: ✅ hecho · ⏳ en curso · ⬜ falta · 🔁 pasado a otra sesión (con hora)
+> ✅ hecho · ⏳ en curso · ⬜ falta · 🔁 pasado (a quién, a qué hora)
 
-## 1 · Producto
+---
 
-| # | Lo acordado | Dueño | Estado |
+## A · Quién hace qué (reparto acordado, 14:40)
+
+| Quién | Su parte | Cómo se comunica |
+|---|---|---|
+| **Freddy** | Datos de las familias, ajuste fino junto con Ricardo, la mamá (revisión y voz), pitch, Devpost, decisiones | — |
+| **Ricardo** | Modelos: línea base, ajuste fino (NLLB traducción, omniASR oído, voz), servicio FastAPI + túnel, rutas | Por Freddy (mensajes en su portapapeles) y `plan/tareas.md` |
+| **El papá de Freddy** | Pide a la familia que grabe en el formulario | Freddy |
+| **La mamá de Freddy** (enfermera, Pilpichaca) | Revisa el quechua (emergencia, app, números) y graba su saludo; experta que valida | Freddy |
+| **Sesión ui-ux** | Toda la UI/UX y la app iOS (`movil/`), el SOT y la página visual | `SendMessage` a `ui-ux` |
+| **Esta sesión (Claude)** | La arquitectura y el flujo agéntico del intérprete, las barreras, la precisión en cada parte, buenas prácticas, los agentes necesarios (y ninguno más), las mediciones con línea base primero, el formulario, la documentación | Worktrees por frente, integración en `main` |
+
+---
+
+## B · Registro de decisiones y pedidos (en orden)
+
+| Hora | Qué se decidió o pidió | Fuente | Estado |
 |---|---|---|---|
-| 1 | Sirve a los dos lados: personal de salud y paciente. Onboarding idioma → nombre → rol (D27) | ui-ux | ✅ |
-| 2 | El producto se llama **Chaski** (D30) | ui-ux | ✅ |
-| 3 | **El usuario principal es el personal que NO habla quechua** (~80 %, entrevista) | todos | ✅ en docs y pitch |
-| 4 | **Intérprete agente, no traductor** (D32): 5 acciones (traducir, repreguntar, responder, no_entendí, frase verificada) | esta sesión (backend) · ui-ux (app) | ✅ backend en `main` · ✅ app · ⬜ conectado al servicio de Ricardo |
-| 5 | **Pulir los dos lados, estilo Wispr Flow**, sin cambiar datos | esta sesión | ✅ |
-| 6 | Repregunta UNA vez al mismo hablante; contesta él lo que es para él; transmite órdenes como indicaciones | esta sesión | ✅ |
-| 7 | **Modo emergencia**: frases ya traducidas y grabadas, toca y suena (D35) | ui-ux (pantalla) · esta sesión (banco) · Ricardo (audios) · mamá (revisión) | ✅ pantalla · ✅ banco (24 frases) · ⬜ **10 frases sin quechua → mamá** · ⬜ audios |
-| 8 | **RAG con embeddings** para el banco (pedido de Freddy, más complejidad técnica) | esta sesión | ✅ híbrido 88 % acierto a la primera vs 70 % solo palabras |
-| 9 | **Receta**: foto → hechos → indicación → «¿me lo repite?» (D35) | ui-ux · Ricardo (`/ver`) | ✅ app |
-| 10 | **Aprender quechua desde las consultas** (D36): hoy glosario en el resumen; plataforma = visión en el pitch | ui-ux | ✅ glosario · ⬜ línea en el pitch |
-| 11 | **Barreras antes de hablar** = lo que define si lo hicimos bien (D37) | esta sesión | ✅ B1–B6 + falla cerrada |
-| 12 | **Solo dos roles: intérprete principal + crítico en Haiku**, ningún agente de más (D38, consejo de Anthropic) | esta sesión | ✅ · ⏳ elegir crítico Haiku vs Sonnet con números |
-| 13 | **Ajuste fino**: NLLB para traducir, omniASR para oír, con los datos de las familias | Ricardo | ⏳ |
-| 14 | **Línea base primero** de cada modelo, para decir cuánto mejoramos | Ricardo (modelos) · esta sesión (evals) | ⏳ Ricardo · ✅ evals de intérprete, barreras y RAG |
-| 15 | Claude pule y audita; el modelo ajustado traduce; Claude de respaldo (D33) | esta sesión · Ricardo | ✅ interruptor · ⬜ `/traducir` de Ricardo |
-| 16 | Modelo principal elegido midiendo (D15): **Opus 98 %, 0 datos inventados** vs Sonnet 94 % vs Haiku 88 % | Freddy decide | ⬜ recomendación: Opus |
+| vie | Track principal: Anthropic «Claude for Public Benefit». Comunidad: posta de Pilpichaca, Huancavelica | SOT D1–D8 | ✅ |
+| vie | Salud general, **no solo gestantes** | Freddy, 2 veces | ✅ |
+| sáb 00:30 | **Claude es el núcleo** (D19); app iOS nativa (D14) | SOT | ✅ |
+| 09:05 | **Sirve a los dos lados**, personal y paciente; onboarding idioma → nombre → rol (D27) | Freddy | ✅ app |
+| 09:20 | Formulario de voz en lugar del PDF; probado de punta a punta en Chrome | Freddy | ✅ |
+| 09:40 | Formulario: se guarda solo, sin código, sin «saltar todo», sin «¿escribe en quechua?», pensado para celular, todo visible sin bajar | Freddy | ✅ |
+| 10:31 | **El producto se llama Chaski** (D30) | Freddy | ✅ |
+| 09:13 | 🔴 **Línea base de cada modelo ANTES del ajuste fino**, para decir cuánto mejoramos | Freddy | ⏳ Ricardo |
+| 11:43 | **Pitch de 3 minutos** + 2 de preguntas; estrategia, guion, demo e investigación de lo que gana | Freddy | ✅ `plan/pitch.md` |
+| 12:00 | Entrevista a la mamá guardada; 90 % pacientes quechuahablantes, ~20 % personal; no es «la única enfermera» (son 3 de 6) | entrevista | ✅ |
+| 12:44 | **El resumen como plataforma para aprender quechua** (el Estado capacita y no aprenden): hoy glosario; plataforma = visión | Freddy | ✅ glosario · ⬜ línea en el pitch |
+| 12:45 | **Intérprete agente, no traductor**: pule los dos lados (Wispr), repregunta, contesta lo que es para él, transmite órdenes, razona (D32) | Freddy + Ricardo | ✅ backend · ✅ app |
+| 12:45 | **Claude pule; el modelo ajustado traduce** castellano→quechua (D33) | Freddy + Ricardo | ✅ interruptor · ⬜ `/traducir` |
+| 12:45 | **Modo emergencia** con audios verificados, crítico para ellos; **receta** es función clave (D35) | Freddy + Ricardo | ✅ app · ⬜ audios · ⬜ revisión mamá |
+| 12:45 | La base médica de Ricardo sirve **para ajustar y para el banco**, nunca para la prueba | Freddy + Ricardo | ✅ regla de fuga en el banco |
+| 12:59 | 🔴 **Barreras antes de hablar: es lo que define si lo hicimos bien** (D37) | Freddy | ✅ B1–B6 + falla cerrada |
+| 13:02 | Borrar las pruebas fantasma de la base del formulario | Freddy | ✅ · ⬜ p20 «Ricardo» |
+| 14:06 | Bajar los datos de las familias para Ricardo + llave de exportación | Freddy | ✅ |
+| 14:40 | **RAG con embeddings** para el banco (más complejidad técnica) | Freddy | ✅ |
+| 14:40 | **Banco de errores sembrados**: primero la línea base (sin barreras / juez simple), después Chaski | Freddy | ✅ |
+| 14:40 | **Dividir en worktrees** y trabajar ordenado | Freddy | ✅ 3 worktrees integrados |
+| 14:50 | Llave de Anthropic guardada aparte de la otra, para evals y producción | Freddy | ✅ Keychain `CHASKI_ANTHROPIC_API_KEY` |
+| 14:50 | **Crítico en Haiku**; solo los agentes necesarios: principal + crítico (D38, consejo de Anthropic) | nota de voz | ✅ · ⏳ Haiku vs Sonnet |
+| 14:50 | Documento de Anthropic sobre agentes (Freddy lo iba a pasar) | Freddy | ⬜ pendiente de Freddy |
+| 15:13 | **Pasar el diseño a ui-ux en paralelo, siempre**; checklist de todo | Freddy | ✅ 🔁 ui-ux 15:20 |
 
-## 2 · Mediciones (para el pitch)
+---
 
-| # | Qué | Estado |
+## C · Tareas por persona, con hora
+
+### Freddy
+| | Tarea | Para |
 |---|---|---|
-| 17 | Banco de ataques: sin barreras 0 % → juez simple → Chaski | ✅ Chaski+Haiku 96 % atrapados, 18 % bloqueos falsos · ⏳ juez y Sonnet en la misma muestra |
-| 18 | Intérprete: 48 escenarios × 3 modelos | ✅ |
-| 19 | RAG: palabras vs embeddings vs híbrido | ✅ |
-| 20 | Reconocimiento y traducción antes/después del ajuste fino | ⏳ Ricardo |
+| ⬜ | Elegir el modelo principal: **recomendado Opus** (98 % acierto, 0 datos inventados) | ya |
+| ⬜ | p20 «Ricardo» en la base: ¿prueba (se borra) o dato real? | ya |
+| ⬜ | ¿Se guardan los audios de las consultas? (pregunta de privacidad de los jueces) | 18:00 |
+| ⬜ | Mamá: revisar las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
+| ⬜ | Mamá: grabar su saludo en quechua para abrir el pitch, con permiso | 18:00 |
+| ⏳ | Papá y familia: más grabaciones en el formulario | continuo |
+| ⬜ | Pasar el documento de Anthropic sobre agentes | cuando lo tenga |
+| ⬜ | Devpost: borrador, marcar Anthropic + People-First + Microsoft + Cartesia | 21:00 |
+| ⬜ | Repo público **sin** `context/photos/`; decidir si el transcript de la entrevista queda | 21:00 |
+| ⬜ | Ensayo del pitch con cronómetro (30 s / 3:00 / 2:00) | 22:00 |
+| ⬜ | Video de la demo, abre con el momento de la negativa | dom 05:00 |
 
-## 3 · Formulario de las familias
-
-| # | Lo acordado | Estado |
+### Ricardo (los mensajes van por Freddy)
+| | Tarea | Para |
 |---|---|---|
-| 21 | Guarda texto y audio, probado de punta a punta | ✅ |
-| 22 | Sin «¿escribe en quechua?», sin «saltar todo», sin código: se guarda solo | ✅ |
-| 23 | Pensado para celular, todo visible sin bajar, empieza arriba | ✅ |
-| 24 | Borrar las pruebas fantasma | ✅ (p11, p13, p14, p21–p23) · ⬜ **p20 «Ricardo»: ¿prueba o dato?** |
-| 25 | Datos bajados para Ricardo (`data/formulario/`, no se sube) + llave de exportación | ✅ |
+| ⏳ | 🔴 Línea base congelada de reconocimiento y traducción, hablante de prueba separado | 15:00 (atrasado: confirmar) |
+| ⏳ | Partir los datos en entrenamiento / banco / prueba antes de entrenar | 15:00 |
+| ⏳ | NLLB-200 ajustado + ruta `/traducir` (`texto, de, a` → `{traduccion}`) | 19:00 |
+| ⏳ | omniASR ajustado con los audios completos (papá + formulario) | 19:00 |
+| ⬜ | Confianza por palabra o N mejores en `/entender` (barrera B1) | 19:00 |
+| ⬜ | Audios de emergencia con la voz de Chaski donde no haya grabación | 19:00 |
+| ⬜ | Ruta `GET /banco?tag=` (lista en `evals/banco/RUTA_PARA_RICARDO.md`) | 19:00 |
+| ⬜ | **Integración**: `/turno/*` llama a `interpretar()` (fragmento en el reporte del orquestador; `contexto` llega como string JSON) | 19:00–21:00 |
+| ✅ | `/resumen` y `/idioma` vivos · túnel fijo | — |
 
-## 4 · Pitch y entrega
+### Sesión ui-ux (🔁 15:20, plazo 19:00)
+| | Tarea |
+|---|---|
+| ✅ | 5 acciones, modo emergencia, receta + «¿me lo repite?», glosario, onboarding de dos lados |
+| ⏳ | Contrato final de `Resultado` en la app (estado, aviso, paso_fallido, modelos, ms, contexto) |
+| ⏳ | «Pensando» con pasos reales (≈ 5–6 s con Opus + crítico) |
+| ⏳ | Bloqueo explicado en palabras simples; ámbar = aviso, rojo = bloqueado |
+| ⏳ | Banco real; **nunca reproducir frases sin revisar** (`revisado:false` / `falta_quechua`) |
+| ⏳ | Sello «revisado por el crítico» |
+| ⏳ | Atajo de ensayo con `FRASE_NEGATIVA_DEMO` («Tómela con agua, no con té», error simulado y dicho como tal) |
+| ⬜ | README: dónde se usa Claude y por qué, funciones de Cartesia, límites conocidos, sin llaves |
 
-| # | Lo acordado | Dueño | Estado |
-|---|---|---|---|
-| 26 | Pitch de **3 minutos** + 2 de preguntas | Freddy + Ricardo | ✅ guion en `plan/pitch.md` |
-| 27 | Abrir con 90 % pacientes quechuahablantes / ~20 % personal; **no** «la única enfermera» | — | ✅ corregido |
-| 28 | Saludo de la mamá grabado, con permiso | Freddy | ⬜ |
-| 29 | Revisión de la mamá: 10 frases de emergencia + textos quechua de la app + tabla de números | Freddy | ⬜ |
-| 30 | El momento de la negativa en la demo, que salga 5 de 5 | esta sesión + ui-ux | ✅ frase elegida: «Tómela con agua, no con té» sin el «ama…-chu» (bloqueó 16/16) · 🔁 ui-ux 15:20 · se dice que es un error simulado |
-| 31 | Marcar el premio de Anthropic en Devpost (+ People-First, Microsoft, Cartesia) | Freddy | ⬜ |
-| 32 | Video de la demo (lo ven sponsors que no pasan por la mesa) | Freddy | ⬜ dom 05:00 |
-| 33 | Repo público **sin** `context/photos/` y confirmar si el transcript de la entrevista puede quedar | Freddy | ⬜ |
-| 34 | ¿Se guardan los audios de las consultas? (pregunta de privacidad) | Freddy | ⬜ |
-
-## 5 · Pasado a otras sesiones / personas
-
-| Cuándo | A quién | Qué |
+### Esta sesión (Claude)
+| | Tarea | Para |
 |---|---|---|
-| 13:10 | ui-ux | 5 acciones, modo emergencia, receta, glosario → ✅ construido |
-| 15:20 | ui-ux | Contrato final del orquestador, espera de ~5 s, banco real con frases sin revisar, insignia del crítico, momento de la negativa (ver §6) |
-| 13:05 / 13:15 | Ricardo (por Freddy) | Línea base, partir datos, NLLB + `/traducir`, omniASR, audios de emergencia, confianza por palabra en `/entender` |
+| ✅ | Arquitectura del intérprete (`plan/arquitectura-interprete.md`) | — |
+| ✅ | Intérprete, traductor con interruptor, orquestador con falla cerrada | — |
+| ✅ | Barreras B1–B6, crítico Haiku, banco de ataques (784 casos) | — |
+| ✅ | Banco de frases + RAG híbrido (216 frases, 88 % / 95 %) | — |
+| ✅ | Mediciones: intérprete × 3 modelos, ataques (piso / juez / Chaski), RAG | — |
+| ⏳ | Juez simple y Sonnet como crítico **en la misma muestra** → elegir crítico | 15:40 |
+| ⬜ | Conectar barreras y banco dentro del orquestador (hoy son piezas aparte) + prueba de punta a punta del turno | 17:00 |
+| ⬜ | Bajar los bloqueos falsos (18 %): revisar uno por uno cuáles son errores reales de la familia | 17:30 |
+| ⬜ | Correr el banco de ataques completo (784) con el crítico elegido para el número final | 18:00 |
+| ⬜ | Línea del pitch con los números finales y la visión de aprender quechua | 18:30 |
+| ⬜ | Ayudar a integrar con Ricardo | 19:00–21:00 |
 
-## 6 · Lo nuevo para la app (enviado a ui-ux a las 15:20)
+---
 
-1. **Contrato final** de `/turno/*` (`app/chaski/orquestador.py`, clase `Resultado`): `estado` (dicho · dicho_con_aviso · bloqueado), `accion`, `motivo`, `aviso`, `texto_salida`, `texto_pulido`, `paso_fallido`, `modelos {principal, critico}`, `ms` por paso, `contexto` (la app lo devuelve en el siguiente turno).
-2. **La espera real** con Opus + crítico es ~5–6 s (p95 ~11 s): el «Pensando» muestra pasos reales (Entendiendo → Traduciendo → Revisando) para que no sea silencio.
-3. **Bloqueado en palabras simples**: `paso_fallido` + `motivo` → «Chaski no lo dijo: no coincidió la frecuencia». Ámbar para `dicho_con_aviso`, rojo solo para bloqueado.
-4. **Banco real** (`app/chaski/banco.json`, 216 frases, 24 de emergencia): **una frase con `revisado: false` o tag `falta_quechua` no se reproduce en modo emergencia**; se muestra como «pendiente de revisión». Sin audio → voz de Chaski cuando Ricardo la genere.
-5. **Insignia «revisado por el crítico»** cuando el crítico pasó: es lo que hace visible la seguridad en la demo.
-6. **Momento de la negativa**: una frase fija que bloquea siempre, elegida del banco de ataques (negación invertida), cargada como atajo en el modo ensayo.
+## D · Calendario hasta la entrega
+
+| Hora (PT) | Qué |
+|---|---|
+| 19:00 | **Congelar funciones.** Lo que no esté: traducción → Claude; oído → modelo base; repregunta → fuera de la demo. Emergencia y receta **no** se cortan |
+| 19:00–21:00 | Integración servicio ↔ intérprete ↔ app |
+| 21:00 | Borrador de Devpost |
+| 22:00 | Ensayo del pitch |
+| dom 05:00 | Video de la demo |
+| dom 07:00 | Congelar los números |
+| dom 09:00 | **Entrega** |
+| dom 10:30–12:30 | Jurado en la mesa (los dos, todo el tiempo) |
+
+---
+
+## E · Números que ya podemos decir (con su archivo)
+
+| Qué | Número | Fuente |
+|---|---|---|
+| Errores sembrados atrapados (crítico Haiku + código, muestra al azar) | 153 de 160 (96 %); 100 % en número, días, negación, medicamento, unidad | `evals/ataques/resultados/chaski-2026-10-24-1513.json` |
+| Frases correctas bloqueadas por error | 7 de 40 (18 %) | ídem |
+| Sin barreras (piso) | 0 % | `…/sin_barreras-…` |
+| Intérprete, acción correcta | Opus 98 % · Sonnet 94 % · Haiku 88 % | `evals/interprete/resultados/` |
+| RAG, acierto a la primera | híbrido 88 % vs palabras 70 % | `evals/banco/resultados/` |
+| Pacientes quechuahablantes / personal que habla quechua | 90 % / ~20 % | entrevista |
+| Consulta en castellano / en quechua | 30–40 min / hasta 1 h o más | entrevista |
