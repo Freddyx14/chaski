@@ -19,7 +19,8 @@ import time
 from dataclasses import dataclass, asdict
 
 import torch
-from transformers import WhisperConfig, WhisperForConditionalGeneration
+from transformers import (Wav2Vec2Config, Wav2Vec2ForCTC,
+                          WhisperConfig, WhisperForConditionalGeneration)
 
 # Dimensiones oficiales de Whisper. Se declaran aqui para no pedir nada por red.
 CONFIGURACIONES = {
@@ -31,6 +32,15 @@ CONFIGURACIONES = {
 MELS = 80
 MARCOS = 3000      # Whisper siempre procesa 30 s, aunque el clip dure 4
 VOCABULARIO = 51865
+
+# Omnilingual ASR y MMS son codificadores wav2vec2 con CTC, no
+# codificador-decodificador como Whisper. El proxy medible sin red es Wav2Vec2:
+# misma familia, entrada en forma de onda cruda a 16 kHz.
+MUESTRAS_POR_SEGUNDO = 16000
+CTC = {
+    "ctc-300m": dict(hidden_size=1024, num_hidden_layers=24, num_attention_heads=16, intermediate_size=4096),
+    "ctc-1b":   dict(hidden_size=1280, num_hidden_layers=48, num_attention_heads=16, intermediate_size=5120),
+}
 
 
 @dataclass
@@ -47,6 +57,15 @@ class Resultado:
     pasos: int
     minutos_estimados: float
     memoria_gb: float | None
+
+
+def construir_ctc(tamano: str, congelar_encoder: bool):
+    cfg = Wav2Vec2Config(vocab_size=256, **CTC[tamano])
+    modelo = Wav2Vec2ForCTC(cfg)
+    modelo.freeze_feature_encoder()          # practica estandar al ajustar wav2vec2
+    if congelar_encoder:
+        modelo.freeze_base_model()
+    return modelo
 
 
 def construir(tamano: str, congelar_encoder: bool):
@@ -67,16 +86,26 @@ def dispositivo() -> str:
     return "cpu"
 
 
-def medir(modelo, dev: str, batch: int, largo_etiquetas: int, pasos: int) -> float:
+def medir(modelo, dev: str, batch: int, largo_etiquetas: int, pasos: int,
+          es_ctc: bool = False, segundos_audio: float = 5.0) -> float:
     modelo.to(dev).train()
     opt = torch.optim.AdamW([p for p in modelo.parameters() if p.requires_grad], lr=1e-5)
-    rasgos = torch.randn(batch, MELS, MARCOS, device=dev)
-    etiquetas = torch.randint(0, VOCABULARIO, (batch, largo_etiquetas), device=dev)
+    if es_ctc:
+        rasgos = torch.randn(batch, int(segundos_audio * MUESTRAS_POR_SEGUNDO), device=dev)
+        etiquetas = torch.randint(1, 200, (batch, largo_etiquetas), device=dev)
+    else:
+        rasgos = torch.randn(batch, MELS, MARCOS, device=dev)
+        etiquetas = torch.randint(0, VOCABULARIO, (batch, largo_etiquetas), device=dev)
 
     def un_paso():
         opt.zero_grad(set_to_none=True)
-        salida = modelo(input_features=rasgos, labels=etiquetas)
-        salida.loss.backward()
+        if es_ctc:
+            # La perdida CTC de transformers revienta en MPS; se mide el paso
+            # sin ella, que es donde esta el costo real.
+            perdida = modelo(input_values=rasgos).logits.float().mean()
+        else:
+            perdida = modelo(input_features=rasgos, labels=etiquetas).loss
+        perdida.backward()
         opt.step()
 
     for _ in range(2):           # calentamiento, no cuenta
@@ -98,7 +127,9 @@ def medir(modelo, dev: str, batch: int, largo_etiquetas: int, pasos: int) -> flo
 
 def main() -> None:
     p = argparse.ArgumentParser()
-    p.add_argument("--modelo", default="small", choices=list(CONFIGURACIONES))
+    p.add_argument("--modelo", default="small", choices=list(CONFIGURACIONES) + list(CTC))
+    p.add_argument("--segundos-audio", type=float, default=5.0,
+                   help="duracion media de los clips; solo aplica a los modelos CTC")
     p.add_argument("--clips", type=int, default=1000, help="cuantos audios tendra el entrenamiento")
     p.add_argument("--epocas", type=int, default=3)
     p.add_argument("--batch", type=int, default=2)
@@ -106,15 +137,19 @@ def main() -> None:
     p.add_argument("--pasos", type=int, default=6, help="pasos cronometrados")
     p.add_argument("--congelar-encoder", action="store_true",
                    help="entrena solo el decodificador: mas barato y suele bastar con pocos datos")
+    p.add_argument("--dispositivo", default="", help="forzar cpu, mps o cuda")
     p.add_argument("--salida", default="reports/bench_finetune.json")
     args = p.parse_args()
 
-    dev = dispositivo()
-    modelo = construir(args.modelo, args.congelar_encoder)
+    dev = args.dispositivo or dispositivo()
+    es_ctc = args.modelo in CTC
+    modelo = (construir_ctc(args.modelo, args.congelar_encoder) if es_ctc
+              else construir(args.modelo, args.congelar_encoder))
     total = sum(x.numel() for x in modelo.parameters())
     entrenables = sum(x.numel() for x in modelo.parameters() if x.requires_grad)
 
-    por_paso = medir(modelo, dev, args.batch, args.etiquetas, args.pasos)
+    por_paso = medir(modelo, dev, args.batch, args.etiquetas, args.pasos,
+                     es_ctc=es_ctc, segundos_audio=args.segundos_audio)
     pasos = -(-args.clips // args.batch) * args.epocas
     memoria = (torch.cuda.max_memory_allocated() / 2**30) if dev == "cuda" else None
 
@@ -132,8 +167,12 @@ def main() -> None:
     print(f"\n{args.modelo} en {dev}: {r.segundos_por_paso} s por paso de {args.batch} clips")
     print(f"{args.clips} clips x {args.epocas} epocas = {pasos} pasos "
           f"-> {r.minutos_estimados} min ({round(r.minutos_estimados/60, 1)} h)")
-    print("Whisper procesa 30 s por clip aunque el audio dure 4: el costo no baja "
-          "por tener audios cortos.")
+    if es_ctc:
+        print(f"CTC: el costo escala con la duracion del audio ({args.segundos_audio} s por clip). "
+              "Grabar frases cortas SI abarata el entrenamiento.")
+    else:
+        print("Whisper procesa 30 s por clip aunque el audio dure 4: el costo no baja "
+              "por tener audios cortos.")
 
     import pathlib
     destino = pathlib.Path(args.salida)

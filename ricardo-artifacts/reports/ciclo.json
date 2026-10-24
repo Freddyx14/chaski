@@ -1,0 +1,128 @@
+[
+ {
+  "archivo": "spa_01.wav",
+  "idioma": "spa",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": "muestras/mms-tts-quy/todas.wav",
+  "pasos": {
+   "idioma": 0.01,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.01
+ },
+ {
+  "archivo": "spa_02.wav",
+  "idioma": "spa",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": "muestras/mms-tts-quy/todas.wav",
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.01
+ },
+ {
+  "archivo": "spa_03.wav",
+  "idioma": "spa",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": "muestras/mms-tts-quy/todas.wav",
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ },
+ {
+  "archivo": "spa_04.wav",
+  "idioma": "spa",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": "muestras/mms-tts-quy/todas.wav",
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ },
+ {
+  "archivo": "spa_05.wav",
+  "idioma": "spa",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": "muestras/mms-tts-quy/todas.wav",
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ },
+ {
+  "archivo": "mix_01.wav",
+  "idioma": "quy",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": null,
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ },
+ {
+  "archivo": "mix_02.wav",
+  "idioma": "quy",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": null,
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ },
+ {
+  "archivo": "mix_03.wav",
+  "idioma": "quy",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": null,
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ },
+ {
+  "archivo": "quy_todas.wav",
+  "idioma": "quy",
+  "confianza": 0.0,
+  "texto": "sangre kaptinqa posta man hamuy",
+  "modelo_asr": "falso",
+  "audio_salida": null,
+  "pasos": {
+   "idioma": 0.0,
+   "entender": 0.0,
+   "hablar": 0.0
+  },
+  "total_ms": 0.0
+ }
+]

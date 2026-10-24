@@ -1,0 +1,531 @@
+{
+ "verificadas": [
+  {
+   "castellano": "¿Está bien, señora?",
+   "chanka": "¿Allinllanchu, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Estoy bien, señor!",
+   "chanka": "¡Allinllanmi, taytáy!",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Señor, ¿cómo está?",
+   "chanka": "Taytáy, ¿allillanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Señora, estoy bien",
+   "chanka": "Mamáy, allillanmi",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Cómo está, señor?",
+   "chanka": "¿Imaynallam kachkanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Cómo está, señora?",
+   "chanka": "¿Imaynallam kachkanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Cómo están, señoras?",
+   "chanka": "¿Imaynallam kachkankichik, mamaykuna?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, doctor",
+   "chanka": "Ñuqallaymi, doctor",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, doctora",
+   "chanka": "Hamullachkani, doctora",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le recibo, señor",
+   "chanka": "Chaskiyukuyki, wiraqucha",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Les recibo, señoras",
+   "chanka": "Mamaykuna, chaskiyukuychik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señora",
+   "chanka": "Rimaykullayki, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señores",
+   "chanka": "Rimaykullaykichik, taytaykuna",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señor",
+   "chanka": "Napaykullayki, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Buenos días, señoras",
+   "chanka": "Mamaykuna, napaykullaykichik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señor",
+   "chanka": "Yaykuykamuy taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señora",
+   "chanka": "Mamáy, yaykuykamuy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señores",
+   "chanka": "Yaykuykamuychik, taytakuna",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Adelante, señoras",
+   "chanka": "Yaykuykamuychik, mamakuna",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Tome asiento",
+   "chanka": "Tiyakuy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Tomen asiento",
+   "chanka": "Tiyakuychik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué desea, señora?",
+   "chanka": "¿Imatataq munanki, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué desea, señor?",
+   "chanka": "¿Imatataq munanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Para qué ha venido, señora?",
+   "chanka": "Mamáy, ¿imachamanmi hamuchkanki?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Por qué ha venido, señor?",
+   "chanka": "¿Imaraykutaq hamurqanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿En qué le puedo servir?",
+   "chanka": "¿Imapaqtaq allin kayman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué puedo hacer por usted?",
+   "chanka": "¿Imatam ruwallayman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿En qué le puedo ayudar?",
+   "chanka": "¿Imapitaq yanapaykiman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿En qué le podemos ayudar?",
+   "chanka": "¿Imapitaq yanapariykimanku?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Puedo ayudarle?",
+   "chanka": "¿Yanapayta atiymanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Podemos ayudarle?",
+   "chanka": "¿Yanapayta atiymankuchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le escucho, señora",
+   "chanka": "Uyariykim, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le escucharé, señor",
+   "chanka": "Uyarisqaykim, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Les escucharé",
+   "chanka": "Uyarisqaykichik",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "He venido para poner una denuncia",
+   "chanka": "Denuncia churaqmi hamuchkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "He venido a denunciar",
+   "chanka": "Denunciaqmi hamuchkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "He venido a hacer una consulta",
+   "chanka": "Tapukuqmi hamuchkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo hablar con el juez",
+   "chanka": "Juezwanmi rimayta munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo hablar con el fiscal",
+   "chanka": "Fiscalwanmi rimayta munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo que me escuche el juez",
+   "chanka": "Juezpa uyariwanantam munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Deseo que me escuche el fiscal",
+   "chanka": "Fiscalpa uyariwanantam munani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Necesito hablar con el fiscal",
+   "chanka": "Fiscalwanmi rimanay kachkan",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué está esperando, señora?",
+   "chanka": "¿Imatan suyarichkanki, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Qué está buscando, señor?",
+   "chanka": "¿Imatam maskarichkanki, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Me puede ayudar, señor?",
+   "chanka": "¿Allichu yanapawankikumanchu, taytáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Me puede ayudar, señora?",
+   "chanka": "Mamáy, ¿yanapawankikumanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy buscando la Demuna",
+   "chanka": "Demunatam maskachkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy buscando el Primer Juzgado",
+   "chanka": "Primer Juzgadotam maskachkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy esperando a mi hija, jefe",
+   "chanka": "Wawata suyarichkani, jefelláy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Estoy esperando a mi abogado",
+   "chanka": "Abogadoytam suyarichkani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Yo hablo quechua, señor",
+   "chanka": "Runasimita rimani, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Habla castellano, señora?",
+   "chanka": "¿Castellanuta rimankichu, mamáy?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No hablo castellano.",
+   "chanka": "Manam castellanuta rimanichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Habla quechua, doctor?",
+   "chanka": "¿Runasimita rimankichu, doctor?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Sí, hablo quechua",
+   "chanka": "Arí, runasimita rimani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Sabe quechua, doctora?",
+   "chanka": "¿Runasimita yachankichu, doctora?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Sí, sé quechua",
+   "chanka": "Arí, runasimita yachani",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No sé quechua",
+   "chanka": "Manam runasimita yachanichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Prefiere usted hablar quechua o castellano?",
+   "chanka": "¿Runasimitachu utaq castellanusimitachu rimayta munanki?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Quién habla quechua aquí?",
+   "chanka": "¿Pitaq kaypi runasimita riman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Quién habla castellano aquí?",
+   "chanka": "¿Pitaq kaypi castellanota riman?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Por favor, hábleme despacio",
+   "chanka": "Allichu, allinllamanta rimaway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Puede hablar más despacio?",
+   "chanka": "¿Allinllamanta rimaykuwankimanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Puede repetir?",
+   "chanka": "¿Manachu kaqmanta rimariwaq?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿Podría repetir eso?",
+   "chanka": "¿Yapa chayta rimaykuwankimanchu?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Por favor, repita",
+   "chanka": "Allichu, huktawan niway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Tranquilícese, señora",
+   "chanka": "Hawkalla kakuy, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Cálmese, señor",
+   "chanka": "Hawkayay, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Cuénteme lo que le aflige",
+   "chanka": "Llakikuyñiykita willawanki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Todo va a estar bien",
+   "chanka": "Lliumi allin kanqa",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No se preocupe",
+   "chanka": "Ama llakikuychu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Ayúdeme!",
+   "chanka": "¡Yanapaway!",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le ayudaré",
+   "chanka": "Yanapasqayki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Le vamos a ayudar",
+   "chanka": "Yanapasqaykikum",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Escuche",
+   "chanka": "Uyariy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Escúcheme, por favor",
+   "chanka": "Uyariykullaway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Por favor, señor",
+   "chanka": "Ama hina kaychu, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Qué bueno que ha venido!",
+   "chanka": "¡Ima allinmi hamuranki!",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿A qué hora llega el comisario?",
+   "chanka": "¿Ima horasta comisario chayamunqa?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¿A qué hora llega el fiscal?",
+   "chanka": "¿Ima horasta fiscal chayamunqa?",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Inmediatamente",
+   "chanka": "Kasqanpacha",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "En este momento",
+   "chanka": "Kunanpacha",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No puedo ayudarle, señora",
+   "chanka": "Manam yanapayta atinichu, mamáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Lo lamento mucho, señor",
+   "chanka": "Anchata llakikuni, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Lo lamento mucho",
+   "chanka": "Anchata llakipayki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Disculpe",
+   "chanka": "Pampachaway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Perdóneme",
+   "chanka": "Pampachaykuway",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Perdón por llegar tarde",
+   "chanka": "Pampachayuway qhiparikusqaymanta",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Perdóneme, pero no puedo ir ahora",
+   "chanka": "Pampachaway, kunanqa manam riyta atinichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No puede hablar con él ahora",
+   "chanka": "Kunanqa manam paywan rimayta atinkichu",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Gracias!",
+   "chanka": "Yusulpayki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Me ha ayudado!",
+   "chanka": "Yanaparwanki",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Gracias por su ayuda",
+   "chanka": "Yusulpayki yanapawasqaykimanta",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No hay de qué",
+   "chanka": "Imamanta",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "No tiene por qué",
+   "chanka": "Mana imamantapas",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Nos vemos mañana, señor",
+   "chanka": "Paqarinkama, taytáy",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Hasta otro día, señora",
+   "chanka": "Huk punchawkama, señora",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "¡Muchas gracias, señor!",
+   "chanka": "Anchata agradisiyki, papay",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Espere un momento, por favor",
+   "chanka": "Allicha, huk ratucha suyay",
+   "fuente": "rosettia-chanka-data"
+  },
+  {
+   "castellano": "Esperen un momento, por favor",
+   "chanka": "Allicha, huk ratucha suyaychik",
+   "fuente": "rosettia-chanka-data"
+  }
+ ],
+ "clinicas_sin_traducir": [
+  "Tome una pastilla cada ocho horas",
+  "Tome la pastilla después de comer",
+  "Tómela con agua, no con té",
+  "No deje la pastilla aunque se sienta bien",
+  "Son siete días de tratamiento",
+  "Su control es el lunes",
+  "Venga en ayunas",
+  "Traiga su carné",
+  "Vuelva en un mes",
+  "Si hay sangrado, venga de inmediato",
+  "Si tiene fiebre alta, venga",
+  "Si el bebé no se mueve, venga",
+  "¿Desde cuándo le duele?",
+  "¿Dónde le duele?",
+  "¿Tiene fiebre?",
+  "¿Está tomando alguna pastilla?",
+  "¿Es alérgica a algo?",
+  "¿Cuántos años tiene?",
+  "Voy a tomarle la presión",
+  "Respire hondo, por favor",
+  "Tiene treinta y nueve de fiebre",
+  "Dele bastante líquido",
+  "Media pastilla, no entera",
+  "Dos veces al día, mañana y noche",
+  "El resultado llega en tres días"
+ ]
+}

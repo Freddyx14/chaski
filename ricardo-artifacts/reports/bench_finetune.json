@@ -12,5 +12,19 @@
   "pasos": 1500,
   "minutos_estimados": 34.4,
   "memoria_gb": null
+ },
+ {
+  "maquina": "arm64 Darwin",
+  "dispositivo": "mps",
+  "modelo": "ctc-300m",
+  "parametros_millones": 315.7,
+  "entrenables_millones": 311.5,
+  "batch": 4,
+  "segundos_por_paso": 1.135,
+  "clips": 1000,
+  "epocas": 3,
+  "pasos": 750,
+  "minutos_estimados": 14.2,
+  "memoria_gb": null
  }
 ]
