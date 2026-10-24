@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" width="1180" height="560" font-family="Archivo, Helvetica, Arial, sans-serif">
+  <rect width="1180" height="560" fill="#f4f3ee"/>
+  <text x="28" y="40" font-size="20" font-weight="700" fill="#16160f">De la voz de la familia al número del pitch</text>
+  <text x="28" y="62" font-size="12.5" fill="#4e4d45">Arquitectura de datos. La regla que sostiene todo: la voz de prueba nunca entra al entrenamiento.</text>
+
+  <!-- fila 1: recoleccion -->
+  <g>
+    <rect x="28" y="92" width="178" height="94" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
+    <text x="42" y="118" font-size="13.5" font-weight="600" fill="#16160f">Cuadernillo</text>
+    <text x="42" y="137" font-size="11.5" fill="#4e4d45">160 frases por persona</text>
+    <text x="42" y="154" font-size="11.5" fill="#4e4d45">100 verificadas · 25 clínicas</text>
+    <text x="42" y="171" font-size="11.5" fill="#c8372f">35 medicamentos</text>
+  </g>
+  <path d="M206 139 H 252" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="252" y="92" width="178" height="94" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
+    <text x="266" y="118" font-size="13.5" font-weight="600" fill="#16160f">Grabación</text>
+    <text x="266" y="137" font-size="11.5" fill="#4e4d45">4 personas, un audio largo</text>
+    <text x="266" y="154" font-size="11.5" fill="#4e4d45">videollamada o WhatsApp</text>
+    <text x="266" y="171" font-size="11.5" fill="#4e4d45">~9 min cada una</text>
+  </g>
+  <path d="M430 139 H 476" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="476" y="92" width="190" height="94" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
+    <rect x="476" y="92" width="190" height="5" fill="#1f6fd0"/>
+    <text x="490" y="120" font-size="13.5" font-weight="600" fill="#16160f">segmentar.py</text>
+    <text x="490" y="139" font-size="11.5" fill="#4e4d45">corta por silencios</text>
+    <text x="490" y="156" font-size="11.5" fill="#4e4d45">prueba 5 umbrales</text>
+    <text x="490" y="173" font-size="11" fill="#c8372f">si no cuadra, no empareja</text>
+  </g>
+  <path d="M666 139 H 712" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="712" y="92" width="190" height="94" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
+    <rect x="712" y="92" width="190" height="5" fill="#1f6fd0"/>
+    <text x="726" y="120" font-size="13.5" font-weight="600" fill="#16160f">ingesta.py</text>
+    <text x="726" y="139" font-size="11.5" fill="#4e4d45">16 kHz mono</text>
+    <text x="726" y="156" font-size="11.5" fill="#4e4d45">sin consentimiento, fuera</text>
+    <text x="726" y="173" font-size="11.5" fill="#4e4d45">sin transcripción, fuera</text>
+  </g>
+  <path d="M902 139 H 948" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="948" y="92" width="204" height="94" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
+    <text x="962" y="120" font-size="13.5" font-weight="600" fill="#16160f">manifiesto.jsonl</text>
+    <text x="962" y="139" font-size="11" fill="#4e4d45">persona · bloque · numero</text>
+    <text x="962" y="155" font-size="11" fill="#4e4d45">audio · transcripcion</text>
+    <text x="962" y="171" font-size="11" fill="#4e4d45">segundos · consentimiento</text>
+  </g>
+
+  <!-- fila 2: particion -->
+  <path d="M1050 186 V 216 H 320 V 244" stroke="#c4c2b6" stroke-width="2" fill="none" marker-end="url(#f)"/>
+  <text x="330" y="212" font-size="11.5" fill="#86847a">partir POR HABLANTE, nunca por frase</text>
+
+  <g>
+    <rect x="28" y="244" width="250" height="86" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
+    <text x="42" y="270" font-size="13" font-weight="600" fill="#16160f">entrenamiento</text>
+    <text x="42" y="289" font-size="11.5" fill="#4e4d45">3 personas · ~22 min</text>
+    <text x="42" y="307" font-size="11.5" fill="#4e4d45">ajusta el modelo</text>
+  </g>
+  <g>
+    <rect x="296" y="244" width="200" height="86" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
+    <text x="310" y="270" font-size="13" font-weight="600" fill="#16160f">validación</text>
+    <text x="310" y="289" font-size="11.5" fill="#4e4d45">12% del entrenamiento</text>
+    <text x="310" y="307" font-size="11.5" fill="#4e4d45">elige hiperparámetros</text>
+  </g>
+  <g>
+    <rect x="514" y="244" width="280" height="86" rx="3" fill="#ffffff" stroke="#c8372f" stroke-width="2.5"/>
+    <rect x="514" y="244" width="280" height="5" fill="#c8372f"/>
+    <text x="528" y="272" font-size="13" font-weight="700" fill="#c8372f">prueba · una persona entera</text>
+    <text x="528" y="291" font-size="11.5" fill="#4e4d45">voz que el modelo NUNCA escuchó</text>
+    <text x="528" y="309" font-size="11.5" fill="#4e4d45">se toca una sola vez, al final</text>
+  </g>
+
+  <!-- fila 3: los tres pasos -->
+  <path d="M153 330 V 362" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+  <g>
+    <rect x="28" y="362" width="250" height="100" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
+    <rect x="28" y="362" width="250" height="5" fill="#1f6fd0"/>
+    <text x="42" y="390" font-size="13" font-weight="600" fill="#16160f">Tres pasos, tres números</text>
+    <text x="42" y="411" font-size="11.5" fill="#4e4d45">0 · modelo tal cual</text>
+    <text x="42" y="429" font-size="11.5" fill="#4e4d45">1 · + vocabulario de la posta</text>
+    <text x="42" y="447" font-size="11.5" fill="#4e4d45">2 · + ajuste fino con las voces</text>
+  </g>
+  <path d="M278 412 H 324" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="324" y="362" width="236" height="100" rx="3" fill="#ffffff" stroke="#1f6fd0" stroke-width="2"/>
+    <text x="338" y="390" font-size="13" font-weight="600" fill="#16160f">Se mide sobre la voz nueva</text>
+    <text x="338" y="411" font-size="11.5" fill="#4e4d45">CER y WER en cada paso</text>
+    <text x="338" y="429" font-size="11.5" fill="#4e4d45">aparte: medicamentos y números</text>
+    <text x="338" y="447" font-size="11" fill="#86847a">7 min en la A10G por entrenamiento</text>
+  </g>
+  <path d="M560 412 H 606" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="606" y="362" width="236" height="100" rx="3" fill="#ffffff" stroke="#86847a" stroke-width="1.5"/>
+    <text x="620" y="390" font-size="13" font-weight="600" fill="#16160f">reports/*.json</text>
+    <text x="620" y="411" font-size="11.5" fill="#4e4d45">asr · tts · lid</text>
+    <text x="620" y="429" font-size="11.5" fill="#4e4d45">traduccion · detector</text>
+    <text x="620" y="447" font-size="11" fill="#86847a">un archivo por número</text>
+  </g>
+  <path d="M842 412 H 888" stroke="#c4c2b6" stroke-width="2" marker-end="url(#f)"/>
+
+  <g>
+    <rect x="888" y="362" width="264" height="100" rx="3" fill="#ffffff" stroke="#c8372f" stroke-width="2"/>
+    <rect x="888" y="362" width="264" height="5" fill="#c8372f"/>
+    <text x="902" y="390" font-size="13" font-weight="600" fill="#16160f">La página y el pitch</text>
+    <text x="902" y="411" font-size="11.5" fill="#4e4d45">leen esos JSON y nada más</text>
+    <text x="902" y="431" font-size="11.5" fill="#4e4d45">si un número sale malo, se muestra</text>
+  </g>
+
+  <rect x="28" y="486" width="1124" height="54" rx="3" fill="#ffffff" stroke="#c4c2b6"/>
+  <text x="44" y="510" font-size="12.5" font-weight="700" fill="#16160f">Qué se ajusta y qué no</text>
+  <text x="44" y="530" font-size="12" fill="#4e4d45">Se ajustan los dos modelos de Meta: omniASR (entender chanka) y mms-tts-quy (hablar chanka). mms-lid ya acierta 6/6 y se deja quieto. Cartesia y Claude no se ajustan: se usan como vienen.</text>
+
+  <defs>
+    <marker id="f" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 z" fill="#c4c2b6"/></marker>
+  </defs>
+</svg>
