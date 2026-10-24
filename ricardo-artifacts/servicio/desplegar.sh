@@ -19,10 +19,25 @@ DESTINO=/opt/dlami/nvme/chaski/orquestador
 RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 ssh_() { ssh -i "$LLAVE" -o ConnectTimeout=15 -o BatchMode=yes "$MAQUINA" "$@"; }
 
-echo "-- 1/5 creando carpetas"
+echo "-- 1/6 creando carpetas"
 ssh_ "mkdir -p $DESTINO/servicio $DESTINO/voz $DESTINO/chaski $DESTINO/rimay $DESTINO/datos /opt/dlami/nvme/chaski/design/chaski"
 
-echo "-- 2/5 copiando código y datos"
+# /opt/dlami/nvme es efimero: se borra al parar la instancia. El etiquetador
+# escribe ahi las grabaciones nuevas, asi que bajarlas ANTES de copiar nada es
+# lo primero que hace el despliegue. Si no, el rsync de ida las pisa con la
+# copia vieja de la laptop y se pierde lo grabado.
+echo "-- 2/6 trayendo de vuelta lo que se grabo en la instancia"
+if ssh_ "test -d $DESTINO/datos/crudo" 2>/dev/null; then
+  rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" \
+    "$MAQUINA:$DESTINO/datos/crudo/" "$RAIZ/datos/crudo/"
+  rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" \
+    "$MAQUINA:$DESTINO/datos/corpus/" "$RAIZ/datos/corpus/" 2>/dev/null || true
+  echo "   $(find "$RAIZ/datos/crudo" -name '*.wav' | wc -l | tr -d ' ') wav en la laptop"
+else
+  echo "   todavia no hay nada grabado alla"
+fi
+
+echo "-- 3/6 copiando código y datos"
 rsync -az --delete -e "ssh -i $LLAVE -o BatchMode=yes" \
   --exclude '__pycache__' --exclude '*.pyc' --exclude 'url.json' \
   "$RAIZ/servicio/" "$MAQUINA:$DESTINO/servicio/"
@@ -35,6 +50,8 @@ rsync -az --delete -e "ssh -i $LLAVE -o BatchMode=yes" \
 rsync -az --delete -e "ssh -i $LLAVE -o BatchMode=yes" \
   --exclude '__pycache__' --exclude '*.pyc' \
   "$RAIZ/../app/rimay/" "$MAQUINA:$DESTINO/rimay/"
+# Sin --delete: lo grabado alla ya se bajo arriba, pero si algo entro entre
+# medio, que no se borre.
 rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" "$RAIZ/datos/" "$MAQUINA:$DESTINO/datos/"
 # El avatar de Chaski. `app.py` lo busca en ../design/chaski relativo a su cwd,
 # así que del lado de la instancia cuelga de /opt/dlami/nvme/chaski/design.
@@ -42,19 +59,19 @@ rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" "$RAIZ/datos/" "$MAQUINA:$DESTINO/
 rsync -az -e "ssh -i $LLAVE -o BatchMode=yes" \
   "$RAIZ/../design/chaski/" "$MAQUINA:/opt/dlami/nvme/chaski/design/chaski/"
 
-echo "-- 3/5 claves (nunca pasan por git)"
+echo "-- 4/6 claves (nunca pasan por git)"
 # Se manda por stdin, no como archivo en el comando, para que no quede en el
 # historial de shell de ninguna de las dos máquinas.
 ssh_ "cat > $DESTINO/.env && chmod 600 $DESTINO/.env" < "$RAIZ/.env"
 
-echo "-- 4/5 venv del orquestador"
+echo "-- 5/6 venv del orquestador"
 ssh_ "set -e
   cd $DESTINO
   test -d venv || python3 -m venv venv
   ./venv/bin/pip install --quiet --upgrade pip
   ./venv/bin/pip install --quiet fastapi uvicorn anthropic httpx python-multipart pydantic"
 
-echo "-- 5/5 arrancando en :8080"
+echo "-- 6/6 arrancando en :8080"
 ssh_ "set -e
   cd $DESTINO
   # Matar por puerto, no por patrón: `pkill -f 'uvicorn servicio.app'` también

@@ -52,6 +52,27 @@
   pre{background:var(--papel);border:1px solid var(--linea);padding:10px;font-size:11.5px;
       overflow-x:auto;margin:0}
 </style>
+<script>
+// ngrok muestra una pantalla de aviso antes de servir cualquier pagina de un
+// dominio gratuito, y esa pantalla tambien le llega a un fetch(): en vez del
+// JSON esperado vuelve HTML. Basta mandar esta cabecera para saltarla. Se
+// envuelve fetch una vez en lugar de tocar las veintitantas llamadas, y solo
+// para el mismo origen, que es a donde va todo lo nuestro.
+(function () {
+  const original = window.fetch;
+  window.fetch = function (recurso, opciones) {
+    opciones = opciones || {};
+    const destino = typeof recurso === "string" ? recurso : (recurso && recurso.url) || "";
+    const mismo = !/^https?:\/\//i.test(destino) || destino.startsWith(location.origin);
+    if (mismo) {
+      const cabeceras = new Headers(opciones.headers || (recurso && recurso.headers) || {});
+      cabeceras.set("ngrok-skip-browser-warning", "1");
+      opciones = Object.assign({}, opciones, { headers: cabeceras });
+    }
+    return original.call(this, recurso, opciones);
+  };
+})();
+</script>
 </head>
 <body>
 <div class="caja">
