@@ -192,6 +192,20 @@ se cortan**: son lo que la enfermera pidió.
 
 ---
 
+## 7a · Dos roles, ni uno más: intérprete principal + crítico en Haiku (15:00)
+
+Consejo del equipo de Anthropic en el workshop (nota de voz de Freddy, 14:50): *«it is really important to have a
+critic … we're going to use Haiku for checking that the response is right and that it's not inventing fake data or
+saying something that it shouldn't say»*, y *«if we don't need them, don't add them»*.
+
+| Rol | Modelo | Qué hace |
+|---|---|---|
+| **Intérprete** (principal) | Sonnet 5 u Opus 5, lo decide la medición (D15) | Decide la acción, pule, repregunta |
+| **Crítico** | **Haiku 4.5** | Retraduce a ciegas, extrae los hechos, y marca si la salida dice algo que el origen no dijo (consejo, diagnóstico, destinatario equivocado). **El código decide** con lo que el crítico extrae |
+
+Se mide Haiku contra Sonnet como crítico sobre el mismo banco de ataques: si Haiku atrapa lo mismo, se queda Haiku
+porque es más rápido y barato. Ningún otro agente se agrega sin una falla medida que lo justifique.
+
 ## 7b · Cómo se construye (14:45)
 
 Tres agentes en paralelo, cada uno en su **worktree** de git, y esta sesión integra en `main`:
@@ -212,6 +226,7 @@ Tres agentes en paralelo, cada uno en su **worktree** de git, y esta sesión int
 | D33 | **Claude pule y audita; NLLB ajustado traduce**, con Claude de respaldo detrás de un interruptor | El ajuste fino es donde aporta; Claude es el juez. Si NLLB no gana en chrF++, queda Claude |
 | D34 | **Banco de frases verificadas** para RAG y modo emergencia, sin base vectorial; los datos se parten `train / banco / test` antes de entrenar | Rapidez en emergencias, correctitud garantizada y la medición intacta |
 | D35 | **Modo emergencia y receta son obligatorios en la demo** | Son los dos dolores que la enfermera nombró: rapidez y medicamentos |
+| D38 | **Dos roles: intérprete principal + crítico en Haiku**, sin más agentes | Consejo de Anthropic; el crítico rápido revisa que no se invente nada |
 | D37 | **Barreras antes de hablar (§2b)**: ocho capas, falla cerrada, el código decide; se mide con un banco de errores sembrados | En salud una frase segura y equivocada es peor que el silencio. Pedido de Freddy: es lo que define si lo hicimos bien |
 | D36 | **Aprender quechua desde las consultas**: hoy glosario en el resumen; la plataforma de aprendizaje va al backlog y al pitch como visión | La enfermera lo pidió; el Estado capacita y el personal no aprende |
 
