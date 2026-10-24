@@ -38,6 +38,24 @@ def _norm(texto: str | None) -> str:
     return " ".join(sin_tildes.lower().split())
 
 
+# Nombres que no identifican un medicamento: «tome una pastilla» no dice cuál. Con estos el emparejamiento
+# entre original y retraducción va por orden, no por nombre (falso bloqueo medido el 24-oct en vivo).
+_GENERICOS = {"", "pastilla", "pastillas", "tableta", "tabletas", "comprimido", "medicamento", "medicina",
+              "remedio", "jarabe", "gotas"}
+# Unidades que son la misma cosa dicha de otra forma (falso bloqueo «tableta» vs «pastilla», 24-oct).
+_UNIDADES = {"tableta": "pastilla", "comprimido": "pastilla", "pastillas": "pastilla", "tabletas": "pastilla"}
+
+
+def _generico(nombre: str | None) -> bool:
+    n = _norm(nombre)
+    return n in _GENERICOS or not any(c.isalpha() for c in n)
+
+
+def _unidad(u: str | None) -> str:
+    n = _norm(u)
+    return _UNIDADES.get(n, n)
+
+
 def _mismo_numero(a: float | None, b: float | None) -> bool:
     if a is None or b is None:
         return a is None and b is None
@@ -63,20 +81,36 @@ def comparar(original: Hechos, retraducido: Hechos) -> list[Diferencia]:
                                original=str(len(original.ir_ya_si)),
                                retraducido=str(len(retraducido.ir_ya_si))))
 
-    por_nombre = {_norm(m.nombre): m for m in retraducido.medicamentos}
+    restantes = list(retraducido.medicamentos)
+    pares: list[tuple] = []
+    sin_par = []
     for med in original.medicamentos:
-        otro = por_nombre.pop(_norm(med.nombre), None)
-        if otro is None:
-            difs.append(Diferencia(campo="medicamento", original=med.nombre, retraducido="(falta)"))
-            continue
+        otro = next((m for m in restantes if _norm(m.nombre) == _norm(med.nombre)), None)
+        if otro is not None:
+            restantes.remove(otro)
+            pares.append((med, otro))
+        else:
+            sin_par.append(med)
+    # Segundo paso: si un lado no nombra el medicamento, se empareja por orden.
+    for med in list(sin_par):
+        otro = next((m for m in restantes if _generico(m.nombre) or _generico(med.nombre)), None)
+        if otro is not None:
+            restantes.remove(otro)
+            sin_par.remove(med)
+            pares.append((med, otro))
+    for med in sin_par:
+        difs.append(Diferencia(campo="medicamento", original=med.nombre, retraducido="(falta)"))
+
+    for med, otro in pares:
+        nombre = med.nombre if not _generico(med.nombre) else (otro.nombre if not _generico(otro.nombre) else "medicamento")
         for campo in ("cantidad", "cada_horas", "dias"):
             a, b = getattr(med, campo), getattr(otro, campo)
             if not _mismo_numero(a, b):
-                difs.append(Diferencia(campo=f"{med.nombre}.{campo}", original=str(a), retraducido=str(b)))
-        if _norm(med.unidad) != _norm(otro.unidad):
-            difs.append(Diferencia(campo=f"{med.nombre}.unidad", original=str(med.unidad), retraducido=str(otro.unidad)))
+                difs.append(Diferencia(campo=f"{nombre}.{campo}", original=str(a), retraducido=str(b)))
+        if _unidad(med.unidad) != _unidad(otro.unidad):
+            difs.append(Diferencia(campo=f"{nombre}.unidad", original=str(med.unidad), retraducido=str(otro.unidad)))
 
-    for sobrante in por_nombre.values():
+    for sobrante in restantes:
         difs.append(Diferencia(campo="medicamento", original="(no estaba)", retraducido=sobrante.nombre))
 
     return difs

@@ -60,3 +60,25 @@ def test_señal_de_alarma_perdida_bloquea():
 
 def test_sin_medicamentos_ni_cita():
     assert comparar(hechos(meds=[], cita=None), hechos(meds=[], cita=None)) == []
+
+
+def test_pastilla_sin_nombre_se_empareja_por_orden_y_reporta_el_horario():
+    # Caso real del 24-oct: «Tome una pastilla cada ocho horas» sin nombre de medicamento.
+    original = hechos([med(nombre="", cada_horas=8, dias=5)])
+    retraducido = hechos([med(nombre=":", cada_horas=None, dias=5)])
+    difs = comparar(original, retraducido)
+    assert [(d.campo, d.original, d.retraducido) for d in difs] == [("medicamento.cada_horas", "8.0", "None")]
+
+
+def test_pastilla_sin_nombre_identica_no_bloquea():
+    assert comparar(hechos([med(nombre="pastilla")]), hechos([med(nombre="")])) == []
+
+
+def test_tableta_y_pastilla_son_la_misma_unidad():
+    assert comparar(hechos([med(unidad="tableta")]), hechos([med(unidad="pastilla")])) == []
+
+
+def test_dos_medicamentos_con_nombre_siguen_por_nombre():
+    a = [med(nombre="paracetamol", cada_horas=8), med(nombre="amoxicilina", cada_horas=12)]
+    b = [med(nombre="amoxicilina", cada_horas=12), med(nombre="paracetamol", cada_horas=8)]
+    assert comparar(hechos(a), hechos(b)) == []
