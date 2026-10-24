@@ -15,6 +15,7 @@ Por eso corregir una vez vale por tres.
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 import httpx
@@ -220,3 +221,69 @@ def exportar(persona: str | None = None) -> dict:
             "\n".join(json.dumps(f, ensure_ascii=False) for f in filas) + "\n", encoding="utf-8")
     return {"asr": len(asr), "tts": len(tts), "traduccion": len(traduccion),
             "carpeta": str(destino)}
+
+
+# --- el codigo sale del audio, no de la posicion ---------------------------
+
+LETRAS_HABLADAS = {"ce": "C", "se": "C", "c": "C", "eme": "M", "m": "M",
+                   "ene": "N", "n": "N", "be": "B", "ve": "B", "b": "B", "e": "E"}
+NUMEROS_HABLADOS = {
+    "uno": 1, "una": 1, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6,
+    "siete": 7, "ocho": 8, "nueve": 9, "diez": 10, "once": 11, "doce": 12,
+    "trece": 13, "catorce": 14, "quince": 15, "dieciseis": 16, "dieciséis": 16,
+    "diecisiete": 17, "dieciocho": 18, "diecinueve": 19, "veinte": 20,
+}
+
+
+def leer_codigo(texto: str) -> tuple[str, int] | None:
+    """Saca «C1» de lo que se oye al principio del clip.
+
+    Cartesia suele devolver ya «C1.» en cifra, pero tambien puede escribir
+    «ce uno». Se aceptan las dos formas, y solo al principio: un numero en
+    medio de la frase no es un codigo.
+    """
+    limpio = texto.strip().lower()
+    cifra = re.match(r"^\s*([cmnbe])\s*[\.\-:]?\s*(\d{1,3})\b", limpio)
+    if cifra:
+        return cifra.group(1).upper(), int(cifra.group(2))
+    palabras = re.split(r"[\s,\.]+", limpio)[:3]
+    if len(palabras) >= 2 and palabras[0] in LETRAS_HABLADAS:
+        for p in palabras[1:]:
+            if p in NUMEROS_HABLADOS:
+                return LETRAS_HABLADAS[palabras[0]], NUMEROS_HABLADOS[p]
+            if p.isdigit():
+                return LETRAS_HABLADAS[palabras[0]], int(p)
+    return None
+
+
+def detectar_codigo(ruta_audio: str) -> dict:
+    """Transcribe el clip en castellano y busca el codigo al inicio."""
+    from servicio.flujo import entender_castellano
+
+    datos = Path(ruta_audio).read_bytes()
+    oido = entender_castellano(datos, Path(ruta_audio).name)
+    codigo = leer_codigo(oido["texto"])
+    return {"texto": oido["texto"], "ms": oido["ms"],
+            "bloque": codigo[0] if codigo else None,
+            "numero": codigo[1] if codigo else None}
+
+
+def recodificar(persona: str, numero_actual: int, bloque_actual: str,
+                bloque_nuevo: str, numero_nuevo: int) -> dict:
+    """Cambia el identificador de un clip. El audio no se toca, solo su etiqueta."""
+    manifiesto = RAIZ / persona / "manifiesto.jsonl"
+    grabaciones = leer_manifiesto(manifiesto)
+    chocado = [g for g in grabaciones
+               if g.bloque == bloque_nuevo and g.numero == numero_nuevo
+               and not (g.bloque == bloque_actual and g.numero == numero_actual)]
+    nuevas = []
+    for g in grabaciones:
+        if g.bloque == bloque_actual and g.numero == numero_actual:
+            g = Grabacion(persona=g.persona, bloque=bloque_nuevo, numero=numero_nuevo,
+                          audio=g.audio, transcripcion=g.transcripcion,
+                          castellano=referencias(bloque_nuevo).get(numero_nuevo, {})
+                          .get("castellano", ""),
+                          segundos=g.segundos, consentimiento=g.consentimiento)
+        nuevas.append(g)
+    escribir_manifiesto(manifiesto, nuevas, cabecera="identificadores revisados a mano")
+    return {"hecho": True, "choca_con": f"{bloque_nuevo}{numero_nuevo}" if chocado else None}

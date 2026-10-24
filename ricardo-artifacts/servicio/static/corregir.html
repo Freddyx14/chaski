@@ -66,6 +66,7 @@
 
   <div class="barra">
     <select id="persona"></select>
+    <button id="detectarTodos">Revisar códigos con el audio</button>
     <button id="transcribirTodo">Transcribir los que faltan</button>
     <button id="exportar">Exportar corpus</button>
     <span class="cual" id="contador"></span>
@@ -110,8 +111,18 @@ function pintar() {
   $('#tarjeta').innerHTML = `
     <div class="cabecera">
       <p class="castellano">${c.castellano || '<span style="color:var(--mute)">(sin frase de origen)</span>'}</p>
-      <span class="cual">${c.bloque}${c.numero} · ${i+1} / ${clips.length} · ${c.segundos}s
+      <span class="cual">${i+1} / ${clips.length} · ${c.segundos}s
         ${c.revisado ? '· <span class="listo">revisado</span>' : ''}</span>
+    </div>
+    <div class="barra" style="gap:6px">
+      <label for="codBloque" style="margin:0">Identificador</label>
+      <select id="codBloque" style="width:auto">
+        ${['C','M','N','B','E','A'].map(b=>`<option ${b===c.bloque?'selected':''}>${b}</option>`).join('')}
+      </select>
+      <input id="codNumero" type="number" min="1" value="${c.numero}" style="width:72px">
+      <button id="detectar">Detectar del audio</button>
+      <button id="recodificar">Cambiar</button>
+      <span class="cual" id="estadoCodigo"></span>
     </div>
     <audio id="audio" controls autoplay src="/corpus/audio?ruta=${encodeURIComponent(c.audio)}"></audio>
     ${c.chanka_esperado ? `<p class="oido" style="border-color:var(--verde)"><b>Debería decir:</b> ${c.chanka_esperado}</p>` : ''}
@@ -128,11 +139,50 @@ function pintar() {
       <button id="siguiente">Siguiente</button>
     </div>`;
   $('#oir').onclick = transcribir;
+  $('#detectar').onclick = detectarCodigo;
+  $('#recodificar').onclick = () => recodificar(false);
   $('#guardar').onclick = () => guardar(false);
   $('#descartar').onclick = () => guardar(true);
   $('#anterior').onclick = () => { i = Math.max(0, i-1); pintar(); };
   $('#siguiente').onclick = () => { i = Math.min(clips.length-1, i+1); pintar(); };
   $('#texto').focus();
+}
+
+async function detectarCodigo(aplicar) {
+  const c = clips[i];
+  $('#estadoCodigo').textContent = 'Oyendo el principio del clip…';
+  const cuerpo = new FormData(); cuerpo.append('ruta', c.audio);
+  const d = await (await fetch('/corpus/codigo', {method:'POST', body:cuerpo})).json();
+  if (d.error) { $('#estadoCodigo').textContent = d.error; return null; }
+  if (!d.bloque) {
+    $('#estadoCodigo').textContent = 'No se oyó ningún código. Oído: «' + (d.texto||'') + '»';
+    return null;
+  }
+  $('#codBloque').value = d.bloque;
+  $('#codNumero').value = d.numero;
+  $('#estadoCodigo').innerHTML = `oído <b>${d.bloque}${d.numero}</b>` +
+    (d.bloque === c.bloque && d.numero === c.numero ? ' · coincide'
+      : ` · <b style="color:var(--rojo)">no coincide con ${c.bloque}${c.numero}</b>`);
+  if (aplicar && (d.bloque !== c.bloque || d.numero !== c.numero)) await recodificar(true);
+  return d;
+}
+
+async function recodificar(silencioso) {
+  const c = clips[i];
+  const cuerpo = new FormData();
+  cuerpo.append('persona', persona);
+  cuerpo.append('bloque_actual', c.bloque);
+  cuerpo.append('numero_actual', c.numero);
+  cuerpo.append('bloque_nuevo', $('#codBloque').value);
+  cuerpo.append('numero_nuevo', $('#codNumero').value);
+  const d = await (await fetch('/corpus/recodificar', {method:'POST', body:cuerpo})).json();
+  if (d.error) { $('#estadoCodigo').textContent = d.error; return; }
+  if (d.choca_con && !silencioso)
+    $('#estadoCodigo').innerHTML = `<b style="color:var(--rojo)">ojo: ya existe ${d.choca_con}</b>`;
+  const n = i;
+  await cargar();
+  i = Math.min(n, clips.length - 1);
+  pintar();
 }
 
 async function transcribir() {
@@ -160,6 +210,22 @@ async function guardar(descartar) {
   i = Math.min(clips.length - 1, i + 1);
   pintar();
 }
+
+$('#detectarTodos').onclick = async () => {
+  $('#detectarTodos').disabled = true;
+  const original = i;
+  let cambiados = 0;
+  for (let k = 0; k < clips.length; k++) {
+    i = k; pintar();
+    const d = await detectarCodigo(true);
+    if (d && (d.bloque !== clips[k].bloque || d.numero !== clips[k].numero)) cambiados++;
+    $('#contador').textContent = `revisando códigos ${k+1} de ${clips.length}…`;
+  }
+  i = Math.min(original, clips.length - 1);
+  await cargar();
+  $('#estadoSubida').textContent = `${cambiados} identificadores corregidos desde el audio`;
+  $('#detectarTodos').disabled = false;
+};
 
 $('#transcribirTodo').onclick = async () => {
   $('#transcribirTodo').disabled = true;

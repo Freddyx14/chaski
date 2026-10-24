@@ -175,6 +175,27 @@ def corpus_transcribir(ruta: str = Form(...)):
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
+@aplicacion.post("/corpus/codigo")
+def corpus_codigo(ruta: str = Form(...)):
+    """Detecta el identificador (C1, M5...) oyendo el principio del clip."""
+    from servicio.corpus import detectar_codigo
+    try:
+        return detectar_codigo(ruta)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/corpus/recodificar")
+def corpus_recodificar(persona: str = Form(...), bloque_actual: str = Form(...),
+                       numero_actual: int = Form(...), bloque_nuevo: str = Form(...),
+                       numero_nuevo: int = Form(...)):
+    from servicio.corpus import recodificar
+    try:
+        return recodificar(persona, numero_actual, bloque_actual, bloque_nuevo, numero_nuevo)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.post("/corpus/guardar")
 def corpus_guardar(persona: str = Form(...), numero: int = Form(...),
                    transcripcion: str = Form(""), consentimiento: bool = Form(True),
