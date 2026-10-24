@@ -32,4 +32,8 @@ ricardo-artifacts/datos/crudo/**/*.webm
 form/.agents/
 form/.claude/
 form/skills-lock.json
+
+# Private: event slide photos (credits QR) and the raw interview with the nurse (Freddy, 24-oct)
+context/photos/
+research/entrevistas/2026-10-24-enfermera-pilpichaca.md
 ricardo-artifacts/modelos/**/*.pt
