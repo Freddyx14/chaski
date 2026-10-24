@@ -68,7 +68,7 @@
 | ⏳ | Papá y familia: más grabaciones en el formulario | continuo |
 | ⬜ | Pasar el documento de Anthropic sobre agentes | cuando lo tenga |
 | ⬜ | Devpost: borrador, marcar Anthropic + People-First + Microsoft + Cartesia | 21:00 |
-| ⬜ | Repo público **sin** `context/photos/`; decidir si el transcript de la entrevista queda | 21:00 |
+| ⬜ | Repo público: **las fotos de `context/photos/` están en el historial de git** (borrarlas hoy no basta). Decidir: reescribir el historial o publicar un repo nuevo limpio. Y si el transcript de la entrevista queda | 21:00 |
 | ⬜ | Ensayo del pitch con cronómetro (30 s / 3:00 / 2:00) | 22:00 |
 | ⬜ | Video de la demo, abre con el momento de la negativa | dom 05:00 |
 
@@ -113,7 +113,10 @@
 | ✅ | 3 de esos 5 bloqueos son errores del modelo de hechos (500 mg vs cantidad, «en ayunas» = «sin comer», «kuska» = media); los otros 2 son traducciones flojas de la familia y deben bloquearse | 16:40 |
 | ⬜ | Bajar los bloqueos falsos (18 %): revisar uno por uno cuáles son errores reales de la familia | 17:30 |
 | ⬜ | Correr el banco de ataques completo (784) con el crítico elegido para el número final | 18:00 |
-| ⬜ | Línea del pitch con los números finales y la visión de aprender quechua | 18:30 |
+| ✅ | Pitch con los números finales, la negativa simulada y la línea de aprender quechua (`plan/pitch.md`) | — |
+| ✅ | Borrador de Devpost listo para pegar (`plan/devpost.md`) | — |
+| ⏳ | README público para los jueces | 17:30 |
+| ⏳ | Medir el turno completo (Opus + Sonnet + traducción con Claude) para saber la espera real | 17:00 |
 | ⬜ | Ayudar a integrar con Ricardo | 19:00–21:00 |
 
 ---
