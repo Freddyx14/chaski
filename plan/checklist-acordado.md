@@ -110,7 +110,7 @@
 | ✅ | Ensayo de la negativa: `traduccion_sembrada` → `Resultado.sembrada` · `Resultado.texto_original` (pedidos de ui-ux 15:25) | 17:15 |
 | ✅ | 🔴 Hueco real (curl de ui-ux): se perdió «con agua» y pasó. Agregar el **vehículo** (agua, leche, té, comida) a los hechos + barrera en código + caso en el banco de ataques | 16:45 |
 | ✅ | Banco de ataques con todo integrado, crítico Sonnet: **165/165 atrapados, 5/40 bloqueos falsos (12,5 %)** | — |
-| ⏳ | 3 de esos 5 bloqueos son errores del modelo de hechos (500 mg vs cantidad, «en ayunas» = «sin comer», «kuska» = media); los otros 2 son traducciones flojas de la familia y deben bloquearse | 16:40 |
+| ✅ | 3 de esos 5 bloqueos son errores del modelo de hechos (500 mg vs cantidad, «en ayunas» = «sin comer», «kuska» = media); los otros 2 son traducciones flojas de la familia y deben bloquearse | 16:40 |
 | ⬜ | Bajar los bloqueos falsos (18 %): revisar uno por uno cuáles son errores reales de la familia | 17:30 |
 | ⬜ | Correr el banco de ataques completo (784) con el crítico elegido para el número final | 18:00 |
 | ⬜ | Línea del pitch con los números finales y la visión de aprender quechua | 18:30 |
@@ -143,7 +143,7 @@
 
 | Qué | Número | Fuente |
 |---|---|---|
-| **Chaski integrado, crítico Sonnet** (205 casos, incluye agua/té) | **165 de 165 errores atrapados (100 %) · 5 de 40 frases correctas bloqueadas (12,5 %)** | `evals/ataques/resultados/chaski-2026-10-24-1549.json` |
+| **Chaski integrado, crítico Sonnet, versión final** (205 casos, incluye agua/té) | **165 de 165 errores atrapados (100 %) · 4 de 40 frases correctas bloqueadas (10 %)** | `evals/ataques/resultados/chaski-2026-10-24-1606.json` |
 | Chaski, crítico Sonnet, antes de integrar (200 casos) | 160 de 160 · 3 de 40 (7,5 %) | `…/chaski-2026-10-24-1518.json` |
 | Chaski, crítico Haiku + código (misma muestra) | 153 de 160 (96 %) · 7 de 40 bloqueos falsos (18 %); falla en diagnósticos agregados (14/20) | `…/chaski-2026-10-24-1513.json` |
 | Claude como juez simple (misma muestra) | 150 de 160 (94 %) · **26 de 40 bloqueos falsos (65 %)** | `…/juez_claude-2026-10-24-1513.json` |
