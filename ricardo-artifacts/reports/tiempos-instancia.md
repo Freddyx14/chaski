@@ -68,3 +68,32 @@ que son préstamos y son justo lo que no se puede equivocar en una posta.
 | `fairseq2` pide `numpy~=1.23`; `datasets` arrastra `pyarrow` que pide `numpy>=2` | No instalar `datasets`. `pyarrow==16.1.0`, `numpy==1.26.4` |
 | El modelo se descargó al disco raíz y lo llenó | `fairseq2` **no respeta `HF_HOME`**: usa `~/.cache/fairseq2`. Se enlaza al NVMe |
 | `pipe.transcribe(..., lang="quy_Latn")` falla | `lang` es una **lista**, una entrada por audio |
+
+## Cuánto tarda el ajuste fino en la A10G (medido, 24-oct)
+
+El mismo `voz/bench_finetune.py` que corrí en la laptop, corrido en la instancia. No es una
+extrapolación por factores: es el costo por paso de esa GPU, con lotes del tamaño real.
+
+Configuración: `ctc-300m` (el proxy medible de omniASR: misma familia wav2vec2 con CTC),
+**700 clips** —175 frases × 4 personas—, 5 s por clip, batch 8.
+
+| Épocas | Pasos | Tiempo |
+|---|---|---|
+| 3 | 264 | **1.4 min** |
+| 10 | 880 | **4.5 min** |
+| 30 | 2 640 | **14.0 min** |
+| 60 | 5 280 | **27.8 min** |
+
+Con el **encoder congelado**, 30 épocas bajan de 14.0 a **4.5 min**: 0.328 → 0.102 s por paso.
+
+Memoria: **6.76 GB de 23**. Sobra para subir el batch si hiciera falta.
+
+Batch, medido aparte a 3 épocas: 4 → 1.7 min, 8 → 1.4 min, 16 → 1.2 min. Ganancia marginal; con 700
+clips el lote grande deja muy pocos pasos por época, así que batch 8 es el punto razonable.
+
+**Conclusión: el entrenamiento no es el cuello de botella.** Una corrida completa son minutos, no
+horas. Lo caro es grabar, y después la cantidad de configuraciones que probemos: el presupuesto real
+es «cuántos experimentos × 14 min», no «cuánto tarda uno».
+
+Lo que este número NO cubre: el ajuste de `mms-tts-quy`. Es VITS, con discriminador adversarial, y su
+costo por paso no se parece al de un CTC. Hay que medirlo aparte en vez de extrapolar de aquí.

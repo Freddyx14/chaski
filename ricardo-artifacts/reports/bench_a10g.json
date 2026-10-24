@@ -1,0 +1,16 @@
+[
+ {
+  "maquina": "x86_64 Linux",
+  "dispositivo": "cuda",
+  "modelo": "ctc-300m",
+  "parametros_millones": 315.7,
+  "entrenables_millones": 311.5,
+  "batch": 8,
+  "segundos_por_paso": 0.319,
+  "clips": 700,
+  "epocas": 30,
+  "pasos": 2640,
+  "minutos_estimados": 14.0,
+  "memoria_gb": 6.76
+ }
+]
