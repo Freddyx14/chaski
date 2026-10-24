@@ -28,3 +28,23 @@ def test_entender_devuelve_el_contrato():
     assert isinstance(t, Transcripcion)
     assert t.modelo == "falso"
     assert t.texto
+
+
+def test_entender_devuelve_n_mejores():
+    """SOT-7 F10: Claude corrige eligiendo entre las hipotesis del modelo de voz."""
+    t = entender("x.wav", n_mejores=3)
+    assert len(t.alternativas) == 3
+    assert t.alternativas[0][0] == t.texto
+    assert all(isinstance(p, float) for _, p in t.alternativas)
+
+
+def test_una_sola_hipotesis_sigue_siendo_valida():
+    t = entender("x.wav", n_mejores=1)
+    assert len(t.alternativas) == 1
+
+
+def test_la_primera_alternativa_no_puede_contradecir_al_texto():
+    from voz.contrato import Transcripcion
+    with pytest.raises(ValueError):
+        Transcripcion(texto="a", confianza=0.5, segundos=1.0, modelo="x",
+                      alternativas=(("b", 0.9),))

@@ -60,23 +60,40 @@ def escribir_manifiesto(ruta: str | Path, grabaciones: list[Grabacion],
 
 @dataclass(frozen=True)
 class Transcripcion:
+    """Lo que devuelve el reconocimiento.
+
+    `alternativas` son las N mejores hipotesis, de mejor a peor, cada una con su
+    puntaje. Claude las usa para corregir con el contexto de la consulta (F10 del
+    SOT-7): el modelo de voz propone, Claude elige. `texto` es siempre la primera.
+    """
     texto: str
     confianza: float
     segundos: float
     modelo: str
+    alternativas: tuple[tuple[str, float], ...] = ()
+
+    def __post_init__(self) -> None:
+        if self.alternativas and self.alternativas[0][0] != self.texto:
+            raise ValueError("la primera alternativa tiene que ser igual a `texto`")
 
 
 TEXTO_FALSO = "sangre kaptinqa posta man hamuy"
+ALTERNATIVAS_FALSAS = (
+    (TEXTO_FALSO, 0.0),
+    ("sangre kaptinqa posta man hamuni", 0.0),
+    ("sangri kaptinqa posta man hamuy", 0.0),
+)
 
 
-def entender(audio: str | Path) -> Transcripcion:
-    """Audio -> texto en chanka.
+def entender(audio: str | Path, n_mejores: int = 3) -> Transcripcion:
+    """Audio -> texto en chanka, con sus N mejores hipotesis.
 
     Version falsa. La sesion A la reemplaza cuando el modelo este listo, sin
     cambiar la firma. Quien la llame NO debe mirar el campo `modelo` para
     decidir logica de producto; sirve solo para los reportes.
     """
-    return Transcripcion(texto=TEXTO_FALSO, confianza=0.0, segundos=0.0, modelo="falso")
+    return Transcripcion(texto=TEXTO_FALSO, confianza=0.0, segundos=0.0, modelo="falso",
+                         alternativas=ALTERNATIVAS_FALSAS[:max(1, n_mejores)])
 
 
 # --- hablar: texto en chanka -> audio -------------------------------------

@@ -1,0 +1,7 @@
+{
+ "wer": 0.385,
+ "cer": 0.107,
+ "palabras_ref": 13,
+ "referencia": "Allinllanchu mamáy Imaynallam kachkanki taytáy Runasimita rimankichu doctor Wawata suyarichkani jefelláy Mamáy allillanmi",
+ "hipotesis": "allinllanchu mamaña imaynallam kachkanki taytáy runasimita rimankichu luctor wawata suyarichkani que fillay nunamáy allillanmi"
+}
