@@ -157,10 +157,26 @@ def main() -> None:
     p.add_argument("--cada", type=int, default=50, help="pasos entre checkpoints")
     p.add_argument("--pasos-maximos", type=int, default=0, help="0 = sin tope")
     p.add_argument("--reiniciar-adaptador", action="store_true")
+    p.add_argument("--ceder", type=float, default=0.0,
+                   help="segundos de pausa entre pasos para que la app pueda "
+                        "usar la GPU; 0.05 ya se nota. Usalo cuando alguien "
+                        "este probando la UI al mismo tiempo")
+    p.add_argument("--techo-gpu", type=float, default=0.55,
+                   help="fraccion maxima de la GPU que puede tomar el entrenamiento; "
+                        "el resto queda para el servicio de voz que usa la app")
     p.add_argument("--salida", default=str(SALIDA))
     args = p.parse_args()
 
     dispositivo = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    if dispositivo.type == "cuda" and args.techo_gpu:
+        # Techo duro para el entrenamiento. El servicio de voz vive en la misma
+        # GPU y es lo que usa la app: si el entrenamiento crece sin limite, la
+        # app se queda sin memoria y deja de responder justo cuando se esta
+        # probando. Antes de reservar nada, se le pone tope.
+        torch.cuda.set_per_process_memory_fraction(args.techo_gpu)
+        total = torch.cuda.get_device_properties(0).total_memory / 1e9
+        print(f"  techo de GPU para entrenar: {args.techo_gpu:.0%} "
+              f"({total * args.techo_gpu:.1f} GB de {total:.0f} GB)")
     modelo, procesador, adaptador = cargar(args.reiniciar_adaptador)
     modelo.to(dispositivo).train()
 
@@ -206,6 +222,13 @@ def main() -> None:
             plan.step()
             optimizador.zero_grad(set_to_none=True)
             paso += 1
+            if args.ceder:
+                # La GPU es una sola y el servicio de voz la comparte. Entrenar
+                # sin pausas la deja al 99% y la inferencia de la app pasa de
+                # 1.3 s a 3.9 s: no se cae, pero parece que si. Esta pausa le
+                # deja huecos. Cuesta tiempo de entrenamiento a cambio de que
+                # la app siga usable mientras tanto.
+                time.sleep(args.ceder)
 
             if paso % args.cada == 0 or paso == pasos_totales:
                 w, perdida_val, muestras = evaluar(modelo, procesador, cargador_val, dispositivo)

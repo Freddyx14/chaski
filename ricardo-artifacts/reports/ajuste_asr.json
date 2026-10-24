@@ -1,0 +1,57 @@
+{
+ "base": "facebook/mms-1b-all",
+ "idioma": "quy",
+ "adaptador": "modelos/asr-chanka/adaptador_mejor.pt",
+ "clips": 175,
+ "hablante": "p16",
+ "resultados": {
+  "sin_ajustar": {
+   "wer": 0.7599,
+   "cer": 0.1712,
+   "wer_ortografia": 0.5386,
+   "cer_ortografia": 0.1141,
+   "exactos": 30
+  },
+  "ajustado": {
+   "wer": 0.8246,
+   "cer": 0.2024,
+   "wer_ortografia": 0.4092,
+   "cer_ortografia": 0.0948,
+   "exactos": 51
+  }
+ },
+ "ejemplos": [
+  {
+   "referencia": "pusaq horapi juk pastillata upyay",
+   "ajustado": "pusaq urapi huk pastilata upiai"
+  },
+  {
+   "referencia": "Mikuy qhipa pastillakunata japay",
+   "ajustado": "mikui kipa pastiliukunata hapai"
+  },
+  {
+   "referencia": "Upyay yacuta manan tehuancho",
+   "ajustado": "upiai yakuta manam tiwanchu"
+  },
+  {
+   "referencia": "Amay pastillata dejaychu allin captiquipas",
+   "ajustado": "amai pastilata dijaychu alin kaptikipas"
+  },
+  {
+   "referencia": "Qanchis punchaupi trataqunki",
+   "ajustado": "qanchis punchawpi tratakunki"
+  },
+  {
+   "referencia": "Lunes punchauta  jamunki controlninkipa",
+   "ajustado": "lunis punchawta hamunki kuntruliykipaq"
+  },
+  {
+   "referencia": "Manan micuspa jamunqui",
+   "ajustado": "mana mikuspa hamunki"
+  },
+  {
+   "referencia": "Carniquita apamunki",
+   "ajustado": "karnikita apamunki"
+  }
+ ]
+}

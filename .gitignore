@@ -32,3 +32,4 @@ ricardo-artifacts/datos/crudo/**/*.webm
 form/.agents/
 form/.claude/
 form/skills-lock.json
+ricardo-artifacts/modelos/**/*.pt

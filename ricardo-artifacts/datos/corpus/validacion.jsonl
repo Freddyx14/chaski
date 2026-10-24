@@ -28,22 +28,30 @@
 {"audio": "datos/crudo/p18/p18_M_042.wav", "texto": "Huk uchuy wisllachapi jarabeta upyay.", "persona": "p18"}
 {"audio": "datos/crudo/p18/p18_M_050.wav", "texto": "Puestoman riy.", "persona": "p18"}
 {"audio": "datos/crudo/p18/p18_N_058.wav", "texto": "Lunesmanta domingokama punchawkunata niy.", "persona": "p18"}
-{"audio": "datos/crudo/p19/p19_C_003.wav", "texto": "Yakuwan upyay mana tiwanchu", "persona": "p19"}
-{"audio": "datos/crudo/p24/p24_B_066.wav", "texto": "Upiachcani paracetamolta", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_C_004.wav", "texto": "Ama sajunquihu sanocaspapas", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_C_012.wav", "texto": "Mana yahua cuyuptin jamunqui apurayman", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_C_020.wav", "texto": "Samary allimta", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_078.wav", "texto": "Taytáy, ¿allillanchu?", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_086.wav", "texto": "Mamaykuna, chaskiyukuychik", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_096.wav", "texto": "Tiyakuychik", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_104.wav", "texto": "¿Imapitaq yanapariykimanku?", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_112.wav", "texto": "Tapukuqmi hamuchkani", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_120.wav", "texto": "¿Allichu yanapawankikumanchu, taytáy?", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_128.wav", "texto": "Manam castellanuta rimanichu", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_136.wav", "texto": "¿Pitaq kaypi castellanota riman?", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_144.wav", "texto": "Llakikuyñiykita willawanki", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_152.wav", "texto": "Ama hina kaychu, taytáy", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_160.wav", "texto": "Anchata llakipayki", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_E_168.wav", "texto": "Yusulpayki yanapawasqaykimanta", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_M_026.wav", "texto": "Tomay japita", "persona": "p24"}
-{"audio": "datos/crudo/p24/p24_M_036.wav", "texto": "Ccuscayqui wacuta preparado", "persona": "p24"}
+{"audio": "datos/crudo/p19/p19_B_066.wav", "texto": "paracetamolta ukbiashani", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_B_074.wav", "texto": "allinllam kachkani", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_C_007.wav", "texto": "Mana mikuspa hamuy", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_C_016.wav", "texto": "pastillatachu upyashanki", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_C_024.wav", "texto": "sapa punchaw iskay kutita tutamanta chaymanta tutapaq", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_M_032.wav", "texto": "alvendazolta upyay", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_M_041.wav", "texto": "kimsagotata churay", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_M_049.wav", "texto": "obstetraka kawasunkim", "persona": "p19"}
+{"audio": "datos/crudo/p19/p19_N_057.wav", "texto": "hukmanta chunkakama yupay", "persona": "p19"}
+{"audio": "datos/crudo/p24/p24_B_065.wav", "texto": "Huccsay nanahuan  jaine punchahumanata", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_C_003.wav", "texto": "Hupiay yacuan ,  ama  jorauan", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_C_011.wav", "texto": "Rupariy captun jamunqui apurayman", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_C_019.wav", "texto": "Tomasjaiki llasacc  wahuarta", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_077.wav", "texto": "¡Allinllanmi, taytáy!", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_085.wav", "texto": "Chaskiyukuyki, wiraqucha", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_095.wav", "texto": "Tiyakuy", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_103.wav", "texto": "¿Imapitaq yanapaykiman?", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_111.wav", "texto": "Denunciaqmi hamuchkani", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_119.wav", "texto": "¿Imatam maskarichkanki, taytáy?", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_127.wav", "texto": "¿Castellanuta rimankichu, mamáy?", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_135.wav", "texto": "¿Pitaq kaypi runasimita riman?", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_143.wav", "texto": "Hawkayay, taytáy", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_151.wav", "texto": "Uyariykullaway", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_159.wav", "texto": "Anchata llakikuni, taytáy", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_167.wav", "texto": "Yanaparwanki", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_E_175.wav", "texto": "Allicha, huk ratucha suyaychik", "persona": "p24"}
+{"audio": "datos/crudo/p24/p24_M_035.wav", "texto": "Allin samanayquipac usanki", "persona": "p24"}
