@@ -63,7 +63,7 @@
 | ✅ | Crítico: **Sonnet** (Freddy, 16:13) · 🔁 ui-ux D39 en el SOT | — |
 | ✅ | p20 «Ricardo» era prueba: borrada de la base y de `data/formulario/` | — |
 | ⬜ | ¿Se guardan los audios de las consultas? (pregunta de privacidad de los jueces) | 18:00 |
-| ⬜ | Mamá: revisar las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
+| 🔁 | Mensaje a la mamá en el portapapeles (16:28): revisar las 14 con quechua y escribir las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
 | ⬜ | Mamá: grabar su saludo en quechua para abrir el pitch, con permiso | 18:00 |
 | ⏳ | Papá y familia: más grabaciones en el formulario | continuo |
 | ⬜ | Pasar el documento de Anthropic sobre agentes | cuando lo tenga |
