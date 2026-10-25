@@ -42,6 +42,15 @@
 - [x] La VM corre Omnilingual `quy` y `mms-lid-512` (medido: 49 ms detección, 1.7 s por 16 s de audio; GPU A10G 23 GB, no 40)
 - [x] **Preguntas y frases que graban las familias** (`ricardo-artifacts/datos/frases/*.pdf`, con 35 préstamos del castellano): lista final en castellano por tema, bloque A (frases de posta) y bloque B (respuestas libres), sobre `plan/recoleccion-de-voz.md`, y mandarla a Freddy para la familia
 
+### 🔴 CRÍTICO · Ajuste fino de MMS/omniASR y NLLB-200 en salud, con antes y después (Freddy, sáb 18:20)
+Es la parte de ingeniería difícil del pitch: tiene que verse que el modelo aprendió **quechua chanka de salud**.
+- [ ] Oído (MMS / omniASR): WER y CER **antes y después** sobre el hablante de prueba que nunca se usó para entrenar.
+- [ ] Traducción (NLLB-200 600M, `quy_Latn`↔`spa_Latn`): chrF++ **antes y después** sobre las 100 `verificadas` (reservadas, nunca en el entrenamiento).
+- [ ] **Por dominio**, no solo el promedio: indicaciones clínicas · medicamentos y préstamos del castellano · números y tiempos (`reports/metricas.md`). Ahí se ve la pericia médica.
+- [ ] Las 5 peores frases antes y cómo quedaron después (es lo que se muestra en la lámina).
+- [ ] Datos usados: cuántas frases, cuántos minutos, cuántas personas (sin nombres).
+- [ ] Todo en un archivo `reports/ajuste-fino-resultados.json` + una línea en `SOT.md` para que el pitch y el Devpost lo citen.
+
 ### 🔴 CRÍTICO · Línea base ANTES de cualquier ajuste fino (pedido de Freddy, sáb 09:13)
 Sin la línea base no hay «cuánto mejoramos», y ese número es el pitch. Ricardo diseña el sistema; lo mínimo que tiene que cumplir:
 - **Un conjunto de prueba congelado**: el hablante que el modelo nunca escuchó, separado ANTES de entrenar nada, y no se toca más.
