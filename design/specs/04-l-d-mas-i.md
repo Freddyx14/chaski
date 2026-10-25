@@ -71,3 +71,10 @@ Referencia de Freddy: un inti andino, anillos sólidos concéntricos alrededor d
 | Movimiento | Reposo: respiración escalonada. Escucha: onda del centro hacia afuera, escalada por el volumen. Piensa: giro de los rayos y una luz que recorre el anillo. `modo="habla"` + `pulso` laten con la envolvente de la voz (listo en el componente). Con «Reducir movimiento», quieto |
 
 Mientras Chaski habla el micrófono no está en pantalla (la consulta muestra «Repetir audio» y «Seguir»), así que lo que late con la voz es el marco de Chaski.
+
+## Chaski sin fondo: cómo se recortó (D40, rehecho el 25-oct)
+
+- **Modelo:** BiRefNet HR-matting (`ZhengPeng7/BiRefNet_HR-matting`) a 2048 px, en una RTX 4090 de Runpod. Ganó contra BiRefNet general, BiRefNet-matting y las dos versiones de rembg en 96 cuadros difíciles: menos agujeros con color de Chaski (557 contra 816–905) y bordes de pelaje más finos.
+- **Correcciones en código:** lo que tiene color claro de Chaski y está pegado al cuerpo se agrega al alfa (pezuñas y patas barridas), se borran manchitas sueltas cerca de los pies y se quita el gris del fondo de los bordes semitransparentes. **Sin mediana temporal:** borraba las partes que se mueven rápido (la pezuña de `no_entendi`).
+- **QA por cuadro, en las dos direcciones:** «falta» (color claro de Chaski que el alfa quitó) y «sobra» (color de fondo, incluida la sombra del piso, que quedó opaco cerca del borde o en los huecos), más agujeros con color de Chaski y la coincidencia entre cuadros. Resultado: falta máx 26 px por cuadro (antes 550), sin agujeros malos, coincidencia ≥ 0,92. Lo que queda de «sobra» en `no_entendi` 187–198 es el barrido de la pata que ya trae el video original.
+- **Video:** HEVC con alfa, color **premultiplicado** (con color debajo del alfa 0, iOS mostraba un recuadro claro).
