@@ -183,6 +183,57 @@ def leer(imagen: bytes | str | Path, dicho_por_la_enfermera: str | None = None,
         tokens_salida=respuesta.usage.output_tokens)
 
 
+def receta_corta(lectura: Lectura) -> dict:
+    """La receta en dos o tres frases, para que el paciente se la lleve.
+
+    La arma una PLANTILLA desde los campos ya leidos, igual que `indicacion`.
+    Tres reglas que no se negocian:
+
+    1. **Solo se repite lo que estaba escrito.** Ni «no la deje aunque se sienta
+       bien» ni «tomela con agua»: son buenos consejos que nadie dijo, y agregar
+       una indicacion clinica que no dio el personal es exactamente lo que este
+       sistema no debe hacer.
+    2. **Si no hay posologia, no hay receta.** Devuelve `None` y dice que falta.
+       Una receta inventada que suena razonable es el peor error posible aqui.
+    3. **Las advertencias de la caja se copian tal cual**, porque son del
+       fabricante, no nuestras.
+    """
+    if lectura.cantidad is None or lectura.cada_horas is None:
+        return {"lineas": None, "dosis": None, "contexto": [],
+                "faltan": [c for c in ("cantidad", "cada_horas")
+                           if getattr(lectura, c) is None],
+                "por_que": "sin la dosis escrita no se arma una receta; la pone la enfermera"}
+
+    unidad = lectura.unidad or "tableta"
+    cuanto = (f"media {unidad}" if lectura.cantidad == 0.5
+              else f"{lectura.cantidad:g}".replace(".", ",") +
+              f" {unidad}{'s' if lectura.cantidad != 1 else ''}")
+
+    nombre = lectura.medicamento or "el medicamento"
+    if lectura.concentracion:
+        nombre = f"{nombre} de {lectura.concentracion}"
+    dosis = [f"Tome {cuanto} de {nombre}.", f"Cada {lectura.cada_horas:g} horas."]
+    if lectura.dias:
+        veces = int(24 / lectura.cada_horas) if lectura.cada_horas else 0
+        dia = f" Son {veces} veces al día." if 0 < veces <= 6 else ""
+        dosis.append(f"Durante {lectura.dias:g} días.{dia}")
+
+    contexto = []
+    if lectura.para_que_sirve:
+        contexto.append(f"Es para esto: {lectura.para_que_sirve}")
+    for aviso in (lectura.advertencias or [])[:2]:
+        contexto.append(str(aviso).rstrip(".") + ".")
+
+    # `dosis` y `contexto` van separados a proposito. La auditoria compara
+    # dosis, horas, dias y partes del cuerpo; «calma el dolor de cabeza» trae
+    # una parte del cuerpo que no es una indicacion, y la retraduccion la pierde
+    # o la cambia: el resultado es un bloqueo por algo que no puede hacer daño.
+    # Asi que la guarda revisa lo que puede hacer daño —la dosis— y lo demas se
+    # muestra, que es lo que de verdad es: contexto.
+    return {"lineas": dosis + contexto, "dosis": dosis, "contexto": contexto,
+            "faltan": [], "por_que": None}
+
+
 def como_json(lectura: Lectura) -> dict:
     d = asdict(lectura)
     # La indicacion lista para traducir, y que falta para poder armarla. La app
@@ -195,6 +246,7 @@ def como_json(lectura: Lectura) -> dict:
     # alguien que ya toma otra cosa necesitan otra. Solo la RECETA es de esta
     # persona. Por eso lo de la caja sale marcado para confirmar: la enfermera
     # lo aprueba o lo corrige antes de que Chaski lo diga.
+    d["receta_corta"] = receta_corta(lectura)
     d["confirmar"] = lectura.posologia_de == "caja"
     d["porque_confirmar"] = (
         "la pauta viene impresa en la caja, es la del fabricante para adultos; "

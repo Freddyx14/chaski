@@ -639,3 +639,57 @@ CHASKI_NLLB_URL=        (vacía)
 
 El quechua lo pide la app a `/voz` sin mandar `voz`, y ahora eso devuelve `mama_freddy` en vez de
 `p24`. El castellano viene en el `audio_wav_b64` del turno. Build 16 debería sonar bien sin tocar la app.
+
+
+---
+
+## La foto ahora devuelve una receta corta para el paciente (dom 03:10)
+
+`/medicamento` ya no devuelve solo qué es y para qué sirve: arma **la receta en frases cortas**, lista
+para que el paciente se la lleve.
+
+```sh
+POST /medicamento -F "imagen=@caja.jpg" -F "con_audio=true"
+```
+
+```json
+{
+ "se_dice_en_voz": ["Tome 1 tableta de Paracetamol de 500 mg.", "Cada 8 horas."],
+ "solo_se_muestra": ["Es para esto: Baja la fiebre y calma el dolor de cabeza, muscular…",
+                     "No exceder 4 tabletas al día.",
+                     "Mantener fuera del alcance de los niños."],
+ "receta_corta": [ …las dos listas juntas, por si quieres mostrarlas en orden… ],
+ "faltan": [],
+ "quechua": "Paracetamol 500 mg nisqamanta huk tabletata tomay, sapa pusaq…",
+ "aprobado_por_auditoria": true,
+ "audio_wav_b64": "…"
+}
+```
+
+### Los dos campos que importan para la pantalla
+
+**`se_dice_en_voz`** es la dosis. Pasa por la auditoría y es lo que suena.
+**`solo_se_muestra`** es el contexto: para qué sirve y las advertencias de la caja. Se muestra, no se dice.
+
+Están separados por una razón concreta, y la encontré probando: con todo junto la auditoría **bloqueaba**.
+
+```
+motivo: cambió un dato crítico: partes_cuerpo
+```
+
+«Calma el dolor de cabeza» trae una parte del cuerpo, la retraducción la pierde, y el comparador la
+marca como dato cambiado. Pero eso no es una indicación: nadie se hace daño porque la explicación de
+para qué sirve pierda un matiz. La guarda revisa **lo que puede hacer daño** —la dosis— y el resto se
+muestra, que es lo que de verdad es.
+
+### Lo que la receta NO hace
+
+- **No inventa una dosis.** Sin posología escrita, `receta_corta` viene en `null` y `faltan` dice qué
+  pedirle a la enfermera. Una receta inventada que suena razonable es el peor error posible aquí.
+- **No agrega consejos.** Ni «no la deje aunque se sienta bien» ni «tómela con agua». Son buenos
+  consejos que nadie dijo, y agregar una indicación clínica que no dio el personal es justo lo que
+  este sistema no debe hacer.
+- **Las advertencias se copian tal cual** de la caja: son del fabricante, no nuestras.
+
+La arma una plantilla en código desde los números ya leídos, igual que `indicacion`. El modelo lee;
+componer es de código.

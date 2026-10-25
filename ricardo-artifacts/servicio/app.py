@@ -349,12 +349,24 @@ async def medicamento(imagen: UploadFile = File(...), dicho: str = Form(""),
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
-    partes = [lectura.get("para_que_sirve") or ""]
-    if lectura.get("indicacion"):
-        partes.append(lectura["indicacion"])
-    para_decir = " ".join(p for p in partes if p).strip()
+    # Lo que se traduce y se dice es la receta corta: las mismas frases que el
+    # paciente se lleva. Si no hay dosis escrita no hay receta, y entonces se
+    # dice solo para qué sirve — nunca una dosis deducida.
+    receta = lectura.get("receta_corta") or {}
+    # Se dice la dosis, que es lo que la auditoria sabe revisar. El resto de la
+    # receta se muestra: para que sirve y las advertencias de la caja no son
+    # indicaciones, y pasarlas por la guarda de dosis solo produce bloqueos.
+    if receta.get("dosis"):
+        para_decir = " ".join(receta["dosis"])
+    else:
+        para_decir = (lectura.get("para_que_sirve") or "").strip()
 
-    salida = {"lectura": lectura, "castellano": para_decir}
+    salida = {"lectura": lectura, "castellano": para_decir,
+              "receta_corta": receta.get("lineas"),
+              "se_dice_en_voz": receta.get("dosis"),
+              "solo_se_muestra": receta.get("contexto") or [],
+              "faltan": receta.get("faltan") or [],
+              "por_que_sin_receta": receta.get("por_que")}
     if not para_decir:
         salida["error"] = "no se pudo leer nada seguro de la imagen"
         return salida
