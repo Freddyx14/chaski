@@ -21,82 +21,82 @@ BANDA = TXT.format(s=13, c="#16160F", f=1)
 NOTA = ("rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C4C2B6;align=left;"
         "verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=11;fontColor=#4E4D45;")
 
-f = Lienzo("Flujo completo")
-f.caja("Chaski · un turno completo: oír, entender, revisar y recién ahí hablar",
+f = Lienzo("Full flow")
+f.caja("Chaski · one full turn: hear, understand, check, and only then speak",
        TXT.format(s=19, c="#16160F", f=1), 40, 20, 1200, 28)
-f.caja("Azul: Meta en nuestra GPU, ajustado con las voces de la familia · Verde: Cartesia · Rojo: Claude · "
-       "Morado: barreras en código (el modelo propone, el código decide) · Medido el 24-oct-2026",
+f.caja("Blue: Meta on our GPU, fine-tuned on the families’ voices · Green: Cartesia · Red: Claude · "
+       "Purple: guards in code (the model proposes, the code decides) · Measured 24/25-Oct-2026",
        TXT.format(s=12, c="#4E4D45", f=0), 40, 50, 1500, 20)
 
 # ── 1 · Oír ─────────────────────────────────────────────────────────────────────────────
-f.caja("1 · Oír y entender", BANDA, 40, 86, 300, 20)
-mic = f.caja("Micrófono\n\niPhone · 16 kHz mono\nEnfermera o paciente",
+f.caja("1 · Hear and understand", BANDA, 40, 86, 300, 20)
+mic = f.caja("Microphone\n\niPhone · 16 kHz mono\nNurse or patient",
              CAJA.format(b=GRIS), 40, 190, 170, 76, icono="micro")
-lid = f.caja("mms-lid-512\n\n¿quechua o castellano?\n49 ms · 6/6 aciertos",
+lid = f.caja("mms-lid-512\n\nQuechua or Spanish?\n49 ms · 3/6 on real family voice,\nso it never decides alone",
              CAJA.format(b=AZUL), 245, 180, 200, 90, icono="gpu")
 f.flecha(mic, lid)
-stt_es = f.caja("Cartesia ink-whisper\n\nOye castellano\n3,5 s de audio en 480 ms",
+stt_es = f.caja("Cartesia ink-whisper\n\nHears Spanish\n3.5 s of audio in 480 ms",
                 CAJA.format(b=VERDE), 490, 110, 230, 84, icono="cartesia")
-stt_qu = f.caja("MMS-1b + nuestro adaptador\n\nOye quechua chanka\nError 54 % → 41 % con las voces\nde la familia (hablante nunca oído)",
+stt_qu = f.caja("MMS-1B-all + our adapter\n\nHears Chanka Quechua\nWER 53.9 % → 40.9 % with the families’\nvoices (held-out speaker)\n2.2 M of 965 M parameters trained",
                 CAJA.format(b=AZUL) + "strokeWidth=3;", 490, 250, 250, 110, icono="gpu")
-f.flecha(lid, stt_es, "castellano", f"strokeColor={VERDE};fontColor={VERDE};")
-f.flecha(lid, stt_qu, "quechua", f"strokeColor={AZUL};fontColor={AZUL};")
-b1 = f.caja("B1 · ¿Se oyó bien?\n\nNúmero, medicamento o parte\ndel cuerpo con baja confianza\n→ «¿me lo repite?», nunca adivina",
+f.flecha(lid, stt_es, "Spanish", f"strokeColor={VERDE};fontColor={VERDE};")
+f.flecha(lid, stt_qu, "Quechua", f"strokeColor={AZUL};fontColor={AZUL};")
+b1 = f.caja("B1 · Was it heard right?\n\nA number, drug or body part\nheard with low confidence\n→ asks again, never guesses",
             CAJA.format(b=MORADO), 770, 175, 230, 110, icono="guarda")
 f.flecha(stt_es, b1); f.flecha(stt_qu, b1)
-banco = f.caja("Banco de frases verificadas · RAG\n\n216 frases · 24 de emergencia revisadas\npor la enfermera · embeddings + léxico\nacierta a la primera 88 % (palabras: 70 %)",
+banco = f.caja("Verified phrase bank · RAG\n\n216 phrases · 24 emergency ones reviewed\nby the nurse · embeddings + lexical\ntop-1 88 % (words alone: 70 %)",
                CAJA.format(b=MORADO), 1030, 320, 290, 110, icono="disco")
-interp = f.caja("INTÉRPRETE · Claude Opus 5\n\nUna llamada decide una de 5 acciones:\ntraducir · repreguntar una vez ·\nresponder al que preguntó · no entendí ·\nusar frase verificada\nPule los dos lados (estilo Wispr Flow)\n98–100 % acción correcta · 0 datos inventados",
+interp = f.caja("INTERPRETER · Claude Opus 5\n\nOne call picks one of 5 actions:\ntranslate · ask back once ·\nanswer the asker · did not understand ·\nuse a verified phrase\nCleans up both sides before anything is said\n98–100 % correct action · 0 invented clinical facts",
                 CAJA.format(b=ROJO) + "strokeWidth=3;", 1340, 140, 290, 170, icono="claude")
 f.flecha(b1, interp)
-f.flecha(banco, interp, "candidatas")
-verif = f.caja("Frase verificada\n\nAudio revisado por la enfermera\nVa directo al parlante,\nsin generar ni esperar",
+f.flecha(banco, interp, "candidates")
+verif = f.caja("Verified phrase\n\nAudio reviewed by the nurse\nGoes straight to the speaker:\nnothing generated, nothing waited for",
                CAJA.format(b=MORADO), 1670, 110, 200, 100, icono="guarda")
-f.flecha(interp, verif, "usar frase", f"strokeColor={MORADO};fontColor={MORADO};")
+f.flecha(interp, verif, "use phrase", f"strokeColor={MORADO};fontColor={MORADO};")
 
 # ── 2 · Revisar antes de hablar (de derecha a izquierda) ─────────────────────────────────
-f.caja("2 · Revisar antes de hablar (ante la duda, Chaski no habla)", BANDA, 40, 455, 600, 20)
-b23 = f.caja("B2 · B3 · El pulido\n\nNo cambia ni agrega datos\nSi cambió algo, se usa\nlo dicho tal cual",
+f.caja("2 · Check before speaking (in doubt, Chaski stays quiet)", BANDA, 40, 455, 600, 20)
+b23 = f.caja("B2 · B3 · The clean-up\n\nMay not change or add any fact\nIf it did, the raw sentence\nis used instead",
              CAJA.format(b=MORADO), 1620, 495, 230, 110, icono="guarda")
-f.flecha(interp, b23, "traducir", f"strokeColor={ROJO};fontColor={ROJO};")
-trad = f.caja("Traductor · Claude Sonnet 5\n\nEsfuerzo medio, empieza mientras decide\n0/92 términos clave dañados\nNLLB-1.3B: modo sin conexión",
+f.flecha(interp, b23, "translate", f"strokeColor={ROJO};fontColor={ROJO};")
+trad = f.caja("Translator · Claude Sonnet 5\n\nMedium effort, starts while Opus decides\n0 of 92 fixed terms damaged (NLLB: 3)\nNLLB-1.3B stays as the offline mode",
               CAJA.format(b=ROJO), 1340, 495, 240, 110, icono="claude")
 f.flecha(b23, trad)
-b4 = f.caja("B4 · Términos fijos\n\nNúmeros en chanka (pusaq = 8)\nmedicamento · unidad · negación\n«con agua» exige unu / yaku",
+b4 = f.caja("B4 · Fixed terms\n\nChanka numerals (pusaq = 8)\ndrug · unit · negation\n“with water” must carry unu / yaku",
             CAJA.format(b=MORADO), 1060, 495, 240, 110, icono="guarda")
 f.flecha(trad, b4)
-crit = f.caja("CRÍTICO · Claude Sonnet 5\n\nRetraduce a ciegas (no ve el original)\nExtrae los hechos de los dos lados\nMarca consejos o diagnósticos inventados\n2,6 s · antes 9 s",
+crit = f.caja("CRITIC · Claude Sonnet 5\n\nBack-translates blind (never sees the original)\nExtracts the facts from both sides\nFlags invented advice or diagnoses\n2.6 s · was 9 s",
               CAJA.format(b=ROJO) + "strokeWidth=3;", 740, 490, 280, 130, icono="claude")
 f.flecha(b4, crit)
-b56 = f.caja("B5 · B6 · El código compara\n\nDosis · frecuencia · días · unidad\nnegación · con qué se toma\nconcentración · alergia · embarazo\nCualquier error → falla cerrada",
+b56 = f.caja("B5 · B6 · Code does the comparing\n\nDose · frequency · days · unit\nnegation · what to take it with\nstrength · allergy · pregnancy\nAny mismatch → fails closed",
              CAJA.format(b=MORADO) + "strokeWidth=3;", 430, 490, 270, 130, icono="guarda")
 f.flecha(crit, b56)
-bloq = f.caja("BLOQUEO\n\nChaski no lo dice y le explica\nal personal qué dato falló:\n«no coincidió la frecuencia»",
+bloq = f.caja("BLOCKED\n\nChaski says nothing and tells\nthe staff which fact failed:\n“the frequency did not match”",
               CAJA.format(b=ROJO) + "dashed=1;", 70, 500, 300, 100, icono="guarda")
-f.flecha(b56, bloq, "no coincide", f"strokeColor={ROJO};fontColor={ROJO};")
+f.flecha(b56, bloq, "mismatch", f"strokeColor={ROJO};fontColor={ROJO};")
 
 # ── 3 · Hablar ──────────────────────────────────────────────────────────────────────────
-f.caja("3 · Hablar", BANDA, 40, 700, 300, 20)
-voz_es = f.caja("Cartesia Sonic 3.6\n\nHabla castellano\na la enfermera",
+f.caja("3 · Speak", BANDA, 40, 700, 300, 20)
+voz_es = f.caja("Cartesia Sonic 3.6\n\nSpeaks Spanish\nto the nurse",
                 CAJA.format(b=VERDE), 300, 740, 220, 84, icono="cartesia")
-voz_qu = f.caja("mms-tts-quy ajustado\n\nHabla quechua al paciente\nCon la voz de una enfermera\nde la comunidad, con su permiso",
+voz_qu = f.caja("mms-tts-quy, fine-tuned\n\nSpeaks Quechua to the patient\nIn the voice of a woman from the\ncommunity, with her permission",
                 CAJA.format(b=AZUL) + "strokeWidth=3;", 560, 740, 250, 100, icono="gpu")
-f.flecha(b56, voz_es, "pasa", f"strokeColor={VERDE};fontColor={VERDE};")
-f.flecha(b56, voz_qu, "pasa", f"strokeColor={AZUL};fontColor={AZUL};")
-par = f.caja("Parlante y pantalla\n\nTexto primero, audio después\nRojo solo si Chaski no lo dijo",
+f.flecha(b56, voz_es, "passes", f"strokeColor={VERDE};fontColor={VERDE};")
+f.flecha(b56, voz_qu, "passes", f"strokeColor={AZUL};fontColor={AZUL};")
+par = f.caja("Speaker and screen\n\nText first, audio after\nRed only when Chaski did not say it",
              CAJA.format(b=GRIS), 440, 880, 240, 76, icono="parlante")
 f.flecha(voz_es, par); f.flecha(voz_qu, par)
 
-res = f.caja("Al cerrar la consulta · Claude\n\nNota clínica para el personal\nIndicaciones para llevar al paciente\nPalabras quechua nuevas de esa consulta",
+res = f.caja("When the visit ends · Claude\n\nA clinical note for the staff\nTake-home instructions for the patient\nNew Quechua words from that visit",
              CAJA.format(b=ROJO), 1150, 740, 260, 110, icono="claude")
-rec = f.caja("Receta · Claude visión\n\nFoto de la caja o la receta\n→ dosis, frecuencia, días\n→ las mismas barreras → «¿me lo repite?»",
+rec = f.caja("Prescription · Claude vision\n\nPhoto of the box or the script\n→ dose, frequency, days\n→ the same guards → asks again if unsure",
              CAJA.format(b=ROJO), 1450, 740, 280, 110, icono="claude")
 
-f.caja("Lo medido\n\n"
-       "Banco de 952 errores sembrados (dosis cambiada, negación invertida, medicamento, unidad, «con agua» perdido, consejo inventado): "
-       "Chaski atrapó 183 de 184 y el 100 % de los críticos, y cada bloqueo dice qué dato falló.\n"
-       "Preguntarle a Claude «¿está bien traducido?» también atrapa, pero no dice por qué y retiene 1 de cada 4 frases correctas.\n"
-       "Turno completo medido de punta a punta: instrucción traducida ~17 s (oír 1,1 · decidir 2,9 · traducir 9,0 · crítico 3,1 · voz 1,0); repregunta o frase verificada ~4 s. Solo dos roles de Claude (intérprete y crítico): ningún agente de más.",
+f.caja("What was measured\n\n"
+       "A bank of 952 seeded errors (changed dose, flipped negation, wrong drug, wrong unit, dropped \u201cwith water\u201d, invented advice): "
+       "Chaski caught 183 of 184 and 100 % of the critical ones, and every block names the fact that failed.\n"
+       "Asking Claude \u201cis this translated correctly?\u201d also catches errors, but never says why and holds back 1 in 4 correct sentences.\n"
+       "Full turn, end to end, live: p50 7.8 s, p95 11.4 s; a whole consultation 49\u201370 s; $0.0084 per turn. Only two Claude roles (interpreter and critic): no agent for its own sake.",
        NOTA, 40, 990, 1830, 110)
 
 f.guardar("reports/drawio/arquitectura-flujo-completo.drawio", 1900, 1130)

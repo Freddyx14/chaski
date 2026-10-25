@@ -1,184 +1,191 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1900 1130" width="1900" height="1130" font-family="Archivo, Helvetica, Arial, sans-serif">
 <defs><marker id="m8C8C7A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8C8C7A"/></marker><marker id="m1B9476" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1B9476"/></marker><marker id="m1F6FD0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#1F6FD0"/></marker><marker id="m8A4FBD" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8A4FBD"/></marker><marker id="mC8372F" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#C8372F"/></marker></defs>
 <rect width="1900" height="1130" fill="#F4F3EE"/>
-<text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">Chaski · un turno completo: oír, entender, revisar y recién ahí hablar</text>
-<text x="40" y="68.8" font-size="12.0" fill="#4E4D45">Azul: Meta en nuestra GPU, ajustado con las voces de la familia · Verde: Cartesia · Rojo: Claude · Morado: barreras en código (el modelo propone, el código decide) · Medido el 24-oct-2026</text>
-<text x="40" y="106.2" font-size="13.0" fill="#16160F" font-weight="700">1 · Oír y entender</text>
+<text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">Chaski · one full turn: hear, understand, check, and only then speak</text>
+<text x="40" y="68.8" font-size="12.0" fill="#4E4D45">Blue: Meta on our GPU, fine-tuned on the families’ voices · Green: Cartesia · Red: Claude · Purple: guards in code (the model proposes, the code decides) · Measured 24/25-Oct-2026</text>
+<text x="40" y="106.2" font-size="13.0" fill="#16160F" font-weight="700">1 · Hear and understand</text>
 <rect x="40" y="190" width="170" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="40" y="190" width="170" height="4" fill="#8C8C7A"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSI4LjUiIHk9IjEuNSIgd2lkdGg9IjciIGhlaWdodD0iMTIiIHJ4PSIzLjUiIGZpbGw9IiM1QTVBNTIiLz4KICAgICAgPHBhdGggZD0iTTUgMTEuNWE3IDcgMCAwMDE0IDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzVBNUE1MiIgc3Ryb2tlLXdpZHRoPSIyIgogICAgICBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTIgMTguNXY0IiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMiIKICAgICAgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PC9zdmc+" x="50" y="200" width="26" height="26"/>
-<text x="82" y="207.0" font-size="11.0" fill="#4E4D45" font-weight="700">Micrófono</text>
+<text x="82" y="207.0" font-size="11.0" fill="#4E4D45" font-weight="700">Microphone</text>
 <text x="82" y="238.9" font-size="11.0" fill="#4E4D45">iPhone · 16 kHz mono</text>
-<text x="82" y="254.8" font-size="11.0" fill="#4E4D45">Enfermera o paciente</text>
-<rect x="245" y="180" width="200" height="90" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
+<text x="82" y="254.8" font-size="11.0" fill="#4E4D45">Nurse or patient</text>
+<rect x="245" y="180" width="200" height="108" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="245" y="180" width="200" height="4" fill="#1F6FD0"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMUY2RkQwIi8+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjgiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIvPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNOSAxMGg2TTkgMTIuNWg2Ii8+PC9nPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNNyAxLjV2Mi41TTEyIDEuNXYyLjVNMTcgMS41djIuNU03IDIwdjIuNU0xMiAyMHYyLjVNMTcgMjB2Mi41Ii8+PC9nPjwvc3ZnPg==" x="255" y="190" width="26" height="26"/>
 <text x="287" y="197.0" font-size="11.0" fill="#4E4D45" font-weight="700">mms-lid-512</text>
-<text x="287" y="228.9" font-size="11.0" fill="#4E4D45">¿quechua o castellano?</text>
-<text x="287" y="244.8" font-size="11.0" fill="#4E4D45">49 ms · 6/6 aciertos</text>
+<text x="287" y="228.9" font-size="11.0" fill="#4E4D45">Quechua or Spanish?</text>
+<text x="287" y="244.8" font-size="11.0" fill="#4E4D45">49 ms · 3/6 on real</text>
+<text x="287" y="260.8" font-size="11.0" fill="#4E4D45">family voice,</text>
+<text x="287" y="276.8" font-size="11.0" fill="#4E4D45">so it never decides alone</text>
 <rect x="490" y="110" width="230" height="84" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
 <rect x="490" y="110" width="230" height="4" fill="#1B9476"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iIzFCOTQ3NiIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgICAgPHBhdGggZD0iTTUuNSAxMnYwTTguNSA4LjV2N00xMS41IDUuNXYxM00xNC41IDh2OE0xNy41IDEwLjV2MyIvPjwvZz48L3N2Zz4=" x="500" y="120" width="26" height="26"/>
 <text x="532" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cartesia ink-whisper</text>
-<text x="532" y="158.9" font-size="11.0" fill="#4E4D45">Oye castellano</text>
-<text x="532" y="174.8" font-size="11.0" fill="#4E4D45">3,5 s de audio en 480 ms</text>
-<rect x="490" y="250" width="250" height="110" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
+<text x="532" y="158.9" font-size="11.0" fill="#4E4D45">Hears Spanish</text>
+<text x="532" y="174.8" font-size="11.0" fill="#4E4D45">3.5 s of audio in 480 ms</text>
+<rect x="490" y="250" width="250" height="124" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
 <rect x="490" y="250" width="250" height="4" fill="#1F6FD0"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMUY2RkQwIi8+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjgiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIvPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNOSAxMGg2TTkgMTIuNWg2Ii8+PC9nPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNNyAxLjV2Mi41TTEyIDEuNXYyLjVNMTcgMS41djIuNU03IDIwdjIuNU0xMiAyMHYyLjVNMTcgMjB2Mi41Ii8+PC9nPjwvc3ZnPg==" x="500" y="260" width="26" height="26"/>
-<text x="532" y="267.0" font-size="11.0" fill="#4E4D45" font-weight="700">MMS-1b + nuestro adaptador</text>
-<text x="532" y="298.9" font-size="11.0" fill="#4E4D45">Oye quechua chanka</text>
-<text x="532" y="314.9" font-size="11.0" fill="#4E4D45">Error 54 % → 41 % con las voces</text>
-<text x="532" y="330.8" font-size="11.0" fill="#4E4D45">de la familia (hablante nunca</text>
-<text x="532" y="346.8" font-size="11.0" fill="#4E4D45">oído)</text>
+<text x="532" y="267.0" font-size="11.0" fill="#4E4D45" font-weight="700">MMS-1B-all + our adapter</text>
+<text x="532" y="298.9" font-size="11.0" fill="#4E4D45">Hears Chanka Quechua</text>
+<text x="532" y="314.9" font-size="11.0" fill="#4E4D45">WER 53.9 % → 40.9 % with the</text>
+<text x="532" y="330.8" font-size="11.0" fill="#4E4D45">families’</text>
+<text x="532" y="346.8" font-size="11.0" fill="#4E4D45">voices (held-out speaker)</text>
+<text x="532" y="362.7" font-size="11.0" fill="#4E4D45">2.2 M of 965 M parameters trained</text>
 <rect x="770" y="175" width="230" height="110" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="770" y="175" width="230" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="780" y="185" width="26" height="26"/>
-<text x="812" y="192.0" font-size="11.0" fill="#4E4D45" font-weight="700">B1 · ¿Se oyó bien?</text>
-<text x="812" y="223.9" font-size="11.0" fill="#4E4D45">Número, medicamento o parte</text>
-<text x="812" y="239.8" font-size="11.0" fill="#4E4D45">del cuerpo con baja confianza</text>
-<text x="812" y="255.8" font-size="11.0" fill="#4E4D45">→ «¿me lo repite?», nunca</text>
-<text x="812" y="271.8" font-size="11.0" fill="#4E4D45">adivina</text>
+<text x="812" y="192.0" font-size="11.0" fill="#4E4D45" font-weight="700">B1 · Was it heard right?</text>
+<text x="812" y="223.9" font-size="11.0" fill="#4E4D45">A number, drug or body part</text>
+<text x="812" y="239.8" font-size="11.0" fill="#4E4D45">heard with low confidence</text>
+<text x="812" y="255.8" font-size="11.0" fill="#4E4D45">→ asks again, never guesses</text>
 <rect x="1030" y="320" width="290" height="110" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="1030" y="320" width="290" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1LjUiIHJ4PSI5IiByeT0iMy4yIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiM1QTVBNTIiCiAgICAgIHN0cm9rZS13aWR0aD0iMS44Ii8+PHBhdGggZD0iTTMgNS41djEzYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4ydi0xMyIgZmlsbD0ibm9uZSIKICAgICAgc3Ryb2tlPSIjNUE1QTUyIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4yIgogICAgICBmaWxsPSJub25lIiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS40Ii8+PC9zdmc+" x="1040" y="330" width="26" height="26"/>
-<text x="1072" y="337.0" font-size="11.0" fill="#4E4D45" font-weight="700">Banco de frases verificadas · RAG</text>
-<text x="1072" y="368.9" font-size="11.0" fill="#4E4D45">216 frases · 24 de emergencia revisadas</text>
-<text x="1072" y="384.9" font-size="11.0" fill="#4E4D45">por la enfermera · embeddings + léxico</text>
-<text x="1072" y="400.8" font-size="11.0" fill="#4E4D45">acierta a la primera 88 % (palabras: 70</text>
-<text x="1072" y="416.8" font-size="11.0" fill="#4E4D45">%)</text>
-<rect x="1340" y="140" width="290" height="170" fill="#FFFFFF" stroke="#C8372F" stroke-width="3"/>
+<text x="1072" y="337.0" font-size="11.0" fill="#4E4D45" font-weight="700">Verified phrase bank · RAG</text>
+<text x="1072" y="368.9" font-size="11.0" fill="#4E4D45">216 phrases · 24 emergency ones reviewed</text>
+<text x="1072" y="384.9" font-size="11.0" fill="#4E4D45">by the nurse · embeddings + lexical</text>
+<text x="1072" y="400.8" font-size="11.0" fill="#4E4D45">top-1 88 % (words alone: 70 %)</text>
+<rect x="1340" y="140" width="290" height="172" fill="#FFFFFF" stroke="#C8372F" stroke-width="3"/>
 <rect x="1340" y="140" width="290" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="1350" y="150" width="26" height="26"/>
-<text x="1382" y="157.0" font-size="11.0" fill="#4E4D45" font-weight="700">INTÉRPRETE · Claude Opus 5</text>
-<text x="1382" y="188.9" font-size="11.0" fill="#4E4D45">Una llamada decide una de 5 acciones:</text>
-<text x="1382" y="204.8" font-size="11.0" fill="#4E4D45">traducir · repreguntar una vez ·</text>
-<text x="1382" y="220.8" font-size="11.0" fill="#4E4D45">responder al que preguntó · no entendí ·</text>
-<text x="1382" y="236.8" font-size="11.0" fill="#4E4D45">usar frase verificada</text>
-<text x="1382" y="252.7" font-size="11.0" fill="#4E4D45">Pule los dos lados (estilo Wispr Flow)</text>
-<text x="1382" y="268.6" font-size="11.0" fill="#4E4D45">98–100 % acción correcta · 0 datos</text>
-<text x="1382" y="284.6" font-size="11.0" fill="#4E4D45">inventados</text>
-<rect x="1670" y="110" width="200" height="108" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
+<text x="1382" y="157.0" font-size="11.0" fill="#4E4D45" font-weight="700">INTERPRETER · Claude Opus 5</text>
+<text x="1382" y="188.9" font-size="11.0" fill="#4E4D45">One call picks one of 5 actions:</text>
+<text x="1382" y="204.8" font-size="11.0" fill="#4E4D45">translate · ask back once ·</text>
+<text x="1382" y="220.8" font-size="11.0" fill="#4E4D45">answer the asker · did not understand ·</text>
+<text x="1382" y="236.8" font-size="11.0" fill="#4E4D45">use a verified phrase</text>
+<text x="1382" y="252.7" font-size="11.0" fill="#4E4D45">Cleans up both sides before anything is</text>
+<text x="1382" y="268.6" font-size="11.0" fill="#4E4D45">said</text>
+<text x="1382" y="284.6" font-size="11.0" fill="#4E4D45">98–100 % correct action · 0 invented</text>
+<text x="1382" y="300.5" font-size="11.0" fill="#4E4D45">clinical facts</text>
+<rect x="1670" y="110" width="200" height="140" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="1670" y="110" width="200" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="1680" y="120" width="26" height="26"/>
-<text x="1712" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">Frase verificada</text>
-<text x="1712" y="158.9" font-size="11.0" fill="#4E4D45">Audio revisado por la</text>
-<text x="1712" y="174.8" font-size="11.0" fill="#4E4D45">enfermera</text>
-<text x="1712" y="190.8" font-size="11.0" fill="#4E4D45">Va directo al parlante,</text>
-<text x="1712" y="206.8" font-size="11.0" fill="#4E4D45">sin generar ni esperar</text>
-<text x="40" y="475.2" font-size="13.0" fill="#16160F" font-weight="700">2 · Revisar antes de hablar (ante la duda, Chaski no habla)</text>
+<text x="1712" y="127.0" font-size="11.0" fill="#4E4D45" font-weight="700">Verified phrase</text>
+<text x="1712" y="158.9" font-size="11.0" fill="#4E4D45">Audio reviewed by the</text>
+<text x="1712" y="174.8" font-size="11.0" fill="#4E4D45">nurse</text>
+<text x="1712" y="190.8" font-size="11.0" fill="#4E4D45">Goes straight to the</text>
+<text x="1712" y="206.8" font-size="11.0" fill="#4E4D45">speaker:</text>
+<text x="1712" y="222.7" font-size="11.0" fill="#4E4D45">nothing generated,</text>
+<text x="1712" y="238.6" font-size="11.0" fill="#4E4D45">nothing waited for</text>
+<text x="40" y="475.2" font-size="13.0" fill="#16160F" font-weight="700">2 · Check before speaking (in doubt, Chaski stays quiet)</text>
 <rect x="1620" y="495" width="230" height="110" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="1620" y="495" width="230" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="1630" y="505" width="26" height="26"/>
-<text x="1662" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">B2 · B3 · El pulido</text>
-<text x="1662" y="543.9" font-size="11.0" fill="#4E4D45">No cambia ni agrega datos</text>
-<text x="1662" y="559.9" font-size="11.0" fill="#4E4D45">Si cambió algo, se usa</text>
-<text x="1662" y="575.8" font-size="11.0" fill="#4E4D45">lo dicho tal cual</text>
-<rect x="1340" y="495" width="240" height="110" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<text x="1662" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">B2 · B3 · The clean-up</text>
+<text x="1662" y="543.9" font-size="11.0" fill="#4E4D45">May not change or add any fact</text>
+<text x="1662" y="559.9" font-size="11.0" fill="#4E4D45">If it did, the raw sentence</text>
+<text x="1662" y="575.8" font-size="11.0" fill="#4E4D45">is used instead</text>
+<rect x="1340" y="495" width="240" height="140" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="1340" y="495" width="240" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="1350" y="505" width="26" height="26"/>
-<text x="1382" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">Traductor · Claude Sonnet 5</text>
-<text x="1382" y="543.9" font-size="11.0" fill="#4E4D45">Esfuerzo medio, empieza mientras</text>
-<text x="1382" y="559.9" font-size="11.0" fill="#4E4D45">decide</text>
-<text x="1382" y="575.8" font-size="11.0" fill="#4E4D45">0/92 términos clave dañados</text>
-<text x="1382" y="591.8" font-size="11.0" fill="#4E4D45">NLLB-1.3B: modo sin conexión</text>
+<text x="1382" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">Translator · Claude Sonnet 5</text>
+<text x="1382" y="543.9" font-size="11.0" fill="#4E4D45">Medium effort, starts while Opus</text>
+<text x="1382" y="559.9" font-size="11.0" fill="#4E4D45">decides</text>
+<text x="1382" y="575.8" font-size="11.0" fill="#4E4D45">0 of 92 fixed terms damaged</text>
+<text x="1382" y="591.8" font-size="11.0" fill="#4E4D45">(NLLB: 3)</text>
+<text x="1382" y="607.7" font-size="11.0" fill="#4E4D45">NLLB-1.3B stays as the offline</text>
+<text x="1382" y="623.6" font-size="11.0" fill="#4E4D45">mode</text>
 <rect x="1060" y="495" width="240" height="110" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="1060" y="495" width="240" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="1070" y="505" width="26" height="26"/>
-<text x="1102" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">B4 · Términos fijos</text>
-<text x="1102" y="543.9" font-size="11.0" fill="#4E4D45">Números en chanka (pusaq = 8)</text>
-<text x="1102" y="559.9" font-size="11.0" fill="#4E4D45">medicamento · unidad · negación</text>
-<text x="1102" y="575.8" font-size="11.0" fill="#4E4D45">«con agua» exige unu / yaku</text>
+<text x="1102" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">B4 · Fixed terms</text>
+<text x="1102" y="543.9" font-size="11.0" fill="#4E4D45">Chanka numerals (pusaq = 8)</text>
+<text x="1102" y="559.9" font-size="11.0" fill="#4E4D45">drug · unit · negation</text>
+<text x="1102" y="575.8" font-size="11.0" fill="#4E4D45">“with water” must carry unu /</text>
+<text x="1102" y="591.8" font-size="11.0" fill="#4E4D45">yaku</text>
 <rect x="740" y="490" width="280" height="130" fill="#FFFFFF" stroke="#C8372F" stroke-width="3"/>
 <rect x="740" y="490" width="280" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="750" y="500" width="26" height="26"/>
-<text x="782" y="507.0" font-size="11.0" fill="#4E4D45" font-weight="700">CRÍTICO · Claude Sonnet 5</text>
-<text x="782" y="538.9" font-size="11.0" fill="#4E4D45">Retraduce a ciegas (no ve el original)</text>
-<text x="782" y="554.9" font-size="11.0" fill="#4E4D45">Extrae los hechos de los dos lados</text>
-<text x="782" y="570.8" font-size="11.0" fill="#4E4D45">Marca consejos o diagnósticos</text>
-<text x="782" y="586.8" font-size="11.0" fill="#4E4D45">inventados</text>
-<text x="782" y="602.7" font-size="11.0" fill="#4E4D45">2,6 s · antes 9 s</text>
+<text x="782" y="507.0" font-size="11.0" fill="#4E4D45" font-weight="700">CRITIC · Claude Sonnet 5</text>
+<text x="782" y="538.9" font-size="11.0" fill="#4E4D45">Back-translates blind (never sees the</text>
+<text x="782" y="554.9" font-size="11.0" fill="#4E4D45">original)</text>
+<text x="782" y="570.8" font-size="11.0" fill="#4E4D45">Extracts the facts from both sides</text>
+<text x="782" y="586.8" font-size="11.0" fill="#4E4D45">Flags invented advice or diagnoses</text>
+<text x="782" y="602.7" font-size="11.0" fill="#4E4D45">2.6 s · was 9 s</text>
 <rect x="430" y="490" width="270" height="130" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="3"/>
 <rect x="430" y="490" width="270" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="440" y="500" width="26" height="26"/>
-<text x="472" y="507.0" font-size="11.0" fill="#4E4D45" font-weight="700">B5 · B6 · El código compara</text>
-<text x="472" y="538.9" font-size="11.0" fill="#4E4D45">Dosis · frecuencia · días · unidad</text>
-<text x="472" y="554.9" font-size="11.0" fill="#4E4D45">negación · con qué se toma</text>
-<text x="472" y="570.8" font-size="11.0" fill="#4E4D45">concentración · alergia · embarazo</text>
-<text x="472" y="586.8" font-size="11.0" fill="#4E4D45">Cualquier error → falla cerrada</text>
+<text x="472" y="507.0" font-size="11.0" fill="#4E4D45" font-weight="700">B5 · B6 · Code does the comparing</text>
+<text x="472" y="538.9" font-size="11.0" fill="#4E4D45">Dose · frequency · days · unit</text>
+<text x="472" y="554.9" font-size="11.0" fill="#4E4D45">negation · what to take it with</text>
+<text x="472" y="570.8" font-size="11.0" fill="#4E4D45">strength · allergy · pregnancy</text>
+<text x="472" y="586.8" font-size="11.0" fill="#4E4D45">Any mismatch → fails closed</text>
 <rect x="70" y="500" width="300" height="100" fill="#FFFFFF" stroke="#C8372F" stroke-width="2" stroke-dasharray="8 4"/>
 <rect x="70" y="500" width="300" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="80" y="510" width="26" height="26"/>
-<text x="112" y="517.0" font-size="11.0" fill="#4E4D45" font-weight="700">BLOQUEO</text>
-<text x="112" y="548.9" font-size="11.0" fill="#4E4D45">Chaski no lo dice y le explica</text>
-<text x="112" y="564.9" font-size="11.0" fill="#4E4D45">al personal qué dato falló:</text>
-<text x="112" y="580.8" font-size="11.0" fill="#4E4D45">«no coincidió la frecuencia»</text>
-<text x="40" y="720.2" font-size="13.0" fill="#16160F" font-weight="700">3 · Hablar</text>
+<text x="112" y="517.0" font-size="11.0" fill="#4E4D45" font-weight="700">BLOCKED</text>
+<text x="112" y="548.9" font-size="11.0" fill="#4E4D45">Chaski says nothing and tells</text>
+<text x="112" y="564.9" font-size="11.0" fill="#4E4D45">the staff which fact failed:</text>
+<text x="112" y="580.8" font-size="11.0" fill="#4E4D45">“the frequency did not match”</text>
+<text x="40" y="720.2" font-size="13.0" fill="#16160F" font-weight="700">3 · Speak</text>
 <rect x="300" y="740" width="220" height="84" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
 <rect x="300" y="740" width="220" height="4" fill="#1B9476"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iIzFCOTQ3NiIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIj4KICAgICAgPHBhdGggZD0iTTUuNSAxMnYwTTguNSA4LjV2N00xMS41IDUuNXYxM00xNC41IDh2OE0xNy41IDEwLjV2MyIvPjwvZz48L3N2Zz4=" x="310" y="750" width="26" height="26"/>
 <text x="342" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cartesia Sonic 3.6</text>
-<text x="342" y="788.9" font-size="11.0" fill="#4E4D45">Habla castellano</text>
-<text x="342" y="804.9" font-size="11.0" fill="#4E4D45">a la enfermera</text>
+<text x="342" y="788.9" font-size="11.0" fill="#4E4D45">Speaks Spanish</text>
+<text x="342" y="804.9" font-size="11.0" fill="#4E4D45">to the nurse</text>
 <rect x="560" y="740" width="250" height="100" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
 <rect x="560" y="740" width="250" height="4" fill="#1F6FD0"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSI0IiB3aWR0aD0iMjAiIGhlaWdodD0iMTYiIHJ4PSIyIiBmaWxsPSIjMUY2RkQwIi8+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjgiIHdpZHRoPSIxMiIgaGVpZ2h0PSI4IiByeD0iMSIgZmlsbD0iI0ZGRkZGRiIvPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS40IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNOSAxMGg2TTkgMTIuNWg2Ii8+PC9nPgogICAgICA8ZyBzdHJva2U9IiMxRjZGRDAiIHN0cm9rZS13aWR0aD0iMS42IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNNyAxLjV2Mi41TTEyIDEuNXYyLjVNMTcgMS41djIuNU03IDIwdjIuNU0xMiAyMHYyLjVNMTcgMjB2Mi41Ii8+PC9nPjwvc3ZnPg==" x="570" y="750" width="26" height="26"/>
-<text x="602" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">mms-tts-quy ajustado</text>
-<text x="602" y="788.9" font-size="11.0" fill="#4E4D45">Habla quechua al paciente</text>
-<text x="602" y="804.9" font-size="11.0" fill="#4E4D45">Con la voz de una enfermera</text>
-<text x="602" y="820.8" font-size="11.0" fill="#4E4D45">de la comunidad, con su permiso</text>
-<rect x="440" y="880" width="240" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<text x="602" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">mms-tts-quy, fine-tuned</text>
+<text x="602" y="788.9" font-size="11.0" fill="#4E4D45">Speaks Quechua to the patient</text>
+<text x="602" y="804.9" font-size="11.0" fill="#4E4D45">In the voice of a woman from the</text>
+<text x="602" y="820.8" font-size="11.0" fill="#4E4D45">community, with her permission</text>
+<rect x="440" y="880" width="240" height="92" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="440" y="880" width="240" height="4" fill="#8C8C7A"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNNCA5aDRsNS00LjV2MTVMOCAxNUg0eiIgZmlsbD0iIzVBNUE1MiIvPgogICAgICA8ZyBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWNhcD0icm91bmQiIGZpbGw9Im5vbmUiPgogICAgICA8cGF0aCBkPSJNMTYgOC41YTUgNSAwIDAxMCA3TTE4LjUgNmE4LjUgOC41IDAgMDEwIDEyIi8+PC9nPjwvc3ZnPg==" x="450" y="890" width="26" height="26"/>
-<text x="482" y="897.0" font-size="11.0" fill="#4E4D45" font-weight="700">Parlante y pantalla</text>
-<text x="482" y="928.9" font-size="11.0" fill="#4E4D45">Texto primero, audio después</text>
-<text x="482" y="944.9" font-size="11.0" fill="#4E4D45">Rojo solo si Chaski no lo dijo</text>
-<rect x="1150" y="740" width="260" height="124" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<text x="482" y="897.0" font-size="11.0" fill="#4E4D45" font-weight="700">Speaker and screen</text>
+<text x="482" y="928.9" font-size="11.0" fill="#4E4D45">Text first, audio after</text>
+<text x="482" y="944.9" font-size="11.0" fill="#4E4D45">Red only when Chaski did not say</text>
+<text x="482" y="960.8" font-size="11.0" fill="#4E4D45">it</text>
+<rect x="1150" y="740" width="260" height="110" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="1150" y="740" width="260" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="1160" y="750" width="26" height="26"/>
-<text x="1192" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">Al cerrar la consulta · Claude</text>
-<text x="1192" y="788.9" font-size="11.0" fill="#4E4D45">Nota clínica para el personal</text>
-<text x="1192" y="804.9" font-size="11.0" fill="#4E4D45">Indicaciones para llevar al</text>
-<text x="1192" y="820.8" font-size="11.0" fill="#4E4D45">paciente</text>
-<text x="1192" y="836.8" font-size="11.0" fill="#4E4D45">Palabras quechua nuevas de esa</text>
-<text x="1192" y="852.7" font-size="11.0" fill="#4E4D45">consulta</text>
+<text x="1192" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">When the visit ends · Claude</text>
+<text x="1192" y="788.9" font-size="11.0" fill="#4E4D45">A clinical note for the staff</text>
+<text x="1192" y="804.9" font-size="11.0" fill="#4E4D45">Take-home instructions for the</text>
+<text x="1192" y="820.8" font-size="11.0" fill="#4E4D45">patient</text>
+<text x="1192" y="836.8" font-size="11.0" fill="#4E4D45">New Quechua words from that visit</text>
 <rect x="1450" y="740" width="280" height="110" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="1450" y="740" width="280" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="1460" y="750" width="26" height="26"/>
-<text x="1492" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">Receta · Claude visión</text>
-<text x="1492" y="788.9" font-size="11.0" fill="#4E4D45">Foto de la caja o la receta</text>
-<text x="1492" y="804.9" font-size="11.0" fill="#4E4D45">→ dosis, frecuencia, días</text>
-<text x="1492" y="820.8" font-size="11.0" fill="#4E4D45">→ las mismas barreras → «¿me lo</text>
-<text x="1492" y="836.8" font-size="11.0" fill="#4E4D45">repite?»</text>
+<text x="1492" y="757.0" font-size="11.0" fill="#4E4D45" font-weight="700">Prescription · Claude vision</text>
+<text x="1492" y="788.9" font-size="11.0" fill="#4E4D45">Photo of the box or the script</text>
+<text x="1492" y="804.9" font-size="11.0" fill="#4E4D45">→ dose, frequency, days</text>
+<text x="1492" y="820.8" font-size="11.0" fill="#4E4D45">→ the same guards → asks again if</text>
+<text x="1492" y="836.8" font-size="11.0" fill="#4E4D45">unsure</text>
 <rect x="40" y="990" width="1830" height="110" fill="#FFFFFF" stroke="#C4C2B6" stroke-width="1"/>
 <rect x="40" y="990" width="1830" height="4" fill="#C4C2B6"/>
-<text x="52" y="1009.0" font-size="11.0" fill="#4E4D45" font-weight="700">Lo medido</text>
-<text x="52" y="1040.9" font-size="11.0" fill="#4E4D45">Banco de 952 errores sembrados (dosis cambiada, negación invertida, medicamento, unidad, «con agua» perdido, consejo inventado): Chaski atrapó 183 de 184 y el 100 % de los críticos, y cada bloqueo dice qué dato falló.</text>
-<text x="52" y="1056.8" font-size="11.0" fill="#4E4D45">Preguntarle a Claude «¿está bien traducido?» también atrapa, pero no dice por qué y retiene 1 de cada 4 frases correctas.</text>
-<text x="52" y="1072.8" font-size="11.0" fill="#4E4D45">Turno completo medido de punta a punta: instrucción traducida ~17 s (oír 1,1 · decidir 2,9 · traducir 9,0 · crítico 3,1 · voz 1,0); repregunta o frase verificada ~4 s. Solo dos roles de Claude (intérprete y crítico): ningún agente de más.</text>
-<path d="M210 228 L228 228 L228 225 L245 225" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M445 225 L468 225 L468 152 L490 152" fill="none" stroke="#1B9476" stroke-width="2" marker-end="url(#m1B9476)"/>
-<text x="468" y="182" font-size="11.0" fill="#1B9476" text-anchor="middle">castellano</text>
-<path d="M445 225 L468 225 L468 305 L490 305" fill="none" stroke="#1F6FD0" stroke-width="2" marker-end="url(#m1F6FD0)"/>
-<text x="468" y="259" font-size="11.0" fill="#1F6FD0" text-anchor="middle">quechua</text>
+<text x="52" y="1009.0" font-size="11.0" fill="#4E4D45" font-weight="700">What was measured</text>
+<text x="52" y="1040.9" font-size="11.0" fill="#4E4D45">A bank of 952 seeded errors (changed dose, flipped negation, wrong drug, wrong unit, dropped “with water”, invented advice): Chaski caught 183 of 184 and 100 % of the critical ones, and every block names the fact that failed.</text>
+<text x="52" y="1056.8" font-size="11.0" fill="#4E4D45">Asking Claude “is this translated correctly?” also catches errors, but never says why and holds back 1 in 4 correct sentences.</text>
+<text x="52" y="1072.8" font-size="11.0" fill="#4E4D45">Full turn, end to end, live: p50 7.8 s, p95 11.4 s; a whole consultation 49–70 s; $0.0084 per turn. Only two Claude roles (interpreter and critic): no agent for its own sake.</text>
+<path d="M210 228 L228 228 L228 234 L245 234" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M445 234 L468 234 L468 152 L490 152" fill="none" stroke="#1B9476" stroke-width="2" marker-end="url(#m1B9476)"/>
+<text x="468" y="187" font-size="11.0" fill="#1B9476" text-anchor="middle">Spanish</text>
+<path d="M445 234 L468 234 L468 312 L490 312" fill="none" stroke="#1F6FD0" stroke-width="2" marker-end="url(#m1F6FD0)"/>
+<text x="468" y="267" font-size="11.0" fill="#1F6FD0" text-anchor="middle">Quechua</text>
 <path d="M720 152 L745 152 L745 230 L770 230" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M740 305 L755 305 L755 230 L770 230" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M1000 230 L1170 230 L1170 225 L1340 225" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M1320 375 L1330 375 L1330 225 L1340 225" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<text x="1330" y="294" font-size="11.0" fill="#4E4D45" text-anchor="middle">candidatas</text>
-<path d="M1630 225 L1650 225 L1650 164 L1670 164" fill="none" stroke="#8A4FBD" stroke-width="2" marker-end="url(#m8A4FBD)"/>
-<text x="1650" y="188" font-size="11.0" fill="#8A4FBD" text-anchor="middle">usar frase</text>
-<path d="M1485 310 L1485 402 L1735 402 L1735 495" fill="none" stroke="#C8372F" stroke-width="2" marker-end="url(#mC8372F)"/>
-<text x="1610" y="396" font-size="11.0" fill="#C8372F" text-anchor="middle">traducir</text>
-<path d="M1620 550 L1600 550 L1600 550 L1580 550" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M1340 550 L1320 550 L1320 550 L1300 550" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M740 312 L755 312 L755 230 L770 230" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1000 230 L1170 230 L1170 226 L1340 226" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1320 375 L1330 375 L1330 226 L1340 226" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<text x="1330" y="294" font-size="11.0" fill="#4E4D45" text-anchor="middle">candidates</text>
+<path d="M1630 226 L1650 226 L1650 180 L1670 180" fill="none" stroke="#8A4FBD" stroke-width="2" marker-end="url(#m8A4FBD)"/>
+<text x="1650" y="197" font-size="11.0" fill="#8A4FBD" text-anchor="middle">use phrase</text>
+<path d="M1485 312 L1485 404 L1735 404 L1735 495" fill="none" stroke="#C8372F" stroke-width="2" marker-end="url(#mC8372F)"/>
+<text x="1610" y="398" font-size="11.0" fill="#C8372F" text-anchor="middle">translate</text>
+<path d="M1620 550 L1600 550 L1600 565 L1580 565" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1340 565 L1320 565 L1320 550 L1300 550" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M1060 550 L1040 550 L1040 555 L1020 555" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M740 555 L720 555 L720 555 L700 555" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M430 555 L400 555 L400 550 L370 550" fill="none" stroke="#C8372F" stroke-width="2" marker-end="url(#mC8372F)"/>
-<text x="400" y="546" font-size="11.0" fill="#C8372F" text-anchor="middle">no coincide</text>
+<text x="400" y="546" font-size="11.0" fill="#C8372F" text-anchor="middle">mismatch</text>
 <path d="M565 620 L565 680 L410 680 L410 740" fill="none" stroke="#1B9476" stroke-width="2" marker-end="url(#m1B9476)"/>
-<text x="488" y="674" font-size="11.0" fill="#1B9476" text-anchor="middle">pasa</text>
+<text x="488" y="674" font-size="11.0" fill="#1B9476" text-anchor="middle">passes</text>
 <path d="M565 620 L565 680 L685 680 L685 740" fill="none" stroke="#1F6FD0" stroke-width="2" marker-end="url(#m1F6FD0)"/>
-<text x="625" y="674" font-size="11.0" fill="#1F6FD0" text-anchor="middle">pasa</text>
+<text x="625" y="674" font-size="11.0" fill="#1F6FD0" text-anchor="middle">passes</text>
 <path d="M410 824 L410 852 L560 852 L560 880" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M685 840 L685 860 L560 860 L560 880" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 </svg>

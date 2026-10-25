@@ -1,124 +1,123 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 950" width="1500" height="950" font-family="Archivo, Helvetica, Arial, sans-serif">
 <defs><marker id="m8C8C7A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#8C8C7A"/></marker><marker id="mC8C5B8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#C8C5B8"/></marker></defs>
 <rect width="1500" height="950" fill="#F4F3EE"/>
-<text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">De la voz de la familia al número del pitch</text>
-<text x="40" y="66.8" font-size="12.0" fill="#4E4D45">Arquitectura de datos. La regla que sostiene todo: la voz de prueba nunca entra al entrenamiento.</text>
-<text x="40" y="112.2" font-size="13.0" fill="#16160F" font-weight="700">1 · Recolección</text>
+<text x="40" y="46.8" font-size="19.0" fill="#16160F" font-weight="700">From a family's voice to a number we can defend</text>
+<text x="40" y="66.8" font-size="12.0" fill="#4E4D45">Data architecture. The one rule everything rests on: the test speaker never enters training.</text>
+<text x="40" y="112.2" font-size="13.0" fill="#16160F" font-weight="700">1 · Collection</text>
 <rect x="40" y="118" width="220" height="108" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="40" y="118" width="220" height="4" fill="#8C8C7A"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNNCAyLjVoMTNhMiAyIDAgMDEyIDJ2MTdINmEyIDIgMCAwMS0yLTJ6IiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM4QzhDN0EiIHN0cm9rZS13aWR0aD0iMS44IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICAgIDxwYXRoIGQ9Ik04IDIuNXYxOSIgc3Ryb2tlPSIjOEM4QzdBIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICA8ZyBzdHJva2U9IiM4QzhDN0EiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTEgOGg1TTExIDExLjVoNU0xMSAxNWgzIi8+PC9nPjwvc3ZnPg==" x="50" y="128" width="26" height="26"/>
-<text x="82" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Cuadernillos</text>
-<text x="82" y="166.9" font-size="11.0" fill="#4E4D45">175 frases numeradas</text>
-<text x="82" y="182.8" font-size="11.0" fill="#4E4D45">seis bloques: A B C M N E</text>
-<text x="82" y="198.8" font-size="11.0" fill="#4E4D45">Se escribe primero, se graba</text>
-<text x="82" y="214.8" font-size="11.0" fill="#4E4D45">después</text>
+<text x="82" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Printed booklets</text>
+<text x="82" y="166.9" font-size="11.0" fill="#4E4D45">175 numbered sentences</text>
+<text x="82" y="182.8" font-size="11.0" fill="#4E4D45">six blocks: A B C M N E</text>
+<text x="82" y="198.8" font-size="11.0" fill="#4E4D45">Written first, recorded</text>
+<text x="82" y="214.8" font-size="11.0" fill="#4E4D45">after</text>
 <rect x="290" y="118" width="220" height="108" fill="#FFFFFF" stroke="#1B9476" stroke-width="2"/>
 <rect x="290" y="118" width="220" height="4" fill="#1B9476"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSI0IiB5PSIyLjUiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxOSIgcng9IjIiIGZpbGw9IiNGRkZGRkYiCiAgICAgIHN0cm9rZT0iIzFCOTQ3NiIgc3Ryb2tlLXdpZHRoPSIxLjgiLz48cmVjdCB4PSI4LjUiIHk9IjEiIHdpZHRoPSI3IiBoZWlnaHQ9IjMuNSIgcng9IjEuMiIKICAgICAgZmlsbD0iIzFCOTQ3NiIvPjxnIHN0cm9rZT0iIzFCOTQ3NiIgc3Ryb2tlLXdpZHRoPSIxLjciIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+CiAgICAgIDxwYXRoIGQ9Ik04IDEwaDhNOCAxMy41aDhNOCAxN2g1Ii8+PC9nPjwvc3ZnPg==" x="300" y="128" width="26" height="26"/>
-<text x="332" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Formulario (Freddy)</text>
-<text x="332" y="166.9" font-size="11.0" fill="#4E4D45">Vercel · la familia sube</text>
+<text x="332" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">Web form (Freddy)</text>
+<text x="332" y="166.9" font-size="11.0" fill="#4E4D45">Vercel · families upload</text>
 <text x="332" y="182.8" font-size="11.0" fill="#4E4D45">audio</text>
-<text x="332" y="198.8" font-size="11.0" fill="#4E4D45">y cómo se escribe</text>
-<text x="332" y="214.8" font-size="11.0" fill="#4E4D45">No lo tocamos desde aquí</text>
+<text x="332" y="198.8" font-size="11.0" fill="#4E4D45">and how it is spelled</text>
+<text x="332" y="214.8" font-size="11.0" fill="#4E4D45">Not touched from this side</text>
 <rect x="540" y="118" width="230" height="108" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="540" y="118" width="230" height="4" fill="#1F6FD0"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMi41IDExLjVWMy41YTEgMSAwIDAxMS0xaDhsMTAgMTAtOSA5eiIgZmlsbD0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlPSIjMUY2RkQwIiBzdHJva2Utd2lkdGg9IjEuOCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgICA8Y2lyY2xlIGN4PSI3IiBjeT0iNyIgcj0iMS45IiBmaWxsPSIjMUY2RkQwIi8+PC9zdmc+" x="550" y="128" width="26" height="26"/>
 <text x="582" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">/corregir (Ricardo)</text>
-<text x="582" y="166.9" font-size="11.0" fill="#4E4D45">Transcribe, yo corrijo el</text>
-<text x="582" y="182.8" font-size="11.0" fill="#4E4D45">escrito</text>
-<text x="582" y="198.8" font-size="11.0" fill="#4E4D45">Parte y une si cortó mal</text>
-<text x="582" y="214.8" font-size="11.0" fill="#4E4D45">Verifica audio contra texto</text>
-<rect x="800" y="118" width="240" height="108" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
+<text x="582" y="166.9" font-size="11.0" fill="#4E4D45">Transcribes, a human fixes the</text>
+<text x="582" y="182.8" font-size="11.0" fill="#4E4D45">text</text>
+<text x="582" y="198.8" font-size="11.0" fill="#4E4D45">Splits and joins bad cuts</text>
+<text x="582" y="214.8" font-size="11.0" fill="#4E4D45">Checks audio against text</text>
+<rect x="800" y="118" width="240" height="96" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="800" y="118" width="240" height="4" fill="#8C8C7A"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1LjUiIHJ4PSI5IiByeT0iMy4yIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiM1QTVBNTIiCiAgICAgIHN0cm9rZS13aWR0aD0iMS44Ii8+PHBhdGggZD0iTTMgNS41djEzYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4ydi0xMyIgZmlsbD0ibm9uZSIKICAgICAgc3Ryb2tlPSIjNUE1QTUyIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4yIgogICAgICBmaWxsPSJub25lIiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS40Ii8+PC9zdmc+" x="810" y="128" width="26" height="26"/>
 <text x="842" y="135.0" font-size="11.0" fill="#4E4D45" font-weight="700">manifiesto.jsonl</text>
-<text x="842" y="166.9" font-size="11.0" fill="#4E4D45">persona · bloque · numero</text>
-<text x="842" y="182.8" font-size="11.0" fill="#4E4D45">audio · transcripcion ·</text>
-<text x="842" y="198.8" font-size="11.0" fill="#4E4D45">castellano</text>
-<text x="842" y="214.8" font-size="11.0" fill="#4E4D45">segundos · consentimiento</text>
-<text x="40" y="260.2" font-size="13.0" fill="#16160F" font-weight="700">2 · Partición POR HABLANTE, nunca por frase</text>
+<text x="842" y="166.9" font-size="11.0" fill="#4E4D45">speaker · block · number</text>
+<text x="842" y="182.8" font-size="11.0" fill="#4E4D45">audio · transcript · Spanish</text>
+<text x="842" y="198.8" font-size="11.0" fill="#4E4D45">seconds · consent</text>
+<text x="40" y="260.2" font-size="13.0" fill="#16160F" font-weight="700">2 · Split BY SPEAKER, never by sentence</text>
 <rect x="40" y="266" width="230" height="76" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="40" y="266" width="230" height="4" fill="#1F6FD0"/>
-<text x="50" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">entrenamiento</text>
-<text x="50" y="314.9" font-size="11.0" fill="#4E4D45">3 personas · ~22 min</text>
-<text x="50" y="330.9" font-size="11.0" fill="#4E4D45">Ajusta el modelo</text>
+<text x="50" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">train</text>
+<text x="50" y="314.9" font-size="11.0" fill="#4E4D45">3 speakers · ~22 min</text>
+<text x="50" y="330.9" font-size="11.0" fill="#4E4D45">Fits the adapter</text>
 <rect x="300" y="266" width="220" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="300" y="266" width="220" height="4" fill="#8C8C7A"/>
-<text x="310" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">validación</text>
-<text x="310" y="314.9" font-size="11.0" fill="#4E4D45">12 % del entrenamiento</text>
-<text x="310" y="330.9" font-size="11.0" fill="#4E4D45">Elige hiperparámetros</text>
+<text x="310" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">validation</text>
+<text x="310" y="314.9" font-size="11.0" fill="#4E4D45">12 % of train</text>
+<text x="310" y="330.9" font-size="11.0" fill="#4E4D45">Picks hyperparameters</text>
 <rect x="550" y="266" width="300" height="76" fill="#FFFFFF" stroke="#C8372F" stroke-width="3"/>
 <rect x="550" y="266" width="300" height="4" fill="#C8372F"/>
-<text x="560" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">prueba · una persona entera</text>
-<text x="560" y="314.9" font-size="11.0" fill="#4E4D45">Voz que el modelo NUNCA escuchó</text>
-<text x="560" y="330.9" font-size="11.0" fill="#4E4D45">Se toca una sola vez, al final</text>
-<text x="40" y="388.2" font-size="13.0" fill="#16160F" font-weight="700">3 · Tres pasos, tres números — se reportan los tres salga lo que salga</text>
+<text x="560" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">test · one whole speaker</text>
+<text x="560" y="314.9" font-size="11.0" fill="#4E4D45">A voice the model NEVER heard</text>
+<text x="560" y="330.9" font-size="11.0" fill="#4E4D45">Touched once, at the end</text>
+<text x="40" y="388.2" font-size="13.0" fill="#16160F" font-weight="700">3 · Three steps, three numbers — all three reported, whatever they say</text>
 <rect x="40" y="394" width="250" height="70" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="40" y="394" width="250" height="4" fill="#8C8C7A"/>
-<text x="50" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">0 · El modelo tal cual</text>
-<text x="50" y="442.9" font-size="11.0" fill="#4E4D45">Línea base. Sin tocar nada.</text>
+<text x="50" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">0 · The model as shipped</text>
+<text x="50" y="442.9" font-size="11.0" fill="#4E4D45">Baseline. Nothing touched.</text>
 <rect x="320" y="394" width="250" height="70" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="320" y="394" width="250" height="4" fill="#1F6FD0"/>
-<text x="330" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">1 · + vocabulario de la posta</text>
-<text x="330" y="442.9" font-size="11.0" fill="#4E4D45">Glosario y préstamos</text>
+<text x="330" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">1 · + clinic vocabulary</text>
+<text x="330" y="442.9" font-size="11.0" fill="#4E4D45">Glossary and loanwords</text>
 <rect x="600" y="394" width="250" height="92" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
 <rect x="600" y="394" width="250" height="4" fill="#1F6FD0"/>
-<text x="610" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">2 · + ajuste fino con las voces</text>
-<text x="610" y="442.9" font-size="11.0" fill="#4E4D45">ASR 30 épocas: 14 min</text>
-<text x="610" y="458.9" font-size="11.0" fill="#4E4D45">Voz 50 épocas: 20 min</text>
-<text x="610" y="474.8" font-size="11.0" fill="#4E4D45">medido en la A10G</text>
-<text x="40" y="514.2" font-size="13.0" fill="#16160F" font-weight="700">4 · Cada cosa se mide contra una verdad distinta</text>
-<text x="40" y="532.0" font-size="11.0" fill="#4E4D45">Hasta el 24-oct la auditoría no tenía ninguna: solo se comparaba con la de Freddy, y eso no prueba nada si las dos se equivocan igual.</text>
+<text x="610" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">2 · + fine-tuning on the voices</text>
+<text x="610" y="442.9" font-size="11.0" fill="#4E4D45">ASR 30 epochs: 14 min</text>
+<text x="610" y="458.9" font-size="11.0" fill="#4E4D45">TTS 50 epochs: 20 min</text>
+<text x="610" y="474.8" font-size="11.0" fill="#4E4D45">measured on the A10G</text>
+<text x="40" y="514.2" font-size="13.0" fill="#16160F" font-weight="700">4 · Each thing is measured against its own ground truth</text>
+<text x="40" y="532.0" font-size="11.0" fill="#4E4D45">Until Oct 24 the audit had none: it only compared against Freddy's, which proves nothing if both are wrong the same way.</text>
 <rect x="40" y="542" width="300" height="100" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="40" y="542" width="300" height="4" fill="#1F6FD0"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+PGcgZmlsbD0iIzVBNUE1MiI+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjEzIiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMC42Ii8+PHJlY3QgeD0iMTAuNSIgeT0iOSIgd2lkdGg9IjMiIGhlaWdodD0iMTAiIHJ4PSIwLjYiLz4KICAgICAgPHJlY3QgeD0iMTUiIHk9IjUuNSIgd2lkdGg9IjMiIGhlaWdodD0iMTMuNSIgcng9IjAuNiIvPjwvZz48L3N2Zz4=" x="50" y="552" width="26" height="26"/>
-<text x="82" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_asr.py — entender</text>
-<text x="82" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: el escrito corregido en /corregir</text>
-<text x="82" y="606.9" font-size="11.0" fill="#4E4D45">WER y CER · corte por hablante</text>
-<text x="82" y="622.8" font-size="11.0" fill="#4E4D45">Aparte: préstamos y números</text>
+<text x="82" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_asr.py — understanding</text>
+<text x="82" y="590.9" font-size="11.0" fill="#4E4D45">Truth: the text corrected in /corregir</text>
+<text x="82" y="606.9" font-size="11.0" fill="#4E4D45">WER and CER · speaker-held-out</text>
+<text x="82" y="622.8" font-size="11.0" fill="#4E4D45">Scored apart: loanwords and numbers</text>
 <rect x="370" y="542" width="320" height="108" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="370" y="542" width="320" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+PGcgZmlsbD0iIzVBNUE1MiI+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjEzIiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMC42Ii8+PHJlY3QgeD0iMTAuNSIgeT0iOSIgd2lkdGg9IjMiIGhlaWdodD0iMTAiIHJ4PSIwLjYiLz4KICAgICAgPHJlY3QgeD0iMTUiIHk9IjUuNSIgd2lkdGg9IjMiIGhlaWdodD0iMTMuNSIgcng9IjAuNiIvPjwvZz48L3N2Zz4=" x="380" y="552" width="26" height="26"/>
-<text x="412" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_traduccion.py — traducir</text>
-<text x="412" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: 100 pares verificados, fuera del</text>
-<text x="412" y="606.9" font-size="11.0" fill="#4E4D45">train</text>
-<text x="412" y="622.8" font-size="11.0" fill="#4E4D45">chrF++, no BLEU: el quechua aglutina</text>
-<text x="412" y="638.8" font-size="11.0" fill="#4E4D45">Base sin ajustar: chrF++ 42.31</text>
+<text x="412" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_traduccion.py — translation</text>
+<text x="412" y="590.9" font-size="11.0" fill="#4E4D45">Truth: 62 pairs the families wrote on</text>
+<text x="412" y="606.9" font-size="11.0" fill="#4E4D45">hackathon day</text>
+<text x="412" y="622.8" font-size="11.0" fill="#4E4D45">chrF++, not BLEU: Quechua is agglutinative</text>
+<text x="412" y="638.8" font-size="11.0" fill="#4E4D45">Sonnet 5 44.6 · NLLB-1.3B 34.7 · 600M 28.6</text>
 <rect x="720" y="542" width="330" height="100" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="3"/>
 <rect x="720" y="542" width="330" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="730" y="552" width="26" height="26"/>
-<text x="762" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_guarda.py — no dejar pasar errores</text>
-<text x="762" y="590.9" font-size="11.0" fill="#4E4D45">Verdad: se inyecta un error clínico a propósito</text>
-<text x="762" y="606.9" font-size="11.0" fill="#4E4D45">Dosis cambiada · negación borrada · condición</text>
-<text x="762" y="622.8" font-size="11.0" fill="#4E4D45">0/6 falsos bloqueos · 3/6 FUGAS</text>
+<text x="762" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_guarda.py — catching errors</text>
+<text x="762" y="590.9" font-size="11.0" fill="#4E4D45">Truth: a clinical error is injected on purpose</text>
+<text x="762" y="606.9" font-size="11.0" fill="#4E4D45">Changed dose · dropped negation · condition</text>
+<text x="762" y="622.8" font-size="11.0" fill="#4E4D45">183/184 caught · 100 % of the critical ones</text>
 <rect x="1080" y="542" width="300" height="100" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="1080" y="542" width="300" height="4" fill="#8C8C7A"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cmVjdCB4PSIyIiB5PSIyIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHJ4PSIyIiBmaWxsPSIjRkZGRkZGIgogICAgICBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS44Ii8+PGcgZmlsbD0iIzVBNUE1MiI+CiAgICAgIDxyZWN0IHg9IjYiIHk9IjEzIiB3aWR0aD0iMyIgaGVpZ2h0PSI2IiByeD0iMC42Ii8+PHJlY3QgeD0iMTAuNSIgeT0iOSIgd2lkdGg9IjMiIGhlaWdodD0iMTAiIHJ4PSIwLjYiLz4KICAgICAgPHJlY3QgeD0iMTUiIHk9IjUuNSIgd2lkdGg9IjMiIGhlaWdodD0iMTMuNSIgcng9IjAuNiIvPjwvZz48L3N2Zz4=" x="1090" y="552" width="26" height="26"/>
-<text x="1122" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_auditoria.py — estabilidad</text>
-<text x="1122" y="590.9" font-size="11.0" fill="#4E4D45">La misma frase, varias corridas</text>
-<text x="1122" y="606.9" font-size="11.0" fill="#4E4D45">Bloqueo · estabilidad · mediana</text>
-<text x="1122" y="622.8" font-size="11.0" fill="#4E4D45">La de 4 llamadas da: sí, no, sí</text>
+<text x="1122" y="559.0" font-size="11.0" fill="#4E4D45" font-weight="700">medir_auditoria.py — stability</text>
+<text x="1122" y="590.9" font-size="11.0" fill="#4E4D45">Same sentence, several runs</text>
+<text x="1122" y="606.9" font-size="11.0" fill="#4E4D45">Blocked · stability · median</text>
+<text x="1122" y="622.8" font-size="11.0" fill="#4E4D45">The 4-call variant gives: yes, no, yes</text>
 <rect x="370" y="676" width="320" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="370" y="676" width="320" height="4" fill="#8C8C7A"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48ZWxsaXBzZSBjeD0iMTIiIGN5PSI1LjUiIHJ4PSI5IiByeT0iMy4yIiBmaWxsPSIjRkZGRkZGIiBzdHJva2U9IiM1QTVBNTIiCiAgICAgIHN0cm9rZS13aWR0aD0iMS44Ii8+PHBhdGggZD0iTTMgNS41djEzYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4ydi0xMyIgZmlsbD0ibm9uZSIKICAgICAgc3Ryb2tlPSIjNUE1QTUyIiBzdHJva2Utd2lkdGg9IjEuOCIvPjxwYXRoIGQ9Ik0zIDEyYzAgMS44IDQgMy4yIDkgMy4yczktMS40IDktMy4yIgogICAgICBmaWxsPSJub25lIiBzdHJva2U9IiM1QTVBNTIiIHN0cm9rZS13aWR0aD0iMS40Ii8+PC9zdmc+" x="380" y="686" width="26" height="26"/>
 <text x="412" y="693.0" font-size="11.0" fill="#4E4D45" font-weight="700">reports/*.json</text>
-<text x="412" y="724.9" font-size="11.0" fill="#4E4D45">asr · lid · traduccion · guarda · auditoria</text>
-<text x="412" y="740.9" font-size="11.0" fill="#4E4D45">Un archivo por número</text>
+<text x="412" y="724.9" font-size="11.0" fill="#4E4D45">asr · lid · translation · guard · audit</text>
+<text x="412" y="740.9" font-size="11.0" fill="#4E4D45">One file per number</text>
 <rect x="720" y="676" width="330" height="76" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="720" y="676" width="330" height="4" fill="#C8372F"/>
-<text x="730" y="693.0" font-size="11.0" fill="#4E4D45" font-weight="700">La página y el pitch</text>
-<text x="730" y="724.9" font-size="11.0" fill="#4E4D45">Leen esos JSON y nada más.</text>
-<text x="730" y="740.9" font-size="11.0" fill="#4E4D45">Si un número sale malo, se muestra igual.</text>
+<text x="730" y="693.0" font-size="11.0" fill="#4E4D45" font-weight="700">The page and the pitch</text>
+<text x="730" y="724.9" font-size="11.0" fill="#4E4D45">Read those JSON files and nothing else.</text>
+<text x="730" y="740.9" font-size="11.0" fill="#4E4D45">A bad number is shown anyway.</text>
 <rect x="40" y="786" width="1340" height="126" fill="#FFFFFF" stroke="#C4C2B6" stroke-width="1"/>
 <rect x="40" y="786" width="1340" height="4" fill="#C4C2B6"/>
-<text x="52" y="805.0" font-size="11.0" fill="#4E4D45" font-weight="700">Qué se ajusta y qué no</text>
-<text x="52" y="836.9" font-size="11.0" fill="#4E4D45">Se ajustan los dos modelos de Meta: omniASR (entender chanka) y mms-tts-quy (hablar chanka).</text>
-<text x="52" y="852.9" font-size="11.0" fill="#4E4D45">mms-lid ya acierta 6/6 y se deja quieto. Cartesia y Claude no se ajustan: se usan como vienen.</text>
-<text x="52" y="884.8" font-size="11.0" fill="#4E4D45">Y son dos ajustes distintos: entender quiere MUCHAS voces; hablar quiere UNA sola voz consistente,</text>
-<text x="52" y="900.7" font-size="11.0" fill="#4E4D45">la de la mamá de Freddy. Por eso todos graban, pero la voz de Chaski sale de una sola persona.</text>
+<text x="52" y="805.0" font-size="11.0" fill="#4E4D45" font-weight="700">What we fine-tune, and what we leave alone</text>
+<text x="52" y="836.9" font-size="11.0" fill="#4E4D45">Two Meta models are fine-tuned: MMS-1B-all (understanding Chanka) and mms-tts-quy (speaking it).</text>
+<text x="52" y="852.9" font-size="11.0" fill="#4E4D45">mms-lid is used as shipped. Cartesia and Claude are not fine-tuned at all.</text>
+<text x="52" y="884.8" font-size="11.0" fill="#4E4D45">They are two different jobs: understanding wants MANY voices; speaking wants ONE consistent voice,</text>
+<text x="52" y="900.7" font-size="11.0" fill="#4E4D45">Freddy’s mother. That is why everyone records, but Chaski speaks with a single person’s voice.</text>
 <path d="M260 172 L275 172 L275 172 L290 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M510 172 L525 172 L525 172 L540 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M770 172 L785 172 L785 172 L800 172" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M770 172 L785 172 L785 166 L800 166" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M290 429 L305 429 L305 429 L320 429" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M570 429 L585 429 L585 440 L600 440" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M340 592 L355 592 L355 714 L370 714" fill="none" stroke="#C8C5B8" stroke-width="2" marker-end="url(#mC8C5B8)"/>

@@ -284,68 +284,68 @@ class Lienzo:
 
 
 # ---------------------------------------------------------------- datos
-d = Lienzo("Datos")
-d.caja("De la voz de la familia al número del pitch",
+d = Lienzo("Data")
+d.caja("From a family's voice to a number we can defend",
        TXT.format(s=19, c="#16160F", f=1), 40, 20, 700, 28)
-d.caja("Arquitectura de datos. La regla que sostiene todo: la voz de prueba nunca entra al entrenamiento.",
+d.caja("Data architecture. The one rule everything rests on: the test speaker never enters training.",
        TXT.format(s=12, c="#4E4D45", f=0), 40, 48, 900, 20)
 
-d.caja("1 · Recolección", TXT.format(s=13, c="#16160F", f=1), 40, 92, 300, 20)
-cua = d.caja("Cuadernillos\n\n175 frases numeradas\nseis bloques: A B C M N E\nSe escribe primero, se graba después",
+d.caja("1 · Collection", TXT.format(s=13, c="#16160F", f=1), 40, 92, 300, 20)
+cua = d.caja("Printed booklets\n\n175 numbered sentences\nsix blocks: A B C M N E\nWritten first, recorded after",
              CAJA.format(b="#8C8C7A"), 40, 118, 220, 96, icono="cuaderno")
-frm = d.caja("Formulario (Freddy)\n\nVercel · la familia sube audio\ny cómo se escribe\nNo lo tocamos desde aquí",
+frm = d.caja("Web form (Freddy)\n\nVercel · families upload audio\nand how it is spelled\nNot touched from this side",
              CAJA.format(b="#1B9476"), 290, 118, 220, 96, icono="formulario")
-cor = d.caja("/corregir (Ricardo)\n\nTranscribe, yo corrijo el escrito\nParte y une si cortó mal\nVerifica audio contra texto",
+cor = d.caja("/corregir (Ricardo)\n\nTranscribes, a human fixes the text\nSplits and joins bad cuts\nChecks audio against text",
              CAJA.format(b="#1F6FD0"), 540, 118, 230, 96, icono="etiqueta")
-man = d.caja("manifiesto.jsonl\n\npersona · bloque · numero\naudio · transcripcion · castellano\nsegundos · consentimiento",
+man = d.caja("manifiesto.jsonl\n\nspeaker · block · number\naudio · transcript · Spanish\nseconds · consent",
              CAJA.format(b="#8C8C7A"), 800, 118, 240, 96, icono="disco")
 d.flecha(cua, frm); d.flecha(frm, cor); d.flecha(cor, man)
 
-d.caja("2 · Partición POR HABLANTE, nunca por frase",
+d.caja("2 · Split BY SPEAKER, never by sentence",
        TXT.format(s=13, c="#16160F", f=1), 40, 240, 520, 20)
-tr = d.caja("entrenamiento\n\n3 personas · ~22 min\nAjusta el modelo",
+tr = d.caja("train\n\n3 speakers · ~22 min\nFits the adapter",
             CAJA.format(b="#1F6FD0"), 40, 266, 230, 76)
-va = d.caja("validación\n\n12 % del entrenamiento\nElige hiperparámetros",
+va = d.caja("validation\n\n12 % of train\nPicks hyperparameters",
             CAJA.format(b="#8C8C7A"), 300, 266, 220, 76)
-pr = d.caja("prueba · una persona entera\n\nVoz que el modelo NUNCA escuchó\nSe toca una sola vez, al final",
+pr = d.caja("test · one whole speaker\n\nA voice the model NEVER heard\nTouched once, at the end",
             CAJA.format(b="#C8372F") + "strokeWidth=3;", 550, 266, 300, 76)
 
-d.caja("3 · Tres pasos, tres números — se reportan los tres salga lo que salga",
+d.caja("3 · Three steps, three numbers — all three reported, whatever they say",
        TXT.format(s=13, c="#16160F", f=1), 40, 368, 700, 20)
-p0 = d.caja("0 · El modelo tal cual\n\nLínea base. Sin tocar nada.",
+p0 = d.caja("0 · The model as shipped\n\nBaseline. Nothing touched.",
             CAJA.format(b="#8C8C7A"), 40, 394, 250, 70)
-p1 = d.caja("1 · + vocabulario de la posta\n\nGlosario y préstamos",
+p1 = d.caja("1 · + clinic vocabulary\n\nGlossary and loanwords",
             CAJA.format(b="#1F6FD0"), 320, 394, 250, 70)
-p2 = d.caja("2 · + ajuste fino con las voces\n\nASR 30 épocas: 14 min\nVoz 50 épocas: 20 min\nmedido en la A10G",
+p2 = d.caja("2 · + fine-tuning on the voices\n\nASR 30 epochs: 14 min\nTTS 50 epochs: 20 min\nmeasured on the A10G",
             CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 600, 394, 250, 70)
 d.flecha(p0, p1); d.flecha(p1, p2)
 
-d.caja("4 · Cada cosa se mide contra una verdad distinta",
+d.caja("4 · Each thing is measured against its own ground truth",
        TXT.format(s=13, c="#16160F", f=1), 40, 494, 700, 20)
-d.caja("Hasta el 24-oct la auditoría no tenía ninguna: solo se comparaba con la de Freddy, y eso no prueba nada si las dos se equivocan igual.",
+d.caja("Until Oct 24 the audit had none: it only compared against Freddy's, which proves nothing if both are wrong the same way.",
        TXT.format(s=11, c="#4E4D45", f=0), 40, 514, 1000, 18)
 
-m1 = d.caja("medir_asr.py — entender\n\nVerdad: el escrito corregido en /corregir\nWER y CER · corte por hablante\nAparte: préstamos y números",
+m1 = d.caja("medir_asr.py — understanding\n\nTruth: the text corrected in /corregir\nWER and CER · speaker-held-out\nScored apart: loanwords and numbers",
             CAJA.format(b="#1F6FD0"), 40, 542, 300, 100, icono="medir")
-m2 = d.caja("medir_traduccion.py — traducir\n\nVerdad: 100 pares verificados, fuera del train\nchrF++, no BLEU: el quechua aglutina\nBase sin ajustar: chrF++ 42.31",
+m2 = d.caja("medir_traduccion.py — translation\n\nTruth: 62 pairs the families wrote on hackathon day\nchrF++, not BLEU: Quechua is agglutinative\nSonnet 5 44.6 · NLLB-1.3B 34.7 · 600M 28.6",
             CAJA.format(b="#C8372F"), 370, 542, 320, 100, icono="medir")
-m3 = d.caja("medir_guarda.py — no dejar pasar errores\n\nVerdad: se inyecta un error clínico a propósito\nDosis cambiada · negación borrada · condición\n0/6 falsos bloqueos · 3/6 FUGAS",
+m3 = d.caja("medir_guarda.py — catching errors\n\nTruth: a clinical error is injected on purpose\nChanged dose · dropped negation · condition\n183/184 caught · 100 % of the critical ones",
             CAJA.format(b="#8A4FBD") + "strokeWidth=3;", 720, 542, 330, 100, icono="guarda")
-m4 = d.caja("medir_auditoria.py — estabilidad\n\nLa misma frase, varias corridas\nBloqueo · estabilidad · mediana\nLa de 4 llamadas da: sí, no, sí",
+m4 = d.caja("medir_auditoria.py — stability\n\nSame sentence, several runs\nBlocked · stability · median\nThe 4-call variant gives: yes, no, yes",
             CAJA.format(b="#8C8C7A"), 1080, 542, 300, 100, icono="medir")
 
-rep = d.caja("reports/*.json\n\nasr · lid · traduccion · guarda · auditoria\nUn archivo por número",
+rep = d.caja("reports/*.json\n\nasr · lid · translation · guard · audit\nOne file per number",
              CAJA.format(b="#8C8C7A"), 370, 676, 320, 76, icono="disco")
-pit = d.caja("La página y el pitch\n\nLeen esos JSON y nada más.\nSi un número sale malo, se muestra igual.",
+pit = d.caja("The page and the pitch\n\nRead those JSON files and nothing else.\nA bad number is shown anyway.",
              CAJA.format(b="#C8372F"), 720, 676, 330, 76)
 for m in (m1, m2, m3, m4):
     d.flecha(m, rep, "", "strokeColor=#C8C5B8;")
 d.flecha(rep, pit)
 
-d.caja("Qué se ajusta y qué no\n\nSe ajustan los dos modelos de Meta: omniASR (entender chanka) y mms-tts-quy (hablar chanka).\n"
-       "mms-lid ya acierta 6/6 y se deja quieto. Cartesia y Claude no se ajustan: se usan como vienen.\n\n"
-       "Y son dos ajustes distintos: entender quiere MUCHAS voces; hablar quiere UNA sola voz consistente,\n"
-       "la de la mamá de Freddy. Por eso todos graban, pero la voz de Chaski sale de una sola persona.",
+d.caja("What we fine-tune, and what we leave alone\n\nTwo Meta models are fine-tuned: MMS-1B-all (understanding Chanka) and mms-tts-quy (speaking it).\n"
+       "mms-lid is used as shipped. Cartesia and Claude are not fine-tuned at all.\n\n"
+       "They are two different jobs: understanding wants MANY voices; speaking wants ONE consistent voice,\n"
+       "Freddy\u2019s mother. That is why everyone records, but Chaski speaks with a single person\u2019s voice.",
        "rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C4C2B6;align=left;"
        "verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=11;fontColor=#4E4D45;",
        40, 786, 1340, 104)
@@ -353,49 +353,49 @@ d.guardar("reports/drawio/arquitectura-datos.drawio", 1500, 950)
 
 
 # ---------------------------------------------------------------- flujo
-f = Lienzo("Flujo")
-f.caja("Un turno de consulta, de micrófono a parlante",
+f = Lienzo("Flow")
+f.caja("One turn of a consultation, microphone to speaker",
        TXT.format(s=19, c="#16160F", f=1), 40, 20, 700, 28)
-f.caja("Tiempos medidos el 24-oct-2026 en la A10G. Azul: Meta, en nuestra GPU, lo ajustamos. Verde: Cartesia. Rojo: Claude.",
+f.caja("Times measured 24-Oct-2026 on the A10G. Blue: Meta, on our GPU, fine-tuned by us. Green: Cartesia. Red: Claude.",
        TXT.format(s=12, c="#4E4D45", f=0), 40, 48, 950, 20)
 
-mic = f.caja("Micrófono\n\niPhone o navegador\n16 kHz mono", CAJA.format(b="#8C8C7A"), 40, 170, 170, 76, icono="micro")
-lid = f.caja("mms-lid-512\n\n¿quechua o castellano?\n49 ms · 6/6 aciertos\nNo se ajusta: ya acierta",
+mic = f.caja("Microphone\n\niPhone or browser\n16 kHz mono", CAJA.format(b="#8C8C7A"), 40, 170, 170, 76, icono="micro")
+lid = f.caja("mms-lid-512\n\nQuechua or Spanish?\n49 ms · used as shipped\nOnly 3/6 on real family voice:\nwe never trust it alone",
              CAJA.format(b="#1F6FD0"), 250, 160, 210, 96, icono="gpu")
 f.flecha(mic, lid)
 
-stt_es = f.caja("Cartesia ink-whisper\n\nEntiende castellano\nNube de Cartesia",
+stt_es = f.caja("Cartesia ink-whisper\n\nUnderstands Spanish\nCartesia cloud",
                 CAJA.format(b="#1B9476"), 510, 90, 210, 76, icono="cartesia")
-stt_qu = f.caja("omniASR_LLM_300M\n\nEntiende chanka\n1.71 s para 15.8 s de audio\nEL NÚCLEO: esto ajustamos",
+stt_qu = f.caja("MMS-1B-all + our adapter\n\nUnderstands Chanka Quechua\nWER 53.9 % → 40.9 % on a speaker\nthe model never heard\nTHE CORE: this is what we fine-tune",
                 CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 510, 250, 210, 96, icono="gpu")
-f.flecha(lid, stt_es, "castellano", "strokeColor=#1B9476;fontColor=#1B9476;")
-f.flecha(lid, stt_qu, "quechua", "strokeColor=#1F6FD0;fontColor=#1F6FD0;")
+f.flecha(lid, stt_es, "Spanish", "strokeColor=#1B9476;fontColor=#1B9476;")
+f.flecha(lid, stt_qu, "Quechua", "strokeColor=#1F6FD0;fontColor=#1F6FD0;")
 
-cla = f.caja("Claude\n\nTraduce y audita\nsonnet-5 traduce · haiku-4-5 extrae hechos\n7–12 s: el cuello de botella\nGlosario cacheado en el system",
+cla = f.caja("Claude\n\nTranslates and audits\nOpus 5 decides · Sonnet 5 translates and criticises\nThe slowest step, and on purpose\nGlossary cached in the system prompt",
              CAJA.format(b="#C8372F"), 770, 160, 240, 116, icono="claude")
 f.flecha(stt_es, cla); f.flecha(stt_qu, cla)
 
-aud = f.caja("La guarda\n\nRetraduce a ciegas y compara los hechos\nSi cambió una dosis, no se dice\nMedido: 0/6 falsos bloqueos, 3/6 fugas",
+aud = f.caja("The guard\n\nBlind back-translation, then facts compared in code\nIf a dose moved, nothing is spoken\n183/184 seeded errors caught, 2.6 s",
              CAJA.format(b="#8A4FBD") + "strokeWidth=3;", 770, 320, 240, 110, icono="guarda")
 f.flecha(cla, aud)
 
-tts_es = f.caja("Cartesia Sonic 3.6\n\nHabla castellano · streaming",
+tts_es = f.caja("Cartesia Sonic 3.6\n\nSpeaks Spanish · streaming",
                 CAJA.format(b="#1B9476"), 1070, 120, 220, 70, icono="cartesia")
-tts_qu = f.caja("mms-tts-quy\n\nHabla chanka\nSe ajusta con la voz de la mamá de Freddy",
+tts_qu = f.caja("mms-tts-quy + our fine-tune\n\nSpeaks Chanka\nTrained on Freddy’s mother’s voice,\nwith her permission",
                 CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 1070, 230, 220, 90, icono="gpu")
-f.flecha(aud, tts_es, "a la enfermera", "strokeColor=#1B9476;fontColor=#1B9476;")
-f.flecha(aud, tts_qu, "al paciente", "strokeColor=#1F6FD0;fontColor=#1F6FD0;")
+f.flecha(aud, tts_es, "to the nurse", "strokeColor=#1B9476;fontColor=#1B9476;")
+f.flecha(aud, tts_qu, "to the patient", "strokeColor=#1F6FD0;fontColor=#1F6FD0;")
 
-par = f.caja("Parlante\n\nTexto primero, audio después:\nse lee antes de que termine de hablar",
+par = f.caja("Speaker\n\nText first, audio after:\nit can be read before it finishes speaking",
              CAJA.format(b="#8C8C7A"), 1340, 170, 210, 90, icono="parlante")
 f.flecha(tts_es, par); f.flecha(tts_qu, par)
 
-f.caja("Por qué Cartesia no puede hacer el lado quechua\n\n"
-       "Verificado en su documentación el 24-oct: Sonic 3.6 habla 44 idiomas y el quechua no está entre ellos.\n"
-       "Su STT acepta un parámetro `language` en ISO-639-1 con `en` por defecto, y no detecta el idioma solo.\n"
-       "Así que el quechua y la detección son nuestros por necesidad, no por preferencia.\n\n"
-       "Y esos 49 ms del detector deciden la arquitectura: siendo tan barato, se detecta primero y se reconoce\n"
-       "después, en serie. No hace falta correr los dos reconocedores en paralelo ni adivinar por el turno anterior.",
+f.caja("Why Cartesia cannot cover the Quechua side\n\n"
+       "Checked in their docs on 24-Oct: Sonic 3.6 speaks 44 languages and Quechua is not one of them.\n"
+       "Their STT takes a `language` parameter in ISO-639-1, defaults to `en`, and does not detect language itself.\n"
+       "So Quechua and the detection are ours out of necessity, not preference.\n\n"
+       "And those 49 ms of detection shape the architecture: being that cheap, we detect first and recognise\n"
+       "second, in series. No need to run both recognisers in parallel or guess from the previous turn.",
        "rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#C4C2B6;align=left;"
        "verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=11;fontColor=#4E4D45;",
        40, 480, 1250, 124)
@@ -403,70 +403,70 @@ f.guardar("reports/drawio/arquitectura-flujo.drawio", 1650, 680)
 
 
 # ---------------------------------------------------------------- despliegue
-g = Lienzo("Despliegue")
-g.caja("Chaski — dónde corre cada cosa",
+g = Lienzo("Deployment")
+g.caja("Chaski — where each piece runs",
        TXT.format(s=19, c="#16160F", f=1), 40, 20, 620, 28)
-g.caja("Arquitectura de despliegue · 24-oct-2026 18:00 UTC · desde hoy la laptop de Ricardo ya no está en la cadena",
+g.caja("Deployment architecture · 24-Oct-2026 18:00 UTC · no laptop in the chain any more",
        TXT.format(s=12, c="#4E4D45", f=0), 40, 48, 950, 20)
 
-app = g.caja("App de Chaski (Freddy)\n\niOS · consume la URL pública\nNo cambió nada el 24-oct",
+app = g.caja("Chaski app (Freddy)\n\niOS · calls the public URL\nNothing changed on its side",
              CAJA.format(b="#8C8C7A"), 40, 110, 200, 84, icono="chaski")
-nav = g.caja("Navegador\n\nGET /flujo · demo y pruebas",
+nav = g.caja("Browser\n\nGET /flujo · demo and testing",
              CAJA.format(b="#8C8C7A"), 40, 214, 200, 64, icono="navegador")
-g.caja("Etiquetador /corregir\n\nSigue en la laptop: lee audio local.\nAbre su propio túnel SSH.",
+g.caja("Labelling UI /corregir\n\nStill on the laptop: reads local audio.\nOpens its own SSH tunnel.",
        CAJA.format(b="#8C8C7A") + "dashed=1;", 40, 298, 200, 84, icono="etiqueta")
 
-ng = g.caja("ngrok · borde HTTPS\n\nunsubmitted-wally-relatable\n.ngrok-free.dev\n\n"
-            "Dominio reservado: no cambia\nentre reinicios",
+ng = g.caja("ngrok · HTTPS edge\n\nunsubmitted-wally-relatable\n.ngrok-free.dev\n\n"
+            "Reserved domain: survives\nevery restart",
             CAJA.format(b="#5A5A52"), 290, 110, 210, 140, icono="ngrok")
 g.flecha(app, ng); g.flecha(nav, ng)
 
-g.caja("Instancia EC2 g5.xlarge · 44.220.107.99 · NVIDIA A10G 23 GB",
+g.caja("EC2 g5.xlarge · 44.220.107.99 · NVIDIA A10G 23 GB",
        "rounded=0;html=1;fillColor=#FAF9F5;strokeColor=#8A4FBD;strokeWidth=2;dashed=1;dashPattern=8 4;"
        "verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontSize=12;fontStyle=1;fontColor=#8A4FBD;",
        550, 92, 450, 560)
 g.caja("", "rounded=0;html=1;fillColor=none;strokeColor=none;", 930, 100, 40, 40,
        icono="ec2")
 
-g.caja("Agente de ngrok\n\nCorre aquí dentro, no en la laptop",
+g.caja("ngrok agent\n\nRuns in here, not on the laptop",
        CAJA.format(b="#5A5A52"), 578, 150, 320, 56, icono="ngrok")
-orq = g.caja("Orquestador · puerto 8080\n\nservicio/app.py · FastAPI\n"
+orq = g.caja("Orchestrator · port 8080\n\nservicio/app.py · FastAPI\n"
              "/turno/paciente · /turno/enfermera · /ver · /escuchar\n"
-             "venv propio: fastapi · anthropic · httpx\n\n"
-             "venv SEPARADO del de los modelos, a propósito",
+             "own venv: fastapi · anthropic · httpx\n\n"
+             "venv kept SEPARATE from the models, on purpose",
              CAJA.format(b="#8A4FBD"), 578, 228, 394, 130, icono="servidor")
-voz = g.caja("Servicio de voz · puerto 8000\n\ninstancia.py · los tres modelos de Meta en GPU\n"
-             "omniASR_LLM_300M · mms-lid-512 · mms-tts-quy\n"
-             "torch==2.8.0 · fairseq2 · numpy~=1.23 — clavados\n"
-             "Un pip install encima lo rompe. Ya pasó una vez.\n"
-             "LID 49 ms · ASR 1.71 s para 15.8 s · pico 3.41 GB de 23",
+voz = g.caja("Speech service · port 8000\n\ninstancia.py · the Meta models, on the GPU\n"
+             "MMS-1B-all + adapter · mms-lid-512 · mms-tts-quy\n"
+             "torch==2.8.0 · fairseq2 · numpy~=1.23 — pinned\n"
+             "One pip install on top breaks it. It happened once.\n"
+             "LID 49 ms · ASR 1.71 s for 15.8 s · peak 3.41 GB of 23",
              CAJA.format(b="#1F6FD0"), 578, 404, 394, 136, icono="gpu")
 g.flecha(ng, orq)
-g.flecha(orq, voz, "127.0.0.1\nno sale a internet",
+g.flecha(orq, voz, "127.0.0.1\nnever leaves the box",
          "strokeColor=#8A4FBD;strokeWidth=3;fontColor=#8A4FBD;fontStyle=1;")
 
 CIL = ("shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;"
        "fillColor=#FFFFFF;strokeColor={b};strokeWidth=2;fontSize=10;fontColor=#4E4D45;align=center;")
-g.caja("/ · 145 GB\n90 % lleno\nNo poner nada aquí\nPersiste al parar",
+g.caja("/ · 145 GB\n90 % full\nPut nothing here\nSurvives a stop",
        CIL.format(b="#C8372F"), 578, 556, 180, 86)
-g.caja("/opt/dlami/nvme\n229 GB · 9 %\nTodo vive aquí\nEFÍMERO: se borra al parar",
+g.caja("/opt/dlami/nvme\n229 GB · 9 %\nEverything lives here\nEPHEMERAL: wiped on stop",
        CIL.format(b="#1B9476"), 792, 556, 180, 86)
 
-ant = g.caja("API de Anthropic\n\ntraducir · auditar · leer cajas\nsonnet-5 · haiku-4-5\n\n"
-             "7–12 s por turno: el cuello de botella real",
+ant = g.caja("Anthropic API\n\ndecide · translate · criticise · read boxes\nopus-5 · sonnet-5 · haiku-4-5\n\n"
+             "The slowest step of a turn, and the one we refuse to cut",
              CAJA.format(b="#C8372F"), 1050, 228, 220, 130, icono="claude")
-car = g.caja("API de Cartesia\n\nSonic 3.6 · habla castellano\nink-whisper · lo entiende\n\n"
-             "Sin quechua: por eso el quechua es nuestro",
+car = g.caja("Cartesia API\n\nSonic 3.6 · speaks Spanish\nink-whisper · understands it\n\n"
+             "No Quechua: that is why Quechua is ours",
              CAJA.format(b="#1B9476"), 1050, 404, 220, 136, icono="cartesia")
 g.flecha(orq, ant, "", "strokeColor=#C8C5B8;dashed=1;")
 g.flecha(orq, car, "", "strokeColor=#C8C5B8;dashed=1;")
 
-g.caja("Lo que cambió hoy\n\nAntes: app → ngrok → laptop de Ricardo → túnel SSH →\n"
-       "instancia, y todo de vuelta por el mismo camino.\nSi cerraba la laptop, se caía.\n\n"
-       "Ahora el audio del paciente no sale de la instancia.\n"
-       "La URL es la misma: Freddy no cambia una línea.\n\n"
-       "Se despliega con `bash servicio/desplegar.sh`, re-ejecutable.\n"
-       "Las claves viajan por stdin a .env con chmod 600; nunca por git.",
+g.caja("What changed\n\nBefore: app \u2192 ngrok \u2192 a laptop \u2192 SSH tunnel \u2192\n"
+       "instance, and all the way back again.\nClosing the laptop took it down.\n\n"
+       "Now the patient\u2019s audio never leaves the instance.\n"
+       "Same URL, so the app did not change a line.\n\n"
+       "Deployed with `bash servicio/desplegar.sh`, re-runnable.\n"
+       "Keys go over stdin into .env, chmod 600; never through git.",
        "rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8A4FBD;strokeWidth=2;align=left;"
        "verticalAlign=top;spacingLeft=12;spacingTop=8;fontSize=11;fontColor=#4E4D45;",
        40, 412, 470, 112)
