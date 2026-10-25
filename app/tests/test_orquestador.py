@@ -10,6 +10,8 @@ from chaski.traducir import TextoTraducido
 
 @pytest.fixture(autouse=True)
 def _sin_modelos_en_el_entorno(monkeypatch):
+    # These tests pin the step-by-step path; the anticipated one is tested with anticipar=True explicitly.
+    monkeypatch.setenv("CHASKI_TRADUCIR_ANTICIPADO", "0")
     monkeypatch.delenv("CHASKI_MODELO_PRINCIPAL", raising=False)
     monkeypatch.delenv("CHASKI_MODELO_CRITICO", raising=False)
 

@@ -195,6 +195,16 @@ def construir(manifest: Path) -> tuple[list[dict], dict]:
             if r.get("nota"):
                 it["nota"] = r["nota"]
 
+    # The emergency audio Ricardo synthesised (fine-tuned voice p24), served by the instance under
+    # /emergencia/audio/p24/<id>.mp3. Only reviewed phrases with an mp3 on disk get one.
+    url_servicio = RAIZ / "ricardo-artifacts" / "servicio" / "url.json"
+    mp3s = RAIZ / "ricardo-artifacts" / "reports" / "emergencia" / "p24"
+    if url_servicio.exists() and mp3s.is_dir():
+        base = json.loads(url_servicio.read_text(encoding="utf-8"))["url"].rstrip("/")
+        for it in items:
+            if "emergencia" in it["tags"] and it.get("revisado") and (mp3s / f"{it['id']}.mp3").exists():
+                it["audio"] = f"{base}/emergencia/audio/p24/{it['id']}.mp3"
+
     for clave, (i, fila, es) in cmp_por_es.items():
         if i in usadas:
             continue
