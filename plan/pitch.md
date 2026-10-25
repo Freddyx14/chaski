@@ -26,7 +26,9 @@
 | Nurse-trained voice, A/B/C, «she picked it blind» | 🔸 **not yet**. No `ciegas/` or `abc/` files in the repo at 23:45; out of the default script | `plan/HANDOFF-RICARDO-VOZ.md` |
 | Summary + new words of the visit | ⚠️ screen built; **the summary on stage must be from the live consult**, not the `EJEMPLO` demo data in `movil/src/app/resumen.tsx` | app |
 | «Monday, it goes to my mother's health center» | 🔸 **Freddy confirms**. She said she herself wouldn't need it; the users are the ~80 % who don't speak Quechua | interview l.91 |
-| Translator = Claude | 🔸 **open**. Tonight on the families' 62 sentences, chrF++ Gemini 3.8 Flash 63.8 · Claude Sonnet 5 58.9 · NLLB-1.3B 34.7 (`evals/traduccion/comparar.py`). The script doesn't name the translator on purpose | loopmind-05 |
+| Translator = Claude Sonnet 5, medium effort | ✅ **decided D40 (Freddy 23:38)**. 0 of 92 fixed terms damaged (Gemini 3 Flash 4, NLLB 3); best at reading the patient (qu→es chrF++ 50.1 vs Gemini 3 Flash 43.7); whole turn p50 8.3 s, 19/20 said. ⚠️ **The live service still runs NLLB until Ricardo restarts it** (`plan/HANDOFF-RICARDO-SERVICIO.md`): check before rehearsal | `evals/traduccion/resultados/comparar-20261024-2324.json`, `…-2336.json` · `evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json` · SOT D40 |
+| About two cents per translated turn | ✅ $0.024 measured from real tokens (Opus + Sonnet translator + Sonnet critic), list prices not checked against the invoice. Say "about two cents" | `evals/latencia/resultados/costo-turno-20261024-2345.json` |
+| NLLB fine-tuned 25.8 → 31.7 | ✗ **contaminated, never say it**: 58 of the 100 evaluation sentences leaked into training (Ricardo, `2fac55f`) | loopmind-05 23:45 |
 | Never say | ✗ "the only Quechua-speaking nurse" · "2 % of centers have interpreters" · "a bad translation hurt someone at her post" (she remembers no case) · chrF "40 = decent, 60 = near-human" (no peer-reviewed source) · "turn in 6.5 s" | — |
 
 **Before rehearsal, test once on the real phone:** the B2 instruction («…después de comer. No la tome con té.») must
@@ -109,22 +111,24 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 | — | Verified-phrase RAG finds the right phrase first **88%** (keyword search 70%) | `evals/banco/` | Q&A |
 | — | **All 24 emergency phrases reviewed by a nurse from the community** | `evals/banco/revision_enfermera.json` | B3 / Q&A |
 | — | **Voice:** judged by human ears, not by a recognizer — a patient hears it, not a machine (Freddy, 20:45). Claim «sounds like her» (audible in the A/B/C); claim «a native speaker understands it» only after her blind test | `evals/HISTORIA.md` §4 | B5 |
-| — | **Translation:** we fine-tuned NLLB-200 (chrF++ 25.8 → 31.7) and it still lost to Claude (42.3 with thinking off, 51.8 as the product runs it), so Claude translates — decided by measurement | `bf4a788` | Q&A «why not your own translator?» |
+| — | **Translation:** five translators on the families' 62 sentences, same set: fixed terms damaged in 92 translations → **Claude medium 0**, Gemini 3 Flash 4, NLLB 3. chrF++ es→qu Gemini 3.8 Flash 63.8 · Claude thinking 58.9 · Claude medium 51.4 · NLLB-1.3B 34.7. Claude medium translates (D40): safety first, and the turn stays at 8.3 s | `evals/traduccion/resultados/` | Q&A «why Claude, why not Gemini?» |
 | ✗ | ~~"the only Quechua-speaking nurse"~~ (3 of 6 nurses do) · ~~"2% of centers have interpreters"~~ (doesn't exist) | — | never |
 
 ---
 
 ## 5 · Run of show (v4, Sat 23:45): the wait becomes the problem
 
-**Why v4.** A translated nurse turn takes **~17 s typical, 26 s worst** (measured end to end, `evals/latencia/resultados/e2e-20261024-2156.json`).
-In v3 that wait sat inside B3 as dead air. In v4 Freddy **starts the turn first and tells the problem while Chaski thinks**:
-the judge watches the real «Pensando» steps under a story, and the Quechua arrives as the payoff.
+**Why v4.** A translated nurse turn now takes **8.3 s typical** with the D40 translator (19/20 said,
+`evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json`; it was 17 s with the thinking translator).
+In v3 that wait sat inside B3 as dead air. In v4 Freddy **starts the turn and tells the last part of the problem while
+Chaski thinks**: the judge watches the real «Pensando» steps under a story, and the Quechua arrives as the payoff.
+⚠️ If the live service is still on NLLB (Ricardo hasn't restarted it), expect more false blocks: check first.
 
 | t | Beat | Who | On screen / in the air | Feature shown | Asset |
 |---|---|---|---|---|---|
 | 0:00 | **B1 Her voice** | Freddy | Her video, 16 s, English subtitles, on the laptop | — (the community) | `data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4` (backup audio `data/mama/audio/clips/RESPALDO-PITCH-B1_problema-profesionales_14s.mp3`) |
 | 0:16 | **B1b Who she is** | Freddy | Eye contact | — | ★ |
-| 0:25 | **B2 Problem, told during the wait** | Freddy | Phone on the stand: he says the instruction, «Pensando» runs with its real steps | Polish, decision, translation, blind back-translation, guards | ★c, ★s |
+| 0:25 | **B2 Problem; the turn starts at ~0:35, the last lines cover the ~8 s wait** | Freddy | Phone on the stand: he says the instruction, «Pensando» runs with its real steps | Polish, decision, translation, blind back-translation, guards | ★c, ★s |
 | ~0:45 | **B3a Chaski speaks** | Freddy | Quechua out loud + on screen | The payoff | — |
 | 0:55 | **B3b Patient answers** | Ricardo | Family clip next to the mic → Spanish on screen (~4 s) | Language ID, fine-tuned ears, Claude picks the reading | Patient clip |
 | 1:15 | **B3c Emergency mode** | Freddy | Two taps → plays instantly | Verified phrase bank (RAG), zero wait | 24 phrases reviewed by the nurse |
@@ -143,11 +147,12 @@ the judge watches the real «Pensando» steps under a story, and the Quechua arr
 patients speak Quechua. About one in five of the staff do."
 
 **B2 · The problem, while Chaski thinks (0:25–0:45) · Freddy**
-[Phone on the stand. Freddy, to the phone: «Tome una pastilla cada ocho horas, después de comer. No la tome con té.»
-«Pensando» starts. Freddy turns back to the judge.]
 "Right now, when a patient only speaks Quechua, the interpreter is whoever is on shift — another nurse, a technician,
 the ambulance driver. If nobody is, they use gestures. She told us she breaks a pill into four in front of the patient
-to show the dose. A visit that takes forty minutes in Spanish takes an hour in Quechua. And it's not just her post:
+to show the dose."
+[Phone on the stand. Freddy, to the phone: «Tome una pastilla cada ocho horas, después de comer. No la tome con té.»
+«Pensando» starts. Freddy turns back to the judge.]
+"A visit that takes forty minutes in Spanish takes an hour in Quechua. And it's not just her post:
 only one in seven doctors sent to rural Peru speaks even basic Quechua."
 [If Chaski hasn't spoken yet: "While we talk, it's checking itself — you can see each step."]
 
@@ -198,7 +203,7 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 | Step | Risk | Mitigation |
 |---|---|---|
-| Nurse turn | translated instruction ~17 s typical, ~26 s worst (measured end to end 24-oct 21:56); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script) |
+| Nurse turn | translated instruction ~8.3 s typical with D40 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D40, not NLLB |
 | Patient answer | Loud hall | Pre-recorded family clip played next to the mic |
 | Emergency mode | Needs the nurse-voice audio | Until `entregables/voz/emergencia/` exists, the app shows the reviewed Quechua text big; say it's verified |
 | The refusal | Must happen every time | `FRASE_NEGATIVA_DEMO` blocked 16/16 in real runs; say out loud it's a simulated error |
@@ -227,23 +232,10 @@ Subtitles: confirm the [?] words with her first (`data/mama/traduccion-claude.md
 
 ---
 
-## 9 · Q&A bank (both of us know these cold)
+## 9 · Q&A bank
 
-| Question | One-breath answer |
-|---|---|
-| How do you know the Quechua is right? | Blind back-translation + a code check of drug, dose, frequency, negation and what it's taken with. And a nurse from the community reviewed all 24 emergency phrases |
-| What happens when it's wrong? | It stays quiet and tells the nurse which fact failed. 183/184 seeded errors caught, 100% of the critical ones |
-| Why not just ask Claude "is it right?" | We measured it: it catches errors too, but can't say why, and held back 1 in 4 correct sentences |
-| Why Opus and Sonnet, not Haiku? | Measured: Opus 98–100% right action, zero invented data. As critic Sonnet caught everything; Haiku let invented diagnoses through. Anthropic suggested Haiku for speed — we made Sonnet fast instead (9 s → 2.6 s) |
-| How do you know the fine-tuning helped? | A speaker the model never heard, same script before and after: 54% → 41% word errors, 30 → 51 perfect sentences |
-| Is her voice a deepfake? | It's trained with her permission, we always say so, and it only speaks phrases a nurse verified |
-| Privacy? | Consultation audio isn't stored; family recordings were donated with consent and never go in the repo |
-| Is her center typical? | It's not an exception: only 1 in 7 doctors starting rural service has even basic Quechua |
-| Replacing interpreters? | There's one certified bilingual public servant per ~4,000 Quechua speakers in Huancavelica. It's for when nobody is there |
-| Who uses it Monday? | The staff at Pilpichaca who don't speak Quechua (~80% of 36); the health zone has 10 more posts |
-| How do you measure impact? | MINSA's daily HIS form already records each patient's language: count Quechua visits and their length; plus our own log of blocks and repeats |
-| Offline? | Not yet. Honest limitation; on-device models are next |
-| Why Chanka? | It's Huancavelica and Ayacucho's Quechua; models are trained on Cusco's. We found no paper evaluating LLMs on Chanka |
+Moved to **[`plan/qa-jueces.md`](qa-jueces.md)** (v1, Sat 23:55): one-breath answers centered on the technical
+decisions and the measurements, with who answers and the file behind each number. One home, so the two can't drift.
 
 ---
 
