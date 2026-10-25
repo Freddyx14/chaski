@@ -7,6 +7,11 @@
 > **Memoria automática (D44, dom 01:45):** en `desplegar.sh` agrega `export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl`
 > (y `mkdir -p $DESTINO/memoria`), fuera de la carpeta `chaski/` que se sincroniza con `--delete`; si no, cada
 > despliegue borra lo aprendido. Para ver y aprobar: `uv run python -m chaski.memoria` y `… aprobar ID`.
+> **Voz robótica (Freddy, 01:47), en `servicio/app.py` `_voz_para_chaski` (~l.131):**
+> 1. Lo que Chaski dice **en castellano** sale hoy con `voz="base"` de Meta (un modelo de quechua leyendo castellano):
+>    por eso suena robótico. Según el diseño, el castellano lo dice **Cartesia Sonic**; la clave ya está en la instancia.
+> 2. El quechua usa `p24` (un familiar). La voz ajustada con la enfermera es `mama_freddy`; **Freddy decide** cuál va en
+>    la demo (la prueba a ciegas con ella sigue pendiente).
 > Y `/turno/paciente` solo acepta WAV (la app manda WAV, así que anda); con .webm y .m4a da 500.
 
 > Decisión de Freddy (D43, 23:38; se citó como D40 por error, D40 es «Chaski sin fondo»): **traduce Claude Sonnet 5 con esfuerzo medio**, no NLLB. Medido en los mismos sets:
