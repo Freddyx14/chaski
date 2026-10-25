@@ -95,11 +95,14 @@ def _voz_para_chaski(texto: str, idioma: str) -> bytes:
 ### Paso 2b · La ruta `/voz` también (importante)
 
 **La app pide la voz del quechua aparte, a `POST /voz`**, después de mostrar el texto. Hoy esa ruta llama a
-`decir_en_voz(texto)` con su valor por defecto (`p24`). Si solo cambias `_voz_para_chaski`, la voz del quechua
-**no cambia en la app**. En `/voz`, usa la misma variable:
+`decir_en_voz(texto, voz)` con `voz: str = Form("p24")` (~l.494). La app no manda `voz`, así que siempre sale `p24`.
+Si solo cambias `_voz_para_chaski`, la voz del quechua **no cambia en la app**. En `ruta_voz`:
 
 ```python
-audio, ms = decir_en_voz(texto, voz=os.environ.get("CHASKI_VOZ_QUY", "p24"))
+@aplicacion.post("/voz")
+def ruta_voz(texto: str = Form(...), voz: str = Form("")):
+    ...
+    audio, ms = decir_en_voz(texto, voz or os.environ.get("CHASKI_VOZ_QUY", "p24"))
 ```
 
 Lo que Chaski le dice al personal en castellano (repreguntar, responder): la app reproduce el `audio_wav_b64` del turno
