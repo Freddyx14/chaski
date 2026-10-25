@@ -38,13 +38,15 @@ NLLB_TIMEOUT_S = 8.0
 
 # Thinking for the Claude translator (CHASKI_PENSAR_TRADUCIR). Measured 24-oct on Ricardo's 30 reference pairs with
 # this prompt (evals/latencia/traductor_modos.py): `modelo` (Sonnet 5's own adaptive thinking) chrF++ 51.8, p50 5.6 s;
-# `medium` 45.6, 3.0 s; `no` 43.1, 1.7 s; `low` 41.3, 2.0 s. Accuracy first, so the default is `modelo`.
+# `medium` 45.6, 3.0 s; `no` 43.1, 1.7 s; `low` 41.3, 2.0 s. Then on three sets (evals/traduccion/comparar.py, 23:40):
+# `medium` 51.4 / 50.1 / 48.6 with 0 of 92 fixed terms damaged, and the full turn at p50 8.3 s against 17.1 s with
+# `modelo`. Decided by Freddy (D40, 23:38): `medium`, the same safety at half the time.
 PENSAR_TRADUCIR_VALIDOS = ("modelo", "no", "low", "medium", "high")
 
 
 def opciones_pensar(valor: str | None = None) -> dict:
     """Request kwargs for the translator's thinking. An unknown value fails instead of silently changing quality."""
-    valor = (valor if valor is not None else os.environ.get("CHASKI_PENSAR_TRADUCIR", "modelo")).strip()
+    valor = (valor if valor is not None else os.environ.get("CHASKI_PENSAR_TRADUCIR", "medium")).strip()
     if valor not in PENSAR_TRADUCIR_VALIDOS:
         raise ValueError(f"CHASKI_PENSAR_TRADUCIR={valor!r}; válidos: {', '.join(PENSAR_TRADUCIR_VALIDOS)}")
     if valor == "modelo":

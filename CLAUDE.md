@@ -1,11 +1,10 @@
 # Chaski · instrucciones para cualquier sesión de Claude en este repo
 
-## 🔴 PRIORIDAD AHORA (sáb 24-oct, 18:45 PT) · si eres la sesión de Ricardo, empieza por acá
+## 🔴 PRIORIDAD AHORA (sáb 24-oct, 23:45 PT) · si eres la sesión de Ricardo, empieza por acá
 
-**Lee y ejecuta `plan/HANDOFF-RICARDO-VOZ.md`**: la voz de Chaski ajustada con la voz de la enfermera.
-Las 24 frases de emergencia con esa voz, la comparación con la voz de Meta (ida y vuelta + A/B/C), una prueba a
-ciegas para la enfermera, y **al terminar: documentar y hacer push** para que Freddy haga pull y se lo mande a su mamá.
-Avisa por el grupo cuando esté.
+**Lee y ejecuta `plan/HANDOFF-RICARDO-SERVICIO.md`**: el servicio vuelve a traducir con Claude (D40), arreglar
+`/turno/paciente`, la ruta en vivo y la voz durante el crítico. Al terminar, push y avisa por el grupo.
+(La voz de la enfermera, `plan/HANDOFF-RICARDO-VOZ.md`, ya se entregó.)
 
 ## Dónde está cada cosa
 | | |

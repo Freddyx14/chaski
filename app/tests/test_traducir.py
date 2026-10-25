@@ -105,9 +105,16 @@ def test_mismo_idioma_no_llama_a_nadie():
     assert traducir("Hola", "spa", "spa", client=c).texto == "Hola" and c.llamadas == []
 
 
-def test_pensar_por_defecto_es_el_del_modelo(monkeypatch):
-    # The measured default (chrF++ 51.8): send no thinking setting at all.
+def test_pensar_por_defecto_es_medium(monkeypatch):
+    # D40: medium effort, 0/92 fixed terms damaged, full turn p50 8.3 s.
     monkeypatch.delenv("CHASKI_PENSAR_TRADUCIR", raising=False)
+    c = FakeClient()
+    traducir("Tome paracetamol", "spa", "quy", client=c, glosario=[])
+    assert c.llamadas[0]["output_config"] == {"effort": "medium"} and "thinking" not in c.llamadas[0]
+
+
+def test_pensar_modelo_no_manda_nada(monkeypatch):
+    monkeypatch.setenv("CHASKI_PENSAR_TRADUCIR", "modelo")
     c = FakeClient()
     traducir("Tome paracetamol", "spa", "quy", client=c, glosario=[])
     assert "thinking" not in c.llamadas[0] and "output_config" not in c.llamadas[0]

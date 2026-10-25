@@ -1,0 +1,352 @@
+{
+ "claude_anticipado": {
+  "dichos": 19,
+  "bloqueados": 1,
+  "n": 20,
+  "p50_s": 8.3,
+  "p95_s": 14.3,
+  "anticipada_usada": 17,
+  "paciente_datos_perdidos": 0,
+  "filas": [
+   {
+    "id": "med-01",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "banco_candidatos": 574.5,
+     "decidir": 4598.7,
+     "traducir_anticipada": 5729.9,
+     "guardas": 38.8,
+     "critico": 3491.6,
+     "total": 9260.4
+    },
+    "salida": "Paracetamolta qunqayllamanta ujyay, huk pastillata sapa pusaq horaman, kimsa p'unchawkama."
+   },
+   {
+    "id": "med-02",
+    "estado": "bloqueado",
+    "accion": "traducir",
+    "motivo": "B5 ida y vuelta: cambió un dato crítico: medicamento.unidad, prohibiciones (vehículo)",
+    "paso_fallido": "critico",
+    "anticipada": false,
+    "ms": {
+     "banco_candidatos": 5.4,
+     "decidir": 4042.8,
+     "traducir_anticipada": 5898.7,
+     "guardas": 53.3,
+     "critico": 3012.0,
+     "critico_anticipada": 3012.0,
+     "traducir": 5272.6,
+     "total": 14284.5
+    },
+    "salida": ""
+   },
+   {
+    "id": "med-03",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "banco_candidatos": 7.2,
+     "decidir": 3018.3,
+     "traducir_anticipada": 6890.9,
+     "guardas": 58.4,
+     "critico": 3881.6,
+     "total": 10831.0
+    },
+    "salida": "Sulfato ferrosota huk pastillata sapa p'unchaw huk killa ruranaykipaq, eh, ama saqenkichu allinta tarikuspapas."
+   },
+   {
+    "id": "med-06",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "banco_candidatos": 5.8,
+     "decidir": 5489.5,
+     "traducir_anticipada": 6996.9,
+     "guardas": 29.2,
+     "critico": 3152.2,
+     "total": 10178.3
+    },
+    "salida": "Omeprazolta mana imatapas mikhuspayki, huk cápsulata qanchis p'unchawpaq hap'ikunki."
+   },
+   {
+    "id": "orden-01",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "banco_candidatos": 5.6,
+     "decidir": 2437.7,
+     "traducir_anticipada": 1523.6,
+     "guardas": 28.5,
+     "critico": 2317.3,
+     "total": 4789.2
+    },
+    "salida": "Nillay kamillapi siriykukunanpaq"
+   },
+   {
+    "id": "orden-02",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "banco_candidatos": 4.7,
+     "decidir": 2640.6,
+     "traducir_anticipada": 4355.9,
+     "guardas": 30.5,
+     "critico": 2600.5,
+     "total": 6987.0
+    },
+    "salida": "Chompaykita wichaykachiy, hinaspa hatunta samay."
+   },
+   {
+    "id": "orden-03",
+    "estado": "dicho",
+    "accion": "usar_frase_banco",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": false,
+    "ms": {
+     "banco_candidatos": 6.1,
+     "decidir": 3259.3,
+     "total": 3265.5
+    },
+    "salida": "¿Kutichi?"
+   },
+   {
+    "id": "emer-02",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 7252.3,
+     "traducir_anticipada": 959.8,
+     "guardas": 14.0,
+     "critico": 2549.9,
+     "total": 9816.5
+    },
+    "salida": "Me duele mucho el estómago, desde ayer",
+    "faltan": []
+   },
+   {
+    "id": "emer-03",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 7411.9,
+     "traducir_anticipada": 1131.2,
+     "guardas": 1.0,
+     "critico": 2394.5,
+     "total": 9807.5
+    },
+    "salida": "¡Ayúdame!",
+    "faltan": []
+   },
+   {
+    "id": "emer-06",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 5586.2,
+     "traducir_anticipada": 917.6,
+     "guardas": 10.9,
+     "critico": 2564.2,
+     "total": 8161.3
+    },
+    "salida": "Aquí me duele, en el lado derecho",
+    "faltan": []
+   },
+   {
+    "id": "emer-07",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 3912.4,
+     "traducir_anticipada": 1027.7,
+     "guardas": 4.4,
+     "critico": 3874.9,
+     "total": 7791.8
+    },
+    "salida": "Estoy embarazada",
+    "faltan": []
+   },
+   {
+    "id": "pac-01",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 6964.9,
+     "traducir_anticipada": 1716.3,
+     "guardas": 7.8,
+     "critico": 3033.6,
+     "total": 10006.4
+    },
+    "salida": "Me duele la cabeza",
+    "faltan": []
+   },
+   {
+    "id": "pac-02",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 5944.1,
+     "traducir_anticipada": 801.6,
+     "guardas": 7.4,
+     "critico": 2371.7,
+     "total": 8323.2
+    },
+    "salida": "No hablo castellano",
+    "faltan": []
+   },
+   {
+    "id": "pac-03",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 5498.9,
+     "traducir_anticipada": 1003.1,
+     "guardas": 16.7,
+     "critico": 2670.5,
+     "total": 8186.1
+    },
+    "salida": "Mi hijo/hija está con fiebre desde la mañana",
+    "faltan": []
+   },
+   {
+    "id": "pac-04",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 6431.1,
+     "traducir_anticipada": 924.0,
+     "guardas": 7.9,
+     "critico": 4191.2,
+     "total": 10630.2
+    },
+    "salida": "Estoy tomando paracetamol",
+    "faltan": []
+   },
+   {
+    "id": "pac-05",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 3189.4,
+     "traducir_anticipada": 1608.3,
+     "guardas": 2.2,
+     "critico": 2970.6,
+     "total": 6162.2
+    },
+    "salida": "Gracias",
+    "faltan": []
+   },
+   {
+    "id": "asr-01",
+    "estado": "dicho_con_aviso",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": false,
+    "ms": {
+     "banco_candidatos": 5.1,
+     "decidir": 4845.7,
+     "traducir_anticipada": 4534.1,
+     "guardas": 29.6,
+     "traducir": 3516.1,
+     "critico": 2826.0,
+     "total": 14715.1
+    },
+    "salida": "Paracetamolta huk pastillata sapa pusaq horata tomay."
+   },
+   {
+    "id": "asr-03",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 4063.9,
+     "traducir_anticipada": 1025.5,
+     "guardas": 10.3,
+     "critico": 2508.4,
+     "total": 6582.7
+    },
+    "salida": "Doctora, me duele la cabeza",
+    "faltan": []
+   },
+   {
+    "id": "amb-01",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 3321.5,
+     "traducir_anticipada": 1367.5,
+     "guardas": 6.1,
+     "critico": 2259.5,
+     "total": 5587.2
+    },
+    "salida": "aquí… me duele…",
+    "faltan": []
+   },
+   {
+    "id": "banco-03",
+    "estado": "dicho",
+    "accion": "traducir",
+    "motivo": null,
+    "paso_fallido": null,
+    "anticipada": true,
+    "ms": {
+     "decidir": 3120.4,
+     "traducir_anticipada": 2338.6,
+     "guardas": 17.4,
+     "critico": 2263.9,
+     "total": 5401.8
+    },
+    "salida": "¿Umayki nanasunkichu?"
+   }
+  ]
+ }
+}
