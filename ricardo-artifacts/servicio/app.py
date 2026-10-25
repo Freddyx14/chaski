@@ -192,6 +192,58 @@ def resumen(turnos: str = Form(...), rol: str = Form("personal")):
     return {**r.model_dump(), "texto_para_decir": texto_para_decir(r)}
 
 
+@aplicacion.post("/medicamento")
+async def medicamento(imagen: UploadFile = File(...), dicho: str = Form(""),
+                      con_audio: bool = Form(True)):
+    """Foto de una caja o receta -> qué es, para qué sirve, y Chaski diciéndolo en chanka.
+
+    Es `/ver` + `/turno/enfermera` en una sola llamada, para que la app no tenga
+    que encadenar tres peticiones desde el teléfono. Lo que se traduce y se dice
+    es el «para qué sirve» más la indicación cuando la posología está; ambos
+    pasan por la auditoría igual que cualquier otro texto.
+
+    Si la posología no estaba escrita, `faltan` dice qué pedirle a la enfermera
+    y no se dice ninguna dosis. Nunca se deduce una.
+    """
+    import base64
+
+    from servicio.flujo import turno_de_la_enfermera
+
+    try:
+        lectura = como_json(leer(await imagen.read(), dicho_por_la_enfermera=dicho or None))
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+    partes = [lectura.get("para_que_sirve") or ""]
+    if lectura.get("indicacion"):
+        partes.append(lectura["indicacion"])
+    para_decir = " ".join(p for p in partes if p).strip()
+
+    salida = {"lectura": lectura, "castellano": para_decir}
+    if not para_decir:
+        salida["error"] = "no se pudo leer nada seguro de la imagen"
+        return salida
+
+    try:
+        turno = turno_de_la_enfermera(para_decir, modo_ensayo=True, rapido=True,
+                                      con_audio=con_audio)
+    except Exception as e:
+        salida["error"] = f"{type(e).__name__}: {e}"
+        return salida
+
+    salida.update({
+        "quechua": turno.get("quechua"),
+        "retraduccion": turno.get("retraduccion"),
+        "aprobado_por_auditoria": turno.get("aprobado_por_auditoria"),
+        "motivo": turno.get("motivo"),
+        "aviso": turno.get("aviso"),
+        "se_dice": turno.get("se_dice"),
+        "audio_wav_b64": turno.get("audio_wav_b64"),
+        "ms": turno.get("total_ms"),
+    })
+    return salida
+
+
 @aplicacion.get("/corregir")
 def pagina_corregir():
     return FileResponse(AQUI / "static" / "corregir.html")
