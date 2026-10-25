@@ -112,12 +112,12 @@ def stage(pid):
             '<div class="sum" id="s-2"><div class="sh">Para llevar a casa</div><div class="sb qtxt">Sapa pusaq horasmanta huk pastillata upyay…</div></div>'
             '<div class="sum" id="s-3"><div class="sh">Palabras nuevas</div><div class="gl"><span>upyay · tomar</span><span>pusaq · ocho</span><span>nanan · duele</span></div></div>' + MOCK, "Resumen")
     if pid == "nums":
-        return ('<div class="nrow" id="n1" ' + BLUR + '><b>183 / 184</b><span>seeded errors caught · 100% of the critical ones · ~3 s per check</span></div>'
+        return ('<div class="nrow" id="n1" ' + BLUR + '><b>99.5%</b><span>of 184 seeded errors caught · 100% of the critical ones · ~3 s per check</span></div>'
                 '<div class="nrow" id="n2" ' + BLUR + '><b>54% → 41%</b><span>word errors, on a speaker the model never heard</span></div>'
-                '<div class="nrow" id="n3" ' + BLUR + '><b>21 / 22</b><span>times it knew who was speaking, in full voice consultations</span></div>'
+                '<div class="nrow" id="n3" ' + BLUR + '><b>95%</b><span>of the time it knew who was speaking, in full voice consultations (21 of 22)</span></div>'
                 '<div class="src" id="n-src">evals/ in github.com/Freddyx14/chaski · every number has its results file</div>')
     if pid == "end":
-        return ('<div class="stack" id="k1">Claude Opus · Sonnet · Haiku</div><div class="stack" id="k2">Cartesia</div>'
+        return ('<div class="stack" id="k1">Claude Opus · Sonnet</div><div class="stack" id="k2">Cartesia</div>'
                 '<div class="stack" id="k3">Meta MMS, fine-tuned on our data</div>'
                 '<div class="logo big2" id="end-logo"><img src="assets/img/reposo.png"><b>Chaski</b>'
                 '<i>A Quechua interpreter for rural health workers</i></div>')
@@ -132,7 +132,7 @@ for p in DATA["pages"]:
 
 caps_html = "".join(f'<div class="cap clip" id="cap{i}" {win(c["t0"] - 0.05, c["out"])}>' +
                     "".join(f'<span class="w" data-t="{w["t"]:.3f}">{E(w["w"])}</span>' for w in c["words"]) + "</div>" for i, c in enumerate(CAPS))
-hud_labels = "".join(f'<div class="blab clip" {win(p["start"], p["end"])}>{E(p["label"])}</div>' for p in DATA["pages"] if p["id"] != "her")
+hud_labels = "".join(f'<div class="blab clip" {win(p["start"], p["end"])}>{E(p["label"])}</div>' for p in DATA["pages"] if p["id"] not in ("her", "end"))
 
 page = f'''<!doctype html>
 <html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=1920, height=1080" />

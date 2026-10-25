@@ -1,7 +1,7 @@
 {
  "title": "Chaski — Devpost demo",
  "bpm": 84,
- "duration": 159.33,
+ "duration": 175.27,
  "lufs": -14.0,
  "true_peak": -1.0,
  "chords": [
@@ -12,69 +12,69 @@
  ],
  "marks": {
   "mama": 0.0,
-  "v01": 21.157,
-  "v02": 32.857,
-  "v03": 41.917,
-  "think": 47.397,
-  "v04": 47.697,
-  "q_b3": 59.197,
-  "pac": 62.997,
-  "v05": 69.237,
-  "pac_es": 71.537,
-  "v06": 79.657,
-  "v07": 89.037,
-  "v08": 97.877,
-  "q_em": 106.847,
-  "v09": 108.531,
-  "v10": 117.271,
-  "v11": 131.291,
-  "v12": 146.831,
-  "end": 146.531,
-  "TOTAL": 159.33,
-  "MAMA": 20.757333,
-  "w_nine": 22.597,
-  "w_seven": 26.357,
-  "w_built": 31.477,
-  "w_hands": 33.897,
-  "w_who": 35.337,
-  "w_lang": 40.697,
-  "w_opus": 48.097,
-  "w_checks": 53.057,
-  "w_second": 56.017,
-  "w_fine": 72.757,
-  "w_asks": 82.297,
-  "w_repeat": 86.617,
-  "w_disap": 92.557,
-  "w_catch": 94.357,
-  "w_mother8": 103.477,
-  "w_photo": 108.931,
-  "w_reads": 111.171,
-  "w_yes": 114.771,
-  "w_quy9": 116.131,
-  "w_note": 118.231,
-  "w_home": 120.791,
-  "w_words": 122.631,
-  "w_confirms": 125.191,
-  "w_approves": 127.351,
-  "w_pilpi": 129.751,
-  "w_184": 132.131,
-  "w_54": 137.531,
-  "w_2122": 144.251,
-  "w_built12": 147.391,
-  "w_cartesia": 148.191,
-  "w_meta": 149.151,
-  "w_chaski12": 152.911,
+  "v01": 27.173,
+  "v02": 46.633,
+  "v03": 55.693,
+  "think": 61.173,
+  "v04": 61.473,
+  "q_b3": 72.973,
+  "pac": 76.773,
+  "v05": 83.013,
+  "pac_es": 85.313,
+  "v06": 93.433,
+  "v07": 102.813,
+  "v08": 111.653,
+  "q_em": 120.623,
+  "v09": 122.307,
+  "v10": 131.047,
+  "v11": 145.067,
+  "v12": 162.767,
+  "end": 162.467,
+  "TOTAL": 175.27,
+  "MAMA": 26.773333,
+  "w_nine": 30.693,
+  "w_seven": 40.053,
+  "w_built": 45.293,
+  "w_hands": 47.673,
+  "w_who": 49.113,
+  "w_lang": 54.473,
+  "w_opus": 61.873,
+  "w_checks": 66.833,
+  "w_second": 69.793,
+  "w_fine": 86.533,
+  "w_asks": 96.073,
+  "w_repeat": 100.393,
+  "w_disap": 106.333,
+  "w_catch": 108.133,
+  "w_mother8": 117.253,
+  "w_photo": 122.707,
+  "w_reads": 124.947,
+  "w_yes": 128.547,
+  "w_quy9": 129.907,
+  "w_note": 132.007,
+  "w_home": 134.567,
+  "w_words": 136.407,
+  "w_confirms": 138.967,
+  "w_approves": 141.127,
+  "w_pilpi": 143.527,
+  "w_184": 145.947,
+  "w_54": 153.627,
+  "w_2122": 160.507,
+  "w_built12": 163.327,
+  "w_cartesia": 164.127,
+  "w_meta": 165.087,
+  "w_chaski12": 168.847,
   "her": 0.0,
-  "why": 20.857,
-  "hands": 32.557,
-  "instr": 41.617,
-  "pat": 62.597,
-  "ask": 79.357,
-  "moment": 88.737,
-  "emg": 97.577,
-  "rx": 108.231,
-  "sum": 116.971,
-  "nums": 130.991
+  "why": 26.873,
+  "hands": 46.333,
+  "instr": 55.393,
+  "pat": 76.373,
+  "ask": 93.133,
+  "moment": 102.513,
+  "emg": 111.353,
+  "rx": 122.007,
+  "sum": 130.747,
+  "nums": 144.767
  },
  "shots": [
   {
@@ -82,7 +82,7 @@
    "at": "her",
    "in": "open",
    "field": "dark",
-   "hold": 20.46,
+   "hold": 26.47,
    "idea": "Her words"
   },
   {
@@ -90,7 +90,7 @@
    "at": "why",
    "in": "cut",
    "field": "light",
-   "hold": 11.3,
+   "hold": 19.06,
    "idea": "Why we built it"
   },
   {
@@ -162,7 +162,7 @@
    "at": "nums",
    "in": "cut",
    "field": "dark",
-   "hold": 15.14,
+   "hold": 17.3,
    "idea": "Measured, not claimed"
   },
   {
@@ -171,7 +171,7 @@
    "in": "cut",
    "field": "light",
    "hold": 12.4,
-   "idea": "Built with"
+   "idea": "The name"
   }
  ],
  "camera": {
@@ -200,73 +200,73 @@
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v01.wav",
-   "at": 21.157
+   "at": 27.173
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v02.wav",
-   "at": 32.857
+   "at": 46.633
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v03.wav",
-   "at": 41.917
+   "at": 55.693
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v04.wav",
-   "at": 47.697
+   "at": 61.473
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v05.wav",
-   "at": 69.237
+   "at": 83.013
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v06.wav",
-   "at": 79.657
+   "at": 93.433
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v07.wav",
-   "at": 89.037
+   "at": 102.813
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v08.wav",
-   "at": 97.877
+   "at": 111.653
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v09.wav",
-   "at": 108.531
+   "at": 122.307
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v10.wav",
-   "at": 117.271
+   "at": 131.047
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v11.wav",
-   "at": 131.291
+   "at": 145.067
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v12.wav",
-   "at": 146.831
+   "at": 162.767
   },
   {
    "type": "sample",
@@ -280,80 +280,80 @@
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/quy/b3a-cut.wav",
-   "at": 59.197,
+   "at": 72.973,
    "gain_db": -2
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/paciente-p18-064.wav",
-   "at": 62.997
+   "at": 76.773
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/emg-mama.wav",
-   "at": 106.847,
+   "at": 120.623,
    "gain_db": 1
   },
   {
    "type": "whoosh",
-   "at": 20.807,
+   "at": 26.823,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 32.507000000000005,
+   "at": 46.283,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 41.567,
+   "at": 55.343,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 62.547000000000004,
+   "at": 76.32300000000001,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 79.307,
+   "at": 93.083,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 88.687,
+   "at": 102.46300000000001,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 97.527,
+   "at": 111.303,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 108.181,
+   "at": 121.95700000000001,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 116.921,
+   "at": 130.697,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 130.941,
+   "at": 144.71699999999998,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 146.481,
+   "at": 162.417,
    "gain_db": -16
   },
   {
    "type": "blip",
-   "at": 71.537,
+   "at": 85.313,
    "notes": [
     0
    ],
@@ -361,7 +361,7 @@
   },
   {
    "type": "blip",
-   "at": 106.847,
+   "at": 120.623,
    "notes": [
     0
    ],
@@ -369,7 +369,7 @@
   },
   {
    "type": "blip",
-   "at": 93.157,
+   "at": 106.93299999999999,
    "notes": [
     12,
     7,

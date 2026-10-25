@@ -89,7 +89,7 @@ P = [
     ("rx", t["v09"] - 0.3, "Prescription by voice", ""),
     ("sum", t["v10"] - 0.3, "Every visit teaches it", ""),
     ("nums", t["v11"] - 0.3, "Measured, not claimed", ""),
-    ("end", t["v12"] - 0.3, "Built with", ""),
+    ("end", t["v12"] - 0.3, "The name", ""),
 ]
 pages = []
 for i, (pid, st, lab, who) in enumerate(P):
@@ -116,8 +116,11 @@ def srt(path, off, cut):
     return out
 
 
-mama_subs = srt(CLIPS / "VIDEO-01_presentacion-nombre_16s.en.srt", 0.0, 8.2) + \
-            srt(CLIPS / "PITCH-B1_problema-profesionales-costa_16s.en.srt", 8.2, 12.5)
+_ms = json.loads((ROOT / "mama_subs.json").read_text())   # from recut_mama.py: pauses removed, sentences complete
+mama_subs = []
+for i, m in enumerate(_ms):                               # each subtitle holds until the next one (she keeps talking)
+    nxt = _ms[i + 1]["t0"] - 0.05 if i + 1 < len(_ms) else MAMA - 0.2
+    mama_subs.append({"t0": m["t0"], "t1": round(max(m["t0"] + 0.5, nxt), 3), "text": m["text"]})
 
 ev = dict(t)
 ev.update({
@@ -132,7 +135,7 @@ ev.update({
     "w_photo": wt("v09", "photo"), "w_reads": wt("v09", "reads"), "w_yes": wt("v09", "yes"), "w_quy9": wt("v09", "Quechua"),
     "w_note": wt("v10", "note"), "w_home": wt("v10", "home"), "w_words": wt("v10", "words"),
     "w_confirms": wt("v10", "confirms"), "w_approves": wt("v10", "approves"), "w_pilpi": wt("v10", "learns"),
-    "w_184": wt("v11", "hundred"), "w_54": wt("v11", "fifty-four"), "w_2122": wt("v11", "twenty-one"),
+    "w_184": wt("v11", "hundred"), "w_54": wt("v11", "fifty-four"), "w_2122": wt("v11", "ninety-five"),
     "w_built12": wt("v12", "Claude"), "w_cartesia": wt("v12", "Cartesia"), "w_meta": wt("v12", "Meta"), "w_chaski12": wt("v12", "Chaski."),
 })
 (ROOT / "data.js").write_text("window.DATA = " + json.dumps({"pages": pages, "caps": caps, "mama": mama_subs, "ev": ev}, ensure_ascii=False) + ";\n")
