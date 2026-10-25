@@ -327,6 +327,24 @@ def resumen(turnos: str = Form(...), rol: str = Form("personal")):
     return {**r.model_dump(), "texto_para_decir": texto_para_decir(r)}
 
 
+@aplicacion.post("/receta")
+async def receta(imagen: UploadFile = File(...), contexto: str = Form(""),
+                 dicho: str = Form("")):
+    """Foto de una caja o receta → la pregunta de confirmación a la enfermera.
+
+    Nada leído de una foto llega al paciente sin que la enfermera lo confirme:
+    Chaski lee, pregunta «¿se lo digo?» y deja la indicación en
+    `contexto.receta_pendiente`. El turno siguiente decide.
+    """
+    from chaski import servicio as interprete
+
+    try:
+        lectura = como_json(leer(await imagen.read(), dicho or None))
+        return interprete.receta(lectura, contexto, voz_fn=_voz_para_chaski)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.post("/medicamento")
 async def medicamento(imagen: UploadFile = File(...), dicho: str = Form(""),
                       con_audio: bool = Form(True)):
