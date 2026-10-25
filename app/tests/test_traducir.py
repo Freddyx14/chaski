@@ -136,3 +136,21 @@ def test_pensar_invalido_falla_en_vez_de_cambiar_calidad(monkeypatch):
     monkeypatch.setenv("CHASKI_PENSAR_TRADUCIR", "rapido")
     with pytest.raises(ValueError):
         traducir("Tome paracetamol", "spa", "quy", client=FakeClient(), glosario=[])
+
+
+def test_ejemplos_van_antes_del_texto_en_la_direccion_de_la_traduccion(monkeypatch):
+    monkeypatch.delenv("CHASKI_PENSAR_TRADUCIR", raising=False)
+    ej = [{"es": "¿Dónde le duele?", "quy": "¿Maypim nanan?"}]
+    c = FakeClient()
+    traducir("¿Le duele aquí?", "spa", "quy", client=c, glosario=[], ejemplos=ej)
+    cont = c.llamadas[0]["messages"][0]["content"]
+    assert "- ¿Dónde le duele? → ¿Maypim nanan?" in cont and cont.index("Ejemplos") < cont.index("<texto>")
+    c = FakeClient(texto="¿Dónde le duele?")
+    traducir("¿Maypim nanan?", "quy", "spa", client=c, glosario=[], ejemplos=ej)
+    assert "- ¿Maypim nanan? → ¿Dónde le duele?" in c.llamadas[0]["messages"][0]["content"]
+
+
+def test_sin_ejemplos_no_hay_bloque():
+    c = FakeClient()
+    traducir("Hola", "spa", "quy", client=c, glosario=[], ejemplos=[])
+    assert "Ejemplos" not in c.llamadas[0]["messages"][0]["content"]

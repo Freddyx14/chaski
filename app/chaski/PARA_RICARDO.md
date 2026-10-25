@@ -17,6 +17,7 @@ solo leen el formulario y llaman a una función. El crítico es **el mismo códi
 | `CHASKI_PENSAR_AGREGADOS` | pensamiento del paso «qué agregó» | `low` |
 | `CHASKI_PENSAR_TRADUCIR` | pensamiento del traductor Claude: `modelo`, `no`, `low`, `medium`, `high` | **`medium`** (D40: 0/92 términos fijos dañados, turno completo p50 8,3 s; `modelo` da mejor quechua pero 17 s) |
 | `CHASKI_TRADUCIR_ANTICIPADO` | traducir lo oído mientras Opus decide (pasa por las mismas barreras; si algo la rechaza, se traduce el pulido como antes) | `1`. Medido 22:29: p50 20,3 → 17,1 s y 2 → 1 bloqueo en 20 turnos |
+| `CHASKI_EJEMPLOS` | el traductor recibe como ejemplos las 5 frases revisadas por la enfermera más parecidas (D41) | `1`. 52,6 → 56,0 es→qu y 49,1 → 56,0 qu→es; turno 20/20 en 8,0 s |
 | `CHASKI_NLLB_URL` | tu NLLB; sin ella traduce Claude. ⚠️ Medido 22:29 en 20 turnos reales: NLLB dejó caer una negación, «con agua», un embarazo y una parte del cuerpo; las barreras lo frenaron, así que el paciente recibe «no pude» en 1 de cada 3 turnos (Claude: 1 de 20). **Recomendado: vacía** | vacía |
 
 Los `PENSAR` por defecto bajaron el crítico de p50 9 s a ~2-3 s sin perder atrapados (24-oct). `modelo` deja el

@@ -219,12 +219,29 @@ def candidatos_servibles(texto_es: str) -> list[dict]:
     return [c for c in b.candidatos(texto_es) if servible(b.por_id(c["id"]))]
 
 
+def ejemplos_env() -> bool:
+    """CHASKI_EJEMPLOS: give the translator the nurse's reviewed phrases as examples (1/0). Moat step 1."""
+    return os.environ.get("CHASKI_EJEMPLOS", "1").strip() not in ("0", "no", "false", "")
+
+
+def ejemplos_para(texto: str, idioma: Idioma) -> list[dict] | None:
+    """Reviewed examples for this text, or None. Retrieval failing never breaks a turn: it just translates without."""
+    if not ejemplos_env() or not texto.strip():
+        return None
+    try:
+        from chaski import banco as b
+        return b.ejemplos_revisados(texto, idioma) or None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def dependencias(client: anthropic.Anthropic, motor: Motor = "claude", modelo_principal: str | None = None,
                  modelo_critico: str | None = None) -> dict:
     """The real wiring: `interpretar(turno, contexto, **dependencias(client))`."""
     return {
         "client": client,
-        "traducir_fn": lambda texto, de, a: traducir(texto, de, a, motor=motor, client=client),
+        "traducir_fn": lambda texto, de, a: traducir(texto, de, a, motor=motor, client=client,
+                                                     ejemplos=ejemplos_para(texto, de)),
         "guardas_fn": guardas,
         "auditar_fn": auditor(client, modelo_critico),
         "banco_fn": frase_servible,

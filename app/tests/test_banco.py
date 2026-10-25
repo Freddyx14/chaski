@@ -231,3 +231,14 @@ def test_modelo_real_entiende_parafrasis_coloquial():
     assert "emg-dolor-donde" in [it["id"] for it, _ in b.buscar("a ver, ¿dónde es el dolor, mamita?", k=5)]
     assert b.buscar("¿tiene fiebre?", k=1)[0][0]["id"] == "emg-fiebre"
     assert b.mejor("¿tiene seguro integral SIS?") is None
+
+
+def test_ejemplos_revisados_solo_revisados_y_por_lado(monkeypatch):
+    items = [{"id": "a", "es": "¿Dónde le duele?", "quy": "¿Maypim nanan?", "revisado": True, "tags": []},
+             {"id": "b", "es": "¿Dónde le duele la cabeza?", "quy": "¿Umaykichu nanan?", "revisado": False, "tags": []},
+             {"id": "c", "es": "Siéntese", "quy": "", "revisado": True, "tags": []}]
+    monkeypatch.setattr(mod, "cargar_items", lambda *a, **k: items)
+    monkeypatch.setattr(mod, "_revisados", {})
+    monkeypatch.setattr(mod.Banco, "puntajes", lambda self, texto, modo="hibrido": mod.Lexico(self.textos).puntajes(texto))
+    assert mod.ejemplos_revisados("¿le duele?", "spa") == [{"es": "¿Dónde le duele?", "quy": "¿Maypim nanan?"}]
+    assert mod.ejemplos_revisados("maypim", "quy") == [{"es": "¿Dónde le duele?", "quy": "¿Maypim nanan?"}]

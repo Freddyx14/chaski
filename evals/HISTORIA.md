@@ -75,6 +75,22 @@ Opus decide el resto: ~0,8 s menos en promedio. El umbral está ajustado sobre s
 un número para el pitch. Veredicto: **no reemplaza a Opus**; sirve como respaldo si Opus falla, y como primer filtro
 cuando confía mucho.
 
+### 2d · El foso, paso 1: las frases de la enfermera como ejemplos (dom 25-oct, 00:15)
+
+Traductor del producto (Sonnet 5 medium), las 5 más parecidas por búsqueda híbrida, filtro contra fugas (iguales,
+referencias y coseno ≥ 0,92 fuera). Archivo `evals/moat/resultados/`, script `evals/moat/ejemplos.py`.
+
+| Ejemplos | Familias es→qu | Familias qu→es | 30 de Ricardo (saludos, 1 referencia) |
+|---|---|---|---|
+| Ninguno | 52,6 | 49,1 | 48,3 |
+| **Las 24 de la enfermera** | **56,0** | **56,0** | 42,6 |
+| Las 286 verificadas | 53,3 | 56,0 | 40,4 |
+| La enfermera, solo si parecido ≥ 0,45 | 52,5 | 54,5 | 45,0 |
+
+Turno completo con los ejemplos (20 turnos reales): **20/20 dichos, p50 8,0 s, p95 10,5 s** (sin ellos: 19/20, 8,3 s,
+14,3 s). Queda prendido (D41). Por qué bajan las de Ricardo: los ejemplos enseñan el quechua de la zona, y esas 30
+vienen de otra fuente y variedad; las de las familias son de la región y tienen ~5 referencias, por eso mandan.
+
 ## 3 · ¿Encuentra la frase verificada correcta? (RAG, 76 consultas)
 
 | Método | Acierta a la primera | Entre las 5 primeras |

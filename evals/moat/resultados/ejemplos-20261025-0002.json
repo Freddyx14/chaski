@@ -1,0 +1,2285 @@
+{
+ "familias": {
+  "memoria_descartada_por_fuga": 3,
+  "enfermera_umbral": {
+   "chrf2": 52.51,
+   "b4_frenadas": 4,
+   "ms_p50": 2637,
+   "memoria": 21,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Unullawanraq upyay, ama tewanchu.",
+     "ejemplos": []
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Qanchis punchawmi tratamiento kan",
+     "ejemplos": []
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Kontrolnikiqa lunes p'unchawmi kanqa.",
+     "ejemplos": []
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Mana mikuspayki hamuy.",
+     "ejemplos": [
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "Huk killamanta kutiykamuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Sichus yawar qhichaykuptiki, utqalla hamuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Anchata fiebreyoq kaspaykiqa, hamuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "Wawa mana kuyukuptinqa, hamuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "¿Haykakmanta nanan?",
+     "ejemplos": [
+      "emg-dolor-que",
+      "emg-desde-cuando",
+      "emg-cabeza",
+      "emg-abdomen"
+     ]
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "¿Maykin nanan?",
+     "ejemplos": [
+      "emg-dolor-que",
+      "emg-abdomen",
+      "emg-cabeza"
+     ]
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "¿Ruphasunkichu?",
+     "ejemplos": [
+      "emg-mareos"
+     ]
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Presionniykita qhawasqayki",
+     "ejemplos": [
+      "emg-via",
+      "emg-suero"
+     ]
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Hatunta samay, allichu.",
+     "ejemplos": [
+      "emg-respira"
+     ]
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "Treinta y nueve graduswanmi rupakuchkan (qatunta ruphakuyninwan kachkan).",
+     "ejemplos": []
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Askha yakuta quy",
+     "ejemplos": []
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "Chunka pastillata, mana entero pastillatachu",
+     "ejemplos": []
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Iskay kutita sapa punchaw, tutamantapas tutapas",
+     "ejemplos": []
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "Resultadoqa kimsa p'unchawmanta chayamunqa",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta upyaykuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Omeprazolta upyay manaraq imatapas mikuspayki.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Sulfato ferrosota upyaykuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Ácido fólico-ta upyay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metforminata tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartanta upyay.",
+     "ejemplos": []
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamolta hapiy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamina C-ta upyaykuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Jarabeta ubyay",
+     "ejemplos": [
+      "emg-senale",
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tableta uqyay.",
+     "ejemplos": []
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Ampollata churasqayki.",
+     "ejemplos": [
+      "emg-suero",
+      "emg-via"
+     ]
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Churaykuy kimsa gotasta",
+     "ejemplos": []
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Huk kucharachallan jarabeta",
+     "ejemplos": []
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "Pichqa pachak miligramoyoq pastilla",
+     "ejemplos": []
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Doctorqa qamta qhawasunki",
+     "ejemplos": []
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Doctoraqa qamta atiendesunki.",
+     "ejemplos": []
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Enfermeraqa willasunkim",
+     "ejemplos": []
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Obstetra qamta qhawasunqa",
+     "ejemplos": []
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "Postaman riy",
+     "ejemplos": []
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Hospitalman apasaqku.",
+     "ejemplos": []
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Presionniykitam tupasqayki",
+     "ejemplos": []
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Qamqa diabetes unquyniyuqmi kanki.",
+     "ejemplos": []
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qamqa anemiayuqmi kanki",
+     "ejemplos": []
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Controlniykipaq hamuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kayqa recetayki",
+     "ejemplos": []
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Huknintawan yupay chunkakama",
+     "ejemplos": []
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Semanapi kaq p'unchaykunata nisunki, lunesmanta domingokama.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "Pastillata tutamantapi, chisipi, tutapipas tomay.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Pastillata sapa pusaq horasmanta upyay.",
+     "ejemplos": []
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Huk semanamanta hamunki kaqmanta.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Sapa pusaq horamanta huk pastillata tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Mikuyta tukuspa, pastillata upyay.",
+     "ejemplos": []
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Ama pastillata saqenkichu, allinllaña kasuptikipas",
+     "ejemplos": []
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Carnenta apamuy",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "¿Upyachkankichu huk pastillata?",
+     "ejemplos": [
+      "emg-medicamento-tomo"
+     ]
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "¿Imamantapas pukyupakunkichu?",
+     "ejemplos": [
+      "emg-alergia"
+     ]
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "¿Hayqa huatayoc kanki?",
+     "ejemplos": [
+      "emg-edad"
+     ]
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofenota tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilinata upyakuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Suero oralta qaraykuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "Pichqa mililitro jarabeta",
+     "ejemplos": []
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Chunka tablitamanta",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Sapa chunka iskayniyuq horamanta pastillata upyay",
+     "ejemplos": []
+    }
+   ]
+  },
+  "verificadas_umbral": {
+   "chrf2": 52.38,
+   "b4_frenadas": 0,
+   "ms_p50": 2469,
+   "memoria": 283,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Unuwan upyaykuy, ama tewanqa.",
+     "ejemplos": [
+      "cmp-187"
+     ]
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Qanchis punchaw hampikuyninki kanqa",
+     "ejemplos": []
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Kontrolnikiqa lunes punchawmi kanqa.",
+     "ejemplos": []
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Hamunki ama mikuspa",
+     "ejemplos": [
+      "cmp-196",
+      "cmp-212",
+      "cmp-211",
+      "cmp-199",
+      "ric-68"
+     ]
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "Hamuq killata kutimuy.",
+     "ejemplos": [
+      "cmp-191"
+     ]
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Yawar hamuptinqa, kasqanpacha hamuy.",
+     "ejemplos": [
+      "cmp-217",
+      "ric-80",
+      "cmp-092",
+      "cmp-202",
+      "cmp-095"
+     ]
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Sichus qhaqya rupay (fiebre alta) kanki chayqa, hamuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "Sichus wawaykichu mana kuyurinchu chayqa, hamuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "¿Haykakmanta nanasunki?",
+     "ejemplos": [
+      "emg-dolor-que",
+      "cmp-164",
+      "cmp-058",
+      "emg-desde-cuando",
+      "cmp-169"
+     ]
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "¿Maypin nanasunki?",
+     "ejemplos": [
+      "emg-dolor-que",
+      "cmp-058",
+      "cmp-154",
+      "cmp-164",
+      "cmp-169"
+     ]
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "¿Ruphasunkichu?",
+     "ejemplos": [
+      "emg-mareos",
+      "cmp-116",
+      "cmp-038",
+      "cmp-077",
+      "cmp-013"
+     ]
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Presionniykita jap'isqayki",
+     "ejemplos": [
+      "cmp-053",
+      "cmp-218",
+      "cmp-221",
+      "cmp-216",
+      "emg-via"
+     ]
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Samay uk'umanta, ama hinachu kaspa",
+     "ejemplos": [
+      "cmp-170",
+      "cmp-153",
+      "cmp-163",
+      "emg-respira",
+      "cmp-147"
+     ]
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "Kimsa chunka isqunniyuqmi ruphayniyki kachkan.",
+     "ejemplos": []
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Ashka mateta qonayki.",
+     "ejemplos": [
+      "cmp-189",
+      "cmp-187",
+      "cmp-198",
+      "cmp-150"
+     ]
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "Kuskan pastillallata, ama tukuyninta.",
+     "ejemplos": [
+      "ric-93"
+     ]
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Iskay cutita sapa punchay, tutamanta hinaspa tuta",
+     "ejemplos": [
+      "cmp-086",
+      "cmp-033",
+      "cmp-093",
+      "cmp-097"
+     ]
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "Resultaduyki kinsa p'unchawmanta chayamunqa",
+     "ejemplos": [
+      "cmp-191"
+     ]
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta upyay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Omeprazolta ama mikuspa tomay.",
+     "ejemplos": [
+      "cmp-196"
+     ]
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Upyaykuy sulfato ferrosota",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Ácido fólico nisqata upyay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta upyay.",
+     "ejemplos": [
+      "cmp-150"
+     ]
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metforminata upyaykuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartanta tomay.",
+     "ejemplos": [
+      "cmp-212",
+      "ric-68",
+      "ric-74",
+      "cmp-211",
+      "cmp-150"
+     ]
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamolta usaykuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamina C-ta tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Jarabeta ubyay",
+     "ejemplos": [
+      "cmp-212",
+      "cmp-150",
+      "cmp-211",
+      "ric-68",
+      "cmp-199"
+     ]
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tabletata tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Ampollata churasayki.",
+     "ejemplos": [
+      "cmp-216",
+      "emg-suero",
+      "emg-via",
+      "cmp-168",
+      "cmp-218"
+     ]
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Churaykuy kimsa chhurta",
+     "ejemplos": [
+      "cmp-212",
+      "cmp-152"
+     ]
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Huk kucharadita jarabeta.",
+     "ejemplos": [
+      "cmp-198"
+     ]
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "Pichqa pachak miligramos pastilla",
+     "ejemplos": [
+      "cmp-196"
+     ]
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Doctor qawasunki",
+     "ejemplos": [
+      "ric-53",
+      "ric-55",
+      "cmp-203"
+     ]
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Doctoraqa qamta qhawasunki.",
+     "ejemplos": [
+      "ric-53",
+      "ric-55",
+      "cmp-203"
+     ]
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Enfermera willasunki.",
+     "ejemplos": []
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Obstetra qhawasunki.",
+     "ejemplos": [
+      "cmp-211",
+      "cmp-195",
+      "cmp-194",
+      "ric-68",
+      "cmp-148"
+     ]
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "Postaman rinki.",
+     "ejemplos": [
+      "ric-81",
+      "cmp-211",
+      "ric-90",
+      "ric-96"
+     ]
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Hospitalman apasaqkum.",
+     "ejemplos": [
+      "cmp-203",
+      "cmp-221",
+      "ric-73",
+      "cmp-204"
+     ]
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Presionniykita tupasaq",
+     "ejemplos": [
+      "cmp-053"
+     ]
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Qam diabetes unquyniyuqmi kanki",
+     "ejemplos": []
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qamqa anemiayoqmi kachkanki",
+     "ejemplos": []
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Hamuy kontrolniykipaq.",
+     "ejemplos": [
+      "cmp-212",
+      "ric-68"
+     ]
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kaymi recetayki.",
+     "ejemplos": [
+      "cmp-198"
+     ]
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Hukmanta chunkakama yupay",
+     "ejemplos": [
+      "ric-68"
+     ]
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Nillay semana p'unchawkunata, lunesmanta domingokama",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "Pastillata hap'iy tutamanta, chisin, hinaspa tutapas.",
+     "ejemplos": [
+      "cmp-033",
+      "cmp-059"
+     ]
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Pastillata sapa pusaq horamanta tomay.",
+     "ejemplos": []
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Huk semanamanta kutiramuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Huk pastillata pusaq horamanta pusaq horaman jap'ikuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Mikuykuspaykimanta qipa, pastillata hapʼikuy.",
+     "ejemplos": []
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Ama pastillata saqenkichu, allinllaña tarikuspapas.",
+     "ejemplos": [
+      "cmp-227",
+      "cmp-229"
+     ]
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Carneykita apamuy.",
+     "ejemplos": [
+      "cmp-196"
+     ]
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "¿Upyachkankichu huk pastillata?",
+     "ejemplos": [
+      "emg-medicamento-tomo",
+      "cmp-233"
+     ]
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "¿Imamantapas ruparin pukyupakunki?",
+     "ejemplos": [
+      "emg-alergia"
+     ]
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "¿Hayqa watayoq kachkan?",
+     "ejemplos": [
+      "emg-edad"
+     ]
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofenota upyay",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilinata tomay",
+     "ejemplos": []
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Suero oral-ta qaray",
+     "ejemplos": [
+      "cmp-145"
+     ]
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "Pichqa mililitro jarabeta",
+     "ejemplos": []
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Chawpi tableta",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Pastillata sapa chunka iskayniyuq horamanta uqyay.",
+     "ejemplos": []
+    }
+   ]
+  }
+ },
+ "familias_inv": {
+  "memoria_descartada_por_fuga": 3,
+  "enfermera_umbral": {
+   "chrf2": 54.49,
+   "b4_frenadas": null,
+   "ms_p50": 1570,
+   "memoria": 21,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "El agua que tomo no está hervida.",
+     "ejemplos": [
+      "emg-respira",
+      "emg-medicamento-tomo",
+      "emg-mareos",
+      "emg-edad",
+      "emg-embarazo"
+     ]
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "Durante siete días te vas a tratar.",
+     "ejemplos": []
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "El día lunes vendrás a tu control",
+     "ejemplos": []
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "No debe venir habiendo comido.",
+     "ejemplos": [
+      "emg-respira",
+      "emg-suero",
+      "emg-mareos",
+      "emg-no-miedo"
+     ]
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Volverás en un mes",
+     "ejemplos": []
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "Si es sangre, corre rápido",
+     "ejemplos": []
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Si te agarra fiebre, vienes.",
+     "ejemplos": [
+      "emg-caida"
+     ]
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "Si el bebé no se mueve, venga.",
+     "ejemplos": [
+      "emg-embarazo",
+      "emg-caida",
+      "emg-no-miedo"
+     ]
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "¿Desde cuándo le duele?",
+     "ejemplos": [
+      "emg-cabeza",
+      "emg-dolor-que",
+      "emg-abdomen"
+     ]
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "¿Dónde le duele?",
+     "ejemplos": [
+      "emg-cabeza",
+      "emg-abdomen",
+      "emg-dolor-que"
+     ]
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "¿Tengo fiebre?",
+     "ejemplos": []
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "Voy a tomarle su presión.",
+     "ejemplos": [
+      "emg-no-miedo"
+     ]
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Respire bien, sin preocuparse.",
+     "ejemplos": [
+      "emg-respira",
+      "emg-mareos",
+      "emg-edad",
+      "emg-no-miedo",
+      "emg-embarazo"
+     ]
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Has estado con fiebre durante 19 días.",
+     "ejemplos": []
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Tomé mucha agua.",
+     "ejemplos": [
+      "emg-respira"
+     ]
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "Media pastilla, no la pastilla completa",
+     "ejemplos": [
+      "emg-no-miedo"
+     ]
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "Tomo dos veces, de día y en la noche.",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-respira",
+      "emg-no-moverse",
+      "emg-mareos",
+      "emg-suero"
+     ]
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "En tres días va a llegar el resultado",
+     "ejemplos": []
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Tomarás paracetamol",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-respira"
+     ]
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Tomarás el omeprazol sin haber comido.",
+     "ejemplos": [
+      "emg-caida"
+     ]
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "Tomarás el sulfato ferroso",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "Toma tu ácido fólico",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "Toma albendazol",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "Tómate la metformina",
+     "ejemplos": [
+      "emg-medicamento-tomo",
+      "emg-mareos"
+     ]
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "Tome losartán.",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-suero",
+      "emg-respira",
+      "emg-medicamento-tomo"
+     ]
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "Este salbutamol",
+     "ejemplos": []
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "Tome la vitamina [no se entiende]",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Tome el jarabe",
+     "ejemplos": [
+      "emg-medicamento-tomo",
+      "emg-respira",
+      "emg-desde-cuando"
+     ]
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Tomarás la tableta",
+     "ejemplos": []
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Le voy a poner la ampolla.",
+     "ejemplos": [
+      "emg-suero",
+      "emg-via",
+      "emg-no-moverse"
+     ]
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "Échese tres gotas.",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-embarazo",
+      "emg-respira",
+      "emg-mareos",
+      "emg-desde-cuando"
+     ]
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "Eche el jarabe en una cucharita.",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-caida",
+      "emg-respira",
+      "emg-suero",
+      "emg-no-moverse"
+     ]
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "Pastilla de quinientos miligramos",
+     "ejemplos": []
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "El doctor me va a ver.",
+     "ejemplos": []
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Esta doctora le va a ayudar",
+     "ejemplos": [
+      "emg-suero",
+      "emg-medicamento-tomo"
+     ]
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "La enfermera le dirá",
+     "ejemplos": [
+      "emg-senale"
+     ]
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "La obstetra te está llamando",
+     "ejemplos": []
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "Ve a la posta",
+     "ejemplos": []
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "Te voy a llevar al hospital",
+     "ejemplos": []
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "Le voy a medir la presión.",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-respira",
+      "emg-suero",
+      "emg-mareos"
+     ]
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Usted tiene diabetes",
+     "ejemplos": []
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "Usted tiene anemia",
+     "ejemplos": []
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "Vendrás para tu control",
+     "ejemplos": []
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí está tu receta.",
+     "ejemplos": []
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Contar del uno al diez",
+     "ejemplos": [
+      "emg-suero",
+      "emg-mareos"
+     ]
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Desde el mes, hasta el sol",
+     "ejemplos": []
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Tome la pastilla de día y solo en la noche.",
+     "ejemplos": [
+      "emg-medicamento-tomo",
+      "emg-suero"
+     ]
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Tomé la pastilla a la hora indicada.",
+     "ejemplos": [
+      "emg-medicamento-tomo",
+      "emg-mareos",
+      "emg-alergia",
+      "emg-desde-cuando",
+      "emg-respira"
+     ]
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Regresarás en una semana",
+     "ejemplos": []
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "A las ocho horas, tome una pastilla.",
+     "ejemplos": [
+      "emg-mareos",
+      "emg-medicamento-tomo",
+      "emg-embarazo",
+      "emg-desde-cuando",
+      "emg-respira"
+     ]
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Después de comer tome las pastillas.",
+     "ejemplos": [
+      "emg-no-miedo",
+      "emg-caida"
+     ]
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "No dejes la pastilla aunque estés bien",
+     "ejemplos": []
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Trae un poco de carne",
+     "ejemplos": []
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "¿Qué pastilla ha tomado?",
+     "ejemplos": [
+      "emg-caida"
+     ]
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "Tal vez tengo alguna alergia",
+     "ejemplos": []
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "¿Cuántos años tiene?",
+     "ejemplos": [
+      "emg-respira",
+      "emg-no-miedo",
+      "emg-mareos",
+      "emg-suero",
+      "emg-desde-cuando"
+     ]
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Tomarás ibuprofeno",
+     "ejemplos": []
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Tomarás amoxicilina",
+     "ejemplos": []
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "Hoy, el suero en la boca.",
+     "ejemplos": []
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "Cinco mililitros de jarabe",
+     "ejemplos": [
+      "emg-caida"
+     ]
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "Media tableta",
+     "ejemplos": []
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Tome la pastillita cada doce horas.",
+     "ejemplos": [
+      "emg-medicamento-tomo",
+      "emg-mareos",
+      "emg-suero",
+      "emg-respira"
+     ]
+    }
+   ]
+  },
+  "verificadas_umbral": {
+   "chrf2": 53.13,
+   "b4_frenadas": null,
+   "ms_p50": 1575,
+   "memoria": 283,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "El agua que tomo no está tibia",
+     "ejemplos": [
+      "cmp-132",
+      "ric-57",
+      "ric-56",
+      "ric-76",
+      "ric-44"
+     ]
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "Durante siete días te vas a tratar",
+     "ejemplos": [
+      "cmp-033",
+      "cmp-134"
+     ]
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "Vendrás el día lunes para tu control.",
+     "ejemplos": [
+      "cmp-155",
+      "ric-36",
+      "cmp-214",
+      "ric-37",
+      "cmp-004"
+     ]
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "No has venido habiendo comido (viniste sin comer).",
+     "ejemplos": [
+      "ric-52",
+      "cmp-222",
+      "cmp-132",
+      "cmp-097",
+      "ric-57"
+     ]
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Volverá en un mes.",
+     "ejemplos": [
+      "cmp-155",
+      "ric-36",
+      "cmp-211",
+      "cmp-143",
+      "ric-37"
+     ]
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "Si es sangre, venga corriendo rápido.",
+     "ejemplos": [
+      "cmp-193",
+      "cmp-113",
+      "cmp-089",
+      "cmp-205",
+      "ric-94"
+     ]
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Cuando le agarre la fiebre, venga.",
+     "ejemplos": [
+      "cmp-004",
+      "cmp-168",
+      "cmp-042",
+      "cmp-097",
+      "cmp-236"
+     ]
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "Si el bebé no se mueve, venga",
+     "ejemplos": [
+      "cmp-007",
+      "ric-81",
+      "cmp-075",
+      "ric-92",
+      "cmp-234"
+     ]
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "¿Desde cuándo le duele?",
+     "ejemplos": [
+      "cmp-028",
+      "emg-cabeza",
+      "cmp-114",
+      "emg-dolor-que",
+      "cmp-027"
+     ]
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "¿Dónde le duele?",
+     "ejemplos": [
+      "cmp-028",
+      "emg-cabeza",
+      "cmp-114",
+      "emg-abdomen",
+      "emg-dolor-que"
+     ]
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "¿Tengo fiebre?",
+     "ejemplos": [
+      "cmp-224",
+      "cmp-222",
+      "cmp-225",
+      "cmp-104",
+      "cmp-043"
+     ]
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "Le voy a tomar su presión.",
+     "ejemplos": [
+      "cmp-211",
+      "ric-36",
+      "cmp-200",
+      "cmp-155",
+      "cmp-160"
+     ]
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Respire bien, sin preocuparse.",
+     "ejemplos": [
+      "ric-62",
+      "cmp-056",
+      "emg-respira",
+      "cmp-170",
+      "ric-92"
+     ]
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Has estado con fiebre durante 19 días.",
+     "ejemplos": []
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Toma mucha agua",
+     "ejemplos": [
+      "cmp-096",
+      "cmp-189",
+      "ric-76",
+      "ric-54",
+      "ric-98"
+     ]
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "Media pastilla, no la pastilla completa",
+     "ejemplos": [
+      "ric-36",
+      "cmp-200",
+      "cmp-155",
+      "cmp-160",
+      "cmp-215"
+     ]
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "Toma dos, de día y al anochecer.",
+     "ejemplos": [
+      "cmp-097",
+      "cmp-134",
+      "ric-76",
+      "cmp-129",
+      "ric-96"
+     ]
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "En tres días llegará el resultado",
+     "ejemplos": []
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Vas a tomar paracetamol.",
+     "ejemplos": [
+      "cmp-143",
+      "ric-54",
+      "ric-36",
+      "cmp-200",
+      "ric-80"
+     ]
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Tomará el omeprazol sin haber comido",
+     "ejemplos": [
+      "ric-94",
+      "cmp-075",
+      "emg-caida",
+      "ric-36",
+      "cmp-214"
+     ]
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "Tomarás el sulfato ferroso",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "Tomarás ácido fólico",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "Toma albendazol",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "Tome metformina",
+     "ejemplos": [
+      "ric-92",
+      "cmp-069",
+      "emg-medicamento-tomo",
+      "ric-58",
+      "cmp-188"
+     ]
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "Tómese el losartán",
+     "ejemplos": [
+      "cmp-143",
+      "cmp-200",
+      "ric-36",
+      "ric-66",
+      "ric-80"
+     ]
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "Este salbutamol",
+     "ejemplos": [
+      "cmp-143",
+      "ric-36",
+      "ric-54",
+      "cmp-206",
+      "cmp-155"
+     ]
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "Toma la vitamina c",
+     "ejemplos": []
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Tome el jarabe",
+     "ejemplos": [
+      "ric-92",
+      "ric-32",
+      "ric-33",
+      "ric-82",
+      "ric-57"
+     ]
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Tomarás la tableta",
+     "ejemplos": []
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Le voy a poner la ampolla.",
+     "ejemplos": [
+      "emg-suero",
+      "cmp-216",
+      "cmp-218",
+      "ric-34",
+      "emg-via"
+     ]
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "Échate tres gotas",
+     "ejemplos": [
+      "ric-92",
+      "ric-64",
+      "ric-43",
+      "cmp-045",
+      "cmp-095"
+     ]
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "Échale el jarabe en una cucharita.",
+     "ejemplos": [
+      "cmp-200",
+      "cmp-192",
+      "ric-36",
+      "ric-43",
+      "ric-76"
+     ]
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "La pastilla de 500 miligramos",
+     "ejemplos": [
+      "ric-37",
+      "cmp-042",
+      "cmp-168",
+      "cmp-128"
+     ]
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "El doctor me va a revisar.",
+     "ejemplos": [
+      "ric-55",
+      "ric-53"
+     ]
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Esta doctora le ayudará",
+     "ejemplos": [
+      "ric-55",
+      "ric-53",
+      "ric-92",
+      "ric-73",
+      "ric-72"
+     ]
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "La enfermera le va a avisar",
+     "ejemplos": [
+      "emg-senale",
+      "ric-68"
+     ]
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "La obstetra te va a revisar",
+     "ejemplos": []
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "Vas a ir a la posta.",
+     "ejemplos": [
+      "ric-36",
+      "cmp-155",
+      "cmp-143",
+      "cmp-211",
+      "ric-80"
+     ]
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "Le voy a llevar al hospital.",
+     "ejemplos": [
+      "cmp-203",
+      "cmp-204",
+      "cmp-221",
+      "ric-53"
+     ]
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "Te voy a medir la presión.",
+     "ejemplos": [
+      "ric-54",
+      "ric-80",
+      "ric-52",
+      "cmp-150",
+      "ric-50"
+     ]
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Resulta que tienes diabetes",
+     "ejemplos": []
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "Usted tiene anemia",
+     "ejemplos": []
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "Vienes para tu control.",
+     "ejemplos": [
+      "cmp-155",
+      "cmp-004",
+      "cmp-214"
+     ]
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí está tu receta",
+     "ejemplos": []
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Contar desde uno hasta diez",
+     "ejemplos": [
+      "ric-92",
+      "cmp-137",
+      "ric-58",
+      "cmp-182",
+      "ric-56"
+     ]
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Desde el mes pasado, hasta el día de hoy,",
+     "ejemplos": [
+      "cmp-191",
+      "cmp-213",
+      "cmp-103",
+      "cmp-099",
+      "ric-58"
+     ]
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Tome la pastilla en el día y en la noche",
+     "ejemplos": [
+      "cmp-086",
+      "cmp-134",
+      "cmp-097",
+      "ric-96",
+      "cmp-120"
+     ]
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Tome la pastilla a las ocho horas",
+     "ejemplos": [
+      "cmp-042",
+      "cmp-134",
+      "ric-92",
+      "cmp-129",
+      "cmp-202"
+     ]
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Vuelve en una semana.",
+     "ejemplos": [
+      "cmp-155"
+     ]
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "A las 8 horas tome una pastilla",
+     "ejemplos": [
+      "cmp-146",
+      "ric-76",
+      "cmp-120",
+      "cmp-129",
+      "cmp-134"
+     ]
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Después de comer, tome las pastillas.",
+     "ejemplos": [
+      "ric-36",
+      "cmp-155",
+      "cmp-200",
+      "cmp-196",
+      "cmp-215"
+     ]
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "No dejes la pastilla aunque estés bien.",
+     "ejemplos": []
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Tiene que traer su carne.",
+     "ejemplos": [
+      "cmp-197",
+      "cmp-202",
+      "cmp-200",
+      "cmp-198",
+      "cmp-192"
+     ]
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "¿Qué pastilla tomó?",
+     "ejemplos": [
+      "emg-caida",
+      "cmp-214"
+     ]
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "Somos alérgicos a algo.",
+     "ejemplos": []
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "¿Cuántos años tiene?",
+     "ejemplos": [
+      "cmp-095",
+      "cmp-099",
+      "cmp-046",
+      "ric-52",
+      "cmp-150"
+     ]
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Tomarás ibuprofeno",
+     "ejemplos": []
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Tomarás la amoxicilina",
+     "ejemplos": []
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "Hoy, el suero en su boca",
+     "ejemplos": []
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "Cinco mililitros de jarabe",
+     "ejemplos": [
+      "emg-caida",
+      "cmp-168"
+     ]
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "Media tableta",
+     "ejemplos": []
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Tome la pastillita a las doce horas.",
+     "ejemplos": [
+      "ric-58",
+      "cmp-072",
+      "cmp-129",
+      "ric-92",
+      "cmp-042"
+     ]
+    }
+   ]
+  }
+ },
+ "ricardo30": {
+  "memoria_descartada_por_fuga": 0,
+  "enfermera_umbral": {
+   "chrf2": 44.98,
+   "b4_frenadas": 0,
+   "ms_p50": 2092,
+   "memoria": 24,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "¿Allillanchu, mamay?",
+     "ejemplos": [
+      "emg-respira",
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "¡Allinllam kashani, taytáy!",
+     "ejemplos": []
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "Taytáy, ¿imaynalla kashanki?",
+     "ejemplos": [
+      "emg-nombre",
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Mamáy, allinllam kani",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "¿Imaynallan kashanki, taytay?",
+     "ejemplos": [
+      "emg-nombre",
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "¿Imaynallam kachkanki, mamay?",
+     "ejemplos": [
+      "emg-nombre",
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "¿Imaynallam kashankichik, señorakuna?",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin punchaw, doctor",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allin punchaw, doctora",
+     "ejemplos": []
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Chaskiykiyki, señor.",
+     "ejemplos": []
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Chaskiykichik, mamakuna",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allin punchay, mamay",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allin punchay, taytakuna",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allin punchaw, taytay",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Allin punchay, mamakuna.",
+     "ejemplos": []
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Haku, taytáy",
+     "ejemplos": []
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Pasaykamuy, señora",
+     "ejemplos": []
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Hamuychik, señorkuna",
+     "ejemplos": []
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Haku, mamakuna",
+     "ejemplos": []
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Tiyaykuy",
+     "ejemplos": []
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyaykuychik",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "¿Imatam munanki, mamáy?",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "¿Imatan munanki, taytáy?",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "¿Imapaqmi hamurqanki, mamay?",
+     "ejemplos": [
+      "emg-vomito"
+     ]
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "Imanasqataq hamurqanki, taytáy?",
+     "ejemplos": []
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "¿Imapi yanapayta atiykiman?",
+     "ejemplos": []
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "¿Imaynatan yanapaykiman?",
+     "ejemplos": []
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "¿Imapitaq yanapayta atiykiman?",
+     "ejemplos": []
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "¿Imapim yanapaykiman?",
+     "ejemplos": [
+      "emg-tranquilo"
+     ]
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "¿Yanapaykikimanchu?",
+     "ejemplos": []
+    }
+   ]
+  },
+  "verificadas_umbral": {
+   "chrf2": 39.73,
+   "b4_frenadas": 0,
+   "ms_p50": 1678,
+   "memoria": 286,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "¿Allinllachu, mamay?",
+     "ejemplos": [
+      "ric-69",
+      "cmp-148",
+      "cmp-240",
+      "cmp-149",
+      "cmp-033"
+     ]
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "¡Allinllam kashani, señor!",
+     "ejemplos": [
+      "ric-69",
+      "cmp-240",
+      "cmp-232",
+      "cmp-062",
+      "ric-90"
+     ]
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "Taytáy, ¿imaynataj kashanki?",
+     "ejemplos": [
+      "cmp-000",
+      "cmp-234",
+      "emg-nombre",
+      "cmp-223",
+      "cmp-014"
+     ]
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Mamáy, allinmi kashani",
+     "ejemplos": [
+      "ric-69",
+      "cmp-240",
+      "cmp-232",
+      "ric-48",
+      "ric-31"
+     ]
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "¿Imaynataj kashanki, taytay?",
+     "ejemplos": [
+      "cmp-000",
+      "cmp-234",
+      "emg-nombre",
+      "cmp-223",
+      "cmp-014"
+     ]
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "¿Imayna kashanki, mamáy?",
+     "ejemplos": [
+      "cmp-000",
+      "cmp-234",
+      "emg-nombre",
+      "cmp-223",
+      "cmp-014"
+     ]
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "¿Imaynan kashankichik, mamáykuna?",
+     "ejemplos": [
+      "cmp-000",
+      "ric-42",
+      "cmp-234"
+     ]
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin punchay, doctor",
+     "ejemplos": [
+      "ric-55",
+      "ric-53"
+     ]
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allin punchaw, doctora",
+     "ejemplos": [
+      "ric-55",
+      "ric-53"
+     ]
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Chaskiykim, taytáy",
+     "ejemplos": [
+      "ric-76",
+      "ric-31",
+      "ric-32",
+      "ric-67",
+      "ric-68"
+     ]
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Uyariykichikmi, mamáykuna",
+     "ejemplos": [
+      "ric-31",
+      "ric-76",
+      "ric-35",
+      "cmp-168",
+      "ric-66"
+     ]
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allin punchaw, señora",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allin punchaw, señorkuna",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allin punchaw, tayta",
+     "ejemplos": []
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Allin punchay, señorakuna",
+     "ejemplos": []
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Haykuy, taytáy",
+     "ejemplos": [
+      "ric-76",
+      "ric-67",
+      "ric-66",
+      "ric-96",
+      "ric-81"
+     ]
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Yaykamuy, mamáy",
+     "ejemplos": [
+      "ric-96",
+      "ric-76",
+      "ric-66",
+      "ric-31",
+      "cmp-212"
+     ]
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Haykuychik, taytakuna",
+     "ejemplos": [
+      "ric-76",
+      "ric-96",
+      "cmp-212",
+      "ric-31",
+      "ric-32"
+     ]
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Haykuychik, señoras",
+     "ejemplos": [
+      "ric-96",
+      "ric-66",
+      "ric-31",
+      "ric-76",
+      "cmp-212"
+     ]
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Tiyaykuy",
+     "ejemplos": [
+      "cmp-212"
+     ]
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyaykuychik.",
+     "ejemplos": [
+      "cmp-212"
+     ]
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "¿Imatan munanki, mamáy?",
+     "ejemplos": [
+      "ric-42",
+      "ric-43",
+      "ric-31",
+      "ric-45",
+      "ric-96"
+     ]
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "¿Imatam munanki, taytáy?",
+     "ejemplos": [
+      "ric-43",
+      "ric-76",
+      "ric-42",
+      "cmp-023",
+      "ric-31"
+     ]
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "¿Imarayku hamushanki, mamay?",
+     "ejemplos": [
+      "cmp-010",
+      "ric-77",
+      "ric-35",
+      "ric-36",
+      "ric-42"
+     ]
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "¿Imarayku hamushanqui tatay?",
+     "ejemplos": [
+      "cmp-010",
+      "ric-77",
+      "ric-35",
+      "ric-36",
+      "ric-34"
+     ]
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "¿Imapitaq yanapasqayki?",
+     "ejemplos": [
+      "ric-82"
+     ]
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "¿Imatam ruwayta atiyman qampaq?",
+     "ejemplos": [
+      "ric-82"
+     ]
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "¿Imapi yanapayta atiykiman?",
+     "ejemplos": [
+      "ric-30",
+      "ric-82",
+      "ric-72",
+      "ric-45",
+      "ric-44"
+     ]
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "¿Imapi yanapayta atiymankuchu?",
+     "ejemplos": [
+      "ric-30",
+      "ric-73",
+      "ric-72",
+      "emg-tranquilo",
+      "ric-82"
+     ]
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "¿Yanapayta atiymankuchu?",
+     "ejemplos": [
+      "ric-30",
+      "ric-45",
+      "ric-82",
+      "ric-44",
+      "ric-72"
+     ]
+    }
+   ]
+  }
+ }
+}

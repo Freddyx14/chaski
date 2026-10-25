@@ -368,3 +368,20 @@ def test_voz_que_falla_no_bloquea():
     res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
                       anticipar=False, voz_fn=rota, **r.kw())
     assert res.estado == "dicho_con_aviso" and res.audio_wav_b64 is None and "sin audio" in res.aviso
+
+
+def test_ejemplos_para_respeta_el_interruptor_y_no_rompe(monkeypatch):
+    from chaski import banco as b
+    from chaski import orquestador as o
+    monkeypatch.setattr(b, "ejemplos_revisados", lambda texto, idioma: [{"es": "x", "quy": "y"}])
+    monkeypatch.setenv("CHASKI_EJEMPLOS", "1")
+    assert o.ejemplos_para("hola", "spa") == [{"es": "x", "quy": "y"}]
+    monkeypatch.setenv("CHASKI_EJEMPLOS", "0")
+    assert o.ejemplos_para("hola", "spa") is None
+
+    def rota(texto, idioma):
+        raise RuntimeError("sin embeddings")
+
+    monkeypatch.setenv("CHASKI_EJEMPLOS", "1")
+    monkeypatch.setattr(b, "ejemplos_revisados", rota)
+    assert o.ejemplos_para("hola", "spa") is None

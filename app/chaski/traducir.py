@@ -121,10 +121,19 @@ def traducir_nllb(texto: str, de: Idioma, a: Idioma, url: str | None = None, tim
     return salida.strip()
 
 
+def bloque_ejemplos(ejemplos: list[dict] | None, de: Idioma) -> str:
+    """Reviewed pairs as examples, in the direction of the translation. Empty when there are none."""
+    if not ejemplos:
+        return ""
+    pares = "\n".join(f"- {x['es']} → {x['quy']}" if de == "spa" else f"- {x['quy']} → {x['es']}" for x in ejemplos)
+    return ("Ejemplos verificados por una hablante nativa de la zona (frases parecidas, ya revisadas). Úsalos para el "
+            f"vocabulario y el registro; no copies datos que el texto no dice:\n{pares}\n\n")
+
+
 def traducir_claude(client: anthropic.Anthropic, texto: str, de: Idioma, a: Idioma, modelo: str = MODELO,
-                    glosario: list[dict] | None = None) -> str:
+                    glosario: list[dict] | None = None, ejemplos: list[dict] | None = None) -> str:
     glosario = cargar_glosario() if glosario is None else glosario
-    contenido = f"<texto>\n{texto}\n</texto>"
+    contenido = f"{bloque_ejemplos(ejemplos, de)}<texto>\n{texto}\n</texto>"
     if glosario:
         lineas = "\n".join(f"- {g['castellano']} → {g['quechua']}" for g in glosario)
         contenido = f"Glosario revisado por una hablante nativa:\n{lineas}\n\n{contenido}"
@@ -145,7 +154,8 @@ def traducir_claude(client: anthropic.Anthropic, texto: str, de: Idioma, a: Idio
 
 
 def traducir(texto: str, de: Idioma, a: Idioma, motor: Motor = "claude", *, client: anthropic.Anthropic | None = None,
-             modelo: str = MODELO, glosario: list[dict] | None = None) -> TextoTraducido:
+             modelo: str = MODELO, glosario: list[dict] | None = None,
+             ejemplos: list[dict] | None = None) -> TextoTraducido:
     """Translate `texto` between spa and quy. `nllb` falls back to Claude; a Claude failure raises FalloMotor."""
     if de == a:
         return TextoTraducido(texto=texto, de=de, a=a, motor=motor, motor_pedido=motor)
@@ -158,6 +168,6 @@ def traducir(texto: str, de: Idioma, a: Idioma, motor: Motor = "claude", *, clie
         except FalloMotor as e:
             error = str(e)
     client = client or anthropic.Anthropic()
-    salida = traducir_claude(client, texto, de, a, modelo=modelo, glosario=glosario)
+    salida = traducir_claude(client, texto, de, a, modelo=modelo, glosario=glosario, ejemplos=ejemplos)
     return TextoTraducido(texto=salida, de=de, a=a, motor="claude", motor_pedido=motor,
                           respaldo=motor != "claude", error=error)

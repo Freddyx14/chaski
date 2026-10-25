@@ -36,6 +36,7 @@ from chaski import traducir as t  # noqa: E402
 
 K = 5
 UMBRAL_FUGA = 0.92
+UMBRAL_RELEVANCIA = 0.45  # `*_umbral` conditions: only examples this similar (hybrid score); none → no examples
 GLOS = "\n".join(f"- {x['castellano']} → {x['quechua']}" for x in t.cargar_glosario())
 
 
@@ -102,14 +103,19 @@ def main():
     out = {}
     for s, (de, a, filas) in sets().items():
         limpio, caidos = sin_fugas(todo, filas, cod)
-        pools = {"base": None, "enfermera": [it for it in limpio if it["enfermera"]], "verificadas": limpio}
+        pools = {"base": None, "enfermera": [it for it in limpio if it["enfermera"]], "verificadas": limpio,
+                 "enfermera_umbral": [it for it in limpio if it["enfermera"]],
+                 "verificadas_umbral": limpio}
+        solo = [x for x in sys.argv[1:] if x in pools]  # e.g. `enfermera_umbral` to run some conditions only
+        pools = {k: v for k, v in pools.items() if not solo or k in solo}
         lado = "es" if de == "spa" else "quy"
         out[s] = {"memoria_descartada_por_fuga": caidos}
         for cond, pool in pools.items():
             idx = indice(pool, lado, cod) if pool else None
 
             def uno(f):
-                ej = [it for it, _ in idx.buscar(f[0], k=K)] if idx else []
+                umbral = UMBRAL_RELEVANCIA if cond.endswith("_umbral") else -1.0
+                ej = [it for it, sc in idx.buscar(f[0], k=K) if sc >= umbral] if idx else []
                 ej = [next(p for p in pool if p["id"] == e["id"]) for e in ej]
                 for intento in range(3):
                     try:

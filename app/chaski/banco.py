@@ -277,6 +277,27 @@ def por_tag(tag: str) -> list[dict]:
     return banco().por_tag(tag)
 
 
+_revisados: dict[str, Banco] = {}
+EJEMPLOS_K = 5
+
+
+def ejemplos_revisados(texto: str, idioma: str, k: int = EJEMPLOS_K) -> list[dict]:
+    """The k reviewed pairs (revisado: true, with Quechua) closest to `texto`, as [{es, quy}], for the translator.
+
+    Moat step 1 (evals/moat/ejemplos.py, 24-oct 23:55): with the nurse's reviewed phrases as examples the product
+    translator went 52.6 → 56.0 chrF++ es→qu and 49.1 → 56.0 qu→es on the families' 62 unseen phrases. They teach the
+    region's Quechua more than the content, so no similarity threshold (one measured worse). `idioma` is the language of
+    `texto`: Spanish searches the Spanish side, Quechua the Quechua side.
+    """
+    lado = "es" if idioma == "spa" else "quy"
+    with _banco_lock:
+        if lado not in _revisados:
+            items = [it for it in cargar_items() if it.get("revisado") is True and str(it.get("quy", "")).strip()]
+            _revisados[lado] = Banco([{**it, "es": it[lado], "_es": it["es"]} for it in items])
+        idx = _revisados[lado]
+    return [{"es": it["_es"], "quy": it["quy"]} for it, _ in idx.buscar(texto, k=k)]
+
+
 def precargar() -> None:
     """Call at server start so the first real query doesn't pay the model load."""
     banco().vectores()
