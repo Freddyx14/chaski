@@ -23,9 +23,9 @@ and for patients. It doesn't just translate; it interprets:
 - **Asks back** once when something critical is missing ("where does it hurt?"), in the speaker's language.
 - **Answers the nurse** when the question is for Chaski ("what did she say?") instead of translating it to the patient.
 - **Emergency mode**: verified, pre-recorded triage questions that play instantly, no model in the loop.
-- **Prescription**: photo of the box or prescription → dose, frequency, days → spoken in Quechua → "can you repeat it?"
+- **Prescription by voice**: photo of the box or prescription → Chaski reads it back to the health worker ("I read: paracetamol 500 mg, one tablet every 8 hours. Shall I tell them?") → only after a spoken "yes" is it said in Quechua, through every check. A blurry photo makes it ask, never guess.
 - **Summary** for both sides, with the new Quechua words from that visit, so staff learn the language one patient at a time.
-- **Refuses to speak** when it can't verify what it's about to say, and tells the nurse exactly what didn't match.
+- **Asks instead of guessing**: when a check can't verify what it's about to say, Chaski never says the doubtful version. It asks the person who spoke to repeat, naming what it wasn't sure of ("I don't want to say a wrong dose — could you repeat it?"), in their own language.
 
 ## How we built it
 - **Ears and mouth (open models, fine-tuned):** Meta MMS language ID, Omnilingual ASR for Quechua, MMS-TTS for the
@@ -72,7 +72,7 @@ are wrong, so the system has to check itself and say when it can't.
 ## What's next for Chaski
 Native review of the full phrase bank with the nurses of the Pilpichaca health zone (10 more health posts), measuring
 the Quechua → Spanish direction, on-device models for posts without signal, and turning the visit summaries into a
-Quechua course built from each nurse's own patients.
+Quechua course built from each health worker's own patients.
 
 ## Built with
 claude-opus-5 · claude-sonnet-5 · anthropic-sdk · python · fastapi · pydantic · meta-omnilingual-asr · mms-lid ·
