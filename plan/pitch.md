@@ -1,4 +1,4 @@
-# Chaski · pitch playbook (draft 2, Sat Oct 24 11:50 PT)
+# Chaski · pitch playbook (v3, Sat Oct 24 19:00 PT)
 
 > **We have 3:00 to pitch + 2:00 of questions** (Devpost 13.0, confirmed by the team). Built from what's in the repo
 > and the research in `research/pitch-research.md` (every source there). Two inputs still change it: the interview
@@ -64,169 +64,154 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 ---
 
-## 4 · Numbers we're allowed to say
+## 4 · Numbers we're allowed to say (all from files)
 
-**Lead with ★. Say at most two numbers in the 3:00.** The rest live in Q&A.
+**On stage, three numbers max:** ★ (the problem), ★★ (the ears got better), ★★★ (it never lets a dose error through).
 
-| # | Number | Source | Use |
+| # | Number | Source | Where |
 |---|---|---|---|
-| **★** | **At her health center, 90% of patients speak Quechua. About 20% of the 36 staff do**, and not fluently | Interview with the nurse, 24-Oct (`research/entrevistas/2026-10-24-enfermera-pilpichaca.md`): «el 90% hablan quechua» · «será el 20%. De todo el personal» | **B2, the lead.** First-hand, from our named community |
-| ★s | **Only one in seven doctors starting SERUMS (the rural service year) reports even basic Quechua or Aymara** (14.4%, 84 of 584) — so her center's ~20% isn't an exception | Bendezu-Quispe et al., Rev Peru Med Exp Salud Publica 2020;37(4), 2016 survey · `research/personal-salud-quechua.md` | B2 or Q&A «is her center typical?» |
-| ★b | Huancavelica: ~206,000 people with Quechua as first language, 52 certified bilingual public servants in the whole region. One per ~4,000 | Census 2017 via UNICEF · El Peruano 16-Jul-2026 · our division (`research/problemas-lenguas-originarias.md`) | Q&A "is it just one clinic?" |
-| ★c | **A consultation in Spanish takes 30–40 min; in Quechua, up to an hour or more.** Instructions get repeated up to 4 times | Interview: «un paciente normal, 30 a 40 minutos … será por una hora hasta un poco más» · «Repetirlo 2, 3 veces, hasta 4 veces» | B2 or Q&A. Our measurable "before" for Microsoft |
-| ★★ | **Before → after**: Meta's speech model on Chanka, error rate X% → Y% on a speaker it never heard | Ricardo's frozen baseline. **Smoke test today: WER 38.5%, CER 10.7%** (small set, not the baseline) | B5. If Ricardo's number isn't ready, say the smoke test as "before" and *don't* claim an after |
-| 2 | ~~Mom is the only Quechua-speaking nurse~~ **Wrong.** She said 3 of the 6 nurses speak Quechua. Today the translator is whoever is on shift: a nurse, a technician, **the driver**, or a relative. Otherwise signs and drawings. Nobody there knew the government's 1812 interpreter line | Interview: «hay 3 enfermeras que hablan quechua» · «Acá también habla el chofer» · «es como una persona muda» · «nunca lo hemos usado» | B1/B2 |
-| 3 | GPT-4 on real ER discharge instructions: at least one error in 16% (Spanish), 24% (Chinese), **56% (Russian)** of sets; worse as the language gets rarer | Kong et al. 2026, *BMJ Quality & Safety* | B2 or Q&A |
-| 4 | 3.7 M Peruvians have Quechua as first language (13.9%) | Census 2017 | Q&A "is it big?" |
-| 5 | Clinicians already fight this by hand with back-translation, pre-translated phrases and teach-back | Mehandru et al. 2022, FAccT | Q&A "why this design?" |
-| ✗ | ~~"2% of centers have interpreters"~~ — doesn't exist. The real figure is 126 of 8,441 facilities (1%) with intercultural **childbirth** adaptation | Salud con Lupa, Feb 2025 | Only if asked about childbirth |
+| **★** | At her health center **90% of patients speak Quechua; ~20% of the 36 staff do**, not fluently | Interview 24-oct (insights in `research/entrevistas/`) | B1 |
+| ★s | Not an exception: **only 1 in 7 doctors starting SERUMS (the rural year) has even basic Quechua or Aymara** (14.4%, 84/584) | Bendezu-Quispe 2020 · `research/personal-salud-quechua.md` | B2 / Q&A |
+| ★c | Consultation **30–40 min in Spanish, an hour or more in Quechua**; instructions repeated up to 4× | Interview | B2 |
+| **★★** | **Ears fine-tuned on our families' voices: word errors 54% → 41%; perfectly understood sentences 30 → 51 of 175**, on a speaker the model never heard | commit `7b57a9b` · `evals/HISTORIA.md` §4 | B5 |
+| **★★★** | **Every dose, day, negation, medicine, unit and "taken with" error caught: 183 of 184 seeded errors**, critic in 2.6 s, $0.008 per turn | `evals/ataques/resultados/chaski-2026-10-24-1740.json` | B4 / B5 |
+| — | Asking Claude "is this right?" also catches them but **can't say why**, and held back 1 in 4 correct sentences (Sonnet) to 7 in 10 (Haiku) | `juez_claude-…-1644.json`, `…-1459.json` | Q&A |
+| — | Interpreter picks the right action **98–100% (Opus), zero invented clinical data** | `evals/interprete/resultados/` | Q&A |
+| — | Verified-phrase RAG finds the right phrase first **88%** (keyword search 70%) | `evals/banco/` | Q&A |
+| — | **All 24 emergency phrases reviewed by a nurse from the community** | `evals/banco/revision_enfermera.json` | B3 / Q&A |
+| — | Voice fine-tuned on the nurse's voice: [ida y vuelta + blind preference — **only when `entregables/voz/` has it**] | Ricardo, `plan/HANDOFF-RICARDO-VOZ.md` | B5 |
+| ✗ | ~~"the only Quechua-speaking nurse"~~ (3 of 6 nurses do) · ~~"2% of centers have interpreters"~~ (doesn't exist) | — | never |
 
 ---
 
-## 5 · The 3:00 script (draft, English, ~430 words ≈ 3:00 at a calm pace)
+## 5 · Run of show: every beat, its asset, its feature
 
-> `[brackets]` = stage direction or something we still need. Times are cumulative.
+| t | Beat | Who | On screen / in the air | Feature shown | Asset |
+|---|---|---|---|---|---|
+| 0:00 | **B1 Her voice** | Freddy | Play her greeting (7 s), then the line | — (the community) | `data/mama/clips/saludo-peru-a-eeuu.mp3` |
+| 0:20 | **B2 The problem** | Freddy | Nothing, eye contact | — | ★ ★c ★s |
+| 0:45 | **B3a Two-way consult** | Freddy + Ricardo | Phone: nurse speaks Spanish → «Pensando» steps → Quechua out loud; patient clip → Spanish on screen | Polish (Wispr-style), translation, language ID, fine-tuned ears | Patient clip from the family set |
+| 1:15 | **B3b Emergency mode** | Freddy | Two taps: «¿Dónde le duele?» → plays instantly **in the nurse-trained voice** | Verified phrase bank (RAG), zero wait | 24 reviewed phrases (`entregables/voz/emergencia/` when ready) |
+| 1:30 | **B4 The refusal** | Freddy | «Simulamos un error del traductor»: «Tómela con agua, no con té» loses its «no» → red block naming the fact | Code guards + critic | Rehearsal shortcut `FRASE_NEGATIVA_DEMO` |
+| 2:00 | **B5 How it's built** | Ricardo | Laptop: one slide with ★★ and ★★★, then the **A/B/C voice** (Meta → Chaski → her) | Fine-tuning, critic, measured | `entregables/voz/abc/` |
+| 2:35 | **B6 Close** | Freddy | Phone: summary for nurse + take-home for patient + new Quechua words | Summary, glossary (learn Quechua) | — |
 
-**B1 · Hook (0:00–0:20) · Freddy**
-[Play `data/mama/clips/saludo-peru-a-eeuu.mp3` (7 s): her own voice, «I greet you from Peru to the United States». Consent given 24-oct.]
-"That's my mother. She's a nurse at the health center in Pilpichaca, in the Andes of Huancavelica, Peru. Nine out of
-ten of her patients speak Quechua. Only about one in five of the staff do. Most of them come from the coast."
+## 6 · The 3:00 script (English, ~440 words)
 
-**B2 · Problem (0:20–0:45) · Freddy**
-"So today the interpreter is whoever is around. Another nurse, a technician, the ambulance driver. If nobody is, they
-use gestures and drawings. My mother told me they break a pill into four in front of the patient to show the dose.
-A consultation that takes forty minutes in Spanish takes an hour or more in Quechua. And 'just use ChatGPT' isn't
-safe: even in Russian, it got discharge instructions wrong more than half the time. Quechua barely exists in its training data."
+> `[brackets]` = stage direction. Read it out loud with a timer; cut words, not beats.
 
-**B3 · Demo, the flow (0:45–1:35) · Freddy + Ricardo**
-"This is Chaski." [Phone toward the judge. Chaski the vicuña waves.] "The nurse speaks Spanish."
-[Freddy: *"Tome una pastilla cada ocho horas, después de comer."* While Chaski thinks:] "Right now Claude is
-cleaning up what she meant, translating it, and then translating it *back* without seeing the original, to check
-nothing changed." [Chaski speaks Quechua.]
-"Now the patient answers in Quechua." [Ricardo plays the family clip.] "Chaski detects it's Quechua, our fine-tuned
-model transcribes it, Claude corrects the transcript with the context of the consultation, and the nurse reads it in Spanish."
+**B1 · Her voice (0:00–0:20) · Freddy**
+[Play her greeting, 7 s: «…saludanim kay Perú llaqtamanta wak Estados Unidos llaqtaman».]
+"That's my mother, greeting you from Peru. She's a nurse at the health center in Pilpichaca, high in the Andes of
+Huancavelica. Nine out of ten of her patients speak Quechua. About one in five of the staff do."
 
-**B4 · The moment (1:35–2:05) · Freddy**
-"Now let's simulate the translator making a mistake." [Rehearsal shortcut: «Tómela con agua, no con té», with the
-Quechua «no» removed. Say out loud that it is simulated.] [Red block on screen.]
-"The Quechua lost the 'not'. Now it says 'take it with tea'. Chaski caught it before speaking, and tells the nurse
-exactly what didn't match. In a clinic, a confident wrong answer is worse than no answer. Chaski would rather stay quiet."
+**B2 · The problem (0:20–0:45) · Freddy**
+"So the interpreter is whoever is around — another nurse, a technician, the ambulance driver. If nobody is, they use
+gestures, and break a pill into four in front of the patient to show the dose. A visit that takes forty minutes in
+Spanish takes an hour in Quechua. And her center isn't an exception: only one in seven doctors sent to rural Peru
+speaks even basic Quechua."
 
-**B5 · How it's built (2:05–2:35) · Ricardo**
-"Meta's open speech models are the ears and the mouth; we're fine-tuning them on [N] phrases our families recorded
-yesterday — on a voice it never heard, word errors dropped from 54% to 41%, and perfectly understood sentences went from 30
-to 51 of 175 — and the voice now sounds like a real nurse from Huancavelica, not a robot [play the A/B, §11]. Claude is the brain: Opus interprets, Sonnet checks. We seeded 165 errors —
-wrong doses, flipped negations, swapped medicines. Just asking Claude 'is this right?' catches them too, but can't tell you why it blocked. Chaski caught every dose,
-negation and medicine error — 183 of 184 in total — in under three seconds, and always names what failed."
+**B3 · Chaski (0:45–1:30) · Freddy + Ricardo**
+"This is Chaski." [Phone to the judge.] [Freddy: «Tome una pastilla cada ocho horas, después de comer.»]
+"It cleans up what I meant, translates it, then translates it back blind to check nothing changed — and only then
+speaks." [Chaski speaks Quechua.] [Ricardo plays the patient's answer.] "The patient answers in Quechua; our
+fine-tuned ears transcribe it, Claude fixes it with the context of the visit, and I read it in Spanish."
+[Two taps: emergency mode.] "In an emergency there's no time to wait for a model: these questions were reviewed by a
+nurse from the community and play instantly — in a voice trained on hers."
+
+**B4 · The moment (1:30–2:00) · Freddy**
+"Now let's simulate the translator making a mistake." [Rehearsal shortcut.] [Red.] "The Quechua lost its 'not' — it
+now says *take it with tea*. Chaski caught it, didn't say it, and tells me exactly what didn't match. In a clinic, a
+confident wrong sentence is worse than silence."
+
+**B5 · How it's built (2:00–2:35) · Ricardo**
+"Meta's open models are the ears and the mouth, and there's almost no Chanka data in the world — so our families
+recorded it this weekend. On a voice the model never heard, word errors dropped from 54 to 41 percent. And listen:"
+[A/B/C, 10 s.] "That's Meta's voice, Chaski's voice trained with her permission, and her. Claude is the brain: Opus
+interprets, Sonnet checks. We seeded 184 errors — wrong doses, flipped negations, swapped medicines. Chaski caught
+every critical one, in under three seconds, and always names what failed."
 
 **B6 · Close (2:35–3:00) · Freddy**
-[Show the summary screen.] "At the end the nurse gets a clinical note and the patient gets instructions to take home,
-in their language, plus the new Quechua words from that visit, so the staff learn the language one patient at a time.
-It works for both sides — a nurse or a patient can open it. Anthropic says it wants Claude to work
-in languages left out of its training data, and admits it hasn't measured whether that's happening. We built that, and
-we measured it. Monday, it goes to my mother's health post."
+[Summary screen.] "At the end, a clinical note for the nurse, instructions to take home for the patient — and the new
+Quechua words from that visit, so the staff learn one patient at a time. Anthropic says it wants Claude to work in
+languages left out of its training data. We built that, and we measured it. Monday, it goes to my mother's health center."
 
 ### The 30-second version
 "At my mother's health center in the Peruvian Andes, nine in ten patients speak Quechua and one in five staff do.
-Chaski is the interpreter for when nobody is there: the nurse speaks Spanish, the patient hears Quechua, and back. Claude checks every
-translation by translating it back blind — and if a dose doesn't match, Chaski refuses to say it. Want to see it?"
+Chaski is the interpreter for when nobody is there — and it would rather stay quiet than say a wrong dose: it caught
+every dose and negation error we threw at it. Want to see it?"
 
----
-
-## 6 · The 2:00 demo-first cut (Cartesia, or a judge in a hurry)
-
-B3 (50 s) → B4 (25 s) → B2 in two sentences (15 s) → **for Cartesia:** "Cartesia is the Spanish side: it hears the
-nurse in under half a second [`/escuchar` 0.46 s, measured] and speaks to her [verify Sonic is wired before saying
-it]. It doesn't support Quechua, so that side is our own fine-tuned model." (15 s) → one limitation (10 s) → close (5 s).
+### The 2:00 demo-first cut (Cartesia, or a judge in a hurry)
+B3 (45 s) → B4 (25 s) → B1 line + ★ (15 s) → "Cartesia is the Spanish side: it transcribed 3.5 s of the nurse in
+480 ms, and speaks to her. It doesn't support Quechua, so that side is our own fine-tuned model." (15 s) → close (10 s).
 
 ---
 
 ## 7 · The demo, hardened
 
-**At the table:** iPhone with Chaski (TestFlight) on a stand facing the judge · laptop with the before→after chart and
-the demo video loaded · **phone hotspot, not venue Wi-Fi** · second phone with the Quechua patient clip · chargers.
-**Before each judge:** one warm-up turn so the models are hot.
+**At the table:** iPhone with Chaski (TestFlight) on a stand facing the judge · laptop with ONE slide (★★, ★★★) and the
+A/B/C audio + the Devpost video ready · **phone hotspot, not venue Wi-Fi** · a second phone with the patient clip ·
+small speaker for the audios · chargers. **Before each judge:** one warm-up turn so the models are hot.
 
 | Step | Risk | Mitigation |
 |---|---|---|
-| Nurse turn | **Takes ~15 s today.** Dead air | Narrate over Chaski's "thinking" steps (it's in the script). Push the fast path: measure Haiku/Sonnet for this turn (D15) |
-| Patient answer | Loud hall, live mic | Pre-recorded family clip played next to the mic. Language detection already measured at 1.0 on Quechua |
-| The refusal | Has to happen every time | Pick the sentence in rehearsal, confirm it blocks **5/5** |
-| Summary | `/resumen` is live now (commit f0b752a) | Test it in the 10:15 warm-up |
-| Anything breaks | — | One sentence: "the connection dropped, here's the recording from this morning", then the video. Never more than one sentence of apology |
+| Nurse turn | ~6.5 s typical, ~10 s worst | Narrate over the «Pensando» steps (it's in the script) |
+| Patient answer | Loud hall | Pre-recorded family clip played next to the mic |
+| Emergency mode | Needs the nurse-voice audio | Until `entregables/voz/emergencia/` exists, the app shows the reviewed Quechua text big; say it's verified |
+| The refusal | Must happen every time | `FRASE_NEGATIVA_DEMO` blocked 16/16 in real runs; say out loud it's a simulated error |
+| A/B/C | Audio too quiet in the hall | Speaker, files pre-normalized to −16 LUFS |
+| Anything breaks | — | One sentence — "the connection dropped, here's the recording from this morning" — then the video |
 
-**Mom live (D18):** judging 10:30–12:30 PT = 12:30–14:30 Lima. A live video call in a loud hall is risky. Record her
-greeting + one sentence about her work at the 17:00 call, with her consent. If she can join live, it's a bonus.
+**Judging is 10:30–12:30 PT = 12:30–14:30 Lima.** If she can join a video call, it's a bonus, not the plan.
 
 ---
 
-## 8 · Q&A bank (both of us know these cold)
+## 8 · The Devpost video (≈ 2:30, some sponsors only see this)
+
+| t | Image | Audio |
+|---|---|---|
+| 0:00 | Black → Pilpichaca / Andes stills | Her presentation, 12 s: `clips/saludo-apertura-12s.mp3` («…aquí trabajo, y aquí también hablo quechua para ayudar a mis hermanos»), subtitled |
+| 0:12 | Title: *Chaski* · «90% of patients speak Quechua. ~20% of staff do.» | — |
+| 0:20 | **The refusal**, screen recording | Freddy narrating (opens on «the moment», as winners do) |
+| 0:45 | Two-way consult + emergency mode | App audio |
+| 1:20 | A/B/C voice + the two numbers | Ricardo |
+| 1:50 | Her welcoming a patient, subtitled | `clips/atencion-casa-de-salud-29s.mp3`: «Aquí, conmigo, va a estar bien… dígame con confianza… siéntese aquí, como en su casa» |
+| 2:15 | «That's what care sounds like in your own language. Chaski is for when nobody there speaks it.» | — |
+
+Subtitles: confirm the [?] words with her first (`data/mama/traduccion-claude.md`; «Kati» is the patient's name).
+
+---
+
+## 9 · Q&A bank (both of us know these cold)
 
 | Question | One-breath answer |
 |---|---|
-| How do you know the Quechua is right? | Blind back-translation + a code check of drug, dose and frequency. And a native nurse reviewed the glossary and the screens |
-| What happens when it's wrong? | It refuses and tells the nurse which part failed. Show it. 183/184 seeded errors caught, 100% of critical ones, 20% of correct sentences held back (half are weak family translations), critic 2.6 s (`evals/ataques/resultados/chaski-2026-10-24-1740.json`) |
-| Why Opus and Sonnet, not Haiku? | We measured: Opus picked the right action 98% with zero invented clinical data (Haiku 88%, Sonnet 94%). As critic, Sonnet caught 160/160 vs Haiku 96% with 18% false blocks. Anthropic suggested Haiku for speed; the numbers decided |
-| What if a bank phrase is wrong? | A phrase is only spoken after a native nurse reviews it. Today all 24 emergency phrases are reviewed by a nurse from the community |
-| Where does Claude fail here? | It can sound fluent in Quechua and be wrong. So it never speaks unchecked and never fills in a dose |
-| Why not Google Translate / ChatGPT? | Errors grow as the language gets rarer (Kong 2026), and neither tells you when it's wrong |
-| What does Claude do that plain MT can't? | Corrects the speech transcript with the consultation's context, audits itself, judges whether the patient understood, writes the summary |
-| How do you know it improved? | A frozen test speaker the model never heard, same script before and after |
-| Privacy / consent? | Recordings are from consenting family volunteers, no patient data. [Decide and say only what's true: are consultation audios stored?] |
-| Replacing interpreters? | There's one per ~4,000 people. It's for when nobody is there. The government's 1812 hotline needs staff to call and wait |
-| Who uses it Monday? How does it scale? | The staff who don't speak Quechua at the Pilpichaca health center (≈80% of 36). The same health zone covers 10 more posts. Then the regional health office (DIRESA Huancavelica) |
-| How would you measure impact there? | MINSA's daily HIS form already records each patient's language. So we can count Quechua consultations and compare their length (today 30–40 min vs up to an hour+) and how often instructions get repeated |
-| Has a bad translation hurt someone there? | Honest answer: she couldn't recall one. They avoid it by repeating 3–4 times and taking an hour. The cost today is time and dignity; the risk with AI is Kong 2026 |
-| How do you measure impact? | We log blocked translations, nurse corrections and repeat requests per consultation. [Confirm with the ui-ux session what the app logs] |
-| Offline? | Not yet, needs signal. Honest limitation, on-device is next |
-| Why Chanka? | It's Huancavelica and Ayacucho's Quechua; models are trained on Cusco Quechua. We found no paper evaluating LLMs on Chanka |
-| What did you build in 36 h? | iOS app · the audit · a GPU voice service · a data site the families used · fine-tuning + evaluation |
+| How do you know the Quechua is right? | Blind back-translation + a code check of drug, dose, frequency, negation and what it's taken with. And a nurse from the community reviewed all 24 emergency phrases |
+| What happens when it's wrong? | It stays quiet and tells the nurse which fact failed. 183/184 seeded errors caught, 100% of the critical ones |
+| Why not just ask Claude "is it right?" | We measured it: it catches errors too, but can't say why, and held back 1 in 4 correct sentences |
+| Why Opus and Sonnet, not Haiku? | Measured: Opus 98–100% right action, zero invented data. As critic Sonnet caught everything; Haiku let invented diagnoses through. Anthropic suggested Haiku for speed — we made Sonnet fast instead (9 s → 2.6 s) |
+| How do you know the fine-tuning helped? | A speaker the model never heard, same script before and after: 54% → 41% word errors, 30 → 51 perfect sentences |
+| Is her voice a deepfake? | It's trained with her permission, we always say so, and it only speaks phrases a nurse verified |
+| Privacy? | Consultation audio isn't stored; family recordings were donated with consent and never go in the repo |
+| Is her center typical? | It's not an exception: only 1 in 7 doctors starting rural service has even basic Quechua |
+| Replacing interpreters? | There's one certified bilingual public servant per ~4,000 Quechua speakers in Huancavelica. It's for when nobody is there |
+| Who uses it Monday? | The staff at Pilpichaca who don't speak Quechua (~80% of 36); the health zone has 10 more posts |
+| How do you measure impact? | MINSA's daily HIS form already records each patient's language: count Quechua visits and their length; plus our own log of blocks and repeats |
+| Offline? | Not yet. Honest limitation; on-device models are next |
+| Why Chanka? | It's Huancavelica and Ayacucho's Quechua; models are trained on Cusco's. We found no paper evaluating LLMs on Chanka |
 
 ---
 
-## 9 · What we still need (owner · by when)
+## 10 · Assets checklist (what must exist before 22:00)
 
-| Item | Owner | By |
-|---|---|---|
-| Frozen baseline + fine-tuned numbers (X, Y, N) | Ricardo | 19:00 |
-| A dose sentence that blocks 5/5 | Freddy + ui-ux session | 15:00 |
-| Nurse turn under ~5 s, or rehearsed narration | ui-ux session + Ricardo (D15) | 16:00 |
-| `/resumen` and `/idioma` live | Ricardo | 18:00 |
-| ~~Mom's interview~~ done 12:00 (`research/entrevistas/`). Still missing: her recorded greeting, with consent | Freddy | 18:00 |
-| Agree with Ricardo which "agentic interpreter" features go in (`plan/propuesta-interprete-agente.md`) | Freddy + Ricardo | 14:00 |
-| Decide: are consultation audios stored? | Freddy | 18:00 |
-| Opt into Anthropic, People-First, Microsoft, Cartesia on Devpost | Freddy | 21:00 draft |
-| README: where Claude is used and why · Cartesia features · known limits · no keys | ui-ux session | 21:00 |
-| Rehearse 30 s / 3:00 / 2:00 with a timer, out loud, 3× each | Both | 22:00 |
-| Demo video, opening on the refusal moment | Freddy | Sun 05:00 |
-
-
-## 10 · Los audios de la mamá (24-oct, con su permiso)
-
-Viven en `data/mama/` (no se suben a git). Transcrito con **MMS de Meta (quechua de Ayacucho), localmente**, y traducido con Claude (`data/mama/transcripcion-mms.txt`,
-`traduccion-claude.md`). Las partes marcadas [?] se confirman con ella antes de subtitular.
-
-| Clip | Dura | Qué dice (aproximado) | Dónde va |
-|---|---|---|---|
-| `clips/saludo-peru-a-eeuu.mp3` | 7 s | «Los saludo desde el Perú hasta los Estados Unidos» | **Abre el pitch** (B1) |
-| `clips/saludo-apertura-12s.mp3` | 12 s | «¿Están bien, hermanos y hermanas? Aquí me encuentro, en Huancavelica, Perú, en la zona sanitaria de Pilpichaca. Aquí trabajo, y aquí también hablo quechua para poder ayudar a todos mis hermanos» | Abre el **video** de Devpost |
-| `clips/atencion-casa-de-salud-29s.mp3` | 29 s | Cómo recibe a un paciente en quechua: «Aquí, conmigo, vas a estar bien. Dime todo lo que sientes… dime con confianza. Aquí te voy a ayudar, en nuestra *hampina wasi* (casa de curar), el centro de salud de Pilpichaca… siéntate aquí, como en tu casa» | **Video**, bajo las imágenes de la posta: así suena la atención cuando alguien habla quechua. Es lo que Chaski busca que tenga todo paciente |
-| `clips/saludo-completo.mp3` · `atencion-en-quechua-completo.mp3` | 38 s · 67 s | Completos, normalizados | Respaldo |
-
-
-## 11 · La voz de Chaski ajustada con la voz de la mamá (18:30)
-
-**Estrategia recomendada: dos usos distintos, sin mezclarlos.**
-1. **Apertura = su voz real** (clip de 7 s). Lo humano y auténtico va primero, sin trucos.
-2. **En «cómo está hecho» (B5) = una prueba A/B/C de 10 segundos, la misma frase de emergencia tres veces:**
-   **A** la voz de Meta tal cual (robótica) → **B** la voz de Chaski ajustada → **C** la enfermera real.
-   Ricardo dice: «A es el modelo abierto. B es el mismo modelo después de entrenarlo con la voz de una enfermera de
-   Huancavelica, con su permiso. C es ella.» Si el jurado no distingue B de C, ese es el momento técnico más fuerte del pitch.
-3. **El modo emergencia habla con la voz B** (sus 24 frases revisadas), así el paciente escucha algo cercano, no un robot.
-
-**Reglas:** se dice siempre que es una voz entrenada con su permiso (nunca se presenta B como si fuera ella), y la voz
-B solo dice frases verificadas, nunca texto que no pasó las barreras.
-
-**Lo que hay que medir para poder afirmarlo** (tarea de Ricardo, ver `plan/tareas.md`): la voz ajustada se entiende
-mejor (ida y vuelta: el audio pasa por el reconocimiento y se mide el error, antes y después) y la mamá elige a ciegas
-cuál suena más natural.
+| Asset | State |
+|---|---|
+| Her greeting clip (7 s) and presentation (12 s) | ✅ `data/mama/clips/` |
+| Her welcoming-a-patient clip (29 s) + confirmed subtitles | ✅ clip · ⏳ subtitles (questions sent to her) |
+| Emergency phrases reviewed | ✅ 24/24 |
+| Emergency phrases in the nurse-trained voice | ⏳ Ricardo (`plan/HANDOFF-RICARDO-VOZ.md`) |
+| A/B/C voice clips | ⏳ Ricardo |
+| Refusal shortcut in the app | ✅ ui-ux |
+| One slide with ★★ and ★★★ | ⬜ |
+| Devpost video | ⬜ Sun 05:00 |
+| Ricardo's service running the interpreter (`app/chaski/PARA_RICARDO.md`) | ⬜ |
