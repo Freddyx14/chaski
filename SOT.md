@@ -1,6 +1,6 @@
 # Chaski — fuente de verdad (SOT)
 
-> **Versión SOT-17 · sábado 24 de octubre de 2026, 16:22 PT**
+> **Versión SOT-18 · sábado 24 de octubre de 2026, 19:45 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/chaski-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-18 (sáb 19:45).** **Chaski sin fondo (D40)**: la vicuña va recortada sobre el fondo de la app, sin el marco escalonado, en toda la app. Videos en HEVC con transparencia.
 - **SOT-17 (sáb 16:22).** **Dos roles, ni uno más (D38) y modelos del intérprete cerrados (D39)**: Opus 5 como principal y Sonnet 5 como crítico, por medición.
 - **SOT-16 (sáb 13:05).** **Chaski es un intérprete agente (D32–D37)**, acordado por Freddy y Ricardo tras la entrevista a la enfermera: una llamada de Claude decide entre traducir, repreguntar, responder, no_entendi o usar una frase verificada; NLLB ajustado traduce y Claude pule y audita; banco de frases verificadas (RAG y modo emergencia); modo emergencia y receta obligatorios en la demo; barreras antes de hablar con falla cerrada; glosario de palabras nuevas en el resumen. Detalle y reparto: `plan/arquitectura-interprete.md`.
 - **SOT-15 (sáb 11:20).** **Diseño cerrado (D31)**: queda L tal cual, con su movimiento, y el anillo de chakana del micrófono pasa a ser un **micrófono inti**: cuatro anillos concéntricos (cobalto, amarillo, turquesa, magenta; canela en el turno del paciente) con rayos escalonados cortos detrás, como el medallón de sol de la referencia de Freddy. Respira en reposo, una onda sale del centro con el volumen al escuchar y los rayos giran mientras piensa. Detalle: `design/specs/04-l-d-mas-i.md`.
@@ -168,6 +169,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D19 | sáb 00:33 | **Claude es el núcleo**: visión de receta y caja, corrección de la transcripción, intención, auditoría, «¿me lo repite?», resumen y orquestación | El track es de Anthropic; Claude tiene que ser central, no un adorno |
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
 | D25 | sáb 08:35 | **El cuadernillo pide escribir la frase en quechua y leer en voz alta exactamente lo escrito** (75 frases, foto de cada hoja + una nota de voz por frase). Traducción: **NLLB-200 de Meta** (`facebook/nllb-200-distilled-600M`, incluye `quy_Latn`, licencia no comercial) ajustado con esos pares | Traducir, entender y hablar necesitan **texto escrito**: con solo voz habría que transcribir ~450 audios. Así cada persona trae su texto y su audio alineados. Omnilingual MT (Meta, mar-2026) no tiene pesos publicados |
+| D40 | sáb 19:01 | **Chaski sin fondo, sobre el fondo de la app, en toda la app**; reemplaza el marco escalonado de L (D29/D31) para el avatar. Recorte local con BiRefNet (rembg); los loops van en HEVC con alfa (`avatar/loops/*-alfa.mov`), las imágenes en `avatar/estados-alfa/`. El marco queda en el código con `&marco=1` | Freddy lo vio en la app y lo eligió: más limpio, Chaski se integra a la pantalla y la experiencia se siente mejor |
 | D39 | sáb 16:20 | **Intérprete: Opus 5 principal, Sonnet 5 crítico** (por variable de entorno) | Opus acertó el 98 % sin inventar datos; Sonnet como crítico atrapó 165/165 con un 10 % de bloqueos falsos. Anthropic sugirió Haiku, pero mandan las mediciones. Confirmado por Freddy |
 | D38 | sáb 15:00 | **Dos roles, ni uno más: intérprete principal + crítico.** Ningún agente adicional sin una falla medida que lo justifique | Consejo del equipo de Anthropic en el workshop (nota de voz de Freddy, 14:50): un crítico que revise que no se inventen datos, y no agregar agentes que no hagan falta. El crítico iba en Haiku; D39 lo cambia a Sonnet por las mediciones |
 | D37 | sáb 13:00 | **Barreras antes de hablar** (`plan/arquitectura-interprete.md` §2b): ocho capas, falla cerrada, el código decide; se mide con un banco de errores sembrados | En salud una frase segura y equivocada es peor que el silencio. Pedido de Freddy: es lo que define si lo hicimos bien |

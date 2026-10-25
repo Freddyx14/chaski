@@ -37,3 +37,6 @@ form/skills-lock.json
 context/photos/
 research/entrevistas/2026-10-24-enfermera-pilpichaca.md
 ricardo-artifacts/modelos/**/*.pt
+
+# Recorte de fondo de Chaski (cuadros intermedios)
+/.alfa-trabajo

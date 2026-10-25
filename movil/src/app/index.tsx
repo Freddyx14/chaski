@@ -135,9 +135,9 @@ class GrabacionInvalida extends Error {}
 
 export default function Pantalla() {
   const perfil = usePerfil();
-  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; libre?: string }>();
-  // Vista previa de Chaski sin fondo (24-oct): solo con el enlace `&libre=1`, el diseño aprobado no cambia.
-  usarChaskiLibre(q.libre === '1');
+  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; marco?: string }>();
+  // D40: Chaski sin fondo es lo normal; `&marco=1` muestra el marco anterior para comparar.
+  usarChaskiLibre(q.marco !== '1');
   if (q.demo && DEMO[q.demo]) {
     const demo: Perfil = {
       idioma: q.idioma === 'quechua' ? 'quechua' : 'castellano',

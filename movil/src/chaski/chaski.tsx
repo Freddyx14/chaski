@@ -41,8 +41,8 @@ const LIBRE_LOOPS: Partial<Record<EstadoChaski, number>> = {
   escuchando: require('../../../avatar/loops/escuchando-alfa.mov'),
 };
 
-/** Vista previa: Chaski sin marco ni fondo. Se prende con el enlace de demo `&libre=1`. */
-let libre = false;
+/** D40: Chaski va sin marco ni fondo, sobre el fondo de la app. El marco anterior queda con `&marco=1`. */
+let libre = true;
 export function usarChaskiLibre(si: boolean) {
   libre = si;
 }
@@ -107,8 +107,12 @@ function ChaskiLibre({ estado, tam, boca, pulso }: { estado: EstadoChaski; tam: 
       {/* Sombra en el piso: el recorte se lleva la del video, y sin ella Chaski flota. */}
       <View style={[estilos.sombra, { width: tam * 0.5, height: tam * 0.07, borderRadius: tam, bottom: tam * 0.04 }]} />
       <View style={[StyleSheet.absoluteFill, { transform: [{ translateY: -tam * 0.06 }, { scale: escala }] }]}>
-        <Image source={cuadro} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} />
-        {loop ? <Loop key={estado} fuente={loop} ajuste="contain" /> : null}
+        {/* Con video transparente, la imagen fija NO va debajo: se vería a través (Chaski doble). */}
+        {loop ? (
+          <Loop key={estado} fuente={loop} ajuste="contain" />
+        ) : (
+          <Image source={cuadro} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} />
+        )}
       </View>
     </View>
   );
