@@ -1,7 +1,7 @@
 {
  "title": "Chaski — ensayo del demo, beat por beat",
  "bpm": 84,
- "duration": 204.33,
+ "duration": 169.47,
  "lufs": -14.0,
  "true_peak": -1.0,
  "chords": [
@@ -12,69 +12,61 @@
  ],
  "marks": {
   "s00": 0.5,
-  "mama": 8.2,
-  "s01": 24.7,
-  "s02": 36.42,
-  "s03": 53.76,
-  "think": 59.24,
-  "think_end": 67.24,
-  "s04": 59.84,
-  "q_b3": 72.18,
-  "s05": 80.248,
-  "pac": 95.328,
-  "s06": 101.668,
-  "pac_es": 105.068,
-  "tap1": 110.208,
-  "tap2": 111.308,
-  "q_em": 111.658,
-  "s07": 113.63,
-  "s08": 122.33,
-  "red": 126.15,
-  "s09": 127.15,
-  "s10": 142.87,
-  "s11": 174.47,
-  "end": 195.33,
+  "s01": 8.2,
+  "mama": 19.24,
+  "s02": 32.14,
+  "s03": 36.06,
+  "think": 41.54,
+  "think_end": 49.54,
+  "s04": 42.04,
+  "q_b3": 53.24,
+  "s05": 61.208,
+  "pac": 71.868,
+  "s06": 78.208,
+  "pac_es": 81.608,
+  "tap1": 83.108,
+  "tap2": 84.208,
+  "q_em": 84.558,
+  "s07": 86.53,
+  "s08": 93.95,
+  "red": 97.77,
+  "s09": 98.77,
+  "s10": 114.25,
+  "s11": 142.81,
+  "end": 160.47,
   "T0": 8.2,
-  "TOTAL": 204.33,
-  "w_nine": 31.02,
-  "w_one5": 33.94,
-  "w_nurse": 42.74,
-  "w_tech": 43.46,
-  "w_driver": 44.98,
-  "w_gest": 47.38,
-  "w_pill": 49.34,
-  "w_40": 60.96,
-  "w_7": 67.68,
-  "w_clean": 81.848,
-  "w_transl": 83.208,
-  "w_back": 86.488,
-  "w_code": 88.808,
-  "w_spoke": 94.168,
-  "w_ears": 104.708,
-  "w_claude6": 106.388,
-  "w_lost": 127.87,
-  "w_caught": 132.51,
-  "w_worse": 140.59,
-  "w_54": 154.79,
-  "w_brain": 157.99,
-  "w_184": 162.83,
-  "w_crit": 169.67,
-  "w_note": 175.43,
-  "w_home": 178.95,
-  "w_words": 180.71,
-  "w_anth": 185.11,
-  "w_next": 192.31,
+  "TOTAL": 169.47,
+  "MAMA_CUT": 12.5,
+  "w_interp": 9.76,
+  "w_nurse": 11.48,
+  "w_silent": 15.16,
+  "w_show": 35.22,
+  "w_nine": 42.04,
+  "w_one5": 45.16,
+  "w_pill": 49.08,
+  "w_back": 64.808,
+  "w_code": 67.128,
+  "w_tea": 70.808,
+  "w_four": 122.49,
+  "w_refuses": 125.61,
+  "w_opus": 127.69,
+  "w_184": 131.13,
+  "w_crit": 137.45,
+  "w_note": 143.77,
+  "w_home": 146.97,
+  "w_words": 148.81,
+  "w_anth": 150.33,
+  "w_next": 157.37,
   "intro": 0.0,
-  "b1": 7.4,
-  "b1b": 24.3,
-  "b2": 36.02,
-  "b2b": 53.36,
-  "b3": 79.848,
-  "b3b": 94.928,
-  "b3c": 109.808,
-  "b4": 121.93,
-  "b5": 142.37,
-  "b6": 174.07
+  "b1a": 7.8,
+  "b1": 18.44,
+  "b2b": 31.74,
+  "b3": 60.808,
+  "b3b": 71.468,
+  "b3c": 82.708,
+  "b4": 93.55,
+  "b5": 113.75,
+  "b6": 142.41
  },
  "shots": [
   {
@@ -82,94 +74,86 @@
    "at": "intro",
    "in": "open",
    "field": "dark",
-   "hold": 7.0,
+   "hold": 7.4,
    "idea": "Cómo se ve el demo"
+  },
+  {
+   "id": "b1a",
+   "at": "b1a",
+   "in": "cut",
+   "field": "light",
+   "hold": 10.24,
+   "idea": "B1 · Para quién es"
   },
   {
    "id": "b1",
    "at": "b1",
    "in": "cut",
-   "field": "light",
-   "hold": 16.5,
-   "idea": "B1 · Su voz"
-  },
-  {
-   "id": "b1b",
-   "at": "b1b",
-   "in": "cut",
    "field": "dark",
-   "hold": 11.32,
-   "idea": "B1 · Quién es"
-  },
-  {
-   "id": "b2",
-   "at": "b2",
-   "in": "cut",
-   "field": "light",
-   "hold": 16.94,
-   "idea": "B2 · El problema"
+   "hold": 12.9,
+   "idea": "B1 · Su voz"
   },
   {
    "id": "b2b",
    "at": "b2b",
    "in": "cut",
-   "field": "dark",
-   "hold": 26.09,
-   "idea": "B2 → B3 · Habla al celular"
+   "field": "light",
+   "hold": 28.67,
+   "idea": "B2 · Empieza el demo"
   },
   {
    "id": "b3",
    "at": "b3",
    "in": "cut",
-   "field": "light",
-   "hold": 14.68,
+   "field": "dark",
+   "hold": 10.26,
    "idea": "B3 · Cómo se revisó"
   },
   {
    "id": "b3b",
    "at": "b3b",
    "in": "cut",
-   "field": "dark",
-   "hold": 14.48,
+   "field": "light",
+   "hold": 10.84,
    "idea": "B3 · Responde el paciente"
   },
   {
    "id": "b3c",
    "at": "b3c",
    "in": "cut",
-   "field": "light",
-   "hold": 11.72,
+   "field": "dark",
+   "hold": 10.44,
    "idea": "B3 · Modo emergencia"
   },
   {
    "id": "b4",
    "at": "b4",
    "in": "cut",
-   "field": "dark",
-   "hold": 20.04,
+   "field": "light",
+   "hold": 19.8,
    "idea": "B4 · El momento"
   },
   {
    "id": "b5",
    "at": "b5",
    "in": "cut",
-   "field": "light",
-   "hold": 31.3,
-   "idea": "B5 · Cómo está hecho"
+   "field": "dark",
+   "hold": 28.26,
+   "idea": "B5 · Cómo está hecho y su límite"
   },
   {
    "id": "b6",
    "at": "b6",
    "in": "cut",
-   "field": "dark",
-   "hold": 20.86,
+   "field": "light",
+   "hold": 17.66,
    "idea": "B6 · Cierre"
   },
   {
    "id": "end",
    "at": "end",
    "in": "cut",
-   "field": "light",
+   "field": "dark",
    "hold": 8.6,
    "idea": "Después del pitch"
   }
@@ -207,167 +191,163 @@
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s01.wav",
-   "at": 24.7,
+   "at": 8.2,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s02.wav",
-   "at": 36.42,
+   "at": 32.14,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s03.wav",
-   "at": 53.76,
+   "at": 36.06,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s04.wav",
-   "at": 59.84,
+   "at": 42.04,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s05.wav",
-   "at": 80.248,
+   "at": 61.208,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s06.wav",
-   "at": 101.668,
+   "at": 78.208,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s07.wav",
-   "at": 113.63,
+   "at": 86.53,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s08.wav",
-   "at": 122.33,
+   "at": 93.95,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s09.wav",
-   "at": 127.15,
+   "at": 98.77,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s10.wav",
-   "at": 142.87,
+   "at": 114.25,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/s11.wav",
-   "at": 174.47,
+   "at": 142.81,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/mama-b1.wav",
-   "at": 8.2,
+   "at": 19.24,
+   "len": 12.5,
    "gain_db": 1,
    "fade_in": 0.05,
-   "fade_out": 0.2
+   "fade_out": 0.3
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/paciente-p18-064.wav",
-   "at": 95.328,
+   "at": 71.868,
    "gain_db": 0
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/quy/b3a-48k.wav",
-   "at": 72.18,
+   "at": 53.24,
    "gain_db": -2
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/quy/emg-48k.wav",
-   "at": 111.658,
+   "at": 84.558,
    "gain_db": -2
   },
   {
    "type": "whoosh",
-   "at": 7.3500000000000005,
+   "at": 7.75,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 24.25,
+   "at": 18.39,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 35.970000000000006,
+   "at": 31.689999999999998,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 53.31,
+   "at": 60.758,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 79.798,
+   "at": 71.418,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 94.878,
+   "at": 82.658,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 109.75800000000001,
+   "at": 93.5,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 121.88000000000001,
+   "at": 113.7,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 142.32,
+   "at": 142.35999999999999,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 174.01999999999998,
-   "gain_db": -16
-  },
-  {
-   "type": "whoosh",
-   "at": 195.28,
+   "at": 160.42,
    "gain_db": -16
   },
   {
    "type": "blip",
-   "at": 67.24,
+   "at": 49.54,
    "notes": [
     0
    ],
@@ -375,7 +355,7 @@
   },
   {
    "type": "blip",
-   "at": 105.068,
+   "at": 81.608,
    "notes": [
     0
    ],
@@ -383,7 +363,7 @@
   },
   {
    "type": "blip",
-   "at": 110.208,
+   "at": 83.108,
    "notes": [
     0
    ],
@@ -391,7 +371,7 @@
   },
   {
    "type": "blip",
-   "at": 111.308,
+   "at": 84.208,
    "notes": [
     0
    ],
@@ -399,7 +379,7 @@
   },
   {
    "type": "blip",
-   "at": 126.15,
+   "at": 97.77,
    "notes": [
     12,
     7,

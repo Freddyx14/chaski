@@ -15,35 +15,34 @@ E = html.escape
 
 # ── direction cards per page: (time, kind, tag, body). kind: do | say | warn | file ─────────────────
 CARDS = {
-    "b1": [(EV["T0"] + 0.3, "do", "QUÉ HACES", "Dale play al video de tu mamá en la laptop. No hables encima de ella."),
-           (EV["T0"] + 5.0, "do", "DÓNDE", "Laptop girada hacia el juez, parlante encendido. Sus subtítulos en inglés ya van quemados."),
-           (EV["T0"] + 10.0, "file", "ARCHIVO", "data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4 · respaldo: el audio de 14 s")],
-    "b1b": [(EV["s01"] + 0.2, "do", "QUÉ HACES", "Mira al juez. Nada en pantalla: la laptop ya no importa."),
-            (EV["w_one5"], "warn", "NUNCA DIGAS", "«la única enfermera que habla quechua». Son 3 de 6.")],
-    "b2": [(EV["s02"] + 0.2, "do", "QUÉ HACES", "Sigue mirando al juez. El celular ya está en el soporte, con Chaski abierto en Consulta."),
-           (EV["w_gest"], "file", "DE DÓNDE SALE", "Todo es de la entrevista a tu mamá: el turno, el chofer, las señas, la pastilla partida en cuatro.")],
-    "b2b": [(EV["s03"] - 0.2, "do", "QUÉ HACES", "Háblale al celular, en castellano, claro y sin apuro."),
-            (EV["think"] + 0.2, "do", "MIENTRAS PIENSA · ~8 s", "Vuelve a mirar al juez y sigue con el problema. Los pasos se ven solos en la pantalla."),
-            (EV["think"] + 4.0, "say", "SI TODAVÍA PIENSA CUANDO TERMINAS", "«While we talk, it's checking itself. You can see each step.»"),
-            (EV["think_end"] + 0.3, "do", "CUANDO TERMINA", "Termina tu frase y deja que Chaski hable. No lo interrumpas.")],
-    "b3": [(PAGES["b3"]["start"] + 0.3, "do", "QUÉ HACES", "Señala el sello «Revisado por el crítico» en la pantalla."),
-           (EV["w_back"], "file", "ES VERDAD PORQUE", "La retraducción a ciegas corre en cada turno traducido: chaski/critico.py + hechos.py.")],
+    "b1a": [(EV["s01"] + 0.1, "do", "QUÉ HACES", "Lo primero: UNA frase, mirando al juez. Para quién es y qué hace. Nada en pantalla todavía."),
+            (EV["w_silent"], "file", "POR QUÉ ASÍ", "Los jueces puntúan mejor a quien abre con «esto es una herramienta que hace X para Y» (research §6).")],
+    "b1": [(EV["mama"] - 0.5, "do", "QUÉ HACES", "Dale play al video de tu mamá en la laptop. No hables encima de ella."),
+           (EV["mama"] + 4.0, "warn", "CÓRTALO A LOS 12,5 s", "Termina en «…they don't understand Quechua». El resto del clip va al video de Devpost."),
+           (EV["mama"] + 8.0, "file", "ARCHIVO", "data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4")],
+    "b2b": [(EV["s02"] + 0.1, "do", "QUÉ HACES", "«Let me show you» y el celular ya está en el soporte, en Consulta."),
+            (EV["s03"] - 0.1, "do", "AL CELULAR", "La indicación en castellano, clara y sin apuro."),
+            (EV["think"] + 0.3, "do", "MIENTRAS PIENSA · ~8 s", "Vuelve a mirar al juez y da las cifras. La espera se vuelve el problema."),
+            (EV["think_end"] + 0.3, "do", "CUANDO TERMINA", "Termina tu frase y deja que Chaski hable.")],
+    "b3": [(PAGES["b3"]["start"] + 0.3, "do", "QUÉ HACES", "Señala el sello «Revisado por el crítico»."),
+           (EV["w_code"], "file", "ES VERDAD PORQUE", "La retraducción a ciegas corre en cada turno traducido: chaski/critico.py + hechos.py.")],
     "b3b": [(EV["pac"] - 0.2, "do", "RICARDO", "Pone el audio de la familia junto al micrófono del celular."),
-            (EV["pac_es"], "do", "TÚ", "Lee en voz alta el castellano que sale en la pantalla."),
-            (EV["pac_es"] + 2.5, "warn", "SI FALLA", "Repite el audio una vez. Si vuelve a fallar, sigue: nunca lo arregles en vivo.")],
+            (EV["pac_es"], "do", "TÚ", "Lee en voz alta el castellano de la pantalla."),
+            (EV["pac_es"] + 2.0, "warn", "SI FALLA", "Repite el audio una vez. Si vuelve a fallar, sigue: nunca lo arregles en vivo.")],
     "b3c": [(EV["tap1"] - 0.3, "do", "QUÉ HACES", "Dos toques: Emergencia → ¿Dónde le duele?"),
-            (EV["q_em"] + 0.3, "file", "POR QUÉ ES AL INSTANTE", "Ya está traducida, la revisó tu mamá y está grabada. No llama a ningún modelo.")],
+            (EV["q_em"] + 0.3, "file", "POR QUÉ ES AL INSTANTE", "Tu mamá las escribió y revisó (14 aprobadas + 10 suyas). Ya están grabadas: no llama a ningún modelo.")],
     "b4": [(PAGES["b4"]["start"] + 0.3, "warn", "ANTES DE LA MESA", "Prende el modo ensayo en Ajustes. Sin eso no hay atajo."),
            (EV["s08"] + 0.2, "do", "QUÉ HACES", "Toca el atajo de ensayo y DI que es un error simulado."),
-           (EV["red"], "do", "EN ROJO", "Deja el rojo en pantalla. Un segundo de silencio. Después hablas.")],
-    "b5": [(EV["s10"] - 0.3, "do", "RICARDO", "Una sola lámina en la laptop, con los dos números."),
-           (EV["w_184"], "warn", "NUNCA DIGAS", "«under three seconds» ni el 31,7 de NLLB. Es «about three seconds».")],
+           (EV["red"], "do", "EN ROJO", "Un segundo de silencio con el rojo en pantalla. Después hablas.")],
+    "b5": [(EV["s10"] - 0.3, "do", "RICARDO", "UNA lámina, UN número: 183 / 184. El de las palabras queda para las preguntas."),
+           (EV["w_four"], "do", "EL LÍMITE LO DECIMOS NOSOTROS", "«Todavía fallan ~4 de cada 10 palabras: por eso se calla en vez de adivinar.» Admitirlo sube el puntaje."),
+           (EV["w_184"], "warn", "NUNCA DIGAS", "«under three seconds» ni el 31,7 de NLLB.")],
     "b6": [(EV["s11"] + 0.2, "do", "QUÉ HACES", "Muestra el resumen de ESTA consulta, no el de ejemplo."),
-           (EV["w_next"] - 1.5, "say", "LA ÚLTIMA FRASE", "«Next, it goes to my mother's health center.» Si ella ya dijo que sí: «Monday».")],
-    "end": [(PAGES["end"]["start"] + 0.6, "do", "DESPUÉS · 2:00 DE PREGUNTAS", "Respuestas de un respiro, en plan/qa-jueces.md."),
-            (PAGES["end"]["start"] + 1.6, "do", "ANTES DE CADA JUEZ", "Un turno de calentamiento · hotspot del celular · parlante · modo ensayo prendido."),
+           (EV["w_anth"], "say", "LA ÚLTIMA FRASE", "«…and next, it goes to my mother's health center.» Si ella ya dijo que sí: «Monday».")],
+    "end": [(PAGES["end"]["start"] + 0.6, "do", "DESPUÉS · 2:00 DE PREGUNTAS", "Respuestas de un respiro en plan/qa-jueces.md. Primero las 3 que preguntan siempre."),
+            (PAGES["end"]["start"] + 1.6, "do", "ANTES DE LAS 10:30", "Clip de respaldo grabado · busca a Anthropic, Microsoft y Cartesia · modo ensayo prendido · turno de calentamiento."),
             (PAGES["end"]["start"] + 2.6, "warn", f"ESTE ENSAYO DURÓ {int(DATA['pitch_len'] // 60)}:{int(DATA['pitch_len'] % 60):02d}",
-             "Recorta unos 6 s: acorta la pausa antes de que Chaski hable en B3, o una frase de B5.")],
+             "Sobran unos " + str(int(180 - DATA['pitch_len'])) + " s. En vivo hablas más lento y un turno puede tardar 10 s: no rellenes.")],
 }
 
 def win(a, b):
@@ -79,7 +78,10 @@ PH = {
         steps("b2b", ["Entendiendo lo que dijo", "Traduciendo al quechua", "Revisando que nada cambió"]) +
         '<div class="bub qu" id="m-qu"><span class="tagl">QUECHUA</span><div class="btxt">' + words_html(QB3, "qw") +
         '</div><div class="chip ok" id="m-ok">✓ Revisado por el crítico</div></div>'
-        '<div class="mock">maqueta · en vivo sale el quechua real</div>'),
+        '<div class="mock">maqueta · en vivo sale el quechua real</div>') +
+        '<div class="sc" id="sc1" ' + BLUR + '><b>9 de 10</b><span>pacientes hablan quechua</span></div>'
+        '<div class="sc" id="sc2" ' + BLUR + '><b>1 de 5</b><span>del personal lo habla</span></div>'
+        '<div class="sc" id="sc3" ' + BLUR + '><b>÷ 4</b><span>la pastilla partida frente al paciente</span></div>',
     "b3b": phone("b3b",
         '<div class="bub qu" id="p-qu"><span class="tagl">PACIENTE · QUECHUA</span><div class="btxt">Umaymi nanachkan qayna punchawmanta.</div>'
         '<div class="wave" id="p-wave">' + "".join(f'<i style="--h:{h}"></i>' for h in [8, 18, 30, 22, 36, 14, 26, 40, 20, 12, 28, 34, 16, 24, 10, 30, 18, 8]) + '</div></div>' +
@@ -114,6 +116,10 @@ def stage(pid):
                 '<div class="leg" id="i-l1"><i class="lg-v"></i>La voz es lo que <b>dices</b></div>'
                 '<div class="leg" id="i-l2"><i class="lg-c"></i>Las tarjetas son lo que <b>haces</b></div>'
                 '<div class="leg" id="i-l3"><i class="lg-t"></i>El reloj es el tiempo <b>real</b> del pitch</div>')
+    if pid == "b1a":
+        return ('<div class="pill big" id="w1" ' + BLUR + '>Un intérprete médico para los Andes</div>'
+                '<div class="pill big" id="w2" ' + BLUR + '>Enfermera en castellano → paciente en quechua</div>'
+                '<div class="pill big acc" id="w3" ' + BLUR + '>Se calla antes que decir mal una dosis</div>')
     if pid == "b1":
         return ('<div class="laptop" id="lap"><div class="lscreen"></div><div class="lbase"></div></div>'
                 '<div class="who" id="mama-name">Lic. Norma Choque Guerreros · enfermera, Pilpichaca</div>')
@@ -131,18 +137,18 @@ def stage(pid):
     if pid in PH:
         return PH[pid]
     if pid == "b3":
-        lab = ["1 · Lo limpia", "2 · Lo traduce", "3 · Lo retraduce a ciegas", "4 · El código compara los datos", "5 · Recién habla"]
+        lab = ["1 · Lo retraduce a ciegas", "2 · El código compara dosis y horas", "3 · Y el «no con té»"]
         held = phone("b3",
             '<div class="bub es on" id="h-es"><span class="tagl">CASTELLANO</span><div class="btxt">Tome una pastilla cada ocho horas, después de comer. No la tome con té.</div></div>'
             '<div class="bub qu on" id="h-qu"><span class="tagl">QUECHUA</span><div class="btxt">' + E(QB3) + '</div>'
             '<div class="chip ok on" id="h-ok">✓ Revisado por el crítico</div></div>'
             '<div class="mock">maqueta · en vivo sale el quechua real</div>')
-        return held + "".join(f'<div class="pill chain{" acc" if i == 4 else ""}" id="ch{i}" {BLUR}>{E(x)}</div>' for i, x in enumerate(lab))
+        return held + "".join(f'<div class="pill chain{" acc" if i == 2 else ""}" id="ch{i}" {BLUR}>{E(x)}</div>' for i, x in enumerate(lab))
     if pid == "b5":
         return ('<div class="slide" id="sl"><div class="sl-h">Lo que medimos</div>'
-                '<div class="sl-n" id="sl1"><div class="big">54% → 41%</div><div class="lab">errores por palabra, en una voz que el modelo nunca oyó</div></div>'
+                '<div class="sl-p lim" id="sl0">Todavía falla ~4 de cada 10 palabras → por eso se calla en vez de adivinar</div>'
                 '<div class="sl-p" id="sl2">Opus decide · Sonnet revisa</div>'
-                '<div class="sl-n" id="sl3"><div class="big">183 / 184</div><div class="lab">errores sembrados atrapados · 100 % de los críticos · ~3 s</div></div></div>')
+                '<div class="sl-n" id="sl3"><div class="big huge">183 / 184</div><div class="lab">errores sembrados atrapados · 100 % de los críticos · ~3 s</div></div></div>')
     if pid == "end":
         return ('<img class="hero small" id="e-ava" src="assets/img/reposo.png"><div class="ttl" id="e-t1">Chaski</div>'
                 '<div class="leg" id="e-l1"><i class="lg-t"></i>Entrega en Devpost: domingo 9:00</div>'
@@ -176,7 +182,7 @@ page = f'''<!doctype html>
 <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="{TOTAL:.3f}" data-fps="30">
   <div id="field" class="full"></div><div id="glow" class="full"></div>
   {''.join(pages_html)}
-  <video id="mama" class="clip" src="assets/video/mama-b1.mp4" muted playsinline {win(EV["T0"], EV["T0"] + 16.0)}></video>
+  <video id="mama" class="clip" src="assets/video/mama-b1.mp4" muted playsinline {win(EV["mama"], EV["mama"] + EV["MAMA_CUT"])}></video>
   {"".join(f'<div class="msub clip" id="msub{i}" {win(s["t0"], s["t1"] + 0.3)}>{E(s["text"])}</div>' for i, s in enumerate(DATA["mama"]))}
   <div id="hud"><div id="brand">CHASKI · ENSAYO DEL DEMO</div><div id="blabs">{hud_labels}</div>
     <div id="clock"><span id="clk">0:00</span><small>/ 3:00</small></div><div id="bar"><i id="barfill"></i><b id="bar3"></b></div></div>

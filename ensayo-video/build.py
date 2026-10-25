@@ -58,21 +58,22 @@ QB3 = dur(ROOT / "assets/audio/quy/b3a-48k.wav")
 QEM = dur(ROOT / "assets/audio/quy/emg-48k.wav")
 
 t = {}
+MAMA_CUT = 12.5                                            # v5: her clip ends after «…don't understand Quechua»
 t["s00"] = 0.5
 T0 = round(t["s00"] + D["s00"] + 0.9, 2)                  # pitch starts
-t["mama"] = T0
-t["s01"] = T0 + MAMA + 0.5
-t["s02"] = t["s01"] + D["s01"] + 0.6
-t["s03"] = t["s02"] + D["s02"] + 0.7                      # Freddy talks to the phone (Spanish)
+t["s01"] = T0                                             # who it's for, first
+t["mama"] = t["s01"] + D["s01"] + 0.4
+t["s02"] = t["mama"] + MAMA_CUT + 0.4                     # "That's my mother… Let me show you."
+t["s03"] = t["s02"] + D["s02"] + 0.4                      # Freddy talks to the phone (Spanish)
 t["think"] = t["s03"] + D["s03"] + 0.2                     # «Pensando» starts
 t["think_end"] = t["think"] + 8.0                         # p50 8.0 s (evals/HISTORIA.md §2d)
-t["s04"] = t["think"] + 0.6                               # the problem, told while it thinks
-t["q_b3"] = max(t["think_end"], t["s04"] + D["s04"]) + 0.5  # Chaski speaks Quechua
-t["s05"] = t["q_b3"] + QB3 + 0.5
-t["pac"] = t["s05"] + D["s05"] + 0.6                      # Ricardo plays the family clip
+t["s04"] = t["think"] + 0.5                               # the numbers, told while it thinks
+t["q_b3"] = max(t["think_end"], t["s04"] + D["s04"]) + 0.4  # Chaski speaks Quechua
+t["s05"] = t["q_b3"] + QB3 + 0.4
+t["pac"] = t["s05"] + D["s05"] + 0.5                      # Ricardo plays the family clip
 t["s06"] = t["pac"] + PAC + 0.4
 t["pac_es"] = t["pac"] + PAC + 3.8                        # Spanish on screen (~4 s turn)
-t["tap1"] = t["s06"] + D["s06"] + 0.7                     # Emergencia
+t["tap1"] = max(t["s06"] + D["s06"], t["pac_es"]) + 0.9   # Emergencia
 t["tap2"] = t["tap1"] + 1.1                               # ¿Dónde le duele?
 t["q_em"] = t["tap2"] + 0.35
 t["s07"] = t["q_em"] + QEM + 0.5
@@ -88,15 +89,14 @@ t = {k: round(v, 3) for k, v in t.items()}
 # pages (field flips on every cut). id, start, label, who
 P = [
     ("intro", 0.0, "Cómo se ve el demo", ""),
-    ("b1", T0 - 0.8, "B1 · Su voz", "MAMÁ · VIDEO"),
-    ("b1b", t["s01"] - 0.4, "B1 · Quién es", "FREDDY"),
-    ("b2", t["s02"] - 0.4, "B2 · El problema", "FREDDY"),
-    ("b2b", t["s03"] - 0.4, "B2 → B3 · Habla al celular", "FREDDY"),
+    ("b1a", T0 - 0.4, "B1 · Para quién es", "FREDDY"),
+    ("b1", t["mama"] - 0.8, "B1 · Su voz", "MAMÁ · VIDEO"),
+    ("b2b", t["s02"] - 0.4, "B2 · Empieza el demo", "FREDDY"),
     ("b3", t["s05"] - 0.4, "B3 · Cómo se revisó", "FREDDY"),
     ("b3b", t["pac"] - 0.4, "B3 · Responde el paciente", "RICARDO + FREDDY"),
     ("b3c", t["tap1"] - 0.4, "B3 · Modo emergencia", "FREDDY"),
     ("b4", t["s08"] - 0.4, "B4 · El momento", "FREDDY"),
-    ("b5", t["s10"] - 0.5, "B5 · Cómo está hecho", "RICARDO"),
+    ("b5", t["s10"] - 0.5, "B5 · Cómo está hecho y su límite", "RICARDO"),
     ("b6", t["s11"] - 0.4, "B6 · Cierre", "FREDDY"),
     ("end", t["end"], "Después del pitch", ""),
 ]
@@ -128,7 +128,7 @@ def srt(path, off):
                 for v in L[1].split(" --> ")]
         out.append({"t0": round(off + a, 3), "t1": round(off + b, 3), "text": " ".join(L[2:])})
     return out
-mama_subs = srt(ROOT.parent / "data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.en.srt", T0)
+mama_subs = srt(ROOT.parent / "data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.en.srt", t["mama"])
 
 def word_t(seg, needle, nth=0):
     hits = [w for w in words(seg) if needle.lower() in w["w"].lower()]
@@ -136,19 +136,15 @@ def word_t(seg, needle, nth=0):
 
 ev = dict(t)
 ev.update({
-    "T0": T0, "TOTAL": TOTAL,
-    "w_nine": word_t("s01", "Nine"), "w_one5": word_t("s01", "About"),
-    "w_nurse": word_t("s02", "nurse"), "w_tech": word_t("s02", "technician"), "w_driver": word_t("s02", "driver"),
-    "w_gest": word_t("s02", "gestures"), "w_pill": word_t("s02", "breaks"),
-    "w_40": word_t("s04", "forty"), "w_7": word_t("s04", "seven"),
-    "w_clean": word_t("s05", "cleaned"), "w_transl": word_t("s05", "translated"), "w_back": word_t("s05", "back"),
-    "w_code": word_t("s05", "code"), "w_spoke": word_t("s05", "speak"),
-    "w_ears": word_t("s06", "ears"), "w_claude6": word_t("s06", "Claude"),
-    "w_lost": word_t("s09", "lost"), "w_caught": word_t("s09", "caught"), "w_worse": word_t("s09", "worse"),
-    "w_54": word_t("s10", "fifty"), "w_brain": word_t("s10", "brain"), "w_184": word_t("s10", "hundred"),
-    "w_crit": word_t("s10", "critical"),
+    "T0": T0, "TOTAL": TOTAL, "MAMA_CUT": MAMA_CUT,
+    "w_interp": word_t("s01", "interpreter"), "w_nurse": word_t("s01", "nurse"), "w_silent": word_t("s01", "silent"),
+    "w_show": word_t("s02", "show"),
+    "w_nine": word_t("s04", "Nine"), "w_one5": word_t("s04", "One"), "w_pill": word_t("s04", "breaks"),
+    "w_back": word_t("s05", "back"), "w_code": word_t("s05", "code"), "w_tea": word_t("s05", "tea"),
+    "w_four": word_t("s10", "four"), "w_refuses": word_t("s10", "refuses"), "w_opus": word_t("s10", "Opus"),
+    "w_184": word_t("s10", "hundred"), "w_crit": word_t("s10", "critical"),
     "w_note": word_t("s11", "note"), "w_home": word_t("s11", "home"), "w_words": word_t("s11", "words"),
-    "w_anth": word_t("s11", "Anthropic"), "w_next": word_t("s11", "Next"),
+    "w_anth": word_t("s11", "Anthropic"), "w_next": word_t("s11", "next", 1) if len([w for w in words("s11") if "next" in w["w"].lower()]) > 1 else word_t("s11", "next"),
 })
 pitch_len = t["s11"] + D["s11"] - T0
 
@@ -161,7 +157,7 @@ fx = []
 for s in [f"s{i:02d}" for i in range(12)]:
     fx.append({"type": "sample", "bus": "voice", "file": f"assets/audio/vo/{s}.wav", "at": t[s], "gain_db": 0})
 fx += [
-    {"type": "sample", "bus": "voice", "file": "assets/audio/mama-b1.wav", "at": T0, "gain_db": 1, "fade_in": 0.05, "fade_out": 0.2},
+    {"type": "sample", "bus": "voice", "file": "assets/audio/mama-b1.wav", "at": t["mama"], "len": MAMA_CUT, "gain_db": 1, "fade_in": 0.05, "fade_out": 0.3},
     {"type": "sample", "bus": "voice", "file": "assets/audio/paciente-p18-064.wav", "at": t["pac"], "gain_db": 0},
     {"type": "sample", "bus": "voice", "file": "assets/audio/quy/b3a-48k.wav", "at": t["q_b3"], "gain_db": -2},
     {"type": "sample", "bus": "voice", "file": "assets/audio/quy/emg-48k.wav", "at": t["q_em"], "gain_db": -2},

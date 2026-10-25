@@ -7,7 +7,7 @@ look… use my voice… include the videos of my mom… and if there is a specif
   otra voz (`brian`) para que se note que habla él. La frase al celular va en castellano con la voz de Freddy.
 - **Las tarjetas son lo que se hace**: qué tocar, dónde mirar, qué nunca decir, qué archivo usar.
 - **El reloj de arriba es el tiempo real del pitch**, y se pone rojo pasados los 3:00.
-- Guion: `plan/pitch.md` v4 §6, con el traductor D43 (turno de ~8 s, `evals/HISTORIA.md` §2d).
+- Guion: `plan/pitch.md` **v5** §6, con el traductor D43 (turno de ~8 s, `evals/HISTORIA.md` §2d).
 
 ## Qué es real y qué es maqueta
 
@@ -21,7 +21,7 @@ look… use my voice… include the videos of my mom… and if there is a specif
 | La negativa (B4) | `FRASE_NEGATIVA_DEMO` de `movil/src/chaski/ensayo.ts`, motivo «cambió un dato crítico: prohibiciones» |
 | Números de B5 | `plan/pitch.md` §0 y §4 |
 
-**Este ensayo dura 3:06.** Hay que recortar ~6 s; la tarjeta final dice dónde.
+**v2 dura 2:32 con la voz clonada**: sobran ~28 s, que en vivo se van en hablar más lento y en un turno lento.
 
 ## Cómo se rehace
 
@@ -44,3 +44,4 @@ vez (el plan Creator corta el sexto con 429).
 | v | Qué cambió y por qué |
 |---|---|
 | v1 | Primera versión. 30 fps (guía interna de 3:24; 360° de obturador = la misma exposición que la referencia). Corte cada ~18 s, uno por beat, con el campo alternando claro/oscuro. En el storyboard: el resumen inventaba «paracetamol» (la indicación no nombra ningún medicamento), se quitó; la página B3 pasó a mostrar el celular con el sello del crítico al lado de la cadena de pasos |
+| v2 | Guion v5 (research §6): una frase de «para quién es» primero, el clip de la mamá cortado a 12,5 s, el demo empieza a los 0:20, las cifras se dicen mientras piensa, un solo número en la lámina (183/184) y el límite dicho por Ricardo («todavía falla ~4 de cada 10 palabras: por eso se calla»). 2:32 de pitch |

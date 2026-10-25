@@ -46,24 +46,16 @@
     rise("#i-t1", 0.25, 60); rise("#i-t2", 0.45, 60);
     rise("#i-l1", 2.0); rise("#i-l2", 3.4); rise("#i-l3", 5.0);
 
-    /* ═══ B1 · her video ═══ */
-    land("#lap", E.T0 - 0.78);
-    rise("#mama-name", E.T0 + 1.0);
+    /* ═══ B1 · who it's for, three pills on his words ═══ */
+    land("#w1", E.w_interp); land("#w2", E.w_nurse); land("#w3", E.w_silent);
 
-    /* ═══ B1b · the gap, two numbers ═══ */
-    land("#st1", E.w_nine); land("#st2", E.w_one5); show("#st-src", E.w_one5 + 0.8);
-
-    /* ═══ B2 · who interprets today ═══ */
-    land("#pl1", E.w_nurse); land("#pl2", E.w_tech); land("#pl3", E.w_driver); land("#pl4", E.w_gest);
-    land("#pq", E.w_pill);
-    $$("#pq .q").forEach(function (q, i) {
-      var dx = [14, 14, -14, -14][i], dy = [-14, 14, 14, -14][i];
-      ft(q, { x: 0, y: 0 }, { x: dx, y: dy, duration: UI_D, ease: UI_E }, E.w_pill + 0.7);
-    });
-    rise("#pq-lab", E.w_pill + 0.9);
+    /* ═══ B1 · her video (12.5 s) ═══ */
+    land("#lap", E.mama - 0.78);
+    rise("#mama-name", E.mama + 1.0);
 
     /* ═══ B2→B3 · speak to the phone, it thinks, Chaski speaks ═══ */
-    land("#ph-b2b", E.s03 - 0.4);
+    land("#ph-b2b", E.s02 - 0.35);
+    land("#sc1", E.w_nine); land("#sc2", E.w_one5); land("#sc3", E.w_pill);
     avatar("b2b", "escuchando", E.s03 - 0.1);
     show("#m-es", E.s03);
     var ew = $$("#m-es .ew"), es = DATA.caps.filter(function (c) { return c.seg === "s03"; });
@@ -84,7 +76,7 @@
     avatar("b2b", "reposo", E.q_b3 + 7.6);
 
     /* ═══ B3 · how it was checked, a chain of five ═══ */
-    [E.w_clean, E.w_transl, E.w_back, E.w_code, E.w_spoke].forEach(function (at, i) { land("#ch" + i, at); });
+    [E.w_back, E.w_code, E.w_tea].forEach(function (at, i) { land("#ch" + i, at); });
 
     /* ═══ B3 · the patient answers ═══ */
     land("#ph-b3b", E.pac - 0.6);
@@ -121,7 +113,7 @@
 
     /* ═══ B5 · Ricardo's one slide ═══ */
     land("#sl", PAGESTART("b5") + 0.1);
-    land("#sl1", E.w_54); land("#sl2", E.w_brain); land("#sl3", E.w_184);
+    land("#sl0", E.w_four); land("#sl2", E.w_opus); land("#sl3", E.w_184);
 
     /* ═══ B6 · the summary of this visit ═══ */
     land("#ph-b6", PAGESTART("b6") + 0.05);
