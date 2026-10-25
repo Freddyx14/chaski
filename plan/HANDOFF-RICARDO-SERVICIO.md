@@ -33,7 +33,26 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | D40 → D43 en `app.py`, `desplegar.sh` y `PARA-FREDDY.md` | 0ee64a9 |
 | [x] | `git pull` y desplegar da250b1. Verificado con grabaciones reales (dom 02:20): `p16_C_001.wav` → el reconocedor oye «pusaq urapi huk pastillata upyay», `estado dicho`, «Tome una pastilla a las ocho.», **sin paréntesis**. `p18_C_001.wav` → `dicho`, «Tome una pastilla cada ocho horas», sin paréntesis | 1f6b0a4 |
 | [x] | `git pull` y desplegar 630a847 + ef3333c. Verificado (dom 02:45) forzando un bloqueo real con `confianza=0.3`: `estado dicho_con_aviso`, **`accion repreguntar`, `para personal`**, «No quiero decir un dato equivocado: un dato. ¿Me lo repite, por favor?», `motivo B1 … «una» (0.30)`, `paso_fallido guardas` | 1a13cf6 |
-| [ ] | **Manos libres (dom, para la app de iOS):** `git pull`, pega en `servicio/app.py` las rutas `POST /turno` y `POST /turno/vivo` de la sección «Manos libres» de `app/chaski/PARA_RICARDO.md` (traen `_detectar_idioma` contra el `/idioma` de la instancia, `entender_castellano`, `entender_chanka`, `_voz_para_chaski` y `_dependencias("claude")`) y despliega. Un solo llamado: el audio entra, Chaski decide quién habló (detector; si duda o se cae, alterna con el último que habló) y responde | verificar con una grabación humana: `curl -F audio=@p16_C_001.wav -F contexto= $URL/turno` → `quien_hablo: paciente`, `lado_por: detector`, `estado` dicho; y `curl -N` a `/turno/vivo` da `oido` → `decision` → `resultado` |
+| [x] | **Manos libres**: `POST /turno` y `POST /turno/vivo` pegadas y desplegadas. `p16_C_001.wav` → `quien_hablo paciente`, `lado_por detector`, `idioma_detectado quy` (0.986), `estado dicho_con_aviso`, oyó «pusaq urapi huk pastillata upyay». `/turno/vivo` da los tres eventos: `oido` → `decision` → `resultado` | 1f7c816 |
+
+> 🔴 **Freddy: el detector de idioma falla en 3 de 6 grabaciones reales, y falla con confianza alta.**
+> Las seis son quechua, de las familias:
+>
+> ```
+> p16_C_001   quy  0.986   ✓
+> p16_C_002   quy  1.000   ✓
+> p18_C_001   spa  1.000   ✗
+> p18_C_002   spa  0.999   ✗
+> p24_C_003   spa  0.709   ✗
+> p17_C_001   quy  0.507   ✓ por poco
+> ```
+>
+> Importa para manos libres: si detecta mal, el quechua del paciente lo transcribe el reconocedor
+> de castellano y Chaski le responde al que no habló. **Y la alternancia no lo salva**: solo entra
+> cuando la confianza baja de 0,6, y estos errores vienen a 0,999.
+>
+> Antes medí `mms-lid` 6/6 sobre las muestras sintéticas. Sobre voz humana es 3/6. Si manos libres
+> va al demo, yo alternaría SIEMPRE y usaría el detector solo para desempatar, no al revés.
 
 > ⚠️ Freddy, dos cosas de esa verificación:
 > 1. **La frase dice «un dato equivocado: un dato».** El hueco del campo no se llenó con el nombre

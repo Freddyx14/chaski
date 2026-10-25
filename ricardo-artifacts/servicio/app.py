@@ -156,6 +156,58 @@ def _dependencias(motor: str):
                                     motor="nllb" if motor == "nllb" else "claude")
 
 
+def _detectar_idioma(audio: bytes, nombre: str) -> dict:
+    """El /idioma de la instancia (mms-lid-512, ~49 ms): {codigo: 'spa'|'quy', confianza}."""
+    import httpx
+
+    from servicio.flujo import INSTANCIA, _a_wav
+    with httpx.Client(timeout=30) as cli:
+        r = cli.post(f"{INSTANCIA}/idioma",
+                     files={"audio": ("turno.wav", _a_wav(audio, nombre), "audio/wav")})
+    r.raise_for_status()
+    return r.json()
+
+
+def _oidos_auto() -> dict:
+    from servicio.flujo import entender_castellano, entender_chanka
+    return {"detectar_idioma": _detectar_idioma, "oir_castellano": entender_castellano,
+            "oir_quechua": entender_chanka}
+
+
+@aplicacion.post("/turno")
+async def turno_auto(audio: UploadFile = File(...), contexto: str = Form("")):
+    """Manos libres: audio de cualquiera de los dos, Chaski decide quién habló y qué hacer.
+
+    Un solo llamado. El detector dice el idioma, eso dice quién habló, y de ahí
+    sigue el intérprete de siempre. Si el detector duda o se cae, alterna con el
+    último que habló: en una consulta se habla por turnos, así que adivinar por
+    alternancia acierta más que adivinar por idioma dudoso.
+    """
+    from chaski import servicio as interprete
+    try:
+        return interprete.turno_auto(await audio.read(), audio.filename or "turno.wav",
+                                     contexto, dependencias=_dependencias("claude"),
+                                     voz_fn=_voz_para_chaski, **_oidos_auto())
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/turno/vivo")
+async def turno_auto_vivo(audio: UploadFile = File(...), contexto: str = Form("")):
+    """Lo mismo en vivo: `oido` (~1-2 s), `decision`, `resultado` (o `error`)."""
+    from fastapi.responses import StreamingResponse
+
+    from chaski import servicio as interprete
+    # Se lee aquí: el generador corre después, fuera del async.
+    datos = await audio.read()
+    return StreamingResponse(
+        interprete.turno_auto_eventos(datos, audio.filename or "turno.wav", contexto,
+                                      dependencias=_dependencias("claude"),
+                                      voz_fn=_voz_para_chaski, **_oidos_auto()),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
 @aplicacion.post("/turno/paciente")
 async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form(""),
                          lengua: str = Form(""), motor: str = Form("claude")):
