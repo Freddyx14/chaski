@@ -259,3 +259,27 @@ enviado por WhatsApp): 1 saludo y quién es · **2 el problema** · 3 a quiénes
 | B6 | 2:35–3:00 | Resumen y palabras nuevas; cierre | — |
 
 **Video de Devpost (~2:30):** toma 1 → toma 2 → negativa → consulta y emergencia → A/B/C → toma 3 → toma 4 → toma 5.
+
+
+## 13 · Los videos de la enfermera (llegaron 20:50) · cortes y subtítulos
+
+3 videos horizontales (1024×576), uniforme turquesa (el color de Chaski). Transcritos con MMS de Meta en ventanas de 5 s
+y traducidos con Claude. Clips en `data/mama/video/clips/` (no van a git), cada uno con su `.en.srt`; texto completo en
+`clips/subtitulos.md`. Ella dice su nombre: **Lic. Norma Choque Guerreros** (Freddy autorizó mostrarlo).
+
+| Clip | Dura | Qué dice (castellano) | Uso |
+|---|---|---|---|
+| **`A-problema-costa-16s`** | 16 s | «Muchas veces vienen aquí a trabajar profesionales de la costa, y ellos no entienden el quechua» | **Abre el pitch (B1)** |
+| `A3-problema-yo-traduzco-21s` | 21 s | «…cuando vienen los profesionales de la costa no hablan quechua; cuando no entienden, yo lo soluciono, yo traduzco» | Video Devpost (más completo que A) |
+| `A2-problema-alt-16s` | 16 s | Otra toma del problema | Respaldo |
+| `B-presentacion-16s` | 16 s | «Soy la licenciada Norma Choque Guerreros, enfermera de Huancavelica… zona sanitaria de Pilpichaca… hablo quechua, runa simi» | Abre el video Devpost |
+| `C-atiende-ninos-emergencias-16s` | 16 s | «Atiendo a los niños, las enfermedades, las emergencias, porque esta población habla quechua» | Video |
+| `C2-medicamentos-traduzco-16s` | 16 s | «…cómo lo deben tomar o administrar, qué deben tomar… eso lo ayudo traduciendo» | Video, junto a la función **receta** |
+| `D-confianza-pacientes-31s` | 31 s | «Los pacientes me dicen: ayúdame, interprétame… la enfermera sabe quechua, vamos a consultarle… me alegro cuando me dan su confianza» | Momento emocional del video |
+| `E-saludo-eeuu-14s` | 14 s | «Me alegra hablar quechua. Mando un saludo desde Huancavelica, Perú, al pueblo de Estados Unidos. Muchas gracias» | Cierre del video |
+
+**Pitch (3:00):** solo `A-problema-costa-16s` en B1, con subtítulos en inglés. Si el video falla en la sala, el audio
+`data/mama/clips/final-problema-profesionales-14s.mp3`.
+
+**Video Devpost (~2:30):** B (presentación) → A3 (el problema) → negativa → consulta + emergencia → C2 junto a la receta
+→ A/B/C de voz → D (confianza) → E (saludo). Los subtítulos se queman con PIL (esta Mac no tiene libass).
