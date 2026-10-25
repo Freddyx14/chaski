@@ -64,7 +64,7 @@
 | ✅ | p20 «Ricardo» era prueba: borrada de la base y de `data/formulario/` | — |
 | ⏳ | ¿Se guardan los audios de las consultas? ¿Hace falta base de datos? (SpacetimeDB propuesto por Freddy) · recomendación dada 17:00 | ya |
 | 🔁 | Mensaje a la mamá en el portapapeles (16:28): revisar las 14 con quechua y escribir las **10 frases de emergencia sin quechua** (dónde le duele, alergia, embarazo, vino con alguien, respirar, vomitó, tomó medicamento, se cayó, vía, no se preocupe) + textos quechua de la app (`movil/src/rimay/textos.ts`) + la tabla de números | 18:00 |
-| ⬜ | Mamá: grabar su saludo en quechua para abrir el pitch, con permiso | 18:00 |
+| ✅ | Mamá: saludo y audio de atención grabados, con permiso; transcritos con MMS de Meta (`data/mama/`) | — |
 | ⏳ | Papá y familia: más grabaciones en el formulario | continuo |
 | ⬜ | Pasar el documento de Anthropic sobre agentes | cuando lo tenga |
 | ⬜ | Devpost: borrador, marcar Anthropic + People-First + Microsoft + Cartesia | 21:00 |
@@ -77,6 +77,8 @@
 |---|---|---|
 | ✅ | Línea base: ASR WER 68,9 % (54,1 % normalizado), 175 clips, hablante aparte · traducción chrF++ 42,31 | — |
 | 🔴 | **TAREA MUY IMPORTANTE (Freddy, 16:51): el número de DESPUÉS del ajuste fino** (mismo hablante de prueba, mismo script), para el pitch y el Devpost | al terminar el entrenamiento |
+| 🔴 | **PRIORIDAD 1 (Freddy 18:43): voz de Chaski ajustada con la voz de la enfermera** → `plan/HANDOFF-RICARDO-VOZ.md` (24 frases con su voz, comparación con Meta, A/B/C, prueba a ciegas, documentar y push) · también en `CLAUDE.md` para que su sesión lo lea al abrir | YA |
+| ✅ | Ajuste fino del oído (MMS + adaptador): WER 53,9 % → 40,9 %, 30 → 51 frases perfectas de 175 (`7b57a9b`) | — |
 | 🔴 | **Ajuste fino de MMS/omniASR (oído) y NLLB-200 (traducción) en salud** (Freddy, 18:20): mostrar la ingeniería difícil y la pericia del modelo en el dominio médico. Entregables, en un solo archivo de resultados: (1) línea base vs ajustado sobre el **mismo hablante de prueba** que el modelo nunca oyó; (2) **cortado por dominio**: indicaciones clínicas, medicamentos y préstamos del castellano, números y tiempos (ya mapeado en `ricardo-artifacts/reports/metricas.md`); (3) WER/CER para el oído y chrF++ para la traducción, con las peores frases antes y después; (4) cuántas horas/frases de entrenamiento y de qué familias | 21:00 |
 | ⏳ | Partir los datos en entrenamiento / banco / prueba antes de entrenar | 15:00 |
 | ⏳ | NLLB-200 ajustado + ruta `/traducir` (`texto, de, a` → `{traduccion}`) | 19:00 |
