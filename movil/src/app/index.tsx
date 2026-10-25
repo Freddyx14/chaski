@@ -145,9 +145,18 @@ const DEMO: Record<string, Fase> = {
 
 class GrabacionInvalida extends Error {}
 
+// Modo repetición (solo simulador, para la demo grabada de la feria): `chaski:///?repeticion=1` manda, en orden, audio
+// REAL de una consulta (voz peruana de ElevenLabs para el personal, quechua real de la familia p16 para el paciente)
+// por el mismo camino que una grabación (`turnoDesdeAudio`). Nada se simula: las respuestas son las del servicio vivo.
+// Los WAV viven en data/demo-consulta/ del repo, fuera de git (voz de la familia); el simulador lee el disco del Mac.
+const REPETICION_DIR = 'file:///Users/freddy/projects/1-projects-active/loopmind/clients/chaski/data/demo-consulta/';
+const REPETICION = ['01-enfermera', '02-paciente', '03-enfermera', '04-paciente', '05-enfermera', '06-enfermera',
+  '07-paciente', '08-enfermera', '09-paciente'].map((n) => `${REPETICION_DIR}${n}.wav`);
+
 export default function Pantalla() {
   const perfil = usePerfil();
-  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; marco?: string; conversar?: string }>();
+  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; marco?: string; conversar?: string;
+    repeticion?: string }>();
   // D40: Chaski sin fondo es lo normal; `&marco=1` muestra el marco anterior para comparar.
   usarChaskiLibre(q.marco !== '1');
   if (q.demo && DEMO[q.demo]) {
@@ -163,12 +172,12 @@ export default function Pantalla() {
   // Desde el modo emergencia se vuelve con el turno del paciente listo para escuchar su respuesta.
   const ladoInicial = q.lado === 'quechua' || q.lado === 'castellano' ? q.lado : undefined;
   // `?conversar=1` abre la consulta ya en modo conversación (pruebas en el simulador sin tocar la pantalla).
-  return <Consulta key={(ladoInicial ?? 'consulta') + (q.conversar ?? '')} perfil={perfil} ladoInicial={ladoInicial}
-    conversarAlAbrir={q.conversar === '1'} />;
+  return <Consulta key={(ladoInicial ?? 'consulta') + (q.conversar ?? '') + (q.repeticion ?? '')} perfil={perfil}
+    ladoInicial={ladoInicial} conversarAlAbrir={q.conversar === '1'} repeticion={q.repeticion === '1'} />;
 }
 
-function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir }: {
-  perfil: Perfil; inicial?: Fase; ladoInicial?: Lado; conversarAlAbrir?: boolean;
+function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir, repeticion }: {
+  perfil: Perfil; inicial?: Fase; ladoInicial?: Lado; conversarAlAbrir?: boolean; repeticion?: boolean;
 }) {
   const t = textos(perfil.idioma);
   const [fase, setFase] = useState<Fase>(inicial ?? { f: 'listo' });
@@ -226,6 +235,29 @@ function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir }: {
     vadRef.current = nuevoVad(Date.now());
     setFase({ f: 'grabando' });
   }
+
+  // Modo repetición: cada audio pasa por el turno real; se espera a que Chaski termine de hablar y se sigue.
+  useEffect(() => {
+    if (!repeticion) return;
+    let vivo = true;
+    const dormir = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
+    (async () => {
+      await dormir(1500);
+      for (const uri of REPETICION) {
+        if (!vivo) return;
+        setOcupado(true);
+        try {
+          await turnoDesdeAudio(uri);
+        } finally {
+          setOcupado(false);
+        }
+        await dormir(800); // que empiece a sonar
+        for (let i = 0; i < 100 && vivo && (reproductor.playing || hablandoSistemaRef.current); i++) await dormir(300);
+        await dormir(1800); // una pausa para leer la pantalla
+      }
+    })();
+    return () => { vivo = false; };
+  }, []);
 
   useEffect(() => {
     if (!conversarAlAbrir) return;
