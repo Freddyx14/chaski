@@ -80,7 +80,7 @@ Every row is a decision that is written down with its reason and, where it appli
 | **Why Chanka specifically?** | "It's the Quechua of Huancavelica and Ayacucho, and models are trained mostly on Cusco's. We found no paper that evaluates large language models on Chanka." | F/R | `research/papers.md` |
 | **Why is your test set one person?** | "On purpose. Testing on a voice the model already heard would inflate the number. The split code refuses to run with fewer than two speakers. One held-out speaker is small, and we say so. It's honest, not big." | R | `partir_por_hablante` · README |
 | **Your WER went up on one metric?** | "Strict WER went from 76 to 82 % because the model now writes normalized spelling. Quechua has no settled spelling, so we report both, and 15 points of the strict number are spelling, not recognition." | R | README «Speech models» |
-| **Is the voice a deepfake of your mother?** | "It's trained with her permission, we always say it's a trained voice, and it only speaks phrases a nurse verified. We judge it with human ears, hers, in a blind test, not with a recognizer, because a patient hears it, not a machine." 🔸 *Only claim the blind-test result if she has done it.* | R | `evals/HISTORIA.md` §4 |
+| **Is that your mother's voice? Isn't that a deepfake?** | "It's a voice trained on her recordings, with her permission, and we always say so. Patients hear a nurse from their own valley instead of a robot. And it only ever speaks Quechua that passed the guards and the critic, or phrases she reviewed herself." 🔸 *Claim "she picked it in a blind test" only after she has done it.* | R | Freddy 01:55 · `evals/HISTORIA.md` §4 |
 
 ---
 

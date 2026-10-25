@@ -25,7 +25,7 @@
 | Opus decides, Sonnet checks | ✅ D39 | SOT |
 | "They still miss about four words in ten" | ✅ fine-tuned WER 40.9 % on the held-out speaker | `7b57a9b` · `evals/HISTORIA.md` §4 |
 | "My mother wrote and reviewed these" | ✅ 14 approved as they were + 10 written by her | `evals/banco/revision_enfermera.json` |
-| Nurse-trained voice, A/B/C, «she picked it blind» | 🔸 **not yet**. No `ciegas/` or `abc/` files in the repo at 23:45; out of the default script | `plan/HANDOFF-RICARDO-VOZ.md` |
+| Chaski's Quechua is in her trained voice (`mama_freddy`) | ✅ **decided by Freddy 01:55** (Spanish stays on Cartesia). Say "in my mother's voice, trained with her permission". 🔸 «She picked it blind» only after her blind test. **Check on the phone that the emergency phrases play in her voice before using the line** | loopmind-05 01:59 |
 | Summary + new words of the visit | ⚠️ screen built; **the summary on stage must be from the live consult**, not the `EJEMPLO` demo data in `movil/src/app/resumen.tsx` | app |
 | «Monday, it goes to my mother's health center» | 🔸 **Freddy confirms**. She said she herself wouldn't need it; the users are the ~80 % who don't speak Quechua | interview l.91 |
 | Translator = Claude Sonnet 5, medium effort | ✅ **decided D43 (Freddy 23:38)**. 0 of 92 fixed terms damaged (Gemini 3 Flash 4, NLLB 3); best at reading the patient (qu→es chrF++ 50.1 vs Gemini 3 Flash 43.7); whole turn p50 8.3 s, 19/20 said. ⚠️ **The live service still runs NLLB until Ricardo restarts it** (`plan/HANDOFF-RICARDO-SERVICIO.md`): check before rehearsal | `evals/traduccion/resultados/comparar-20261024-2324.json`, `…-2336.json` · `evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json` · SOT D43 |
@@ -159,7 +159,7 @@ into four in front of the patient, to show the dose."
 compared the dose, the hours and the 'not with tea'." [Point at the seal.]
 [Ricardo plays the patient.] "The patient answers in Quechua — and I read it in Spanish." [Spanish on screen.]
 [Two taps: emergency.] "In an emergency there's no time for a model. My mother wrote and reviewed these, and they play
-instantly."
+instantly 🔸 — in her own voice, trained with her permission."
 
 **B4 · The moment (1:25–1:55) · Freddy**
 "Now let's simulate the translator making a mistake." [Shortcut.] [Red. One second of silence.] "The Quechua lost its
