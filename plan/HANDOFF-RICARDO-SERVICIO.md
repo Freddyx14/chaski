@@ -43,7 +43,6 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 > / `para personal` («A las ocho tome una pastilla.»), que es el camino del paciente repitiendo
 > una indicación, no el de un lado adivinado. Para probar C1 de verdad hace falta un audio donde
 > el detector dude; los nuestros salen a 0.98-1.00. Lo dejo dicho en vez de marcarlo verificado.
-| [ ] | `git pull` y desplegar (dom 03:45) los arreglos de la auditoría: 8498191 (C1: si el detector duda, tras una pregunta de Chaski responde el mismo; lado adivinado no puede llevar datos clínicos), ff84896 (aprobación atada al par revisado; la retraducción queda ciega con «ura»), 6795247 (el ensayo siempre muestra la barrera; negación agregada en el pulido se frena), b6554e2 (killa = mes en la retraducción), 3d4913b (la traducción anticipada solo si el pulido dice lo mismo; tope de espera) | verificar: «urapi nanawan» por /turno/paciente → `repreguntar` al paciente; «killapi kutimunki» → `dicho` «…en un mes» |
 
 > 🔴 **Freddy: el detector de idioma falla en 3 de 6 grabaciones reales, y falla con confianza alta.**
 > Las seis son quechua, de las familias:
