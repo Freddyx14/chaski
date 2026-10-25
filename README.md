@@ -207,6 +207,58 @@ Cartesia's speaking latency is not measured yet (same file, §8).
 
 ---
 
+## Architecture: data, deployment, and the turn
+
+Three diagrams, each editable in `ricardo-artifacts/reports/drawio/`.
+
+### Data
+
+![Data architecture](ricardo-artifacts/reports/arquitectura-datos.svg)
+
+Families record the phrase booklet through a web form. Audio and text arrive separately because writing
+Quechua is hard even for speakers, so the labeller drafts a transcription with our own recogniser and a
+human corrects it. 714 clips came in; 419 train, 175 test.
+
+The rule the whole evaluation rests on: **the test set is one entire person the model never heard.**
+Splitting by phrase instead would let the model learn the voice and the number would stop meaning
+anything. The held-out speaker is pinned in `datos/crudo/personas.json`, because the automatic choice
+moves on its own as new data arrives and would silently invalidate every before/after comparison.
+
+Text is normalised to the trivocalic Southern Quechua spelling on both sides before scoring. Quechua has
+no settled orthography, and 14.8 of the 68.9 WER points turned out to be spelling rather than
+recognition. Both numbers are reported.
+
+### Deployment
+
+![Deployment](ricardo-artifacts/reports/arquitectura-despliegue.svg)
+
+One EC2 g5.xlarge with an A10G. Two services on it: the voice service on `:8000` holding the Meta models
+on the GPU, and the orchestrator on `:8080` that the app talks to. They speak over `127.0.0.1`, so the
+patient's audio never leaves the machine to reach the GPU.
+
+The two virtualenvs are separate on purpose. The models one pins `torch==2.8.0` and `numpy~=1.23`
+because fairseq2 requires it, and a single `pip install` on top breaks it.
+
+All of Chaski loaded is **9.31 GB of 24**, leaving room to fine-tune beside the running service. Fine
+tuning does not evict the app, though the GPU at 100% does take inference from 1.3 s to 3.9 s.
+
+`/opt/dlami/nvme` holds everything and is **ephemeral**: it wipes when the instance stops. The automatic
+memory lives outside what the deploy script syncs, so a redeploy cannot erase what was learned.
+
+### A turn
+
+![One turn](ricardo-artifacts/reports/arquitectura-flujo.svg)
+
+Audio in, language detected (49 ms), then the recogniser for that side. Claude decides what to do:
+translate, ask back, answer the staff, or say it did not understand. The translation passes eight code
+barriers and a second Claude call that blind back translates it. Code compares dose, frequency, days and
+body part. If they disagree, nothing is spoken and the nurse is told which field failed.
+
+Spanish speech goes through Cartesia; Quechua through our fine-tuned `mms-tts-quy`. Cartesia covers 44
+languages and Quechua is not one of them, which is why that half is ours.
+
+Full version, with every measured number: `ricardo-artifacts/reports/arquitectura.md`.
+
 ## Repo map
 
 | Path | What |
