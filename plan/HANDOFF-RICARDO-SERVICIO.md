@@ -170,3 +170,4 @@ si viene, y si no viene usa la voz del iPhone. Así que con el Paso 2 alcanza, s
 | [x] | Voz del quechua: `mama_freddy` (Freddy, dom 01:55) |
 | [x] | `mama_freddy` aparece en `GET /voces` y suena en `/voz` (verificado por loopmind-05, dom 01:57: 200, 0,9 s) |
 | [ ] | Desplegado, avisado por el grupo y probado con `curl` |
+| [ ] | `git pull` y desplegar (dom 02:35, 630a847): **un bloqueo ahora pregunta antes de rendirse** (pedido de Freddy). Si una barrera o el crítico frena la traducción del personal, Chaski le pregunta en castellano «No quiero decir un dato equivocado: la dosis. ¿Me lo repite, por favor?»; si es del paciente, le pide repetir en quechua. Una sola vez; el ensayo y las fallas de sistema siguen siendo bloqueo (`CHASKI_REPREGUNTAR_AL_BLOQUEAR=1`, ya es el valor por defecto) | verificar: un turno bloqueado devuelve `accion: repreguntar`, `para: personal` |
