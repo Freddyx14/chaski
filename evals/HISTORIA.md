@@ -45,7 +45,7 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 |---|---|---|
 | Reconocimiento de quechua (WER normalizado, hablante que el modelo no oyó, 175 clips) | MMS tal cual: 53,9 % · 30/175 perfectas (omniASR: 54,1 %) | **MMS + nuestro adaptador: 40,9 % · 51/175 perfectas** (−24 % relativo; commit `7b57a9b`) |
 | Traducción (chrF++, 100 pares reservados) | NLLB-200 tal cual: 25,78 · MADLAD-400-3B: 12,69 · **Claude Sonnet: 42,31** | **NLLB ajustado: 31,71** (+23 % relativo), pero sigue debajo de Claude → **Claude sigue traduciendo** (D33; commit `bf4a788`) |
-| Voz: ¿se entiende? (ida y vuelta: las 24 frases de emergencia → voz → reconocimiento ajustado, WER) | Voz de Meta tal cual: **45,8 %** | Voces ajustadas: p16 74,6 % · p24 89,8 % · papá de Ricardo 93,2 % · mamá 98,3 %. **Suenan más humanas pero el reconocedor las entiende peor** (`ac1b924`). Decide la prueba a ciegas con la enfermera |
+| Voz de Chaski (texto a voz) | Voz de Meta tal cual: robótica | Ajustada con la voz de la enfermera: suena como ella. **Se juzga con oídos humanos** (prueba a ciegas con la enfermera), no con el reconocedor: la voz la escucha un paciente, no una máquina (Freddy, 20:45). La ida y vuelta por el reconocedor (`ac1b924`) queda como dato secundario |
 
 ## La historia en una frase (para el pitch)
 

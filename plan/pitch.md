@@ -79,7 +79,7 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 | — | Interpreter picks the right action **98–100% (Opus), zero invented clinical data** | `evals/interprete/resultados/` | Q&A |
 | — | Verified-phrase RAG finds the right phrase first **88%** (keyword search 70%) | `evals/banco/` | Q&A |
 | — | **All 24 emergency phrases reviewed by a nurse from the community** | `evals/banco/revision_enfermera.json` | B3 / Q&A |
-| — | **Voice:** fine-tuned voices sound more human but our recognizer understands them less (WER 45.8% stock vs 74–98% fine-tuned, `ac1b924`). Say «sounds human», never «understood better», unless her blind test says so | `evals/HISTORIA.md` §4 | B5 |
+| — | **Voice:** judged by human ears, not by a recognizer — a patient hears it, not a machine (Freddy, 20:45). Claim «sounds like her» (audible in the A/B/C); claim «a native speaker understands it» only after her blind test | `evals/HISTORIA.md` §4 | B5 |
 | — | **Translation:** we fine-tuned NLLB-200 (chrF++ 25.8 → 31.7) and it still lost to Claude (42.3), so Claude translates — decided by measurement | `bf4a788` | Q&A «why not your own translator?» |
 | ✗ | ~~"the only Quechua-speaking nurse"~~ (3 of 6 nurses do) · ~~"2% of centers have interpreters"~~ (doesn't exist) | — | never |
 
@@ -130,7 +130,7 @@ confident wrong sentence is worse than silence."
 **B5 · How it's built (2:00–2:35) · Ricardo**
 "Meta's open models are the ears and the mouth, and there's almost no Chanka data in the world — so our families
 recorded it this weekend. On a voice the model never heard, word errors dropped from 54 to 41 percent. And listen:"
-[A/B/C, 10 s — only if her blind test passes.] "That's Meta's voice, Chaski's voice trained with her permission, and her. It sounds human — and we measured that our own recognizer understands it less, so a nurse decides which one Chaski uses. Claude is the brain: Opus
+[A/B/C, 10 s — only if her blind test passes.] "That's Meta's voice, Chaski's voice trained with her permission, and her. A nurse from the community picked it in a blind test [only if she did]. Claude is the brain: Opus
 interprets, Sonnet checks. We seeded 184 errors — wrong doses, flipped negations, swapped medicines. Chaski caught
 every critical one, in under three seconds, and always names what failed."
 
