@@ -50,7 +50,10 @@ and for patients. It doesn't just translate; it interprets:
 - **Retrieval**: hybrid RAG finds the right phrase first 88% of the time vs 70% for keyword search.
 - **Speech, fine-tuned on our families' voices** (362 clips; tested on a speaker the model never heard, 175 clips):
   Meta's MMS Quechua recognizer went from **53.9% to 40.9% word error** (24% relative), and sentences recognized
-  perfectly went from **30 to 51 of 175**. Translation baseline: chrF++ 42.31 on 30 verified pairs [NLLB fine-tune: pending].
+  perfectly went from **30 to 51 of 175**. We also fine-tuned NLLB-200 for translation (chrF++ 25.8 → 31.7 on 100
+  held-out pairs), but Claude scored 42.3, so Claude translates — the experiment decided, not our preference. And a
+  voice fine-tuned on a nurse sounds human, but our recognizer understands it *less* (round-trip WER 45.8% stock vs
+  74–98% fine-tuned): a native speaker's blind test decides which voice Chaski uses.
 
 ## Challenges we ran into
 There is almost no open Chanka Quechua data — Common Voice has three minutes of it — so our families became the
