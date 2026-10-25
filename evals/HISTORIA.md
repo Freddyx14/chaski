@@ -50,6 +50,12 @@ reales (6 de personal con voz sintética peruana, 3 del hablante p16 que el reco
 **0,5–1 s**. Lo que va a decir en pantalla: **2,7–5,2 s**. Voz lista: **8,5 s típico** (3,5 s una repregunta; 12–18 s una
 indicación médica larga). Antes del arreglo: ~25–28 s (la decisión a veces gastaba sus 800 tokens pensando y no respondía).
 
+**Recorte de tiempo, dom 07:55** (pedido de Freddy). Medido antes de tocar: traductor «low» en vez de «medium», con los
+ejemplos de la enfermera, 62 frases de las familias: castellano→quechua 59,4 → 55,1 y 3 términos dañados en vez de 1
+(**no**: es lo que oye el paciente); quechua→castellano 46,0 → 47,2 en 1,2 s en vez de 1,9 s (**sí**, se aplicó).
+Sonnet 5 decidiendo en vez de Opus: 98 % igual, 1,7 s en vez de 2,3 s, pero escribió un pulido del paciente en castellano;
+no se cambia a una hora de la entrega (`evals/interprete/resultados/decidir-sonnet-low.txt`).
+
 **El traductor es el paso más lento, y por calidad.** Con el prompt del producto, sobre los 30 pares de referencia de Ricardo (`evals/latencia/traductor_modos.py`):
 
 | Pensamiento del traductor | chrF++ | p50 |

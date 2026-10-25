@@ -44,8 +44,15 @@ NLLB_TIMEOUT_S = 8.0
 PENSAR_TRADUCIR_VALIDOS = ("modelo", "no", "low", "medium", "high")
 
 
-def opciones_pensar(valor: str | None = None) -> dict:
-    """Request kwargs for the translator's thinking. An unknown value fails instead of silently changing quality."""
+def opciones_pensar(valor: str | None = None, de: str | None = None) -> dict:
+    """Request kwargs for the translator's thinking. An unknown value fails instead of silently changing quality.
+
+    Quechua→Spanish (what the health worker reads) uses CHASKI_PENSAR_TRADUCIR_QUY_SPA, default `low`: measured
+    25-oct 07:55 on the families' 62 phrases with the nurse's examples, low 47.2 chrF++ in 1.2 s vs medium 46.0 in
+    1.9 s. Spanish→Quechua (what the patient hears) stays `medium`: low lost 4.3 points and damaged 3 fixed terms
+    instead of 1."""
+    if valor is None and de == "quy":
+        valor = os.environ.get("CHASKI_PENSAR_TRADUCIR_QUY_SPA", "low")
     valor = (valor if valor is not None else os.environ.get("CHASKI_PENSAR_TRADUCIR", "medium")).strip()
     if valor not in PENSAR_TRADUCIR_VALIDOS:
         raise ValueError(f"CHASKI_PENSAR_TRADUCIR={valor!r}; válidos: {', '.join(PENSAR_TRADUCIR_VALIDOS)}")
@@ -153,7 +160,7 @@ def traducir_claude(client: anthropic.Anthropic, texto: str, de: Idioma, a: Idio
         system=[{"type": "text", "text": SISTEMA[(de, a)], "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": contenido}],
         output_format=_Salida,
-        **opciones_pensar(),
+        **opciones_pensar(de=de),
     )
     if respuesta.stop_reason == "refusal" or respuesta.parsed_output is None:
         raise FalloMotor(f"claude: stop_reason={respuesta.stop_reason}")

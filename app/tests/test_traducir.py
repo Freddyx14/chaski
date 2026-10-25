@@ -154,3 +154,13 @@ def test_sin_ejemplos_no_hay_bloque():
     c = FakeClient()
     traducir("Hola", "spa", "quy", client=c, glosario=[], ejemplos=[])
     assert "Ejemplos" not in c.llamadas[0]["messages"][0]["content"]
+
+
+def test_quechua_a_castellano_piensa_low_y_castellano_a_quechua_medium(monkeypatch):
+    monkeypatch.delenv("CHASKI_PENSAR_TRADUCIR", raising=False)
+    monkeypatch.delenv("CHASKI_PENSAR_TRADUCIR_QUY_SPA", raising=False)
+    c = FakeClient(texto="Me duele la cabeza")
+    traducir("Umaymi nanawan", "quy", "spa", client=c, glosario=[])
+    traducir("Tome paracetamol", "spa", "quy", client=c, glosario=[])
+    assert c.llamadas[0]["output_config"] == {"effort": "low"}
+    assert c.llamadas[1]["output_config"] == {"effort": "medium"}
