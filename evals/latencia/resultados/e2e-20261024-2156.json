@@ -1,0 +1,394 @@
+{
+ "resumen": {
+  "turnos_personal": 16,
+  "escuchar": {
+   "p50": 1128.6,
+   "p95": 3424.5
+  },
+  "interprete": {
+   "banco_candidatos": {
+    "p50": 10.3,
+    "p95": 15.3
+   },
+   "critico": {
+    "p50": 3012.9,
+    "p95": 4076.4
+   },
+   "decidir": {
+    "p50": 3103.3,
+    "p95": 5526.7
+   },
+   "guardas": {
+    "p50": 29.1,
+    "p95": 55.2
+   },
+   "total": {
+    "p50": 11389.0,
+    "p95": 20464.2
+   },
+   "traducir": {
+    "p50": 5669.9,
+    "p95": 9897.0
+   }
+  },
+  "voz": {
+   "p50": 969.0,
+   "p95": 2616.0,
+   "n": 9
+  },
+  "e2e_personal": {
+   "p50": 15590.6,
+   "p95": 23235.4
+  },
+  "paciente": {
+   "idioma_p50": 889.8,
+   "turno_p50": 370.6,
+   "turno_p95": 377.3
+  }
+ },
+ "personal": [
+  {
+   "id": "med-01",
+   "categoria": "medicamento",
+   "escuchar_ms": 1657.6,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "banco_candidatos": 468.5,
+    "decidir": 2612.3,
+    "traducir": 4494.1,
+    "guardas": 50.3,
+    "critico": 3763.7,
+    "total": 11389.0
+   },
+   "voz_ms": 2616.0,
+   "voz_ok": true,
+   "voz_x_ms": "99.3",
+   "e2e_ms": 15662.6
+  },
+  {
+   "id": "med-02",
+   "categoria": "medicamento",
+   "escuchar_ms": 1026.6,
+   "escuchar_ok": true,
+   "estado": "bloqueado",
+   "accion": "traducir",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 15.0,
+    "decidir": 5154.3,
+    "traducir": 9897.0,
+    "guardas": 55.2,
+    "critico": 4076.4,
+    "total": 19198.1
+   },
+   "e2e_ms": 20224.7
+  },
+  {
+   "id": "med-03",
+   "categoria": "medicamento",
+   "escuchar_ms": 1543.7,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "banco_candidatos": 15.3,
+    "decidir": 5526.7,
+    "traducir": 11279.5,
+    "guardas": 57.9,
+    "critico": 3584.9,
+    "total": 20464.2
+   },
+   "voz_ms": 1227.5,
+   "voz_ok": true,
+   "voz_x_ms": "104.7",
+   "e2e_ms": 23235.4
+  },
+  {
+   "id": "med-04",
+   "categoria": "medicamento",
+   "escuchar_ms": 702.1,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "repreguntar",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 9.2,
+    "decidir": 2629.4,
+    "traducir": 0.0,
+    "guardas": 18.5,
+    "critico": 0.0,
+    "total": 2657.2
+   },
+   "e2e_ms": 3359.3
+  },
+  {
+   "id": "med-05",
+   "categoria": "medicamento",
+   "escuchar_ms": 1440.2,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "repreguntar",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 10.8,
+    "decidir": 3103.3,
+    "traducir": 0.0,
+    "guardas": 19.1,
+    "critico": 0.0,
+    "total": 3133.3
+   },
+   "e2e_ms": 4573.5
+  },
+  {
+   "id": "med-06",
+   "categoria": "medicamento",
+   "escuchar_ms": 3424.5,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "banco_candidatos": 11.1,
+    "decidir": 5775.5,
+    "traducir": 9591.1,
+    "guardas": 40.4,
+    "critico": 5524.0,
+    "total": 20942.1
+   },
+   "voz_ms": 1698.3,
+   "voz_ok": true,
+   "voz_x_ms": "99.9",
+   "e2e_ms": 26064.9
+  },
+  {
+   "id": "med-07",
+   "categoria": "medicamento",
+   "escuchar_ms": 478.1,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "repreguntar",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 9.0,
+    "decidir": 3715.3,
+    "traducir": 0.0,
+    "guardas": 14.1,
+    "critico": 0.0,
+    "total": 3738.6
+   },
+   "e2e_ms": 4216.7
+  },
+  {
+   "id": "orden-01",
+   "categoria": "orden",
+   "escuchar_ms": 1692.0,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "banco_candidatos": 10.3,
+    "decidir": 2932.8,
+    "traducir": 7054.5,
+    "guardas": 29.1,
+    "critico": 2902.9,
+    "total": 12929.6
+   },
+   "voz_ms": 969.0,
+   "voz_ok": true,
+   "voz_x_ms": "101.7",
+   "e2e_ms": 15590.6
+  },
+  {
+   "id": "orden-02",
+   "categoria": "orden",
+   "escuchar_ms": 879.9,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "banco_candidatos": 11.1,
+    "decidir": 2596.7,
+    "traducir": 9238.3,
+    "guardas": 37.0,
+    "critico": 3076.7,
+    "total": 14959.8
+   },
+   "voz_ms": 613.1,
+   "voz_ok": true,
+   "voz_x_ms": "103.1",
+   "e2e_ms": 16452.8
+  },
+  {
+   "id": "orden-03",
+   "categoria": "orden",
+   "escuchar_ms": 346.1,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "usar_frase_banco",
+   "idioma_salida": "quy",
+   "pasos": {
+    "banco_candidatos": 9.0,
+    "decidir": 3272.2,
+    "total": 3281.3
+   },
+   "voz_ms": 453.2,
+   "voz_ok": true,
+   "voz_x_ms": "92.2",
+   "e2e_ms": 4080.6
+  },
+  {
+   "id": "orden-04",
+   "categoria": "orden",
+   "escuchar_ms": 1401.0,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "decidir": 2844.2,
+    "traducir": 8968.9,
+    "guardas": 32.5,
+    "critico": 3087.4,
+    "total": 14933.1
+   },
+   "voz_ms": 951.3,
+   "voz_ok": true,
+   "voz_x_ms": "101.2",
+   "e2e_ms": 17285.4
+  },
+  {
+   "id": "emer-04",
+   "categoria": "emergencia",
+   "escuchar_ms": 1128.6,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "decidir": 2352.0,
+    "traducir": 5669.9,
+    "guardas": 13.0,
+    "critico": 3012.9,
+    "total": 11048.0
+   },
+   "voz_ms": 1278.5,
+   "voz_ok": true,
+   "voz_x_ms": "105.7",
+   "e2e_ms": 13455.1
+  },
+  {
+   "id": "emer-05",
+   "categoria": "emergencia",
+   "escuchar_ms": 5813.0,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "traducir",
+   "idioma_salida": "quy",
+   "pasos": {
+    "decidir": 3970.3,
+    "traducir": 8988.5,
+    "guardas": 39.5,
+    "critico": 3108.2,
+    "total": 16106.7
+   },
+   "voz_ms": 626.7,
+   "voz_ok": true,
+   "voz_x_ms": "101.3",
+   "e2e_ms": 22546.4
+  },
+  {
+   "id": "meta-01",
+   "categoria": "meta",
+   "escuchar_ms": 674.9,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "responder",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 7.6,
+    "decidir": 3054.6,
+    "traducir": 0.0,
+    "guardas": 21.5,
+    "critico": 0.0,
+    "total": 3083.8
+   },
+   "e2e_ms": 3758.7
+  },
+  {
+   "id": "meta-02",
+   "categoria": "meta",
+   "escuchar_ms": 683.1,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "responder",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 9.8,
+    "decidir": 3128.1,
+    "traducir": 0.0,
+    "guardas": 26.5,
+    "critico": 0.0,
+    "total": 3164.5
+   },
+   "e2e_ms": 3847.6
+  },
+  {
+   "id": "meta-03",
+   "categoria": "meta",
+   "escuchar_ms": 516.9,
+   "escuchar_ok": true,
+   "estado": "dicho",
+   "accion": "responder",
+   "idioma_salida": "spa",
+   "pasos": {
+    "banco_candidatos": 10.2,
+    "decidir": 2798.0,
+    "traducir": 0.0,
+    "guardas": 14.8,
+    "critico": 0.0,
+    "total": 2823.1
+   },
+   "e2e_ms": 3340.0
+  }
+ ],
+ "pacientes": [
+  {
+   "clip": "p15/004.webm",
+   "idioma_ms": 889.8,
+   "turno_paciente_ms": 377.3,
+   "ok": false,
+   "pasos": null
+  },
+  {
+   "clip": "p15/012.webm",
+   "idioma_ms": 892.7,
+   "turno_paciente_ms": 370.6,
+   "ok": false,
+   "pasos": null
+  },
+  {
+   "clip": "p15/016.webm",
+   "idioma_ms": 151.4,
+   "turno_paciente_ms": 123.2,
+   "ok": false,
+   "pasos": null
+  },
+  {
+   "clip": "p16/001.webm",
+   "idioma_ms": 240.9,
+   "turno_paciente_ms": 180.4,
+   "ok": false,
+   "pasos": null
+  }
+ ],
+ "modelos": {
+  "principal": "claude-opus-5",
+  "critico": "claude-sonnet-5"
+ }
+}

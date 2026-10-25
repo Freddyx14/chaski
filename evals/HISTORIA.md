@@ -29,7 +29,28 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 | 15:00 | Haiku 4.5 | 88 % | 1 | 2,1 s | `claude-haiku-4-5-20251001-2026-10-24-1500.json` |
 | 15:04 | Sonnet 5 | 94 % | 1 | 2,3 s | `claude-sonnet-5-2026-10-24-1504.json` |
 | 15:08 | **Opus 5** | **98 %** | **0** | 3,7 s | `claude-opus-5-2026-10-24-1508.json` |
-| 16:39 | Opus 5 + crítico Sonnet, turno completo | **100 %** | **0** | turno ~13 s → **6,5 s** tras acelerar el crítico | `claude-opus-5-2026-10-24-1639.json` |
+| 16:39 | Opus 5 + crítico Sonnet, turno completo | **100 %** | **0** | decidir + crítico ~13 s → **6,5 s** tras acelerar el crítico (sin traducción ni voz: ver la fila de las 21:56) | `claude-opus-5-2026-10-24-1639.json` |
+
+### 2b · Tiempo de punta a punta, medido (24-oct, 21:56)
+
+16 turnos reales del personal, uno tras otro. El audio de cada uno pasó por el servicio vivo de Ricardo (`/escuchar`, `/voz`) y el intérprete corrió local con los modelos de producción. Archivo: `evals/latencia/resultados/e2e-20261024-2156.json`.
+
+| Turno | p50 | Peor | Dónde se va el tiempo |
+|---|---|---|---|
+| Instrucción traducida (9) | **17,3 s** | 26,1 s | oír 1,1 · decidir (Opus) 2,9 · **traducir (Sonnet, pensando) 9,0** · barreras 0,03 · crítico 3,1 · voz 1,0 |
+| Repregunta o respuesta (6) | 3,8 s | 4,6 s | solo oír + decidir |
+| Frase verificada del banco (1) | 4,1 s | — | oír + decidir + audio ya revisado |
+
+**El traductor es el paso más lento, y por calidad.** Con el prompt del producto, sobre los 30 pares de referencia de Ricardo (`evals/latencia/traductor_modos.py`):
+
+| Pensamiento del traductor | chrF++ | p50 |
+|---|---|---|
+| **El del modelo (hoy)** | **51,8** | 5,6 s |
+| medium | 45,6 | 3,0 s |
+| apagado | 43,1 | 1,7 s |
+| low | 41,3 | 2,0 s |
+
+El 42,31 que se venía citando se midió **con el pensamiento apagado** y con otro prompt. El traductor del producto piensa y mide 51,8. Se cambia con `CHASKI_PENSAR_TRADUCIR`; por defecto queda el del modelo (primero la precisión).
 
 ## 3 · ¿Encuentra la frase verificada correcta? (RAG, 76 consultas)
 
@@ -44,7 +65,7 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 | | Antes del ajuste fino | Después |
 |---|---|---|
 | Reconocimiento de quechua (WER normalizado, hablante que el modelo no oyó, 175 clips) | MMS tal cual: 53,9 % · 30/175 perfectas (omniASR: 54,1 %) | **MMS + nuestro adaptador: 40,9 % · 51/175 perfectas** (−24 % relativo; commit `7b57a9b`) |
-| Traducción (chrF++, 100 pares reservados) | NLLB-200 tal cual: 25,78 · MADLAD-400-3B: 12,69 · **Claude Sonnet: 42,31** | **NLLB ajustado: 31,71** (+23 % relativo), pero sigue debajo de Claude → **Claude sigue traduciendo** (D33; commit `bf4a788`) |
+| Traducción (chrF++, 100 pares reservados) | NLLB-200 tal cual: 25,78 · MADLAD-400-3B: 12,69 · **Claude Sonnet: 42,31** sin pensar (el traductor del producto, que piensa: **51,8**, §2b) | **NLLB ajustado: 31,71** (+23 % relativo), pero sigue debajo de Claude → **Claude sigue traduciendo** (D33; commit `bf4a788`) |
 | Voz de Chaski (texto a voz) | Voz de Meta tal cual: robótica | Ajustada con la voz de la enfermera: suena como ella. **Se juzga con oídos humanos** (prueba a ciegas con la enfermera), no con el reconocedor: la voz la escucha un paciente, no una máquina (Freddy, 20:45). La ida y vuelta por el reconocedor (`ac1b924`) queda como dato secundario |
 
 ## La historia en una frase (para el pitch)

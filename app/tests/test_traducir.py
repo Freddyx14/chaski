@@ -103,3 +103,29 @@ def test_rechazo_de_claude_levanta_error():
 def test_mismo_idioma_no_llama_a_nadie():
     c = FakeClient()
     assert traducir("Hola", "spa", "spa", client=c).texto == "Hola" and c.llamadas == []
+
+
+def test_pensar_por_defecto_es_el_del_modelo(monkeypatch):
+    # The measured default (chrF++ 51.8): send no thinking setting at all.
+    monkeypatch.delenv("CHASKI_PENSAR_TRADUCIR", raising=False)
+    c = FakeClient()
+    traducir("Tome paracetamol", "spa", "quy", client=c, glosario=[])
+    assert "thinking" not in c.llamadas[0] and "output_config" not in c.llamadas[0]
+
+
+@pytest.mark.parametrize("valor, esperado", [
+    ("no", {"thinking": {"type": "disabled"}}),
+    ("medium", {"output_config": {"effort": "medium"}}),
+    ("low", {"output_config": {"effort": "low"}}),
+])
+def test_pensar_por_variable(monkeypatch, valor, esperado):
+    monkeypatch.setenv("CHASKI_PENSAR_TRADUCIR", valor)
+    c = FakeClient()
+    traducir("Tome paracetamol", "spa", "quy", client=c, glosario=[])
+    assert {k: c.llamadas[0][k] for k in esperado} == esperado
+
+
+def test_pensar_invalido_falla_en_vez_de_cambiar_calidad(monkeypatch):
+    monkeypatch.setenv("CHASKI_PENSAR_TRADUCIR", "rapido")
+    with pytest.raises(ValueError):
+        traducir("Tome paracetamol", "spa", "quy", client=FakeClient(), glosario=[])

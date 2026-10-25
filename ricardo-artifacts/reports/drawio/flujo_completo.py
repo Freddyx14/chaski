@@ -59,7 +59,7 @@ f.caja("2 · Revisar antes de hablar (ante la duda, Chaski no habla)", BANDA, 40
 b23 = f.caja("B2 · B3 · El pulido\n\nNo cambia ni agrega datos\nSi cambió algo, se usa\nlo dicho tal cual",
              CAJA.format(b=MORADO), 1620, 495, 230, 110, icono="guarda")
 f.flecha(interp, b23, "traducir", f"strokeColor={ROJO};fontColor={ROJO};")
-trad = f.caja("Traductor\n\nClaude Sonnet 5: chrF++ 42,3\nInterruptor a NLLB-200 ajustado\n(25,8 → 31,7): gana el que mide mejor",
+trad = f.caja("Traductor\n\nClaude Sonnet 5, pensando: chrF++ 51,8\nInterruptor a NLLB-200 ajustado\n(25,8 → 31,7): gana el que mide mejor",
               CAJA.format(b=ROJO), 1340, 495, 240, 110, icono="claude")
 f.flecha(b23, trad)
 b4 = f.caja("B4 · Términos fijos\n\nNúmeros en chanka (pusaq = 8)\nmedicamento · unidad · negación\n«con agua» exige unu / yaku",
@@ -96,7 +96,7 @@ f.caja("Lo medido\n\n"
        "Banco de 952 errores sembrados (dosis cambiada, negación invertida, medicamento, unidad, «con agua» perdido, consejo inventado): "
        "Chaski atrapó 183 de 184 y el 100 % de los críticos, y cada bloqueo dice qué dato falló.\n"
        "Preguntarle a Claude «¿está bien traducido?» también atrapa, pero no dice por qué y retiene 1 de cada 4 frases correctas.\n"
-       "Turno completo: 6,5 s típico · crítico 2,6 s · $0,008 por turno. Solo dos roles de Claude (intérprete y crítico): ningún agente de más.",
+       "Turno completo medido de punta a punta: instrucción traducida ~17 s (oír 1,1 · decidir 2,9 · traducir 9,0 · crítico 3,1 · voz 1,0); repregunta o frase verificada ~4 s. Solo dos roles de Claude (intérprete y crítico): ningún agente de más.",
        NOTA, 40, 990, 1830, 110)
 
 f.guardar("reports/drawio/arquitectura-flujo-completo.drawio", 1900, 1130)

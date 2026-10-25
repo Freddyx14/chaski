@@ -80,7 +80,7 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 | — | Verified-phrase RAG finds the right phrase first **88%** (keyword search 70%) | `evals/banco/` | Q&A |
 | — | **All 24 emergency phrases reviewed by a nurse from the community** | `evals/banco/revision_enfermera.json` | B3 / Q&A |
 | — | **Voice:** judged by human ears, not by a recognizer — a patient hears it, not a machine (Freddy, 20:45). Claim «sounds like her» (audible in the A/B/C); claim «a native speaker understands it» only after her blind test | `evals/HISTORIA.md` §4 | B5 |
-| — | **Translation:** we fine-tuned NLLB-200 (chrF++ 25.8 → 31.7) and it still lost to Claude (42.3), so Claude translates — decided by measurement | `bf4a788` | Q&A «why not your own translator?» |
+| — | **Translation:** we fine-tuned NLLB-200 (chrF++ 25.8 → 31.7) and it still lost to Claude (42.3 with thinking off, 51.8 as the product runs it), so Claude translates — decided by measurement | `bf4a788` | Q&A «why not your own translator?» |
 | ✗ | ~~"the only Quechua-speaking nurse"~~ (3 of 6 nurses do) · ~~"2% of centers have interpreters"~~ (doesn't exist) | — | never |
 
 ---
@@ -158,7 +158,7 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 | Step | Risk | Mitigation |
 |---|---|---|
-| Nurse turn | ~6.5 s typical, ~10 s worst | Narrate over the «Pensando» steps (it's in the script) |
+| Nurse turn | translated instruction ~17 s typical, ~26 s worst (measured end to end 24-oct 21:56); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script) |
 | Patient answer | Loud hall | Pre-recorded family clip played next to the mic |
 | Emergency mode | Needs the nurse-voice audio | Until `entregables/voz/emergencia/` exists, the app shows the reviewed Quechua text big; say it's verified |
 | The refusal | Must happen every time | `FRASE_NEGATIVA_DEMO` blocked 16/16 in real runs; say out loud it's a simulated error |

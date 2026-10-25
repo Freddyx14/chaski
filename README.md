@@ -22,8 +22,9 @@ Built at Cal Hacks 13.0 for Anthropic *Claude for Public Benefit*, and also subm
   of real emergency discharge instructions with ChatGPT-4. Sentence accuracy was high (Spanish 97 %, Chinese 95 %,
   Russian 89 %), yet **16 %, 24 % and 56 % of whole instruction sets had at least one error**, and accuracy fell as the
   language got less represented (`research/papers.md`). Chanka has far less data than Russian.
-- **Our own measurement says the same.** Claude Sonnet 5 with no fine-tuning scores **chrF++ 42.31** on 30 verified
-  Spanish→Chanka pairs (`ricardo-artifacts/reports/traduccion.json`). It doesn't get the grammar wrong, it gets the register
+- **Our own measurement says the same.** Claude Sonnet 5 with no fine-tuning and thinking off scores **chrF++ 42.31** on 30 verified
+  Spanish→Chanka pairs (`ricardo-artifacts/reports/traduccion.json`); the product's translator, which thinks, scores
+  **51.8** on the same pairs (`evals/latencia/traductor_modos.py`). It doesn't get the grammar wrong, it gets the register
   wrong (`ricardo-artifacts/reports/metricas.md`).
 - **A confident wrong sentence is worse than silence.** "No lo tome con té" losing its "no" is a different instruction.
   A plain chatbot has no way to refuse to speak.
@@ -157,7 +158,7 @@ Source: `evals/banco/resultados/2026-10-24.json`.
 | Language ID, `facebook/mms-lid-512` | 6/6 on the synthetic test clips (`datos/prueba_minima/`), 49 ms median. Not yet measured on real clinic audio | `ricardo-artifacts/reports/arquitectura.md` |
 | Quechua ASR baseline, `omniASR_LLM_300M`, 175 clips from one family speaker held out of training | WER 68.9 % / CER 15.6 % as written. **54.1 % / 11.6 %** with spelling normalized on both sides. Loanwords 5/6 | `ricardo-artifacts/reports/asr.json`, `metricas.md` |
 | **Quechua ASR fine-tuned**: `mms-1b-all` quy + our adapter trained on the families' recordings (362 clips), same held-out speaker | **WER 53.9 % → 40.9 %** (normalized), a 24 % relative reduction; clips recognized perfectly **30 → 51 of 175**. Strict WER went 76.0 → 82.5 % because the model now writes normalized spelling; both are reported | commit `7b57a9b`, `ricardo-artifacts/` |
-| **Translation, NLLB-200 600M fine-tuned** vs Claude, 100 held-out verified pairs | NLLB 25.78 → **31.71** chrF++ after fine-tuning (MADLAD-400-3B zero-shot: 12.69); Claude Sonnet 5: **42.31**. Claude keeps translating (decided by this measurement) | commit `bf4a788` |
+| **Translation, NLLB-200 600M fine-tuned** vs Claude, 100 held-out verified pairs | NLLB 25.78 → **31.71** chrF++ after fine-tuning (MADLAD-400-3B zero-shot: 12.69); Claude Sonnet 5: **42.31** with thinking off, **51.8** as the product runs it. Claude keeps translating (decided by this measurement) | commit `bf4a788` |
 | **Quechua voice (MMS-TTS) fine-tuned** on four family speakers, including the nurse | Sounds like the speaker instead of a robot. A voice is for a patient to hear, so it is judged by a native speaker's blind test, not by our recognizer (a round trip through the recognizer, trained on human speech, scored the stock voice higher: 45.8 % vs 74.6–98.3 % WER; kept as a secondary note) | commit `ac1b924`, `ricardo-artifacts/reports/voces/` |
 | Quechua ASR speed | 1.71 s for 15.8 s of audio on an A10G, 3.41 GB GPU peak | `ricardo-artifacts/reports/arquitectura.md` |
 | Translation baseline (Sonnet 5, no fine-tuning) | chrF++ 42.31, BLEU 17.11, 30 pairs | `ricardo-artifacts/reports/traduccion.json` |

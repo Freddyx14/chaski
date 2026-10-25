@@ -36,6 +36,23 @@ NLLB_CAMPOS = ("texto", "de", "a")  # form field names, in this order
 NLLB_CLAVE_RESPUESTA = "traduccion"
 NLLB_TIMEOUT_S = 8.0
 
+# Thinking for the Claude translator (CHASKI_PENSAR_TRADUCIR). Measured 24-oct on Ricardo's 30 reference pairs with
+# this prompt (evals/latencia/traductor_modos.py): `modelo` (Sonnet 5's own adaptive thinking) chrF++ 51.8, p50 5.6 s;
+# `medium` 45.6, 3.0 s; `no` 43.1, 1.7 s; `low` 41.3, 2.0 s. Accuracy first, so the default is `modelo`.
+PENSAR_TRADUCIR_VALIDOS = ("modelo", "no", "low", "medium", "high")
+
+
+def opciones_pensar(valor: str | None = None) -> dict:
+    """Request kwargs for the translator's thinking. An unknown value fails instead of silently changing quality."""
+    valor = (valor if valor is not None else os.environ.get("CHASKI_PENSAR_TRADUCIR", "modelo")).strip()
+    if valor not in PENSAR_TRADUCIR_VALIDOS:
+        raise ValueError(f"CHASKI_PENSAR_TRADUCIR={valor!r}; válidos: {', '.join(PENSAR_TRADUCIR_VALIDOS)}")
+    if valor == "modelo":
+        return {}
+    if valor == "no":
+        return {"thinking": {"type": "disabled"}}
+    return {"output_config": {"effort": valor}}
+
 
 class FalloMotor(Exception):
     """The requested engine could not produce a translation."""
@@ -115,6 +132,7 @@ def traducir_claude(client: anthropic.Anthropic, texto: str, de: Idioma, a: Idio
         system=[{"type": "text", "text": SISTEMA[(de, a)], "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": contenido}],
         output_format=_Salida,
+        **opciones_pensar(),
     )
     if respuesta.stop_reason == "refusal" or respuesta.parsed_output is None:
         raise FalloMotor(f"claude: stop_reason={respuesta.stop_reason}")

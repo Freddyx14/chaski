@@ -1,0 +1,476 @@
+{
+ "modelo": {
+  "chrf2": 51.8,
+  "ms_p50": 5567,
+  "ms_p95": 8881,
+  "tokens_salida_media": 270,
+  "salidas": [
+   {
+    "es": "¿Está bien, señora?",
+    "quy": "¿Allinllachu, mamáy?",
+    "ref": "¿Allinllanchu, mamáy?"
+   },
+   {
+    "es": "¡Estoy bien, señor!",
+    "quy": "¡Allinllanmi kani, taytáy!",
+    "ref": "¡Allinllanmi, taytáy!"
+   },
+   {
+    "es": "Señor, ¿cómo está?",
+    "quy": "Taytáy, ¿imaynallam kachkanki?",
+    "ref": "Taytáy, ¿allillanchu?"
+   },
+   {
+    "es": "Señora, estoy bien",
+    "quy": "Mamáy, allillanmi kani",
+    "ref": "Mamáy, allillanmi"
+   },
+   {
+    "es": "¿Cómo está, señor?",
+    "quy": "¿Imaynallam kachkanki, taytáy?",
+    "ref": "¿Imaynallam kachkanki, taytáy?"
+   },
+   {
+    "es": "¿Cómo está, señora?",
+    "quy": "¿Imaynalla kashanki, señora?",
+    "ref": "¿Imaynallam kachkanki, taytáy?"
+   },
+   {
+    "es": "¿Cómo están, señoras?",
+    "quy": "¿Imaynallam kachkankichik, mamakuna?",
+    "ref": "¿Imaynallam kachkankichik, mamaykuna?"
+   },
+   {
+    "es": "Buenos días, doctor",
+    "quy": "Allin p'unchaw, doctor",
+    "ref": "Ñuqallaymi, doctor"
+   },
+   {
+    "es": "Buenos días, doctora",
+    "quy": "Allin p'unchay, doctora",
+    "ref": "Hamullachkani, doctora"
+   },
+   {
+    "es": "Le recibo, señor",
+    "quy": "Chaskikuni, taytáy",
+    "ref": "Chaskiyukuyki, wiraqucha"
+   },
+   {
+    "es": "Les recibo, señoras",
+    "quy": "Chaskiykichik, señorakuna",
+    "ref": "Mamaykuna, chaskiyukuychik"
+   },
+   {
+    "es": "Buenos días, señora",
+    "quy": "Allin punchay, mamay.",
+    "ref": "Rimaykullayki, mamáy"
+   },
+   {
+    "es": "Buenos días, señores",
+    "quy": "Allin p'unchay, taytakuna",
+    "ref": "Rimaykullaykichik, taytaykuna"
+   },
+   {
+    "es": "Buenos días, señor",
+    "quy": "Allin p'unchaw, taytáy.",
+    "ref": "Napaykullayki, taytáy"
+   },
+   {
+    "es": "Buenos días, señoras",
+    "quy": "Allin p'unchay, mamakuna.",
+    "ref": "Mamaykuna, napaykullaykichik"
+   },
+   {
+    "es": "Adelante, señor",
+    "quy": "Haku, taytáy",
+    "ref": "Yaykuykamuy taytáy"
+   },
+   {
+    "es": "Adelante, señora",
+    "quy": "Haykuykamuy, señora",
+    "ref": "Mamáy, yaykuykamuy"
+   },
+   {
+    "es": "Adelante, señores",
+    "quy": "Haykuychik, taytakuna",
+    "ref": "Yaykuykamuychik, taytakuna"
+   },
+   {
+    "es": "Adelante, señoras",
+    "quy": "Haykumuychik, mamakuna",
+    "ref": "Yaykuykamuychik, mamakuna"
+   },
+   {
+    "es": "Tome asiento",
+    "quy": "Tiyaykuykuy",
+    "ref": "Tiyakuy"
+   },
+   {
+    "es": "Tomen asiento",
+    "quy": "Tiyaykuychik",
+    "ref": "Tiyakuychik"
+   },
+   {
+    "es": "¿Qué desea, señora?",
+    "quy": "Imatan munanki, mamáy?",
+    "ref": "¿Imatataq munanki, mamáy?"
+   },
+   {
+    "es": "¿Qué desea, señor?",
+    "quy": "Imatan munanki, taytáy?",
+    "ref": "¿Imatataq munanki, taytáy?"
+   },
+   {
+    "es": "¿Para qué ha venido, señora?",
+    "quy": "¿Imapaqmi hamurqanki, señora?",
+    "ref": "Mamáy, ¿imachamanmi hamuchkanki?"
+   },
+   {
+    "es": "¿Por qué ha venido, señor?",
+    "quy": "Imanaqtinmi hamurqanki, taytáy?",
+    "ref": "¿Imaraykutaq hamurqanki, taytáy?"
+   },
+   {
+    "es": "¿En qué le puedo servir?",
+    "quy": "¿Imapitaq yanapasqayki?",
+    "ref": "¿Imapaqtaq allin kayman?"
+   },
+   {
+    "es": "¿Qué puedo hacer por usted?",
+    "quy": "¿Imapitaq yanapaykiman?",
+    "ref": "¿Imatam ruwallayman?"
+   },
+   {
+    "es": "¿En qué le puedo ayudar?",
+    "quy": "¿Imapitaq yanapaykichikta atiyman?",
+    "ref": "¿Imapitaq yanapaykiman?"
+   },
+   {
+    "es": "¿En qué le podemos ayudar?",
+    "quy": "¿Imapitaq yanapaykichwanman?",
+    "ref": "¿Imapitaq yanapariykimanku?"
+   },
+   {
+    "es": "¿Puedo ayudarle?",
+    "quy": "¿Yanapaykimanchu?",
+    "ref": "¿Yanapayta atiymanchu?"
+   }
+  ]
+ },
+ "no": {
+  "chrf2": 43.1,
+  "ms_p50": 1654,
+  "ms_p95": 2565,
+  "tokens_salida_media": 25,
+  "salidas": [
+   {
+    "es": "¿Está bien, señora?",
+    "quy": "¿Allinllachu, mamay?",
+    "ref": "¿Allinllanchu, mamáy?"
+   },
+   {
+    "es": "¡Estoy bien, señor!",
+    "quy": "¡Allinllam kachkani, taytáy!",
+    "ref": "¡Allinllanmi, taytáy!"
+   },
+   {
+    "es": "Señor, ¿cómo está?",
+    "quy": "Taytáy, ¿imaynallam kachkanki?",
+    "ref": "Taytáy, ¿allillanchu?"
+   },
+   {
+    "es": "Señora, estoy bien",
+    "quy": "Señora, allinllam kachkani",
+    "ref": "Mamáy, allillanmi"
+   },
+   {
+    "es": "¿Cómo está, señor?",
+    "quy": "¿Imaynallam kashanki, taytáy?",
+    "ref": "¿Imaynallam kachkanki, taytáy?"
+   },
+   {
+    "es": "¿Cómo está, señora?",
+    "quy": "¿Imaynallam kachkanki, mamay?",
+    "ref": "¿Imaynallam kachkanki, taytáy?"
+   },
+   {
+    "es": "¿Cómo están, señoras?",
+    "quy": "¿Imaynallam kashankichik, señoracuna?",
+    "ref": "¿Imaynallam kachkankichik, mamaykuna?"
+   },
+   {
+    "es": "Buenos días, doctor",
+    "quy": "Allin punchaw, doctor",
+    "ref": "Ñuqallaymi, doctor"
+   },
+   {
+    "es": "Buenos días, doctora",
+    "quy": "Allin punchay, dotora",
+    "ref": "Hamullachkani, doctora"
+   },
+   {
+    "es": "Le recibo, señor",
+    "quy": "Chaskikuykim, taytáy",
+    "ref": "Chaskiyukuyki, wiraqucha"
+   },
+   {
+    "es": "Les recibo, señoras",
+    "quy": "Chaskiykichikña, mamakuna",
+    "ref": "Mamaykuna, chaskiyukuychik"
+   },
+   {
+    "es": "Buenos días, señora",
+    "quy": "Allin punchaw, mamáy",
+    "ref": "Rimaykullayki, mamáy"
+   },
+   {
+    "es": "Buenos días, señores",
+    "quy": "Allin punchaw, taytakuna",
+    "ref": "Rimaykullaykichik, taytaykuna"
+   },
+   {
+    "es": "Buenos días, señor",
+    "quy": "Allin punchaw, taytáy",
+    "ref": "Napaykullayki, taytáy"
+   },
+   {
+    "es": "Buenos días, señoras",
+    "quy": "Allin punchay, señorakuna",
+    "ref": "Mamaykuna, napaykullaykichik"
+   },
+   {
+    "es": "Adelante, señor",
+    "quy": "Haku, taytay",
+    "ref": "Yaykuykamuy taytáy"
+   },
+   {
+    "es": "Adelante, señora",
+    "quy": "Haku, mamáy",
+    "ref": "Mamáy, yaykuykamuy"
+   },
+   {
+    "es": "Adelante, señores",
+    "quy": "Haku, wiraqochakuna",
+    "ref": "Yaykuykamuychik, taytakuna"
+   },
+   {
+    "es": "Adelante, señoras",
+    "quy": "Haku, señoracuna",
+    "ref": "Yaykuykamuychik, mamakuna"
+   },
+   {
+    "es": "Tome asiento",
+    "quy": "Tiyaykuy",
+    "ref": "Tiyakuy"
+   },
+   {
+    "es": "Tomen asiento",
+    "quy": "Tiyaykuychik",
+    "ref": "Tiyakuychik"
+   },
+   {
+    "es": "¿Qué desea, señora?",
+    "quy": "¿Imatan munanki, mamáy?",
+    "ref": "¿Imatataq munanki, mamáy?"
+   },
+   {
+    "es": "¿Qué desea, señor?",
+    "quy": "¿Imatan munanki, taytáy?",
+    "ref": "¿Imatataq munanki, taytáy?"
+   },
+   {
+    "es": "¿Para qué ha venido, señora?",
+    "quy": "¿Imapaqmi hamurqanki, señora?",
+    "ref": "Mamáy, ¿imachamanmi hamuchkanki?"
+   },
+   {
+    "es": "¿Por qué ha venido, señor?",
+    "quy": "¿Imanaptin hamurqanki, taytáy?",
+    "ref": "¿Imaraykutaq hamurqanki, taytáy?"
+   },
+   {
+    "es": "¿En qué le puedo servir?",
+    "quy": "¿Imapi yanapaykiman?",
+    "ref": "¿Imapaqtaq allin kayman?"
+   },
+   {
+    "es": "¿Qué puedo hacer por usted?",
+    "quy": "¿Imaynatam yanapaykiman?",
+    "ref": "¿Imatam ruwallayman?"
+   },
+   {
+    "es": "¿En qué le puedo ayudar?",
+    "quy": "¿Imaynapitaq yanapasqaykiman?",
+    "ref": "¿Imapitaq yanapaykiman?"
+   },
+   {
+    "es": "¿En qué le podemos ayudar?",
+    "quy": "¿Imaynapitaq yanapayta atiykiku?",
+    "ref": "¿Imapitaq yanapariykimanku?"
+   },
+   {
+    "es": "¿Puedo ayudarle?",
+    "quy": "¿Yanapaykikimanchu?",
+    "ref": "¿Yanapayta atiymanchu?"
+   }
+  ]
+ },
+ "low": {
+  "chrf2": 41.25,
+  "ms_p50": 1990,
+  "ms_p95": 3399,
+  "tokens_salida_media": 26,
+  "salidas": [
+   {
+    "es": "¿Está bien, señora?",
+    "quy": "¿Allillanchu, mamay?",
+    "ref": "¿Allinllanchu, mamáy?"
+   },
+   {
+    "es": "¡Estoy bien, señor!",
+    "quy": "¡Allinllam kachkani, taytáy!",
+    "ref": "¡Allinllanmi, taytáy!"
+   },
+   {
+    "es": "Señor, ¿cómo está?",
+    "quy": "Taytáy, ¿imaynallam kashanki?",
+    "ref": "Taytáy, ¿allillanchu?"
+   },
+   {
+    "es": "Señora, estoy bien",
+    "quy": "Mamáy, allinllam kachkani",
+    "ref": "Mamáy, allillanmi"
+   },
+   {
+    "es": "¿Cómo está, señor?",
+    "quy": "¿Imaynalla kashanki, taytay?",
+    "ref": "¿Imaynallam kachkanki, taytáy?"
+   },
+   {
+    "es": "¿Cómo está, señora?",
+    "quy": "¿Imaynalla kashanki, señora?",
+    "ref": "¿Imaynallam kachkanki, taytáy?"
+   },
+   {
+    "es": "¿Cómo están, señoras?",
+    "quy": "¿Imaynallan kachkankichik, señoraykuna?",
+    "ref": "¿Imaynallam kachkankichik, mamaykuna?"
+   },
+   {
+    "es": "Buenos días, doctor",
+    "quy": "Allin punchay, doctor",
+    "ref": "Ñuqallaymi, doctor"
+   },
+   {
+    "es": "Buenos días, doctora",
+    "quy": "Allin punchaw, doctora",
+    "ref": "Hamullachkani, doctora"
+   },
+   {
+    "es": "Le recibo, señor",
+    "quy": "Chaskiykim, taytáy",
+    "ref": "Chaskiyukuyki, wiraqucha"
+   },
+   {
+    "es": "Les recibo, señoras",
+    "quy": "Chaskiykichik, señorakuna",
+    "ref": "Mamaykuna, chaskiyukuychik"
+   },
+   {
+    "es": "Buenos días, señora",
+    "quy": "Allin punchaw, mamáy",
+    "ref": "Rimaykullayki, mamáy"
+   },
+   {
+    "es": "Buenos días, señores",
+    "quy": "Allin punchaw, taytakuna",
+    "ref": "Rimaykullaykichik, taytaykuna"
+   },
+   {
+    "es": "Buenos días, señor",
+    "quy": "Allin punchay, taytáy",
+    "ref": "Napaykullayki, taytáy"
+   },
+   {
+    "es": "Buenos días, señoras",
+    "quy": "Allin punchaw, señoракuna",
+    "ref": "Mamaykuna, napaykullaykichik"
+   },
+   {
+    "es": "Adelante, señor",
+    "quy": "Haku, taytay",
+    "ref": "Yaykuykamuy taytáy"
+   },
+   {
+    "es": "Adelante, señora",
+    "quy": "Haku, señora",
+    "ref": "Mamáy, yaykuykamuy"
+   },
+   {
+    "es": "Adelante, señores",
+    "quy": "Haku, ñañakuna taytakuna",
+    "ref": "Yaykuykamuychik, taytakuna"
+   },
+   {
+    "es": "Adelante, señoras",
+    "quy": "Haku, señorakuna",
+    "ref": "Yaykuykamuychik, mamakuna"
+   },
+   {
+    "es": "Tome asiento",
+    "quy": "Tiyaykuy",
+    "ref": "Tiyakuy"
+   },
+   {
+    "es": "Tomen asiento",
+    "quy": "Tiyaykuychik",
+    "ref": "Tiyakuychik"
+   },
+   {
+    "es": "¿Qué desea, señora?",
+    "quy": "¿Imatam munanki, mamáy?",
+    "ref": "¿Imatataq munanki, mamáy?"
+   },
+   {
+    "es": "¿Qué desea, señor?",
+    "quy": "¿Imatam munanki, taytáy?",
+    "ref": "¿Imatataq munanki, taytáy?"
+   },
+   {
+    "es": "¿Para qué ha venido, señora?",
+    "quy": "¿Imapaqmi hamurqanki, mamay?",
+    "ref": "Mamáy, ¿imachamanmi hamuchkanki?"
+   },
+   {
+    "es": "¿Por qué ha venido, señor?",
+    "quy": "¿Imanaptin hamurqanki, taytay?",
+    "ref": "¿Imaraykutaq hamurqanki, taytáy?"
+   },
+   {
+    "es": "¿En qué le puedo servir?",
+    "quy": "¿Imapi yanapaykiman?",
+    "ref": "¿Imapaqtaq allin kayman?"
+   },
+   {
+    "es": "¿Qué puedo hacer por usted?",
+    "quy": "¿Imaynatam yanapasqayki?",
+    "ref": "¿Imatam ruwallayman?"
+   },
+   {
+    "es": "¿En qué le puedo ayudar?",
+    "quy": "¿Imapi yanapayta atiykiman?",
+    "ref": "¿Imapitaq yanapaykiman?"
+   },
+   {
+    "es": "¿En qué le podemos ayudar?",
+    "quy": "¿Imapi yanapaykuykiman?",
+    "ref": "¿Imapitaq yanapariykimanku?"
+   },
+   {
+    "es": "¿Puedo ayudarle?",
+    "quy": "¿Yanapaykikimanchu?",
+    "ref": "¿Yanapayta atiymanchu?"
+   }
+  ]
+ }
+}

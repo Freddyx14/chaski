@@ -78,7 +78,7 @@
 | ✅ | Línea base: ASR WER 68,9 % (54,1 % normalizado), 175 clips, hablante aparte · traducción chrF++ 42,31 | — |
 | 🔴 | **TAREA MUY IMPORTANTE (Freddy, 16:51): el número de DESPUÉS del ajuste fino** (mismo hablante de prueba, mismo script), para el pitch y el Devpost | al terminar el entrenamiento |
 | ⏳ | Voz ajustada: 4 voces listas (`ac1b924`). La voz se juzga con oídos humanos, no con el reconocedor (Freddy 20:45). Decide la prueba a ciegas de la mamá (8 audios en `data/mama/ciegas/`, mensaje enviado 20:40). Hasta entonces: modo emergencia y pitch con cuidado (`plan/pitch.md`) | respuesta de la mamá |
-| ⏳ | Traducción: NLLB-600M ajustado 25,78 → 31,71 chrF++ (Claude 42,31). **Ricardo prueba ahora el modelo grande de Meta ajustado con nuestros datos** (Freddy 20:45); si no le gana a Claude, traduce Claude | Ricardo |
+| ⏳ | Traducción: NLLB-600M ajustado 25,78 → 31,71 chrF++ (Claude 42,31 sin pensar; **51,8** como corre en el producto). **Ricardo prueba ahora el modelo grande de Meta ajustado con nuestros datos** (Freddy 20:45); si no le gana a Claude, traduce Claude | Ricardo |
 | ✅ | Ajuste fino del oído (MMS + adaptador): WER 53,9 % → 40,9 %, 30 → 51 frases perfectas de 175 (`7b57a9b`) | — |
 | 🔴 | **Ajuste fino de MMS/omniASR (oído) y NLLB-200 (traducción) en salud** (Freddy, 18:20): mostrar la ingeniería difícil y la pericia del modelo en el dominio médico. Entregables, en un solo archivo de resultados: (1) línea base vs ajustado sobre el **mismo hablante de prueba** que el modelo nunca oyó; (2) **cortado por dominio**: indicaciones clínicas, medicamentos y préstamos del castellano, números y tiempos (ya mapeado en `ricardo-artifacts/reports/metricas.md`); (3) WER/CER para el oído y chrF++ para la traducción, con las peores frases antes y después; (4) cuántas horas/frases de entrenamiento y de qué familias | 21:00 |
 | ⏳ | Partir los datos en entrenamiento / banco / prueba antes de entrenar | 15:00 |
@@ -147,7 +147,7 @@
 |---|---|---|
 | ✅ | Criterios con pesos y compuertas: `evals/CRITERIOS.md` | — |
 | ⏳ | Auditar el banco de ataques + registrar costo real por corrida + `puntuar.py` (sin gastar API) | 18:00 |
-| ✅ | Tiempo del crítico: p50 9 s → ~2,7 s, p95 34 s → ~3,6 s, misma precisión; turno completo p50 6,5 s · 🔁 ui-ux 17:00 | — |
+| ✅ | Tiempo del crítico: p50 9 s → ~2,7 s, p95 34 s → ~3,6 s, misma precisión. ⚠️ El «turno 6,5 s» era sin traducción ni voz; **medido de punta a punta (21:56): instrucción traducida p50 17 s, máx 26 s · repregunta/respuesta ~4 s · frase del banco ~4 s** (`evals/latencia/`) · 🔁 ui-ux 17:00 | — |
 | ✅ | Corrida final medida: **$1,89** (856 llamadas a Sonnet, con caché; precios sin verificar) | — |
 
 ## Pendientes conocidos del intérprete

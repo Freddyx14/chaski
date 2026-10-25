@@ -51,7 +51,7 @@ and for patients. It doesn't just translate; it interprets:
 - **Speech, fine-tuned on our families' voices** (362 clips; tested on a speaker the model never heard, 175 clips):
   Meta's MMS Quechua recognizer went from **53.9% to 40.9% word error** (24% relative), and sentences recognized
   perfectly went from **30 to 51 of 175**. We also fine-tuned NLLB-200 for translation (chrF++ 25.8 → 31.7 on 100
-  held-out pairs), but Claude scored 42.3, so Claude translates — the experiment decided, not our preference. And the Quechua
+  held-out pairs), but Claude scored 42.3 even with thinking off (51.8 the way the product runs it), so Claude translates — the experiment decided, not our preference. And the Quechua
   voice, fine-tuned on a nurse's voice with her permission, sounds like her instead of a robot; a native speaker's
   blind test, not a machine, decides which voice Chaski uses.
 
