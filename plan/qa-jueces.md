@@ -1,6 +1,6 @@
-# Chaski · judge Q&A (v3, Sun Oct 25 00:15 PT · D40 translator, D41 nurse examples)
+# Chaski · judge Q&A (v3, Sun Oct 25 00:15 PT · D43 translator, D41 nurse examples)
 
-> The 2 minutes after the pitch. Built from `SOT.md` (D1–D40), `plan/arquitectura-interprete.md`, `evals/HISTORIA.md`,
+> The 2 minutes after the pitch. Built from `SOT.md` (D1–D43), `plan/arquitectura-interprete.md`, `evals/HISTORIA.md`,
 > `evals/CRITERIOS.md`, `evals/REFERENCIAS-chrf.md` and the interview. **Every number here has its file. If it's not
 > here, don't say it.** Answers are what you say out loud, in English.
 >
@@ -60,7 +60,7 @@ Every row is a decision that is written down with its reason and, where it appli
 | **Why Opus as the main model? It's the expensive one.** | "We measured all three on 48 real scenarios: Opus 98 %, Sonnet 94 %, Haiku 88 % right action. Only Opus invented zero clinical data. Sonnet added 'paracetamol' that nobody said. In a clinic that settles it." | F | `evals/interprete/resultados/` · D39 |
 | **Anthropic suggested Haiku for the critic. Why Sonnet?** | "We tried Haiku first. It caught 153 of 160 and let invented diagnoses through. Sonnet caught 160 of 160. Haiku's advantage was speed, so we made Sonnet fast instead, from 9 s to 2.6 s, by cutting thinking in the extraction and running calls in parallel, with the same accuracy." | F | `chaski-…-1513.json` vs `…-1518.json` · `…-1740.json` |
 | **Did you try a cheaper or faster decision model?** | "Yes, Jev, a typed decision model, as a backup. 0.4 s instead of 2.9, but 83 % right vs Opus's 98, and it failed the three cases that matter most: a critical fact was missing and it translated anyway. It's a fallback, not a replacement." | F | `evals/jev/resultados/jev-20261024-2255.json` |
-| **You fine-tuned your own translator. Why does Claude translate?** | "We put five translators on the same 62 sentences our families wrote, including our own NLLB. What decided it was the fixed terms, the numbers and medicine names that must survive: Claude damaged zero of them in 92 translations, NLLB three. NLLB stays for the offline work. We decided by measurement, not by pride." | R → F | `evals/traduccion/resultados/` · SOT D40 |
+| **You fine-tuned your own translator. Why does Claude translate?** | "We put five translators on the same 62 sentences our families wrote, including our own NLLB. What decided it was the fixed terms, the numbers and medicine names that must survive: Claude damaged zero of them in 92 translations, NLLB three. NLLB stays for the offline work. We decided by measurement, not by pride." | R → F | `evals/traduccion/resultados/` · SOT D43 |
 | **Why not Gemini? It scored higher.** | "Gemini 3.8 Flash had the best character score, 63.8, but it damaged a fixed term and took 8.6 seconds just to translate, 20 at the slow end. The faster Gemini damaged four. Claude on medium damaged zero and reads the patient best, 50 vs 44 on Quechua to Spanish. A character score can't tell 'eight' from 'six'. Our guards can." | F | `evals/traduccion/resultados/comparar-20261024-2324.json`, `…-2336.json` |
 
 ### Speech and data
@@ -155,6 +155,6 @@ Every row is a decision that is written down with its reason and, where it appli
 - "Claude reduces transcription errors by X" (built, not measured).
 - "The examples improve everything" (on greetings from another variety they lowered the score, 48.3 → 42.6).
 - "NLLB fine-tuned 25.8 → 31.7" (contaminated, 58 of 100 test sentences leaked into training).
-- "A turn takes 17 s" (that was the old thinking translator; with D40 it's ~8 s).
+- "A turn takes 17 s" (that was the old thinking translator; with D43 it's ~8 s).
 - "Under three seconds" for the critic (p95 is 3.4 s; say "about three").
 - Any number for the voice blind test before she has done it.

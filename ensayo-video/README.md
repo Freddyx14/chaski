@@ -7,7 +7,7 @@ look… use my voice… include the videos of my mom… and if there is a specif
   otra voz (`brian`) para que se note que habla él. La frase al celular va en castellano con la voz de Freddy.
 - **Las tarjetas son lo que se hace**: qué tocar, dónde mirar, qué nunca decir, qué archivo usar.
 - **El reloj de arriba es el tiempo real del pitch**, y se pone rojo pasados los 3:00.
-- Guion: `plan/pitch.md` v4 §6, con el traductor D40 (turno de ~8 s, `evals/HISTORIA.md` §2d).
+- Guion: `plan/pitch.md` v4 §6, con el traductor D43 (turno de ~8 s, `evals/HISTORIA.md` §2d).
 
 ## Qué es real y qué es maqueta
 

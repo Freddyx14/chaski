@@ -26,7 +26,7 @@
 | Nurse-trained voice, A/B/C, «she picked it blind» | 🔸 **not yet**. No `ciegas/` or `abc/` files in the repo at 23:45; out of the default script | `plan/HANDOFF-RICARDO-VOZ.md` |
 | Summary + new words of the visit | ⚠️ screen built; **the summary on stage must be from the live consult**, not the `EJEMPLO` demo data in `movil/src/app/resumen.tsx` | app |
 | «Monday, it goes to my mother's health center» | 🔸 **Freddy confirms**. She said she herself wouldn't need it; the users are the ~80 % who don't speak Quechua | interview l.91 |
-| Translator = Claude Sonnet 5, medium effort | ✅ **decided D40 (Freddy 23:38)**. 0 of 92 fixed terms damaged (Gemini 3 Flash 4, NLLB 3); best at reading the patient (qu→es chrF++ 50.1 vs Gemini 3 Flash 43.7); whole turn p50 8.3 s, 19/20 said. ⚠️ **The live service still runs NLLB until Ricardo restarts it** (`plan/HANDOFF-RICARDO-SERVICIO.md`): check before rehearsal | `evals/traduccion/resultados/comparar-20261024-2324.json`, `…-2336.json` · `evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json` · SOT D40 |
+| Translator = Claude Sonnet 5, medium effort | ✅ **decided D43 (Freddy 23:38)**. 0 of 92 fixed terms damaged (Gemini 3 Flash 4, NLLB 3); best at reading the patient (qu→es chrF++ 50.1 vs Gemini 3 Flash 43.7); whole turn p50 8.3 s, 19/20 said. ⚠️ **The live service still runs NLLB until Ricardo restarts it** (`plan/HANDOFF-RICARDO-SERVICIO.md`): check before rehearsal | `evals/traduccion/resultados/comparar-20261024-2324.json`, `…-2336.json` · `evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json` · SOT D40 |
 | Nurse-reviewed examples improve translation (D41) | ✅ her 24 phrases as examples: es→qu 52.6 → 56.0, qu→es 49.1 → 56.0 on the families' 62 sentences; turn 20/20 said, p50 8.0 s. Lower on greetings from another variety (48.3 → 42.6): never say «improves everything» | `evals/HISTORIA.md` §2d · `evals/moat/resultados/` |
 | About two cents per translated turn | ✅ $0.024 measured from real tokens (Opus + Sonnet translator + Sonnet critic), list prices not checked against the invoice. Say "about two cents" | `evals/latencia/resultados/costo-turno-20261024-2345.json` |
 | NLLB fine-tuned 25.8 → 31.7 | ✗ **contaminated, never say it**: 58 of the 100 evaluation sentences leaked into training (Ricardo, `2fac55f`) | loopmind-05 23:45 |
@@ -112,14 +112,14 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 | — | Verified-phrase RAG finds the right phrase first **88%** (keyword search 70%) | `evals/banco/` | Q&A |
 | — | **All 24 emergency phrases reviewed by a nurse from the community** | `evals/banco/revision_enfermera.json` | B3 / Q&A |
 | — | **Voice:** judged by human ears, not by a recognizer — a patient hears it, not a machine (Freddy, 20:45). Claim «sounds like her» (audible in the A/B/C); claim «a native speaker understands it» only after her blind test | `evals/HISTORIA.md` §4 | B5 |
-| — | **Translation:** five translators on the families' 62 sentences, same set: fixed terms damaged in 92 translations → **Claude medium 0**, Gemini 3 Flash 4, NLLB 3. chrF++ es→qu Gemini 3.8 Flash 63.8 · Claude thinking 58.9 · Claude medium 51.4 · NLLB-1.3B 34.7. Claude medium translates (D40): safety first, and the turn stays at 8.3 s | `evals/traduccion/resultados/` | Q&A «why Claude, why not Gemini?» |
+| — | **Translation:** five translators on the families' 62 sentences, same set: fixed terms damaged in 92 translations → **Claude medium 0**, Gemini 3 Flash 4, NLLB 3. chrF++ es→qu Gemini 3.8 Flash 63.8 · Claude thinking 58.9 · Claude medium 51.4 · NLLB-1.3B 34.7. Claude medium translates (D43): safety first, and the turn stays at 8.3 s | `evals/traduccion/resultados/` | Q&A «why Claude, why not Gemini?» |
 | ✗ | ~~"the only Quechua-speaking nurse"~~ (3 of 6 nurses do) · ~~"2% of centers have interpreters"~~ (doesn't exist) | — | never |
 
 ---
 
 ## 5 · Run of show (v4, Sat 23:45): the wait becomes the problem
 
-**Why v4.** A translated nurse turn now takes **8.0 s typical, 10.5 s p95** with the D40 translator and the D41 examples (20/20 said,
+**Why v4.** A translated nurse turn now takes **8.0 s typical, 10.5 s p95** with the D43 translator and the D41 examples (20/20 said,
 `evals/HISTORIA.md` §2d; it was 17 s with the thinking translator).
 In v3 that wait sat inside B3 as dead air. In v4 Freddy **starts the turn and tells the last part of the problem while
 Chaski thinks**: the judge watches the real «Pensando» steps under a story, and the Quechua arrives as the payoff.
@@ -204,7 +204,7 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 | Step | Risk | Mitigation |
 |---|---|---|
-| Nurse turn | translated instruction ~8.0 s typical, 10.5 s p95 with D40 + D41 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D40, not NLLB |
+| Nurse turn | translated instruction ~8.0 s typical, 10.5 s p95 with D43 + D41 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D40, not NLLB |
 | Patient answer | Loud hall | Pre-recorded family clip played next to the mic |
 | Emergency mode | Needs the nurse-voice audio | Until `entregables/voz/emergencia/` exists, the app shows the reviewed Quechua text big; say it's verified |
 | The refusal | Must happen every time | `FRASE_NEGATIVA_DEMO` blocked 16/16 in real runs; say out loud it's a simulated error |
