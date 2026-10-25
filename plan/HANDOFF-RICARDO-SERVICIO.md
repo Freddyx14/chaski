@@ -39,7 +39,12 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | Arreglos de auditoría (8498191, ff84896, 6795247, b6554e2) desplegados. «killa» = mes verificado con audio real: `p16_N_063` → `dicho` «Va a regresar en un mes.», `p16_C_009` → `dicho` «Volverá dentro de un mes.» | fc03e84 |
 | [x] | **URGENTE** desplegado: decisión con pensamiento «low». `CHASKI_PENSAR_DECIDIR` no está en el entorno, así que usa el valor por defecto. «Le dio diarrea.» ya no se cuelga: `decision` en 4,4–5,7 s (era 27 s y salía «no entendí»). Frases cortas: 2,3 s y 3,3 s | e486b39 |
 | [x] | Auditoría M2 desplegada. `pytest -q` → **423 pasan, 1 se salta** (no 424; el skip es de antes). Probado el camino real: turno bloqueado por B1 → `repreguntar`; al repetir la misma frase con el contexto → `dicho` / `traducir`, «Upyay huk pastilla paracetamolta sapa pusaq horasman…», motivo «Indicación clara y completa; no repreguntar de nuevo.» El cupo no se gastó | ec58f51 |
-| [ ] | **Antes del jurado** `git pull` y desplegar (dom 08:00): quechua→castellano con pensamiento «low» (misma calidad, ~0,7 s menos en cada turno del paciente). No pongas `CHASKI_PENSAR_TRADUCIR_QUY_SPA` en el entorno | `/turno` con un WAV de p16 → `ms.traducir` ~1 s |
+| [x] | Desplegado antes del jurado: quy→spa con pensamiento «low». `CHASKI_PENSAR_TRADUCIR_QUY_SPA` no está en el entorno. Con WAV de p16 por `/turno`: `traducir_anticipada` **1316 / 2183 / 1726 ms**, turno completo 6,1 / 10,3 / 6,2 s | 4b5107e |
+
+> Nota de lectura: `ms.traducir` sale en **0** casi siempre, no porque no traduzca sino porque
+> con `CHASKI_TRADUCIR_ANTICIPADO=1` el trabajo está en `traducir_anticipada`. El número que
+> pedías es ese, y da ~1,3-1,7 s. La corrida de 10,3 s fue la única donde la anticipada se
+> descartó y hubo que traducir y criticar otra vez (`traducir` 1024 + `critico_anticipada`).
 
 > ⚠️ Medido de extremo a extremo contra la URL pública, con la red y ngrok dentro. «Le dio
 > diarrea.» queda en **4,4–5,7 s**, tres intentos: por debajo del listón de 5 s solo a veces.
