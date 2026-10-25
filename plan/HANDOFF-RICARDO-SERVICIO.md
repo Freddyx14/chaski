@@ -7,7 +7,7 @@
 > **Memoria automática (D44, dom 01:45):** en `desplegar.sh` agrega `export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl`
 > (y `mkdir -p $DESTINO/memoria`), fuera de la carpeta `chaski/` que se sincroniza con `--delete`; si no, cada
 > despliegue borra lo aprendido. Para ver y aprobar: `uv run python -m chaski.memoria` y `… aprobar ID`.
-> **Voz robótica (Freddy, 01:47) → ver la sección «🔊 Voz de Chaski: cómo arreglarla» al final de este archivo.**
+> **Voz robótica (Freddy, 01:47) → ver la sección «🔊 Voz de Chaski: cómo arreglarla» al final de este archivo. El quechua va con la voz de la mamá de Freddy (`mama_freddy`), decidido.**
 > Y `/turno/paciente` solo acepta WAV (la app manda WAV, así que anda); con .webm y .m4a da 500.
 
 > Decisión de Freddy (D43, 23:38; se citó como D40 por error, D40 es «Chaski sin fondo»): **traduce Claude Sonnet 5 con esfuerzo medio**, no NLLB. Medido en los mismos sets:
@@ -45,8 +45,9 @@ audio, _ = decir_en_voz(texto, voz="p24" if idioma == "quy" else "base")
    de quechua de Meta (`mms-tts-quy`) leyendo castellano. Por eso suena a robot. El castellano tiene que ir por
    **Cartesia Sonic**, como dice el diseño (D16). La clave `CARTESIA_API_KEY` ya está en la instancia: la usa `/escuchar`.
 2. **Quechua con otra voz.** El quechua sale con `p24`, un familiar, y no con `mama_freddy`, la voz ajustada con la
-   enfermera. **Cuál suena en la demo lo decide Freddy.** Por eso va en una variable de entorno, para cambiarla sin
-   tocar código.
+   enfermera. **✅ Decidido por Freddy (dom 01:55): Chaski habla quechua con la voz de su mamá, `mama_freddy`.** Es la
+   decisión del SOT desde el inicio (F5: «voz chanka de Meta ajustada con la voz de la mamá de Freddy»). Va como valor
+   por defecto en el código y en una variable de entorno solo como respaldo.
 
 ### Paso 1 · Castellano con Cartesia (≈10 min)
 
@@ -83,7 +84,7 @@ cabecera `Cartesia-Version: 2026-08-14`; verificado el 25-oct).
 def _voz_para_chaski(texto: str, idioma: str) -> bytes:
     from servicio.flujo import decir_en_voz, voz_castellano
     if idioma == "quy":
-        audio, _ = decir_en_voz(texto, voz=os.environ.get("CHASKI_VOZ_QUY", "p24"))
+        audio, _ = decir_en_voz(texto, voz=os.environ.get("CHASKI_VOZ_QUY", "mama_freddy"))
         return audio
     try:
         return voz_castellano(texto)
@@ -102,18 +103,19 @@ Si solo cambias `_voz_para_chaski`, la voz del quechua **no cambia en la app**. 
 @aplicacion.post("/voz")
 def ruta_voz(texto: str = Form(...), voz: str = Form("")):
     ...
-    audio, ms = decir_en_voz(texto, voz or os.environ.get("CHASKI_VOZ_QUY", "p24"))
+    audio, ms = decir_en_voz(texto, voz or os.environ.get("CHASKI_VOZ_QUY", "mama_freddy"))
 ```
 
 Lo que Chaski le dice al personal en castellano (repreguntar, responder): la app reproduce el `audio_wav_b64` del turno
 si viene, y si no viene usa la voz del iPhone. Así que con el Paso 2 alcanza, siempre que el turno devuelva ese audio.
 
-### Paso 3 · Elegir la voz del quechua (lo decide Freddy)
+### Paso 3 · La voz del quechua es la de la mamá de Freddy ✅ (decidido)
 
-- `CHASKI_VOZ_QUY=mama_freddy` → la voz ajustada con la enfermera. **Recomendado si la prueba a ciegas con ella sale
-  bien** (`plan/HANDOFF-RICARDO-VOZ.md`). Es lo más fuerte para el pitch: la enfermera escucha a Chaski con su voz.
-- `CHASKI_VOZ_QUY=p24` → la de hoy.
-- Se cambia con la variable y un reinicio, sin desplegar código.
+- **`mama_freddy` es el valor por defecto** (ya está así en los ejemplos de arriba). La enfermera escucha a Chaski con su
+  propia voz: es la decisión del producto (SOT F5) y el momento más fuerte del pitch.
+- Verifica que `mama_freddy` aparezca en `GET /voces`. Si todavía no está entrenada o servida, **ese es el pendiente
+  número uno**, por encima del castellano.
+- `p24` queda solo como respaldo de emergencia (`CHASKI_VOZ_QUY=p24` y reinicio), si `mama_freddy` falla en vivo.
 
 ### Paso 4 · Desplegar y verificar
 
@@ -131,5 +133,6 @@ si viene, y si no viene usa la voz del iPhone. Así que con el Paso 2 alcanza, s
 | [ ] | `voz_castellano` en `flujo.py` + `CHASKI_VOZ_ES` en la instancia |
 | [ ] | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo |
 | [ ] | `/voz` con `CHASKI_VOZ_QUY` (Paso 2b) |
-| [ ] | Freddy eligió la voz del quechua (p24 o mama_freddy) |
+| [x] | Voz del quechua: `mama_freddy` (Freddy, dom 01:55) |
+| [ ] | `mama_freddy` aparece en `GET /voces` y suena en `/voz` |
 | [ ] | Desplegado, avisado por el grupo y probado con `curl` |
