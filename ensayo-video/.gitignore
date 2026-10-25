@@ -1,0 +1,11 @@
+# derived / heavy — rebuild with the steps in README.md
+renders/
+snapshots/
+review/
+assets/video/
+assets/audio/*.wav
+.hyperframes/
+# family and nurse audio/video never go to git (repo rule): everything under assets/audio and assets/video
+assets/audio/**
+assets/video/**
+node_modules/
