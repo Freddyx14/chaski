@@ -462,3 +462,17 @@ def test_ensayo_siempre_revisa_la_traduccion_sembrada_aunque_el_interprete_repre
                       client=FakeClient(propuesta("repreguntar", "¿Qué medicamento?", dato="medicamento")),
                       traduccion_forzada="Yakuwan upyay tewan", **r.kw())
     assert res.estado == "bloqueado" and res.sembrada is True
+
+
+def test_dice_lo_mismo_ignora_puntuacion_y_muletillas_pero_no_apartes():
+    from chaski.orquestador import dice_lo_mismo
+    assert dice_lo_mismo("ya este, tome el paracetamol cada ocho horas", "Tome el paracetamol cada ocho horas.")
+    assert not dice_lo_mismo("este paciente no entiende nada, tome el paracetamol", "Tome el paracetamol.")
+
+
+def test_anticipada_no_se_usa_si_el_pulido_quito_un_aparte():
+    r = Registro()
+    crudo = "este paciente no entiende nada, que tome la pastilla"
+    res = interpretar({"texto": crudo, "idioma": "spa", "rol": "personal"},
+                      client=FakeClient(propuesta("traducir", "Tome la pastilla.")), anticipar=True, **r.kw())
+    assert res.anticipada is False and res.texto_salida == "[quy] Tome la pastilla."

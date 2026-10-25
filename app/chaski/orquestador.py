@@ -167,6 +167,21 @@ def _pregunta_de_confirmacion(turno, ya_pidio_repetir: bool, motivo: str, paso: 
     return ("paciente", "quy", NO_ENTENDI["quy"])
 
 
+ESPERA_ANTICIPADA_S = 45.0
+_MULETILLAS = {"este", "eh", "ehh", "mmm", "mm", "ya", "pues", "o", "sea", "bueno", "ah", "a", "ver", "dígale",
+               "digale", "dile", "que", "le", "señora", "señor"}
+
+
+def dice_lo_mismo(transcripcion: str, pulido: str) -> bool:
+    """The anticipated translation was made from the raw transcript; it may only be used when the polish says the
+    same words, minus punctuation and fillers (audit M5: a side remark the polish dropped — «este paciente no
+    entiende nada, dígale que…» — would otherwise reach the patient). Anything else: translate the polish."""
+    def palabras(t: str) -> list[str]:
+        t = unicodedata.normalize("NFC", (t or "").lower())
+        return [w for w in re.findall(r"[\wáéíóúñü']+", t) if w not in _MULETILLAS]
+    return palabras(transcripcion) == palabras(pulido)
+
+
 def anticipar_env() -> bool:
     """CHASKI_TRADUCIR_ANTICIPADO: start translating the transcript while the interpreter decides (1/0)."""
     return os.environ.get("CHASKI_TRADUCIR_ANTICIPADO", "1").strip() not in ("0", "no", "false", "")
@@ -550,9 +565,10 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
 
         usada_anticipada = False
         tt = v = None
-        if futura is not None and d.accion == "traducir" and de == turno.idioma and a == a_anticipado:
+        if (futura is not None and d.accion == "traducir" and de == turno.idioma and a == a_anticipado
+                and dice_lo_mismo(turno.texto, d.texto_pulido)):
             try:
-                tt, ms["traducir_anticipada"] = futura.result()
+                tt, ms["traducir_anticipada"] = futura.result(timeout=ESPERA_ANTICIPADA_S)  # audit M3
                 if not tt.texto.strip():
                     raise ValueError("traducción anticipada vacía")
                 paso = "guardas"
