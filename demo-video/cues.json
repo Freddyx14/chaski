@@ -1,0 +1,388 @@
+{
+ "title": "Chaski — Devpost demo",
+ "bpm": 84,
+ "duration": 159.33,
+ "lufs": -14.0,
+ "true_peak": -1.0,
+ "chords": [
+  "Dmaj7",
+  "Bm7",
+  "Gmaj7",
+  "A"
+ ],
+ "marks": {
+  "mama": 0.0,
+  "v01": 21.157,
+  "v02": 32.857,
+  "v03": 41.917,
+  "think": 47.397,
+  "v04": 47.697,
+  "q_b3": 59.197,
+  "pac": 62.997,
+  "v05": 69.237,
+  "pac_es": 71.537,
+  "v06": 79.657,
+  "v07": 89.037,
+  "v08": 97.877,
+  "q_em": 106.847,
+  "v09": 108.531,
+  "v10": 117.271,
+  "v11": 131.291,
+  "v12": 146.831,
+  "end": 146.531,
+  "TOTAL": 159.33,
+  "MAMA": 20.757333,
+  "w_nine": 22.597,
+  "w_seven": 26.357,
+  "w_built": 31.477,
+  "w_hands": 33.897,
+  "w_who": 35.337,
+  "w_lang": 40.697,
+  "w_opus": 48.097,
+  "w_checks": 53.057,
+  "w_second": 56.017,
+  "w_fine": 72.757,
+  "w_asks": 82.297,
+  "w_repeat": 86.617,
+  "w_disap": 92.557,
+  "w_catch": 94.357,
+  "w_mother8": 103.477,
+  "w_photo": 108.931,
+  "w_reads": 111.171,
+  "w_yes": 114.771,
+  "w_quy9": 116.131,
+  "w_note": 118.231,
+  "w_home": 120.791,
+  "w_words": 122.631,
+  "w_confirms": 125.191,
+  "w_approves": 127.351,
+  "w_pilpi": 129.751,
+  "w_184": 132.131,
+  "w_54": 137.531,
+  "w_2122": 144.251,
+  "w_built12": 147.391,
+  "w_cartesia": 148.191,
+  "w_meta": 149.151,
+  "w_chaski12": 152.911,
+  "her": 0.0,
+  "why": 20.857,
+  "hands": 32.557,
+  "instr": 41.617,
+  "pat": 62.597,
+  "ask": 79.357,
+  "moment": 88.737,
+  "emg": 97.577,
+  "rx": 108.231,
+  "sum": 116.971,
+  "nums": 130.991
+ },
+ "shots": [
+  {
+   "id": "her",
+   "at": "her",
+   "in": "open",
+   "field": "dark",
+   "hold": 20.46,
+   "idea": "Her words"
+  },
+  {
+   "id": "why",
+   "at": "why",
+   "in": "cut",
+   "field": "light",
+   "hold": 11.3,
+   "idea": "Why we built it"
+  },
+  {
+   "id": "hands",
+   "at": "hands",
+   "in": "cut",
+   "field": "dark",
+   "hold": 8.66,
+   "idea": "Hands-free"
+  },
+  {
+   "id": "instr",
+   "at": "instr",
+   "in": "cut",
+   "field": "light",
+   "hold": 20.58,
+   "idea": "A health worker speaks"
+  },
+  {
+   "id": "pat",
+   "at": "pat",
+   "in": "cut",
+   "field": "dark",
+   "hold": 16.36,
+   "idea": "The patient answers"
+  },
+  {
+   "id": "ask",
+   "at": "ask",
+   "in": "cut",
+   "field": "light",
+   "hold": 8.98,
+   "idea": "It asks, like a person would"
+  },
+  {
+   "id": "moment",
+   "at": "moment",
+   "in": "cut",
+   "field": "dark",
+   "hold": 8.44,
+   "idea": "When a check fails"
+  },
+  {
+   "id": "emg",
+   "at": "emg",
+   "in": "cut",
+   "field": "light",
+   "hold": 10.25,
+   "idea": "Emergency mode"
+  },
+  {
+   "id": "rx",
+   "at": "rx",
+   "in": "cut",
+   "field": "dark",
+   "hold": 8.34,
+   "idea": "Prescription by voice"
+  },
+  {
+   "id": "sum",
+   "at": "sum",
+   "in": "cut",
+   "field": "light",
+   "hold": 13.62,
+   "idea": "Every visit teaches it"
+  },
+  {
+   "id": "nums",
+   "at": "nums",
+   "in": "cut",
+   "field": "dark",
+   "hold": 15.14,
+   "idea": "Measured, not claimed"
+  },
+  {
+   "id": "end",
+   "at": "end",
+   "in": "cut",
+   "field": "light",
+   "hold": 12.4,
+   "idea": "Built with"
+  }
+ ],
+ "camera": {
+  "moves": [],
+  "punches": [],
+  "shakes": []
+ },
+ "layers": [
+  {
+   "inst": "pad",
+   "from_bar": 0,
+   "to_bar": 400,
+   "cutoff": 520,
+   "gain_db": -9
+  },
+  {
+   "inst": "sub",
+   "from_bar": 0,
+   "to_bar": 400,
+   "pattern": "X...............",
+   "gain_db": -12
+  }
+ ],
+ "fx": [
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v01.wav",
+   "at": 21.157
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v02.wav",
+   "at": 32.857
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v03.wav",
+   "at": 41.917
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v04.wav",
+   "at": 47.697
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v05.wav",
+   "at": 69.237
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v06.wav",
+   "at": 79.657
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v07.wav",
+   "at": 89.037
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v08.wav",
+   "at": 97.877
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v09.wav",
+   "at": 108.531
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v10.wav",
+   "at": 117.271
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v11.wav",
+   "at": 131.291
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v12.wav",
+   "at": 146.831
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/mama-intro.wav",
+   "at": 0.0,
+   "gain_db": 1,
+   "fade_out": 0.3
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/quy/b3a-cut.wav",
+   "at": 59.197,
+   "gain_db": -2
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/paciente-p18-064.wav",
+   "at": 62.997
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/emg-mama.wav",
+   "at": 106.847,
+   "gain_db": 1
+  },
+  {
+   "type": "whoosh",
+   "at": 20.807,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 32.507000000000005,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 41.567,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 62.547000000000004,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 79.307,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 88.687,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 97.527,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 108.181,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 116.921,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 130.941,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 146.481,
+   "gain_db": -16
+  },
+  {
+   "type": "blip",
+   "at": 71.537,
+   "notes": [
+    0
+   ],
+   "gain_db": -12
+  },
+  {
+   "type": "blip",
+   "at": 106.847,
+   "notes": [
+    0
+   ],
+   "gain_db": -12
+  },
+  {
+   "type": "blip",
+   "at": 93.157,
+   "notes": [
+    12,
+    7,
+    3,
+    0
+   ],
+   "gain_db": -10
+  }
+ ],
+ "mix": {
+  "pump_db": 0.0,
+  "voice_duck_db": 9.0,
+  "music_db": -8.0,
+  "voice_db": 2.0
+ }
+}
