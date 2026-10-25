@@ -74,6 +74,8 @@ class Contexto(BaseModel):
     historial: list[LineaHistorial] = Field(default_factory=list)
     modo: Literal["consulta", "emergencia", "receta"] = "consulta"
     repreguntas_seguidas: list[str] = Field(default_factory=list, description="Topics asked since the last non-repregunta")
+    receta_pendiente: str | None = Field(default=None, description="A prescription Chaski read from a photo and is "
+                                         "waiting for the staff to confirm aloud before saying it (servicio.receta)")
 
     def agregar(self, rol: str, texto: str, maximo: int = 12) -> None:
         if texto.strip():

@@ -24,7 +24,9 @@ from __future__ import annotations
 
 import base64
 import os
+import re
 import time
+import unicodedata
 from concurrent.futures import Future, ThreadPoolExecutor
 from typing import Callable, Literal
 
@@ -300,6 +302,38 @@ def dependencias(client: anthropic.Anthropic, motor: Motor = "claude", modelo_pr
     }
 
 
+# ── A prescription read from a photo waits for the staff's spoken «sí» (servicio.receta) ──────────────────────
+# Deterministic, Spanish only, no model call: the WHOLE utterance must be affirmation words. «sí, pero son dos»,
+# «no», «mmm» or anything else is not a yes; the pending prescription is then dropped and the turn runs as usual.
+
+_AFIRMACION_PALABRAS = {"si", "ya", "ok", "okay", "correcto", "exacto", "claro", "dale", "digale", "digaselo",
+                        "diselo", "dile", "adelante", "nomas"}
+_RELLENO = {"eh", "ah", "mm", "mmm", "pues", "este"}
+
+
+def _sin_acentos(texto: str) -> str:
+    return unicodedata.normalize("NFKD", texto).encode("ascii", "ignore").decode().lower()
+
+
+def es_afirmacion(texto: str) -> bool:
+    """True only if the utterance is a plain yes («sí», «ya, dígale», «está bien», «ok», «así es»...)."""
+    limpio = " ".join(re.sub(r"[^a-z\s]", " ", _sin_acentos(texto or "")).split())
+    if not limpio:
+        return False
+    limpio = f" {limpio} ".replace(" por favor ", " ")  # filler, never a yes on its own
+    for frase in ("esta bien", "asi es", "eso es"):
+        limpio = limpio.replace(f" {frase} ", " si ")
+    palabras = limpio.split()
+    return (any(p in _AFIRMACION_PALABRAS for p in palabras)
+            and all(p in _AFIRMACION_PALABRAS or p in _RELLENO for p in palabras))
+
+
+def _receta_confirmada(texto: str) -> Decision:
+    return Decision(accion="traducir", para="paciente", idioma_salida="quy", texto_pulido=texto,
+                    motivo="receta leída de la foto, confirmada por el personal", frase_banco_id=None,
+                    dato_faltante=None)
+
+
 # ── The turn ──────────────────────────────────────────────────────────────────────────────────────────────────
 
 def _como_veredicto(v) -> Veredicto:
@@ -355,6 +389,15 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
     """
     turno = TurnoEntrada.model_validate(turno)
     contexto = Contexto() if contexto is None else Contexto.model_validate(contexto)
+    forzada: Decision | None = None
+    if contexto.receta_pendiente and turno.rol == "personal":
+        # One staff turn resolves the read prescription: a plain yes says it to the patient through every check;
+        # anything else drops it and this turn runs as a normal staff turn (a correction is just a new order).
+        pendiente, contexto.receta_pendiente = contexto.receta_pendiente.strip(), None
+        if pendiente and es_afirmacion(turno.texto):
+            turno = TurnoEntrada(texto=pendiente, idioma="spa", rol="personal")
+            forzada = _receta_confirmada(pendiente)
+            anticipar = False
     modelo = modelo or modelo_principal_env()
     sembrada = traduccion_forzada is not None
     ms: dict[str, float] = {}
@@ -427,7 +470,7 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
 
     try:
         turno_decidir = turno
-        if (candidatos_fn and not sembrada and not turno.candidatas and turno.rol == "personal"
+        if (candidatos_fn and forzada is None and not sembrada and not turno.candidatas and turno.rol == "personal"
                 and turno.idioma == "spa" and turno.texto.strip()):
             t0 = time.perf_counter()
             try:  # the bank failing must never break a turn: no candidates is a valid input
@@ -438,9 +481,13 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
             medir("banco_candidatos", t0)
 
         t0 = time.perf_counter()
-        d = decidir(client, turno_decidir, contexto, modelo=modelo)
+        if forzada is not None:
+            contexto.repreguntas_seguidas.clear()
+            d = forzada
+        else:
+            d = decidir(client, turno_decidir, contexto, modelo=modelo)
         medir("decidir", t0)
-        if memoria.activa() and not sembrada and contexto.historial:
+        if memoria.activa() and forzada is None and not sembrada and contexto.historial:
             ultimo = contexto.historial[-1]
             _en_fondo(memoria.senal_de_respuesta, ultimo.rol, ultimo.texto, turno.rol, d.accion)
         if al_decidir:

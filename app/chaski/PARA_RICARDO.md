@@ -138,6 +138,41 @@ curl -s -F audio=@p16_C_001.wav -F contexto= "$URL/turno" | jq '{quien_hablo, la
 curl -sN -F audio=@p16_C_001.wav -F contexto= "$URL/turno/vivo"   # event: oido → decision → resultado
 ```
 
+## Receta por voz: `POST /receta` (para pegar en `servicio/app.py`)
+
+La enfermera muestra la caja o la receta a la cámara. Chaski la lee con tu `vision.leer`, **le pregunta a la
+enfermera en voz alta** («Leí: paracetamol 500 mg, una tableta cada 8 horas, por 3 días. ¿Se lo digo?») y guarda la
+indicación en `contexto.receta_pendiente`. **Nada leído de la foto llega al paciente sin su confirmación:** el
+siguiente turno de la enfermera por `/turno` (o `/turno/enfermera`) decide.
+
+- «sí», «ya», «dígale», «correcto», «está bien», «ok», «así es» (chequeo en código, sin otro modelo) → se traduce
+  al quechua la indicación pendiente, con barreras y crítico como cualquier turno. Si una barrera la frena, pregunta
+  una vez, igual que siempre.
+- Cualquier otra cosa («no, son dos tabletas») → la pendiente se borra y el turno se procesa normal.
+- Si falta la dosis o la frecuencia, no queda nada pendiente: la pregunta pide lo que falta.
+- Las `advertencias` de visión las escribe el modelo, así que **no** se le dicen al paciente: van en `aviso`.
+
+```python
+@aplicacion.post("/receta")
+async def receta(imagen: UploadFile = File(...), contexto: str = Form(""), dicho: str = Form("")):
+    """Foto de una caja o receta → la pregunta de confirmación a la enfermera (con voz)."""
+    from chaski import servicio as chaski_servicio
+    from servicio.vision import como_json, leer
+    try:
+        lectura = como_json(leer(await imagen.read(), dicho or None))
+        return chaski_servicio.receta(lectura, contexto, voz_fn=_voz_para_chaski)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+```
+
+Sale con la forma de siempre (`Resultado`): `accion repreguntar`, `para personal`, `idioma_salida spa`, `texto_salida`
+= la pregunta, `texto_pulido` = la indicación que se va a decir, `audio_wav_b64` y el `contexto` nuevo (con
+`receta_pendiente` y `modo receta`). La app lo reproduce y reenvía el `contexto` en el turno siguiente, como siempre.
+
+```bash
+curl -s -F imagen=@caja.jpg -F contexto= "$URL/receta" | jq '{texto_salida, texto_pulido, aviso, pend: .contexto.receta_pendiente}'
+```
+
 ## Qué entra
 
 - `contexto`: el JSON del `contexto` que devolvió el turno anterior (la app ya lo guarda y lo reenvía, con `modo`
