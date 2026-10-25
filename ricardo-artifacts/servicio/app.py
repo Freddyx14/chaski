@@ -303,6 +303,16 @@ def _con_opciones(r, alternativas=None):
 
     vistos = set()
     para_quien = "paciente" if destino == "quy" else "personal"
+    # Solo se propone hacia el personal (decisión de Freddy, dom 08:40, antes del jurado).
+    # Lo encontró probando en vivo: «brazo izquierdo» se bloqueó por `partes_cuerpo` y la propuesta
+    # decía «Lloqe makikipi…» —maki es mano, no brazo—, pero la `glosa` que acompañaba era la frase
+    # ORIGINAL de la enfermera, no una retraducción a ciegas. Es decir: ella leía lo que ella misma
+    # había dicho, confirmaba, y el paciente escuchaba «mano». La lectura de vuelta solo sirve si la
+    # hace alguien que no vio el original, y la de `_lectura_de_chaski` no lo es.
+    # Hacia el personal no pasa: la propuesta va en castellano y la enfermera la juzga directo.
+    # Para devolverla del lado del paciente hace falta la retraducción a ciegas del crítico.
+    if para_quien == "paciente":
+        return r
     if base:
         lectura = _lectura_de_chaski(base, origen, destino)
         if lectura:

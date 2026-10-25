@@ -41,20 +41,28 @@ frase bien dicha.
 }
 ```
 
-Funciona en las dos direcciones. Del lado de la enfermera, con una frase que el crítico
-bloqueó por el medicamento:
+## Solo paciente → personal
 
-```
-texto    Lloqe mariyanpi influenza vacunata churasunchik.
-glosa    Le vamos a poner la vacuna de la influenza en el brazo izquierdo.
-conf     alta
-```
+La propuesta sale **únicamente cuando la diría el personal**, es decir cuando habló el
+paciente en quechua y lo que se ofrece es castellano. Hacia el paciente la lista se queda
+con «Que lo repita» y nada más.
+
+Lo encontraste tú probando en vivo y tenías razón: «Le vamos a poner la vacuna en el brazo
+izquierdo» se bloqueó por `partes_cuerpo`, la propuesta decía «Lloqe makikipi…» —`maki` es
+mano, no brazo— y la `glosa` que la acompañaba era **la frase original de la enfermera**, no
+una retraducción a ciegas. Ella leía lo que ella misma había dicho, confirmaba, y el paciente
+escuchaba «mano». Una lectura de vuelta solo sirve si la hace alguien que no vio el original,
+y la de este camino no lo es.
+
+Hacia el personal el problema no existe: la propuesta va en castellano y la enfermera la
+juzga directo, sin intermediario. Para devolver la propuesta del lado del paciente haría
+falta la retraducción a ciegas del crítico; queda pendiente, no entra antes del jurado.
 
 Aparece en `/turno`, `/turno/vivo`, `/turno/enfermera`, `/turno/enfermera/vivo` y
 `/turno/paciente`. En las rutas en vivo va dentro del evento `resultado`, igual que el resto.
 
-Sale solo cuando hay algo que ofrecer: `accion == "no_entendi"` (cualquier estado), o
-`repreguntar` con estado `bloqueado` / `dicho_con_aviso`. Una repregunta normal —«¿cada
+Sale solo cuando hay algo que ofrecer: habló el paciente, y `accion == "no_entendi"`
+(cualquier estado) o `repreguntar` con estado `bloqueado` / `dicho_con_aviso`. Una repregunta normal —«¿cada
 cuánto?»— **no** trae opciones: es una pregunta de verdad que espera respuesta.
 Si no hay ninguna lectura creíble, tampoco: la lista se descarta y todo queda como antes.
 
@@ -109,9 +117,14 @@ frase donde para leerla habría que inventar un número o un medicamento que no 
 
 ```bash
 U=https://unsubmitted-wally-relatable.ngrok-free.dev
-curl -s -X POST "$U/turno/enfermera" -H "ngrok-skip-browser-warning: 1" \
-  -F "texto=Le vamos a poner la vacuna de la influenza en el brazo izquierdo" -F "contexto=" \
+# paciente → personal: trae «He tomado paracetamol»
+curl -s -X POST "$U/turno/paciente" -H "ngrok-skip-browser-warning: 1" \
+  -F "audio=@ricardo-artifacts/datos/crudo/p16/p16_B_066.wav" -F "contexto=" \
   | python3 -m json.tool | grep -A6 opciones
+
+# personal → paciente: no trae ninguna, a propósito
+curl -s -X POST "$U/turno/enfermera" -H "ngrok-skip-browser-warning: 1" \
+  -F "texto=Le vamos a poner la vacuna de la influenza en el brazo izquierdo" -F "contexto="
 ```
 
 Dónde está: `ricardo-artifacts/servicio/app.py`, funciones `_con_opciones`,
