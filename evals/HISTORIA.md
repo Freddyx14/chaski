@@ -33,6 +33,8 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 | 15:08 | **Opus 5** | **98 %** | **0** | 3,7 s | `claude-opus-5-2026-10-24-1508.json` |
 | 16:39 | Opus 5 + crítico Sonnet, turno completo | **100 %** | **0** | decidir + crítico ~13 s → **6,5 s** tras acelerar el crítico (sin traducción ni voz: ver la fila de las 21:56) | `claude-opus-5-2026-10-24-1639.json` |
 
+| dom 03:41 | **Opus 5, pensamiento «low» explícito** (antes el del modelo con 800 tokens: a veces gastaba todo pensando y no respondía → 27 s y «no entendí») | **98 %** (el único fallo pide repetir) | **0** | **2,3 s** (p95 3,8 s) | `evals/interprete/resultados/decidir-{no,low,modelo}.txt` (sin pensar 96 %, 2,6 s; el del modelo con espacio 100 %, 4,0 s, p95 9,5 s) |
+
 ### 2b · Tiempo de punta a punta, medido (24-oct, 21:56)
 
 16 turnos reales del personal, uno tras otro. El audio de cada uno pasó por el servicio vivo de Ricardo (`/escuchar`, `/voz`) y el intérprete corrió local con los modelos de producción. Archivo: `evals/latencia/resultados/e2e-20261024-2156.json`.

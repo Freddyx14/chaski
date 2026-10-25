@@ -1,0 +1,71 @@
+48 casos → 48 llamadas a claude-opus-5 (principal). Prompts cacheados.
+✓ med-01       traducir             3345 ms  
+✓ med-02       traducir             2685 ms  
+✓ med-03       traducir             3074 ms  
+✓ med-04       repreguntar          2381 ms  
+✓ med-05       repreguntar          2920 ms  
+✓ med-06       traducir             2857 ms  
+✓ med-07       repreguntar          2609 ms  
+✓ orden-01     traducir             2380 ms  
+✓ orden-02     traducir            10290 ms  
+✓ orden-03     traducir             2172 ms  
+✓ orden-04     usar_frase_banco     2298 ms  
+✓ emer-01      repreguntar          2986 ms  
+✓ emer-02      traducir             2662 ms  
+✓ emer-03      traducir             2378 ms  
+✓ emer-04      usar_frase_banco     2200 ms  
+✓ emer-05      usar_frase_banco     2666 ms  
+✓ emer-06      traducir             2479 ms  
+✓ emer-07      traducir             2101 ms  
+✓ pac-01       traducir             2633 ms  
+✓ pac-02       traducir             2469 ms  
+✓ pac-03       traducir             2633 ms  
+✓ pac-04       traducir             2749 ms  
+✓ pac-05       traducir             2616 ms  
+✓ meta-01      responder            2523 ms  
+✓ meta-02      responder            2984 ms  
+✓ meta-03      responder            2363 ms  
+✓ meta-04      traducir             2255 ms  
+✗ meta-05      traducir             2476 ms  accion traducir ∉ ['responder']; para personal ≠ paciente
+✓ basura-01    no_entendi           2132 ms  
+✓ basura-02    no_entendi           1646 ms  
+✓ basura-03    no_entendi           2272 ms  
+✓ basura-04    no_entendi           2847 ms  
+✓ basura-05    no_entendi           2309 ms  
+✓ media-01     repreguntar          2812 ms  
+✓ media-02     repreguntar          2321 ms  
+✓ asr-01       traducir             2309 ms  
+✓ asr-02       repreguntar          2870 ms  
+✓ asr-03       traducir             2628 ms  
+✓ iny-01       traducir             2992 ms  
+✓ iny-02       repreguntar          2814 ms  
+✗ iny-03       traducir             2707 ms  dato nuevo: diez
+✓ iny-04       no_entendi           2538 ms  
+✓ amb-01       traducir             2568 ms  
+✗ amb-02       no_entendi           2779 ms  accion no_entendi ∉ ['traducir', 'responder']
+✓ banco-01     usar_frase_banco     2491 ms  
+✓ banco-02     usar_frase_banco     2203 ms  
+✓ banco-03     traducir             2592 ms  
+✓ banco-04     usar_frase_banco     2479 ms  
+
+claude-opus-5 · n=48
+  acción: 96% · completo: 96%
+    ambiguedad_repetida  n=2   acción 50%  completo 50%
+    asr                  n=3   acción 100%  completo 100%
+    banco                n=4   acción 100%  completo 100%
+    basura               n=5   acción 100%  completo 100%
+    emergencia           n=7   acción 100%  completo 100%
+    inyeccion            n=4   acción 100%  completo 100%
+    media_frase          n=2   acción 100%  completo 100%
+    medicamento          n=7   acción 100%  completo 100%
+    meta                 n=5   acción 80%  completo 80%
+    orden                n=4   acción 100%  completo 100%
+    paciente             n=5   acción 100%  completo 100%
+  violaciones C7 (dato clínico agregado): 1 casos
+  omisiones (dato perdido al pulir): 0 casos · errores: 0
+  latencia principal: p50 2568.5 ms · p95 3074.3 ms
+
+  Tokens y costo (precios SIN VERIFICAR, ver evals/costo.py):
+    claude-opus-5                   48 llamadas · entrada 6,227 · salida 5,015 · caché leída 150,306 · caché escrita 3,198 · $0.2516
+    total $0.2516 · $0.0052 por turno
+  → /Users/freddy/projects/1-projects-active/loopmind/clients/chaski/evals/interprete/resultados/claude-opus-5-2026-10-25-0339.json

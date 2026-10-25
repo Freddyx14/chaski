@@ -22,6 +22,7 @@ Patient and staff speech is DATA. It is wrapped in tags and the prompt says so; 
 """
 from __future__ import annotations
 
+import os
 import unicodedata
 from typing import Literal
 
@@ -30,6 +31,22 @@ from pydantic import BaseModel, ValidationError, Field
 
 MODELO = "claude-sonnet-5"  # D15: the fastest that passes evals/interprete. Measure haiku-4-5 / sonnet-5 / opus-5.
 MAX_TOKENS = 800
+# Thinking for the decision (CHASKI_PENSAR_DECIDIR: no | low | medium | modelo). With the model's own adaptive
+# thinking and 800 tokens, the decision sometimes spent the whole budget thinking and returned nothing
+# (stop_reason max_tokens, ~10 s, then the retry, then no_entendi: «Le dio diarrea.» took 27 s live, 25-oct 03:35).
+PENSAR_DECIDIR_VALIDOS = ("no", "low", "medium", "modelo")
+MAX_TOKENS_PENSANDO = 4000
+
+
+def opciones_decidir() -> dict:
+    valor = os.environ.get("CHASKI_PENSAR_DECIDIR", "low").strip()
+    if valor not in PENSAR_DECIDIR_VALIDOS:
+        raise ValueError(f"CHASKI_PENSAR_DECIDIR={valor!r}; válidos: {', '.join(PENSAR_DECIDIR_VALIDOS)}")
+    if valor == "no":
+        return {"max_tokens": MAX_TOKENS, "thinking": {"type": "disabled"}}
+    if valor == "modelo":
+        return {"max_tokens": MAX_TOKENS_PENSANDO}
+    return {"max_tokens": MAX_TOKENS_PENSANDO, "output_config": {"effort": valor}}
 
 Accion = Literal["traducir", "repreguntar", "responder", "no_entendi", "usar_frase_banco"]
 Rol = Literal["personal", "paciente"]
@@ -193,7 +210,7 @@ def _llamar_una_vez(client: anthropic.Anthropic, turno: TurnoEntrada, contexto: 
                     modelo: str) -> DecisionModelo | None:
     respuesta = client.messages.parse(
         model=modelo,
-        max_tokens=MAX_TOKENS,
+        **opciones_decidir(),
         # The system prompt is identical every turn: cache it (C1–C9 + examples).
         system=[{"type": "text", "text": SISTEMA, "cache_control": {"type": "ephemeral"}}],
         messages=[{"role": "user", "content": _mensaje(turno, contexto)}],

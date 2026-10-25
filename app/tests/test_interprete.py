@@ -182,3 +182,16 @@ def test_respuesta_mal_formada_se_reintenta_y_luego_pide_repetir():
     cli = SimpleNamespace(messages=SimpleNamespace(parse=parse))
     d = it.decidir(cli, {"texto": "Tome la pastilla", "idioma": "spa", "rol": "personal"})
     assert len(llamadas) == 2 and d.accion == "no_entendi"
+
+
+def test_opciones_decidir_por_defecto_low_con_espacio(monkeypatch):
+    from chaski import interprete as it
+    monkeypatch.delenv("CHASKI_PENSAR_DECIDIR", raising=False)
+    o = it.opciones_decidir()
+    assert o["output_config"] == {"effort": "low"} and o["max_tokens"] >= 2000  # never starves the answer
+    monkeypatch.setenv("CHASKI_PENSAR_DECIDIR", "no")
+    assert it.opciones_decidir()["thinking"] == {"type": "disabled"}
+    monkeypatch.setenv("CHASKI_PENSAR_DECIDIR", "rapido")
+    import pytest
+    with pytest.raises(ValueError):
+        it.opciones_decidir()
