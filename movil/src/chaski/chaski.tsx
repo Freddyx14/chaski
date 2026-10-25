@@ -100,11 +100,13 @@ export function Chaski({ estado, tam, boca = false, fondo = C.ground, pulso }: {
 }
 
 function ChaskiLibre({ estado, tam, boca, pulso }: { estado: EstadoChaski; tam: number; boca: boolean; pulso?: number }) {
-  const loop = LIBRE_LOOPS[estado];
+  // Al hablar, un solo video fluido (presentarse: gesticula). Alternar dos fotos con la boca parpadeaba,
+  // porque las poses no calzan (Freddy, 25-oct 01:46).
+  const loop = estado === 'hablando' ? LIBRE_LOOPS.presentarse : LIBRE_LOOPS[estado];
   const cuadro = estado === 'hablando' ? (boca ? LIBRE_CUADROS.hablando : LIBRE_CUADROS.reposo) : LIBRE_CUADROS[estado];
   // Al hablar, Chaski crece apenas con la voz: el mismo pulso que encendía las hebras del marco.
   // Las imágenes traen mucho aire alrededor: se agranda para que Chaski llene el mismo espacio que el marco.
-  const escala = 1.3 + (pulso ?? 0) * 0.05;
+  const escala = 1.3 + (pulso ?? 0) * 0.02;
   return (
     <View style={{ width: tam, height: tam, alignItems: 'center', justifyContent: 'flex-end', overflow: 'visible' }}>
       {/* Sombra en el piso: el recorte se lleva la del video, y sin ella Chaski flota. */}
@@ -112,7 +114,7 @@ function ChaskiLibre({ estado, tam, boca, pulso }: { estado: EstadoChaski; tam: 
       <View style={[StyleSheet.absoluteFill, { transform: [{ translateY: -tam * 0.06 }, { scale: escala }] }]}>
         {/* Con video transparente, la imagen fija NO va debajo: se vería a través (Chaski doble). */}
         {loop ? (
-          <Loop key={estado} fuente={loop} ajuste="contain" />
+          <Loop key={estado === 'hablando' ? 'presentarse' : estado} fuente={loop} ajuste="contain" />
         ) : (
           <Image source={cuadro} style={StyleSheet.absoluteFill} contentFit="contain" transition={0} />
         )}

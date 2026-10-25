@@ -24,7 +24,7 @@ import { idiomaDelOtro, quienHabla, textos, type Textos } from '@/chaski/textos'
 import { C, ESCALA } from '@/chaski/tokens';
 import { AnilloInti } from '@/chaski/inti';
 import { BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
-import { nivelDesdeDb, palabrasDichas } from '@/chaski/movimiento';
+import { nivelDesdeDb } from '@/chaski/movimiento';
 import { Aviso, Boton, Etiqueta, Icono, Tarjeta } from '@/chaski/ui';
 import { base64ABytes, bocaAbierta, envolvente, nivelEn, revisarGrabacion, type Envolvente } from '@/chaski/wav';
 import Animated, {
@@ -781,14 +781,14 @@ function Dicho({ v, vozLista, hablando, progreso, t }: {
 }) {
   // El texto se lee siempre entero; lo que la voz ya dijo pasa a tinta plena, palabra por palabra.
   const palabras = v.quechua.split(/\s+/).filter(Boolean);
-  const dichas = hablando ? palabrasDichas(palabras.length, progreso) : vozLista ? palabras.length : 0;
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
       <View style={{ alignItems: 'center' }}><Etiqueta idioma="quechua" /></View>
       <Tarjeta>
         <Text style={e.quechua}>
+          {/* Texto entero y fijo: revelarlo palabra por palabra parpadeaba (Freddy, 25-oct 01:46). */}
           {palabras.map((p, i) => (
-            <Text key={i} style={{ color: i < dichas ? C.ink : C.inkTertiary }}>{p}{i < palabras.length - 1 ? ' ' : ''}</Text>
+            <Text key={i} style={{ color: C.ink }}>{p}{i < palabras.length - 1 ? ' ' : ''}</Text>
           ))}
         </Text>
         <Zigzag />
