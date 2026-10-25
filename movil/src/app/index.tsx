@@ -830,6 +830,8 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
       </View>
       <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>{t.noLoDije}</Text>
       <Animated.Text style={[e.razon, temblor]}>{razonCorta(v)}</Animated.Text>
+      {/* Lo que Chaski oyó, en gris: separa un error del reconocedor de uno del traductor. */}
+      {v.oido ? <Text style={e.oido}>Oí: «{v.oido}»</Text> : null}
     </Animated.View>
   );
 }
@@ -910,6 +912,7 @@ const e = StyleSheet.create({
   revisado: { flexDirection: 'row', alignItems: 'center', gap: 8, alignSelf: 'center', backgroundColor: C.okTint, borderRadius: 18, paddingHorizontal: 16, paddingVertical: 8 },
   revisadoTexto: { fontSize: ESCALA.cuerpo, fontWeight: '700', color: C.ok },
   razon: { fontSize: ESCALA.cuerpo, color: C.inkSecondary, textAlign: 'center' },
+  oido: { fontSize: ESCALA.mini, color: C.inkTertiary, textAlign: 'center', paddingHorizontal: 16 },
   protegio: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center', backgroundColor: C.actionTint, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 6 },
   protegioTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.action },
   auditoria: { borderRadius: 16, padding: 14, gap: 8 },

@@ -291,10 +291,10 @@ test('nombres de pasos y campos a castellano llano', () => {
   assert.equal(explicarBloqueo(null, 'x.cantidad'), 'no coincidió la dosis');
   assert.equal(explicarBloqueo(null, 'x.dias'), 'no coincidieron los días');
   assert.equal(explicarBloqueo(null, 'unidad «cucharada» en el quechua'), 'no coincidió la unidad (pastilla, cucharada…)');
-  assert.equal(explicarBloqueo(null, 'el pulido agregó un dato: después de comer'), 'iba a agregar algo que nadie dijo');
-  assert.equal(explicarBloqueo(null, 'cambió a quién se le habla: paciente → personal'), 'cambió a quién se le habla');
+  assert.equal(explicarBloqueo(null, 'el pulido agregó un dato: después de comer'), 'agregaba un dato: después de comer');
+  assert.equal(explicarBloqueo(null, 'cambió a quién se le habla: paciente → personal'), 'cambió a quién se le habla: paciente → personal');
   assert.equal(explicarBloqueo('decidir', 'No pude verificar esto: TimeoutError'), 'no pude verificarlo');
-  assert.equal(explicarBloqueo('critico', 'el crítico lo frenó'), 'el revisor encontró un problema');
+  assert.equal(explicarBloqueo('critico', 'el crítico lo frenó'), 'el crítico lo frenó');
   assert.equal(explicarBloqueo(null, ''), 'algo cambió al traducir');
 });
 
@@ -383,4 +383,17 @@ test('SSE: eventos completos, partidos entre trozos, comentarios y \\r\\n', asyn
   const b = leerEventosSSE(a.resto + 'tado\r\ndata: {"estado":"dicho"}\r\n\r\n');
   assert.deepEqual(b.eventos, [{ evento: 'resultado', datos: '{"estado":"dicho"}' }]);
   assert.equal(b.resto, '');
+});
+
+test('el bloqueo dice QUÉ dato falló, sin el nombre de la capa', async () => {
+  const { explicarBloqueo, detalleDelMotivo } = await import('../src/chaski/modelo.ts');
+  assert.equal(detalleDelMotivo('C agregados: consejo que no estaba: tomarla debajo de la lengua'), 'consejo que no estaba: tomarla debajo de la lengua');
+  assert.equal(explicarBloqueo('critico', 'C agregados: consejo que no estaba: tomarla debajo de la lengua'),
+    'agregaba algo que no se dijo: tomarla debajo de la lengua');
+  assert.equal(explicarBloqueo('guardas', 'B3 nada nuevo: el pulido agregó un dato: 500 mg'), 'agregaba un dato: 500 mg');
+  assert.equal(explicarBloqueo('critico', 'B5 ida y vuelta: cambió un dato crítico: paracetamol.cada_horas'), 'no coincidió la frecuencia');
+  // Un motivo desconocido se muestra tal cual, nunca el genérico.
+  assert.equal(explicarBloqueo('critico', 'critico: la indicación inventa la vía sublingual'), 'cambió cómo se toma');
+  assert.equal(explicarBloqueo('critico', 'critico: el texto mezcla dos pacientes'), 'el texto mezcla dos pacientes');
+  assert.equal(explicarBloqueo('critico', ''), 'el revisor encontró un problema');
 });

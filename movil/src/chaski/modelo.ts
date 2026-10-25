@@ -80,9 +80,28 @@ export function negacionEn(texto: string): string | null {
  * Por qué Chaski no lo dijo, en palabras simples, desde `paso_fallido` + `motivo` del orquestador y las
  * barreras (app/chaski/guardas.py). Lo específico gana a lo general; nunca se muestra jerga técnica.
  */
+/** Quita el nombre de la capa del motivo («B5 ida y vuelta: …», «C agregados: …») y deja el detalle. */
+export function detalleDelMotivo(motivo: string | null | undefined): string {
+  return (motivo ?? '').replace(/^\s*(?:[A-Z]\d*[\w\s/]*?|cr[ií]tico|guardas|barreras?)\s*:\s*/i, '').trim();
+}
+
 export function explicarBloqueo(paso: string | null | undefined, motivo: string | null | undefined, original = ''): string {
+  const det = detalleDelMotivo(motivo);
   const m = (motivo ?? '').toLowerCase();
   const p = (paso ?? '').toLowerCase();
+  // Primero los motivos que traen el dato exacto: se muestra QUÉ falló, no una categoría (pitch: «cada
+  // bloqueo dice qué dato falló»).
+  const conDato: [RegExp, string][] = [
+    [/consejo que no estaba:\s*(.+)/i, 'agregaba algo que no se dijo: $1'],
+    [/diagn[oó]stico que no estaba:\s*(.+)/i, 'agregaba un diagnóstico: $1'],
+    [/el pulido agreg[oó] un dato:\s*(.+)/i, 'agregaba un dato: $1'],
+    [/el pulido cambi[oó] un dato:\s*(.+)/i, 'cambió un dato: $1'],
+    [/cambi[oó] a qui[eé]n se le habla:\s*(.+)/i, 'cambió a quién se le habla: $1'],
+  ];
+  for (const [re, plantilla] of conDato) {
+    const x = det.match(re);
+    if (x) return corto(plantilla.replace('$1', x[1].trim()));
+  }
   if (/prohibici|negaci|ama \/ mana|quitó una negación/.test(m)) {
     const neg = negacionEn(original);
     return neg ? `se perdió la prohibición (${neg})` : 'se perdió la prohibición';
@@ -103,11 +122,19 @@ export function explicarBloqueo(paso: string | null | undefined, motivo: string 
   if (/agreg|nada nuevo|que no se dijo|no estaba/.test(m)) return 'iba a agregar algo que nadie dijo';
   if (/número|numero/.test(m)) return 'cambió un número';
   if (/no pude verificar|error|timeout|mal formada/.test(m)) return 'no pude verificarlo';
+  if (/sublingu|under the tongue|route/.test(m)) return 'cambió cómo se toma';
+  // Sin categoría conocida: el motivo real, aunque sea crudo, antes que un genérico que no dice nada.
+  if (det) return corto(det);
   if (p.includes('critico')) return 'el revisor encontró un problema';
   if (p.includes('guardas') || /^b\d/.test(p)) return 'una barrera de seguridad lo frenó';
   if (p.includes('traducir')) return 'la traducción no se pudo revisar';
   if (p.includes('decidir')) return 'no pude entender el turno';
   return 'algo cambió al traducir';
+}
+
+function corto(t: string, max = 90): string {
+  const limpio = t.replace(/\s+/g, ' ').trim();
+  return limpio.length > max ? limpio.slice(0, max - 1).trimEnd() + '…' : limpio;
 }
 
 /** ¿Vale la pena reintentar? Red caída o sin respuesta (null), o el servicio reiniciándose (502/503/504). */
@@ -201,7 +228,7 @@ export type Veredicto =
   | { tipo: 'dicho_con_aviso'; quechua: string; castellano: string; terminos: string[];
       casillas: { nombre: string; ok: boolean }[]; aviso?: string | null; critico?: boolean }
   | { tipo: 'bloqueado'; castellano: string; diferencias: { nombre: string; dijo: string; decia: string }[];
-      terminos: string[]; casillasOk: string[]; razon?: string };
+      terminos: string[]; casillasOk: string[]; razon?: string; oido?: string };
 
 /**
  * Qué pantalla toca después del turno de la enfermera.
@@ -303,6 +330,7 @@ export function veredictoResultado(castellano: string, r: Resultado): Veredicto 
     return {
       tipo: 'bloqueado', castellano, diferencias: [], terminos: [], casillasOk: [],
       razon: explicarBloqueo(r.paso_fallido, r.motivo, castellano),
+      oido: (r.texto_original ?? '').trim() || undefined,
     };
   }
   const quechua = r.idioma_salida === 'quy' ? (r.texto_salida ?? '') : '';
