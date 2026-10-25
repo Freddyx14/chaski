@@ -55,17 +55,18 @@
  {
   "id": "emg-alergia",
   "es": "¿Es alérgico a algún medicamento?",
-  "quy": "",
+  "quy": "¿Ruparin pukyupakunki?",
   "audio": null,
   "tags": [
    "emergencia",
    "alergias",
-   "medicamentos",
-   "falta_quechua"
+   "medicamentos"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "ruparin pumquipacunki",
+  "nota": "Escrita por ella (18:27). Así lo preguntan allá: por la reacción (ardor, ronchas), no por la palabra «alergia». Ortografía de «pumquipacunki» normalizada con duda: confirmar."
  },
  {
   "id": "emg-embarazo",
@@ -152,18 +153,17 @@
  {
   "id": "emg-medicamento-tomo",
   "es": "¿Tomó algún medicamento?",
-  "quy": "¿Upyarankichu [?] medicinata?",
+  "quy": "¿Upyarankichu huk medicinata?",
   "audio": null,
   "tags": [
    "emergencia",
-   "medicamentos",
-   "por_confirmar"
+   "medicamentos"
   ],
   "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
-  "revisado": false,
+  "revisado": true,
   "split": "banco",
-  "quy_original": "Upiaranquucho Gucci medicinata",
-  "nota": "«Gucci» parece el autocorrector del celular: ¿«huk» (algún) o «ima» (qué)? Confirmar con ella."
+  "quy_original": "Upiaranquucho hucc medicinata",
+  "nota": "Confirmado por ella (18:07): la palabra era «hucc» (huk, algún)."
  },
  {
   "id": "emg-caida",
@@ -317,18 +317,17 @@
  {
   "id": "emg-tranquilo",
   "es": "No se preocupe, estamos aquí para ayudarle.",
-  "quy": "Ama llakikuychu, [?] kachkani yanapanaypaq.",
+  "quy": "Ama llakikuychu, kaypim kachkaniku.",
   "audio": null,
   "tags": [
    "emergencia",
-   "calma",
-   "por_confirmar"
+   "calma"
   ],
   "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
-  "revisado": false,
+  "revisado": true,
   "split": "banco",
-  "quy_original": "Ama llaquicuychu laude cachcany napapanaypac",
-  "nota": "«laude» puede ser «ladoykipi» (a su lado) o el autocorrector; confirmar con ella."
+  "quy_original": "Ama llaquicuychu kapincachcanico",
+  "nota": "Corregido por ella (18:29). Dice «no se preocupe, aquí estamos»; la parte «para ayudarle» no la incluyó."
  },
  {
   "id": "cmp-000",
