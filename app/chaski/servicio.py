@@ -2,6 +2,7 @@
 (the ready-to-paste snippet is in PARA_RICARDO.md).
 
     turno(...)          /turno/enfermera, /turno/paciente  → Resultado.model_dump()
+    turno_eventos(...)  /turno/enfermera/vivo (SSE)        → `decision` (~3 s) then `resultado` (or `error`)
     banco_por_tag(tag)  GET /banco                         → [{id, es, quy, audio, tags, revisado}]
 
 The Anthropic client is built once per process, on first use, from ANTHROPIC_API_KEY. Models come from
@@ -11,7 +12,9 @@ from __future__ import annotations
 
 import json
 import os
+import queue
 import threading
+from collections.abc import Iterator
 
 from chaski import orquestador
 from chaski.interprete import Contexto
@@ -79,6 +82,38 @@ def turno(texto: str, idioma: str, rol: str, contexto_json: str | None, n_mejore
                "confianza": _confianza(confianza)}
     r = orquestador.interpretar(entrada, leer_contexto(contexto_json), traduccion_forzada=sembrada, **deps)
     return r.model_dump()
+
+
+def _sse(evento: str, datos: dict) -> str:
+    return f"event: {evento}\ndata: {json.dumps(datos, ensure_ascii=False)}\n\n"
+
+
+def turno_eventos(texto: str, idioma: str, rol: str, contexto_json: str | None, n_mejores_json: str | None = None,
+                  confianza=None, traduccion_sembrada: str | None = None, *, client=None,
+                  dependencias: dict | None = None) -> Iterator[str]:
+    """The same turn as `turno`, as Server-Sent Events: `decision` as soon as the interpreter decides (the polished
+    Spanish, so the app can show it while translation and the critic run), then `resultado` with exactly what
+    `turno` returns. A failure ends with `error`. The `decision` text is never spoken: only `resultado` is."""
+    eventos: queue.Queue = queue.Queue()
+    fin = object()
+
+    def correr():
+        try:
+            deps = dependencias or orquestador.dependencias(client or cliente())
+            sembrada = traduccion_sembrada if traduccion_sembrada and traduccion_sembrada.strip() else None
+            entrada = {"texto": texto or "", "idioma": idioma, "rol": rol,
+                       "n_mejores": leer_n_mejores(n_mejores_json), "confianza": _confianza(confianza)}
+            r = orquestador.interpretar(entrada, leer_contexto(contexto_json), traduccion_forzada=sembrada,
+                                        al_decidir=lambda d: eventos.put(("decision", d)), **deps)
+            eventos.put(("resultado", r.model_dump(mode="json")))
+        except Exception as e:  # noqa: BLE001  reported to the app as an event, never a hung stream
+            eventos.put(("error", {"error": f"{type(e).__name__}: {e}"}))
+        finally:
+            eventos.put(fin)
+
+    threading.Thread(target=correr, daemon=True).start()
+    while (ev := eventos.get()) is not fin:
+        yield _sse(*ev)
 
 
 def banco_por_tag(tag: str | None = None) -> list[dict]:

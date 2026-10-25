@@ -252,12 +252,18 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
                 client: anthropic.Anthropic, traducir_fn: TraducirFn, auditar_fn: RevisarFn,
                 guardas_fn: RevisarFn = guardas, banco_fn: BancoFn | None = None,
                 candidatos_fn: CandidatosFn | None = None, modelo: str | None = None,
-                traduccion_forzada: str | None = None) -> Resultado:
+                traduccion_forzada: str | None = None,
+                al_decidir: Callable[[dict], None] | None = None) -> Resultado:
     """Run one turn. Returns the result plus the updated `contexto` to send back next turn.
 
     `traduccion_forzada` is the rehearsal mode: the translation step returns that text instead of calling
     `traducir_fn`, the bank is skipped (so the seeded text is what gets checked), and guards and critic run as
     always. The result carries `sembrada=True`.
+
+    `al_decidir` (optional) is called once, right after the decision and before translation, with
+    {accion, para, idioma_salida, texto_pulido, ms_decidir}, so the app can show the polished Spanish ~3 s in instead
+    of ~17 s. It is informational only: what is said is still the final Resultado, and an error in it never breaks the
+    turn.
     """
     turno = TurnoEntrada.model_validate(turno)
     contexto = Contexto() if contexto is None else Contexto.model_validate(contexto)
@@ -311,6 +317,12 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
         t0 = time.perf_counter()
         d = decidir(client, turno_decidir, contexto, modelo=modelo)
         medir("decidir", t0)
+        if al_decidir:
+            try:
+                al_decidir({"accion": d.accion, "para": d.para, "idioma_salida": d.idioma_salida,
+                            "texto_pulido": d.texto_pulido, "ms_decidir": ms["decidir"]})
+            except Exception:  # noqa: BLE001  the early preview must never break a turn
+                pass
         if d.aviso:
             avisos.append(d.aviso)
 

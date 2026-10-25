@@ -1,4 +1,4 @@
-# Para Ricardo: las tres rutas del intérprete
+# Para Ricardo: las rutas del intérprete
 
 Todo el turno vive en `chaski.servicio` (intérprete, traducción, barreras B1–B4 en código y el crítico). Tus rutas
 solo leen el formulario y llaman a una función. El crítico es **el mismo código** que mide
@@ -15,6 +15,7 @@ solo leen el formulario y llaman a una función. El crítico es **el mismo códi
 | `CHASKI_PENSAR_HECHOS` | pensamiento de la extracción: `no`, `low`, `medium`, `high` o `modelo` | `no` |
 | `CHASKI_PENSAR_RETRADUCIR` | pensamiento de la retraducción ciega | `low` |
 | `CHASKI_PENSAR_AGREGADOS` | pensamiento del paso «qué agregó» | `low` |
+| `CHASKI_PENSAR_TRADUCIR` | pensamiento del traductor Claude: `modelo`, `no`, `low`, `medium`, `high` | `modelo` (chrF++ 51,8 en 5,6 s; `no` 43,1 en 1,7 s) |
 | `CHASKI_NLLB_URL` | tu NLLB; sin ella traduce Claude | vacía |
 
 Los `PENSAR` por defecto bajaron el crítico de p50 9 s a ~2-3 s sin perder atrapados (24-oct). `modelo` deja el
@@ -46,6 +47,17 @@ async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form("")
                                      json.dumps(oido.get("alternativas", [])), oido.get("confianza"))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+# La misma ruta en vivo (SSE): `decision` a los ~3 s con el castellano pulido, `resultado` al final (o `error`).
+# La app la usa para mostrar el texto mientras traduce y revisa. Lo que se dice es solo `resultado`.
+@aplicacion.post("/turno/enfermera/vivo")
+def turno_enfermera_vivo(texto: str = Form(...), contexto: str = Form(""), n_mejores: str = Form(""),
+                         confianza: str = Form(""), traduccion_sembrada: str = Form("")):
+    from fastapi.responses import StreamingResponse
+    return StreamingResponse(
+        chaski_servicio.turno_eventos(texto, "spa", "personal", contexto, n_mejores, confianza, traduccion_sembrada),
+        media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @aplicacion.get("/banco")

@@ -277,3 +277,48 @@ def test_revisar_con_pulido_y_quechua_suma_llamadas_y_el_pulido_manda():
     r = critico.revisar(c, TE_PULIDO, quechua=QUY_BIEN, transcripcion=TE, modelo="m")
     assert not r.veredicto.ok and r.llamadas == critico.LLAMADAS_AMBOS and r.pulido is not None
     assert r.veredicto == r.pulido.veredicto
+
+
+# ── Streaming: decision first, then the same result ─────────────────────────────────────────────────────────
+
+def _eventos(stream):
+    salida = []
+    for bloque in stream:
+        cab, datos = bloque.strip().split("\n")
+        salida.append((cab.removeprefix("event: "), json.loads(datos.removeprefix("data: "))))
+    return salida
+
+
+def test_eventos_dan_la_decision_antes_que_el_resultado():
+    c = FakeClient(traducir())
+    ev = _eventos(servicio.turno_eventos(TE, "spa", "personal", None, traduccion_sembrada=QUY_BIEN,
+                                         dependencias=deps(c)))
+    assert [e for e, _ in ev] == ["decision", "resultado"]
+    assert ev[0][1]["texto_pulido"] == TE_PULIDO and ev[0][1]["accion"] == "traducir"
+    assert "ms_decidir" in ev[0][1]
+    # the result is exactly what the plain route returns
+    plano = servicio.turno(TE, "spa", "personal", None, traduccion_sembrada=QUY_BIEN, dependencias=deps(FakeClient(traducir())))
+    assert {k: v for k, v in ev[1][1].items() if k != "ms"} == {k: v for k, v in json.loads(json.dumps(plano, default=str)).items() if k != "ms"}
+
+
+def test_eventos_bloqueado_igual_llega_como_resultado():
+    c = FakeClient(traducir())
+    ev = _eventos(servicio.turno_eventos(TE, "spa", "personal", None, traduccion_sembrada=QUY_SIN_NEGACION,
+                                         dependencias=deps(c)))
+    assert [e for e, _ in ev] == ["decision", "resultado"] and ev[1][1]["estado"] == "bloqueado"
+
+
+def test_eventos_un_fallo_termina_en_error_no_cuelga():
+    ev = _eventos(servicio.turno_eventos(TE, "spa", "personal", "{no es json", dependencias=deps(FakeClient(traducir()))))
+    assert [e for e, _ in ev] == ["error"] and "contexto mal formado" in ev[0][1]["error"]
+
+
+def test_un_al_decidir_que_falla_no_rompe_el_turno():
+    c = FakeClient(traducir())
+
+    def explota(_):
+        raise RuntimeError("la vista previa falló")
+
+    r = orquestador.interpretar({"texto": TE, "idioma": "spa", "rol": "personal"}, None, traduccion_forzada=QUY_BIEN,
+                                al_decidir=explota, **deps(c))
+    assert r.estado != "bloqueado" or r.paso_fallido != "decidir"
