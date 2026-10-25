@@ -15,6 +15,11 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 
 ## Bandeja
 
+> Nota sobre cómo verificar `/turno/paciente`: con audio sintetizado no sirve. Generé la frase con
+> nuestro TTS y el reconocedor oyó «pos ahora pivo pastilla carcon diez» — habla sintética es fuera de
+> dominio para un modelo entrenado con voz humana. El sistema respondió «no entendí» en vez de
+> adivinar una dosis, que es la guarda funcionando. Se verifica con grabaciones de `datos/crudo/`.
+
 > Las cuatro primeras quedaron hechas antes de que existiera la Bandeja (dom 00:20–09:10). Dejo el
 > hash de cada una para que se pueda comprobar. Lo que encontré de paso y no estaba pedido:
 > `/turno/paciente` ya acepta .m4a y .webm (los convierte, antes daba 500), y el WAV de Cartesia
@@ -26,7 +31,7 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | Memoria fuera de lo que se sincroniza. Probado como importa: turno → redespliegue → la línea sigue. 6 líneas ahora | 0851178 |
 | [x] | Voz: castellano por Cartesia (Ximena), quechua `mama_freddy` en los dos sitios, `p24` de respaldo. Verificado por frecuencia, no por ausencia de error: castellano 24000 Hz, quechua 16000 Hz, 0 respaldos usados | 9e2075d |
 | [x] | D40 → D43 en `app.py`, `desplegar.sh` y `PARA-FREDDY.md` | 0ee64a9 |
-| [ ] | `git pull` y desplegar (dom 02:15, da250b1): el traductor quechua→castellano ya no escribe alternativas entre paréntesis («a las ocho (en la noche/debajo)», que el revisor frenaba como vía sublingual inventada), y la memoria ya no pierde una señal escrita antes que su turno | verificar: «pusaq urapi huk pastillata upyay» por /turno/paciente sale `dicho` |
+| [x] | `git pull` y desplegar da250b1. Verificado con grabaciones reales (dom 02:20): `p16_C_001.wav` → el reconocedor oye «pusaq urapi huk pastillata upyay», `estado dicho`, «Tome una pastilla a las ocho.», **sin paréntesis**. `p18_C_001.wav` → `dicho`, «Tome una pastilla cada ocho horas», sin paréntesis | 1f6b0a4 |
 
 
 > ✅ Pasos 1–6 hechos (cf9de8b). **Nuevo (dom 00:20): `git pull` y vuelve a desplegar** para que el servicio tome D41,
