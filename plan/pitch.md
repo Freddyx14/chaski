@@ -27,6 +27,7 @@
 | Summary + new words of the visit | ⚠️ screen built; **the summary on stage must be from the live consult**, not the `EJEMPLO` demo data in `movil/src/app/resumen.tsx` | app |
 | «Monday, it goes to my mother's health center» | 🔸 **Freddy confirms**. She said she herself wouldn't need it; the users are the ~80 % who don't speak Quechua | interview l.91 |
 | Translator = Claude Sonnet 5, medium effort | ✅ **decided D40 (Freddy 23:38)**. 0 of 92 fixed terms damaged (Gemini 3 Flash 4, NLLB 3); best at reading the patient (qu→es chrF++ 50.1 vs Gemini 3 Flash 43.7); whole turn p50 8.3 s, 19/20 said. ⚠️ **The live service still runs NLLB until Ricardo restarts it** (`plan/HANDOFF-RICARDO-SERVICIO.md`): check before rehearsal | `evals/traduccion/resultados/comparar-20261024-2324.json`, `…-2336.json` · `evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json` · SOT D40 |
+| Nurse-reviewed examples improve translation (D41) | ✅ her 24 phrases as examples: es→qu 52.6 → 56.0, qu→es 49.1 → 56.0 on the families' 62 sentences; turn 20/20 said, p50 8.0 s. Lower on greetings from another variety (48.3 → 42.6): never say «improves everything» | `evals/HISTORIA.md` §2d · `evals/moat/resultados/` |
 | About two cents per translated turn | ✅ $0.024 measured from real tokens (Opus + Sonnet translator + Sonnet critic), list prices not checked against the invoice. Say "about two cents" | `evals/latencia/resultados/costo-turno-20261024-2345.json` |
 | NLLB fine-tuned 25.8 → 31.7 | ✗ **contaminated, never say it**: 58 of the 100 evaluation sentences leaked into training (Ricardo, `2fac55f`) | loopmind-05 23:45 |
 | Never say | ✗ "the only Quechua-speaking nurse" · "2 % of centers have interpreters" · "a bad translation hurt someone at her post" (she remembers no case) · chrF "40 = decent, 60 = near-human" (no peer-reviewed source) · "turn in 6.5 s" | — |
@@ -118,8 +119,8 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 ## 5 · Run of show (v4, Sat 23:45): the wait becomes the problem
 
-**Why v4.** A translated nurse turn now takes **8.3 s typical** with the D40 translator (19/20 said,
-`evals/latencia/resultados/configuraciones-20261024-2341-claude-medium.json`; it was 17 s with the thinking translator).
+**Why v4.** A translated nurse turn now takes **8.0 s typical, 10.5 s p95** with the D40 translator and the D41 examples (20/20 said,
+`evals/HISTORIA.md` §2d; it was 17 s with the thinking translator).
 In v3 that wait sat inside B3 as dead air. In v4 Freddy **starts the turn and tells the last part of the problem while
 Chaski thinks**: the judge watches the real «Pensando» steps under a story, and the Quechua arrives as the payoff.
 ⚠️ If the live service is still on NLLB (Ricardo hasn't restarted it), expect more false blocks: check first.
@@ -203,7 +204,7 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 | Step | Risk | Mitigation |
 |---|---|---|
-| Nurse turn | translated instruction ~8.3 s typical with D40 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D40, not NLLB |
+| Nurse turn | translated instruction ~8.0 s typical, 10.5 s p95 with D40 + D41 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D40, not NLLB |
 | Patient answer | Loud hall | Pre-recorded family clip played next to the mic |
 | Emergency mode | Needs the nurse-voice audio | Until `entregables/voz/emergencia/` exists, the app shows the reviewed Quechua text big; say it's verified |
 | The refusal | Must happen every time | `FRASE_NEGATIVA_DEMO` blocked 16/16 in real runs; say out loud it's a simulated error |
