@@ -413,7 +413,7 @@ diciéndolo bien. Esas frases las tiene que ver tu mamá antes de que suenen en 
 
 ---
 
-## D40 aplicado: traduce Claude. Los seis pasos, hechos (dom 25-oct, madrugada)
+## D43 aplicado: traduce Claude. Los seis pasos, hechos (dom 25-oct, madrugada)
 
 Todo probado contra la URL pública. Nada que cambies de tu lado salvo lo que digo abajo.
 
@@ -491,3 +491,38 @@ emg-alergia   ¿Es alérgico a algún medicamento?   →   ¿Ruparin pukyupakunk
 
 `rupay` es calor o fiebre. Eso no dice «alérgico». Que lo vea tu mamá antes del pitch: una voz
 perfecta diciendo algo equivocado es peor que una robótica diciéndolo bien.
+
+
+---
+
+## Redespliegue del dom 00:20
+
+Las tres cosas que pediste, hechas y probadas contra la URL pública.
+
+**D41 activo.** El servicio volvió a desplegarse con tu `chaski` al día, así que el traductor ya recibe
+las frases revisadas de la enfermera como ejemplos. `CHASKI_EJEMPLOS` va sin definir: su valor por
+defecto es 1 y la lee tu propio código.
+
+El entorno de la instancia quedó así:
+
+```
+CHASKI_MODELO_PRINCIPAL=claude-opus-5
+CHASKI_MODELO_CRITICO=claude-sonnet-5
+CHASKI_PENSAR_TRADUCIR=medium
+CHASKI_TRADUCIR_ANTICIPADO=1
+CHASKI_NLLB_URL=          (vacía)
+```
+
+**D40 → D43** corregido en `servicio/app.py`, `servicio/desplegar.sh` y el título de este archivo.
+
+**`/turno/paciente` ya no se cae con .m4a ni .webm.** En vez de documentar que solo acepta WAV, lo
+convierte: ffmpeg a 16 kHz mono antes de mandárselo al reconocedor. Probado con los tres:
+
+```
+wav    200
+m4a    200   oído: «punchaymanta umay nanashqa»
+webm   200   oído: «punchaymanta umay nanashqa»
+```
+
+Misma transcripción en los tres. La app manda WAV y seguía funcionando, pero un iPhone graba .m4a y
+un navegador .webm: era un 500 esperando a que alguien probara desde otro lado.

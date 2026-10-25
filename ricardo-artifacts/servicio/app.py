@@ -175,7 +175,7 @@ def turno_enfermera(texto: str = Form(...), contexto: str = Form(""),
                     traduccion_sembrada: str = Form(""), motor: str = Form("claude")):
     """La enfermera habla castellano. Mismo intérprete, mismas barreras.
 
-    `motor` elige quién traduce. Por defecto **Claude** (D40): sobre los mismos
+    `motor` elige quién traduce. Por defecto **Claude** (D43): sobre los mismos
     conjuntos no daña ningún término fijo —NLLB dañaba 3 de 92— y lo que dice el
     paciente se lee mucho mejor de vuelta (qu→es 50.1 contra 24.7). El turno
     entero queda en ~8 s, que es espera aceptable cuando la consulta dura una

@@ -89,7 +89,7 @@ ssh_ "set -e
   # CHASKI_VOZ apunta al servicio de voz dentro de la misma máquina.
   set -a; . ./.env; set +a
   export CHASKI_VOZ=http://127.0.0.1:8000
-  # D40: traduce Claude Sonnet 5 con esfuerzo medio. Esta variable va VACIA a
+  # D43: traduce Claude Sonnet 5 con esfuerzo medio. Esta variable va VACIA a
   # proposito; `motor=nllb` en la ruta sigue funcionando para el modo sin
   # conexion, y no depende de ella.
   export CHASKI_NLLB_URL=

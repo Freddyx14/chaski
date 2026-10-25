@@ -15,6 +15,8 @@ import os
 import re
 import time
 
+from pathlib import Path
+
 import httpx
 
 INSTANCIA = os.environ.get("CHASKI_VOZ", "http://127.0.0.1:8010")
@@ -183,6 +185,32 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
             "total_ms": round(auditoria_ms + (hablar_ms or 0), 1)}
 
 
+def _a_wav(audio: bytes, nombre: str) -> bytes:
+    """Lo que llegue, a WAV de 16 kHz mono.
+
+    El reconocedor solo lee WAV. Un iPhone graba .m4a y un navegador .webm, y
+    antes eso daba 500: el turno del paciente se caia por el formato, no por el
+    audio. ffmpeg ya estaba para la ingesta.
+    """
+    if nombre.lower().endswith(".wav"):
+        return audio
+    import subprocess
+    import tempfile
+    with tempfile.NamedTemporaryFile(suffix=Path(nombre).suffix or ".bin",
+                                     delete=False) as crudo:
+        crudo.write(audio)
+        entrada = crudo.name
+    salida = entrada + ".wav"
+    try:
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", entrada,
+                        "-ac", "1", "-ar", "16000", "-sample_fmt", "s16", salida],
+                       check=True)
+        return Path(salida).read_bytes()
+    finally:
+        for f in (entrada, salida):
+            Path(f).unlink(missing_ok=True)
+
+
 def entender_chanka(audio: bytes, nombre: str = "turno.wav") -> dict:
     """Solo oir: el audio chanka al texto, con las alternativas del reconocedor.
 
@@ -190,9 +218,10 @@ def entender_chanka(audio: bytes, nombre: str = "turno.wav") -> dict:
     si entendio; no quiere que nadie haya traducido ya. Por eso esto se queda
     en oir y no sigue.
     """
+    datos = _a_wav(audio, nombre)
     with httpx.Client(timeout=300) as cli:
         r = cli.post(f"{INSTANCIA}/entender",
-                     files={"audio": (nombre, audio, "audio/wav")},
+                     files={"audio": ("turno.wav", datos, "audio/wav")},
                      data={"lengua": "quy_Latn"})
     r.raise_for_status()
     return r.json()
