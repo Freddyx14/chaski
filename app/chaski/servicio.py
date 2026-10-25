@@ -70,17 +70,21 @@ def _confianza(confianza) -> float | None:
 
 
 def turno(texto: str, idioma: str, rol: str, contexto_json: str | None, n_mejores_json: str | None = None,
-          confianza=None, traduccion_sembrada: str | None = None, *, client=None, dependencias: dict | None = None) -> dict:
+          confianza=None, traduccion_sembrada: str | None = None, *, client=None, dependencias: dict | None = None,
+          voz_fn=None) -> dict:
     """One turn. `idioma` is 'spa' | 'quy' and `rol` is who SPOKE: 'personal' | 'paciente'.
 
     `traduccion_sembrada` (rehearsal only) replaces the translation; guards and critic still run, and the result
     carries `sembrada: true`. `client` / `dependencias` are for tests; the service leaves them out.
+    `voz_fn(texto, idioma) -> wav bytes` (optional): the voice is made while the critic runs and comes back as
+    `audio_wav_b64` only when every check passed.
     """
     deps = dependencias or orquestador.dependencias(client or cliente())
     sembrada = traduccion_sembrada if traduccion_sembrada and traduccion_sembrada.strip() else None
     entrada = {"texto": texto or "", "idioma": idioma, "rol": rol, "n_mejores": leer_n_mejores(n_mejores_json),
                "confianza": _confianza(confianza)}
-    r = orquestador.interpretar(entrada, leer_contexto(contexto_json), traduccion_forzada=sembrada, **deps)
+    r = orquestador.interpretar(entrada, leer_contexto(contexto_json), traduccion_forzada=sembrada, voz_fn=voz_fn,
+                                **deps)
     return r.model_dump()
 
 
@@ -90,7 +94,7 @@ def _sse(evento: str, datos: dict) -> str:
 
 def turno_eventos(texto: str, idioma: str, rol: str, contexto_json: str | None, n_mejores_json: str | None = None,
                   confianza=None, traduccion_sembrada: str | None = None, *, client=None,
-                  dependencias: dict | None = None) -> Iterator[str]:
+                  dependencias: dict | None = None, voz_fn=None) -> Iterator[str]:
     """The same turn as `turno`, as Server-Sent Events: `decision` as soon as the interpreter decides (the polished
     Spanish, so the app can show it while translation and the critic run), then `resultado` with exactly what
     `turno` returns. A failure ends with `error`. The `decision` text is never spoken: only `resultado` is."""
@@ -104,7 +108,8 @@ def turno_eventos(texto: str, idioma: str, rol: str, contexto_json: str | None, 
             entrada = {"texto": texto or "", "idioma": idioma, "rol": rol,
                        "n_mejores": leer_n_mejores(n_mejores_json), "confianza": _confianza(confianza)}
             r = orquestador.interpretar(entrada, leer_contexto(contexto_json), traduccion_forzada=sembrada,
-                                        al_decidir=lambda d: eventos.put(("decision", d)), **deps)
+                                        al_decidir=lambda d: eventos.put(("decision", d)), voz_fn=voz_fn,
+                                        **deps)
             eventos.put(("resultado", r.model_dump(mode="json")))
         except Exception as e:  # noqa: BLE001  reported to the app as an event, never a hung stream
             eventos.put(("error", {"error": f"{type(e).__name__}: {e}"}))

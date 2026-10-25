@@ -22,8 +22,10 @@ said to the patient; the staff sees why.
 """
 from __future__ import annotations
 
+import base64
 import os
 import time
+from concurrent.futures import Future, ThreadPoolExecutor
 from typing import Callable, Literal
 
 import anthropic
@@ -88,6 +90,9 @@ class Resultado(BaseModel):
     texto_pulido: str = ""
     texto_salida: str = Field(default="", description="What is said, in idioma_salida. Empty when bloqueado")
     audio: str | None = Field(default=None, description="Verified bank audio URL, when accion == usar_frase_banco")
+    audio_wav_b64: str | None = Field(default=None, description="Generated voice of texto_salida (when the service "
+                                                                 "passes voz_fn); only set when every check passed")
+    anticipada: bool = Field(default=False, description="The translation started during the decision and passed")
     aviso: str | None = None
     motor: Motor | None = Field(default=None, description="Translation engine actually used")
     respaldo: bool = False
@@ -103,6 +108,14 @@ TraducirFn = Callable[[str, Idioma, Idioma], "TextoTraducido | str"]
 RevisarFn = Callable[[EntradaRevision], Veredicto]
 BancoFn = Callable[[str], "dict | None"]
 CandidatosFn = Callable[[str], list]
+VozFn = Callable[[str, Idioma], bytes]  # text, language -> wav bytes
+
+_hilos = ThreadPoolExecutor(max_workers=8, thread_name_prefix="chaski")
+
+
+def anticipar_env() -> bool:
+    """CHASKI_TRADUCIR_ANTICIPADO: start translating the transcript while the interpreter decides (1/0)."""
+    return os.environ.get("CHASKI_TRADUCIR_ANTICIPADO", "1").strip() not in ("0", "no", "false", "")
 
 
 def _de_guardas(v: g.Veredicto, **extra) -> Veredicto:
@@ -253,7 +266,8 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
                 guardas_fn: RevisarFn = guardas, banco_fn: BancoFn | None = None,
                 candidatos_fn: CandidatosFn | None = None, modelo: str | None = None,
                 traduccion_forzada: str | None = None,
-                al_decidir: Callable[[dict], None] | None = None) -> Resultado:
+                al_decidir: Callable[[dict], None] | None = None, voz_fn: VozFn | None = None,
+                anticipar: bool | None = None) -> Resultado:
     """Run one turn. Returns the result plus the updated `contexto` to send back next turn.
 
     `traduccion_forzada` is the rehearsal mode: the translation step returns that text instead of calling
@@ -264,6 +278,13 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
     {accion, para, idioma_salida, texto_pulido, ms_decidir}, so the app can show the polished Spanish ~3 s in instead
     of ~17 s. It is informational only: what is said is still the final Resultado, and an error in it never breaks the
     turn.
+
+    Two latency paths, neither of which skips a check:
+    - `anticipar` (default CHASKI_TRADUCIR_ANTICIPADO): the transcript is sent to the translator at the same time as
+      the decision. If the decision is `traducir` in that direction, that translation goes through the same guards and
+      critic as always (they compare against the polish and the transcript). If any check rejects it, the turn
+      translates the polish as before, so the anticipated path can only save time, never lower the bar.
+    - `voz_fn`: the voice is generated while the critic runs and attached only if the critic passes.
     """
     turno = TurnoEntrada.model_validate(turno)
     contexto = Contexto() if contexto is None else Contexto.model_validate(contexto)
@@ -275,6 +296,18 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
     d: Decision | None = None
     avisos: list[str] = []
     t_total = time.perf_counter()
+    anticipar = anticipar_env() if anticipar is None else anticipar
+    a_anticipado: Idioma = "quy" if turno.idioma == "spa" else "spa"
+    futura: Future | None = None
+    if anticipar and not sembrada and turno.texto.strip():
+        t_ant = time.perf_counter()
+
+        def _anticipada():
+            tt_ = _como_traduccion(traducir_fn(turno.texto.strip(), turno.idioma, a_anticipado), turno.idioma,
+                                   a_anticipado)
+            return tt_, round((time.perf_counter() - t_ant) * 1000, 1)
+
+        futura = _hilos.submit(_anticipada)
 
     def medir(nombre: str, t0: float) -> None:
         ms[nombre] = round((time.perf_counter() - t0) * 1000, 1)
@@ -364,7 +397,24 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
             medir("guardas", t0)
             return tt, v
 
-        tt, v = traducir_y_revisar(d.texto_pulido)
+        usada_anticipada = False
+        tt = v = None
+        if futura is not None and d.accion == "traducir" and de == turno.idioma and a == a_anticipado:
+            try:
+                tt, ms["traducir_anticipada"] = futura.result()
+                if not tt.texto.strip():
+                    raise ValueError("traducción anticipada vacía")
+                paso = "guardas"
+                t0 = time.perf_counter()
+                v = _como_veredicto(guardas_fn(entrada(d.texto_pulido, tt)))
+                medir("guardas", t0)
+                usada_anticipada = v.ok
+            except Exception:  # noqa: BLE001  the anticipated path failing only means: do it the normal way
+                usada_anticipada = False
+            if not usada_anticipada:
+                tt = v = None
+        if tt is None:
+            tt, v = traducir_y_revisar(d.texto_pulido)
         if not v.ok and v.usar_literal and d.accion == "traducir" and d.texto_pulido != turno.texto.strip():
             # B2: the polish changed a fact. Drop it and say exactly what was heard.
             avisos.append(f"Se usó lo dicho tal cual: {v.motivo}")
@@ -375,18 +425,44 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
         if v.aviso:
             avisos.append(v.aviso)
 
-        paso = "critico"
-        t0 = time.perf_counter()
-        vc = _como_veredicto(auditar_fn(entrada(d.texto_pulido, tt)))
-        medir("critico", t0)
+        def criticar(tt_: TextoTraducido) -> tuple[Veredicto, Future | None]:
+            nonlocal paso
+            voz_f = None
+            if voz_fn and tt_.texto.strip():
+                t_voz = time.perf_counter()
+                voz_f = _hilos.submit(lambda: (voz_fn(tt_.texto, a), round((time.perf_counter() - t_voz) * 1000, 1)))
+            paso = "critico"
+            t0 = time.perf_counter()
+            vc_ = _como_veredicto(auditar_fn(entrada(d.texto_pulido, tt_)))
+            medir("critico", t0)
+            return vc_, voz_f
+
+        vc, voz_f = criticar(tt)
+        if not vc.ok and usada_anticipada:
+            # The critic rejected the anticipated translation: give the normal path its chance before blocking.
+            ms["critico_anticipada"] = ms["critico"]
+            usada_anticipada = False
+            tt2, v2 = traducir_y_revisar(d.texto_pulido)
+            if v2.ok:
+                tt = tt2
+                vc, voz_f = criticar(tt)
         if not vc.ok:
             return bloqueado(vc.motivo or "el crítico lo frenó", "critico")
+        audio_b64 = None
+        if voz_f is not None:
+            paso = "voz"
+            try:
+                wav, ms["voz"] = voz_f.result(timeout=60)
+                audio_b64 = base64.b64encode(wav).decode() if wav else None
+            except Exception:  # noqa: BLE001  no voice is not a block: the text is still shown
+                avisos.append("sin audio generado")
         if vc.aviso:
             avisos.append(vc.aviso)
 
         historial = turno.texto
         if d.accion == "traducir" and turno.idioma == "quy":
             historial = f"{turno.texto} (en castellano: {tt.texto})"
-        return listo(tt.texto, tt=tt, historial=historial)
+        r = listo(tt.texto, tt=tt, historial=historial)
+        return r.model_copy(update={"audio_wav_b64": audio_b64, "anticipada": usada_anticipada})
     except Exception as e:  # fail closed: nothing reaches the patient
         return bloqueado(f"falló el paso «{paso}» ({type(e).__name__})", paso)

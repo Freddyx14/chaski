@@ -16,7 +16,8 @@ solo leen el formulario y llaman a una función. El crítico es **el mismo códi
 | `CHASKI_PENSAR_RETRADUCIR` | pensamiento de la retraducción ciega | `low` |
 | `CHASKI_PENSAR_AGREGADOS` | pensamiento del paso «qué agregó» | `low` |
 | `CHASKI_PENSAR_TRADUCIR` | pensamiento del traductor Claude: `modelo`, `no`, `low`, `medium`, `high` | `modelo` (chrF++ 51,8 en 5,6 s; `no` 43,1 en 1,7 s) |
-| `CHASKI_NLLB_URL` | tu NLLB; sin ella traduce Claude | vacía |
+| `CHASKI_TRADUCIR_ANTICIPADO` | traducir lo oído mientras Opus decide (pasa por las mismas barreras; si algo la rechaza, se traduce el pulido como antes) | `1`. Medido 22:29: p50 20,3 → 17,1 s y 2 → 1 bloqueo en 20 turnos |
+| `CHASKI_NLLB_URL` | tu NLLB; sin ella traduce Claude. ⚠️ Medido 22:29 en 20 turnos reales: NLLB dejó caer una negación, «con agua», un embarazo y una parte del cuerpo; las barreras lo frenaron, así que el paciente recibe «no pude» en 1 de cada 3 turnos (Claude: 1 de 20). **Recomendado: vacía** | vacía |
 
 Los `PENSAR` por defecto bajaron el crítico de p50 9 s a ~2-3 s sin perder atrapados (24-oct). `modelo` deja el
 pensamiento por defecto de Sonnet 5, que era el camino lento. Detalle en el docstring de `chaski/critico.py`.
@@ -58,6 +59,10 @@ def turno_enfermera_vivo(texto: str = Form(...), contexto: str = Form(""), n_mej
     return StreamingResponse(
         chaski_servicio.turno_eventos(texto, "spa", "personal", contexto, n_mejores, confianza, traduccion_sembrada),
         media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+
+
+# Voz durante el crítico: pásale a turno(...) tu síntesis como voz_fn=lambda texto, idioma: wav_bytes.
+# Se genera mientras revisa el crítico y vuelve en `audio_wav_b64` solo si todo pasó (~1 s menos por turno).
 
 
 @aplicacion.get("/banco")

@@ -293,3 +293,76 @@ def test_banco_que_falla_no_rompe_el_turno(falla):
     c = FakeClient(propuesta("traducir", PULIDO))
     r = interpretar({"texto": ORDEN, **PERSONAL}, client=c, candidatos_fn=candidatos, **r_.kw())
     assert r.estado == "dicho" and "Candidatas del banco verificado: ninguna" in c.llamadas[0]["messages"][0]["content"]
+
+
+# ── Latency paths: anticipated translation and voice during the critic ───────────────────────────────────────
+
+CRUDO = "ya este… que tome el paracetamol cada ocho horas"
+PULIDO = "Tome el paracetamol cada ocho horas."
+
+
+def test_anticipada_se_usa_y_pasa_por_todas_las_barreras():
+    r = Registro()
+    res = interpretar({"texto": CRUDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=True, **r.kw())
+    assert res.estado == "dicho" and res.anticipada is True
+    assert res.texto_salida == f"[quy] {CRUDO}" and res.texto_pulido == PULIDO
+    assert [x for x in r.llamadas if x[0] == "traducir"] == [("traducir", CRUDO, "spa", "quy")]  # one call, no retry
+    critico = [x for x in r.llamadas if x[0] == "critico"][0]
+    assert critico[1] == PULIDO  # the critic still checks against the polish (and the transcript)
+
+
+def test_anticipada_rechazada_por_guardas_vuelve_al_camino_normal():
+    r = Registro(guardas=[Veredicto(ok=False, motivo="B4: falta pusaq")])
+    res = interpretar({"texto": CRUDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=True, **r.kw())
+    assert res.estado == "dicho" and res.anticipada is False
+    assert res.texto_salida == f"[quy] {PULIDO}"
+    assert [x[1] for x in r.llamadas if x[0] == "traducir"] == [CRUDO, PULIDO]
+
+
+def test_anticipada_rechazada_por_el_critico_reintenta_y_si_falla_bloquea():
+    r = Registro(auditoria_ok=False)
+    res = interpretar({"texto": CRUDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=True, **r.kw())
+    assert res.estado == "bloqueado" and res.paso_fallido == "critico"
+    assert len([x for x in r.llamadas if x[0] == "critico"]) == 2  # anticipated, then the normal path
+
+
+def test_anticipada_no_se_usa_si_la_accion_no_es_traducir():
+    r = Registro()
+    res = interpretar({"texto": "¿cuántas veces?", "idioma": "spa", "rol": "personal"},
+                      client=FakeClient(propuesta("repreguntar", "¿Cuántas veces al día?", dato="frecuencia")),
+                      anticipar=True, **r.kw())
+    assert res.anticipada is False and res.accion == "repreguntar"
+
+
+def test_sin_anticipar_es_el_camino_de_siempre():
+    r = Registro()
+    res = interpretar({"texto": CRUDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=False, **r.kw())
+    assert res.anticipada is False and [x[1] for x in r.llamadas if x[0] == "traducir"] == [PULIDO]
+
+
+def test_voz_se_adjunta_solo_si_el_critico_pasa():
+    r = Registro()
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=False, voz_fn=lambda t, a: b"RIFF", **r.kw())
+    assert res.estado == "dicho" and res.audio_wav_b64 == "UklGRg==" and "voz" in res.ms
+
+
+def test_voz_no_sale_si_el_critico_bloquea():
+    r = Registro(auditoria_ok=False)
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=False, voz_fn=lambda t, a: b"RIFF", **r.kw())
+    assert res.estado == "bloqueado" and res.audio_wav_b64 is None
+
+
+def test_voz_que_falla_no_bloquea():
+    def rota(t, a):
+        raise RuntimeError("GPU")
+
+    r = Registro()
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      anticipar=False, voz_fn=rota, **r.kw())
+    assert res.estado == "dicho_con_aviso" and res.audio_wav_b64 is None and "sin audio" in res.aviso
