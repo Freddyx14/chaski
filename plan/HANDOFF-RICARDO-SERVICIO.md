@@ -1,5 +1,28 @@
 # Ricardo: lo que falta en el servicio (sáb 24-oct, 23:45 PT) · prioridad ahora
 
+## 🔁 Bandeja automática · Ricardo, pega esto UNA vez en tu sesión de Claude Code
+
+```
+/loop cada 5 minutos: haz git pull --rebase --autostash en el repo chaski; abre plan/HANDOFF-RICARDO-SERVICIO.md y
+ejecuta, en orden, cada tarea de la sección «Bandeja» que siga en [ ]. Por cada una: hazla, verifícala contra la URL
+pública con curl, márcala [x] con el hash del commit, despliega con servicio/desplegar.sh y haz push (solo tus
+archivos, nunca -f). Si una tarea no se puede, déjala en [ ] y escribe debajo «⚠️ bloqueado: <por qué>». Si no hay
+nada en [ ], no hagas nada hasta la próxima vuelta.
+```
+
+Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo acá y tu sesión lo toma sola en
+≤ 5 min, sin que nadie lo pase a mano. Escribimos solo en esta Bandeja; lo de abajo es el detalle de cada tarea.
+
+## Bandeja
+
+| | Tarea | Detalle |
+|---|---|---|
+| [ ] | `git pull` y desplegar: entran D41 (ejemplos de la enfermera), D44 (memoria automática) y el arreglo del traductor (6fa2cec) | nada más que tocar |
+| [ ] | Memoria fuera de la carpeta que se borra: en `desplegar.sh`, `mkdir -p $DESTINO/memoria` y `export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl` | si no, cada despliegue borra lo aprendido |
+| [ ] | Voz: el castellano por Cartesia sonic-3.6, el quechua con `mama_freddy` (en `_voz_para_chaski` Y en `/voz`), `p24` solo de respaldo | sección «🔊 Voz de Chaski» abajo |
+| [ ] | Renombrar D40 → D43 en los comentarios de `servicio/app.py` (~l.178), `servicio/desplegar.sh` (~l.92) y `servicio/PARA-FREDDY.md` (~l.416) | cosmético |
+
+
 > ✅ Pasos 1–6 hechos (cf9de8b). **Nuevo (dom 00:20): `git pull` y vuelve a desplegar** para que el servicio tome D41,
 > las frases de la enfermera como ejemplos del traductor (`CHASKI_EJEMPLOS=1`, ya es el valor por defecto; no hay que
 > tocar nada más). **Y renombra D40 → D43** en los comentarios de `servicio/app.py` (~l.178), `servicio/desplegar.sh`
@@ -134,5 +157,5 @@ si viene, y si no viene usa la voz del iPhone. Así que con el Paso 2 alcanza, s
 | [ ] | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo |
 | [ ] | `/voz` con `CHASKI_VOZ_QUY` (Paso 2b) |
 | [x] | Voz del quechua: `mama_freddy` (Freddy, dom 01:55) |
-| [ ] | `mama_freddy` aparece en `GET /voces` y suena en `/voz` |
+| [x] | `mama_freddy` aparece en `GET /voces` y suena en `/voz` (verificado por loopmind-05, dom 01:57: 200, 0,9 s) |
 | [ ] | Desplegado, avisado por el grupo y probado con `curl` |
