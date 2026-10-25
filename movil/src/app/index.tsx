@@ -767,7 +767,9 @@ function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir }: {
             perfil={perfil}
             t={t}
             conversa={conversa}
-            onPress={fase.f === 'grabando' ? (conversa ? pausar : terminar) : conversar}
+            // While recording, a tap always ends the turn and translates it (Freddy, 25-oct: in a noisy room the
+            // voice detector never hears the silence that closes a turn, so the tap is the reliable end).
+            onPress={fase.f === 'grabando' ? terminar : conversar}
             onCambiarLado={() => fase.f === 'listo' && setLado(siguienteLado(lado))}
             onReceta={leerReceta}
             onResumen={() => router.push('/resumen')}
@@ -904,7 +906,7 @@ function Microfono({ grabando, conversa, nivel, lado, perfil, t, onPress, onCamb
         <AnilloInti modo={grabando ? 'escucha' : 'reposo'} nivel={nivel} tinte={lado}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={grabando ? (conversa ? 'Pausar la conversación' : 'Terminar y traducir') : 'Empezar a hablar'}
+          accessibilityLabel={grabando ? 'Terminar y traducir' : 'Empezar a hablar'}
           onPress={onPress}
           style={({ pressed }) => [
             e.micro,
@@ -923,7 +925,7 @@ function Microfono({ grabando, conversa, nivel, lado, perfil, t, onPress, onCamb
           {!grabando && <Text style={e.lateralTexto}>{t.resumen}</Text>}
         </View>
       </View>
-      <Text style={e.microTexto}>{grabando ? (conversa ? t.tocarPausar : t.tocarTerminar) : t.tocarHablar}</Text>
+      <Text style={e.microTexto}>{grabando ? t.tocarTerminar : t.tocarHablar}</Text>
       <Pressable onPress={onCambiarLado} disabled={grabando} style={e.lado} accessibilityHint="Toque para cambiar quién habla">
         <Icono nombre="arrow.left.arrow.right" color={C.inkSecondary} tam={14} />
         <Text style={e.ladoTexto}>
