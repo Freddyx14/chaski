@@ -1,1 +1,0 @@
-window.SATELITE={"z": 13, "x0": 2339, "y0": 4364, "ancho_tiles": 12, "alto_tiles": 16, "px_ancho": 2400, "px_alto": 3200};

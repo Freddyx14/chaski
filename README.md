@@ -1,18 +1,59 @@
-# Chaski
+<p align="center">
+  <img src="docs/img/hero.jpg" alt="Chaski, a Quechua interpreter for rural health workers" width="820">
+</p>
 
-**A face-to-face Spanish ↔ Quechua Chanka medical interpreter for the Pilpichaca health center (Huancavelica, Peru).**
+<h3 align="center">A hands-free Quechua Chanka ↔ Spanish medical interpreter that asks when it isn't sure,<br>checks every dose before it speaks, and gets better with every consultation.</h3>
 
-At Pilpichaca, about 90 % of patients speak Quechua and about 20 % of the staff do, "not so fluently"
+<p align="center">
+  <a href="https://youtu.be/wYkbXz4Komk"><b>▶ Watch the 3-minute demo</b></a> ·
+  <a href="docs/measured-results.pdf"><b>Measured results (PDF)</b></a> ·
+  Built at Cal Hacks 13.0 · Claude for Public Benefit
+</p>
+
+---
+
+At the Pilpichaca health post in Huancavelica, Peru, about **9 in 10 patients speak Quechua**, while most health workers
+come from the coast and don't. Today they borrow whoever is on shift, a relative, or gestures. A consultation that takes
+30–40 minutes in Spanish takes an hour or more in Quechua, and instructions get repeated "2, 3, up to 4 times"
 (interview with a nurse at the center, `research/entrevistas/2026-10-24-enfermera-pilpichaca-insights.md`).
-Most staff come from the coast and speak no Quechua. Today they borrow whoever is on shift (another nurse, a technician,
-the driver), a relative, or gestures and drawings. A consultation that takes 30–40 minutes in Spanish takes an hour
-or more in Quechua, and instructions get repeated "2, 3, up to 4 times" (same file).
 
-Chaski runs on an iPhone between the two people. **Who uses it:** staff who don't speak Quechua, and Quechua-speaking
-patients, each in their own language (`SOT.md` D27).
+**Chaski sits on an iPhone between the two people and works like a human interpreter**, for any health worker
+(doctors, nurses, obstetricians, technicians) and the patient, each in their own language.
 
-Built at Cal Hacks 13.0 for Anthropic *Claude for Public Benefit*, and also submitted to Cartesia, Microsoft
-*Built for the Real World* and People-First.
+<table>
+<tr>
+<td width="33%"><img src="docs/img/hands-free.jpg" alt="Hands-free"><br><b>Hands-free.</b> Turn it on once. It knows who is speaking and in which language, and answers the right person.</td>
+<td width="33%"><img src="docs/img/asks-back.jpg" alt="Asks back"><br><b>Asks, never guesses.</b> If a fact is missing or a check fails, it asks the speaker, naming what it wasn't sure of.</td>
+<td width="33%"><img src="docs/img/prescription.jpg" alt="Prescription by voice"><br><b>Reads prescriptions.</b> Photo → "I read: paracetamol 500 mg… shall I tell them?" → only after a spoken "yes".</td>
+</tr>
+</table>
+
+## What makes it safe: the model proposes, code decides
+
+1. **Claude Opus 5 interprets**, like a person would: translate, ask one follow-up, answer a question meant for Chaski,
+   say it didn't understand, or play a phrase the community nurse already verified.
+2. **Code checks the facts** before anything is spoken: every number, dose, day, negation, medicine, unit and "with water".
+3. **A second model back-translates the Quechua blind** and the code compares the facts on both sides.
+4. **If anything fails, nothing doubtful is said.** Chaski asks the person who spoke to repeat, in their language.
+5. **It remembers.** Every checked phrase is saved; the patient's next answer confirms it; phrases reviewed by the
+   community nurse teach the translator the region's Quechua.
+
+<p align="center"><img src="plan/img/arquitectura-flujo-completo.png" alt="One full turn: hear, understand, check, and only then speak" width="900"></p>
+
+## Measured, not claimed
+
+| | Result |
+|---|---|
+| Seeded errors caught before speaking (952-case audited bank) | **183/184, 100 % of the critical ones** (dose, days, negation, medicine, unit, "with water") |
+| Whole consultations, hands-free, nobody tells Chaski who speaks | who spoke **21/22** · right person and language **18/18** · **0 numbers lost** |
+| Real Quechua from a speaker the recognizer never heard | 24 of 30 said · 6 asked to repeat · 0 blocked |
+| Translator, 62 unseen family-written phrases | Claude Sonnet 5 damaged **0 of 92** critical terms (NLLB-1.3B: 3, Gemini 3 Flash: 4) |
+| Community nurse's phrases as examples | chrF++ 52.6 → **56.0** (Spanish→Quechua), 49.1 → **56.0** (Quechua→Spanish) |
+| Fine-tuned Quechua speech recognition | word error rate 53.9 % → **40.9 %** on a held-out speaker |
+| Live latency · cost | text on screen in 3–5 s, voice in ~8.5 s · about **$0.02 per turn** |
+
+Every number has a results file: see [`evals/HISTORIA.md`](evals/HISTORIA.md) and [the one-page summary](docs/measured-results.pdf).
+The voice is trained on a community nurse's recordings, with her permission, and only speaks checked or verified phrases.
 
 ---
 

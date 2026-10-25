@@ -42,3 +42,21 @@ ricardo-artifacts/modelos/**/*.pt
 
 # Recorte de fondo de Chaski (cuadros intermedios)
 /.alfa-trabajo
+
+# ── Repo cleanup for judges (dom 25-oct): local-only, not part of the submission ──
+# The first hackathon idea (a data pipeline, not Chaski), the brainstorm, internal notes and the hacker guide
+Ricardo-idea/
+ideas/
+context/
+account.md
+# Build outputs and scratch
+log*.txt
+demo-video/renders/
+demo-video/review/
+demo-video/.hyperframes/
+demo-video/node_modules/
+ensayo-video/renders/
+ensayo-video/review/
+devpost-galeria/
+.alfa-trabajo/
+.claude/worktrees/
