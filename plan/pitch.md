@@ -89,7 +89,7 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 | t | Beat | Who | On screen / in the air | Feature shown | Asset |
 |---|---|---|---|---|---|
-| 0:00 | **B1 Her voice** | Freddy | Play her saying the problem herself (14 s), subtitled on the laptop | — (the community) | `data/mama/clips/final-problema-profesionales-14s.mp3` |
+| 0:00 | **B1 Her voice** | Freddy | Play her saying the problem herself (14 s), subtitled on the laptop | — (the community) | `data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4` (respaldo: `data/mama/audio/clips/RESPALDO-PITCH-B1_problema-profesionales_14s.mp3`) |
 | 0:20 | **B2 The problem** | Freddy | Nothing, eye contact | — | ★ ★c ★s |
 | 0:45 | **B3a Two-way consult** | Freddy + Ricardo | Phone: nurse speaks Spanish → «Pensando» steps → Quechua out loud; patient clip → Spanish on screen | Polish (Wispr-style), translation, language ID, fine-tuned ears | Patient clip from the family set |
 | 1:15 | **B3b Emergency mode** | Freddy | Two taps: «¿Dónde le duele?» → plays instantly **in the nurse-trained voice** | Verified phrase bank (RAG), zero wait | 24 reviewed phrases (`entregables/voz/emergencia/` when ready) |
@@ -279,7 +279,7 @@ y traducidos con Claude. Clips en `data/mama/video/clips/` (no van a git), cada 
 | `E-saludo-eeuu-14s` | 14 s | «Me alegra hablar quechua. Mando un saludo desde Huancavelica, Perú, al pueblo de Estados Unidos. Muchas gracias» | Cierre del video |
 
 **Pitch (3:00):** solo `A-problema-costa-16s` en B1, con subtítulos en inglés. Si el video falla en la sala, el audio
-`data/mama/clips/final-problema-profesionales-14s.mp3`.
+`data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4` (respaldo: `data/mama/audio/clips/RESPALDO-PITCH-B1_problema-profesionales_14s.mp3`).
 
 **Video Devpost (~2:30):** B (presentación) → A3 (el problema) → negativa → consulta + emergencia → C2 junto a la receta
 → A/B/C de voz → D (confianza) → E (saludo). Los subtítulos se queman con PIL (esta Mac no tiene libass).

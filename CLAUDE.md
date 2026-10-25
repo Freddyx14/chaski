@@ -16,6 +16,7 @@ Avisa por el grupo cuando esté.
 | `plan/arquitectura-interprete.md` | Cómo funciona el intérprete, las barreras y el crítico |
 | `plan/pitch.md` · `plan/devpost.md` · `README.md` | Pitch, texto de Devpost y README público, con números de archivos reales |
 | `evals/HISTORIA.md` | De la línea base al resultado final, con cada medición |
+| `plan/medios.md` | Videos y audios de la enfermera: archivo, qué dice y dónde va (pitch, video Devpost) |
 
 ## Reglas del repo
 - Varias sesiones trabajan a la vez: `git pull --rebase` antes de cada push, stagea solo tus archivos, nunca `push -f`.

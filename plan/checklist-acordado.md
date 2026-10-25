@@ -156,6 +156,10 @@
 - Las respuestas de Chaski al personal en castellano (repreguntar / responder) solo pasan por las barreras de código, no por el crítico.
 - La dirección quechua → castellano usa el mismo crítico, pero no está medida.
 
+## Medios de la enfermera
+
+Índice con etiqueta y uso de cada archivo (PITCH / VIDEO-NN / RESPALDO): **`plan/medios.md`**. Los archivos están solo en la Mac de Freddy, en `data/mama/`.
+
 ## E · Números que ya podemos decir (con su archivo)
 
 | Qué | Número | Fuente |
