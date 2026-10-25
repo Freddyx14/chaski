@@ -12,7 +12,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
-import { Chaski, type EstadoChaski } from '@/chaski/chaski';
+import { Chaski, usarChaskiLibre, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
   AVISO_LENTO_MS, AVISO_MUY_LENTO_MS, esEnsayo, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
@@ -135,7 +135,9 @@ class GrabacionInvalida extends Error {}
 
 export default function Pantalla() {
   const perfil = usePerfil();
-  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string }>();
+  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; libre?: string }>();
+  // Vista previa de Chaski sin fondo (24-oct): solo con el enlace `&libre=1`, el diseño aprobado no cambia.
+  usarChaskiLibre(q.libre === '1');
   if (q.demo && DEMO[q.demo]) {
     const demo: Perfil = {
       idioma: q.idioma === 'quechua' ? 'quechua' : 'castellano',
