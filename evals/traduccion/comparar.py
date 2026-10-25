@@ -43,9 +43,9 @@ def contenido(texto):
     return f"Glosario revisado por una hablante nativa:\n{GLOS}\n\n<texto>\n{texto}\n</texto>"
 
 
-def claude(cli):
+def claude(cli, pensar=None):
     def f(texto, de, a):
-        r = cli.messages.parse(model=t.MODELO, max_tokens=1500, output_format=t._Salida,
+        r = cli.messages.parse(model=t.MODELO, max_tokens=1500, output_format=t._Salida, **t.opciones_pensar(pensar),
                                system=[{"type": "text", "text": t.SISTEMA[(de, a)], "cache_control": {"type": "ephemeral"}}],
                                messages=[{"role": "user", "content": contenido(texto)}])
         return r.parsed_output.traduccion.strip(), None
@@ -124,8 +124,12 @@ def evaluar(nombre, fn):
 def main():
     http = httpx.Client(timeout=120, headers={"Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}"})
     mt = httpx.Client(timeout=120)
-    sistemas = {"claude-sonnet-5": claude(anthropic.Anthropic()), "nllb-1.3B": nllb(mt),
+    cli = anthropic.Anthropic()
+    sistemas = {"claude-sonnet-5": claude(cli), "claude-sonnet-5-sin-pensar": claude(cli, "no"),
+                "claude-sonnet-5-medium": claude(cli, "medium"), "nllb-1.3B": nllb(mt),
                 **{k: openrouter(v, http) for k, v in OPENROUTER.items()}}
+    solo = sys.argv[1:]  # e.g. `claude-sonnet-5-sin-pensar` to run some systems only
+    sistemas = {k: v for k, v in sistemas.items() if not solo or k in solo}
     with fut.ThreadPoolExecutor(max_workers=len(sistemas)) as pool:
         res = dict(zip(sistemas, pool.map(lambda kv: evaluar(*kv), sistemas.items())))
     print("\n| sistema | " + " | ".join(f"{s} chrF++" for s in sets()) + " | B4 frenadas (spa→quy) | p50 ms | costo |")
