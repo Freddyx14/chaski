@@ -131,7 +131,7 @@ before→after number, and **a limitation named by the team**. v4 started the de
 | 0:00 | **B1 Who it's for** | Freddy | Eye contact, one sentence | The declarative opener judges reward |
 | 0:07 | **B1 Her voice** | — | Her clip, first 12.5 s (ends after «…they don't understand Quechua»), subtitled | The insider, the lived problem |
 | 0:20 | **B2 Demo starts** | Freddy | Says the instruction to the phone; «Pensando» runs | One real flow, from here to B4 |
-| 0:25 | **B2 The problem, during the wait** | Freddy | To the judge, while the steps run (~8 s) | 9 in 10 / 1 in 5 / the pill in four |
+| 0:25 | **B2 The problem, during the wait** | Freddy | To the judge, while the steps run (~10 s on real audio) | 9 in 10 / 1 in 5 / the pill in four |
 | 0:35 | **B3 Chaski speaks** | — | Quechua out loud + «Revisado por el crítico» | The payoff |
 | 0:40 | **B3 How it checked** | Freddy | Point at the seal | Blind back-translation + code |
 | 0:55 | **B3 The patient answers** | Ricardo plays the family clip | Spanish on screen (~4 s) | Both directions |
@@ -209,7 +209,7 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 | Step | Risk | Mitigation |
 |---|---|---|
-| Nurse turn | translated instruction ~8.0 s typical, 10.5 s p95 with D43 + D41 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D43, not NLLB |
+| Nurse turn | real audio through the live service: p50 10.7 s (30 turns, 03:44); a fix pending deploy should cut it, don't quote 8 s. Earlier text-only: ~8.0 s typical, 10.5 s p95 with D43 + D41 (17 s with the old thinking translator); question back or verified phrase ~4 s | Narrate over the «Pensando» steps (it's in the script). Confirm the live service runs D43, not NLLB |
 | Patient answer | Loud hall | Pre-recorded family clip played next to the mic |
 | Emergency mode | Needs the nurse-voice audio | Until `entregables/voz/emergencia/` exists, the app shows the reviewed Quechua text big; say it's verified |
 | The refusal | Must happen every time | `FRASE_NEGATIVA_DEMO` blocked 16/16 in real runs; say out loud it's a simulated error |
