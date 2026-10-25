@@ -1,8 +1,37 @@
-# Chaski · pitch playbook (v3, Sat Oct 24 19:00 PT)
+# Chaski · pitch playbook (v4, Sat Oct 24 23:45 PT)
 
 > **We have 3:00 to pitch + 2:00 of questions** (Devpost 13.0, confirmed by the team). Built from what's in the repo
 > and the research in `research/pitch-research.md` (every source there). Two inputs still change it: the interview
 > with Freddy's mother (17:00 PT) and Ricardo's baseline numbers. **Never say a number on stage that isn't in §4.**
+
+---
+
+## 0 · Claims audit (v4, Sat 23:45) · every sentence in the script against the repo
+
+| Claim on stage | Status | Evidence |
+|---|---|---|
+| Her quote, «professionals from the coast don't understand Quechua» | ✅ her words, on video, name allowed by Freddy | `plan/medios.md`, clip A |
+| 90 % patients / ~20 % staff speak Quechua | ✅ | interview 24-oct |
+| Interpreter is whoever is on shift, the driver, gestures, pill broken in 4 | ✅ verbatim | `research/entrevistas/…-insights.md` l.21–23 |
+| 40 min vs an hour or more | ✅ | interview |
+| 1 in 7 rural doctors with basic Quechua | ✅ 14.4 %, 84/584 | Bendezu-Quispe 2020 |
+| Back-translated blind, code compares the facts | ✅ runs on every translated turn (the Sonnet critic IS the blind back-translation) | `app/chaski/critico.py`, `hechos.py`; loopmind-05 23:35 |
+| Claude picks the reading from the context | ⚠️ built, **not measured**. Say it qualitatively, never with a number | `interprete.py` `<alternativas_asr>` |
+| Emergency questions reviewed by a nurse from the community | ✅ 24/24 (14 approved, 10 written by her) | `evals/banco/revision_enfermera.json` |
+| Play «instantly» | ✅ text and audio already stored, no model call | bank |
+| The refusal names the fact | ✅ 16/16 blocked in real runs | §7 |
+| WER 54 → 41 % on an unheard speaker | ✅ | `7b57a9b`, `evals/HISTORIA.md` §4 |
+| 184 seeded errors, every critical one caught, «about three seconds» | ✅ 183/184, 100 % critical, p50 2.6 s / p95 3.4 s. **v3 said "under three seconds", which is false at p95** | `chaski-2026-10-24-1740.json` |
+| Opus decides, Sonnet checks | ✅ D39 | SOT |
+| Nurse-trained voice, A/B/C, «she picked it blind» | 🔸 **not yet**. No `ciegas/` or `abc/` files in the repo at 23:45; out of the default script | `plan/HANDOFF-RICARDO-VOZ.md` |
+| Summary + new words of the visit | ⚠️ screen built; **the summary on stage must be from the live consult**, not the `EJEMPLO` demo data in `movil/src/app/resumen.tsx` | app |
+| «Monday, it goes to my mother's health center» | 🔸 **Freddy confirms**. She said she herself wouldn't need it; the users are the ~80 % who don't speak Quechua | interview l.91 |
+| Translator = Claude | 🔸 **open**. Tonight on the families' 62 sentences, chrF++ Gemini 3.8 Flash 63.8 · Claude Sonnet 5 58.9 · NLLB-1.3B 34.7 (`evals/traduccion/comparar.py`). The script doesn't name the translator on purpose | loopmind-05 |
+| Never say | ✗ "the only Quechua-speaking nurse" · "2 % of centers have interpreters" · "a bad translation hurt someone at her post" (she remembers no case) · chrF "40 = decent, 60 = near-human" (no peer-reviewed source) · "turn in 6.5 s" | — |
+
+**Before rehearsal, test once on the real phone:** the B2 instruction («…después de comer. No la tome con té.») must
+pass **without a false block**. The critic holds back ~1 in 5 correct sentences. If it blocks, change the phrase,
+not the critic.
 
 ---
 
@@ -85,59 +114,70 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 ---
 
-## 5 · Run of show: every beat, its asset, its feature
+## 5 · Run of show (v4, Sat 23:45): the wait becomes the problem
+
+**Why v4.** A translated nurse turn takes **~17 s typical, 26 s worst** (measured end to end, `evals/latencia/resultados/e2e-20261024-2156.json`).
+In v3 that wait sat inside B3 as dead air. In v4 Freddy **starts the turn first and tells the problem while Chaski thinks**:
+the judge watches the real «Pensando» steps under a story, and the Quechua arrives as the payoff.
 
 | t | Beat | Who | On screen / in the air | Feature shown | Asset |
 |---|---|---|---|---|---|
-| 0:00 | **B1 Her voice** | Freddy | Play her saying the problem herself (14 s), subtitled on the laptop | — (the community) | `data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4` (respaldo: `data/mama/audio/clips/RESPALDO-PITCH-B1_problema-profesionales_14s.mp3`) |
-| 0:20 | **B2 The problem** | Freddy | Nothing, eye contact | — | ★ ★c ★s |
-| 0:45 | **B3a Two-way consult** | Freddy + Ricardo | Phone: nurse speaks Spanish → «Pensando» steps → Quechua out loud; patient clip → Spanish on screen | Polish (Wispr-style), translation, language ID, fine-tuned ears | Patient clip from the family set |
-| 1:15 | **B3b Emergency mode** | Freddy | Two taps: «¿Dónde le duele?» → plays instantly **in the nurse-trained voice** | Verified phrase bank (RAG), zero wait | 24 reviewed phrases (`entregables/voz/emergencia/` when ready) |
-| 1:30 | **B4 The refusal** | Freddy | «Simulamos un error del traductor»: «Tómela con agua, no con té» loses its «no» → red block naming the fact | Code guards + critic | Rehearsal shortcut `FRASE_NEGATIVA_DEMO` |
-| 2:00 | **B5 How it's built** | Ricardo | Laptop: one slide with ★★ and ★★★, then the **A/B/C voice** (Meta → Chaski → her) | Fine-tuning, critic, measured | `entregables/voz/abc/` |
-| 2:35 | **B6 Close** | Freddy | Phone: summary for nurse + take-home for patient + new Quechua words | Summary, glossary (learn Quechua) | — |
+| 0:00 | **B1 Her voice** | Freddy | Her video, 16 s, English subtitles, on the laptop | — (the community) | `data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4` (backup audio `data/mama/audio/clips/RESPALDO-PITCH-B1_problema-profesionales_14s.mp3`) |
+| 0:16 | **B1b Who she is** | Freddy | Eye contact | — | ★ |
+| 0:25 | **B2 Problem, told during the wait** | Freddy | Phone on the stand: he says the instruction, «Pensando» runs with its real steps | Polish, decision, translation, blind back-translation, guards | ★c, ★s |
+| ~0:45 | **B3a Chaski speaks** | Freddy | Quechua out loud + on screen | The payoff | — |
+| 0:55 | **B3b Patient answers** | Ricardo | Family clip next to the mic → Spanish on screen (~4 s) | Language ID, fine-tuned ears, Claude picks the reading | Patient clip |
+| 1:15 | **B3c Emergency mode** | Freddy | Two taps → plays instantly | Verified phrase bank (RAG), zero wait | 24 phrases reviewed by the nurse |
+| 1:30 | **B4 The refusal** | Freddy | Rehearsal shortcut → red block naming the fact | Code guards + critic | `FRASE_NEGATIVA_DEMO` |
+| 2:00 | **B5 How it's built** | Ricardo | Laptop: ONE slide with ★★ and ★★★ | Fine-tuning, critic, measured | slide |
+| 2:35 | **B6 Close** | Freddy | Phone: summary of THIS consult + new Quechua words | Summary, glossary | — |
 
-## 6 · The 3:00 script (English, ~440 words)
+## 6 · The 3:00 script (v4, English, ~430 words)
 
 > `[brackets]` = stage direction. Read it out loud with a timer; cut words, not beats.
+> 🔸 = line that depends on something not confirmed yet (see §0). Default is the safe version.
 
-**B1 · Her voice (0:00–0:20) · Freddy**
-[Play her, 14 s, subtitles on the laptop: «…a veces los profesionales no entienden el quechua; entonces yo ayudo,
-hago la traducción».]
-"That's my mother. She's a nurse in Pilpichaca, high in the Andes of Huancavelica, and she just told you the problem:
-the doctors don't understand Quechua, so she translates. Nine out of ten of her patients speak Quechua. About one in
-five of the staff do. When she's not on shift, nobody translates."
+**B1 · Her voice (0:00–0:25) · Freddy**
+[Play her video, 16 s: «Many times professionals from the coast come here to work, and they don't understand Quechua.»]
+"That's my mother, Norma. She's a nurse in Pilpichaca, high in the Andes of Huancavelica. Nine out of ten of her
+patients speak Quechua. About one in five of the staff do."
 
-**B2 · The problem (0:20–0:45) · Freddy**
-"So the interpreter is whoever is around — another nurse, a technician, the ambulance driver. If nobody is, they use
-gestures, and break a pill into four in front of the patient to show the dose. A visit that takes forty minutes in
-Spanish takes an hour in Quechua. And her center isn't an exception: only one in seven doctors sent to rural Peru
-speaks even basic Quechua."
+**B2 · The problem, while Chaski thinks (0:25–0:45) · Freddy**
+[Phone on the stand. Freddy, to the phone: «Tome una pastilla cada ocho horas, después de comer. No la tome con té.»
+«Pensando» starts. Freddy turns back to the judge.]
+"Right now, when a patient only speaks Quechua, the interpreter is whoever is on shift — another nurse, a technician,
+the ambulance driver. If nobody is, they use gestures. She told us she breaks a pill into four in front of the patient
+to show the dose. A visit that takes forty minutes in Spanish takes an hour in Quechua. And it's not just her post:
+only one in seven doctors sent to rural Peru speaks even basic Quechua."
+[If Chaski hasn't spoken yet: "While we talk, it's checking itself — you can see each step."]
 
 **B3 · Chaski (0:45–1:30) · Freddy + Ricardo**
-"This is Chaski." [Phone to the judge.] [Freddy: «Tome una pastilla cada ocho horas, después de comer.»]
-"It cleans up what I meant, translates it, then translates it back blind to check nothing changed — and only then
-speaks." [Chaski speaks Quechua.] [Ricardo plays the patient's answer.] "The patient answers in Quechua; our
-fine-tuned ears transcribe it, Claude fixes it with the context of the visit, and I read it in Spanish."
-[Two taps: emergency mode.] "In an emergency there's no time to wait for a model: these questions were reviewed by a
-nurse from the community and play instantly — in a nurse's voice [only if her blind test says the trained voice is understood; otherwise Meta's voice]."
+[Chaski speaks Quechua.] "That's Chaski. It cleaned up what I said, translated it, then a second model translated it
+back without seeing my words, and code compared the dose, the hours and the 'not with tea'. Only then did it speak."
+[Ricardo plays the patient's answer.] "The patient answers in Quechua. Our fine-tuned ears transcribe it, and Claude
+picks the right reading from the context of the visit." [Spanish on screen.]
+[Two taps: emergency mode.] "In an emergency there's no time for a model. These questions were reviewed by a nurse
+from the community, and they play instantly."
 
 **B4 · The moment (1:30–2:00) · Freddy**
 "Now let's simulate the translator making a mistake." [Rehearsal shortcut.] [Red.] "The Quechua lost its 'not' — it
-now says *take it with tea*. Chaski caught it, didn't say it, and tells me exactly what didn't match. In a clinic, a
-confident wrong sentence is worse than silence."
+now says *take it with tea*. Chaski caught it, didn't say it, and tells me exactly which fact didn't match. In a
+clinic, a confident wrong sentence is worse than silence."
 
 **B5 · How it's built (2:00–2:35) · Ricardo**
-"Meta's open models are the ears and the mouth, and there's almost no Chanka data in the world — so our families
-recorded it this weekend. On a voice the model never heard, word errors dropped from 54 to 41 percent. And listen:"
-[A/B/C, 10 s — only if her blind test passes.] "That's Meta's voice, Chaski's voice trained with her permission, and her. A nurse from the community picked it in a blind test [only if she did]. Claude is the brain: Opus
-interprets, Sonnet checks. We seeded 184 errors — wrong doses, flipped negations, swapped medicines. Chaski caught
-every critical one, in under three seconds, and always names what failed."
+"Meta's open models are the ears and the mouth, and there's almost no Chanka data in the world, so our families
+recorded it this weekend. On a speaker the model never heard, word errors dropped from 54 to 41 percent.
+Claude is the brain: Opus decides what to do, Sonnet checks. We seeded 184 errors — wrong doses, flipped negations,
+swapped medicines. Chaski caught every critical one, in about three seconds, and always says what failed."
+🔸 [Only if the nurse's blind test passed and the A/B/C files exist: 10 s A/B/C — "Meta's voice, Chaski's voice
+trained with her permission, and her. She picked it without knowing which was which."]
 
 **B6 · Close (2:35–3:00) · Freddy**
-[Summary screen.] "At the end, a clinical note for the nurse, instructions to take home for the patient — and the new
-Quechua words from that visit, so the staff learn one patient at a time. Anthropic says it wants Claude to work in
-languages left out of its training data. We built that, and we measured it. Monday, it goes to my mother's health center."
+[Summary screen of the consult we just did.] "At the end, a note for the clinical record, instructions the patient
+takes home, and the new Quechua words from that visit, so the staff learn one patient at a time. Anthropic says it
+wants Claude to work in languages left out of its training data. We built that, and we measured it.
+🔸 Next, it goes to my mother's health center." [Only if she has agreed to try it: "Monday, it goes to my mother's
+health center."]
 
 ### The 30-second version
 "At my mother's health center in the Peruvian Andes, nine in ten patients speak Quechua and one in five staff do.
