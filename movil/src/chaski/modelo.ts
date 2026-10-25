@@ -116,11 +116,12 @@ export function esReintentable(status: number | null): boolean {
 }
 
 /** Los pasos del «Pensando», por tiempo transcurrido (la respuesta no llega por partes). */
-// Turno revisado completo, medido el 24-oct tras optimizar el crítico: p50 6,5 s, p95 9,9 s.
-export const UMBRALES_PASOS_MS = [0, 2000, 5000] as const;
-export const AVISO_LENTO_MS = 8000;
+// Turno con el intérprete nuevo, medido de punta a punta el 24-oct 21:56 (evals/HISTORIA.md §2b):
+// p50 ~17 s, peor 26 s (oír 1,1 · decidir 2,9 · traducir 9,0 · crítico 3,1 · voz 1,0).
+export const UMBRALES_PASOS_MS = [0, 4000, 13000] as const;
+export const AVISO_LENTO_MS = 12000;
 /** Después de esto se dice que la revisión sigue, para que nadie crea que se colgó. */
-export const AVISO_MUY_LENTO_MS = 15000;
+export const AVISO_MUY_LENTO_MS = 22000;
 
 export function pasoPorTiempo(ms: number): number {
   let paso = 0;
