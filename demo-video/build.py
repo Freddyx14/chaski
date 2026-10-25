@@ -102,7 +102,7 @@ for s in SEGS:
         caps.append({"seg": s, "who": "", "t0": round(t[s] + line[0]["t0"], 3), "t1": round(t[s] + line[-1]["t1"], 3),
                      "words": [{"w": w["w"], "t": round(t[s] + w["t0"], 3)} for w in line]})
 for a, b in zip(caps, caps[1:]):
-    a["out"] = round(min(b["t0"] - 0.05, a["t1"] + 0.9), 3)
+    a["out"] = round(min(b["t0"] - 0.15, a["t1"] + 0.9), 3)
 caps[-1]["out"] = round(caps[-1]["t1"] + 0.9, 3)
 
 
@@ -119,8 +119,8 @@ def srt(path, off, cut):
 _ms = json.loads((ROOT / "mama_subs.json").read_text())   # from recut_mama.py: pauses removed, sentences complete
 mama_subs = []
 for i, m in enumerate(_ms):                               # each subtitle holds until the next one (she keeps talking)
-    nxt = _ms[i + 1]["t0"] - 0.05 if i + 1 < len(_ms) else MAMA - 0.2
-    mama_subs.append({"t0": m["t0"], "t1": round(max(m["t0"] + 0.5, nxt), 3), "text": m["text"]})
+    nxt = _ms[i + 1]["t0"] - 0.12 if i + 1 < len(_ms) else MAMA - 0.2
+    mama_subs.append({"t0": m["t0"], "t1": round(nxt, 3), "text": m["text"]})
 
 ev = dict(t)
 ev.update({

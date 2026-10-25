@@ -158,7 +158,7 @@ page = f'''<!doctype html>
   <div id="field" class="full"></div><div id="glow" class="full"></div>
   {''.join(pages_html)}
   <video id="mama" class="clip" src="assets/video/mama-intro.mp4" muted playsinline {win(0.0, EV["MAMA"] - 0.02)}></video>
-  {"".join(f'<div class="msub clip" id="msub{i}" {win(s["t0"], s["t1"] + 0.3)}>{E(s["text"])}</div>' for i, s in enumerate(DATA["mama"]))}
+  {"".join(f'<div class="msub clip" id="msub{i}" {win(s["t0"], s["t1"])}>{E(s["text"])}</div>' for i, s in enumerate(DATA["mama"]))}
   <div id="hud"><div id="brand">CHASKI</div><div id="blabs">{hud_labels}</div></div>
   <div id="caps">{caps_html}</div>
   <audio id="score" src="assets/audio/mix.wav" data-start="0" data-duration="{TOTAL:.3f}"></audio>
