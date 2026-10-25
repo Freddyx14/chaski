@@ -26,7 +26,7 @@ Chaski is a hands-free Quechua (Chanka) ↔ Spanish medical interpreter on an iP
 ## Challenges we ran into
 - **There is almost no Chanka Quechua speech data,** so our families became the dataset overnight. Writing Quechua is hard even for native speakers, so the form asks them to write a phrase and then read aloud exactly what they wrote.
 - **A live test found a real hole:** "take it with water, not with tea" came back as "drink with one, not with him" and still passed, because nothing tracked what a pill is taken with. We added that check, and the case to our test bank, within the hour.
-- **Speed vs. safety.** The first full turn took 17 seconds. Translating while Opus decides, and choosing the translator's effort by measurement, brought it down to about 11 seconds on real audio through the live service, without losing a single critical check, and we are still cutting.
+- **Speed vs. safety.** The first full turn took 17 seconds. Translating while Opus decides, and choosing the translator's effort by measurement, brought it down so that, live and hands-free on real audio, you see what Chaski will say in about 4 seconds and hear it in under 10, without losing a single critical check.
 - **Choosing the translator honestly.** We compared five translators on the same 62 sentences our families wrote, including our own fine-tuned model. Claude damaged 0 of 92 critical terms, so Claude translates. We also caught that part of an earlier evaluation set had leaked into training, and threw that number out.
 
 ## Accomplishments that we're proud of
