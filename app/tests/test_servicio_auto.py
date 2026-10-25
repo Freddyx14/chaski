@@ -104,7 +104,8 @@ def historial(*roles):
     ({"codigo": "spa", "confianza": 0.59}, ("personal",), ("paciente", "alternancia")),
     ({"codigo": "quy", "confianza": 0.3}, ("paciente",), ("personal", "alternancia")),
     ({"codigo": "eng", "confianza": 0.99}, ("paciente",), ("personal", "alternancia")),
-    ({}, ("personal", "chaski"), ("paciente", "alternancia")),  # Chaski's own line doesn't count
+    ({}, ("personal",), ("paciente", "alternancia")),
+    ({}, ("personal", "chaski"), ("personal", "alternancia")),  # Chaski asked the staff something: they answer (C1)
     ({}, ("chaski",), ("personal", "alternancia")),
     (None, (), ("personal", "alternancia")),
 ])
@@ -141,7 +142,7 @@ def test_quechua_va_al_paciente_con_n_mejores_y_confianza(entradas):
 
 def test_poca_confianza_alterna_con_el_ultimo_que_hablo(entradas):
     o = Oidos("spa", 0.4)  # the detector leans Spanish, but it isn't sure; the staff spoke last
-    r = servicio.turno_auto(AUDIO, "turno.wav", historial("personal", "chaski"),
+    r = servicio.turno_auto(AUDIO, "turno.wav", historial("personal"),
                             dependencias=deps_paciente(cliente_paciente()), **o.kw())
     assert o.llamadas == ["idioma", "quechua"]
     assert (r["quien_hablo"], r["lado_por"], r["confianza_idioma"]) == ("paciente", "alternancia", 0.4)
@@ -222,3 +223,24 @@ def test_eventos_contexto_mal_formado_termina_en_error():
     ev = _eventos(servicio.turno_auto_eventos(AUDIO, "turno.wav", "{no es json",
                                               dependencias=deps_personal(FakeClient(traducir())), **o.kw()))
     assert [e for e, _ in ev] == ["error"] and "contexto mal formado" in ev[0][1]["error"] and o.llamadas == []
+
+
+# ── Audit C1 / H3 ────────────────────────────────────────────────────────────────────────────────────────────────
+
+def test_tras_una_pregunta_de_chaski_responde_el_mismo_que_hablo():
+    ctx = Contexto()
+    ctx.agregar("paciente", "umaymi nanan")
+    ctx.agregar("chaski", "Pampachaway, ¿manachu kaqmanta rimariwaq?")
+    assert servicio.decidir_lado({"codigo": "spa", "confianza": 0.3}, ctx) == ("paciente", "alternancia")
+    assert servicio.decidir_lado({}, ctx) == ("paciente", "alternancia")
+
+
+def test_lado_adivinado_baja_la_confianza_para_que_b1_frene_datos_clinicos():
+    assert servicio._confianza_del_turno(None, "alternancia") == servicio.CONFIANZA_SI_ADIVINADO
+    assert servicio._confianza_del_turno(0.9, "alternancia") == servicio.CONFIANZA_SI_ADIVINADO
+    assert servicio._confianza_del_turno(0.3, "alternancia") == 0.3
+    assert servicio._confianza_del_turno(0.9, "detector") == 0.9
+
+
+def test_la_confianza_del_castellano_ya_no_se_descarta():
+    assert servicio._confianza_del_turno("0.42", "detector") == 0.42

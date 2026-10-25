@@ -440,3 +440,17 @@ def test_la_pregunta_tras_un_bloqueo_viene_con_la_voz_del_servicio(monkeypatch):
                       voz_fn=lambda t, a: dichos.append((t, a)) or b"RIFF", **r.kw())
     assert res.accion == "repreguntar" and res.audio_wav_b64 == "UklGRg=="
     assert dichos == [(res.texto_salida, "spa")]
+
+
+def test_la_pregunta_tras_un_bloqueo_queda_en_el_historial_no_el_idioma(monkeypatch):
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1")
+    r = Registro(auditoria_ok=False)
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      **r.kw())
+    assert res.contexto.historial[-1].rol == "chaski" and res.contexto.historial[-1].texto == res.texto_salida
+
+
+def test_motivo_de_b4_con_numero_o_agua_nombra_el_dato():
+    from chaski.orquestador import _campo
+    assert _campo("B4 términos fijos: número 8 no aparece en el quechua")[1] == "un número"
+    assert _campo("B4 términos fijos: el castellano dice «con agua» y el quechua no lo nombra")[1] == "con qué se toma"

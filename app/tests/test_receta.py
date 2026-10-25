@@ -146,12 +146,12 @@ def test_turno_del_paciente_no_toca_la_receta_pendiente():
     assert r.contexto.receta_pendiente == INSTRUCCION
 
 
-def test_bloqueo_en_la_receta_confirmada_pregunta_una_vez():
+def test_bloqueo_en_la_receta_confirmada_es_bloqueo_simple():
+    # Audit M8: the pending text is cleared on the «sí», so an ask-back would let a second «sí» be translated alone.
     reg = Registro(critico_ok=False)
     r = interpretar({"texto": "sí", "idioma": "spa", "rol": "personal"}, _pendiente(), client=FakeClient(),
                     **reg.kw())
-    assert r.estado == "dicho_con_aviso" and r.accion == "repreguntar" and r.para == "personal"
-    assert r.texto_salida.startswith("No quiero decir un dato equivocado: la dosis")
+    assert r.estado == "bloqueado" and r.para == "personal" and r.texto_salida == ""
     assert r.paso_fallido == "critico" and r.contexto.receta_pendiente is None
 
 

@@ -141,6 +141,8 @@ _CAMPOS = [  # (substring of the guard/critic reason, field id, how it is said t
     ("embarazo", "embarazo", "lo del embarazo"), ("alergia", "alergia", "la alergia"),
     ("partes_cuerpo", "parte_del_cuerpo", "la parte del cuerpo"), ("consejo", "otro", "un consejo que no se dijo"),
     ("diagn", "otro", "un diagnóstico que no se dijo"),
+    ("número", "dosis", "un número"), ("numero", "dosis", "un número"),  # B4 says «número N…» (audit L1)
+    ("con agua", "otro", "con qué se toma"),
 ]
 
 
@@ -424,11 +426,13 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
         ms[nombre] = round((time.perf_counter() - t0) * 1000, 1)
 
     def bloqueado(motivo: str, paso_fallido: str, chequeo: bool = True) -> Resultado:
+        # A confirmed prescription that fails a check is not asked back (audit M8): the pending text is gone, so a
+        # second «sí» would be translated on its own. The staff sees the plain block and says it themselves.
         pregunta = (_pregunta_de_confirmacion(turno, ya_pidio_repetir, motivo, paso_fallido, sembrada)
-                    if chequeo else None)
+                    if chequeo and forzada is None else None)
         if pregunta is not None:
             contexto.agregar(turno.rol, turno.texto)
-            contexto.agregar("chaski", pregunta[1])
+            contexto.agregar("chaski", pregunta[2])  # the question itself (audit M1: it stored the language code)
             contexto.repreguntas_seguidas.append(CONFIRMAR)
             ms["total"] = round((time.perf_counter() - t_total) * 1000, 1)
             para, idioma_salida, texto = pregunta

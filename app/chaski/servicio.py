@@ -151,10 +151,22 @@ def decidir_lado(deteccion: dict | None, contexto: Contexto | None) -> tuple[str
         return ROL_POR_IDIOMA[codigo], "detector"
     if contexto is not None and contexto.receta_pendiente:  # Chaski just asked the staff to confirm a prescription
         return "personal", "alternancia"
-    for linea in reversed(contexto.historial if contexto else []):
+    historial = contexto.historial if contexto else []
+    # Chaski's last line asked the SAME speaker something (ask-back, repreguntar, no_entendi): they answer next.
+    # Audit C1, 25-oct: plain alternation sent the patient's repeat to the Spanish recognizer.
+    if historial and historial[-1].rol == "chaski":
+        for linea in reversed(historial):
+            if linea.rol in ("personal", "paciente"):
+                return linea.rol, "alternancia"
+    for linea in reversed(historial):
         if linea.rol in ("personal", "paciente"):
             return ("paciente" if linea.rol == "personal" else "personal"), "alternancia"
     return "personal", "alternancia"
+
+
+# When the side was guessed, the turn is treated as heard with low confidence: B1 then stops any number, medicine or
+# body part and Chaski asks to repeat, so a guessed side can never carry a clinical fact (audit C1). Courtesy passes.
+CONFIANZA_SI_ADIVINADO = 0.5
 
 
 def _ms(t0: float) -> float:
@@ -179,7 +191,16 @@ def _oir(audio: bytes, nombre: str, contexto_json: str | None, detectar_idioma: 
     return {"quien_hablo": rol, "idioma": idioma, "texto": oido.get("texto") or "", "lado_por": lado_por,
             "idioma_detectado": deteccion.get("codigo"), "confianza_idioma": deteccion.get("confianza"),
             "n_mejores": json.dumps(oido.get("alternativas") or [], ensure_ascii=False) if idioma == "quy" else None,
-            "confianza": oido.get("confianza") if idioma == "quy" else None, "ms": ms}
+            "confianza": _confianza_del_turno(oido.get("confianza"), lado_por), "ms": ms}
+
+
+def _confianza_del_turno(confianza_asr, lado_por: str) -> float | None:
+    """The recognizer's confidence for either language (audit H3: the Spanish one was dropped), capped when the side
+    was guessed."""
+    c = _confianza(confianza_asr)
+    if lado_por != "detector":
+        return CONFIANZA_SI_ADIVINADO if c is None else min(c, CONFIANZA_SI_ADIVINADO)
+    return c
 
 
 def _con_oido(r: dict, oido: dict) -> dict:
