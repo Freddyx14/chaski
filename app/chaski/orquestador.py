@@ -32,7 +32,7 @@ import anthropic
 from pydantic import BaseModel, Field
 
 from chaski import critico, memoria, guardas as g
-from chaski.interprete import Accion, Contexto, Decision, Idioma, Rol, TurnoEntrada, decidir
+from chaski.interprete import NO_ENTENDI, Accion, Contexto, Decision, Idioma, Rol, TurnoEntrada, decidir
 from chaski.traducir import Motor, TextoTraducido, traducir
 
 Estado = Literal["dicho", "dicho_con_aviso", "bloqueado"]
@@ -121,6 +121,46 @@ def _en_fondo(fn, *args) -> None:
         except Exception:  # noqa: BLE001
             pass
     _hilos.submit(correr)
+
+
+# ── A block asks before it gives up (Freddy, 25-oct 02:23) ──────────────────────────────────────────────────────
+# When a check stops a translation, Chaski first asks the speaker to say it again, naming the data that failed, once.
+# Nothing doubtful reaches the listener: the question goes back to whoever spoke. A second block in a row, a rehearsal
+# (the barrier demo) or a failure that is not a check (network, model) still ends in the plain block.
+
+CONFIRMAR = "confirmar"
+_CAMPOS = [  # (substring of the guard/critic reason, field id, how it is said to the staff)
+    ("dosis", "dosis", "la dosis"), ("cada_horas", "frecuencia", "cada cuánto se toma"),
+    ("frecuencia", "frecuencia", "cada cuánto se toma"), ("dias", "duracion", "por cuántos días"),
+    ("duracion", "duracion", "por cuántos días"), ("negaci", "otro", "si es un «no»"),
+    ("vehiculo", "otro", "con qué se toma"), ("unidad", "dosis", "la unidad"),
+    ("medicamento", "medicamento", "el medicamento"), ("concentracion", "dosis", "la concentración"),
+    ("momento", "otro", "cuándo se toma"), ("ayunas", "otro", "si es en ayunas"),
+    ("embarazo", "embarazo", "lo del embarazo"), ("alergia", "alergia", "la alergia"),
+    ("partes_cuerpo", "parte_del_cuerpo", "la parte del cuerpo"), ("consejo", "otro", "un consejo que no se dijo"),
+    ("diagn", "otro", "un diagnóstico que no se dijo"),
+]
+
+
+def _campo(motivo: str) -> tuple[str, str]:
+    m = (motivo or "").lower()
+    for clave, campo, llano in _CAMPOS:
+        if clave in m:
+            return campo, llano
+    return "otro", "un dato"
+
+
+def repreguntar_al_bloquear_env() -> bool:
+    return os.environ.get("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1").strip() not in ("0", "no", "false", "")
+
+
+def _pregunta_de_confirmacion(turno, ya_pidio_repetir: bool, motivo: str, paso: str, sembrada: bool):
+    """(para, idioma, texto) of the question back, or None to keep the plain block."""
+    if (sembrada or not repreguntar_al_bloquear_env() or paso not in ("guardas", "critico") or ya_pidio_repetir):
+        return None
+    if turno.rol == "personal":
+        return ("personal", "spa", f"No quiero decir un dato equivocado: {_campo(motivo)[1]}. ¿Me lo repite, por favor?")
+    return ("paciente", "quy", NO_ENTENDI["quy"])
 
 
 def anticipar_env() -> bool:
@@ -323,6 +363,7 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
     d: Decision | None = None
     avisos: list[str] = []
     t_total = time.perf_counter()
+    ya_pidio_repetir = CONFIRMAR in contexto.repreguntas_seguidas  # read before decide() clears it
     anticipar = anticipar_env() if anticipar is None else anticipar
     a_anticipado: Idioma = "quy" if turno.idioma == "spa" else "spa"
     futura: Future | None = None
@@ -339,7 +380,20 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
     def medir(nombre: str, t0: float) -> None:
         ms[nombre] = round((time.perf_counter() - t0) * 1000, 1)
 
-    def bloqueado(motivo: str, paso_fallido: str) -> Resultado:
+    def bloqueado(motivo: str, paso_fallido: str, chequeo: bool = True) -> Resultado:
+        pregunta = (_pregunta_de_confirmacion(turno, ya_pidio_repetir, motivo, paso_fallido, sembrada)
+                    if chequeo else None)
+        if pregunta is not None:
+            contexto.agregar(turno.rol, turno.texto)
+            contexto.agregar("chaski", pregunta[1])
+            contexto.repreguntas_seguidas.append(CONFIRMAR)
+            ms["total"] = round((time.perf_counter() - t_total) * 1000, 1)
+            para, idioma_salida, texto = pregunta
+            return Resultado(estado="dicho_con_aviso", accion="repreguntar" if para == "personal" else "no_entendi",
+                             motivo=motivo, dato_faltante=_campo(motivo)[0], para=para, idioma_salida=idioma_salida,
+                             texto_original=turno.texto, texto_pulido=d.texto_pulido if d else "", texto_salida=texto,
+                             aviso=f"Chaski no lo dijo y pidió repetir: {motivo}", sembrada=sembrada, modelos=modelos,
+                             paso_fallido=paso_fallido, ms=ms, contexto=contexto)
         contexto.agregar(turno.rol, turno.texto)
         ms["total"] = round((time.perf_counter() - t_total) * 1000, 1)
         return Resultado(estado="bloqueado", accion=d.accion if d else None, motivo=motivo,
@@ -497,4 +551,4 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
             _en_fondo(memoria.guardar_turno, turno.rol, historial, turno.texto, d.texto_pulido, tt.texto, de, a)
         return r.model_copy(update={"audio_wav_b64": audio_b64, "anticipada": usada_anticipada})
     except Exception as e:  # fail closed: nothing reaches the patient
-        return bloqueado(f"falló el paso «{paso}» ({type(e).__name__})", paso)
+        return bloqueado(f"falló el paso «{paso}» ({type(e).__name__})", paso, chequeo=False)

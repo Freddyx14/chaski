@@ -12,6 +12,7 @@ from chaski.traducir import TextoTraducido
 def _sin_modelos_en_el_entorno(monkeypatch):
     # These tests pin the step-by-step path; the anticipated one is tested with anticipar=True explicitly.
     monkeypatch.setenv("CHASKI_TRADUCIR_ANTICIPADO", "0")
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "0")  # these pin the plain block; the ask-back has its own tests
     monkeypatch.delenv("CHASKI_MODELO_PRINCIPAL", raising=False)
     monkeypatch.delenv("CHASKI_MODELO_CRITICO", raising=False)
 
@@ -385,3 +386,47 @@ def test_ejemplos_para_respeta_el_interruptor_y_no_rompe(monkeypatch):
     monkeypatch.setenv("CHASKI_EJEMPLOS", "1")
     monkeypatch.setattr(b, "ejemplos_revisados", rota)
     assert o.ejemplos_para("hola", "spa") is None
+
+
+# ── A block asks back once before giving up ──────────────────────────────────────────────────────────────────────
+
+def test_bloqueo_del_personal_pregunta_el_dato_y_no_dice_nada_al_paciente(monkeypatch):
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1")
+    r = Registro(auditoria_ok=False)  # motivo: «cambió un dato crítico: paracetamol.cada_horas»
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      **r.kw())
+    assert res.accion == "repreguntar" and res.para == "personal" and res.idioma_salida == "spa"
+    assert "cada cuánto" in res.texto_salida and "[quy]" not in res.texto_salida
+    assert res.dato_faltante == "frecuencia" and res.paso_fallido == "critico"
+
+
+def test_el_segundo_bloqueo_seguido_ya_no_pregunta(monkeypatch):
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1")
+    r = Registro(auditoria_ok=False)
+    res1 = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                       **r.kw())
+    res2 = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, res1.contexto,
+                       client=FakeClient(propuesta("traducir", PULIDO)), **r.kw())
+    assert res1.accion == "repreguntar" and res2.estado == "bloqueado"
+
+
+def test_bloqueo_del_paciente_le_pide_repetir_en_quechua(monkeypatch):
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1")
+    r = Registro(auditoria_ok=False)
+    p = DecisionModelo(accion="traducir", para="personal", idioma_salida="spa", texto_pulido="umaymi nanan", motivo="m",
+                       frase_banco_id=None, dato_faltante=None)
+    res = interpretar({"texto": "umaymi nanan", "idioma": "quy", "rol": "paciente"}, client=FakeClient(p), **r.kw())
+    assert res.accion == "no_entendi" and res.para == "paciente" and res.idioma_salida == "quy"
+    assert res.texto_salida == NO_ENTENDI["quy"]
+
+
+def test_ensayo_y_fallas_de_sistema_siguen_siendo_bloqueo(monkeypatch):
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1")
+    r = Registro(auditoria_ok=False)
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      traduccion_forzada="X", **r.kw())
+    assert res.estado == "bloqueado"  # the rehearsal shows the barrier
+    r2 = Registro(traduccion=RuntimeError("red"))
+    res2 = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                       **r2.kw())
+    assert res2.estado == "bloqueado"  # a broken step is not a doubt about the data
