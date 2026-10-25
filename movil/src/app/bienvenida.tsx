@@ -1,11 +1,14 @@
 // Onboarding de D27: (1) idioma, (2) nombre, (3) ¿personal de salud o paciente?
 // El paso 1 va en los dos idiomas porque todavía no sabemos cuál lee.
 import { router } from 'expo-router';
-import { useState } from 'react';
+import { useAudioPlayer } from 'expo-audio';
+import { useEffect, useState } from 'react';
 import { KeyboardAvoidingView, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { audioDeFrase } from '@/chaski/api';
 import { Chaski } from '@/chaski/chaski';
+import bancoReal from '../../../app/chaski/banco.json';
 import { guardarPerfil, type Idioma, type Rol } from '@/chaski/perfil';
 import { textos } from '@/chaski/textos';
 import { C, ESCALA, M } from '@/chaski/tokens';
@@ -32,6 +35,8 @@ export default function Bienvenida() {
           </View>
           <Text style={e.marca}>Chaski</Text>
           <ProgresoCruces total={3} actual={paso} />
+
+          {paso === 1 && <Saludo />}
 
           {paso === 1 && (
             <>
@@ -76,6 +81,41 @@ export default function Bienvenida() {
   );
 }
 
+// El saludo de Chaski (principio «llegar rápido al ajá»): lo primero que oye quien abre la app es a Chaski
+// hablando quechua. Es una frase revisada por la enfermera de Pilpichaca (banco, `revisado: true`); su nota
+// aclara que dice «no se preocupe, aquí estamos». Si el audio no llega, el texto basta.
+const SALUDO = (bancoReal as { id: string; quy: string; revisado?: boolean; audio?: string; tags?: string[]; es: string }[])
+  .find((f) => f.id === 'emg-tranquilo' && f.revisado);
+
+function Saludo() {
+  const reproductor = useAudioPlayer(null);
+  const [listo, setListo] = useState(false);
+  async function sonar() {
+    if (!SALUDO) return;
+    try {
+      reproductor.replace(await audioDeFrase(SALUDO as never));
+      reproductor.seekTo(0);
+      reproductor.play();
+      setListo(true);
+    } catch {}
+  }
+  useEffect(() => { sonar(); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  if (!SALUDO) return null;
+  return (
+    <View style={e.saludo}>
+      <Text style={e.saludoEtiqueta}>CHASKI TE SALUDA</Text>
+      <Text style={e.saludoQuy}>{SALUDO.quy}</Text>
+      <Text style={e.saludoEs}>No se preocupe, aquí estamos.</Text>
+      {listo && (
+        <Pressable onPress={sonar} style={e.saludoBoton} accessibilityRole="button">
+          <Icono nombre="speaker.wave.2.fill" color={C.action} tam={14} />
+          <Text style={e.saludoBotonTexto}>Escuchar de nuevo</Text>
+        </Pressable>
+      )}
+    </View>
+  );
+}
+
 function Opcion({ titulo, detalle, quechua, icono, cruces, onPress }: {
   titulo: string; detalle?: string; quechua?: boolean; icono?: 'cross.case.fill' | 'person.fill'; cruces?: string; onPress: () => void;
 }) {
@@ -96,6 +136,12 @@ function Opcion({ titulo, detalle, quechua, icono, cruces, onPress }: {
 }
 
 const e = StyleSheet.create({
+  saludo: { alignSelf: 'center', alignItems: 'center', gap: 2, marginTop: -4, marginBottom: 6 },
+  saludoEtiqueta: { fontSize: 11, fontWeight: '700', color: C.inkTertiary, letterSpacing: 0.6 },
+  saludoQuy: { fontSize: ESCALA.cuerpo, fontWeight: '700', color: C.quechua, textAlign: 'center' },
+  saludoEs: { fontSize: ESCALA.mini, color: C.inkSecondary, textAlign: 'center' },
+  saludoBoton: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4, paddingHorizontal: 10, paddingVertical: 4 },
+  saludoBotonTexto: { fontSize: ESCALA.mini, fontWeight: '600', color: C.action },
   pantalla: { flex: 1, backgroundColor: C.ground },
   cuerpo: { flex: 1, padding: 16, gap: 12 },
   marca: { fontSize: ESCALA.display, fontWeight: '700', color: C.ink, textAlign: 'center' },

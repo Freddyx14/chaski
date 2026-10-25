@@ -875,6 +875,11 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
   const temblor = useAnimatedStyle(() => ({ transform: [{ translateX: x.value }] }));
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 12, marginTop: 12 }}>
+      {/* El bloqueo es la función estrella haciendo su trabajo, no un error: se dice como protección. */}
+      <View style={e.protegio}>
+        <Icono nombre="checkmark.shield.fill" color={C.action} tam={16} />
+        <Text style={e.protegioTexto}>{t.loFrenoATiempo}</Text>
+      </View>
       <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>
         {v.razon ? t.chaskiNoLoDijo(v.razon) : t.noLoDije}
       </Text>
@@ -986,6 +991,8 @@ const e = StyleSheet.create({
   rotulo: { fontSize: ESCALA.mini, fontWeight: '600', color: C.inkTertiary, letterSpacing: 0.6 },
   valor: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink, marginTop: 2 },
   comparacion: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderLeftWidth: 4, borderLeftColor: C.block, borderRadius: 16, padding: 16 },
+  protegio: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center', backgroundColor: C.actionTint, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 6 },
+  protegioTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.action },
   dosColumnas: { flexDirection: 'row', gap: 16, marginTop: 8 },
   auditoria: { borderRadius: 16, padding: 14, gap: 8 },
   auditoriaTitulo: { fontSize: ESCALA.chico, fontWeight: '600' },
