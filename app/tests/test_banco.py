@@ -166,7 +166,8 @@ def test_regla_de_fuga_ninguna_verificada_en_el_banco(items_reales):
 
 def test_esquema_e_ids_unicos(items_reales):
     for it in items_reales:
-        assert set(it) == {"id", "es", "quy", "audio", "tags", "fuente", "revisado", "split"}
+        base = {"id", "es", "quy", "audio", "tags", "fuente", "revisado", "split"}
+        assert base <= set(it) <= base | {"quy_original", "nota"}  # the nurse's review adds these two
         assert it["es"].strip() and it["tags"]
         assert it["audio"] is None or it["audio"].startswith("https://")
     assert len({it["id"] for it in items_reales}) == len(items_reales)
@@ -183,12 +184,22 @@ def test_emergencia_nunca_inventa_quechua(items_reales):
     for it in emergencia:
         if "falta_quechua" in it["tags"]:
             assert it["quy"] == "" and it["revisado"] is False and it["audio"] is None
+        elif it["fuente"].startswith("enfermera"):
+            assert it.get("quy_original"), it["id"]  # written by the nurse, her original kept next to the normalized one
         else:
             assert it["quy"] == manual[normalizar(it["es"])], it["id"]  # Quechua comes from the manual, verbatim
 
 
-def test_nada_del_manual_viene_marcado_revisado(items_reales):
-    assert all(it["revisado"] is False for it in items_reales if it["fuente"].startswith("cmp-"))
+def test_solo_lo_que_la_enfermera_aprobo_viene_revisado(items_reales):
+    for it in items_reales:
+        if it["fuente"].startswith("cmp-"):
+            assert it["revisado"] is ("revisada por la enfermera" in it["fuente"]), it["id"]
+
+
+def test_lo_que_falta_confirmar_no_se_dice(items_reales):
+    for it in items_reales:
+        if "por_confirmar" in it["tags"]:
+            assert it["revisado"] is False, it["id"]
 
 
 def _construir():

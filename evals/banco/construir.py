@@ -39,6 +39,8 @@ RESUMEN = Path(__file__).resolve().parent / "resumen_construccion.json"
 REPARACIONES = {"\x00": "fi"}
 
 # (id, Spanish as the nurse needs it, normalized Spanish of the CMP row that says the same thing or None, extra tags)
+REVISION = Path(__file__).with_name("revision_enfermera.json")
+
 EMERGENCIA: list[tuple[str, str, str | None, list[str]]] = [
     ("emg-dolor-donde", "¿Dónde le duele?", None, ["dolor"]),
     ("emg-dolor-que", "¿Qué es lo que le duele?", "que es lo que le duele", ["dolor"]),
@@ -173,6 +175,25 @@ def construir(manifest: Path) -> tuple[list[dict], dict]:
                      "tags": ["emergencia", *extra, "falta_quechua"],
                      "fuente": "chaski-emergencia (falta quechua, para la enfermera)", "revisado": False,
                      "split": "banco"})
+
+    # The nurse's review (evals/banco/revision_enfermera.json): approved CMP Quechua becomes revisado, and the phrases
+    # she wrote replace the empty ones. Only `revisado: true` is ever spoken (chaski.orquestador / the app).
+    if REVISION.exists():
+        rev = json.loads(REVISION.read_text(encoding="utf-8"))
+        por_id = {it["id"]: it for it in items}
+        for id_ in rev.get("aprobadas_tal_cual", []):
+            if id_ in por_id and por_id[id_]["quy"]:
+                por_id[id_]["revisado"] = True
+                por_id[id_]["fuente"] += " · revisada por la enfermera"
+        for id_, r in rev.get("escritas_por_ella", {}).items():
+            if id_ not in por_id:
+                continue
+            it = por_id[id_]
+            it.update({"quy": r["quy"], "quy_original": r["quy_original"], "revisado": bool(r["revisado"]),
+                       "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)"})
+            it["tags"] = [t for t in it["tags"] if t != "falta_quechua"] + ([] if r["revisado"] else ["por_confirmar"])
+            if r.get("nota"):
+                it["nota"] = r["nota"]
 
     for clave, (i, fila, es) in cmp_por_es.items():
         if i in usadas:

@@ -1,0 +1,22 @@
+{
+  "_acerca": "Revisión de las frases de emergencia por la enfermera de Pilpichaca (mamá de Freddy), sáb 24-oct 17:09–17:17 por WhatsApp. Las 14 que ya traían quechua del manual las aprobó tal cual. Las que escribió ella van con su texto original en `quy_original` y la ortografía normalizada al alfabeto chanka (k, q, w, h) sin mover palabras ni cambiar vocabulario, porque ella dijo que no escribe bien el quechua. `revisado: false` = falta confirmar una palabra antes de que Chaski la diga.",
+  "aprobadas_tal_cual": [
+    "emg-dolor-que", "emg-senale", "emg-desde-cuando", "emg-familia-aqui", "emg-fiebre", "emg-cabeza", "emg-abdomen",
+    "emg-mareos", "emg-nombre", "emg-edad", "emg-presion", "emg-suero", "emg-no-moverse", "emg-no-miedo"
+  ],
+  "escritas_por_ella": {
+    "emg-dolor-donde": {"quy": "¿Mayta nanan?", "quy_original": "Mayta nanan", "revisado": true},
+    "emg-embarazo": {"quy": "¿Wiksayuq kachkanki?", "quy_original": "Wicsayuc kachkanki", "revisado": true},
+    "emg-acompanante": {"quy": "¿Piwantaq hamunki?", "quy_original": "Pihuantac jamunki", "revisado": true},
+    "emg-respira": {"quy": "¿Allintachu samanki?", "quy_original": "Allintachu samanki", "revisado": true},
+    "emg-vomito": {"quy": "¿Kutichi?", "quy_original": "Cutichi", "revisado": true},
+    "emg-caida": {"quy": "¿Wichiruspa imaykita takakurunki?", "quy_original": "Huichiruspa imayquita tacacurunki", "revisado": true},
+    "emg-via": {"quy": "Churasqayki sueruta.", "quy_original": "Churaskayki sueruta", "revisado": true,
+                "nota": "Ella lo dijo como «le voy a poner el suero», no «la vía»: en la posta van juntos."},
+    "emg-medicamento-tomo": {"quy": "¿Upyarankichu [?] medicinata?", "quy_original": "Upiaranquucho Gucci medicinata", "revisado": false,
+                "nota": "«Gucci» parece el autocorrector del celular: ¿«huk» (algún) o «ima» (qué)? Confirmar con ella."},
+    "emg-tranquilo": {"quy": "Ama llakikuychu, [?] kachkani yanapanaypaq.", "quy_original": "Ama llaquicuychu laude cachcany napapanaypac", "revisado": false,
+                "nota": "«laude» puede ser «ladoykipi» (a su lado) o el autocorrector; confirmar con ella."}
+  },
+  "no_sabe": {"emg-alergia": "Dijo «no sé»: queda sin quechua."}
+}

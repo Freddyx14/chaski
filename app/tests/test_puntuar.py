@@ -79,7 +79,11 @@ def test_cli_con_resultado_real_del_repo(capsys):
     viejos = sorted((EVALS / "ataques" / "resultados").glob("chaski-*.json"))
     if not viejos:
         pytest.skip("no hay resultados")
-    assert puntuar.main([str(viejos[-1])]) == 0
+    # A run from before latency/cost were recorded, so the scorer must print n/a for them.
+    sin_tiempo = [v for v in viejos if "latencia_critico_ms" not in v.read_text(encoding="utf-8")]
+    if not sin_tiempo:
+        pytest.skip("no hay resultados viejos sin latencia")
+    assert puntuar.main([str(sin_tiempo[0])]) == 0
     out = capsys.readouterr().out
     assert "G1" in out and "TOTAL" in out and "n/a" in out
 

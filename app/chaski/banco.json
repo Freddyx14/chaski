@@ -2,16 +2,16 @@
  {
   "id": "emg-dolor-donde",
   "es": "¿Dónde le duele?",
-  "quy": "",
+  "quy": "¿Mayta nanan?",
   "audio": null,
   "tags": [
    "emergencia",
-   "dolor",
-   "falta_quechua"
+   "dolor"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Mayta nanan"
  },
  {
   "id": "emg-dolor-que",
@@ -22,8 +22,8 @@
    "emergencia",
    "dolor"
   ],
-  "fuente": "cmp-semiologia-2020 p.19",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.19 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -35,8 +35,8 @@
    "emergencia",
    "dolor"
   ],
-  "fuente": "cmp-semiologia-2020 p.19",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.19 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -48,8 +48,8 @@
    "emergencia",
    "motivo_consulta"
   ],
-  "fuente": "cmp-semiologia-2020 p.18",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.18 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -70,30 +70,30 @@
  {
   "id": "emg-embarazo",
   "es": "¿Está embarazada?",
-  "quy": "",
+  "quy": "¿Wiksayuq kachkanki?",
   "audio": null,
   "tags": [
    "emergencia",
-   "embarazo",
-   "falta_quechua"
+   "embarazo"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Wicsayuc kachkanki"
  },
  {
   "id": "emg-acompanante",
   "es": "¿Vino con alguien?",
-  "quy": "",
+  "quy": "¿Piwantaq hamunki?",
   "audio": null,
   "tags": [
    "emergencia",
-   "identificacion",
-   "falta_quechua"
+   "identificacion"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Pihuantac jamunki"
  },
  {
   "id": "emg-familia-aqui",
@@ -104,23 +104,23 @@
    "emergencia",
    "identificacion"
   ],
-  "fuente": "cmp-semiologia-2020 p.53",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.53 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
   "id": "emg-respira",
   "es": "¿Puede respirar bien?",
-  "quy": "",
+  "quy": "¿Allintachu samanki?",
   "audio": null,
   "tags": [
    "emergencia",
-   "respiratorio",
-   "falta_quechua"
+   "respiratorio"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Allintachu samanki"
  },
  {
   "id": "emg-fiebre",
@@ -131,51 +131,53 @@
    "emergencia",
    "fiebre"
   ],
-  "fuente": "cmp-semiologia-2020 p.21",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.21 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
   "id": "emg-vomito",
   "es": "¿Vomitó?",
-  "quy": "",
+  "quy": "¿Kutichi?",
   "audio": null,
   "tags": [
    "emergencia",
-   "digestivo",
-   "falta_quechua"
+   "digestivo"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Cutichi"
  },
  {
   "id": "emg-medicamento-tomo",
   "es": "¿Tomó algún medicamento?",
-  "quy": "",
+  "quy": "¿Upyarankichu [?] medicinata?",
   "audio": null,
   "tags": [
    "emergencia",
    "medicamentos",
-   "falta_quechua"
+   "por_confirmar"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
   "revisado": false,
-  "split": "banco"
+  "split": "banco",
+  "quy_original": "Upiaranquucho Gucci medicinata",
+  "nota": "«Gucci» parece el autocorrector del celular: ¿«huk» (algún) o «ima» (qué)? Confirmar con ella."
  },
  {
   "id": "emg-caida",
   "es": "¿Se cayó o se golpeó?",
-  "quy": "",
+  "quy": "¿Wichiruspa imaykita takakurunki?",
   "audio": null,
   "tags": [
    "emergencia",
-   "trauma",
-   "falta_quechua"
+   "trauma"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Huichiruspa imayquita tacacurunki"
  },
  {
   "id": "emg-cabeza",
@@ -187,8 +189,8 @@
    "dolor",
    "cabeza"
   ],
-  "fuente": "cmp-semiologia-2020 p.19",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.19 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -201,8 +203,8 @@
    "dolor",
    "digestivo"
   ],
-  "fuente": "cmp-semiologia-2020 p.21",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.21 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -215,8 +217,8 @@
    "neurologico",
    "cabeza"
   ],
-  "fuente": "cmp-semiologia-2020 p.38",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.38 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -228,8 +230,8 @@
    "emergencia",
    "identificacion"
   ],
-  "fuente": "cmp-semiologia-2020 p.17",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.17 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -241,8 +243,8 @@
    "emergencia",
    "identificacion"
   ],
-  "fuente": "cmp-semiologia-2020 p.17",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.17 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -254,23 +256,24 @@
    "emergencia",
    "cardiovascular"
   ],
-  "fuente": "cmp-semiologia-2020 p.44",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.44 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
   "id": "emg-via",
   "es": "Voy a ponerle una vía.",
-  "quy": "",
+  "quy": "Churasqayki sueruta.",
   "audio": null,
   "tags": [
    "emergencia",
-   "procedimientos",
-   "falta_quechua"
+   "procedimientos"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
-  "revisado": false,
-  "split": "banco"
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
+  "revisado": true,
+  "split": "banco",
+  "quy_original": "Churaskayki sueruta",
+  "nota": "Ella lo dijo como «le voy a poner el suero», no «la vía»: en la posta van juntos."
  },
  {
   "id": "emg-suero",
@@ -281,8 +284,8 @@
    "emergencia",
    "procedimientos"
   ],
-  "fuente": "cmp-semiologia-2020 p.54",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.54 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -294,8 +297,8 @@
    "emergencia",
    "indicaciones"
   ],
-  "fuente": "cmp-semiologia-2020 p.55",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.55 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
@@ -307,23 +310,25 @@
    "emergencia",
    "calma"
   ],
-  "fuente": "cmp-semiologia-2020 p.52",
-  "revisado": false,
+  "fuente": "cmp-semiologia-2020 p.52 · revisada por la enfermera",
+  "revisado": true,
   "split": "banco"
  },
  {
   "id": "emg-tranquilo",
   "es": "No se preocupe, estamos aquí para ayudarle.",
-  "quy": "",
+  "quy": "Ama llakikuychu, [?] kachkani yanapanaypaq.",
   "audio": null,
   "tags": [
    "emergencia",
    "calma",
-   "falta_quechua"
+   "por_confirmar"
   ],
-  "fuente": "chaski-emergencia (falta quechua, para la enfermera)",
+  "fuente": "enfermera de Pilpichaca (escrita por ella, ortografía normalizada)",
   "revisado": false,
-  "split": "banco"
+  "split": "banco",
+  "quy_original": "Ama llaquicuychu laude cachcany napapanaypac",
+  "nota": "«laude» puede ser «ladoykipi» (a su lado) o el autocorrector; confirmar con ella."
  },
  {
   "id": "cmp-000",
