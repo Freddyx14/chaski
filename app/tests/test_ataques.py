@@ -192,3 +192,72 @@ def test_error_del_cliente_es_bloqueo():
 
     s = correr.evaluar({"es": "x", "quy": "y", "tipo": "limpio"}, "juez_claude", Roto(), "m", "m")
     assert s["bloqueado"] is True and "no pude verificar" in s["motivo"]
+    assert s["ms"] >= 0
+
+
+def test_resultado_registra_tiempo_y_uso(ruta_banco, tmp_path):
+    salida = tmp_path / "res"
+    assert correr.main(["--modo", "chaski", "--simulado", "--banco", str(ruta_banco), "--salida", str(salida),
+                        "--modelo-critico", "claude-sonnet-5"]) == 0
+    r = leer_resultado(salida)
+    assert all("ms" in c for c in r["casos"])
+    uso = r["uso"]["por_modelo"]["claude-sonnet-5"]
+    assert uso["llamadas"] == r["llamadas_estimadas"] and uso["entrada"] == 0  # the fake has no usage
+    assert r["uso"]["precios_verificados"] is False
+
+
+# --- audit of 2026-10-24 (evals/ataques/AUDITORIA.md) ----------------------------------------------
+
+def test_agregar_un_par_no_mueve_los_demas_casos():
+    # One random stream per pair: a family member joining the form must not rewrite the audited cases.
+    nuevo = {"id": "t-C0", "es": "Tome dos pastillas", "quy": "Iskay pastillata upyay", "fuente": "prueba", "bloque": "C"}
+    antes = {c["id"]: c for c in construir.construir(PARES) if not c["id"].startswith("pulido")}
+    despues = {c["id"]: c for c in construir.construir([nuevo] + PARES) if not c["id"].startswith("pulido")}
+    assert {i: c for i, c in despues.items() if not i.startswith("t-C0")} == antes
+
+
+def test_auditar_reclasifica_quita_y_marca():
+    base = {"es": "Tome", "quy": "Upyay", "mutacion": "", "esperado": "pasar"}
+    floja, invalida = next(iter(construir.TRADUCCION_FLOJA)), next(iter(construir.MUTACION_INVALIDA))
+    banco = [
+        {**base, "id": floja, "tipo": "limpio", "fuente": "formulario"},
+        {**base, "id": invalida, "tipo": "negacion", "fuente": "formulario", "esperado": "bloquear"},
+        {**base, "id": "form-p9-E1-limpio", "tipo": "limpio", "fuente": "formulario", "es": "Hola", "quy": "Rimaykullayki"},
+        {**base, "id": "verif-000-limpio", "tipo": "limpio", "fuente": "frases.verificadas", "es": "Hola",
+         "quy": "Rimaykullayki "},
+        {**base, "id": "form-p9-C1-limpio", "tipo": "limpio", "fuente": "formulario", "es": "Venga", "quy": "Hamuy"},
+        {**base, "id": "form-p9-N1-limpio", "tipo": "limpio", "fuente": "formulario", "es": "Venga", "quy": "Hamuy"},
+    ]
+    salida = {c["id"]: c for c in construir.auditar(banco)}
+    assert salida[floja]["tipo"] == "traduccion_floja" and salida[floja]["esperado"] == "bloquear"
+    assert salida[floja]["mutacion"].startswith("auditoría: ")
+    assert invalida not in salida
+    assert "form-p9-E1-limpio" not in salida and salida["verif-000-limpio"]["reservada"] is True  # verified copy kept
+    assert "form-p9-C1-limpio" in salida and "form-p9-N1-limpio" not in salida                  # first copy kept
+    assert "reservada" not in salida["form-p9-C1-limpio"]
+
+
+@pytest.fixture(scope="module")
+def banco_real():
+    return [json.loads(l) for l in (ATAQUES / "banco.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
+def test_banco_real_sin_duplicados_ni_invalidas(banco_real):
+    claves = [(c["tipo"], c["es"].strip(), c["quy"].strip(), (c.get("pulido") or "").strip()) for c in banco_real]
+    assert len(claves) == len(set(claves))
+    ids = {c["id"]: c for c in banco_real}
+    assert len(ids) == len(banco_real)
+    assert not set(construir.MUTACION_INVALIDA) & set(ids)
+    for i in construir.TRADUCCION_FLOJA:
+        assert ids[i]["tipo"] == "traduccion_floja" and ids[i]["esperado"] == "bloquear", i
+
+
+def test_banco_real_mutaciones_mecanicas_bloqueadas_por_b4(banco_real):
+    for c in banco_real:
+        if c["tipo"] in ("numero", "dias", "negacion", "medicamento", "unidad", "vehiculo"):
+            assert not terminos_fijos(c["es"], c["quy"]).ok, c["id"]
+
+
+def test_banco_real_reservadas_son_las_verificadas(banco_real):
+    assert all(c.get("reservada") is True for c in banco_real if c["fuente"] == "frases.verificadas")
+    assert not [c for c in banco_real if c.get("reservada") and c["fuente"] != "frases.verificadas"]

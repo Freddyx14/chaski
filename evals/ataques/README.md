@@ -24,10 +24,16 @@ also carry `pulido`). Built from real phrase pairs: the family-written Chanka in
 | `agrega_consejo` / `agrega_diagnostico` | a family-written sentence appended that the Spanish never said | block |
 | `pulido_agrega` | the polished Spanish adds a fact (days, frequency, a medicine, «después de comer») | block |
 | `pulido_limpio` | the polish only removes filler («eh, este…») | pass |
+| `traduccion_floja` | nothing: a family pair that is NOT a correct translation (wrong number, a dose time or the medicine dropped, the instruction inverted). Found in the audit | block |
 
-Current bank (seed 13). 790 cases, 401 seeded errors and 389 correct ones: limpio 327 · numero 29 · dias 21 ·
-negacion 21 · medicamento 38 · unidad 33 · vehiculo 5 · agrega_consejo 103 · agrega_diagnostico 95 ·
-pulido_agrega 56 · pulido_limpio 62.
+Current bank (seed 13, audited 2026-10-24, see `AUDITORIA.md`). 952 cases, 507 seeded errors and 445 correct
+ones: limpio 383 · pulido_limpio 62 · traduccion_floja 19 · numero 37 · dias 23 · negacion 28 · medicamento 41 ·
+unidad 42 · vehiculo 5 · agrega_consejo 117 · agrega_diagnostico 139 · pulido_agrega 56. The 106 cases built from
+the 100 `verificadas` carry `reservada: true`; they are used here on purpose (this bank tests the critic, it never
+trains or prompts anything), and the flag lets a run leave them out.
+
+The audit lives in `construir.py` (`TRADUCCION_FLOJA`, `MUTACION_INVALIDA`, `auditar()`), applied by id, so a rebuild
+keeps it. Each pair has its own random stream, so a new family member in the form adds cases and moves none.
 
 **The live case of 2026-10-24 is fixed in the bank.** The audit approved «Unuwan upyaykuy, manan
 téwanchu» (for «Tómela con agua, no con té») although its blind back-translation was «Bebe con uno, no
@@ -54,6 +60,7 @@ uv run python ../evals/ataques/correr.py --modo chaski --simulado             # 
 uv run python ../evals/ataques/correr.py --modo juez_claude --limite 5 --si   # naive baseline
 uv run python ../evals/ataques/correr.py --modo chaski --limite 5 --si        # the real checks, critic on Haiku
 uv run python ../evals/ataques/correr.py --modo chaski --modelo-critico <sonnet-id> --si   # Haiku vs Sonnet
+uv run python ../evals/ataques/puntuar.py ../evals/ataques/resultados/<archivo>.json       # CRITERIOS gates + score
 ```
 
 - `juez_claude` is one call per case asking «is this a faithful translation? yes/no». That's what most
@@ -64,6 +71,13 @@ uv run python ../evals/ataques/correr.py --modo chaski --modelo-critico <sonnet-
 - `--limite N` takes the first N cases **of each type**. A cheap run still covers every type.
 - Results go to `resultados/<modo>-<fecha>.json`, with the critic or judge model recorded.
   Simulated runs get a `-simulado` suffix and are not committed.
+- Every case records `ms` (wall time of its check), and the file records `uso`: real tokens per model from
+  `response.usage` (input, output, cache read, cache write) and a cost estimate, via the counting wrapper in
+  `evals/costo.py`. **The prices there are not verified** (from the bundled Claude API docs, marked
+  `# VERIFY against anthropic.com/pricing`), so the cost is an estimate; the token counts are real.
+- `puntuar.py` scores a result exactly as `evals/CRITERIOS.md`: gates G1-G3, then 40 content + 25 correct
+  phrases + 25 critic time + 10 cost. Older files without `ms` or `uso` get «n/a» for those parts. By default
+  it re-labels old runs with the audit (`--sin-reetiquetar` to turn it off).
 - `--simulado` returns empty facts and «faithful» to everything. A simulated `chaski` run measures
   only the plain-code layers. **The pitch number comes from a real run, never from a simulated one.**
 
@@ -73,11 +87,9 @@ uv run python ../evals/ataques/correr.py --modo chaski --modelo-critico <sonnet-
   `Pareceracetanolta`). The number table and the fuzzy loanword match absorb most of it. The table
   is standard Quechua numerals plus the spellings seen in the form, and it still has to be confirmed by
   the nurse.
-- **Some `limpio` pairs really are wrong.** In the simulated run, the 6 "false blocks" are all errors
-  in the family's own transcription. Two write *treinta y nueve* as 38 and 19, one writes *ocho* as
-  *esqon* (9), one has a *doce* the table can't read, one spells paracetamol beyond recognition, and
-  *«Media pastilla, no entera»* is written without the «no entera». Read the blocked `limpio` ids before
-  quoting a false-block rate. Some of them are catches.
+- **Some family pairs really are wrong.** The audit moved 19 of them to `traduccion_floja` and left 39
+  `dudoso` for the nurse (`AUDITORIA.md` §3). In the simulated run the 8 remaining `limpio` blocks are 5 of
+  those doubts and 3 correct pairs whose number spelling B4 does not know yet (`janchis`, `hiscun`, `qinsa`).
 - The mechanical mutations use the same number table as the B4 guard. So B4 catching them is expected,
   and the honest test of B4 is the false-block rate on `limpio`. The added-content cases and
   «después de comer» can only be caught by the critic, so they need a real run.
