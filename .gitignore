@@ -12,6 +12,8 @@ __pycache__/
 .DS_Store
 data/raw/
 *.log
+# Chaski's automatic memory: real consultation turns, never in git (chaski/memoria.py)
+memoria_auto.jsonl
 
 # PDFs de papers y CSV pesados (no versionar)
 Ricardo-idea/papers/*.pdf

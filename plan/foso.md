@@ -28,6 +28,26 @@ eso mejoran lo de las familias de la región y alejan de las 30 de Ricardo, que 
 más en idiomas con pocos datos ([Zebaze et al. 2025](https://arxiv.org/html/2408.00397)), y lo que más pesa es la
 calidad del ejemplo ([Vilar et al. 2023](https://aclanthology.org/2023.acl-long.859/)).
 
+## Paso 2, hecho: la memoria automática (D44)
+Freddy (01:14): revisar a mano no escala, y la enfermera no va a usar la app a diario. Medido antes de construir
+(`evals/moat/memoria_auto.py`): Chaski tradujo 100 frases clínicas nuevas y 85 pasaron barreras + crítico.
+
+| Ejemplos | es→qu | qu→es |
+|---|---|---|
+| Ninguno | 54,9 | 51,2 |
+| **Solo los de la enfermera** | **57,4** | **56,3** |
+| Solo la memoria automática | 56,2 | 54,3 |
+| Las dos mezcladas / enfermera 5 + automática 2 | 56,6 / 56,4 | 54,8 / 54,8 |
+
+La memoria automática ayuda frente a nada, pero **nunca le ganó a las frases revisadas**, mezclada de ningún modo.
+Por eso (decisión de Claude, que Freddy delegó): **guarda todo sola, pero solo lo aprobado se vuelve ejemplo.**
+- Cada turno que pasó el crítico se guarda (`chaski/memoria.py`, un JSONL de eventos, sin base de datos).
+- **El paciente es el revisor**: si el turno siguiente es una respuesta normal, la frase queda *confirmada*; si
+  pregunta «¿qué dijo?», queda *dudosa*.
+- La embajadora (la enfermera, o un promotor de salud por zona) ve primero las más confirmadas y las aprueba con un
+  comando: `uv run python -m chaski.memoria` y `… aprobar ID`. Desde el turno siguiente es ejemplo.
+- Todo corre en segundo plano: **cero segundos más por turno**, y un error de memoria nunca rompe un turno.
+
 ## El lazo (el canal de mejora que todo agente nuestro debe tener)
 ```
 consulta → turno bloqueado o corregido → cola para la enfermera (lo que el crítico dudó + lo más usado)

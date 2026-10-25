@@ -31,7 +31,7 @@ from typing import Callable, Literal
 import anthropic
 from pydantic import BaseModel, Field
 
-from chaski import critico, guardas as g
+from chaski import critico, memoria, guardas as g
 from chaski.interprete import Accion, Contexto, Decision, Idioma, Rol, TurnoEntrada, decidir
 from chaski.traducir import Motor, TextoTraducido, traducir
 
@@ -111,6 +111,16 @@ CandidatosFn = Callable[[str], list]
 VozFn = Callable[[str, Idioma], bytes]  # text, language -> wav bytes
 
 _hilos = ThreadPoolExecutor(max_workers=8, thread_name_prefix="chaski")
+
+
+def _en_fondo(fn, *args) -> None:
+    """Fire and forget: the memory never adds time to a turn, and an error in it never reaches one."""
+    def correr():
+        try:
+            fn(*args)
+        except Exception:  # noqa: BLE001
+            pass
+    _hilos.submit(correr)
 
 
 def anticipar_env() -> bool:
@@ -367,6 +377,9 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
         t0 = time.perf_counter()
         d = decidir(client, turno_decidir, contexto, modelo=modelo)
         medir("decidir", t0)
+        if memoria.activa() and not sembrada and contexto.historial:
+            ultimo = contexto.historial[-1]
+            _en_fondo(memoria.senal_de_respuesta, ultimo.rol, ultimo.texto, turno.rol, d.accion)
         if al_decidir:
             try:
                 al_decidir({"accion": d.accion, "para": d.para, "idioma_salida": d.idioma_salida,
@@ -480,6 +493,8 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
         if d.accion == "traducir" and turno.idioma == "quy":
             historial = f"{turno.texto} (en castellano: {tt.texto})"
         r = listo(tt.texto, tt=tt, historial=historial)
+        if memoria.activa() and not sembrada and d.accion == "traducir":
+            _en_fondo(memoria.guardar_turno, turno.rol, historial, turno.texto, d.texto_pulido, tt.texto, de, a)
         return r.model_copy(update={"audio_wav_b64": audio_b64, "anticipada": usada_anticipada})
     except Exception as e:  # fail closed: nothing reaches the patient
         return bloqueado(f"falló el paso «{paso}» ({type(e).__name__})", paso)

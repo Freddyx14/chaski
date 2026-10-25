@@ -1,0 +1,756 @@
+{
+ "memoria": [
+  {
+   "id": "auto-cmp-170",
+   "es": "Respire hondo y bote el aire.",
+   "quy": "Hatunta samay, chaymantataq wayrata wischuy.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-212",
+   "es": "Póngase la bata.",
+   "quy": "Batata churakuy.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-137",
+   "es": "¿Cree usted que el demonio se ha apoderado de Ud.?",
+   "quy": "¿Supay qamta hapisunki nispa yuyankichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-043",
+   "es": "Quítese la ropa, le voy a examinar",
+   "quy": "Pachaykita qichukuy, qawasqayki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-038",
+   "es": "¿Tiene tos por momentos o constante?",
+   "quy": "¿Ratolla ujukunkichu icha tukuy tiempochu ujukunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-108",
+   "es": "¿Ahora está más renegona o sensible para llorar?",
+   "quy": "¿Kunanqa aswan phiñakuqñachu kanki, utaq usqaylla waqaqñachu kanki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-150",
+   "es": "Pase la saliva.",
+   "quy": "Umiykita millpuy.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-017",
+   "es": "¿Cómo es el dolor?",
+   "quy": "¿Imaynan nanan?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-005",
+   "es": "¿Tienes esposa?",
+   "quy": "¿Kanchu warmiyki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-044",
+   "es": "Abre la boca",
+   "quy": "Simiykita kichay",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-058",
+   "es": "¿Le duele aquí en el lado derecho?",
+   "quy": "¿Kaypichu, paña ladupi nanasunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-160",
+   "es": "Deme su brazo izquierdo.",
+   "quy": "Lloq'e rikraykita qoway.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-205",
+   "es": "Tiene que ir a la sala número 4.",
+   "quy": "Rinaykim tiyan sala número tawaman.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-171",
+   "es": "¿Le duele el lado derecho de su vientre cuando le toco?",
+   "quy": "¿Wiksaykiq paña ladon nananchu llamiptiy?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-008",
+   "es": "¿Cuántos hombres, cuántas mujeres?",
+   "quy": "¿Hayqa qarikuna, hayqa warmikuna?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-220",
+   "es": "Hoy día no coma nada.",
+   "quy": "Kunan punchaw ama imatapas mikunkichu.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-227",
+   "es": "No se saque esto.",
+   "quy": "Ama kayta hurqunkichu.",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-204",
+   "es": "¿Le da miedo el hospital?",
+   "quy": "¿Hospitalta manchakunkichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-211",
+   "es": "Aquí va a orinar.",
+   "quy": "Kaypi ispanki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-134",
+   "es": "Pero si en el día, en su cuarto se duerme?",
+   "quy": "¿Ichaqa p'unchaypiqa, cuartoykipichu puñunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-003",
+   "es": "¿De dónde eres?",
+   "quy": "¿Maymantataq kanki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-026",
+   "es": "¿La mitad?",
+   "quy": "¿Chawpichu?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-221",
+   "es": "Le voy a llevar a operar.",
+   "quy": "Operananpaq apasqayki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-142",
+   "es": "¿Cree que lo van a matar?",
+   "quy": "¿Yuyankichu wañuchisunkikuchu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-105",
+   "es": "¿Le da de lactar a su hijo?",
+   "quy": "¿Ñuñuchinkichu wawaykita?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-006",
+   "es": "¿Tienes esposo?",
+   "quy": "¿Kanchu qosayki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-197",
+   "es": "Tiene que traer orina.",
+   "quy": "Ispayniykita apamunayki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-120",
+   "es": "Saque la lengua, sople, silbe.",
+   "quy": "Qalluykita horqoy, phukuy, silwiy.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-217",
+   "es": "Le voy a sacar sangre.",
+   "quy": "Yawarniykita horqusayki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-094",
+   "es": "¿Cuándo fue la última vez que vino tu regla?",
+   "quy": "¿Haykakmantam qamta qhari warmi unquyniki (regla) hamurqa?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-072",
+   "es": "¿Cuánto tiempo mastica coca, ahora lo viene haciendo?",
+   "quy": "¿Haykak tiempomanta cocata hallpanki, kunankamapas hallpashankichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-149",
+   "es": "¿Por la noche ve bien?",
+   "quy": "¿Tutapi allintachu rikunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-053",
+   "es": "Deme su brazo para ver su presión.",
+   "quy": "Brazoykita quway presioniykita kawananpaq.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-114",
+   "es": "¿Le pican los genitales?",
+   "quy": "¿Genitalesniyki kirpachkanchu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-235",
+   "es": "Me siento mejor",
+   "quy": "Aswan allinta tarikuni",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-093",
+   "es": "¿Le baja poco o mucha cantidad de día o de noche?",
+   "quy": "¿Pisillachu, otaq achkachu urmasunki, punchawchu otaq tutachu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-193",
+   "es": "Para que le hagan el examen de sangre.",
+   "quy": "Yawarnikita qhawachinaykipaq.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-048",
+   "es": "¿Le duele el pecho cuando camina?",
+   "quy": "¿Puriptikichu qasqoyki nanan?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-159",
+   "es": "Si camina rápido o despacio.",
+   "quy": "Utqayllachu purinki icha allillamantachu purinki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-000",
+   "es": "¿Cómo estás?",
+   "quy": "¿Imaynalla kashanki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-052",
+   "es": "¿Siente que le palpita el pecho?",
+   "quy": "¿Qasquyki t'aqtasqanta sientenki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-165",
+   "es": "¿Le duele más cuando le quito la mano?",
+   "quy": "¿Astawanchu nanan makiyta horqoruptiy?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-068",
+   "es": "¿El dolor en el pecho se ha vuelto permanente?",
+   "quy": "¿Qasqu nanayniyki tukuy tiempo kaqñachu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-124",
+   "es": "¿Camina a pasos cortos?",
+   "quy": "¿Taksalla thaskispachu purinki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-141",
+   "es": "¿Cree que es otra persona o que es Dios?",
+   "quy": "¿Yuyankichu huk runa kasqaykita, icha Dios kasqaykitachu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-138",
+   "es": "¿Usted cree que es Dios o la Virgen?",
+   "quy": "¿Qamqa Diostachu otaq Virgentachu criinki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-113",
+   "es": "¿Es amarillo, con sangre?",
+   "quy": "¿Q'illuchu, yawarniyuqchu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-218",
+   "es": "Le voy a inyectar.",
+   "quy": "Inyectasqayki.",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-133",
+   "es": "¿Tiene dificultad para dormir?",
+   "quy": "¿Sasachakuyta puñunkichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-225",
+   "es": "¿Está cómodo en la cama?",
+   "quy": "¿Allintachu puñunapi kachkanki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-215",
+   "es": "Le cortaré las uñas.",
+   "quy": "Sillukita kuchusqayki.",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-101",
+   "es": "¿Cómo fue su parto? ¿dónde y quién la ha atendido?",
+   "quy": "¿Imaynam wachakuyniyki karqa? ¿Maypim, pim qawarqasunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-169",
+   "es": "¿Le duele cuando le toco el lazo izquierdo?",
+   "quy": "¿Lloqe ladoykita llamiptiy, nanasunkichu?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-200",
+   "es": "Tiene que traer sus heces.",
+   "quy": "Akaykita apamunayki tiyan.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-095",
+   "es": "¿Cuántos días le baja sangre?",
+   "quy": "¿Hayqa punchawtam yawarniyki uraykamun?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-234",
+   "es": "¿Y ahora, cómo se siente?",
+   "quy": "¿Y kunanqa, imaynan tarikunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-116",
+   "es": "¿Tiene dolor de cabeza y se acompaña de náuseas?",
+   "quy": "¿Umaykichu nanan, jinaspa musphaykunkichu?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-203",
+   "es": "Tiene que hospitalizarse.",
+   "quy": "Hospitalpi internakunayki tiyan.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-222",
+   "es": "Está muy delicado.",
+   "quy": "Allinmi llumpay nanasqa kashan.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-046",
+   "es": "¿Con cuántas almohadas duerme?",
+   "quy": "¿Hayqa sawnaswan puñunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-033",
+   "es": "¿Orina bien de día / de noche?",
+   "quy": "¿Allintachu ispanki punchawpi / tutapi?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-037",
+   "es": "¿Tiene dolor (ardor punzada) en el cuello?",
+   "quy": "¿Kunkaykichu nanan, kanasqa hina utaq tuksisqa hina?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-087",
+   "es": "¿Algunas veces con ardor, dolor al terminar de orinar?",
+   "quy": "¿Wakin kutinpichu ruparispa, ispayta tukunaykipi nanaywan ispanki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-163",
+   "es": "Respire para ver su desplazamiento.",
+   "quy": "Samay, imaynata cuyusqaykita qawananpaq.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-097",
+   "es": "¿O solo el primer o segundo día?",
+   "quy": "¿Icha ñawpaq punchawllachu, icha iskay kaq punchawllachu?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-089",
+   "es": "¿Alguna vez ha orinado sangre y con olor?",
+   "quy": "¿Huk kutipas yawarta, asnaqta ispayarankichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-062",
+   "es": "Late bien y está normal / Está como loco, late rápido",
+   "quy": "Allintam takin, normallanmi / Loco hinan, utqaytam takin",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-214",
+   "es": "Le voy a lavar.",
+   "quy": "Mayllasayki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-183",
+   "es": "Le voy a apretar los talones de los pies.",
+   "quy": "Chakiykipa takankunata ñit'isqayki.",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-172",
+   "es": "¿Cuándo respira hondo y cuándo bota el aire?",
+   "quy": "¿Hayqapim hatunta samanki, hayqapim wayrata wikch'unki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-035",
+   "es": "¿Es cierto que a veces se despierta? ¿Cuántas veces?",
+   "quy": "¿Chiqaqchu wakinpi rikcharinki? ¿Hayqa kutita?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-117",
+   "es": "Cuando le duele la cabeza ¿ve luces?",
+   "quy": "Umayki nanaptin, ¿k'anchaykunatachu rikunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-129",
+   "es": "¿Se encierra en su cuarto?",
+   "quy": "¿Cuartuykipi kirkukunkichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-230",
+   "es": "No hable, le va a doler más.",
+   "quy": "Ama rimaychu, astawan nanasunkiman.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-224",
+   "es": "Ya está mejor.",
+   "quy": "Kunanqa allinñam kachkanki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-056",
+   "es": "Respire / no respire / póngase de costado / siéntese",
+   "quy": "Samay / ama samaychu / ladoykiman tikrakuy / tiyaykuy",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-077",
+   "es": "¿Tiene dolor en el vientre (abdomen)? ¿Cómo es?",
+   "quy": "¿Wiksachu nanan? ¿Imaynatan nanan?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-004",
+   "es": "¿De dónde vienes?",
+   "quy": "¿Maymantataq hamunki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-146",
+   "es": "Quítese la ropa",
+   "quy": "P'achaykita horquy.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-061",
+   "es": "Descúbrase la camisa para examinar su corazón.",
+   "quy": "Camisaykita hoqarikuy, sonqoykita qawanaypaq.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-153",
+   "es": "Respire hondo y no tan rápido.",
+   "quy": "Hatunta samay, ama usqhaytachu samaychu.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-154",
+   "es": "¿Le duele lo que toco?",
+   "quy": "¿Llamiykusqayqa nanasunkichu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-135",
+   "es": "¿Desde cuándo ve cosas extrañas que no son realidad?",
+   "quy": "¿Haykakmanta imaymana raro kaqkunata rikunki, mana cheqap kaqkunatachu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-240",
+   "es": "Ahora está bien, así que puede irse.",
+   "quy": "Kunanqa allinñam, chayrayku ripuyta atinkiñam.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-050",
+   "es": "Además de dolor, ¿qué otra cosa siente?",
+   "quy": "Nanaymanta aswan, ¿imatawan sientenki?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-009",
+   "es": "¿Cuántos hijos muertos? ¿De qué?",
+   "quy": "¿Hayqa wawaykikuna wañurunku? ¿Imamanta wañurunku?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-125",
+   "es": "¿Ha cambiado su modo de hablar?",
+   "quy": "¿Rimayniyki tikrakunchu?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-140",
+   "es": "¿Ha notado que habla sólo?",
+   "quy": "¿Reparankichu sapallanta rimasqanta?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-079",
+   "es": "¿Le funciona bien el intestino?",
+   "quy": "¿Chunchulliyki allintachu llamkan?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-199",
+   "es": "Tiene que traer esputo.",
+   "quy": "Thuqayta apamunayki tiyan.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-202",
+   "es": "Trae dos personas para que te den sangre.",
+   "quy": "Iskay runakunata apamuy, yawarta qusunaykipaq.",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-010",
+   "es": "¿Por qué ha venido señor / señora / joven / señorita?",
+   "quy": "¿Imaraykutaq hamunki, señor/señora/joven/señorita?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-075",
+   "es": "¿No tiene deseos de comer, desde cuándo?",
+   "quy": "¿Mana mikuyta munankichu, haykakmantam?",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-198",
+   "es": "Trae orina en este frasco.",
+   "quy": "Kay potowan ispayniykita apamuy.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-158",
+   "es": "Ahora voy a oír cómo camina su corazón.",
+   "quy": "Kunan uyarisaq sonqoyki imaynata purichkan chayta.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-168",
+   "es": "Le voy a dar unos golpecitos en su vientre.",
+   "quy": "Wiksaykipi huk takatakachallata ruwasqayki.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-055",
+   "es": "Le voy a examinar su corazón.",
+   "quy": "Sonqoykita qhawarisaq.",
+   "enfermera": false,
+   "paso": true
+  },
+  {
+   "id": "auto-cmp-118",
+   "es": "¿Desde cuándo arrastra la pierna?",
+   "quy": "¿Haykakmanta chakikita aysakuspa purishanki?",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-174",
+   "es": "Levante las manos.",
+   "quy": "Maquiykikunata hoqarikuy.",
+   "enfermera": false,
+   "paso": false
+  },
+  {
+   "id": "auto-cmp-051",
+   "es": "¿Ganas de llorar?",
+   "quy": "¿Wakayta munankichu?",
+   "enfermera": false,
+   "paso": true
+  }
+ ],
+ "familias": {
+  "base": {
+   "chrf2": 54.86,
+   "b4_frenadas": 1,
+   "memoria": 0
+  },
+  "enfermera": {
+   "chrf2": 57.4,
+   "b4_frenadas": 1,
+   "memoria": 21
+  },
+  "auto": {
+   "chrf2": 56.18,
+   "b4_frenadas": 1,
+   "memoria": 85
+  },
+  "enfermera+auto": {
+   "chrf2": 56.63,
+   "b4_frenadas": 0,
+   "memoria": 106
+  },
+  "enfermera5+auto2": {
+   "chrf2": 56.37,
+   "b4_frenadas": 1
+  }
+ },
+ "familias_inv": {
+  "base": {
+   "chrf2": 51.15,
+   "b4_frenadas": null,
+   "memoria": 0
+  },
+  "enfermera": {
+   "chrf2": 56.34,
+   "b4_frenadas": null,
+   "memoria": 21
+  },
+  "auto": {
+   "chrf2": 54.34,
+   "b4_frenadas": null,
+   "memoria": 85
+  },
+  "enfermera+auto": {
+   "chrf2": 54.82,
+   "b4_frenadas": null,
+   "memoria": 106
+  },
+  "enfermera5+auto2": {
+   "chrf2": 54.79,
+   "b4_frenadas": null
+  }
+ }
+}

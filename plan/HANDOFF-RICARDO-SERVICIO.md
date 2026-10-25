@@ -4,6 +4,9 @@
 > las frases de la enfermera como ejemplos del traductor (`CHASKI_EJEMPLOS=1`, ya es el valor por defecto; no hay que
 > tocar nada más). **Y renombra D40 → D43** en los comentarios de `servicio/app.py` (~l.178), `servicio/desplegar.sh`
 > (~l.92) y el título de `servicio/PARA-FREDDY.md` (~l.416): el traductor es D43; D40 es «Chaski sin fondo» de ui-ux.
+> **Memoria automática (D44, dom 01:45):** en `desplegar.sh` agrega `export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl`
+> (y `mkdir -p $DESTINO/memoria`), fuera de la carpeta `chaski/` que se sincroniza con `--delete`; si no, cada
+> despliegue borra lo aprendido. Para ver y aprobar: `uv run python -m chaski.memoria` y `… aprobar ID`.
 > Y `/turno/paciente` solo acepta WAV (la app manda WAV, así que anda); con .webm y .m4a da 500.
 
 > Decisión de Freddy (D43, 23:38; se citó como D40 por error, D40 es «Chaski sin fondo»): **traduce Claude Sonnet 5 con esfuerzo medio**, no NLLB. Medido en los mismos sets:

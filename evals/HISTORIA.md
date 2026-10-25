@@ -91,6 +91,22 @@ Turno completo con los ejemplos (20 turnos reales): **20/20 dichos, p50 8,0 s, p
 14,3 s). Queda prendido (D41). Por qué bajan las de Ricardo: los ejemplos enseñan el quechua de la zona, y esas 30
 vienen de otra fuente y variedad; las de las familias son de la región y tienen ~5 referencias, por eso mandan.
 
+### 2e · ¿Memoria automática como ejemplos? (dom 25-oct, 01:35)
+
+100 frases clínicas nuevas traducidas por Chaski; 85 pasaron barreras + crítico. Archivo `evals/moat/resultados/memoria-auto-*.json`.
+
+| Ejemplos | Familias es→qu | Familias qu→es |
+|---|---|---|
+| Ninguno | 54,9 | 51,2 |
+| **Enfermera (24)** | **57,4** | **56,3** |
+| Automática (85) | 56,2 | 54,3 |
+| Enfermera + automática | 56,6 | 54,8 |
+| Enfermera 5 + automática 2 | 56,4 | 54,8 |
+
+La base salió 54,9 acá y 52,6 en §2d: el ruido entre corridas es de ~2 puntos, por eso se decide por la dirección
+repetida (la automática nunca superó a la enfermera en 3 mezclas), no por una cifra. Decisión D44: se guarda todo,
+solo lo aprobado es ejemplo.
+
 ## 3 · ¿Encuentra la frase verificada correcta? (RAG, 76 consultas)
 
 | Método | Acierta a la primera | Entre las 5 primeras |

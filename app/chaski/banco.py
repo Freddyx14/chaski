@@ -289,12 +289,17 @@ def ejemplos_revisados(texto: str, idioma: str, k: int = EJEMPLOS_K) -> list[dic
     region's Quechua more than the content, so no similarity threshold (one measured worse). `idioma` is the language of
     `texto`: Spanish searches the Spanish side, Quechua the Quechua side.
     """
+    from chaski import memoria  # approved automatic memory joins the reviewed phrases (D44)
+
     lado = "es" if idioma == "spa" else "quy"
+    extra = memoria.aprobadas() if memoria.activa() else []
+    llave = f"{lado}:{len(extra)}"  # rebuilt only when something new was approved
     with _banco_lock:
-        if lado not in _revisados:
+        if llave not in _revisados:
             items = [it for it in cargar_items() if it.get("revisado") is True and str(it.get("quy", "")).strip()]
-            _revisados[lado] = Banco([{**it, "es": it[lado], "_es": it["es"]} for it in items])
-        idx = _revisados[lado]
+            items += [{"id": f"mem-{i}", "es": x["es"], "quy": x["quy"]} for i, x in enumerate(extra)]
+            _revisados[llave] = Banco([{**it, "es": it[lado], "_es": it["es"]} for it in items])
+        idx = _revisados[llave]
     return [{"es": it["_es"], "quy": it["quy"]} for it, _ in idx.buscar(texto, k=k)]
 
 
