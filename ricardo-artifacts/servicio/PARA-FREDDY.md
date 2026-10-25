@@ -579,3 +579,63 @@ POST /turno/paciente         200   wav, m4a y webm
 - **`/turno/paciente` con .webm y .m4a ya no da 500.** Los convierte con ffmpeg antes de reconocer.
 - **`chaski/` no se sincroniza con `--delete`** desde acá, así que la memoria no corría ese riesgo ni
   antes. Igual la puse fuera: que dependa de un detalle de mi script es exactamente lo que no quieres.
+
+
+---
+
+## 🔊 La voz arreglada (dom 25-oct, mañana)
+
+Los tres pasos de tu sección, hechos y verificados contra la URL pública.
+
+| Hecho | Qué |
+|---|---|
+| ✅ | `voz_castellano` en `flujo.py` con Cartesia Sonic + `CHASKI_VOZ_ES` |
+| ✅ | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo |
+| ✅ | `/voz` con `CHASKI_VOZ_QUY` (paso 2b) |
+| ✅ | Quechua con `mama_freddy` |
+| ✅ | Desplegado y probado |
+
+### Cómo sé que de verdad es Cartesia y no el respaldo
+
+La frecuencia lo delata, y por eso la miré en vez de confiar en que no hubo excepción:
+
+```
+castellano   24000 Hz   ← Cartesia
+quechua      16000 Hz   ← mms-tts-quy ajustado con tu mamá
+respaldos usados: 0
+```
+
+Si el castellano saliera a 16 kHz sería Meta leyendo español otra vez, que es justo el ruido que
+veníamos a quitar.
+
+**Voz castellana: Ximena** (`3597a26f-80ef-4bd5-8101-9699bc764917`), latina, clara y pausada. Está en
+el entorno como `CHASKI_VOZ_ES`, así que cambiarla es una variable y un reinicio.
+
+### Un problema que no estaba en tu lista
+
+El WAV de Cartesia venía con la cabecera de un flujo: **un audio de 1.6 s declaraba durar 89 478 s.**
+Cartesia la escribe antes de saber cuánto va a durar. Un reproductor que le crea muestra una pista de
+24 horas o no deja moverse por ella.
+
+Se reescriben los tamaños con los bytes que de verdad hay, después de recibir. Ahora:
+
+```
+castellano: 24000 Hz · 1.6s · 76878 bytes
+```
+
+### El entorno quedó así
+
+```
+CHASKI_VOZ_QUY=mama_freddy
+CHASKI_VOZ_ES=3597a26f-80ef-4bd5-8101-9699bc764917
+CHASKI_MEMORIA_AUTO=1
+CHASKI_MEMORIA_RUTA=…/orquestador/memoria/memoria_auto.jsonl
+CHASKI_NLLB_URL=        (vacía)
+```
+
+`p24` sigue como respaldo: `CHASKI_VOZ_QUY=p24` y reiniciar, si `mama_freddy` falla en vivo.
+
+### De tu lado no cambia nada
+
+El quechua lo pide la app a `/voz` sin mandar `voz`, y ahora eso devuelve `mama_freddy` en vez de
+`p24`. El castellano viene en el `audio_wav_b64` del turno. Build 16 debería sonar bien sin tocar la app.

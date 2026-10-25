@@ -239,7 +239,64 @@ def decir_en_voz(texto_quechua: str, voz: str = "p24") -> tuple[bytes, float]:
 # --- entender castellano con Cartesia -------------------------------------
 
 CARTESIA_STT = "https://api.cartesia.ai/stt"
+CARTESIA_TTS = "https://api.cartesia.ai/tts/bytes"
+# Ximena: latina, clara y pausada. Es la que Chaski usa para hablarle al
+# personal; el quechua nunca pasa por aqui, Cartesia no lo soporta.
+VOZ_ES_POR_DEFECTO = "3597a26f-80ef-4bd5-8101-9699bc764917"
 CARTESIA_VERSION = "2026-08-14"
+
+
+def voz_castellano(texto: str) -> bytes:
+    """Lo que Chaski le dice al personal, en castellano, con Cartesia Sonic.
+
+    El castellano iba saliendo por `mms-tts-quy`, el modelo de quechua de Meta
+    leyendo español: de ahi la voz de robot. Cartesia es lo que el diseño decia
+    desde el principio (D16) y lo que ya usamos para oir en `/escuchar`.
+    """
+    clave = os.environ.get("CARTESIA_API_KEY")
+    if not clave:
+        raise RuntimeError("falta CARTESIA_API_KEY en el entorno")
+    with httpx.Client(timeout=30) as cli:
+        r = cli.post(CARTESIA_TTS,
+                     headers={"Authorization": f"Bearer {clave}",
+                              "Cartesia-Version": CARTESIA_VERSION},
+                     json={"model_id": os.environ.get("CHASKI_CARTESIA_MODELO", "sonic-3.6"),
+                           "transcript": texto,
+                           "voice": {"mode": "id",
+                                     "id": os.environ.get("CHASKI_VOZ_ES", VOZ_ES_POR_DEFECTO)},
+                           "language": "es",
+                           "output_format": {"container": "wav", "encoding": "pcm_s16le",
+                                             "sample_rate": 24000}})
+    if r.status_code >= 400:
+        raise RuntimeError(f"Cartesia TTS {r.status_code}: {r.text[:200]}")
+    return _arreglar_cabecera_wav(r.content)
+
+
+def _arreglar_cabecera_wav(datos: bytes) -> bytes:
+    """Reescribe los tamanos de la cabecera WAV con los bytes que de verdad hay.
+
+    Cartesia devuelve la cabecera de un flujo: declara un tamano enorme porque
+    cuando la escribe todavia no sabe cuanto durara. Un archivo de 1.7 s decia
+    durar 89 478 s, y un reproductor que le crea a la cabecera muestra una pista
+    de 24 horas o no deja moverse por ella.
+    """
+    import struct
+
+    if len(datos) < 44 or datos[:4] != b"RIFF" or datos[8:12] != b"WAVE":
+        return datos
+    # El trozo `data` no siempre va en el byte 36: puede haber otros antes.
+    i = 12
+    while i + 8 <= len(datos):
+        nombre = datos[i:i + 4]
+        largo = struct.unpack_from("<I", datos, i + 4)[0]
+        if nombre == b"data":
+            reales = len(datos) - (i + 8)
+            arreglado = bytearray(datos)
+            struct.pack_into("<I", arreglado, i + 4, reales)
+            struct.pack_into("<I", arreglado, 4, len(datos) - 8)
+            return bytes(arreglado)
+        i += 8 + largo + (largo % 2)
+    return datos
 
 
 def entender_castellano(audio: bytes, nombre: str = "turno.webm") -> dict:

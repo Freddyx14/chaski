@@ -127,9 +127,19 @@ def _voz_para_chaski(texto: str, idioma: str) -> bytes:
     revisión en vez de después. Si el crítico bloquea, el audio se descarta y
     nunca suena — generar no es decir.
     """
-    from servicio.flujo import decir_en_voz
-    audio, _ = decir_en_voz(texto, voz="p24" if idioma == "quy" else "base")
-    return audio
+    from servicio.flujo import decir_en_voz, voz_castellano
+
+    if idioma == "quy":
+        audio, _ = decir_en_voz(texto, voz=os.environ.get("CHASKI_VOZ_QUY", "mama_freddy"))
+        return audio
+    try:
+        return voz_castellano(texto)
+    except Exception as e:
+        # Respaldo: robotico, pero nunca mudo. Que Chaski se quede callado en
+        # una posta es peor que sonar mal.
+        print(f"Cartesia no respondio ({type(e).__name__}); voz de respaldo", flush=True)
+        audio, _ = decir_en_voz(texto, voz="base")
+        return audio
 
 
 def _dependencias(motor: str):
@@ -491,11 +501,11 @@ def corpus_exportar(persona: str = Form("")):
 
 
 @aplicacion.post("/voz")
-def ruta_voz(texto: str = Form(...), voz: str = Form("p24")):
+def ruta_voz(texto: str = Form(...), voz: str = Form("")):
     """Solo la voz, para pedirla DESPUÉS de mostrar el texto."""
     from servicio.flujo import decir_en_voz
     try:
-        audio, ms = decir_en_voz(texto, voz)
+        audio, ms = decir_en_voz(texto, voz or os.environ.get("CHASKI_VOZ_QUY", "mama_freddy"))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
     return Response(content=audio, media_type="audio/wav", headers={"X-Ms": str(ms)})

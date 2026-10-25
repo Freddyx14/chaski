@@ -100,6 +100,10 @@ ssh_ "set -e
   # D44, memoria automatica. Vive FUERA de la carpeta chaski, que es lo que
   # este script sincroniza: si quedara adentro, cada despliegue la borraria.
   mkdir -p $DESTINO/memoria
+  # La voz de Chaski: quechua con la de la mama de Freddy (SOT F5), castellano
+  # con Cartesia. p24 queda como respaldo si la primera falla en vivo.
+  export CHASKI_VOZ_QUY=mama_freddy
+  export CHASKI_VOZ_ES=3597a26f-80ef-4bd5-8101-9699bc764917
   export CHASKI_MEMORIA_AUTO=1
   export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl
   export PYTHONPATH=$DESTINO
