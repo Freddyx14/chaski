@@ -64,6 +64,7 @@ NO_ENTENDI = {
 TEMAS = ("parte_del_cuerpo", "desde_cuando", "intensidad", "medicamento", "dosis", "frecuencia", "duracion",
          "alergia", "embarazo", "quien_es_el_paciente", "otro")
 MAX_REPREGUNTAS_SEGUIDAS = 2  # across topics, so two speakers can never ping-pong forever
+CONFIRMAR = "confirmar"  # the orchestrator's «please repeat» after a block; not a C4 clarifying question (audit M2)
 
 
 class Candidata(BaseModel):
@@ -253,7 +254,8 @@ def aplicar_reglas(propuesta: DecisionModelo | None, turno: TurnoEntrada, contex
     if d.accion == "repreguntar":
         tema = _norm_tema(d.dato_faltante)
         d.dato_faltante = tema
-        if tema in contexto.repreguntas_seguidas or len(contexto.repreguntas_seguidas) >= MAX_REPREGUNTAS_SEGUIDAS:
+        seguidas = [t for t in contexto.repreguntas_seguidas if t != CONFIRMAR]
+        if tema in seguidas or len(seguidas) >= MAX_REPREGUNTAS_SEGUIDAS:
             contexto.repreguntas_seguidas.clear()
             return Decision(accion="traducir", para=otro_rol(turno.rol), idioma_salida=otro_idioma(turno.idioma),
                             texto_pulido=turno.texto.strip(), motivo=f"segunda repregunta sobre {tema}; se traduce tal cual",

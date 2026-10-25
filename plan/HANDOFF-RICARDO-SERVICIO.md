@@ -38,6 +38,7 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | **Receta por voz**: `POST /receta` pegada y desplegada. Foto → `accion repreguntar`, `para personal`, «Leí: Paracetamol 500 mg, una tableta cada 8 horas…», `contexto.receta_pendiente` puesto y `modo receta`, con voz. Después «sí» por `/turno/enfermera` → `para paciente`, `idioma_salida quy`, «Upyay huk tableta Paracetamol 500 mg niqta, sapa pusaq horamanta.», motivo «receta leída de la foto, confirmada por el personal». Y «no, son dos tabletas» borra la pendiente y sigue como turno normal | afa5730 |
 | [x] | Arreglos de auditoría (8498191, ff84896, 6795247, b6554e2) desplegados. «killa» = mes verificado con audio real: `p16_N_063` → `dicho` «Va a regresar en un mes.», `p16_C_009` → `dicho` «Volverá dentro de un mes.» | fc03e84 |
 | [x] | **URGENTE** desplegado: decisión con pensamiento «low». `CHASKI_PENSAR_DECIDIR` no está en el entorno, así que usa el valor por defecto. «Le dio diarrea.» ya no se cuelga: `decision` en 4,4–5,7 s (era 27 s y salía «no entendí»). Frases cortas: 2,3 s y 3,3 s | e486b39 |
+| [ ] | `git pull` y desplegar (dom 04:05): auditoría M2, el «repítame» tras un bloqueo ya no gasta un cupo de repregunta. Sin variables nuevas | `uv run pytest -q` → 424 verdes |
 
 > ⚠️ Medido de extremo a extremo contra la URL pública, con la red y ngrok dentro. «Le dio
 > diarrea.» queda en **4,4–5,7 s**, tres intentos: por debajo del listón de 5 s solo a veces.

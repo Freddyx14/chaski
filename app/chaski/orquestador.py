@@ -130,7 +130,7 @@ def _en_fondo(fn, *args) -> None:
 # Nothing doubtful reaches the listener: the question goes back to whoever spoke. A second block in a row, a rehearsal
 # (the barrier demo) or a failure that is not a check (network, model) still ends in the plain block.
 
-CONFIRMAR = "confirmar"
+from chaski.interprete import CONFIRMAR  # noqa: E402  shared with C4's counter (audit M2)
 _CAMPOS = [  # (substring of the guard/critic reason, field id, how it is said to the staff)
     ("dosis", "dosis", "la dosis"), ("cada_horas", "frecuencia", "cada cuánto se toma"),
     ("frecuencia", "frecuencia", "cada cuánto se toma"), ("dias", "duracion", "por cuántos días"),

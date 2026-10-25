@@ -195,3 +195,13 @@ def test_opciones_decidir_por_defecto_low_con_espacio(monkeypatch):
     import pytest
     with pytest.raises(ValueError):
         it.opciones_decidir()
+
+
+def test_la_pregunta_de_repetir_no_gasta_un_cupo_de_repregunta():
+    from chaski import interprete as it
+    ctx = it.Contexto(repreguntas_seguidas=[it.CONFIRMAR, "medicamento"])
+    turno = it.TurnoEntrada.model_validate({"texto": "dele el jarabe", "idioma": "spa", "rol": "personal"})
+    p = it.DecisionModelo(accion="repreguntar", para="personal", idioma_salida="spa", texto_pulido="¿Cuánto jarabe?",
+                          motivo="m", frase_banco_id=None, dato_faltante="dosis")
+    d = it.aplicar_reglas(p, turno, ctx)
+    assert d.accion == "repreguntar" and d.dato_faltante == "dosis"
