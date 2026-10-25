@@ -1,0 +1,292 @@
+{
+ "resumen": {
+  "turnos": 30,
+  "estados": {
+   "dicho": 9,
+   "pidio_repetir": 12,
+   "error_red": 9
+  },
+  "chrf2_dichos_vs_lo_que_quiso_decir": 72.51,
+  "numeros_intactos": "1/1",
+  "s_p50": 12.3,
+  "s_p95": 22.4
+ },
+ "turnos": [
+  {
+   "id": 31,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.4,
+   "ref": "Aquí está su receta",
+   "salida": "Aquí está su receta.",
+   "motivo": "Paciente muestra la receta; intención clara, se traduce.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 2,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 14.0,
+   "ref": "Tome la pastilla después de comer",
+   "salida": "Después de comer, tome las pastillas.",
+   "motivo": "Paciente repite la indicación; corresponde pasarla al personal.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 65,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 6.9,
+   "ref": "¿Podría repetir eso?",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Frase confusa, sin intención clara; no se debe adivinar",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 44,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 12.3,
+   "ref": "¿Qué está buscando, señor?",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Verbo ininteligible; intención del paciente no es clara",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 68,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 7.7,
+   "ref": "Cálmese, señor",
+   "salida": "Estoy tranquilo, señor.",
+   "motivo": "Saludo del paciente dirigido al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 5,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 16.0,
+   "ref": "Mi hija tiene diarrea desde hace dos días",
+   "salida": "Mi hija (niña) tiene diarrea desde hace dos días.",
+   "motivo": "Mensaje claro: hija con diarrea desde hace dos días",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 19,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 14.6,
+   "ref": "Pastilla de quinientos miligramos",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "B3 nada nuevo: el pulido dice 500, que no se dijo",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 7,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 22.4,
+   "ref": "Vuelva en un mes",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "B5 ida y vuelta: cambió un dato crítico: proxima_cita_en_dias",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 95,
+   "estado": "error_red",
+   "s": 1.7
+  },
+  {
+   "id": 3,
+   "estado": "error_red",
+   "s": 6.8
+  },
+  {
+   "id": 25,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 9.6,
+   "ref": "Vaya a la posta",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Frase incompleta; verbo ininteligible junto a posible medicamento",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 86,
+   "estado": "error_red",
+   "s": 2.4
+  },
+  {
+   "id": 74,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 19.4,
+   "ref": "Le vamos a ayudar",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "respuesta vacía o inválida del intérprete",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 96,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 14.5,
+   "ref": "Nos vemos mañana, señor",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "B5 ida y vuelta: la retraducción no entiende una parte del quechua",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 13,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 23.3,
+   "ref": "¿Desde cuándo le duele?",
+   "salida": "¿Desde cuándo le duele?",
+   "motivo": "Pregunta del paciente dirigida al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 20,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 4.2,
+   "ref": "Tome asiento",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Fragmento ambiguo, sin sentido clínico claro",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 71,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 9.5,
+   "ref": "No se preocupe",
+   "salida": "No se preocupe, estamos aquí para ayudarle.",
+   "motivo": "Frase clara del paciente dirigida al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 21,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 10.5,
+   "ref": "Tomen asiento",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Palabra suelta sin contexto clínico; posible frase cortada",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 26,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 7.3,
+   "ref": "¿En qué le puedo servir?",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Frase sin sentido claro; no debo adivinar.",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 54,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 17.2,
+   "ref": "¿Habla quechua, doctor?",
+   "salida": "¿Habla usted quechua, doctor?",
+   "motivo": "Pregunta dirigida al personal, se traduce tal cual",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 85,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 12.9,
+   "ref": "Lo lamento mucho",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "respuesta vacía o inválida del intérprete",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 6,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 14.4,
+   "ref": "Tome ácido fólico",
+   "salida": "Tomaba ácido fólico.",
+   "motivo": "Paciente reporta medicamento que toma; es para el personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 91,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 7.3,
+   "ref": "¡Gracias!",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Palabra suelta ininteligible; no adivino la intención",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 51,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 9.7,
+   "ref": "Yo hablo quechua, señor",
+   "salida": "Señor, hablo en quechua.",
+   "motivo": "Paciente avisa que habla quechua; se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 5,
+   "estado": "error_red",
+   "s": 3.1
+  },
+  {
+   "id": 1,
+   "estado": "error_red",
+   "s": 0.4
+  },
+  {
+   "id": 93,
+   "estado": "error_red",
+   "s": 0.3
+  },
+  {
+   "id": 62,
+   "estado": "error_red",
+   "s": 0.2
+  },
+  {
+   "id": 1,
+   "estado": "error_red",
+   "s": 0.3
+  },
+  {
+   "id": 59,
+   "estado": "error_red",
+   "s": 0.3
+  }
+ ]
+}
