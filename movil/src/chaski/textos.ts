@@ -67,6 +67,7 @@ const es = {
   sinServidor: 'Falta conectar Chaski con el servicio.',
   noEscuche: 'No le escuché bien. Hable un poco más cerca.',
   sinConexion: 'No pude conectarme. Vuelva a intentarlo.',
+  chaskiLoDira: 'CHASKI LO DIRÁ ASÍ',
   muestreleEsto: 'LÉALO O MUÉSTRESELO AL PACIENTE',
   chaskiLoDice: 'Chaski lo está diciendo en voz alta.',
   sinVozLeaUsted: 'La voz no está disponible ahora. Léalo usted o muéstrele la pantalla.',

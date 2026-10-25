@@ -38,7 +38,7 @@ import { FRASE_NEGATIVA_DEMO, useEnsayo } from '@/chaski/ensayo';
 type Fase =
   | { f: 'listo' }
   | { f: 'grabando' }
-  | { f: 'pensando'; lado: Lado; paso: number; oido?: string; desde?: number }
+  | { f: 'pensando'; lado: Lado; paso: number; oido?: string; desde?: number; pulido?: string }
   | { f: 'dicho'; v: Extract<Veredicto, { tipo: 'dicho' | 'dicho_con_aviso' }>; vozLista: boolean; ensayo?: boolean }
   | { f: 'bloqueado'; v: Extract<Veredicto, { tipo: 'bloqueado' }>; ensayo?: 'servicio' | 'sin_conexion' }
   | { f: 'paciente'; r: RespuestaPaciente }
@@ -238,7 +238,13 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
    * traducción para mostrar que la barrera la atrapa, y la pantalla lo dice en claro.
    */
   async function decirTexto(texto: string, sembrada?: string) {
-    const r = await turnoEnfermera(texto, perfil.rol, { traduccionSembrada: sembrada });
+    const r = await turnoEnfermera(texto, perfil.rol, {
+      traduccionSembrada: sembrada,
+      // A los ~3 s llega la decisión del intérprete: se muestra cómo lo va a decir, mientras traduce y revisa.
+      // Solo se muestra; lo único que se dice en voz alta es el resultado auditado.
+      alDecidir: (d) => setFase((p) => (p.f === 'pensando'
+        ? { ...p, paso: Math.max(p.paso, 2), pulido: d.texto_pulido?.trim() || undefined } : p)),
+    });
     // El letrero de ensayo sale si la app lo pidió o si el servicio dice que la traducción fue sembrada.
     const ensayoReal = !!sembrada || esEnsayo(r);
     const ia = leerInterprete(r);
@@ -763,6 +769,12 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
         <Tarjeta>
           <Etiqueta idioma="castellano" />
           <Text style={[e.cuerpoTexto, { marginTop: 8 }]}>{fase.oido}</Text>
+          {fase.pulido && fase.pulido !== fase.oido ? (
+            <Animated.View entering={FadeInDown.springify().damping(18)} style={{ marginTop: 10, gap: 4 }}>
+              <Text style={e.rotulo}>{t.chaskiLoDira}</Text>
+              <Text style={e.secundario}>{fase.pulido}</Text>
+            </Animated.View>
+          ) : null}
         </Tarjeta>
       ) : null}
       <Tarjeta estilo={{ gap: 10 }}>

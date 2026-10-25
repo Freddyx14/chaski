@@ -6,6 +6,7 @@ import { contextoActual, guardarContexto } from './consulta';
 import type { Rol } from './perfil';
 import bancoReal from '../../../app/chaski/banco.json';
 import bancoDemo from './banco-demo.json';
+import { leerEventosSSE } from './sse';
 import { esReintentable, frasesConTag, type FraseBanco, type RespuestaEnfermera, type RespuestaEscuchar, type RespuestaPaciente } from './modelo';
 
 export class SinServidor extends Error {}
@@ -102,7 +103,59 @@ async function turno<T extends { contexto?: unknown }>(ruta: string, f: FormData
  * `traduccionSembrada`: SOLO para el ensayo de la negativa (D37). Reemplaza la traducción para mostrar que la
  * barrera atrapa el error; la pantalla lo dice en claro y nunca se presenta como un error real del traductor.
  */
-export function turnoEnfermera(texto: string, rol: Rol, opciones: { modo?: Modo; traduccionSembrada?: string } = {}) {
+export type DecisionTemprana = { accion?: string; para?: string; idioma_salida?: string; texto_pulido?: string; ms_decidir?: number };
+
+class SinRutaViva extends Error {}
+
+/**
+ * /turno/enfermera/vivo responde en SSE: «decision» a los ~3 s (solo para mostrar) y «resultado» con lo mismo que
+ * /turno/enfermera. React Native no lee el cuerpo de fetch por partes, así que va por XMLHttpRequest, que sí
+ * entrega el texto a medida que llega. Si la ruta no existe todavía (404), se avisa para caer a la ruta normal.
+ */
+function turnoVivo<T>(base: string, f: FormData, alDecidir: (d: DecisionTemprana) => void, segundos = 120): Promise<T> {
+  const ruta = '/turno/enfermera/vivo';
+  return new Promise<T>((resolver, rechazar) => {
+    const xhr = new XMLHttpRequest();
+    let visto = 0;
+    let pendiente = '';
+    let hubo = false;
+    let terminado = false;
+    const fin = (fn: () => void) => { if (!terminado) { terminado = true; fn(); } };
+    const leer = () => {
+      const nuevo = (xhr.responseText ?? '').slice(visto);
+      visto = (xhr.responseText ?? '').length;
+      const { eventos, resto } = leerEventosSSE(pendiente + nuevo);
+      pendiente = resto;
+      for (const ev of eventos) {
+        hubo = true;
+        let d: any = null;
+        try { d = JSON.parse(ev.datos); } catch { continue; }
+        if (ev.evento === 'decision') alDecidir(d);
+        else if (ev.evento === 'resultado') fin(() => { xhr.abort(); resolver(d as T); });
+        else if (ev.evento === 'error') fin(() => { xhr.abort(); rechazar(new Error(String(d?.error ?? 'error'))); });
+      }
+    };
+    xhr.open('POST', base + ruta);
+    Object.entries(CABECERAS).forEach(([k, v]) => xhr.setRequestHeader(k, v));
+    xhr.setRequestHeader('Accept', 'text/event-stream');
+    xhr.timeout = segundos * 1000;
+    xhr.onprogress = leer;
+    xhr.onload = () => {
+      if (xhr.status === 404) return fin(() => rechazar(new SinRutaViva()));
+      if (xhr.status >= 400) return fin(() => rechazar(new FalloServicio(ruta, String(xhr.status), esReintentable(xhr.status))));
+      leer();
+      fin(() => rechazar(new FalloServicio(ruta, hubo ? 'se cortó antes del resultado' : 'sin eventos', !hubo)));
+    };
+    xhr.onerror = () => fin(() => rechazar(hubo ? new FalloServicio(ruta, 'se cortó', false) : new SinRutaViva()));
+    xhr.ontimeout = () => fin(() => rechazar(new FalloServicio(ruta, `sin respuesta en ${segundos} s`, false)));
+    xhr.send(f);
+  });
+}
+
+export function turnoEnfermera(
+  texto: string, rol: Rol,
+  opciones: { modo?: Modo; traduccionSembrada?: string; alDecidir?: (d: DecisionTemprana) => void } = {},
+) {
   const f = new FormData();
   f.append('texto', texto);
   // D27: el rol elige el prompt del agente y el resumen.
@@ -112,7 +165,22 @@ export function turnoEnfermera(texto: string, rol: Rol, opciones: { modo?: Modo;
   f.append('con_audio', 'false');
   if (opciones.traduccionSembrada) f.append('traduccion_sembrada', opciones.traduccionSembrada);
   conContexto(f, opciones.modo);
+  if (opciones.alDecidir) return turnoConDecision(f, opciones.alDecidir);
   return turno<RespuestaEnfermera>('/turno/enfermera', f);
+}
+
+async function turnoConDecision(f: FormData, alDecidir: (d: DecisionTemprana) => void): Promise<RespuestaEnfermera> {
+  const base = await leerServidor();
+  if (!base) throw new SinServidor('Falta la dirección del servicio');
+  try {
+    const r = await turnoVivo<RespuestaEnfermera>(base, f, alDecidir);
+    guardarContexto((r as { contexto?: unknown }).contexto);
+    return r;
+  } catch (e) {
+    // Sin la ruta viva (todavía no integrada) o caída antes del primer evento: la ruta de siempre.
+    if (e instanceof SinRutaViva) return turno<RespuestaEnfermera>('/turno/enfermera', f);
+    throw e;
+  }
 }
 
 /** Audio del paciente → idioma, lo que se oyó en chanka y lo que quiso decir. */

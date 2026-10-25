@@ -374,3 +374,13 @@ test('una grabación vacía, corta o en silencio no se manda al servicio', async
   const m4a = new Uint8Array(200); m4a.set([0, 0, 0, 0x20, 0x66, 0x74, 0x79, 0x70], 0); // «ftyp»
   assert.equal(revisarGrabacion(m4a).ok, false);
 });
+
+test('SSE: eventos completos, partidos entre trozos, comentarios y \\r\\n', async () => {
+  const { leerEventosSSE } = await import('../src/chaski/sse.ts');
+  const a = leerEventosSSE(': hola\n\nevent: decision\ndata: {"accion":"traducir"}\n\nevent: resul');
+  assert.deepEqual(a.eventos, [{ evento: 'decision', datos: '{"accion":"traducir"}' }]);
+  assert.equal(a.resto, 'event: resul');
+  const b = leerEventosSSE(a.resto + 'tado\r\ndata: {"estado":"dicho"}\r\n\r\n');
+  assert.deepEqual(b.eventos, [{ evento: 'resultado', datos: '{"estado":"dicho"}' }]);
+  assert.equal(b.resto, '');
+});
