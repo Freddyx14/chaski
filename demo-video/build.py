@@ -42,7 +42,7 @@ def chunks(ws, maxw=7):
     return lines
 
 
-SEGS = [f"v{i:02d}" for i in range(1, 13)]
+SEGS = [f"v{i:02d}" for i in range(1, 14)]
 D = {s: dur(VO / f"{s}.wav") for s in SEGS}
 MAMA = dur(ROOT / "assets/audio/mama-intro.wav")
 PAC = dur(ROOT / "assets/audio/paciente-p18-064.wav")
@@ -65,7 +65,8 @@ t["v08"] = t["v07"] + D["v07"] + 0.6
 t["q_em"] = t["v08"] + D["v08"] + 0.25
 t["v09"] = t["q_em"] + QEM + 0.5
 t["v10"] = t["v09"] + D["v09"] + 0.5
-t["v11"] = t["v10"] + D["v10"] + 0.5
+t["v13"] = t["v10"] + D["v10"] + 0.5
+t["v11"] = t["v13"] + D["v13"] + 0.5
 t["v12"] = t["v11"] + D["v11"] + 0.5
 t["end"] = t["v12"] + D["v12"]
 TOTAL = round(t["end"] + 2.5, 2)
@@ -88,6 +89,7 @@ P = [
     ("emg", t["v08"] - 0.3, "Emergency mode", ""),
     ("rx", t["v09"] - 0.3, "Prescription by voice", ""),
     ("sum", t["v10"] - 0.3, "Every visit teaches it", ""),
+    ("arch", t["v13"] - 0.3, "How it is built", ""),
     ("nums", t["v11"] - 0.3, "Measured, not claimed", ""),
     ("end", t["v12"] - 0.3, "The name", ""),
 ]
@@ -126,7 +128,7 @@ ev = dict(t)
 ev.update({
     "TOTAL": TOTAL, "MAMA": MAMA,
     "w_nine": wt("v01", "Nine"), "w_seven": wt("v01", "seven"), "w_built": wt("v01", "built"),
-    "w_hands": wt("v02", "hands-free"), "w_who": wt("v02", "who"), "w_lang": wt("v02", "language"),
+    "w_hands": wt("v02", "hands-free"), "w_who": wt("v02", "who"), "w_lang": wt("v02", "language"), "w_follow": wt("v02", "follow-up"), "w_own": wt("v02", "fine-tuned"), "w_google": wt("v02", "Google"),
     "w_opus": wt("v04", "Opus"), "w_checks": wt("v04", "checks"), "w_second": wt("v04", "second"),
     "w_fine": wt("v05", "fine-tuned"),
     "w_asks": wt("v06", "asks"), "w_repeat": wt("v06", "repeat"),
@@ -135,6 +137,8 @@ ev.update({
     "w_photo": wt("v09", "photo"), "w_reads": wt("v09", "reads"), "w_yes": wt("v09", "yes"), "w_quy9": wt("v09", "Quechua"),
     "w_note": wt("v10", "note"), "w_home": wt("v10", "home"), "w_words": wt("v10", "words"),
     "w_confirms": wt("v10", "confirms"), "w_approves": wt("v10", "approves"), "w_pilpi": wt("v10", "learns"),
+    "w_ft13": wt("v13", "fine-tuned"), "w_362": wt("v13", "hundred"), "w_voice13": wt("v13", "voice"),
+    "w_opus13": wt("v13", "Opus"), "w_sonnet13": wt("v13", "Sonnet"), "w_code13": wt("v13", "code"), "w_acc13": wt("v13", "accuracy"),
     "w_184": wt("v11", "hundred"), "w_54": wt("v11", "fifty-four"), "w_2122": wt("v11", "ninety-five"),
     "w_built12": wt("v12", "Claude"), "w_cartesia": wt("v12", "Cartesia"), "w_meta": wt("v12", "Meta"), "w_chaski12": wt("v12", "Chaski."),
 })
@@ -142,6 +146,7 @@ ev.update({
 
 fx = [{"type": "sample", "bus": "voice", "file": f"assets/audio/vo/{s}.wav", "at": t[s]} for s in SEGS]
 fx += [
+    {"type": "sample", "bus": "music", "file": "assets/audio/music-andes.wav", "at": 0.0, "len": TOTAL, "gain_db": -2, "fade_in": 0.5, "fade_out": 2.5},
     {"type": "sample", "bus": "voice", "file": "assets/audio/mama-intro.wav", "at": 0.0, "gain_db": 1, "fade_out": 0.3},
     {"type": "sample", "bus": "voice", "file": "assets/audio/quy/b3a-cut.wav", "at": t["q_b3"], "gain_db": -2},
     {"type": "sample", "bus": "voice", "file": "assets/audio/paciente-p18-064.wav", "at": t["pac"]},
@@ -159,8 +164,7 @@ cues = {
     "shots": [{"id": p["id"], "at": p["id"], "in": "open" if i == 0 else "cut", "field": "dark" if p["dark"] else "light",
                "hold": round(p["end"] - p["start"] - 0.4, 2), "idea": p["label"]} for i, p in enumerate(pages)],
     "camera": {"moves": [], "punches": [], "shakes": []},
-    "layers": [{"inst": "pad", "from_bar": 0, "to_bar": 400, "cutoff": 520, "gain_db": -9},
-               {"inst": "sub", "from_bar": 0, "to_bar": 400, "pattern": "X...............", "gain_db": -12}],
+    "layers": [],
     "fx": fx,
     "mix": {"pump_db": 0.0, "voice_duck_db": 9.0, "music_db": -8.0, "voice_db": 2.0},
 }

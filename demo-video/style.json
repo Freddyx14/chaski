@@ -12,7 +12,21 @@
   "#FFFFFF",
   "#B02344",
   "#A85A2A",
-  "#DCEEEB"
+  "#DCEEEB",
+  "#081f33",
+  "#0f3d63",
+  "#2f86b8",
+  "#d9c9a3",
+  "#e0157a",
+  "#f2a33a",
+  "#ffc21a",
+  "#11b3c8",
+  "#1e4fb8",
+  "#f26a21",
+  "#fbf6e7",
+  "#fbebd0",
+  "#8a5100",
+  "#000000"
  ],
  "type": {
   "families": [
@@ -85,5 +99,6 @@
   "linear moves except a hold drift",
   "more than one accent per shot"
  ],
- "_extra_why": "White cards; #B02344 = Chaski block red (only the refusal + warnings); #A85A2A = Quechua canela (app token); #DCEEEB = teal tint for accent on dark fields. All from design/tokens.json."
+ "_extra_why": "White cards; #B02344 = Chaski block red (only the refusal + warnings); #A85A2A = Quechua canela (app token); #DCEEEB = teal tint for accent on dark fields. All from design/tokens.json.",
+ "_extra_why_v3": "Freddy 07:55, «more vivid»: the globe (ocean blues, land sand, Peru orange, the magenta pin) and the manta stripe/accents from design/tokens.json manta palette."
 }

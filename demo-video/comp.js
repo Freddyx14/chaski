@@ -34,6 +34,43 @@
       $$(".w", cap).forEach(function (w) { ft(w, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.32, ease: ST_E }, parseFloat(w.dataset.t)); });
     });
 
+
+    /* ── the globe: rotates from the Atlantic onto Peru, zooms in, pins Pilpichaca ── */
+    var gc = $("#globe"), gx = gc.getContext("2d");
+    var landGeo = topojson.feature(WORLD, WORLD.objects.land);
+    var peru = topojson.feature(WORLD, WORLD.objects.countries).features.filter(function (f) { return f.id === "604"; })[0];
+    var grat = d3.geoGraticule10();
+    var PIL = [-75.08, -13.38];                    // Pilpichaca, Huancavelica (approx.)
+    var proj = d3.geoOrthographic().translate([620, 620]).clipAngle(90).precision(0.3);
+    var path = d3.geoPath(proj, gx);
+    function ease(u) { u = Math.max(0, Math.min(1, u)); return u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2; }
+    function drawGlobe(t) {
+      var r = ease((t - 0.1) / 2.5), z = ease((t - 2.6) / 2.8);
+      var lon = -20 + (PIL[0] + 20) * r, lat = 8 + (PIL[1] - 8) * r;
+      var sc = 300 + 1500 * z;
+      proj.rotate([-lon, -lat]).scale(sc);
+      gx.clearRect(0, 0, 1240, 1240);
+      gx.save(); gx.beginPath(); gx.arc(620, 620, 600, 0, 2 * Math.PI); gx.clip();
+      var g = gx.createRadialGradient(520, 500, 40, 620, 620, sc * 1.05);
+      g.addColorStop(0, "#2f86b8"); g.addColorStop(0.7, "#0f3d63"); g.addColorStop(1, "#081f33");
+      gx.beginPath(); path({ type: "Sphere" }); gx.fillStyle = g; gx.fill();
+      gx.beginPath(); path(grat); gx.strokeStyle = "rgba(255,255,255,0.10)"; gx.lineWidth = 1.5; gx.stroke();
+      gx.beginPath(); path(landGeo); gx.fillStyle = "#d9c9a3"; gx.fill(); gx.strokeStyle = "rgba(24,34,31,0.35)"; gx.lineWidth = 1.2; gx.stroke();
+      gx.beginPath(); path(peru); gx.fillStyle = "#f2a33a"; gx.fill(); gx.strokeStyle = "#ffffff"; gx.lineWidth = 2.5; gx.stroke();
+      var hl = gx.createRadialGradient(470, 420, 10, 620, 620, sc);
+      hl.addColorStop(0, "rgba(255,255,255,0.28)"); hl.addColorStop(0.5, "rgba(255,255,255,0)"); hl.addColorStop(1, "rgba(0,0,0,0.35)");
+      gx.beginPath(); path({ type: "Sphere" }); gx.fillStyle = hl; gx.fill();
+      gx.restore();
+      gx.beginPath(); gx.arc(620, 620, Math.min(sc, 600), 0, 2 * Math.PI); gx.strokeStyle = "rgba(255,255,255,0.18)"; gx.lineWidth = 3; gx.stroke();
+      var p = proj(PIL), on = t > 2.3;
+      if (p && on) {
+        var k = Math.max(0, Math.min(1, (t - 2.3) / 0.5)), pulse = ((t - 2.3) % 1.4) / 1.4;
+        gx.beginPath(); gx.arc(p[0], p[1], 14 + 50 * pulse, 0, 2 * Math.PI); gx.strokeStyle = "rgba(224,21,122," + (0.8 * (1 - pulse) * k).toFixed(3) + ")"; gx.lineWidth = 5; gx.stroke();
+        gx.beginPath(); gx.arc(p[0], p[1], 14 * k, 0, 2 * Math.PI); gx.fillStyle = "#e0157a"; gx.fill();
+        gx.beginPath(); gx.arc(p[0], p[1], 6 * k, 0, 2 * Math.PI); gx.fillStyle = "#ffffff"; gx.fill();
+      }
+    }
+    rise("#glab", 2.8, 30);
     /* her */
     rise("#mama-name", 1.0);
     /* why */
@@ -80,6 +117,13 @@
     land("#x-read", E.w_reads); land("#x-yes", E.w_yes); avatar("rx", "hablando", E.w_quy9);
     /* summary + loop */
     land("#ph-sum", PS("sum") + 0.05); land("#s-1", E.w_note); land("#s-2", E.w_home); land("#s-3", E.w_words);
+    /* architecture */
+    rise("#atag", PS("arch") + 0.3, 20);
+    land("#ab0", E.v13 + 0.4); land("#ab1", E.w_ft13); show("#aw1", E.w_ft13 + 0.3);
+    land("#ab5", E.w_voice13);
+    land("#ab2", E.w_opus13); show("#aw2", E.w_opus13 + 0.3);
+    land("#ab3", E.w_sonnet13); show("#aw3", E.w_sonnet13 + 0.3); land("#ab6", E.w_sonnet13 + 0.6); land("#ab7", E.w_sonnet13 + 1.0);
+    land("#ab4", E.w_code13); show("#aw4", E.w_code13 + 0.3); show("#aw5", E.w_code13 + 0.8);
     /* numbers */
     land("#n1", E.w_184); land("#n2", E.w_54); land("#n3", E.w_2122); show("#n-src", E.w_2122 + 1.0);
     /* end */
@@ -92,6 +136,7 @@
       var dark = false;
       DATA.pages.forEach(function (p) { if (t >= p.start) dark = p.dark; });
       hud.className = dark ? "ondark" : ""; caps.className = dark ? "ondark" : "";
+      if (t < DATA.pages[1].start + 0.1) drawGlobe(t);
       DATA.pages.forEach(function (p, i) {
         var k = p.id === "her" ? 1 : 1 + 0.006 * Math.max(0, Math.min(t, p.end) - p.start);
         stages[i].style.transform = "scale(" + Math.min(k, 1.06).toFixed(5) + ")";

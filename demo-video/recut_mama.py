@@ -1,4 +1,4 @@
-"""Her two intro clips with the pauses removed and every sentence complete (Freddy, 07:48).
+"""Her two intro clips (no «Buenas noches»: speech starts at «Soy», 1.74 s) with the pauses removed and every sentence complete (Freddy, 07:48).
 Speech regions from ffmpeg silencedetect (-32 dB, 0.35 s); keeps ~0.15 s of air around each phrase.
 Writes assets/video/mama-intro.mp4 (silent), assets/audio/mama-intro.wav and mama_subs.json (remapped .en.srt)."""
 import json, re, subprocess
@@ -6,8 +6,8 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 CL = ROOT.parent / "data/mama/video/clips"
 CLIPS = [
-    ("VIDEO-01_presentacion-nombre_16s", [(0.0, 0.85), (1.55, 2.55), (2.78, 5.4), (6.0, 6.85), (7.85, 9.55), (10.8, 13.9), (14.2, 16.0)]),
-    ("PITCH-B1_problema-profesionales-costa_16s", [(0.35, 1.5), (1.9, 7.6), (7.8, 12.35), (12.6, 16.0)]),
+    ("VIDEO-01_presentacion-nombre_16s", [(1.62, 2.55), (2.78, 5.4), (6.0, 6.85), (7.85, 9.55), (10.8, 13.9), (14.2, 16.0)]),
+    ("PITCH-B1_problema-profesionales-costa_16s", [(0.35, 1.5), (1.9, 7.6), (7.8, 13.0)]),   # ends exactly on «quechua» (whisper word end 13.0, silence from 12.97)
 ]
 def srt(path):
     out = []
@@ -40,7 +40,7 @@ for k, (name, segs) in enumerate(CLIPS):
 full = tmp / "full.mp4"
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(tmp / "list.txt"), "-c", "copy", str(full)], check=True)
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(full), "-an", "-c:v", "copy", str(ROOT / "assets/video/mama-intro.mp4")], check=True)
-subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(full), "-vn", "-ar", "48000", "-ac", "1", "-af", "afade=t=out:st=%.2f:d=0.25" % (base - 0.25), str(ROOT / "assets/audio/mama-intro.wav")], check=True)
+subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(full), "-vn", "-ar", "48000", "-ac", "1", "-af", "afade=t=out:st=%.2f:d=0.06" % (base - 0.06), str(ROOT / "assets/audio/mama-intro.wav")], check=True)
 for p in tmp.iterdir(): p.unlink()
 tmp.rmdir()
 (ROOT / "mama_subs.json").write_text(json.dumps(subs, ensure_ascii=False, indent=1))

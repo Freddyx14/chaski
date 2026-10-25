@@ -1,7 +1,7 @@
 {
  "title": "Chaski — Devpost demo",
  "bpm": 84,
- "duration": 175.27,
+ "duration": 202.44,
  "lufs": -14.0,
  "true_peak": -1.0,
  "chords": [
@@ -12,69 +12,81 @@
  ],
  "marks": {
   "mama": 0.0,
-  "v01": 27.173,
-  "v02": 46.633,
-  "v03": 55.693,
-  "think": 61.173,
-  "v04": 61.473,
-  "q_b3": 72.973,
-  "pac": 76.773,
-  "v05": 83.013,
-  "pac_es": 85.313,
-  "v06": 93.433,
-  "v07": 102.813,
-  "v08": 111.653,
-  "q_em": 120.623,
-  "v09": 122.307,
-  "v10": 131.047,
-  "v11": 145.067,
-  "v12": 162.767,
-  "end": 162.467,
-  "TOTAL": 175.27,
-  "MAMA": 26.773333,
-  "w_nine": 30.693,
-  "w_seven": 40.053,
-  "w_built": 45.293,
-  "w_hands": 47.673,
-  "w_who": 49.113,
-  "w_lang": 54.473,
-  "w_opus": 61.873,
-  "w_checks": 66.833,
-  "w_second": 69.793,
-  "w_fine": 86.533,
-  "w_asks": 96.073,
-  "w_repeat": 100.393,
-  "w_disap": 106.333,
-  "w_catch": 108.133,
-  "w_mother8": 117.253,
-  "w_photo": 122.707,
-  "w_reads": 124.947,
-  "w_yes": 128.547,
-  "w_quy9": 129.907,
-  "w_note": 132.007,
-  "w_home": 134.567,
-  "w_words": 136.407,
-  "w_confirms": 138.967,
-  "w_approves": 141.127,
-  "w_pilpi": 143.527,
-  "w_184": 145.947,
-  "w_54": 153.627,
-  "w_2122": 160.507,
-  "w_built12": 163.327,
-  "w_cartesia": 164.127,
-  "w_meta": 165.087,
-  "w_chaski12": 168.847,
+  "v01": 23.525,
+  "v02": 42.985,
+  "v03": 58.365,
+  "think": 63.845,
+  "v04": 64.145,
+  "q_b3": 75.645,
+  "pac": 79.445,
+  "v05": 85.685,
+  "pac_es": 87.985,
+  "v06": 96.105,
+  "v07": 105.485,
+  "v08": 114.325,
+  "q_em": 123.295,
+  "v09": 124.979,
+  "v10": 133.719,
+  "v13": 147.739,
+  "v11": 172.239,
+  "v12": 189.939,
+  "end": 189.639,
+  "TOTAL": 202.44,
+  "MAMA": 23.125333,
+  "w_nine": 27.045,
+  "w_seven": 36.405,
+  "w_built": 41.645,
+  "w_hands": 48.265,
+  "w_who": 49.385,
+  "w_lang": 52.665,
+  "w_follow": 54.145,
+  "w_own": 56.585,
+  "w_google": 45.225,
+  "w_opus": 64.545,
+  "w_checks": 69.505,
+  "w_second": 72.465,
+  "w_fine": 89.205,
+  "w_asks": 98.745,
+  "w_repeat": 103.065,
+  "w_disap": 109.005,
+  "w_catch": 110.805,
+  "w_mother8": 119.925,
+  "w_photo": 125.379,
+  "w_reads": 127.619,
+  "w_yes": 131.219,
+  "w_quy9": 132.579,
+  "w_note": 134.679,
+  "w_home": 137.239,
+  "w_words": 139.079,
+  "w_confirms": 141.639,
+  "w_approves": 143.799,
+  "w_pilpi": 146.199,
+  "w_ft13": 154.699,
+  "w_362": 157.019,
+  "w_voice13": 161.579,
+  "w_opus13": 163.579,
+  "w_sonnet13": 165.579,
+  "w_code13": 168.219,
+  "w_acc13": 150.139,
+  "w_184": 173.119,
+  "w_54": 180.799,
+  "w_2122": 187.679,
+  "w_built12": 190.499,
+  "w_cartesia": 191.299,
+  "w_meta": 192.259,
+  "w_chaski12": 196.019,
   "her": 0.0,
-  "why": 26.873,
-  "hands": 46.333,
-  "instr": 55.393,
-  "pat": 76.373,
-  "ask": 93.133,
-  "moment": 102.513,
-  "emg": 111.353,
-  "rx": 122.007,
-  "sum": 130.747,
-  "nums": 144.767
+  "why": 23.225,
+  "hands": 42.685,
+  "instr": 58.065,
+  "pat": 79.045,
+  "ask": 95.805,
+  "moment": 105.185,
+  "emg": 114.025,
+  "rx": 124.679,
+  "sum": 133.419,
+  "arch": 147.439,
+  "nums": 171.939
  },
  "shots": [
   {
@@ -82,7 +94,7 @@
    "at": "her",
    "in": "open",
    "field": "dark",
-   "hold": 26.47,
+   "hold": 22.83,
    "idea": "Her words"
   },
   {
@@ -98,7 +110,7 @@
    "at": "hands",
    "in": "cut",
    "field": "dark",
-   "hold": 8.66,
+   "hold": 14.98,
    "idea": "Hands-free"
   },
   {
@@ -158,10 +170,18 @@
    "idea": "Every visit teaches it"
   },
   {
+   "id": "arch",
+   "at": "arch",
+   "in": "cut",
+   "field": "dark",
+   "hold": 24.1,
+   "idea": "How it is built"
+  },
+  {
    "id": "nums",
    "at": "nums",
    "in": "cut",
-   "field": "dark",
+   "field": "light",
    "hold": 17.3,
    "idea": "Measured, not claimed"
   },
@@ -169,7 +189,7 @@
    "id": "end",
    "at": "end",
    "in": "cut",
-   "field": "light",
+   "field": "dark",
    "hold": 12.4,
    "idea": "The name"
   }
@@ -179,94 +199,95 @@
   "punches": [],
   "shakes": []
  },
- "layers": [
-  {
-   "inst": "pad",
-   "from_bar": 0,
-   "to_bar": 400,
-   "cutoff": 520,
-   "gain_db": -9
-  },
-  {
-   "inst": "sub",
-   "from_bar": 0,
-   "to_bar": 400,
-   "pattern": "X...............",
-   "gain_db": -12
-  }
- ],
+ "layers": [],
  "fx": [
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v01.wav",
-   "at": 27.173
+   "at": 23.525
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v02.wav",
-   "at": 46.633
+   "at": 42.985
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v03.wav",
-   "at": 55.693
+   "at": 58.365
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v04.wav",
-   "at": 61.473
+   "at": 64.145
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v05.wav",
-   "at": 83.013
+   "at": 85.685
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v06.wav",
-   "at": 93.433
+   "at": 96.105
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v07.wav",
-   "at": 102.813
+   "at": 105.485
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v08.wav",
-   "at": 111.653
+   "at": 114.325
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v09.wav",
-   "at": 122.307
+   "at": 124.979
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v10.wav",
-   "at": 131.047
+   "at": 133.719
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v11.wav",
-   "at": 145.067
+   "at": 172.239
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v12.wav",
-   "at": 162.767
+   "at": 189.939
+  },
+  {
+   "type": "sample",
+   "bus": "voice",
+   "file": "assets/audio/vo/v13.wav",
+   "at": 147.739
+  },
+  {
+   "type": "sample",
+   "bus": "music",
+   "file": "assets/audio/music-andes.wav",
+   "at": 0.0,
+   "len": 202.44,
+   "gain_db": -2,
+   "fade_in": 0.5,
+   "fade_out": 2.5
   },
   {
    "type": "sample",
@@ -280,80 +301,85 @@
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/quy/b3a-cut.wav",
-   "at": 72.973,
+   "at": 75.645,
    "gain_db": -2
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/paciente-p18-064.wav",
-   "at": 76.773
+   "at": 79.445
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/emg-mama.wav",
-   "at": 120.623,
+   "at": 123.295,
    "gain_db": 1
   },
   {
    "type": "whoosh",
-   "at": 26.823,
+   "at": 23.175,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 46.283,
+   "at": 42.635000000000005,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 55.343,
+   "at": 58.015,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 76.32300000000001,
+   "at": 78.995,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 93.083,
+   "at": 95.75500000000001,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 102.46300000000001,
+   "at": 105.135,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 111.303,
+   "at": 113.97500000000001,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 121.95700000000001,
+   "at": 124.629,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 130.697,
+   "at": 133.369,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 144.71699999999998,
+   "at": 147.38899999999998,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 162.417,
+   "at": 171.88899999999998,
+   "gain_db": -16
+  },
+  {
+   "type": "whoosh",
+   "at": 189.589,
    "gain_db": -16
   },
   {
    "type": "blip",
-   "at": 85.313,
+   "at": 87.985,
    "notes": [
     0
    ],
@@ -361,7 +387,7 @@
   },
   {
    "type": "blip",
-   "at": 120.623,
+   "at": 123.295,
    "notes": [
     0
    ],
@@ -369,7 +395,7 @@
   },
   {
    "type": "blip",
-   "at": 106.93299999999999,
+   "at": 109.60499999999999,
    "notes": [
     12,
     7,

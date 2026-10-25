@@ -11,8 +11,10 @@ E = html.escape
 
 # feature cards (right column): (time, kind, tag, body)
 CARDS = {
-    "hands": [(EV["w_hands"], "do", "HANDS-FREE", "No buttons. It hears who spoke and in which language."),
-              (EV["w_lang"], "file", "UNDER THE HOOD", "Meta MMS language ID · Cartesia ink-whisper for Spanish · fine-tuned Quechua recognizer")],
+    "hands": [(EV["w_google"], "warn", "NOT A TRANSLATOR", "A real interpreter, like a person in the room."),
+              (EV["w_who"], "do", "KNOWS WHO IS SPEAKING", "Health worker or patient, Spanish or Quechua. No buttons."),
+              (EV["w_follow"], "do", "ASKS FOLLOW-UP QUESTIONS", "When a critical fact is missing, before it translates."),
+              (EV["w_own"], "do", "OUR OWN FINE-TUNED MODELS", "Trained on our families' voices, for accuracy in Chanka Quechua.")],
     "instr": [(EV["v03"], "do", "A HEALTH WORKER SPEAKS", "Any of the staff: doctor, nurse, obstetrician, technician."),
               (EV["w_opus"], "do", "CLAUDE OPUS DECIDES", "Translate · ask back · answer · didn't understand · verified phrase"),
               (EV["w_checks"], "do", "CHECKED BEFORE IT SPEAKS", "Code compares dose, frequency, days, medicine, negation. Claude Sonnet back-translates blind.")],
@@ -60,7 +62,8 @@ MOCK = '<div class="mock">recreated from the app\'s screens</div>'
 
 def stage(pid):
     if pid == "her":
-        return ('<div class="laptop" id="lap"><div class="lscreen"></div><div class="lbase"></div></div>'
+        return ('<canvas id="globe" width="1240" height="1240"></canvas>'
+                '<div class="glab" id="glab"><b>Pilpichaca</b><span>Huancavelica, Peru · the Andes</span></div>' +'<div class="laptop" id="lap"><div class="lscreen"></div><div class="lbase"></div></div>'
                 '<div class="who" id="mama-name">Lic. Norma Choque Guerreros · nurse, Pilpichaca health zone</div>')
     if pid == "why":
         return ('<div class="stat" id="st1" ' + BLUR + '><div class="big">9 <small>in</small> 10</div><div class="lab">of her patients speak Quechua</div></div>'
@@ -111,6 +114,18 @@ def stage(pid):
             '<div class="sum" id="s-1"><div class="sh">Para la historia clínica</div><div class="sb">1 pastilla cada 8 h, después de comer; no con té. Le duele la cabeza desde ayer.</div></div>'
             '<div class="sum" id="s-2"><div class="sh">Para llevar a casa</div><div class="sb qtxt">Sapa pusaq horasmanta huk pastillata upyay…</div></div>'
             '<div class="sum" id="s-3"><div class="sh">Palabras nuevas</div><div class="gl"><span>upyay · tomar</span><span>pusaq · ocho</span><span>nanan · duele</span></div></div>' + MOCK, "Resumen")
+    if pid == "arch":
+        B = lambda i, cls, t, sub: f'<div class="ab {cls}" id="ab{i}" {BLUR}><b>{E(t)}</b><span>{E(sub)}</span></div>'
+        return ('<div class="atag" id="atag">Designed for accuracy, in a field where one wrong word can hurt someone</div>' +
+                B(0, "", "Hands-free audio", "who spoke · which language") +
+                B(1, "meta", "Fine-tuned ears", "Meta MMS · 362 family recordings") +
+                B(2, "claude", "Claude Opus decides", "translate · ask back · answer") +
+                B(3, "claude", "Claude Sonnet translates", "with nurse-approved examples") +
+                B(4, "guard", "Guards before speaking", "code checks every fact · blind back-translation") +
+                B(5, "meta", "Her voice", "Quechua voice trained on the nurse · Cartesia for Spanish") +
+                B(6, "side", "Verified phrase bank", "216 phrases · hybrid RAG") +
+                B(7, "side", "Feedback loop", "patient confirms · nurse approves") +
+                '<div class="arw" id="aw1">→</div><div class="arw" id="aw2">→</div><div class="arw" id="aw3">↓</div><div class="arw" id="aw4">←</div><div class="arw" id="aw5">←</div>')
     if pid == "nums":
         return ('<div class="nrow" id="n1" ' + BLUR + '><b>99.5%</b><span>of 184 seeded errors caught · 100% of the critical ones · ~3 s per check</span></div>'
                 '<div class="nrow" id="n2" ' + BLUR + '><b>54% → 41%</b><span>word errors, on a speaker the model never heard</span></div>'
@@ -128,7 +143,7 @@ for p in DATA["pages"]:
     pid = p["id"]
     cards = "".join(card_html(pid, i, c) for i, c in enumerate(CARDS.get(pid, [])))
     pages_html.append(f'<div class="page clip {"dark" if p["dark"] else "light"}" id="pg-{pid}" {win(p["start"], p["end"])}>'
-                      f'<div class="stage">{stage(pid)}</div><div class="col">{cards}</div></div>')
+                      f'<div class="stage">{stage(pid)}</div><div class="col">{cards}</div><div class="manta"></div></div>')
 
 caps_html = "".join(f'<div class="cap clip" id="cap{i}" {win(c["t0"] - 0.05, c["out"])}>' +
                     "".join(f'<span class="w" data-t="{w["t"]:.3f}">{E(w["w"])}</span>' for w in c["words"]) + "</div>" for i, c in enumerate(CAPS))
@@ -138,7 +153,7 @@ page = f'''<!doctype html>
 <html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=1920, height=1080" />
 <title>Chaski — demo</title>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
-<script src="cues.js"></script><script src="data.js"></script><script src="lib/engine.js"></script>
+<script src="cues.js"></script><script src="data.js"></script><script src="lib/engine.js"></script><script src="lib/d3-array.min.js"></script><script src="lib/d3-geo.min.js"></script><script src="lib/topojson-client.min.js"></script><script src="lib/world.js"></script>
 <link rel="stylesheet" href="comp.css" /><link rel="stylesheet" href="demo.css" />
 </head><body>
 <div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="{TOTAL:.3f}" data-fps="30">
