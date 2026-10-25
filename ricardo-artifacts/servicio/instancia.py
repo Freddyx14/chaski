@@ -17,6 +17,8 @@ import os
 import tempfile
 import time
 
+from pathlib import Path
+
 import soundfile as sf
 import torch
 from fastapi import FastAPI, File, Form, UploadFile
@@ -25,6 +27,13 @@ from fastapi.responses import JSONResponse, Response
 aplicacion = FastAPI(title="Chaski · voz en la GPU")
 DISPOSITIVO = "cuda" if torch.cuda.is_available() else "cpu"
 _modelos: dict = {}
+
+# Los dos modelos que ajustamos. Si el archivo no esta, cada funcion cae al
+# modelo de fabrica en vez de fallar: asi el servicio arranca igual en una
+# maquina donde todavia no se copiaron los pesos.
+AQUI = Path(__file__).resolve().parent.parent
+RUTA_ASR_ADAPTADOR = AQUI / "modelos" / "asr-chanka" / "adaptador_mejor.pt"
+RUTA_TTS_AJUSTADA = AQUI / "modelos" / "tts-p24"
 
 
 def asr():
@@ -45,13 +54,37 @@ def lid():
     return _modelos["lid_ext"], _modelos["lid"]
 
 
-def tts():
-    if "tts" not in _modelos:
-        from transformers import AutoTokenizer, VitsModel
-        tarjeta = "facebook/mms-tts-quy"
-        _modelos["tts_tok"] = AutoTokenizer.from_pretrained(tarjeta)
-        _modelos["tts"] = VitsModel.from_pretrained(tarjeta).to(DISPOSITIVO).eval()
-    return _modelos["tts_tok"], _modelos["tts"]
+def tts(ajustada: bool = True):
+    """La voz. `ajustada` usa la entrenada con p24; si no esta, cae a la de fabrica."""
+    from transformers import AutoTokenizer, VitsModel
+
+    ruta = RUTA_TTS_AJUSTADA if ajustada and RUTA_TTS_AJUSTADA.exists() else None
+    clave = "tts_ajustada" if ruta else "tts"
+    if clave not in _modelos:
+        tarjeta = str(ruta) if ruta else "facebook/mms-tts-quy"
+        _modelos[clave + "_tok"] = AutoTokenizer.from_pretrained(tarjeta)
+        _modelos[clave] = VitsModel.from_pretrained(tarjeta).to(DISPOSITIVO).eval()
+        _modelos[clave + "_nombre"] = "chaski-voz-p24" if ruta else "facebook/mms-tts-quy"
+    return _modelos[clave + "_tok"], _modelos[clave], _modelos[clave + "_nombre"]
+
+
+def asr_ajustado():
+    """MMS con nuestro adaptador. Es el que gano la medicion: 53.9% -> 40.9% de WER."""
+    if "mms" not in _modelos:
+        from transformers import AutoProcessor, Wav2Vec2ForCTC
+        base = "facebook/mms-1b-all"
+        proc = AutoProcessor.from_pretrained(base, target_lang="quy")
+        modelo = Wav2Vec2ForCTC.from_pretrained(base, target_lang="quy",
+                                                ignore_mismatched_sizes=True)
+        if RUTA_ASR_ADAPTADOR.exists():
+            modelo.load_state_dict(torch.load(RUTA_ASR_ADAPTADOR, map_location="cpu"),
+                                   strict=False)
+            _modelos["mms_nombre"] = "mms-1b-all + adaptador chanka"
+        else:
+            _modelos["mms_nombre"] = "mms-1b-all (sin adaptador)"
+        _modelos["mms_proc"] = proc
+        _modelos["mms"] = modelo.to(DISPOSITIVO).eval()
+    return _modelos["mms_proc"], _modelos["mms"], _modelos["mms_nombre"]
 
 
 def _guardar(datos: bytes) -> str:
@@ -118,8 +151,36 @@ def _partir(ruta: str) -> list[str]:
 
 
 @aplicacion.post("/entender")
-async def entender(audio: UploadFile = File(...), lengua: str = Form("quy_Latn")):
-    ruta = _guardar(await audio.read())
+async def entender(audio: UploadFile = File(...), lengua: str = Form("quy_Latn"),
+                   ajustado: bool = Form(False)):
+    """`ajustado=true` usa MMS con nuestro adaptador en vez de omniASR.
+
+    Medido sobre el hablante apartado: omniASR 54.1 % de WER, MMS ajustado
+    40.9 %. Va detras de un interruptor y no por defecto porque omniASR sigue
+    siendo el que escribe en ortografia legible; el ajustado escribe en la
+    normalizada, que es mejor numero y peor lectura.
+    """
+    datos = await audio.read()
+    if ajustado:
+        import numpy as np
+        proc, modelo, nombre = asr_ajustado()
+        ruta = _guardar(datos)
+        try:
+            onda, frecuencia = sf.read(ruta, dtype="float32")
+        finally:
+            os.unlink(ruta)
+        if onda.ndim > 1:
+            onda = onda.mean(axis=1)
+        t0 = time.perf_counter()
+        entrada = proc(onda, sampling_rate=frecuencia,
+                       return_tensors="pt").input_values.to(DISPOSITIVO)
+        with torch.no_grad():
+            ids = torch.argmax(modelo(entrada).logits, dim=-1)
+        texto = proc.batch_decode(ids)[0]
+        return {"texto": texto, "alternativas": [[texto, 1.0]], "modelo": nombre,
+                "trozos": 1, "segundos": round(time.perf_counter() - t0, 2)}
+
+    ruta = _guardar(datos)
     pipe = asr()
     t0 = time.perf_counter()
     trozos = _partir(ruta)
@@ -136,8 +197,9 @@ async def entender(audio: UploadFile = File(...), lengua: str = Form("quy_Latn")
 
 
 @aplicacion.post("/hablar")
-def hablar(texto: str = Form(...)):
-    tokenizador, modelo = tts()
+def hablar(texto: str = Form(...), ajustada: bool = Form(True)):
+    """`ajustada` (por defecto) usa la voz entrenada con p24."""
+    tokenizador, modelo, nombre = tts(ajustada)
     entrada = tokenizador(texto, return_tensors="pt").to(DISPOSITIVO)
     t0 = time.perf_counter()
     with torch.no_grad():
@@ -146,4 +208,4 @@ def hablar(texto: str = Form(...)):
     sf.write(buffer, onda, modelo.config.sampling_rate, format="WAV")
     return Response(content=buffer.getvalue(), media_type="audio/wav",
                     headers={"X-Segundos": str(round(time.perf_counter() - t0, 2)),
-                             "X-Modelo": "facebook/mms-tts-quy"})
+                             "X-Modelo": nombre})
