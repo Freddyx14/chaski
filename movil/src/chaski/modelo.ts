@@ -262,7 +262,7 @@ export type Interprete =
   | { tipo: 'pregunta'; para: 'personal' | 'paciente'; texto: string; quechua: string | null; motivo: string;
       dato: string | null; audioB64: string | null }
   | { tipo: 'respuesta'; texto: string; motivo: string; audioB64: string | null }
-  | { tipo: 'no_entendi'; motivo: string; quechua?: string | null }
+  | { tipo: 'no_entendi'; motivo: string; quechua?: string | null; audioB64?: string | null }
   | { tipo: 'frase'; frase: FraseBanco };
 
 const ACCIONES: Accion[] = ['traducir', 'repreguntar', 'responder', 'no_entendi', 'usar_frase_banco'];
@@ -311,7 +311,7 @@ export function leerInterprete(
     default:
       // Si el servicio trae la disculpa en quechua (barrera en el turno del paciente), se le dice al paciente.
       return { tipo: 'no_entendi', motivo: nuevo?.paso_fallido ? '' : (motivo || 'No se entendió con seguridad'),
-        quechua: quechua || null };
+        quechua: quechua || null, audioB64: d.audio_wav_b64 ?? null };
   }
 }
 

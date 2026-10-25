@@ -316,6 +316,8 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
       setLado(hablo);
       setFase({ f: 'noentendi', d: ia, lado: hablo });
+      // La voz del servicio primero (la misma del resto); /voz solo si no vino audio o falló.
+      if (ia.audioB64) { try { return await reproducirB64(ia.audioB64); } catch {} }
       if (ia.quechua) { try { await decir(ia.quechua); } catch {} }
       return;
     }
@@ -324,7 +326,8 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       agregarTurno({ lado: hablo, castellano: ia.texto || castellano, quechua: ia.quechua ?? quechua, estado: 'dicho' });
       setLado(hablo);
       setFase({ f: 'pregunta', d: ia, lado: hablo });
-      if (ia.audioB64) return reproducirB64(ia.audioB64);
+      // La voz del servicio; si no vino o no se pudo reproducir, el respaldo de abajo.
+      if (ia.audioB64) { try { return await reproducirB64(ia.audioB64); } catch {} }
       if (ia.para === 'paciente' && ia.quechua) return decir(ia.quechua);
       return decirEnCastellano(ia.texto);
     }

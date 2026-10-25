@@ -332,6 +332,8 @@ test('barrera en el turno del paciente: no_entendi trae la disculpa en quechua p
     idioma_salida: 'quy', texto_salida: 'Pampachaway, ¿manachu kaqmanta rimariwaq?', paso_fallido: 'critico', motivo: 'crítico: x' });
   assert.equal(v.tipo, 'no_entendi');
   if (v.tipo === 'no_entendi') { assert.equal(v.quechua, 'Pampachaway, ¿manachu kaqmanta rimariwaq?'); assert.equal(v.motivo, ''); }
+  const conAudio = leerInterprete({ ...BASE_R, accion: 'no_entendi', idioma_salida: 'quy', texto_salida: 'Pampachaway', audio_wav_b64: 'UklGRg==' });
+  if (conAudio.tipo === 'no_entendi') assert.equal(conAudio.audioB64, 'UklGRg==');
 });
 
 test('el segundo fallo sigue llegando como bloqueo', () => {
