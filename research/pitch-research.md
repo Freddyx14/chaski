@@ -117,3 +117,38 @@
 8. **Harden the demo, don't gamble on it.** Pre-loaded audio clips as a fallback, a phone hotspot, warm the model calls before each judge, cut any flaky feature (the FaceTimeOS move). If something breaks, one calm sentence about what failed, then the backup.
 9. **Devpost video and README are pitches too.** Sponsors judge asynchronously from the video. Open the video on the flow and the catch moment. README: where Claude is used and why, Cartesia features used, known limitations, no keys in the repo.
 10. **Expect repeat judges and keep the whole team at the table 10:30–12:30.** Same energy on the 5th run. Prep answers to the likely questions: how do you know the Quechua is right · privacy of patient audio · why Claude and not plain MT · who pays and how it scales to other health posts.
+
+---
+
+## 6 · Round 2 (Sun Oct 25, 01:00 PT): last year's winner, Héctor, and judges' advice
+
+### FaceTimeOS, Cal Hacks 12.0 1st place (watched: youtube.com/watch?v=zN96RdE0OSg, 2:02)
+- **0:00–0:18**: a problem everyone has had, then the product in one sentence with a joke: *"instead of calling your
+  mom to debug your CUDA out of memory errors, you can just FaceTime your Mac."*
+- **0:18**: *"Let me show you how it works."* From there to the end (~85 % of the video) it's **one real end-to-end
+  flow**: a hand holding a real phone, a real call, the real Mac fixing the bug on screen, narrated while it happens.
+- **No slides, no statistics, no architecture talk.** The depth shows because it works.
+- **Close = the outcome**: *"I can go on my way without having to worry about my training pipeline."*
+- From the blog (blog.dylanlu.com/cal-hacks-12): *"this is all the judges are going to see"*; they **cut clicking
+  entirely** so the demo looked reliable; they got few judges, left early, and **won anyway**. Don't read traffic as rank.
+
+### Héctor (HackMIT judge, `ideas/brainstorm-3-hard-tech.md`)
+Technically hard · not a crowded category · from Peel: one framing number, something tangible, the sponsor tech as the brain.
+
+### Judges and winners (research agent, every source checked by URL, quotes via summarizer: verify before a slide)
+| Rule | Source |
+|---|---|
+| Open with a plain declarative: *"this is a tool that does X for Y"* | Kurbaitaev, dev.to/kurbaitaev/what-judges-actually-score-notes-from-a-year-of-hackathon-judging-3p4l |
+| *"Admitting a limitation raised scores in my sheets"* | same |
+| His standard questions: who specifically, what did you build this weekend, what breaks first at scale | same |
+| *"Open with a frustration the room has felt, then build the whole demo around the moment your product resolves it"*; 3 min ≈ 30 s problem · 90 s live demo · 30 s tech · 30 s next | angelhack.com/blog/10-tips-to-help-you-rock-your-next-hackathon-demo/ |
+| Record a clean run the night before; hardcode the demo path; prepare "what was real vs mocked, who pays, what's next" | same + angelhack.com/blog/hackathon-tips-for-winners/ |
+| MLH: 3 min per team, each project seen ≥ 3 times, judges stack-rank a top 3 | guide.mlh.com/general-information/judging-and-submissions/judging-plan |
+| MaestrIA (Opus 4.7 prize): eval against real cases with ground truth **from his father** before building features, 74 → 81 % | claude.com/blog/meet-the-winners-of-built-with-opus-4-7-claude-code-hackathon |
+| Medkit (Opus 4.7 1st): real-world pull swayed judges, pilots already planned | same |
+| Peel's one-liner: *"a cheap lab in someone's hand… backed with the research power of an entire facility"* | thetech.com/2026/10/01/hackmit-2026 |
+| Loop judges in during the event; *"we heard about this project and had to come over"* | evanyu.dev/blog/treehacks-2026 |
+
+**What it changes in our pitch → v5 in `plan/pitch.md`:** say who it's for in the first 10 s · demo starts by ~0:25,
+not 0:45 · the problem is told during the wait · one headline number on the slide (183/184) · we name the limitation
+ourselves (the ears still miss ~4 words in 10, which is why it refuses) · a one-line close for general judges.

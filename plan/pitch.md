@@ -1,4 +1,4 @@
-# Chaski · pitch playbook (v4, Sat Oct 24 23:45 PT)
+# Chaski · pitch playbook (v5, Sun Oct 25 01:05 PT)
 
 > **We have 3:00 to pitch + 2:00 of questions** (Devpost 13.0, confirmed by the team). Built from what's in the repo
 > and the research in `research/pitch-research.md` (every source there). Two inputs still change it: the interview
@@ -23,6 +23,8 @@
 | WER 54 → 41 % on an unheard speaker | ✅ | `7b57a9b`, `evals/HISTORIA.md` §4 |
 | 184 seeded errors, every critical one caught, «about three seconds» | ✅ 183/184, 100 % critical, p50 2.6 s / p95 3.4 s. **v3 said "under three seconds", which is false at p95** | `chaski-2026-10-24-1740.json` |
 | Opus decides, Sonnet checks | ✅ D39 | SOT |
+| "They still miss about four words in ten" | ✅ fine-tuned WER 40.9 % on the held-out speaker | `7b57a9b` · `evals/HISTORIA.md` §4 |
+| "My mother wrote and reviewed these" | ✅ 14 approved as they were + 10 written by her | `evals/banco/revision_enfermera.json` |
 | Nurse-trained voice, A/B/C, «she picked it blind» | 🔸 **not yet**. No `ciegas/` or `abc/` files in the repo at 23:45; out of the default script | `plan/HANDOFF-RICARDO-VOZ.md` |
 | Summary + new words of the visit | ⚠️ screen built; **the summary on stage must be from the live consult**, not the `EJEMPLO` demo data in `movil/src/app/resumen.tsx` | app |
 | «Monday, it goes to my mother's health center» | 🔸 **Freddy confirms**. She said she herself wouldn't need it; the users are the ~80 % who don't speak Quechua | interview l.91 |
@@ -117,78 +119,81 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 ---
 
-## 5 · Run of show (v4, Sat 23:45): the wait becomes the problem
+## 5 · Run of show (v5, Sun 01:05): demo by 0:25, one flow, one number
 
-**Why v4.** A translated nurse turn now takes **8.0 s typical, 10.5 s p95** with the D43 translator and the D41 examples (20/20 said,
-`evals/HISTORIA.md` §2d; it was 17 s with the thinking translator).
-In v3 that wait sat inside B3 as dead air. In v4 Freddy **starts the turn and tells the last part of the problem while
-Chaski thinks**: the judge watches the real «Pensando» steps under a story, and the Quechua arrives as the payoff.
-⚠️ If the live service is still on NLLB (Ricardo hasn't restarted it), expect more false blocks: check first.
+**Why v5.** Round-2 research (`research/pitch-research.md` §6). Last year's winner said who it was for in 18 s and spent
+~85 % on ONE real flow, with no slides. Judges score a plain "tool for whom" opener, a live demo of ~90 s, one
+before→after number, and **a limitation named by the team**. v4 started the demo at 0:45 after 35 s of numbers and ran
+3:06 in the rehearsal video. v5 starts the demo at ~0:25, moves the numbers into the wait, and lands at ~2:50.
 
-| t | Beat | Who | On screen / in the air | Feature shown | Asset |
-|---|---|---|---|---|---|
-| 0:00 | **B1 Her voice** | Freddy | Her video, 16 s, English subtitles, on the laptop | — (the community) | `data/mama/video/clips/PITCH-B1_problema-profesionales-costa_16s.mp4` (backup audio `data/mama/audio/clips/RESPALDO-PITCH-B1_problema-profesionales_14s.mp3`) |
-| 0:16 | **B1b Who she is** | Freddy | Eye contact | — | ★ |
-| 0:25 | **B2 Problem; the turn starts at ~0:35, the last lines cover the ~8 s wait** | Freddy | Phone on the stand: he says the instruction, «Pensando» runs with its real steps | Polish, decision, translation, blind back-translation, guards | ★c, ★s |
-| ~0:45 | **B3a Chaski speaks** | Freddy | Quechua out loud + on screen | The payoff | — |
-| 0:55 | **B3b Patient answers** | Ricardo | Family clip next to the mic → Spanish on screen (~4 s) | Language ID, fine-tuned ears, Claude picks the reading | Patient clip |
-| 1:15 | **B3c Emergency mode** | Freddy | Two taps → plays instantly | Verified phrase bank (RAG), zero wait | 24 phrases reviewed by the nurse |
-| 1:30 | **B4 The refusal** | Freddy | Rehearsal shortcut → red block naming the fact | Code guards + critic | `FRASE_NEGATIVA_DEMO` |
-| 2:00 | **B5 How it's built** | Ricardo | Laptop: ONE slide with ★★ and ★★★ | Fine-tuning, critic, measured | slide |
-| 2:35 | **B6 Close** | Freddy | Phone: summary of THIS consult + new Quechua words | Summary, glossary | — |
+| t | Beat | Who | On screen / in the air | What it proves |
+|---|---|---|---|---|
+| 0:00 | **B1 Who it's for** | Freddy | Eye contact, one sentence | The declarative opener judges reward |
+| 0:07 | **B1 Her voice** | — | Her clip, first 12.5 s (ends after «…they don't understand Quechua»), subtitled | The insider, the lived problem |
+| 0:20 | **B2 Demo starts** | Freddy | Says the instruction to the phone; «Pensando» runs | One real flow, from here to B4 |
+| 0:25 | **B2 The problem, during the wait** | Freddy | To the judge, while the steps run (~8 s) | 9 in 10 / 1 in 5 / the pill in four |
+| 0:35 | **B3 Chaski speaks** | — | Quechua out loud + «Revisado por el crítico» | The payoff |
+| 0:40 | **B3 How it checked** | Freddy | Point at the seal | Blind back-translation + code |
+| 0:55 | **B3 The patient answers** | Ricardo plays the family clip | Spanish on screen (~4 s) | Both directions |
+| 1:10 | **B3 Emergency** | Freddy | Two taps → instant | Verified bank, zero wait |
+| 1:25 | **B4 The moment** | Freddy | Rehearsal shortcut → red, 1 s of silence | It refuses, and says why |
+| 1:55 | **B5 How it's built + the limit** | Ricardo | ONE slide: **183 / 184** | Hard tech, honest limit, one number |
+| 2:30 | **B6 Close** | Freddy | Summary of THIS consult | The outcome + the line |
 
-## 6 · The 3:00 script (v4, English, ~430 words)
+## 6 · The script (v5, English, ~360 words, target 2:50)
 
-> `[brackets]` = stage direction. Read it out loud with a timer; cut words, not beats.
-> 🔸 = line that depends on something not confirmed yet (see §0). Default is the safe version.
+> `[brackets]` = stage direction. Read it out loud with a timer; cut words, not beats. 🔸 = only if confirmed.
 
-**B1 · Her voice (0:00–0:25) · Freddy**
-[Play her video, 16 s: «Many times professionals from the coast come here to work, and they don't understand Quechua.»]
-"That's my mother, Norma. She's a nurse in Pilpichaca, high in the Andes of Huancavelica. Nine out of ten of her
-patients speak Quechua. About one in five of the staff do."
+**B1 · Who it's for, then her (0:00–0:20) · Freddy**
+"Chaski is a medical interpreter for the Andes. A nurse speaks Spanish, the patient hears Quechua, and it stays
+silent rather than say a dose wrong. Here's why we built it." [Her clip, 12.5 s, subtitled.]
 
-**B2 · The problem, while Chaski thinks (0:25–0:45) · Freddy**
-"Right now, when a patient only speaks Quechua, the interpreter is whoever is on shift — another nurse, a technician,
-the ambulance driver. If nobody is, they use gestures. She told us she breaks a pill into four in front of the patient
-to show the dose."
-[Phone on the stand. Freddy, to the phone: «Tome una pastilla cada ocho horas, después de comer. No la tome con té.»
-«Pensando» starts. Freddy turns back to the judge.]
-"A visit that takes forty minutes in Spanish takes an hour in Quechua. And it's not just her post:
-only one in seven doctors sent to rural Peru speaks even basic Quechua."
-[If Chaski hasn't spoken yet: "While we talk, it's checking itself — you can see each step."]
+**B2 · The demo starts, the problem fills the wait (0:20–0:35) · Freddy**
+"That's my mother, a nurse in Pilpichaca. Let me show you." [To the phone: «Tome una pastilla cada ocho horas, después
+de comer. No la tome con té.» «Pensando» starts. Turn back to the judge.]
+"Nine in ten of her patients speak Quechua. One in five of the staff do. When nobody can translate, she breaks a pill
+into four in front of the patient, to show the dose."
 
-**B3 · Chaski (0:45–1:30) · Freddy + Ricardo**
-[Chaski speaks Quechua.] "That's Chaski. It cleaned up what I said, translated it, then a second model translated it
-back without seeing my words, and code compared the dose, the hours and the 'not with tea'. Only then did it speak."
-[Ricardo plays the patient's answer.] "The patient answers in Quechua. Our fine-tuned ears transcribe it, and Claude
-picks the right reading from the context of the visit." [Spanish on screen.]
-[Two taps: emergency mode.] "In an emergency there's no time for a model. These questions were reviewed by a nurse
-from the community, and they play instantly."
+**B3 · Chaski (0:35–1:25) · Freddy + Ricardo**
+[Chaski speaks.] "Before it spoke, a second model translated the Quechua back without seeing my words, and code
+compared the dose, the hours and the 'not with tea'." [Point at the seal.]
+[Ricardo plays the patient.] "The patient answers in Quechua — and I read it in Spanish." [Spanish on screen.]
+[Two taps: emergency.] "In an emergency there's no time for a model. My mother wrote and reviewed these, and they play
+instantly."
 
-**B4 · The moment (1:30–2:00) · Freddy**
-"Now let's simulate the translator making a mistake." [Rehearsal shortcut.] [Red.] "The Quechua lost its 'not' — it
-now says *take it with tea*. Chaski caught it, didn't say it, and tells me exactly which fact didn't match. In a
+**B4 · The moment (1:25–1:55) · Freddy**
+"Now let's simulate the translator making a mistake." [Shortcut.] [Red. One second of silence.] "The Quechua lost its
+'not' — it now says *take it with tea*. Chaski caught it, didn't say it, and tells me exactly which fact changed. In a
 clinic, a confident wrong sentence is worse than silence."
 
-**B5 · How it's built (2:00–2:35) · Ricardo**
-"Meta's open models are the ears and the mouth, and there's almost no Chanka data in the world, so our families
-recorded it this weekend. On a speaker the model never heard, word errors dropped from 54 to 41 percent.
-Claude is the brain: Opus decides what to do, Sonnet checks. We seeded 184 errors — wrong doses, flipped negations,
-swapped medicines. Chaski caught every critical one, in about three seconds, and always says what failed."
-🔸 [Only if the nurse's blind test passed and the A/B/C files exist: 10 s A/B/C — "Meta's voice, Chaski's voice
-trained with her permission, and her. She picked it without knowing which was which."]
+**B5 · How it's built, and its limit (1:55–2:30) · Ricardo**
+"There's almost no Chanka speech data, so our families recorded it this weekend and we fine-tuned Meta's models on it.
+They still miss about four words in ten. That's exactly why Chaski refuses instead of guessing. Opus decides, Sonnet
+checks. We seeded 184 errors — wrong doses, flipped negations, swapped medicines. It caught every critical one, in about
+three seconds, and always says which fact failed."
 
-**B6 · Close (2:35–3:00) · Freddy**
-[Summary screen of the consult we just did.] "At the end, a note for the clinical record, instructions the patient
-takes home, and the new Quechua words from that visit, so the staff learn one patient at a time. Anthropic says it
-wants Claude to work in languages left out of its training data. We built that, and we measured it.
-🔸 Next, it goes to my mother's health center." [Only if she has agreed to try it: "Monday, it goes to my mother's
-health center."]
+**B6 · Close (2:30–2:50) · Freddy**
+[Summary screen.] "At the end: a note for the clinical record, instructions the patient takes home, and the new Quechua
+words from that visit. Anthropic says it wants Claude to work in languages left out of its training data. We built
+that, we measured it, and 🔸 next it goes to my mother's health center." [Only if she said yes: "Monday".]
 
-### The 30-second version
-"At my mother's health center in the Peruvian Andes, nine in ten patients speak Quechua and one in five staff do.
-Chaski is the interpreter for when nobody is there — and it would rather stay quiet than say a wrong dose: it caught
-every dose and negation error we threw at it. Want to see it?"
+### What changed from v4, and why
+| v4 | v5 | Source |
+|---|---|---|
+| 16 s of her clip opens cold | One "who it's for" sentence first, then 12.5 s of her | Kurbaitaev: "tool that does X for Y" |
+| Demo at 0:45 | Demo at 0:20 | FaceTimeOS: demo at 0:18 |
+| Numbers before the demo | Numbers told during the ~8 s wait | turns dead air into the problem |
+| Two numbers on the slide | **One**: 183 / 184 (the word-error number only in Q&A) | research rule 4 |
+| No limitation in the pitch | "They still miss about four words in ten. That's exactly why Chaski refuses" (40.9 % WER, `7b57a9b`) | Kurbaitaev: "admitting a limitation raised scores" |
+| "These were reviewed by a nurse" | "My mother wrote and reviewed these" (14 approved + 10 written by her) | the insider, made concrete |
+| 3:06 in rehearsal | ~2:50 | buffer for a slow turn |
+
+### The 30-second version (and the one-liner for general judges)
+"Chaski is a medical interpreter for the Andes: a nurse speaks Spanish, the patient hears Quechua. At my mother's health
+center nine in ten patients speak Quechua and one in five staff do. And it would rather stay silent than say a dose
+wrong: it caught every critical error we seeded. Want to see it?"
+
+**One-liner:** *"An interpreter that would rather stay silent than be wrong."*
 
 ### The 2:00 demo-first cut (Cartesia, or a judge in a hurry)
 B3 (45 s) → B4 (25 s) → B1 line + ★ (15 s) → "Cartesia is the Spanish side: it transcribed 3.5 s of the nurse in
