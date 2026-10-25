@@ -7,11 +7,7 @@
 > **Memoria automática (D44, dom 01:45):** en `desplegar.sh` agrega `export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl`
 > (y `mkdir -p $DESTINO/memoria`), fuera de la carpeta `chaski/` que se sincroniza con `--delete`; si no, cada
 > despliegue borra lo aprendido. Para ver y aprobar: `uv run python -m chaski.memoria` y `… aprobar ID`.
-> **Voz robótica (Freddy, 01:47), en `servicio/app.py` `_voz_para_chaski` (~l.131):**
-> 1. Lo que Chaski dice **en castellano** sale hoy con `voz="base"` de Meta (un modelo de quechua leyendo castellano):
->    por eso suena robótico. Según el diseño, el castellano lo dice **Cartesia Sonic**; la clave ya está en la instancia.
-> 2. El quechua usa `p24` (un familiar). La voz ajustada con la enfermera es `mama_freddy`; **Freddy decide** cuál va en
->    la demo (la prueba a ciegas con ella sigue pendiente).
+> **Voz robótica (Freddy, 01:47) → ver la sección «🔊 Voz de Chaski: cómo arreglarla» al final de este archivo.**
 > Y `/turno/paciente` solo acepta WAV (la app manda WAV, así que anda); con .webm y .m4a da 500.
 
 > Decisión de Freddy (D43, 23:38; se citó como D40 por error, D40 es «Chaski sin fondo»): **traduce Claude Sonnet 5 con esfuerzo medio**, no NLLB. Medido en los mismos sets:
@@ -33,3 +29,90 @@
 Variables que deben quedar: `CHASKI_MODELO_PRINCIPAL=claude-opus-5`, `CHASKI_MODELO_CRITICO=claude-sonnet-5`,
 `CHASKI_PENSAR_TRADUCIR=medium` (o sin definir: ya es el valor por defecto), `CHASKI_TRADUCIR_ANTICIPADO=1` (ídem),
 `CHASKI_NLLB_URL` vacía.
+
+
+---
+
+## 🔊 Voz de Chaski: cómo arreglarla (pedido de Freddy, dom 25-oct 01:52) · URGENTE antes del jurado
+
+**El problema, en dos partes** (todo en `servicio/app.py`, función `_voz_para_chaski`, ~l.123):
+
+```python
+audio, _ = decir_en_voz(texto, voz="p24" if idioma == "quy" else "base")
+```
+
+1. **Castellano robótico.** Cuando Chaski le habla al personal (repreguntar, responder), usa `voz="base"`: el modelo
+   de quechua de Meta (`mms-tts-quy`) leyendo castellano. Por eso suena a robot. El castellano tiene que ir por
+   **Cartesia Sonic**, como dice el diseño (D16). La clave `CARTESIA_API_KEY` ya está en la instancia: la usa `/escuchar`.
+2. **Quechua con otra voz.** El quechua sale con `p24`, un familiar, y no con `mama_freddy`, la voz ajustada con la
+   enfermera. **Cuál suena en la demo lo decide Freddy.** Por eso va en una variable de entorno, para cambiarla sin
+   tocar código.
+
+### Paso 1 · Castellano con Cartesia (≈10 min)
+
+En `servicio/flujo.py`, junto a `entender_castellano` (que ya usa Cartesia y la misma `CARTESIA_VERSION`):
+
+```python
+CARTESIA_TTS = "https://api.cartesia.ai/tts/bytes"
+
+def voz_castellano(texto: str) -> bytes:
+    """Lo que Chaski le dice al personal, en castellano, con Cartesia Sonic. WAV PCM 16 bits."""
+    clave = os.environ["CARTESIA_API_KEY"]
+    with httpx.Client(timeout=30) as cli:
+        r = cli.post(CARTESIA_TTS,
+                     headers={"Authorization": f"Bearer {clave}", "Cartesia-Version": CARTESIA_VERSION},
+                     json={"model_id": os.environ.get("CHASKI_CARTESIA_MODELO", "sonic-3.6"),
+                           "transcript": texto,
+                           "voice": {"mode": "id", "id": os.environ["CHASKI_VOZ_ES"]},
+                           "language": "es",
+                           "output_format": {"container": "wav", "encoding": "pcm_s16le", "sample_rate": 24000}})
+    if r.status_code >= 400:
+        raise RuntimeError(f"Cartesia TTS {r.status_code}: {r.text[:200]}")
+    return r.content
+```
+
+Para la voz (`CHASKI_VOZ_ES`): elige una voz latinoamericana, cálida y clara, de la lista de Cartesia
+(`GET https://api.cartesia.ai/voices?language=es` con las mismas cabeceras) y pon su `id` en el entorno de la instancia.
+
+Fuente del formato: https://docs.cartesia.ai/api-reference/tts/bytes (ruta `POST /tts/bytes`, `model_id` `sonic-3.6`,
+cabecera `Cartesia-Version: 2026-08-14`; verificado el 25-oct).
+
+### Paso 2 · `_voz_para_chaski` con las dos voces y respaldo
+
+```python
+def _voz_para_chaski(texto: str, idioma: str) -> bytes:
+    from servicio.flujo import decir_en_voz, voz_castellano
+    if idioma == "quy":
+        audio, _ = decir_en_voz(texto, voz=os.environ.get("CHASKI_VOZ_QUY", "p24"))
+        return audio
+    try:
+        return voz_castellano(texto)
+    except Exception:
+        audio, _ = decir_en_voz(texto, voz="base")   # respaldo: robótico, pero nunca mudo
+        return audio
+```
+
+### Paso 3 · Elegir la voz del quechua (lo decide Freddy)
+
+- `CHASKI_VOZ_QUY=mama_freddy` → la voz ajustada con la enfermera. **Recomendado si la prueba a ciegas con ella sale
+  bien** (`plan/HANDOFF-RICARDO-VOZ.md`). Es lo más fuerte para el pitch: la enfermera escucha a Chaski con su voz.
+- `CHASKI_VOZ_QUY=p24` → la de hoy.
+- Se cambia con la variable y un reinicio, sin desplegar código.
+
+### Paso 4 · Desplegar y verificar
+
+1. `git pull`, despliega con `servicio/desplegar.sh` y **avisa por el grupo antes de reiniciar**: un reinicio corta la
+   app en vivo.
+2. Castellano: `curl -F "texto=Disculpe, ¿desde cuándo tiene fiebre?" -F "idioma=spa" $URL/voz --output es.wav` y
+   escúchalo. Tiene que sonar a persona, no a robot. (Si `/voz` no recibe `idioma`, prueba con un turno real en
+   el que Chaski repregunte.)
+3. Quechua: `curl -F "texto=Ama llakikuychu, kaypim kachkaniku." $URL/voz --output qu.wav`, con la voz elegida.
+4. **La app no cambia nada:** reproduce el `audio_wav_b64` que llega en el turno.
+5. **Freddy prueba con el build 16** en TestFlight y confirma.
+
+| Hecho | Qué |
+|---|---|
+| [ ] | `voz_castellano` en `flujo.py` + `CHASKI_VOZ_ES` en la instancia |
+| [ ] | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo |
+| [ ] | Freddy eligió la voz del quechua (p24 o mama_freddy) |
+| [ ] | Desplegado, avisado por el grupo y probado con `curl` |
