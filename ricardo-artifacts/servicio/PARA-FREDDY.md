@@ -409,3 +409,85 @@ emg-alergia   ¿Es alérgico a algún medicamento?   →   ¿Ruparin pukyupakunk
 
 **El texto antes que la voz:** una voz perfecta diciendo algo equivocado es peor que una robótica
 diciéndolo bien. Esas frases las tiene que ver tu mamá antes de que suenen en una posta.
+
+
+---
+
+## D40 aplicado: traduce Claude. Los seis pasos, hechos (dom 25-oct, madrugada)
+
+Todo probado contra la URL pública. Nada que cambies de tu lado salvo lo que digo abajo.
+
+| # | Qué pedías | Estado |
+|---|---|---|
+| 1 | `git pull` | hecho |
+| 2 | Traducir con Claude, `CHASKI_NLLB_URL` vacía | **hecho** · `"motor":"claude"` |
+| 3 | `/turno/paciente` sin 500 | **hecho** · devuelve 200 con audio |
+| 4 | `/turno/enfermera/vivo` | **hecho** · `decision` a los 4.5 s |
+| 5 | Voz durante el crítico (`voz_fn`) | **hecho** · vuelve en `audio_wav_b64` |
+| 6 | Reiniciar, probar, push | hecho |
+
+### 2 · Claude traduce
+
+```sh
+POST /turno/enfermera -F "texto=Tome una pastilla de paracetamol cada ocho horas durante tres días"
+{"estado":"dicho","motor":"claude",
+ "texto_salida":"Huk paracetamol pastillata tomay, sapa pusaq horamanta, kimsa p'unchaw…",
+ "ms":{"total":13110}}
+```
+
+`CHASKI_NLLB_URL` va vacía, como pediste. `motor=nllb` sigue funcionando para el modo sin conexión y
+no depende de esa variable: son 483 ms contra 5042, con las mismas barreras y el mismo crítico.
+
+**Sobre los 13.1 s contra los 8.3 s que mediste:** la diferencia es la síntesis de voz, que ahora va
+dentro del turno (paso 5). El audio viene listo en la respuesta en vez de pedirse después, así que la
+espera que siente la enfermera es menor aunque el número total suba. Si prefieres el turno sin audio,
+`con_audio=false` y vuelve a ~8 s.
+
+### 3 · `/turno/paciente` ya responde
+
+```sh
+POST /turno/paciente -F "audio=@p16_C_001.wav"
+{"estado":"dicho","accion":"traducir",
+ "texto_original":"punchaymanta umay nanashqa",
+ "texto_pulido":"Punchawmanta umay nanawan.",
+ "texto_salida":"Desde hoy me duele la cabeza",
+ "audio_wav_b64":"UklGRi…"}
+```
+
+Daba 500 porque la ruta vieja llamaba a nuestro propio flujo. Ahora oye con `/entender` de la GPU y
+le pasa a `chaski.servicio.turno` el texto crudo **y las N mejores alternativas**, que es lo que B1
+necesita para bloquear cuando el reconocedor duda de un número o un medicamento.
+
+### 4 · La ruta en vivo
+
+```sh
+POST /turno/enfermera/vivo        # text/event-stream
+
+event: decision
+data: {"accion":"repreguntar","texto_pulido":"¿Qué pastilla le digo que tome?","ms_decidir":4482.9}
+
+event: resultado
+data: {"estado":"dicho","accion":"repreguntar", …}
+```
+
+`decision` es para mostrar; **lo que se dice es solo `resultado`**.
+
+### 5 · La voz se hace mientras el crítico revisa
+
+`voz_fn` sintetiza en paralelo con la revisión. Si el crítico bloquea, el audio se descarta y nunca
+suena: generar no es decir. Usa la voz `p24` para quechua y la base para castellano.
+
+### El banco ya suena
+
+`GET /banco?tag=emergencia` devuelve las 24 con su `audio` apuntando a mp3 que ya existen. Toca y
+suena, sin modelo en el camino. Cambiar la voz es cambiar `p24` por `p16`, `mama_freddy`, `papa_ricardo`
+o `base` en la URL: los 120 archivos están generados.
+
+### 🔴 Lo que sigue siendo tuyo
+
+```
+emg-alergia   ¿Es alérgico a algún medicamento?   →   ¿Ruparin pukyupakunki?
+```
+
+`rupay` es calor o fiebre. Eso no dice «alérgico». Que lo vea tu mamá antes del pitch: una voz
+perfecta diciendo algo equivocado es peor que una robótica diciéndolo bien.

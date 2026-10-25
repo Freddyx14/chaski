@@ -120,6 +120,18 @@ async def escuchar(audio: UploadFile = File(...)):
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
+def _voz_para_chaski(texto: str, idioma: str) -> bytes:
+    """La síntesis que el intérprete llama MIENTRAS el crítico revisa.
+
+    Hacerla ahí quita ~1 s por turno: el audio se genera en paralelo con la
+    revisión en vez de después. Si el crítico bloquea, el audio se descarta y
+    nunca suena — generar no es decir.
+    """
+    from servicio.flujo import decir_en_voz
+    audio, _ = decir_en_voz(texto, voz="p24" if idioma == "quy" else "base")
+    return audio
+
+
 def _dependencias(motor: str):
     """El cableado del intérprete con el traductor elegido.
 
@@ -136,7 +148,7 @@ def _dependencias(motor: str):
 
 @aplicacion.post("/turno/paciente")
 async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form(""),
-                         lengua: str = Form(""), motor: str = Form("nllb")):
+                         lengua: str = Form(""), motor: str = Form("claude")):
     """El paciente habla chanka. Lo oye nuestro reconocedor, lo interpreta el de Freddy.
 
     Las dos mitades: `/entender` de la instancia pone el texto y las N mejores
@@ -151,7 +163,8 @@ async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form("")
         return interprete.turno(oido.get("texto", ""), "quy", "paciente", contexto,
                                 json.dumps(oido.get("alternativas", []), ensure_ascii=False),
                                 oido.get("confianza"),
-                                dependencias=_dependencias(motor))
+                                dependencias=_dependencias(motor),
+                                voz_fn=_voz_para_chaski)
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
@@ -159,20 +172,46 @@ async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form("")
 @aplicacion.post("/turno/enfermera")
 def turno_enfermera(texto: str = Form(...), contexto: str = Form(""),
                     n_mejores: str = Form(""), confianza: str = Form(""),
-                    traduccion_sembrada: str = Form(""), motor: str = Form("nllb")):
+                    traduccion_sembrada: str = Form(""), motor: str = Form("claude")):
     """La enfermera habla castellano. Mismo intérprete, mismas barreras.
 
-    `motor` elige quién traduce: `nllb` (nuestra GPU, 565 ms) o `claude`
-    (1496 ms, traduce mejor). Por defecto NLLB, por latencia; si falla, el
-    código de Freddy cae a Claude solo y lo dice en `motor` de la respuesta.
+    `motor` elige quién traduce. Por defecto **Claude** (D40): sobre los mismos
+    conjuntos no daña ningún término fijo —NLLB dañaba 3 de 92— y lo que dice el
+    paciente se lee mucho mejor de vuelta (qu→es 50.1 contra 24.7). El turno
+    entero queda en ~8 s, que es espera aceptable cuando la consulta dura una
+    hora.
+
+    `motor=nllb` sigue disponible: es el modo sin conexión, y 483 ms contra
+    5042. Lo que no cambia en ningún caso son las barreras ni el crítico.
     """
     from chaski import servicio as interprete
     try:
         return interprete.turno(texto, "spa", "personal", contexto, n_mejores,
                                 confianza, traduccion_sembrada,
-                                dependencias=_dependencias(motor))
+                                dependencias=_dependencias(motor),
+                                voz_fn=_voz_para_chaski)
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/turno/enfermera/vivo")
+def turno_enfermera_vivo(texto: str = Form(...), contexto: str = Form(""),
+                         n_mejores: str = Form(""), confianza: str = Form(""),
+                         traduccion_sembrada: str = Form("")):
+    """El mismo turno, en vivo: `decision` a los ~3 s, `resultado` al final.
+
+    Sirve para que la app enseñe el castellano pulido mientras traduce y el
+    crítico revisa. Lo que se DICE es solo `resultado`: `decision` es para
+    mirar, no para hablar.
+    """
+    from fastapi.responses import StreamingResponse
+
+    from chaski import servicio as interprete
+    return StreamingResponse(
+        interprete.turno_eventos(texto, "spa", "personal", contexto, n_mejores,
+                                 confianza, traduccion_sembrada),
+        media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @aplicacion.get("/banco")
