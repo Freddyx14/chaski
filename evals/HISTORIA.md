@@ -116,6 +116,23 @@ La base salió 54,9 acá y 52,6 en §2d: el ruido entre corridas es de ~2 puntos
 repetida (la automática nunca superó a la enfermera en 3 mezclas), no por una cifra. Decisión D44: se guarda todo,
 solo lo aprobado es ejemplo.
 
+### 2f · Consultas completas en modo manos libres, en vivo (dom 25-oct)
+
+Tres consultas (dolor de cabeza, niño con fiebre, barriga), 22 turnos, nadie le dice a Chaski quién habla. Personal con voz
+sintética peruana (ElevenLabs), paciente con audio real de p16 (el hablante que el reconocedor nunca oyó).
+Script `evals/conversacion/simular.py`, resultados en `evals/conversacion/resultados/`.
+
+| | 02:50 (antes de los arreglos) | **03:54 (todo desplegado)** |
+|---|---|---|
+| Quién habló | 20/22 | **21/22** |
+| A quién y en qué idioma | 14/14 | **18/18** |
+| Números perdidos | 0 | **0** |
+| Turno p50 / p95 | 13,9 s / 38,8 s | **7,8 s / 11,4 s** |
+| Consulta completa | 64–192 s | **49–70 s** |
+
+Y con 30 frases reales de p16 por `/turno/paciente` (`evals/vivo/`): de 9 dichos / 12 pidió repetir / 2 bloqueados
+(02:44) a **24 dichos / 6 pidió repetir / 0 bloqueados**, números intactos 3/3, p50 10,7 s (03:25).
+
 ## 3 · ¿Encuentra la frase verificada correcta? (RAG, 76 consultas)
 
 | Método | Acierta a la primera | Entre las 5 primeras |

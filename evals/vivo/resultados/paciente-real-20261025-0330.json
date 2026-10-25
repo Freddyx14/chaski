@@ -1,0 +1,345 @@
+{
+ "resumen": {
+  "turnos": 30,
+  "estados": {
+   "dicho": 24,
+   "pidio_repetir": 6
+  },
+  "chrf2_dichos_vs_lo_que_quiso_decir": 64.17,
+  "numeros_intactos": "3/3",
+  "s_p50": 10.7,
+  "s_p95": 13.9
+ },
+ "turnos": [
+  {
+   "id": 31,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 12.5,
+   "ref": "Aquí está su receta",
+   "salida": "Aquí está su receta.",
+   "motivo": "Paciente entrega la receta; mensaje claro para el personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 2,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 12.7,
+   "ref": "Tome la pastilla después de comer",
+   "salida": "Después de comer, tome las pastillas.",
+   "motivo": "Paciente repite la indicación; se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 65,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 8.8,
+   "ref": "¿Podría repetir eso?",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Frase sin lectura clara; no adivino contenido",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 44,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 11.9,
+   "ref": "¿Qué está buscando, señor?",
+   "salida": "¿Qué estás buscando, señor?",
+   "motivo": "Pregunta del paciente al personal; se traduce tal cual.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 68,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.0,
+   "ref": "Cálmese, señor",
+   "salida": "Tranquilo, señor.",
+   "motivo": "Despedida cortés del paciente; se traduce",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 5,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.4,
+   "ref": "Mi hija tiene diarrea desde hace dos días",
+   "salida": "Mi hija tiene diarrea desde hace dos días.",
+   "motivo": "Paciente informa diarrea de su hija desde hace dos días",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 19,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 18.9,
+   "ref": "Pastilla de quinientos miligramos",
+   "salida": "Quinientos miligramos de pastilla.",
+   "motivo": "Dato claro de dosis; se traduce sin agregar nada",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 7,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 7.3,
+   "ref": "Vuelva en un mes",
+   "salida": "Regresará en un mes.",
+   "motivo": "Paciente repite la indicación; se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 95,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.7,
+   "ref": "No tiene por qué",
+   "salida": "De nada.",
+   "motivo": "Cortesía del paciente, se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 3,
+   "estado": "pidio_repetir",
+   "accion": "repreguntar",
+   "s": 19.3,
+   "ref": "Tome amoxicilina",
+   "salida": "Mana allintachu entiendirqani. ¿Ima medicinataq chayqa? Sutinta kutichiway, ama hina kaspa.",
+   "motivo": "Nombre del medicamento y negación poco claros",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 25,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 6.6,
+   "ref": "Vaya a la posta",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Palabras ininteligibles; posible medicamento no identificable",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 86,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.1,
+   "ref": "Disculpe",
+   "salida": "Disculpe.",
+   "motivo": "Frase de cortesía: disculpa del paciente, se traduce.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 74,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 12.5,
+   "ref": "Le vamos a ayudar",
+   "salida": "Le vamos a ayudar.",
+   "motivo": "Frase corta de cortesía; se traduce tal cual.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 96,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 11.0,
+   "ref": "Nos vemos mañana, señor",
+   "salida": "Hasta que llueva, señor.",
+   "motivo": "Despedida cortés del paciente, se traduce.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 13,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 12.7,
+   "ref": "¿Desde cuándo le duele?",
+   "salida": "¿Desde cuándo le duele?",
+   "motivo": "Pregunta del paciente, clara; se traduce al personal.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 20,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 5.6,
+   "ref": "Tome asiento",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Fragmento ambiguo sin contenido claro del paciente",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 71,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 8.2,
+   "ref": "No se preocupe",
+   "salida": "No se preocupe, estamos aquí para ayudarle.",
+   "motivo": "Frase de cortesía clara, se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 21,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 12.8,
+   "ref": "Tomen asiento",
+   "salida": "Siéntate.",
+   "motivo": "Frase corta y clara del paciente; se traduce tal cual.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 26,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 8.0,
+   "ref": "¿En qué le puedo servir?",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "Frase sin lectura clara; no adivino intención",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 54,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 6.9,
+   "ref": "¿Habla quechua, doctor?",
+   "salida": "¿Habla usted quechua, doctor?",
+   "motivo": "Pregunta dirigida al personal; se traduce tal cual",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 85,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.8,
+   "ref": "Lo lamento mucho",
+   "salida": "Me preocupo mucho por usted.",
+   "motivo": "Frase de cortesía del paciente; se traduce.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 6,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 12.6,
+   "ref": "Tome ácido fólico",
+   "salida": "Tomaba ácido fólico.",
+   "motivo": "Paciente informa que toma ácido fólico; dato claro para el personal.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 91,
+   "estado": "pidio_repetir",
+   "accion": "no_entendi",
+   "s": 12.6,
+   "ref": "¡Gracias!",
+   "salida": "Pampachaway, ¿manachu kaqmanta rimariwaq?",
+   "motivo": "B5 ida y vuelta: la retraducción no entiende una parte del quechua",
+   "numeros_faltan": null,
+   "error": null
+  },
+  {
+   "id": 51,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 8.9,
+   "ref": "Yo hablo quechua, señor",
+   "salida": "Hablo en quechua, señor.",
+   "motivo": "Frase clara del paciente dirigida al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 5,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.9,
+   "ref": "Tome la pastilla cada doce horas",
+   "salida": "Tome la pastilla a las 12.",
+   "motivo": "Repite indicación; se traduce tal cual al personal.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 1,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 8.9,
+   "ref": "¿Está bien, señora?",
+   "salida": "¿Está bien, señora?",
+   "motivo": "Saludo del paciente, se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 93,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 8.5,
+   "ref": "Gracias por su ayuda",
+   "salida": "Gracias por su ayuda.",
+   "motivo": "Agradecimiento del paciente; cortesía, se traduce.",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 62,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 8.8,
+   "ref": "Por favor, hábleme despacio",
+   "salida": "¿Está bien que me hable despacio?",
+   "motivo": "Pedido claro del paciente dirigido al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 1,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 10.4,
+   "ref": "Tome una pastilla cada ocho horas",
+   "salida": "A las ocho tome una pastilla.",
+   "motivo": "Paciente repite la indicación; se traduce al personal",
+   "numeros_faltan": [],
+   "error": null
+  },
+  {
+   "id": 59,
+   "estado": "dicho",
+   "accion": "traducir",
+   "s": 13.9,
+   "ref": "¿Prefiere usted hablar quechua o castellano?",
+   "salida": "¿Quiero hablar en quechua o en castellano?",
+   "motivo": "Pregunta del paciente dirigida al personal; se traduce.",
+   "numeros_faltan": [],
+   "error": null
+  }
+ ]
+}
