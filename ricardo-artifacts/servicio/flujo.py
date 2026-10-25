@@ -183,6 +183,21 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
             "total_ms": round(auditoria_ms + (hablar_ms or 0), 1)}
 
 
+def entender_chanka(audio: bytes, nombre: str = "turno.wav") -> dict:
+    """Solo oir: el audio chanka al texto, con las alternativas del reconocedor.
+
+    El interprete de Freddy quiere el texto crudo y las N mejores para decidir
+    si entendio; no quiere que nadie haya traducido ya. Por eso esto se queda
+    en oir y no sigue.
+    """
+    with httpx.Client(timeout=300) as cli:
+        r = cli.post(f"{INSTANCIA}/entender",
+                     files={"audio": (nombre, audio, "audio/wav")},
+                     data={"lengua": "quy_Latn"})
+    r.raise_for_status()
+    return r.json()
+
+
 def decir_en_voz(texto_quechua: str, voz: str = "p24") -> tuple[bytes, float]:
     """Solo la voz. La página la pide aparte, cuando ya mostró el texto."""
     with httpx.Client(timeout=300) as cli:

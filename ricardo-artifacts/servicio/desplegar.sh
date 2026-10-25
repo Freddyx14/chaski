@@ -89,6 +89,9 @@ ssh_ "set -e
   # CHASKI_VOZ apunta al servicio de voz dentro de la misma máquina.
   set -a; . ./.env; set +a
   export CHASKI_VOZ=http://127.0.0.1:8000
+  # El interprete de Freddy traduce con nuestro NLLB si le damos esta URL; sin
+  # ella cae a Claude. 565 ms contra 1496 ms, y sin salir de la maquina.
+  export CHASKI_NLLB_URL=http://127.0.0.1:8000/traducir
   export PYTHONPATH=$DESTINO
   setsid nohup ./venv/bin/uvicorn servicio.app:aplicacion --host 127.0.0.1 --port 8080 \
     > $DESTINO/orquestador.log 2>&1 < /dev/null &

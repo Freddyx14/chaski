@@ -52,6 +52,16 @@ def portada():
     return FileResponse(AQUI / "static" / "index.html")
 
 
+@aplicacion.on_event("startup")
+def _precargar_banco():
+    """Los embeddings del banco tardan en cargar; que los pague el arranque."""
+    try:
+        from chaski import banco as banco_frases
+        banco_frases.precargar()
+    except Exception as e:
+        print(f"banco sin precargar: {type(e).__name__}: {e}", flush=True)
+
+
 @aplicacion.get("/salud")
 def salud():
     return {"modelo_vision": MODELO,
@@ -110,46 +120,70 @@ async def escuchar(audio: UploadFile = File(...)):
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
+def _dependencias(motor: str):
+    """El cableado del intérprete con el traductor elegido.
+
+    `servicio.turno` arma las dependencias con motor «claude» fijo. Pasarlas
+    desde aquí es el hueco que su propia firma deja para esto, y evita tocar
+    su archivo.
+    """
+    import anthropic
+
+    from chaski import orquestador
+    return orquestador.dependencias(anthropic.Anthropic(),
+                                    motor="nllb" if motor == "nllb" else "claude")
+
+
 @aplicacion.post("/turno/paciente")
-async def turno_paciente(audio: UploadFile = File(...), lengua: str = Form("")):
-    from servicio.flujo import turno_del_paciente
+async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form(""),
+                         lengua: str = Form(""), motor: str = Form("nllb")):
+    """El paciente habla chanka. Lo oye nuestro reconocedor, lo interpreta el de Freddy.
+
+    Las dos mitades: `/entender` de la instancia pone el texto y las N mejores
+    alternativas; `chaski.servicio.turno` decide qué hacer con eso —traducir,
+    repreguntar, responder, callarse— y pasa sus barreras antes de decir nada.
+    """
+    from chaski import servicio as interprete
+
+    from servicio.flujo import entender_chanka
     try:
-        return turno_del_paciente(await audio.read(), audio.filename or "turno.wav", lengua)
+        oido = entender_chanka(await audio.read(), audio.filename or "turno.wav")
+        return interprete.turno(oido.get("texto", ""), "quy", "paciente", contexto,
+                                json.dumps(oido.get("alternativas", []), ensure_ascii=False),
+                                oido.get("confianza"),
+                                dependencias=_dependencias(motor))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
-
-
-@aplicacion.post("/turno/paciente/vivo")
-async def turno_paciente_vivo(audio: UploadFile = File(...)):
-    """El mismo turno, pero en vivo: cada paso sale en cuanto está."""
-    from fastapi.responses import StreamingResponse
-
-    from servicio.flujo import turno_del_paciente_en_vivo
-
-    datos = await audio.read()
-    nombre = audio.filename or "turno.wav"
-
-    def eventos():
-        try:
-            for trozo in turno_del_paciente_en_vivo(datos, nombre):
-                yield f"data: {json.dumps(trozo, ensure_ascii=False)}\n\n"
-        except Exception as e:
-            yield f"data: {json.dumps({'paso': 'error', 'error': f'{type(e).__name__}: {e}'})}\n\n"
-
-    return StreamingResponse(eventos(), media_type="text/event-stream",
-                             headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @aplicacion.post("/turno/enfermera")
-def turno_enfermera(texto: str = Form(...), modo_ensayo: bool = Form(True),
-                    forzar: bool = Form(False), rapido: bool = Form(True),
-                    con_audio: bool = Form(False)):
-    from servicio.flujo import turno_de_la_enfermera
+def turno_enfermera(texto: str = Form(...), contexto: str = Form(""),
+                    n_mejores: str = Form(""), confianza: str = Form(""),
+                    traduccion_sembrada: str = Form(""), motor: str = Form("nllb")):
+    """La enfermera habla castellano. Mismo intérprete, mismas barreras.
+
+    `motor` elige quién traduce: `nllb` (nuestra GPU, 565 ms) o `claude`
+    (1496 ms, traduce mejor). Por defecto NLLB, por latencia; si falla, el
+    código de Freddy cae a Claude solo y lo dice en `motor` de la respuesta.
+    """
+    from chaski import servicio as interprete
     try:
-        return turno_de_la_enfermera(texto, modo_ensayo=modo_ensayo, forzar=forzar,
-                                     rapido=rapido, con_audio=con_audio)
+        return interprete.turno(texto, "spa", "personal", contexto, n_mejores,
+                                confianza, traduccion_sembrada,
+                                dependencias=_dependencias(motor))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.get("/banco")
+def banco(tag: str = ""):
+    """Las frases verificadas. `revisado` dice cuáles puede decir la app."""
+    from chaski import servicio as interprete
+    try:
+        return interprete.banco_por_tag(tag or None)
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
 
 
 @aplicacion.post("/idioma")

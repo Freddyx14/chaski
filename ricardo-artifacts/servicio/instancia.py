@@ -223,9 +223,16 @@ def traductor(tarjeta: str = "facebook/nllb-200-distilled-1.3B"):
     return _modelos[clave + "_tok"], _modelos[clave]
 
 
+# Lo que espera `chaski.traducir`: campos `texto`, `de`, `a` con codigos cortos
+# ("spa", "quy") y la respuesta en la clave `traduccion`. Se aceptan tambien los
+# nombres largos para no romper a quien ya llamaba asi.
+CODIGOS = {"spa": "spa_Latn", "quy": "quy_Latn",
+           "spa_Latn": "spa_Latn", "quy_Latn": "quy_Latn"}
+
+
 @aplicacion.post("/traducir")
-def traducir(texto: str = Form(...), hacia: str = Form("quy_Latn"),
-             desde: str = Form("spa_Latn"),
+def traducir(texto: str = Form(...), hacia: str = Form(""), desde: str = Form(""),
+             a: str = Form(""), de: str = Form(""),
              modelo: str = Form("facebook/nllb-200-distilled-1.3B")):
     """Traduce con NLLB, en la instancia y sin salir a internet.
 
@@ -241,15 +248,19 @@ def traducir(texto: str = Form(...), hacia: str = Form("quy_Latn"),
     Lo que no cambia es la auditoria: lo que salga de aqui pasa por la misma
     comparacion de dosis y horas que lo de Claude.
     """
+    origen = CODIGOS.get(desde or de or "spa", "spa_Latn")
+    destino = CODIGOS.get(hacia or a or "quy", "quy_Latn")
     tok, m = traductor(modelo)
-    tok.src_lang = desde
+    tok.src_lang = origen
     t0 = time.perf_counter()
     x = tok(texto, return_tensors="pt").to(DISPOSITIVO)
     with torch.no_grad():
-        y = m.generate(**x, forced_bos_token_id=tok.convert_tokens_to_ids(hacia),
+        y = m.generate(**x, forced_bos_token_id=tok.convert_tokens_to_ids(destino),
                        max_new_tokens=96, num_beams=4)
-    return {"texto": tok.batch_decode(y, skip_special_tokens=True)[0],
-            "modelo": modelo, "desde": desde, "hacia": hacia,
+    salida = tok.batch_decode(y, skip_special_tokens=True)[0]
+    # `texto` y `traduccion` llevan lo mismo: cada quien lee la clave que espera.
+    return {"traduccion": salida, "texto": salida, "modelo": modelo,
+            "desde": origen, "hacia": destino,
             "ms": round((time.perf_counter() - t0) * 1000, 1)}
 
 

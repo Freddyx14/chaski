@@ -3,7 +3,7 @@
   "id": "emg-dolor-donde",
   "es": "¿Dónde le duele?",
   "quy": "¿Mayta nanan?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-dolor-donde.mp3",
   "tags": [
    "emergencia",
    "dolor"
@@ -17,7 +17,7 @@
   "id": "emg-dolor-que",
   "es": "¿Qué es lo que le duele?",
   "quy": "¿Imaykin nanan?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-dolor-que.mp3",
   "tags": [
    "emergencia",
    "dolor"
@@ -30,7 +30,7 @@
   "id": "emg-senale",
   "es": "Señale con el dedo",
   "quy": "Dedoykiwan willaway",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-senale.mp3",
   "tags": [
    "emergencia",
    "dolor"
@@ -43,7 +43,7 @@
   "id": "emg-desde-cuando",
   "es": "¿Desde cuándo está enfermo?",
   "quy": "¿Haykakmanta onqoska kashanky?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-desde-cuando.mp3",
   "tags": [
    "emergencia",
    "motivo_consulta"
@@ -56,7 +56,7 @@
   "id": "emg-alergia",
   "es": "¿Es alérgico a algún medicamento?",
   "quy": "¿Ruparin pukyupakunki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-alergia.mp3",
   "tags": [
    "emergencia",
    "alergias",
@@ -72,7 +72,7 @@
   "id": "emg-embarazo",
   "es": "¿Está embarazada?",
   "quy": "¿Wiksayuq kachkanki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-embarazo.mp3",
   "tags": [
    "emergencia",
    "embarazo"
@@ -86,7 +86,7 @@
   "id": "emg-acompanante",
   "es": "¿Vino con alguien?",
   "quy": "¿Piwantaq hamunki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-acompanante.mp3",
   "tags": [
    "emergencia",
    "identificacion"
@@ -100,7 +100,7 @@
   "id": "emg-familia-aqui",
   "es": "¿Tiene familia aquí?",
   "quy": "¿Kanchu familiayki kaypi?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-familia-aqui.mp3",
   "tags": [
    "emergencia",
    "identificacion"
@@ -113,7 +113,7 @@
   "id": "emg-respira",
   "es": "¿Puede respirar bien?",
   "quy": "¿Allintachu samanki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-respira.mp3",
   "tags": [
    "emergencia",
    "respiratorio"
@@ -127,7 +127,7 @@
   "id": "emg-fiebre",
   "es": "¿Tiene fiebre o escalofríos?",
   "quy": "¿Rupaychu japisunki o chirichu?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-fiebre.mp3",
   "tags": [
    "emergencia",
    "fiebre"
@@ -140,7 +140,7 @@
   "id": "emg-vomito",
   "es": "¿Vomitó?",
   "quy": "¿Kutichi?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-vomito.mp3",
   "tags": [
    "emergencia",
    "digestivo"
@@ -154,7 +154,7 @@
   "id": "emg-medicamento-tomo",
   "es": "¿Tomó algún medicamento?",
   "quy": "¿Upyarankichu huk medicinata?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-medicamento-tomo.mp3",
   "tags": [
    "emergencia",
    "medicamentos"
@@ -169,7 +169,7 @@
   "id": "emg-caida",
   "es": "¿Se cayó o se golpeó?",
   "quy": "¿Wichiruspa imaykita takakurunki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-caida.mp3",
   "tags": [
    "emergencia",
    "trauma"
@@ -183,7 +183,7 @@
   "id": "emg-cabeza",
   "es": "¿Le duele la cabeza?",
   "quy": "¿Umayki nanan?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-cabeza.mp3",
   "tags": [
    "emergencia",
    "dolor",
@@ -197,7 +197,7 @@
   "id": "emg-abdomen",
   "es": "¿Le duele el abdomen?",
   "quy": "¿Wiksachu nanan?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-abdomen.mp3",
   "tags": [
    "emergencia",
    "dolor",
@@ -211,7 +211,7 @@
   "id": "emg-mareos",
   "es": "¿Tiene mareos?",
   "quy": "¿Umayki muyusunkichu?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-mareos.mp3",
   "tags": [
    "emergencia",
    "neurologico",
@@ -225,7 +225,7 @@
   "id": "emg-nombre",
   "es": "¿Cómo te llamas?",
   "quy": "¿Iman sutiyki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-nombre.mp3",
   "tags": [
    "emergencia",
    "identificacion"
@@ -238,7 +238,7 @@
   "id": "emg-edad",
   "es": "¿Cuántos años tienes?",
   "quy": "¿Hayqa huatayoc kanki?",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-edad.mp3",
   "tags": [
    "emergencia",
    "identificacion"
@@ -251,7 +251,7 @@
   "id": "emg-presion",
   "es": "Voy a tomarle la presión.",
   "quy": "Presinniykita kawasac imainas cashan chayta.",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-presion.mp3",
   "tags": [
    "emergencia",
    "cardiovascular"
@@ -264,7 +264,7 @@
   "id": "emg-via",
   "es": "Voy a ponerle una vía.",
   "quy": "Churasqayki sueruta.",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-via.mp3",
   "tags": [
    "emergencia",
    "procedimientos"
@@ -279,7 +279,7 @@
   "id": "emg-suero",
   "es": "Le voy a poner suero.",
   "quy": "Suerota churasayki.",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-suero.mp3",
   "tags": [
    "emergencia",
    "procedimientos"
@@ -292,7 +292,7 @@
   "id": "emg-no-moverse",
   "es": "No trate de moverse.",
   "quy": "Ama cuyunkichu.",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-no-moverse.mp3",
   "tags": [
    "emergencia",
    "indicaciones"
@@ -305,7 +305,7 @@
   "id": "emg-no-miedo",
   "es": "No debe tener miedo.",
   "quy": "Ama manchacunkichu.",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-no-miedo.mp3",
   "tags": [
    "emergencia",
    "calma"
@@ -318,7 +318,7 @@
   "id": "emg-tranquilo",
   "es": "No se preocupe, estamos aquí para ayudarle.",
   "quy": "Ama llakikuychu, kaypim kachkaniku.",
-  "audio": null,
+  "audio": "https://unsubmitted-wally-relatable.ngrok-free.dev/emergencia/audio/p24/emg-tranquilo.mp3",
   "tags": [
    "emergencia",
    "calma"
