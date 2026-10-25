@@ -1,4 +1,4 @@
-# Chaski · judge Q&A (v3, Sun Oct 25 00:15 PT · D43 translator, D41 nurse examples)
+# Chaski · judge Q&A (v4, Sun Oct 25 01:10 PT · D43 translator, D41 nurse examples, the judges' three questions)
 
 > The 2 minutes after the pitch. Built from `SOT.md` (D1–D43), `plan/arquitectura-interprete.md`, `evals/HISTORIA.md`,
 > `evals/CRITERIOS.md`, `evals/REFERENCIAS-chrf.md` and the interview. **Every number here has its file. If it's not
@@ -35,6 +35,14 @@
 | 8 | **Who uses it on Monday?** | "The roughly 80 % of the 36 staff at her post who don't speak Quechua. She told us she wouldn't need it herself, but the others need it, 'sí o sí'. Next, we take it to her post, and the health zone covers 10 more." | F | interview l.91 |
 
 ---
+
+### The three questions judges ask every team (Kurbaitaev, AngelHack · `research/pitch-research.md` §6)
+
+| Question | Answer | Who |
+|---|---|---|
+| **What did you build this weekend?** | "All of it. The app, the interpreter, the guards and the critic, the evals, the voice form, and the fine-tuning on voices our families recorded on Saturday. Nothing existed on Friday." | F |
+| **What's real and what's mocked?** | "Real: every Claude call, the fine-tuned ears, the family audio, the guards, every number on the slide. Simulated, and we say it on stage: the translator error in the red demo, which we inject on purpose so you can see the refusal every time." | F |
+| **What breaks first at scale?** | "Connectivity. Rural posts have patchy signal and it needs the network today. Then the reviewed phrase bank: one nurse reviewed 24 phrases, and each new post needs its own reviewer for its own Quechua." | F |
 
 ## 2 · Technical decisions: "why X and not Y?" (the core of this Q&A)
 

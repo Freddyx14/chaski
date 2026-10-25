@@ -220,6 +220,15 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 ---
 
+
+**From the round-2 research (`research/pitch-research.md` §6):**
+- **A recorded clean run on the phone**, made before 07:00, ready to play if the network dies. Say it's a recording.
+- **Before 10:30, find the Anthropic, Microsoft and Cartesia people** and tell them in one line where our table is.
+  TreeHacks winners got judges who "heard about this project and had to come over".
+- **Same energy on the 3rd and 5th visit**: MLH format, each project seen at least 3 times, judges stack-rank a top 3.
+- **Few judges does not mean losing, and never leave early.** Last year's winner got fewer judges than its neighbours, left early and won.
+- **2–3 teams share a table**, so the speaker and the patient clip go right next to the phone.
+
 ## 8 · The Devpost video (≈ 2:30, some sponsors only see this)
 
 | t | Image | Audio |
