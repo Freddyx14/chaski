@@ -1,7 +1,7 @@
 {
  "title": "Chaski — Devpost demo",
  "bpm": 84,
- "duration": 202.44,
+ "duration": 193.7,
  "lufs": -14.0,
  "true_peak": -1.0,
  "chords": [
@@ -22,16 +22,15 @@
   "v05": 85.685,
   "pac_es": 87.985,
   "v06": 96.105,
-  "v07": 105.485,
-  "v08": 114.325,
-  "q_em": 123.295,
-  "v09": 124.979,
-  "v10": 133.719,
-  "v13": 147.739,
-  "v11": 172.239,
-  "v12": 189.939,
-  "end": 189.639,
-  "TOTAL": 202.44,
+  "v08": 105.585,
+  "q_em": 114.555,
+  "v09": 116.239,
+  "v10": 124.979,
+  "v13": 138.999,
+  "v11": 163.499,
+  "v12": 181.199,
+  "end": 180.899,
+  "TOTAL": 193.7,
   "MAMA": 23.125333,
   "w_nine": 27.045,
   "w_seven": 36.405,
@@ -48,45 +47,42 @@
   "w_fine": 89.205,
   "w_asks": 98.745,
   "w_repeat": 103.065,
-  "w_disap": 109.005,
-  "w_catch": 110.805,
-  "w_mother8": 119.925,
-  "w_photo": 125.379,
-  "w_reads": 127.619,
-  "w_yes": 131.219,
-  "w_quy9": 132.579,
-  "w_note": 134.679,
-  "w_home": 137.239,
-  "w_words": 139.079,
-  "w_confirms": 141.639,
-  "w_approves": 143.799,
-  "w_pilpi": 146.199,
-  "w_ft13": 154.699,
-  "w_362": 157.019,
-  "w_voice13": 161.579,
-  "w_opus13": 163.579,
-  "w_sonnet13": 165.579,
-  "w_code13": 168.219,
-  "w_acc13": 150.139,
-  "w_184": 173.119,
-  "w_54": 180.799,
-  "w_2122": 187.679,
-  "w_built12": 190.499,
-  "w_cartesia": 191.299,
-  "w_meta": 192.259,
-  "w_chaski12": 196.019,
+  "w_mother8": 111.185,
+  "w_photo": 116.639,
+  "w_reads": 118.879,
+  "w_yes": 122.479,
+  "w_quy9": 123.839,
+  "w_note": 125.939,
+  "w_home": 128.499,
+  "w_words": 130.339,
+  "w_confirms": 132.899,
+  "w_approves": 135.059,
+  "w_pilpi": 137.459,
+  "w_ft13": 145.959,
+  "w_362": 148.279,
+  "w_voice13": 152.839,
+  "w_opus13": 154.839,
+  "w_sonnet13": 156.839,
+  "w_code13": 159.479,
+  "w_acc13": 141.399,
+  "w_184": 164.379,
+  "w_54": 172.059,
+  "w_2122": 178.939,
+  "w_built12": 181.759,
+  "w_cartesia": 182.559,
+  "w_meta": 183.519,
+  "w_chaski12": 187.279,
   "her": 0.0,
   "why": 23.225,
   "hands": 42.685,
   "instr": 58.065,
   "pat": 79.045,
   "ask": 95.805,
-  "moment": 105.185,
-  "emg": 114.025,
-  "rx": 124.679,
-  "sum": 133.419,
-  "arch": 147.439,
-  "nums": 171.939
+  "emg": 105.285,
+  "rx": 115.939,
+  "sum": 124.679,
+  "arch": 138.699,
+  "nums": 163.199
  },
  "shots": [
   {
@@ -134,22 +130,14 @@
    "at": "ask",
    "in": "cut",
    "field": "light",
-   "hold": 8.98,
+   "hold": 9.08,
    "idea": "It asks, like a person would"
-  },
-  {
-   "id": "moment",
-   "at": "moment",
-   "in": "cut",
-   "field": "dark",
-   "hold": 8.44,
-   "idea": "When a check fails"
   },
   {
    "id": "emg",
    "at": "emg",
    "in": "cut",
-   "field": "light",
+   "field": "dark",
    "hold": 10.25,
    "idea": "Emergency mode"
   },
@@ -157,7 +145,7 @@
    "id": "rx",
    "at": "rx",
    "in": "cut",
-   "field": "dark",
+   "field": "light",
    "hold": 8.34,
    "idea": "Prescription by voice"
   },
@@ -165,7 +153,7 @@
    "id": "sum",
    "at": "sum",
    "in": "cut",
-   "field": "light",
+   "field": "dark",
    "hold": 13.62,
    "idea": "Every visit teaches it"
   },
@@ -173,7 +161,7 @@
    "id": "arch",
    "at": "arch",
    "in": "cut",
-   "field": "dark",
+   "field": "light",
    "hold": 24.1,
    "idea": "How it is built"
   },
@@ -181,7 +169,7 @@
    "id": "nums",
    "at": "nums",
    "in": "cut",
-   "field": "light",
+   "field": "dark",
    "hold": 17.3,
    "idea": "Measured, not claimed"
   },
@@ -189,7 +177,7 @@
    "id": "end",
    "at": "end",
    "in": "cut",
-   "field": "dark",
+   "field": "light",
    "hold": 12.4,
    "idea": "The name"
   }
@@ -240,52 +228,46 @@
   {
    "type": "sample",
    "bus": "voice",
-   "file": "assets/audio/vo/v07.wav",
-   "at": 105.485
-  },
-  {
-   "type": "sample",
-   "bus": "voice",
    "file": "assets/audio/vo/v08.wav",
-   "at": 114.325
+   "at": 105.585
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v09.wav",
-   "at": 124.979
+   "at": 116.239
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v10.wav",
-   "at": 133.719
+   "at": 124.979
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v11.wav",
-   "at": 172.239
+   "at": 163.499
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v12.wav",
-   "at": 189.939
+   "at": 181.199
   },
   {
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/vo/v13.wav",
-   "at": 147.739
+   "at": 138.999
   },
   {
    "type": "sample",
    "bus": "music",
    "file": "assets/audio/music-andes.wav",
    "at": 0.0,
-   "len": 202.44,
-   "gain_db": -2,
+   "len": 193.7,
+   "gain_db": -10,
    "fade_in": 0.5,
    "fade_out": 2.5
   },
@@ -314,7 +296,7 @@
    "type": "sample",
    "bus": "voice",
    "file": "assets/audio/emg-mama.wav",
-   "at": 123.295,
+   "at": 114.555,
    "gain_db": 1
   },
   {
@@ -344,12 +326,12 @@
   },
   {
    "type": "whoosh",
-   "at": 105.135,
+   "at": 105.235,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 113.97500000000001,
+   "at": 115.889,
    "gain_db": -16
   },
   {
@@ -359,22 +341,17 @@
   },
   {
    "type": "whoosh",
-   "at": 133.369,
+   "at": 138.649,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 147.38899999999998,
+   "at": 163.149,
    "gain_db": -16
   },
   {
    "type": "whoosh",
-   "at": 171.88899999999998,
-   "gain_db": -16
-  },
-  {
-   "type": "whoosh",
-   "at": 189.589,
+   "at": 180.849,
    "gain_db": -16
   },
   {
@@ -387,28 +364,17 @@
   },
   {
    "type": "blip",
-   "at": 123.295,
+   "at": 114.555,
    "notes": [
     0
    ],
    "gain_db": -12
-  },
-  {
-   "type": "blip",
-   "at": 109.60499999999999,
-   "notes": [
-    12,
-    7,
-    3,
-    0
-   ],
-   "gain_db": -10
   }
  ],
  "mix": {
   "pump_db": 0.0,
-  "voice_duck_db": 9.0,
-  "music_db": -8.0,
-  "voice_db": 2.0
+  "voice_duck_db": 14.0,
+  "music_db": -14.0,
+  "voice_db": 4.0
  }
 }

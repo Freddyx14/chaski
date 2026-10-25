@@ -22,8 +22,6 @@ CARDS = {
             (EV["w_fine"], "do", "FINE-TUNED EARS", "Meta's Quechua recognizer, adapted on our families' voices.")],
     "ask": [(EV["w_asks"], "do", "ASKS BACK", "Once, in the speaker's language, when a critical fact is missing."),
             (EV["w_repeat"], "do", "NEVER GUESSES", "If a check fails, it asks the speaker to repeat.")],
-    "moment": [(EV["v07"], "warn", "SIMULATED ERROR", "We inject a wrong translation on purpose to show the check."),
-               (EV["w_catch"], "do", "IT NAMES THE FACT", "“Prohibitions changed”. Never “something went wrong”.")],
     "emg": [(EV["v08"], "do", "NO MODEL IN THE LOOP", "Pre-recorded, verified phrases. Instant."),
             (EV["w_mother8"], "file", "WRITTEN AND REVIEWED BY A NURSE", "24 phrases, in a voice trained on hers, with her permission.")],
     "rx": [(EV["w_photo"], "do", "CLAUDE READS THE BOX", "Medicine, strength, dose. If it's blurry, it asks instead of guessing."),

@@ -103,10 +103,6 @@
     land("#ph-ask", PS("ask") + 0.05); show("#a-es", PS("ask") + 0.4);
     land("#a-q", E.w_asks); avatar("ask", "no_entendi", E.w_asks);
     land("#a-r", E.w_repeat);
-    /* the moment */
-    land("#ph-moment", PS("moment") + 0.05); show("#r-es", E.v07 + 0.3); land("#r-ban", E.v07 + 0.9);
-    avatar("moment", "pensando", E.v07 + 1.0);
-    land("#r-red", E.w_disap + 0.6); avatar("moment", "no_entendi", E.w_disap + 0.6);
     /* emergency */
     land("#ph-emg", PS("emg") + 0.05); land("#e-grid", E.v08 + 0.6);
     ft("#eg-0", { scale: 1 }, { scale: 0.92, duration: 0.08, yoyo: true, repeat: 1 }, E.q_em - 0.45);

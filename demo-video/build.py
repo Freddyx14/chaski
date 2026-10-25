@@ -42,7 +42,7 @@ def chunks(ws, maxw=7):
     return lines
 
 
-SEGS = [f"v{i:02d}" for i in range(1, 14)]
+SEGS = [f"v{i:02d}" for i in range(1, 14) if i != 7]   # v07 (simulated error) cut by Freddy 08:08
 D = {s: dur(VO / f"{s}.wav") for s in SEGS}
 MAMA = dur(ROOT / "assets/audio/mama-intro.wav")
 PAC = dur(ROOT / "assets/audio/paciente-p18-064.wav")
@@ -60,8 +60,7 @@ t["pac"] = t["q_b3"] + QB3 + 0.4
 t["v05"] = t["pac"] + PAC + 0.3
 t["pac_es"] = t["pac"] + PAC + 2.6
 t["v06"] = t["v05"] + D["v05"] + 0.5
-t["v07"] = t["v06"] + D["v06"] + 0.5
-t["v08"] = t["v07"] + D["v07"] + 0.6
+t["v08"] = t["v06"] + D["v06"] + 0.6
 t["q_em"] = t["v08"] + D["v08"] + 0.25
 t["v09"] = t["q_em"] + QEM + 0.5
 t["v10"] = t["v09"] + D["v09"] + 0.5
@@ -85,7 +84,6 @@ P = [
     ("instr", t["v03"] - 0.3, "A health worker speaks", ""),
     ("pat", t["pac"] - 0.4, "The patient answers", ""),
     ("ask", t["v06"] - 0.3, "It asks, like a person would", ""),
-    ("moment", t["v07"] - 0.3, "When a check fails", ""),
     ("emg", t["v08"] - 0.3, "Emergency mode", ""),
     ("rx", t["v09"] - 0.3, "Prescription by voice", ""),
     ("sum", t["v10"] - 0.3, "Every visit teaches it", ""),
@@ -132,7 +130,6 @@ ev.update({
     "w_opus": wt("v04", "Opus"), "w_checks": wt("v04", "checks"), "w_second": wt("v04", "second"),
     "w_fine": wt("v05", "fine-tuned"),
     "w_asks": wt("v06", "asks"), "w_repeat": wt("v06", "repeat"),
-    "w_disap": wt("v07", "disappears"), "w_catch": wt("v07", "catches"),
     "w_mother8": wt("v08", "mother"),
     "w_photo": wt("v09", "photo"), "w_reads": wt("v09", "reads"), "w_yes": wt("v09", "yes"), "w_quy9": wt("v09", "Quechua"),
     "w_note": wt("v10", "note"), "w_home": wt("v10", "home"), "w_words": wt("v10", "words"),
@@ -146,7 +143,7 @@ ev.update({
 
 fx = [{"type": "sample", "bus": "voice", "file": f"assets/audio/vo/{s}.wav", "at": t[s]} for s in SEGS]
 fx += [
-    {"type": "sample", "bus": "music", "file": "assets/audio/music-andes.wav", "at": 0.0, "len": TOTAL, "gain_db": -2, "fade_in": 0.5, "fade_out": 2.5},
+    {"type": "sample", "bus": "music", "file": "assets/audio/music-andes.wav", "at": 0.0, "len": TOTAL, "gain_db": -10, "fade_in": 0.5, "fade_out": 2.5},
     {"type": "sample", "bus": "voice", "file": "assets/audio/mama-intro.wav", "at": 0.0, "gain_db": 1, "fade_out": 0.3},
     {"type": "sample", "bus": "voice", "file": "assets/audio/quy/b3a-cut.wav", "at": t["q_b3"], "gain_db": -2},
     {"type": "sample", "bus": "voice", "file": "assets/audio/paciente-p18-064.wav", "at": t["pac"]},
@@ -156,7 +153,6 @@ for p in pages[1:]:
     fx.append({"type": "whoosh", "at": max(0, p["start"] - 0.05), "gain_db": -16})
 for k in ["pac_es", "q_em"]:
     fx.append({"type": "blip", "at": t[k], "notes": [0], "gain_db": -12})
-fx.append({"type": "blip", "at": ev["w_disap"] + 0.6, "notes": [12, 7, 3, 0], "gain_db": -10})
 cues = {
     "title": "Chaski — Devpost demo", "bpm": 84, "duration": TOTAL, "lufs": -14.0, "true_peak": -1.0,
     "chords": ["Dmaj7", "Bm7", "Gmaj7", "A"],
@@ -166,7 +162,7 @@ cues = {
     "camera": {"moves": [], "punches": [], "shakes": []},
     "layers": [],
     "fx": fx,
-    "mix": {"pump_db": 0.0, "voice_duck_db": 9.0, "music_db": -8.0, "voice_db": 2.0},
+    "mix": {"pump_db": 0.0, "voice_duck_db": 14.0, "music_db": -14.0, "voice_db": 4.0},
 }
 for p in pages:
     cues["marks"][p["id"]] = p["start"]
