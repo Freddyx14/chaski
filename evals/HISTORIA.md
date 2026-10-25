@@ -45,6 +45,11 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 | Repregunta o respuesta (6) | 3,8 s | 4,6 s | solo oír + decidir |
 | Frase verificada del banco (1) | 4,1 s | — | oír + decidir + audio ya revisado |
 
+**En vivo, modo manos libres (`/turno/vivo`, dom 03:50, tras arreglar el pensamiento de la decisión):** 9 audios
+reales (6 de personal con voz sintética peruana, 3 del hablante p16 que el reconocedor nunca oyó). Quién habló y qué se oyó:
+**0,5–1 s**. Lo que va a decir en pantalla: **2,7–5,2 s**. Voz lista: **8,5 s típico** (3,5 s una repregunta; 12–18 s una
+indicación médica larga). Antes del arreglo: ~25–28 s (la decisión a veces gastaba sus 800 tokens pensando y no respondía).
+
 **El traductor es el paso más lento, y por calidad.** Con el prompt del producto, sobre los 30 pares de referencia de Ricardo (`evals/latencia/traductor_modos.py`):
 
 | Pensamiento del traductor | chrF++ | p50 |
