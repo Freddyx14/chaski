@@ -116,11 +116,11 @@ export function esReintentable(status: number | null): boolean {
 }
 
 /** Los pasos del «Pensando», por tiempo transcurrido (la respuesta no llega por partes). */
-// Un turno real tarda ~13 s (p50) y hasta ~40 s (p95), medido el 24-oct: los pasos se reparten en ~15 s.
-export const UMBRALES_PASOS_MS = [0, 3000, 7000] as const;
-export const AVISO_LENTO_MS = 10000;
+// Turno revisado completo, medido el 24-oct tras optimizar el crítico: p50 6,5 s, p95 9,9 s.
+export const UMBRALES_PASOS_MS = [0, 2000, 5000] as const;
+export const AVISO_LENTO_MS = 8000;
 /** Después de esto se dice que la revisión sigue, para que nadie crea que se colgó. */
-export const AVISO_MUY_LENTO_MS = 25000;
+export const AVISO_MUY_LENTO_MS = 15000;
 
 export function pasoPorTiempo(ms: number): number {
   let paso = 0;
