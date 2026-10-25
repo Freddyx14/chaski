@@ -212,3 +212,21 @@ Viven en `data/mama/` (no se suben a git). Transcrito con **MMS de Meta (quechua
 | `clips/saludo-apertura-12s.mp3` | 12 s | «¿Están bien, hermanos y hermanas? Aquí me encuentro, en Huancavelica, Perú, en la zona sanitaria de Pilpichaca. Aquí trabajo, y aquí también hablo quechua para poder ayudar a todos mis hermanos» | Abre el **video** de Devpost |
 | `clips/atencion-casa-de-salud-29s.mp3` | 29 s | Cómo recibe a un paciente en quechua: «Aquí, conmigo, vas a estar bien. Dime todo lo que sientes… dime con confianza. Aquí te voy a ayudar, en nuestra *hampina wasi* (casa de curar), el centro de salud de Pilpichaca… siéntate aquí, como en tu casa» | **Video**, bajo las imágenes de la posta: así suena la atención cuando alguien habla quechua. Es lo que Chaski busca que tenga todo paciente |
 | `clips/saludo-completo.mp3` · `atencion-en-quechua-completo.mp3` | 38 s · 67 s | Completos, normalizados | Respaldo |
+
+
+## 11 · La voz de Chaski ajustada con la voz de la mamá (18:30)
+
+**Estrategia recomendada: dos usos distintos, sin mezclarlos.**
+1. **Apertura = su voz real** (clip de 7 s). Lo humano y auténtico va primero, sin trucos.
+2. **En «cómo está hecho» (B5) = una prueba A/B/C de 10 segundos, la misma frase de emergencia tres veces:**
+   **A** la voz de Meta tal cual (robótica) → **B** la voz de Chaski ajustada → **C** la enfermera real.
+   Ricardo dice: «A es el modelo abierto. B es el mismo modelo después de entrenarlo con la voz de una enfermera de
+   Huancavelica, con su permiso. C es ella.» Si el jurado no distingue B de C, ese es el momento técnico más fuerte del pitch.
+3. **El modo emergencia habla con la voz B** (sus 24 frases revisadas), así el paciente escucha algo cercano, no un robot.
+
+**Reglas:** se dice siempre que es una voz entrenada con su permiso (nunca se presenta B como si fuera ella), y la voz
+B solo dice frases verificadas, nunca texto que no pasó las barreras.
+
+**Lo que hay que medir para poder afirmarlo** (tarea de Ricardo, ver `plan/tareas.md`): la voz ajustada se entiende
+mejor (ida y vuelta: el audio pasa por el reconocimiento y se mide el error, antes y después) y la mamá elige a ciegas
+cuál suena más natural.

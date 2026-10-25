@@ -51,6 +51,12 @@ Es la parte de ingeniería difícil del pitch: tiene que verse que el modelo apr
 - [ ] Datos usados: cuántas frases, cuántos minutos, cuántas personas (sin nombres).
 - [ ] Todo en un archivo `reports/ajuste-fino-resultados.json` + una línea en `SOT.md` para que el pitch y el Devpost lo citen.
 
+### 🔴 Voz de Chaski ajustada con la voz de la mamá: medirla para poder mostrarla (Freddy, sáb 18:34)
+- [ ] Ida y vuelta: las 24 frases de emergencia con la voz de Meta tal cual y con la ajustada → reconocimiento (MMS ajustado) → error. Antes vs después.
+- [ ] Prueba a ciegas con la mamá: base vs ajustada, ¿cuál suena más natural y se entiende mejor?
+- [ ] Los 3 audios A/B/C de la misma frase (Meta / ajustada / ella) para la lámina y el video (`plan/pitch.md` §11).
+- [ ] Generar las 24 frases de emergencia con la voz ajustada → subirlas y poner su URL en `audio` del banco.
+
 ### 🔴 CRÍTICO · Línea base ANTES de cualquier ajuste fino (pedido de Freddy, sáb 09:13)
 Sin la línea base no hay «cuánto mejoramos», y ese número es el pitch. Ricardo diseña el sistema; lo mínimo que tiene que cumplir:
 - **Un conjunto de prueba congelado**: el hablante que el modelo nunca escuchó, separado ANTES de entrenar nada, y no se toca más.
