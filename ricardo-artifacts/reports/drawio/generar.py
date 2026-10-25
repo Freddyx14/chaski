@@ -303,7 +303,7 @@ d.flecha(cua, frm); d.flecha(frm, cor); d.flecha(cor, man)
 
 d.caja("2 · Split BY SPEAKER, never by sentence",
        TXT.format(s=13, c="#16160F", f=1), 40, 240, 520, 20)
-tr = d.caja("train\n\n3 speakers · ~22 min\nFits the adapter",
+tr = d.caja("train\n\n4 speakers · 476 clips\nFits the adapter",
             CAJA.format(b="#1F6FD0"), 40, 266, 230, 76)
 va = d.caja("validation\n\n12 % of train\nPicks hyperparameters",
             CAJA.format(b="#8C8C7A"), 300, 266, 220, 76)
@@ -316,7 +316,7 @@ p0 = d.caja("0 · The model as shipped\n\nBaseline. Nothing touched.",
             CAJA.format(b="#8C8C7A"), 40, 394, 250, 70)
 p1 = d.caja("1 · + clinic vocabulary\n\nGlossary and loanwords",
             CAJA.format(b="#1F6FD0"), 320, 394, 250, 70)
-p2 = d.caja("2 · + fine-tuning on the voices\n\nASR 30 epochs: 14 min\nTTS 50 epochs: 20 min\nmeasured on the A10G",
+p2 = d.caja("2 · + fine-tuning on the voices\n\nASR: 476 clips, 12 epochs, 9.3 min\n2.2 M of 965 M params (0.2 %)\nTTS: 50 epochs, ~20 min · on the A10G",
             CAJA.format(b="#1F6FD0") + "strokeWidth=3;", 600, 394, 250, 70)
 d.flecha(p0, p1); d.flecha(p1, p2)
 

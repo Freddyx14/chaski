@@ -39,7 +39,7 @@
 <rect x="40" y="266" width="230" height="76" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
 <rect x="40" y="266" width="230" height="4" fill="#1F6FD0"/>
 <text x="50" y="283.0" font-size="11.0" fill="#4E4D45" font-weight="700">train</text>
-<text x="50" y="314.9" font-size="11.0" fill="#4E4D45">3 speakers · ~22 min</text>
+<text x="50" y="314.9" font-size="11.0" fill="#4E4D45">4 speakers · 476 clips</text>
 <text x="50" y="330.9" font-size="11.0" fill="#4E4D45">Fits the adapter</text>
 <rect x="300" y="266" width="220" height="76" fill="#FFFFFF" stroke="#8C8C7A" stroke-width="2"/>
 <rect x="300" y="266" width="220" height="4" fill="#8C8C7A"/>
@@ -63,9 +63,9 @@
 <rect x="600" y="394" width="250" height="92" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="3"/>
 <rect x="600" y="394" width="250" height="4" fill="#1F6FD0"/>
 <text x="610" y="411.0" font-size="11.0" fill="#4E4D45" font-weight="700">2 · + fine-tuning on the voices</text>
-<text x="610" y="442.9" font-size="11.0" fill="#4E4D45">ASR 30 epochs: 14 min</text>
-<text x="610" y="458.9" font-size="11.0" fill="#4E4D45">TTS 50 epochs: 20 min</text>
-<text x="610" y="474.8" font-size="11.0" fill="#4E4D45">measured on the A10G</text>
+<text x="610" y="442.9" font-size="11.0" fill="#4E4D45">ASR: 476 clips, 12 epochs, 9.3 min</text>
+<text x="610" y="458.9" font-size="11.0" fill="#4E4D45">2.2 M of 965 M params (0.2 %)</text>
+<text x="610" y="474.8" font-size="11.0" fill="#4E4D45">TTS: 50 epochs, ~20 min · on the A10G</text>
 <text x="40" y="514.2" font-size="13.0" fill="#16160F" font-weight="700">4 · Each thing is measured against its own ground truth</text>
 <text x="40" y="532.0" font-size="11.0" fill="#4E4D45">Until Oct 24 the audit had none: it only compared against Freddy's, which proves nothing if both are wrong the same way.</text>
 <rect x="40" y="542" width="300" height="100" fill="#FFFFFF" stroke="#1F6FD0" stroke-width="2"/>
