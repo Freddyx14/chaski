@@ -203,12 +203,12 @@ greeting + one sentence about her work at the 17:00 call, with her consent. If s
 
 ## 10 · Los audios de la mamá (24-oct, con su permiso)
 
-Viven en `data/mama/` (no se suben a git). Transcripción aproximada con Whisper (no entiende quechua bien: **confirmar el
-sentido con ella antes de subtitular**).
+Viven en `data/mama/` (no se suben a git). Transcrito con **MMS de Meta (quechua de Ayacucho), localmente**, y traducido con Claude (`data/mama/transcripcion-mms.txt`,
+`traduccion-claude.md`). Las partes marcadas [?] se confirman con ella antes de subtitular.
 
 | Clip | Dura | Qué dice (aproximado) | Dónde va |
 |---|---|---|---|
 | `clips/saludo-peru-a-eeuu.mp3` | 7 s | «Los saludo desde el Perú hasta los Estados Unidos» | **Abre el pitch** (B1) |
-| `clips/saludo-apertura-12s.mp3` | 12 s | «¿Cómo están, hermanos y hermanas? Aquí estoy, en Huancavelica, Perú, en la zona sanitaria de Pilpichaca; aquí trabajo y aquí hablo quechua» | Abre el **video** de Devpost |
-| `clips/atencion-casa-de-salud-29s.mp3` | 29 s | Cómo recibe a un paciente en quechua: «dígame con confianza qué siente… aquí la ayudo, en nuestra casa de salud de Pilpichaca… siéntese, como en su casa» | **Video**, bajo las imágenes de la posta: así suena la atención cuando alguien habla quechua. Es lo que Chaski busca que tenga todo paciente |
+| `clips/saludo-apertura-12s.mp3` | 12 s | «¿Están bien, hermanos y hermanas? Aquí me encuentro, en Huancavelica, Perú, en la zona sanitaria de Pilpichaca. Aquí trabajo, y aquí también hablo quechua para poder ayudar a todos mis hermanos» | Abre el **video** de Devpost |
+| `clips/atencion-casa-de-salud-29s.mp3` | 29 s | Cómo recibe a un paciente en quechua: «Aquí, conmigo, vas a estar bien. Dime todo lo que sientes… dime con confianza. Aquí te voy a ayudar, en nuestra *hampina wasi* (casa de curar), el centro de salud de Pilpichaca… siéntate aquí, como en tu casa» | **Video**, bajo las imágenes de la posta: así suena la atención cuando alguien habla quechua. Es lo que Chaski busca que tenga todo paciente |
 | `clips/saludo-completo.mp3` · `atencion-en-quechua-completo.mp3` | 38 s · 67 s | Completos, normalizados | Respaldo |
