@@ -202,9 +202,9 @@ si viene, y si no viene usa la voz del iPhone. Así que con el Paso 2 alcanza, s
 
 | Hecho | Qué |
 |---|---|
-| [ ] | `voz_castellano` en `flujo.py` + `CHASKI_VOZ_ES` en la instancia |
-| [ ] | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo |
-| [ ] | `/voz` con `CHASKI_VOZ_QUY` (Paso 2b) |
+| [x] | `voz_castellano` en `flujo.py` + `CHASKI_VOZ_ES` (Ximena) en la instancia · 9e2075d |
+| [x] | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo a `base` · 9e2075d |
+| [x] | `/voz` con `CHASKI_VOZ_QUY` (paso 2b) · 9e2075d |
 | [x] | Voz del quechua: `mama_freddy` (Freddy, dom 01:55) |
 | [x] | `mama_freddy` aparece en `GET /voces` y suena en `/voz` (verificado por loopmind-05, dom 01:57: 200, 0,9 s) |
-| [ ] | Desplegado, avisado por el grupo y probado con `curl` |
+| [x] | Desplegado y probado. Comprobado por frecuencia, no por ausencia de error: castellano 24000 Hz (Cartesia), quechua 16000 Hz (mama_freddy), 0 respaldos usados · 9e2075d |
