@@ -66,6 +66,15 @@ const DEMO: Record<string, Fase> = {
       terminos_inseguros: [], diferencias: [], se_dice: true, aviso: null, total_ms: 0,
     }) as Extract<Veredicto, { tipo: 'dicho' }>,
   },
+  // Salida REAL del servicio (25-oct 03:35, receta + «Sí, dígaselo»), para capturas.
+  traducido: {
+    f: 'dicho', vozLista: true,
+    v: veredictoEnfermera('Tome una tableta de Paracetamol 500 mg cada 8 horas, por 3 días.', {
+      quechua: "Upyay huk tableta Paracetamol pichqa pachak miligramonta, sapa pusaq horamanta, kimsa p'unchawkama.",
+      retraduccion: '', aprobado_por_auditoria: true, motivo: null,
+      terminos_inseguros: [], diferencias: [], se_dice: true, aviso: null, total_ms: 0,
+    }) as Extract<Veredicto, { tipo: 'dicho' }>,
+  },
   aviso: {
     f: 'dicho', vozLista: true,
     v: veredictoEnfermera('Si hay sangrado, venga a la posta.', {
