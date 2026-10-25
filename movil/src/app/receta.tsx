@@ -206,10 +206,7 @@ function Receta() {
           <Chaski estado={estadoChaski} tam={96} />
           <View style={{ flex: 1, gap: 4 }}>
             <Text style={e.titulo}>
-              {paso.p === 'resultado' || paso.p === 'repite' || paso.p === 'juzgando' ? t.meLoRepite : 'Leer la receta o la caja'}
-            </Text>
-            <Text style={e.secundario}>
-              {paso.p === 'repite' || paso.p === 'juzgando' || paso.p === 'resultado' ? t.meLoRepiteExplica : 'Chaski la lee, usted confirma y Chaski se la explica al paciente.'}
+              {paso.p === 'resultado' || paso.p === 'repite' || paso.p === 'juzgando' ? t.meLoRepite : t.receta}
             </Text>
           </View>
         </View>
@@ -248,7 +245,6 @@ function Receta() {
             <Tarjeta estilo={{ gap: 14 }}>
               <View style={{ gap: 4 }}>
                 <Text style={e.subtitulo}>{t.confirmeDatos}</Text>
-                <Text style={e.mini}>{t.confirmeDatosExplica}</Text>
               </View>
               <View style={{ gap: 6 }}>
                 <Text style={e.rotulo}>MEDICAMENTO</Text>

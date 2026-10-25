@@ -68,7 +68,6 @@ export default function Emergencia() {
     }
   }
 
-  const pendientes = (frases ?? []).filter((f) => !fraseRevisada(f)).length;
 
   return (
     <SafeAreaView style={e.pantalla} edges={['bottom']}>
@@ -77,7 +76,6 @@ export default function Emergencia() {
           <MarcaChakana tam={22} />
           <Text style={e.tituloTexto}>{t.emergencia}</Text>
         </View>
-        <Text style={e.secundario}>{t.emergenciaExplica}</Text>
       </View>
 
       <ScrollView contentContainerStyle={e.grilla}>
@@ -121,7 +119,10 @@ export default function Emergencia() {
                 {lista ? (
                   <Text style={e.quy}>{f.quy}</Text>
                 ) : (
-                  <Text style={e.pendiente}>{t.pendienteRevision}</Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                    <Icono nombre="lock.fill" color={C.inkTertiary} tam={12} />
+                    <Text style={e.pendiente}>{t.pendienteRevision}</Text>
+                  </View>
                 )}
               </Pressable>
               {fallo === f.id && (
@@ -154,10 +155,6 @@ export default function Emergencia() {
       )}
 
       <View style={e.pie}>
-        {origen === 'local' && pendientes > 0 && (
-          <Text style={e.nota}>{t.bancoLocal(pendientes)}</Text>
-        )}
-        {origen === 'servicio' && pendientes > 0 && <Text style={e.nota}>{t.bancoLocal(pendientes)}</Text>}
         <Boton
           icono="mic.fill"
           texto={t.escucharRespuesta}

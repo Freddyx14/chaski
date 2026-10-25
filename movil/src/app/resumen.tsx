@@ -91,10 +91,9 @@ export default function PantallaResumen() {
         <View style={e.fila}>
           <Chaski estado={r ? 'presentarse' : error ? 'no_entendi' : 'pensando'} tam={96} />
           <View style={{ flex: 1, gap: 4 }}>
-            <Text style={e.titulo}>{paraPaciente ? 'Lo que tiene que hacer en casa' : 'Resumen de la consulta'}</Text>
+            <Text style={e.titulo}>{paraPaciente ? 'En casa' : 'Resumen'}</Text>
             <Text style={e.secundario}>
-              {r ? (paraPaciente ? 'Solo lo que le dijeron en la consulta.' : 'Para la historia clínica.')
-                : error ? 'No pude preparar el resumen.' : 'Preparando el resumen…'}
+              {r ? '' : error ? 'Sin conexión' : 'Preparando…'}
             </Text>
           </View>
         </View>
@@ -138,7 +137,6 @@ export default function PantallaResumen() {
             {r.glosario && r.glosario.length > 0 && (
               <Tarjeta estilo={{ gap: 4 }}>
                 <Text style={e.rotulo}>{textos(perfil?.idioma ?? 'castellano').palabrasNuevas.toUpperCase()}</Text>
-                <Text style={[e.secundario, { marginBottom: 6 }]}>{textos(perfil?.idioma ?? 'castellano').palabrasNuevasExplica}</Text>
                 {r.glosario.map((g, n) => (
                   <View key={n} style={[e.palabra, n > 0 && { borderTopWidth: 1, borderTopColor: C.border }]}>
                     <View style={{ flex: 1 }}>
@@ -170,7 +168,7 @@ export default function PantallaResumen() {
           />
         ) : null}
         <Boton tipo="secundario" texto="Terminar consulta" onPress={terminar} />
-        <Boton tipo="texto" texto="Volver a la consulta" onPress={() => router.back()} />
+        <Boton tipo="texto" texto="Volver" onPress={() => router.back()} />
       </View>
     </SafeAreaView>
   );

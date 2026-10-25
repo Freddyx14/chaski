@@ -20,7 +20,7 @@ import {
   type Interprete, type Lado, type RespuestaPaciente, type Veredicto,
 } from '@/chaski/modelo';
 import { usePerfil, type Perfil } from '@/chaski/perfil';
-import { idiomaDelOtro, otraPersona, quienHabla, textos, type Textos } from '@/chaski/textos';
+import { idiomaDelOtro, quienHabla, textos, type Textos } from '@/chaski/textos';
 import { C, ESCALA } from '@/chaski/tokens';
 import { AnilloInti } from '@/chaski/inti';
 import { BotonEscalonado, Cruz, MarcaChaski, Zigzag } from '@/chaski/motivos';
@@ -109,7 +109,7 @@ const DEMO: Record<string, Fase> = {
       castellano: '¿Y si me olvido la pastilla de la noche?', literal: '', dudas: [], seguro: false, total_ms: 0,
     },
   },
-  error: { f: 'error', mensaje: 'No pude conectarme. Vuelva a intentarlo.', sinServidor: false, detalle: '/turno/enfermera · 502' },
+  error: { f: 'error', mensaje: 'Sin conexión', sinServidor: false, detalle: '/turno/enfermera · 502' },
   pregunta: {
     f: 'pregunta', lado: 'quechua',
     d: leerInterprete({ accion: 'repreguntar', para: 'paciente', texto_pulido: '¿Desde cuándo le duele la barriga?',
@@ -433,7 +433,7 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
             <View style={{ gap: 6, flex: 1 }}>
               <Etiqueta idioma={fase.f === 'paciente' ? 'quechua' : lado} />
               <Text style={e.secundario}>
-                {fase.f === 'grabando' ? t.escuchando : fase.f === 'paciente' ? t.idiomaDetectado : ''}
+                {fase.f === 'grabando' ? t.escuchando : ''}
               </Text>
             </View>
           </View>
@@ -442,7 +442,6 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
         {fase.f === 'listo' && (
           <View style={e.centroTexto}>
             <Text style={e.titulo}>{t.listo}</Text>
-            <Text style={e.explicacion}>{explicacion(perfil, lado, t)}</Text>
           </View>
         )}
 
@@ -573,8 +572,7 @@ function TarjetaPregunta({ d, t }: { d: Extract<Interprete, { tipo: 'pregunta' }
       </Tarjeta>
       {(d.motivo || d.dato) && (
         <Tarjeta estilo={{ gap: 8 }}>
-          <Text style={e.rotulo}>{t.porQue}</Text>
-          {d.motivo ? <Text style={e.secundario}>{d.motivo}</Text> : null}
+          {d.motivo ? <Text style={e.secundario} numberOfLines={2}>{d.motivo}</Text> : null}
           {d.dato ? (
             <View style={e.chipDato}>
               <Icono nombre="exclamationmark.circle" color={C.warn} tam={14} />
@@ -607,7 +605,6 @@ function TarjetaNoEntendi({ d, t }: { d: Extract<Interprete, { tipo: 'no_entendi
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 10, marginTop: 12, alignItems: 'center' }}>
       <Text style={e.titulo}>{t.noLeEntendi}</Text>
-      <Text style={e.explicacion}>{t.noLeEntendiExplica}</Text>
       {d.motivo ? <Aviso tipo="warn" texto={d.motivo} /> : null}
     </Animated.View>
   );
@@ -628,16 +625,9 @@ function TarjetaFrase({ d, t }: { d: Extract<Interprete, { tipo: 'frase' }>; t: 
           <Icono nombre="checkmark.seal.fill" color={C.ok} tam={18} />
           <Text style={[e.auditoriaTitulo, { color: C.ok }]}>{t.fraseVerificada}</Text>
         </View>
-        <Text style={[e.mini, { color: C.ok }]}>{t.fraseVerificadaExplica}</Text>
       </View>
     </Animated.View>
   );
-}
-
-function explicacion(p: Perfil, lado: Lado, t: Textos): string {
-  const otro = otraPersona(p.rol, t);
-  if (lado !== p.idioma) return t.explicaOtro(otro, lado === 'castellano' ? t.castellano : t.quechua);
-  return p.idioma === 'castellano' ? t.explicaYo(otro) : t.explicaYoQuechua(otro);
 }
 
 function Encabezado({ t }: { t: Textos }) {
@@ -726,7 +716,6 @@ function Medidor({ nivel, tinte, t }: { nivel: number; tinte: Lado; t: Textos })
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)}>
       <Tarjeta estilo={{ marginTop: 16, alignItems: 'center' }}>
-        <Text style={e.secundario}>{t.hableNormal}</Text>
         <View style={e.barras}>
           {historia.map((v, i) => (
             <View key={i} style={{ width: 16, alignItems: 'center' }}>
@@ -771,48 +760,18 @@ function Pensando({ fase, t }: { fase: Extract<Fase, { f: 'pensando' }>; t: Text
           <Text style={[e.cuerpoTexto, { marginTop: 8 }]}>{fase.oido}</Text>
           {fase.pulido && fase.pulido !== fase.oido ? (
             <Animated.View entering={FadeInDown.springify().damping(18)} style={{ marginTop: 10, gap: 4 }}>
-              <Text style={e.rotulo}>{t.chaskiLoDira}</Text>
-              <Text style={e.secundario}>{fase.pulido}</Text>
+              <Text style={e.secundario}>{t.chaskiLoDira} {fase.pulido}</Text>
             </Animated.View>
           ) : null}
         </Tarjeta>
       ) : null}
-      <Tarjeta estilo={{ gap: 10 }}>
-        {pasos.map((p, i) => {
-          const hecho = i < paso;
-          const actual = i === paso;
-          return (
-            <View key={p} style={e.paso}>
-              {/* Cada paso cumplido entra con un resorte chico: se siente que avanzó. */}
-              <Animated.View key={hecho ? 'hecho' : 'falta'} entering={hecho ? ZoomIn.springify().damping(12) : undefined}>
-                <Icono
-                  nombre={hecho ? 'checkmark.circle.fill' : actual ? 'ellipsis.circle' : 'circle'}
-                  color={hecho ? C.ok : actual ? C.action : C.border}
-                  tam={20}
-                />
-              </Animated.View>
-              <Text style={[e.pasoTexto, { color: hecho || actual ? C.ink : C.inkTertiary }]}>{p}</Text>
-            </View>
-          );
-        })}
-        {lento && (
-          <Animated.Text entering={FadeInDown.springify().damping(18)} style={e.mini}>{muyLento ? t.sigueRevisando : t.puedeTardar}</Animated.Text>
-        )}
-      </Tarjeta>
-    </View>
-  );
-}
-
-function Casillas({ casillas }: { casillas: { nombre: string; ok: boolean }[] }) {
-  return (
-    <View style={e.casillas}>
-      {casillas.map((c, i) => (
-        // Los chips entran uno por uno: la auditoría se ve revisada, punto por punto.
-        <Animated.View key={c.nombre} entering={ZoomIn.delay(180 + i * 110).springify().damping(14)} style={e.casilla}>
-          <Icono nombre="checkmark" color={C.ok} tam={11} />
-          <Text style={e.casillaTexto}>{c.nombre}</Text>
+      {/* Una sola línea que cambia: para quien casi no usa tecnología, una lista de pasos es ruido (D41). */}
+      <View style={e.pensandoLinea}>
+        <Animated.View key={paso} entering={ZoomIn.springify().damping(14)}>
+          <Icono nombre="ellipsis.circle" color={C.action} tam={22} />
         </Animated.View>
-      ))}
+        <Text style={e.pensandoTexto}>{muyLento ? t.sigueRevisando : lento ? t.puedeTardar : pasos[paso]}</Text>
+      </View>
     </View>
   );
 }
@@ -834,23 +793,12 @@ function Dicho({ v, vozLista, hablando, progreso, t }: {
         </Text>
         <Zigzag />
         <Text style={e.secundario}>{v.castellano}</Text>
-        <Text style={[e.mini, { marginTop: 8 }]}>
-          {!vozLista ? t.preparandoVoz : hablando ? t.hablandoAhora : t.yaLoDijo}
-        </Text>
       </Tarjeta>
-      <View style={[e.auditoria, { backgroundColor: C.okTint }]}>
-        <View style={e.paso}>
-          <Icono nombre="checkmark.shield.fill" color={C.ok} tam={18} />
-          <Text style={[e.auditoriaTitulo, { color: C.ok }]}>{t.auditado}</Text>
-        </View>
-        <Casillas casillas={v.casillas} />
-        {v.critico && (
-          <Animated.View entering={ZoomIn.delay(700).springify().damping(14)} style={e.critico}>
-            <Icono nombre="checkmark.seal.fill" color={C.ok} tam={14} />
-            <Text style={e.criticoTexto}>{t.revisadoCritico}</Text>
-          </Animated.View>
-        )}
-      </View>
+      {/* La auditoría (y el crítico) en una sola línea verde: la seguridad se ve sin leer (D41). */}
+      <Animated.View entering={ZoomIn.delay(250).springify().damping(14)} style={e.revisado}>
+        <Icono nombre={v.critico ? 'checkmark.seal.fill' : 'checkmark.shield.fill'} color={C.ok} tam={20} />
+        <Text style={e.revisadoTexto}>{t.auditado}</Text>
+      </Animated.View>
       {v.tipo === 'dicho_con_aviso' && (
         <Aviso
           tipo="warn"
@@ -880,61 +828,31 @@ function Bloqueado({ v, t }: { v: Extract<Veredicto, { tipo: 'bloqueado' }>; t: 
         <Icono nombre="checkmark.shield.fill" color={C.action} tam={16} />
         <Text style={e.protegioTexto}>{t.loFrenoATiempo}</Text>
       </View>
-      <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>
-        {v.razon ? t.chaskiNoLoDijo(v.razon) : t.noLoDije}
-      </Text>
-      <Text style={[e.explicacion, { alignSelf: 'center' }]}>{t.reviseParte}</Text>
-      {v.castellano ? (
-        <Tarjeta>
-          <Etiqueta idioma="castellano" />
-          <Text style={[e.cuerpoTexto, { marginTop: 8 }]}>{v.castellano}</Text>
-        </Tarjeta>
-      ) : null}
-      {v.razon ? null : v.diferencias.length > 0 ? (
-        v.diferencias.map((d, i) => (
-          <Animated.View key={i} style={[e.comparacion, temblor]}>
-            <Text style={[e.rotulo, { color: C.block }]}>{d.nombre.toUpperCase()}</Text>
-            <View style={e.dosColumnas}>
-              <View style={{ flex: 1 }}>
-                <Text style={e.rotulo}>{t.ustedDijo}</Text>
-                <Text style={e.valor}>{d.dijo}</Text>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={e.rotulo}>{t.traduccionDecia}</Text>
-                <Text style={[e.valor, { color: C.block }]}>{d.decia}</Text>
-              </View>
-            </View>
-          </Animated.View>
-        ))
-      ) : (
-        <View style={e.comparacion}>
-          <Text style={e.rotulo}>{t.sinTraduccionSegura}</Text>
-          <Text style={e.valor}>{v.terminos.join(', ')}</Text>
-        </View>
-      )}
-      {v.casillasOk.length > 0 && (
-        <Tarjeta>
-          <Text style={e.rotulo}>{t.loDemasBien}</Text>
-          <Casillas casillas={v.casillasOk.map((nombre) => ({ nombre, ok: true }))} />
-        </Tarjeta>
-      )}
+      <Text style={[e.titulo, { color: C.block, textAlign: 'center' }]}>{t.noLoDije}</Text>
+      <Animated.Text style={[e.razon, temblor]}>{razonCorta(v)}</Animated.Text>
     </Animated.View>
   );
+}
+
+/** Una sola línea con el motivo del bloqueo, en palabras simples. */
+function razonCorta(v: Extract<Veredicto, { tipo: 'bloqueado' }>): string {
+  if (v.razon) return primeraMayuscula(v.razon);
+  const d = v.diferencias[0];
+  if (d) return `Cambió: ${d.nombre.toLowerCase()}`;
+  if (v.terminos.length) return `Palabra dudosa: ${v.terminos.join(', ')}`;
+  return 'Algo cambió al traducir';
 }
 
 function Paciente({ r, t }: { r: RespuestaPaciente; t: Textos }) {
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)}>
-    <Tarjeta estilo={{ marginTop: 16, gap: 6 }}>
-      <Text style={e.rotulo}>{t.loQueDijo}</Text>
-      <Text style={[e.cuerpoTexto, { color: C.inkSecondary }]}>{r.chanka_oido || t.noSeOyo}</Text>
-      <Text style={[e.rotulo, { marginTop: 16 }]}>{t.loQueQuisoDecir}</Text>
+    <Tarjeta estilo={{ marginTop: 16, gap: 8 }}>
       <Text style={e.significado}>{r.castellano || t.noLoEntendi}</Text>
-      <View style={{ marginTop: 12, gap: 8 }}>
+      <Text style={[e.secundario, { color: C.quechua }]} numberOfLines={1}>{r.chanka_oido || t.noSeOyo}</Text>
+      <View style={{ marginTop: 6 }}>
         {r.seguro
           ? <Aviso tipo="ok" texto={t.entendidoSeguro} />
           : <Aviso tipo="warn" texto={t.seguridadMedia} />}
-        {r.dudas.length > 0 && <Text style={e.mini}>{t.noEntendi}: {r.dudas.join(' · ')}</Text>}
       </View>
     </Tarjeta>
     </Animated.View>
@@ -959,8 +877,6 @@ function primeraMayuscula(s: string) {
 
 const e = StyleSheet.create({
   detalleError: { fontSize: ESCALA.mini, color: C.inkTertiary, fontVariant: ['tabular-nums'] },
-  critico: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-start', backgroundColor: C.surface, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 4, borderWidth: 1, borderColor: C.okTint },
-  criticoTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.ok },
   ensayo: { flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: C.castellanoTag, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 8, marginTop: 12 },
   ensayoTexto: { fontSize: ESCALA.mini, fontWeight: '600', color: C.ink, flexShrink: 1 },
   chipEnsayo: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center', backgroundColor: C.castellanoTag, borderRadius: 16, paddingHorizontal: 12, paddingVertical: 6, marginBottom: 8 },
@@ -989,19 +905,17 @@ const e = StyleSheet.create({
   quechua: { fontSize: ESCALA.h1, fontWeight: '600', color: C.ink, lineHeight: 31 },
   significado: { fontSize: ESCALA.h1, fontWeight: '700', color: C.ink, lineHeight: 31 },
   rotulo: { fontSize: ESCALA.mini, fontWeight: '600', color: C.inkTertiary, letterSpacing: 0.6 },
-  valor: { fontSize: ESCALA.h2, fontWeight: '700', color: C.ink, marginTop: 2 },
-  comparacion: { backgroundColor: C.surface, borderWidth: 1, borderColor: C.border, borderLeftWidth: 4, borderLeftColor: C.block, borderRadius: 16, padding: 16 },
+  pensandoLinea: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingVertical: 14 },
+  pensandoTexto: { fontSize: ESCALA.h2, fontWeight: '600', color: C.ink },
+  revisado: { flexDirection: 'row', alignItems: 'center', gap: 8, alignSelf: 'center', backgroundColor: C.okTint, borderRadius: 18, paddingHorizontal: 16, paddingVertical: 8 },
+  revisadoTexto: { fontSize: ESCALA.cuerpo, fontWeight: '700', color: C.ok },
+  razon: { fontSize: ESCALA.cuerpo, color: C.inkSecondary, textAlign: 'center' },
   protegio: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center', backgroundColor: C.actionTint, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 6 },
   protegioTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.action },
-  dosColumnas: { flexDirection: 'row', gap: 16, marginTop: 8 },
   auditoria: { borderRadius: 16, padding: 14, gap: 8 },
   auditoriaTitulo: { fontSize: ESCALA.chico, fontWeight: '600' },
-  casillas: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
   // Cada verificación en su propio chip blanco (D29): ningún motivo toca la fila de auditoría.
-  casilla: { flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: C.surface, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 },
-  casillaTexto: { fontSize: ESCALA.mini, fontWeight: '500', color: C.ok },
   paso: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  pasoTexto: { fontSize: ESCALA.cuerpo, fontWeight: '500' },
   barras: { flexDirection: 'row', alignItems: 'center', height: 40, marginTop: 12 },
   pie: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 8 },
   filaBotones: { flexDirection: 'row', gap: 12 },

@@ -103,13 +103,11 @@ function Saludo() {
   if (!SALUDO) return null;
   return (
     <View style={e.saludo}>
-      <Text style={e.saludoEtiqueta}>CHASKI TE SALUDA</Text>
       <Text style={e.saludoQuy}>{SALUDO.quy}</Text>
       <Text style={e.saludoEs}>No se preocupe, aquí estamos.</Text>
       {listo && (
-        <Pressable onPress={sonar} style={e.saludoBoton} accessibilityRole="button">
-          <Icono nombre="speaker.wave.2.fill" color={C.action} tam={14} />
-          <Text style={e.saludoBotonTexto}>Escuchar de nuevo</Text>
+        <Pressable onPress={sonar} style={e.saludoBoton} accessibilityRole="button" accessibilityLabel="Escuchar de nuevo">
+          <Icono nombre="speaker.wave.2.fill" color={C.action} tam={20} />
         </Pressable>
       )}
     </View>
@@ -137,11 +135,9 @@ function Opcion({ titulo, detalle, quechua, icono, cruces, onPress }: {
 
 const e = StyleSheet.create({
   saludo: { alignSelf: 'center', alignItems: 'center', gap: 2, marginTop: -4, marginBottom: 6 },
-  saludoEtiqueta: { fontSize: 11, fontWeight: '700', color: C.inkTertiary, letterSpacing: 0.6 },
   saludoQuy: { fontSize: ESCALA.cuerpo, fontWeight: '700', color: C.quechua, textAlign: 'center' },
   saludoEs: { fontSize: ESCALA.mini, color: C.inkSecondary, textAlign: 'center' },
   saludoBoton: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4, paddingHorizontal: 10, paddingVertical: 4 },
-  saludoBotonTexto: { fontSize: ESCALA.mini, fontWeight: '600', color: C.action },
   pantalla: { flex: 1, backgroundColor: C.ground },
   cuerpo: { flex: 1, padding: 16, gap: 12 },
   marca: { fontSize: ESCALA.display, fontWeight: '700', color: C.ink, textAlign: 'center' },
