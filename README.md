@@ -156,6 +156,7 @@ Source: `evals/banco/resultados/2026-10-24.json`.
 |---|---|---|
 | Language ID, `facebook/mms-lid-512` | 6/6 on the synthetic test clips (`datos/prueba_minima/`), 49 ms median. Not yet measured on real clinic audio | `ricardo-artifacts/reports/arquitectura.md` |
 | Quechua ASR baseline, `omniASR_LLM_300M`, 175 clips from one family speaker held out of training | WER 68.9 % / CER 15.6 % as written. **54.1 % / 11.6 %** with spelling normalized on both sides. Loanwords 5/6 | `ricardo-artifacts/reports/asr.json`, `metricas.md` |
+| **Quechua ASR fine-tuned**: `mms-1b-all` quy + our adapter trained on the families' recordings (362 clips), same held-out speaker | **WER 53.9 % → 40.9 %** (normalized), a 24 % relative reduction; clips recognized perfectly **30 → 51 of 175**. Strict WER went 76.0 → 82.5 % because the model now writes normalized spelling; both are reported | commit `7b57a9b`, `ricardo-artifacts/` |
 | Quechua ASR speed | 1.71 s for 15.8 s of audio on an A10G, 3.41 GB GPU peak | `ricardo-artifacts/reports/arquitectura.md` |
 | Translation baseline (Sonnet 5, no fine-tuning) | chrF++ 42.31, BLEU 17.11, 30 pairs | `ricardo-artifacts/reports/traduccion.json` |
 | **Fine-tuned ASR, NLLB and TTS** | **Pending.** Trainers exist (`ricardo-artifacts/voz/ajustar_asr.py`), but no committed results file shows an improvement yet, so we don't claim one | — |

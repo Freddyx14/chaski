@@ -48,8 +48,9 @@ and for patients. It doesn't just translate; it interprets:
   20% of correct sentences; about half of those are genuinely weak family translations.
 - **Interpreter**, 48 real scenarios: Opus 98% correct action with zero invented clinical data; Sonnet 94%; Haiku 88%.
 - **Retrieval**: hybrid RAG finds the right phrase first 88% of the time vs 70% for keyword search.
-- **Speech baseline** (before fine-tuning, one family speaker held out): Quechua ASR WER 68.9% (54.1% with spelling
-  normalized) on 175 clips; translation chrF++ 42.31 on 30 verified pairs. [Fine-tuned result: only from Ricardo's results file.]
+- **Speech, fine-tuned on our families' voices** (362 clips; tested on a speaker the model never heard, 175 clips):
+  Meta's MMS Quechua recognizer went from **53.9% to 40.9% word error** (24% relative), and sentences recognized
+  perfectly went from **30 to 51 of 175**. Translation baseline: chrF++ 42.31 on 30 verified pairs [NLLB fine-tune: pending].
 
 ## Challenges we ran into
 There is almost no open Chanka Quechua data — Common Voice has three minutes of it — so our families became the

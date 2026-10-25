@@ -43,7 +43,7 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 
 | | Antes del ajuste fino | Después |
 |---|---|---|
-| Reconocimiento de quechua (WER, hablante que el modelo no oyó, 175 clips) | 68,9 % (54,1 % con ortografía normalizada) | **pendiente — tarea crítica de Ricardo** |
+| Reconocimiento de quechua (WER normalizado, hablante que el modelo no oyó, 175 clips) | MMS tal cual: 53,9 % · 30/175 perfectas (omniASR: 54,1 %) | **MMS + nuestro adaptador: 40,9 % · 51/175 perfectas** (−24 % relativo; commit `7b57a9b`) |
 | Traducción (chrF++, 30 pares verificados) | 42,31 (Sonnet sin ajuste) | pendiente (NLLB ajustado) |
 
 ## La historia en una frase (para el pitch)
