@@ -38,7 +38,10 @@ const LIBRE_CUADROS = {
   presentarse: require('../../../avatar/estados-alfa/presentarse.png'),
 };
 const LIBRE_LOOPS: Partial<Record<EstadoChaski, number>> = {
+  presentarse: require('../../../avatar/loops/presentarse-alfa.mov'),
   escuchando: require('../../../avatar/loops/escuchando-alfa.mov'),
+  pensando: require('../../../avatar/loops/pensando-alfa.mov'),
+  no_entendi: require('../../../avatar/loops/no_entendi-alfa.mov'),
 };
 
 /** D40: Chaski va sin marco ni fondo, sobre el fondo de la app. El marco anterior queda con `&marco=1`. */
