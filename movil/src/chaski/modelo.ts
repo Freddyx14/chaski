@@ -262,7 +262,7 @@ export function veredictoEnfermera(castellano: string, r: RespuestaEnfermera | R
 export type Interprete =
   | { tipo: 'traducir' }
   | { tipo: 'pregunta'; para: 'personal' | 'paciente'; texto: string; quechua: string | null; motivo: string;
-      dato: string | null; audioB64: string | null }
+      dato: string | null; audioB64: string | null; aviso?: string | null }
   | { tipo: 'respuesta'; texto: string; motivo: string; audioB64: string | null }
   | { tipo: 'no_entendi'; motivo: string; quechua?: string | null; audioB64?: string | null }
   | { tipo: 'frase'; frase: FraseBanco };
@@ -297,6 +297,8 @@ export function leerInterprete(
         tipo: 'pregunta', para: d.para ?? 'paciente', texto, quechua: quechua || null,
         motivo: nuevo?.paso_fallido ? '' : motivo,
         dato: d.dato_faltante ?? null, audioB64: d.audio_wav_b64 ?? null,
+        // Advertencias de la receta (visión): solo para la pantalla del personal, nunca se le dicen al paciente.
+        aviso: nuevo?.aviso ?? null,
       };
     case 'responder':
       if (!texto) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la respuesta' };

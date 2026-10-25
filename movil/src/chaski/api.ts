@@ -299,6 +299,27 @@ export function ver(uri: string, dicho: string) {
   return pedir<Lectura>('/ver', f, 60);
 }
 
+/** El servicio todavía no tiene la receta por voz: la app abre la pantalla de receta de siempre. */
+export class SinRutaReceta extends Error {}
+
+/**
+ * Receta por voz (modo conversación): foto → el servicio la lee y devuelve una REPREGUNTA al personal
+ * («Leí: …. ¿Se lo digo?», con su voz). Deja `receta_pendiente` en el contexto; si el personal dice «sí» en el
+ * turno siguiente, /turno lo traduce con todas las barreras. La app no decide nada: lo dice y vuelve a escuchar.
+ */
+export async function recetaPorVoz<T extends { contexto?: unknown }>(uri: string, rol: Rol): Promise<T> {
+  const f = new FormData();
+  f.append('imagen', archivo(uri, 'image/jpeg'), 'receta.jpg');
+  f.append('rol', rol);
+  conContexto(f, 'receta');
+  try {
+    return await turno<T>('/receta', f);
+  } catch (e) {
+    if (e instanceof FalloServicio && /\b(404|405)\b/.test(e.tipo)) throw new SinRutaReceta();
+    throw e;
+  }
+}
+
 export type Resumen = {
   rol: Rol;
   resumen: string;

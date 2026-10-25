@@ -5,13 +5,14 @@ import {
 } from 'expo-audio';
 import { File, Paths } from 'expo-file-system';
 import * as Haptics from 'expo-haptics';
+import * as ImagePicker from 'expo-image-picker';
 import * as Speech from 'expo-speech';
 import { Redirect, router, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinRutaAuto, SinServidor, turnoAuto, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
+import { audioDeFrase, escuchar, FalloServicio, idioma, recetaPorVoz, salud, SinRutaAuto, SinRutaReceta, SinServidor, turnoAuto, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
 import { Chaski, usarChaskiLibre, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
@@ -326,6 +327,40 @@ function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir }: {
     if (quien !== lado) setLado(quien);
     if (quien === 'castellano') return turnoDeLaEnfermera(uri);
     return turnoDelPaciente(uri);
+  }
+
+  // ---- receta por voz ----------------------------------------------------------------------
+  /**
+   * Botón de cámara. En conversación: corta la escucha, saca la foto, el servicio la lee y Chaski le PREGUNTA
+   * al personal «Leí: …. ¿Se lo digo?»; el «sí» del turno siguiente lo resuelve /turno. Sin la ruta, la
+   * pantalla de receta de siempre.
+   */
+  async function leerReceta() {
+    if (!conversaRef.current) return router.push('/receta');
+    setOcupado(true);
+    try {
+      if (grabadora.isRecording) { try { await grabadora.stop(); } catch {} }
+      setFase({ f: 'listo' });
+      const opciones: ImagePicker.ImagePickerOptions = { mediaTypes: ['images'], quality: 0.7 };
+      let foto: ImagePicker.ImagePickerResult;
+      try {
+        const permiso = await ImagePicker.requestCameraPermissionsAsync();
+        if (!permiso.granted) return;
+        foto = await ImagePicker.launchCameraAsync(opciones);
+      } catch {
+        foto = await ImagePicker.launchImageLibraryAsync(opciones); // sin cámara (simulador)
+      }
+      if (foto.canceled) return;
+      setLado('castellano');
+      setFase({ f: 'pensando', lado: 'castellano', paso: 2, desde: Date.now() });
+      const r = await recetaPorVoz<Resultado>(foto.assets[0].uri, perfil.rol);
+      await mostrarEnfermera('', r);
+    } catch (e) {
+      if (e instanceof SinRutaReceta) { setConversa(false); setFase({ f: 'listo' }); router.push('/receta'); return; }
+      fallar(e);
+    } finally {
+      setOcupado(false);
+    }
   }
 
   // ---- turnos -----------------------------------------------------------------------------
@@ -734,7 +769,7 @@ function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir }: {
             conversa={conversa}
             onPress={fase.f === 'grabando' ? (conversa ? pausar : terminar) : conversar}
             onCambiarLado={() => fase.f === 'listo' && setLado(siguienteLado(lado))}
-            onReceta={() => router.push('/receta')}
+            onReceta={leerReceta}
             onResumen={() => router.push('/resumen')}
           />
         )}
@@ -758,6 +793,7 @@ function TarjetaPregunta({ d, t }: { d: Extract<Interprete, { tipo: 'pregunta' }
         {d.para === 'paciente' && d.quechua ? <Text style={e.quechua}>{d.quechua}</Text> : null}
         {d.texto ? <Text style={d.para === 'paciente' && d.quechua ? e.secundario : e.significado}>{d.texto}</Text> : null}
       </Tarjeta>
+      {d.aviso ? <Aviso tipo="warn" texto={d.aviso} /> : null}
       {(d.motivo || d.dato) && (
         <Tarjeta estilo={{ gap: 8 }}>
           {d.motivo ? <Text style={e.secundario} numberOfLines={2}>{d.motivo}</Text> : null}
@@ -857,12 +893,13 @@ function Microfono({ grabando, conversa, nivel, lado, perfil, t, onPress, onCamb
     <View style={{ alignItems: 'center', gap: 12 }}>
       <View style={e.filaMicro}>
         <View style={e.lateral}>
-          {!grabando && (
+          {/* En conversación casi siempre está escuchando: la cámara sigue a mano. */}
+          {(!grabando || conversa) && (
             <BotonEscalonado onPress={onReceta} etiqueta="Leer receta">
               <Icono nombre="camera" color={C.inkSecondary} tam={22} />
             </BotonEscalonado>
           )}
-          {!grabando && <Text style={e.lateralTexto}>{t.receta}</Text>}
+          {(!grabando || conversa) && <Text style={e.lateralTexto}>{t.receta}</Text>}
         </View>
         <AnilloInti modo={grabando ? 'escucha' : 'reposo'} nivel={nivel} tinte={lado}>
         <Pressable
