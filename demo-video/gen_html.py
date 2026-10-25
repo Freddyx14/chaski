@@ -17,7 +17,7 @@ CARDS = {
               (EV["w_own"], "do", "OUR OWN FINE-TUNED MODELS", "Trained on our families' voices, for accuracy in Chanka Quechua.")],
     "instr": [(EV["v03"], "do", "A HEALTH WORKER SPEAKS", "Any of the staff: doctor, nurse, obstetrician, technician."),
               (EV["w_opus"], "do", "CLAUDE OPUS DECIDES", "Translate · ask back · answer · didn't understand · verified phrase"),
-              (EV["w_checks"], "do", "CHECKED BEFORE IT SPEAKS", "Code compares dose, frequency, days, medicine, negation. Claude Sonnet back-translates blind.")],
+              (EV["w_checks"], "do", "CHECKED BEFORE IT SPEAKS", "A second Claude translates the Quechua back without seeing the original. Code checks the dose, times and every \u201cnot\u201d still match.")],
     "pat": [(EV["pac"], "file", "REAL AUDIO", "A family member, recorded this weekend through our voice form."),
             (EV["w_fine"], "do", "FINE-TUNED EARS", "Meta's Quechua recognizer, adapted on our families' voices.")],
     "ask": [(EV["w_asks"], "do", "ASKS BACK", "Once, in the speaker's language, when a critical fact is missing."),
@@ -27,7 +27,8 @@ CARDS = {
     "rx": [(EV["w_photo"], "do", "CLAUDE READS THE BOX", "Medicine, strength, dose. If it's blurry, it asks instead of guessing."),
            (EV["w_yes"], "do", "A SPOKEN YES FIRST", "Nothing reaches the patient until the health worker confirms.")],
     "sum": [(EV["w_note"], "do", "FOR BOTH SIDES", "A clinical note and take-home instructions."),
-            (EV["w_confirms"], "do", "THE PATIENT IS THE REVIEWER", "Understood → confirmed. “What did it say?” → flagged."),
+            (EV["w_confirms"], "do", "AUTOMATIC MEMORY", "Saves every checked phrase, in the background."),
+            (EV["w_pilpi"], "do", "THE PATIENT IS THE REVIEWER", "Understood \u2192 confirmed. \u201cWhat did it say?\u201d \u2192 flagged."),
             (EV["w_approves"], "do", "THE NURSE TEACHES", "Approved phrases become the translator's examples. No retraining.")],
 }
 
@@ -61,6 +62,8 @@ MOCK = '<div class="mock">recreated from the app\'s screens</div>'
 def stage(pid):
     if pid == "her":
         return ('<canvas id="globe" width="1240" height="1240"></canvas>'
+                '<div class="pol" id="pol1"><img src="assets/img/mama-vicunas.png"><span>Pilpichaca, Huancavelica</span></div>'
+                '<div class="pol" id="pol2"><img src="assets/img/mama-vacuna.png"><span>At work, in the Andes</span></div>'
                 '<div class="glab" id="glab"><b>Pilpichaca</b><span>Huancavelica, Peru · the Andes</span></div>' +'<div class="laptop" id="lap"><div class="lscreen"></div><div class="lbase"></div></div>'
                 '<div class="who" id="mama-name">Lic. Norma Choque Guerreros · nurse, Pilpichaca health zone</div>')
     if pid == "why":
@@ -115,14 +118,14 @@ def stage(pid):
     if pid == "arch":
         B = lambda i, cls, t, sub: f'<div class="ab {cls}" id="ab{i}" {BLUR}><b>{E(t)}</b><span>{E(sub)}</span></div>'
         return ('<div class="atag" id="atag">Designed for accuracy, in a field where one wrong word can hurt someone</div>' +
-                B(0, "", "Hands-free audio", "who spoke · which language") +
+                B(0, "", "Hands-free audio", "Cartesia hears Spanish · Meta MMS knows who spoke") +
                 B(1, "meta", "Fine-tuned ears", "Meta MMS · 362 family recordings") +
                 B(2, "claude", "Claude Opus decides", "translate · ask back · answer") +
                 B(3, "claude", "Claude Sonnet translates", "with nurse-approved examples") +
                 B(4, "guard", "Guards before speaking", "code checks every fact · blind back-translation") +
                 B(5, "meta", "Her voice", "Quechua voice trained on the nurse · Cartesia for Spanish") +
-                B(6, "side", "Verified phrase bank", "216 phrases · hybrid RAG") +
-                B(7, "side", "Feedback loop", "patient confirms · nurse approves") +
+                B(6, "side", "Emergency phrase bank", "24 phrases reviewed by a nurse · RAG search") +
+                B(7, "side", "Automatic memory", "every checked phrase · confirmed by the next answer") +
                 '<div class="arw" id="aw1">→</div><div class="arw" id="aw2">→</div><div class="arw" id="aw3">↓</div><div class="arw" id="aw4">←</div><div class="arw" id="aw5">←</div>')
     if pid == "nums":
         return ('<div class="nrow" id="n1" ' + BLUR + '><b>99.5%</b><span>of 184 seeded errors caught · 100% of the critical ones · ~3 s per check</span></div>'
@@ -130,9 +133,7 @@ def stage(pid):
                 '<div class="nrow" id="n3" ' + BLUR + '><b>95%</b><span>of the time it knew who was speaking, in full voice consultations (21 of 22)</span></div>'
                 '<div class="src" id="n-src">evals/ in github.com/Freddyx14/chaski · every number has its results file</div>')
     if pid == "end":
-        return ('<div class="stack" id="k1">Claude Opus · Sonnet</div><div class="stack" id="k2">Cartesia</div>'
-                '<div class="stack" id="k3">Meta MMS, fine-tuned on our data</div>'
-                '<div class="logo big2" id="end-logo"><img src="assets/img/reposo.png"><b>Chaski</b>'
+        return ('<div class="logo big2" id="end-logo"><img src="assets/img/reposo.png"><b>Chaski</b>'
                 '<i>A Quechua interpreter for rural health workers</i></div>')
     return ""
 
@@ -154,7 +155,7 @@ page = f'''<!doctype html>
 <script src="cues.js"></script><script src="data.js"></script><script src="lib/engine.js"></script><script src="lib/d3-array.min.js"></script><script src="lib/d3-geo.min.js"></script><script src="lib/topojson-client.min.js"></script><script src="lib/world.js"></script>
 <link rel="stylesheet" href="comp.css" /><link rel="stylesheet" href="demo.css" />
 </head><body>
-<div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="{TOTAL:.3f}" data-fps="30">
+<div id="root" data-composition-id="main" data-start="0" data-width="1920" data-height="1080" data-duration="{TOTAL:.3f}" data-fps="60">
   <div id="field" class="full"></div><div id="glow" class="full"></div>
   {''.join(pages_html)}
   <video id="mama" class="clip" src="assets/video/mama-intro.mp4" muted playsinline {win(0.0, EV["MAMA"] - 0.02)}></video>

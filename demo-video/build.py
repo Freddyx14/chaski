@@ -101,6 +101,7 @@ for s in SEGS:
     for line in chunks(words(s)):
         caps.append({"seg": s, "who": "", "t0": round(t[s] + line[0]["t0"], 3), "t1": round(t[s] + line[-1]["t1"], 3),
                      "words": [{"w": w["w"], "t": round(t[s] + w["t0"], 3)} for w in line]})
+caps.sort(key=lambda c: c["t0"])
 for a, b in zip(caps, caps[1:]):
     a["out"] = round(min(b["t0"] - 0.15, a["t1"] + 0.9), 3)
 caps[-1]["out"] = round(caps[-1]["t1"] + 0.9, 3)
@@ -133,11 +134,11 @@ ev.update({
     "w_mother8": wt("v08", "mother"),
     "w_photo": wt("v09", "photo"), "w_reads": wt("v09", "reads"), "w_yes": wt("v09", "yes"), "w_quy9": wt("v09", "Quechua"),
     "w_note": wt("v10", "note"), "w_home": wt("v10", "home"), "w_words": wt("v10", "words"),
-    "w_confirms": wt("v10", "confirms"), "w_approves": wt("v10", "approves"), "w_pilpi": wt("v10", "learns"),
+    "w_confirms": wt("v10", "memory"), "w_approves": wt("v10", "examples"), "w_pilpi": wt("v10", "confirms"),
     "w_ft13": wt("v13", "fine-tuned"), "w_362": wt("v13", "hundred"), "w_voice13": wt("v13", "voice"),
     "w_opus13": wt("v13", "Opus"), "w_sonnet13": wt("v13", "Sonnet"), "w_code13": wt("v13", "code"), "w_acc13": wt("v13", "accuracy"),
     "w_184": wt("v11", "hundred"), "w_54": wt("v11", "fifty-four"), "w_2122": wt("v11", "ninety-five"),
-    "w_built12": wt("v12", "Claude"), "w_cartesia": wt("v12", "Cartesia"), "w_meta": wt("v12", "Meta"), "w_chaski12": wt("v12", "Chaski."),
+    "w_chaski12": wt("v12", "Chaski."),
 })
 (ROOT / "data.js").write_text("window.DATA = " + json.dumps({"pages": pages, "caps": caps, "mama": mama_subs, "ev": ev}, ensure_ascii=False) + ";\n")
 

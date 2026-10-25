@@ -58,3 +58,11 @@
 .arw { position: absolute; font-size: 56px; font-weight: 800; color: #ffc21a; opacity: 0; }
 #aw1 { left: 545px; top: 108px; } #aw2 { left: 1165px; top: 108px; } #aw3 { left: 1480px; top: 230px; } #aw4 { left: 1165px; top: 348px; } #aw5 { left: 545px; top: 348px; }
 #pg-arch .col { display: none; }
+
+/* v7 */
+.ab, .ab.meta, .ab.claude, .ab.guard, .ab.side { box-shadow: 0 0 0 1px rgba(24,34,31,0.08); }
+.pol { position: absolute; width: 250px; padding: 10px 10px 14px; background: #fff; border-radius: 10px; opacity: 0; z-index: 6; }
+.pol img { display: block; width: 230px; height: 330px; object-fit: cover; border-radius: 4px; }
+.pol span { display: block; margin-top: 8px; font-size: 17px; font-weight: 600; color: #18221f; text-align: center; }
+#pol1 { left: 1580px; top: 40px; }
+#pol2 { left: 1300px; top: 70px; }

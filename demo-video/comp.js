@@ -71,6 +71,7 @@
       }
     }
     rise("#glab", 2.8, 30);
+    land("#pol1", 4.6); land("#pol2", 9.2);
     /* her */
     rise("#mama-name", 1.0);
     /* why */
@@ -123,9 +124,7 @@
     /* numbers */
     land("#n1", E.w_184); land("#n2", E.w_54); land("#n3", E.w_2122); show("#n-src", E.w_2122 + 1.0);
     /* end */
-    land("#k1", E.w_built12); land("#k2", E.w_cartesia); land("#k3", E.w_meta);
-    fadeOut(["#k1", "#k2", "#k3"], E.w_chaski12 - 0.4, 0.25);
-    land("#end-logo", E.w_chaski12 - 0.15);
+    land("#end-logo", E.v12 - 0.1);
 
     var hud = $("#hud"), caps = $("#caps"), stages = $$(".stage");
     MS.drive(tl, D, function (t) {
