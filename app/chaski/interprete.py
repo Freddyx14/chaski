@@ -26,7 +26,7 @@ import unicodedata
 from typing import Literal
 
 import anthropic
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ValidationError, Field
 
 MODELO = "claude-sonnet-5"  # D15: the fastest that passes evals/interprete. Measure haiku-4-5 / sonnet-5 / opus-5.
 MAX_TOKENS = 800
@@ -174,6 +174,20 @@ def _mensaje(turno: TurnoEntrada, contexto: Contexto) -> str:
 
 
 def _llamar(client: anthropic.Anthropic, turno: TurnoEntrada, contexto: Contexto, modelo: str) -> DecisionModelo | None:
+    """One decision. A malformed answer (it failed validation, live eval 25-oct 02:30: «falló el paso decidir
+    (ValidationError)») is retried once; a second one returns None, which becomes no_entendi: Chaski asks to repeat
+    instead of blocking the turn. Network and API errors still propagate (fail closed)."""
+    for intento in range(2):
+        try:
+            return _llamar_una_vez(client, turno, contexto, modelo)
+        except ValidationError:
+            if intento == 1:
+                return None
+    return None
+
+
+def _llamar_una_vez(client: anthropic.Anthropic, turno: TurnoEntrada, contexto: Contexto,
+                    modelo: str) -> DecisionModelo | None:
     respuesta = client.messages.parse(
         model=modelo,
         max_tokens=MAX_TOKENS,
@@ -193,7 +207,11 @@ def aplicar_reglas(propuesta: DecisionModelo | None, turno: TurnoEntrada, contex
         contexto.repreguntas_seguidas.clear()
         return no_entendi(turno, "respuesta vacía o inválida del intérprete")
 
-    d = Decision(**propuesta.model_dump())
+    try:
+        d = Decision(**propuesta.model_dump())
+    except ValidationError:
+        contexto.repreguntas_seguidas.clear()
+        return no_entendi(turno, "respuesta del intérprete con un campo inválido")
     d.texto_pulido = (d.texto_pulido or "").strip()
 
     # C9 / B7: the bank id must be one we offered, and the bank answers staff turns only.

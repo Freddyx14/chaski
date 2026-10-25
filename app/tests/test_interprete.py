@@ -163,3 +163,22 @@ def test_aplicar_reglas_es_puro_salvo_el_contador():
     ctx = Contexto(repreguntas_seguidas=["dosis"])
     d = aplicar_reglas(propuesta("traducir", "x"), t, ctx)
     assert d.accion == "traducir" and ctx.repreguntas_seguidas == []
+
+
+def test_respuesta_mal_formada_se_reintenta_y_luego_pide_repetir():
+    from types import SimpleNamespace
+    from pydantic import ValidationError
+    from chaski import interprete as it
+
+    llamadas = []
+
+    def parse(**kw):
+        llamadas.append(kw)
+        try:
+            it.DecisionModelo.model_validate({"accion": "inventada"})
+        except ValidationError as e:
+            raise e
+
+    cli = SimpleNamespace(messages=SimpleNamespace(parse=parse))
+    d = it.decidir(cli, {"texto": "Tome la pastilla", "idioma": "spa", "rol": "personal"})
+    assert len(llamadas) == 2 and d.accion == "no_entendi"
