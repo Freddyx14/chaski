@@ -88,7 +88,7 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 
 | t | Beat | Who | On screen / in the air | Feature shown | Asset |
 |---|---|---|---|---|---|
-| 0:00 | **B1 Her voice** | Freddy | Play her greeting (7 s), then the line | — (the community) | `data/mama/clips/saludo-peru-a-eeuu.mp3` |
+| 0:00 | **B1 Her voice** | Freddy | Play her saying the problem herself (14 s), subtitled on the laptop | — (the community) | `data/mama/clips/final-problema-profesionales-14s.mp3` |
 | 0:20 | **B2 The problem** | Freddy | Nothing, eye contact | — | ★ ★c ★s |
 | 0:45 | **B3a Two-way consult** | Freddy + Ricardo | Phone: nurse speaks Spanish → «Pensando» steps → Quechua out loud; patient clip → Spanish on screen | Polish (Wispr-style), translation, language ID, fine-tuned ears | Patient clip from the family set |
 | 1:15 | **B3b Emergency mode** | Freddy | Two taps: «¿Dónde le duele?» → plays instantly **in the nurse-trained voice** | Verified phrase bank (RAG), zero wait | 24 reviewed phrases (`entregables/voz/emergencia/` when ready) |
@@ -101,9 +101,11 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 > `[brackets]` = stage direction. Read it out loud with a timer; cut words, not beats.
 
 **B1 · Her voice (0:00–0:20) · Freddy**
-[Play her greeting, 7 s: «…saludanim kay Perú llaqtamanta wak Estados Unidos llaqtaman».]
-"That's my mother, greeting you from Peru. She's a nurse at the health center in Pilpichaca, high in the Andes of
-Huancavelica. Nine out of ten of her patients speak Quechua. About one in five of the staff do."
+[Play her, 14 s, subtitles on the laptop: «…a veces los profesionales no entienden el quechua; entonces yo ayudo,
+hago la traducción».]
+"That's my mother. She's a nurse in Pilpichaca, high in the Andes of Huancavelica, and she just told you the problem:
+the doctors don't understand Quechua, so she translates. Nine out of ten of her patients speak Quechua. About one in
+five of the staff do. When she's not on shift, nobody translates."
 
 **B2 · The problem (0:20–0:45) · Freddy**
 "So the interpreter is whoever is around — another nurse, a technician, the ambulance driver. If nobody is, they use
@@ -170,11 +172,13 @@ small speaker for the audios · chargers. **Before each judge:** one warm-up tur
 
 | t | Image | Audio |
 |---|---|---|
-| 0:00 | Black → Pilpichaca / Andes stills | Her presentation, 12 s: `clips/saludo-apertura-12s.mp3` («…aquí trabajo, y aquí también hablo quechua para ayudar a mis hermanos»), subtitled |
+| 0:00 | Black → Pilpichaca / Andes stills | Her presentation, 25 s: `clips/final-presentacion-25s.mp3` («¿Están bien, hermanas? Les hablo yo, la enfermera… trabajo en Huancavelica, zona sanitaria de Pilpichaca»), subtitled; cut to 12 s if long |
+| 0:12 | Same | The problem in her words, 14 s: `clips/final-problema-profesionales-14s.mp3` |
 | 0:12 | Title: *Chaski* · «90% of patients speak Quechua. ~20% of staff do.» | — |
 | 0:20 | **The refusal**, screen recording | Freddy narrating (opens on «the moment», as winners do) |
 | 0:45 | Two-way consult + emergency mode | App audio |
 | 1:20 | A/B/C voice + the two numbers | Ricardo |
+| 1:35 | Who she cares for | `clips/final-ninos-adultos-gestantes-emergencias-22s.mp3` («atiendo a los niños, a los adultos, a las gestantes, y en las emergencias ayudo cuando no hablan castellano»), 10 s of it |
 | 1:50 | Her welcoming a patient, subtitled | `clips/atencion-casa-de-salud-29s.mp3`: «Aquí, conmigo, va a estar bien… dígame con confianza… siéntese aquí, como en su casa» |
 | 2:15 | «That's what care sounds like in your own language. Chaski is for when nobody there speaks it.» | — |
 
@@ -215,3 +219,22 @@ Subtitles: confirm the [?] words with her first (`data/mama/traduccion-claude.md
 | One slide with ★★ and ★★★ | ⬜ |
 | Devpost video | ⬜ Sun 05:00 |
 | Ricardo's service running the interpreter (`app/chaski/PARA_RICARDO.md`) | ⬜ |
+
+
+## 11 · Todos los audios de la mamá y qué dice cada uno (transcritos con MMS de Meta, traducidos con Claude)
+
+Ella eligió el último (20:32) como el mejor. Archivos en `data/mama/` (no van a git); traducciones en
+`data/mama/traduccion-claude.md` y `transcripcion-final-traduccion.md`.
+
+| Clip | Dura | Qué dice | Uso |
+|---|---|---|---|
+| `final-problema-profesionales-14s` | 14 s | «A veces los profesionales no entienden el quechua; entonces yo ayudo, hago la traducción» | **Abre el pitch (B1)** y el video |
+| `final-presentacion-25s` | 25 s | «¿Están bien, hermanas? Les hablo yo, la enfermera… trabajo en Huancavelica, zona sanitaria de Pilpichaca» | Abre el video |
+| `final-yo-traduzco-25s` | 25 s | «Ayudo trabajando: cuando no hablan castellano, yo hablo quechua, y así me entienden los pacientes» | Video, respaldo |
+| `final-ninos-adultos-gestantes-emergencias-22s` | 22 s | «Atiendo a los niños, a los adultos, a las gestantes; en las emergencias ayudo cuando no hablan castellano» | Video |
+| `final-saludo-a-eeuu-13s` | 13 s | «Saludo desde Huancavelica, Perú, hasta Estados Unidos» | Cierre del video |
+| `atencion-casa-de-salud-29s` | 29 s | Recibiendo a una paciente (Kati): «aquí, conmigo, va a estar bien… dígame con confianza… siéntese como en su casa» | Momento emocional del video |
+| Audios 19:57 y 19:59 | 90 s · 108 s | «Hablar quechua es difícil para mí, pero aprendí para ayudar a las mujeres que no hablan castellano» · «aquí los profesionales no hablan runa simi; para mí es bueno hablarlo porque ayudo cuando hay enfermedad o emergencias» | Respaldo; citas para Q&A |
+
+**Su nombre:** en los audios se presenta con nombre y apellido. En pantalla y subtítulos usar «enfermera de Pilpichaca»
+salvo que Freddy y ella decidan mostrar su nombre.
