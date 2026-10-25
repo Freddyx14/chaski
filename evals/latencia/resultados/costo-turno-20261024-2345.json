@@ -1,0 +1,79 @@
+{
+ "turnos": 10,
+ "uso": {
+  "por_modelo": {
+   "claude-opus-5": {
+    "llamadas": 10,
+    "entrada": 1255,
+    "salida": 2369,
+    "cache_lectura": 29970,
+    "cache_escritura": 0,
+    "costo_usd": 0.080485
+   },
+   "claude-sonnet-5": {
+    "llamadas": 70,
+    "entrada": 30849,
+    "salida": 6847,
+    "cache_lectura": 128789,
+    "cache_escritura": 0,
+    "costo_usd": 0.155926
+   }
+  },
+  "costo_usd_total": 0.236411,
+  "precios_verificados": false,
+  "fuente_precios": "bundled claude-api skill (Claude Code 2.1.280, cached 2026-06-24); cache = 0.1x read / 1.25x write; VERIFY against anthropic.com/pricing"
+ },
+ "por_turno_usd": 0.0236411,
+ "estados": [
+  {
+   "id": "med-01",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "med-02",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "med-03",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "med-06",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "orden-01",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "orden-02",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "orden-03",
+   "estado": "dicho",
+   "accion": "usar_frase_banco"
+  },
+  {
+   "id": "emer-02",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "emer-03",
+   "estado": "dicho",
+   "accion": "traducir"
+  },
+  {
+   "id": "emer-06",
+   "estado": "dicho",
+   "accion": "traducir"
+  }
+ ]
+}
