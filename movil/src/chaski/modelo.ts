@@ -25,6 +25,8 @@ export type Estado = 'dicho' | 'dicho_con_aviso' | 'bloqueado';
 
 export type Resultado = {
   estado: Estado;
+  /** La voz de Chaski para lo que se dice (Cartesia en castellano, mama_freddy en quechua), si vino. */
+  audio_wav_b64?: string | null;
   accion: Accion | null;
   motivo: string;
   dato_faltante?: string | null;

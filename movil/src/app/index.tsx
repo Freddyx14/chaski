@@ -11,13 +11,13 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinServidor, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
+import { audioDeFrase, escuchar, FalloServicio, idioma, salud, SinRutaAuto, SinServidor, turnoAuto, turnoEnfermera, turnoPaciente, voz } from '@/chaski/api';
 import { Chaski, usarChaskiLibre, type EstadoChaski } from '@/chaski/chaski';
 import { agregarTurno, inicioDeConsulta } from '@/chaski/consulta';
 import {
   AVISO_LENTO_MS, AVISO_MUY_LENTO_MS, esEnsayo, esResultado, explicarBloqueo, fueCastellano, ladoDetectado, leerInterprete, pacienteDesdeResultado,
   pasoPorTiempo, siguienteLado, veredictoEnfermera,
-  type Interprete, type Lado, type RespuestaPaciente, type Veredicto,
+  type Interprete, type Lado, type RespuestaPaciente, type Resultado, type Veredicto,
 } from '@/chaski/modelo';
 import { usePerfil, type Perfil } from '@/chaski/perfil';
 import { idiomaDelOtro, quienHabla, textos, type Textos } from '@/chaski/textos';
@@ -137,7 +137,7 @@ class GrabacionInvalida extends Error {}
 
 export default function Pantalla() {
   const perfil = usePerfil();
-  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; marco?: string }>();
+  const q = useLocalSearchParams<{ demo?: string; idioma?: string; rol?: string; lado?: string; marco?: string; conversar?: string }>();
   // D40: Chaski sin fondo es lo normal; `&marco=1` muestra el marco anterior para comparar.
   usarChaskiLibre(q.marco !== '1');
   if (q.demo && DEMO[q.demo]) {
@@ -152,10 +152,14 @@ export default function Pantalla() {
   if (perfil === null) return <Redirect href="/bienvenida" />;
   // Desde el modo emergencia se vuelve con el turno del paciente listo para escuchar su respuesta.
   const ladoInicial = q.lado === 'quechua' || q.lado === 'castellano' ? q.lado : undefined;
-  return <Consulta key={ladoInicial ?? 'consulta'} perfil={perfil} ladoInicial={ladoInicial} />;
+  // `?conversar=1` abre la consulta ya en modo conversación (pruebas en el simulador sin tocar la pantalla).
+  return <Consulta key={(ladoInicial ?? 'consulta') + (q.conversar ?? '')} perfil={perfil} ladoInicial={ladoInicial}
+    conversarAlAbrir={q.conversar === '1'} />;
 }
 
-function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: Fase; ladoInicial?: Lado }) {
+function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir }: {
+  perfil: Perfil; inicial?: Fase; ladoInicial?: Lado; conversarAlAbrir?: boolean;
+}) {
   const t = textos(perfil.idioma);
   const [fase, setFase] = useState<Fase>(inicial ?? { f: 'listo' });
   const [lado, setLado] = useState<Lado>(ladoInicial ?? perfil.idioma);
@@ -212,6 +216,12 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
     vadRef.current = nuevoVad(Date.now());
     setFase({ f: 'grabando' });
   }
+
+  useEffect(() => {
+    if (!conversarAlAbrir) return;
+    const id = setTimeout(conversar, 800); // tras pedir el permiso del micrófono
+    return () => clearTimeout(id);
+  }, []);
 
   /** El toque en el micrófono desde «listo»: prende el modo conversación. */
   function conversar() {
@@ -295,6 +305,19 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       return fallar(new GrabacionInvalida(`no se pudo leer (${String((e as Error)?.message ?? e).slice(0, 40)})`));
     }
     ultimoAudio.current = uri;
+    return turnoDesdeAudio(uri);
+  }
+
+  /**
+   * Un turno grabado, de quien sea. Primero la ruta manos libres (un solo llamado: el servicio decide quién habló);
+   * si el servicio todavía no la tiene, /idioma + la ruta de cada lado, como antes.
+   */
+  async function turnoDesdeAudio(uri: string) {
+    try {
+      return await turnoManosLibres(uri);
+    } catch (e) {
+      if (!(e instanceof SinRutaAuto)) return fallar(e);
+    }
     // D11: el detector decide quién habló; si falla o duda, manda la alternancia.
     let quien = lado;
     try {
@@ -306,6 +329,28 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   }
 
   // ---- turnos -----------------------------------------------------------------------------
+  async function turnoManosLibres(uri: string) {
+    const desde = Date.now();
+    setFase({ f: 'pensando', lado, paso: 0, desde });
+    const r = await turnoAuto<Resultado & { quien_hablo?: string }>(uri, perfil.rol, {
+      // ~1-2 s: quién habló y qué se le oyó. El lado cambia solo en pantalla.
+      alOir: (o) => {
+        const quien: Lado = o.quien_hablo === 'paciente' ? 'quechua' : 'castellano';
+        setLado(quien);
+        setFase((p) => (p.f === 'pensando' ? {
+          ...p, lado: quien, paso: Math.max(p.paso, 1),
+          oido: quien === 'castellano' ? o.texto?.trim() || undefined : p.oido,
+        } : p));
+      },
+      alDecidir: (d) => setFase((p) => (p.f === 'pensando'
+        ? { ...p, paso: Math.max(p.paso, 2), pulido: p.lado === 'castellano' ? d.texto_pulido?.trim() || undefined : undefined } : p)),
+    });
+    const quien: Lado = r.quien_hablo === 'paciente' ? 'quechua' : 'castellano';
+    setLado(quien);
+    if (quien === 'castellano') return mostrarEnfermera((r.texto_original ?? '').trim(), r);
+    return mostrarPaciente(r);
+  }
+
   async function turnoDeLaEnfermera(uri: string) {
     try {
       const desde = Date.now();
@@ -331,12 +376,19 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       alDecidir: (d) => setFase((p) => (p.f === 'pensando'
         ? { ...p, paso: Math.max(p.paso, 2), pulido: d.texto_pulido?.trim() || undefined } : p)),
     });
+    return mostrarEnfermera(texto, r, sembrada);
+  }
+
+  /** Lo que vuelve del turno del personal: se dice, se repregunta o se frena. */
+  async function mostrarEnfermera(texto: string, r: Awaited<ReturnType<typeof turnoEnfermera>> | Resultado, sembrada?: string) {
     // El letrero de ensayo sale si la app lo pidió o si el servicio dice que la traducción fue sembrada.
     const ensayoReal = !!sembrada || esEnsayo(r);
     const ia = leerInterprete(r);
-    if (ia.tipo !== 'traducir' && !ensayoReal) return interpretar(ia, 'castellano', texto, r.quechua);
+    // El contrato viejo trae `quechua`; el nuevo, `texto_salida`.
+    const quechuaViejo = (r as { quechua?: string }).quechua;
+    if (ia.tipo !== 'traducir' && !ensayoReal) return interpretar(ia, 'castellano', texto, quechuaViejo ?? '');
     const v = veredictoEnfermera(texto, r);
-    agregarTurno({ lado: 'castellano', castellano: texto, quechua: r.quechua ?? r.texto_salida ?? '', estado: v.tipo });
+    agregarTurno({ lado: 'castellano', castellano: texto, quechua: quechuaViejo ?? r.texto_salida ?? '', estado: v.tipo });
     if (v.tipo === 'bloqueado') {
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
       setFase({ f: 'bloqueado', v, ensayo: ensayoReal ? 'servicio' : undefined });
@@ -345,7 +397,11 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
     setFase({ f: 'dicho', v, vozLista: false, ensayo: ensayoReal });
     if (ensayoReal) return; // un ensayo nunca se le dice al paciente
     setLado(siguienteLado('castellano'));
-    await decir(v.quechua);
+    // Si el resultado ya trae la voz (la misma del servicio), se usa: un viaje menos. Si no, /voz.
+    const b64 = esResultado(r) && r.idioma_salida === 'quy' ? r.audio_wav_b64 : null;
+    let sono = false;
+    if (b64) { try { await reproducirB64(b64); sono = true; } catch {} }
+    if (!sono) await decir(v.quechua);
     setFase((p) => (p.f === 'dicho' ? { ...p, vozLista: true } : p));
   }
 
@@ -368,7 +424,15 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   async function turnoDelPaciente(uri: string) {
     try {
       setFase({ f: 'pensando', lado: 'quechua', paso: 0, desde: Date.now() });
-      const crudo = await turnoPaciente(uri, perfil.rol);
+      await mostrarPaciente(await turnoPaciente(uri, perfil.rol), uri);
+    } catch (e) {
+      fallar(e);
+    }
+  }
+
+  /** Lo que vuelve del turno del paciente. `uri` solo hace falta para reintentar del lado castellano (D11). */
+  async function mostrarPaciente(crudo: Awaited<ReturnType<typeof turnoPaciente>> | Resultado, uri?: string) {
+    try {
       // Contrato final: bloqueado no se le muestra al personal como si fuera lo que dijo el paciente.
       if (esResultado(crudo) && crudo.estado === 'bloqueado') {
         await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
@@ -377,7 +441,7 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
         return;
       }
       const r = esResultado(crudo) ? pacienteDesdeResultado(crudo) : crudo;
-      if (fueCastellano(r)) {
+      if (uri && fueCastellano(r)) {
         // Detección automática (D11): el turno se habló en castellano aunque tocaba quechua.
         setLado('castellano');
         return turnoDeLaEnfermera(uri);
@@ -472,6 +536,7 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   }
 
   function fallar(e: unknown) {
+    console.warn('[chaski] fallo del turno', String((e as Error)?.message ?? e).slice(0, 200));
     if (e instanceof GrabacionInvalida) {
       // No es la red: el teléfono no grabó voz. Se dice así, con el motivo en la línea gris.
       setFase({ f: 'error', sinServidor: false, mensaje: t.sinGrabacion, detalle: `grabación · ${e.message}` });

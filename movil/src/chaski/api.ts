@@ -121,8 +121,10 @@ class SinRutaViva extends Error {}
  * /turno/enfermera. React Native no lee el cuerpo de fetch por partes, así que va por XMLHttpRequest, que sí
  * entrega el texto a medida que llega. Si la ruta no existe todavía (404), se avisa para caer a la ruta normal.
  */
-function turnoVivo<T>(base: string, f: FormData, alDecidir: (d: DecisionTemprana) => void, segundos = 120): Promise<T> {
-  const ruta = '/turno/enfermera/vivo';
+function turnoVivo<T>(
+  base: string, f: FormData, alDecidir: (d: DecisionTemprana) => void, segundos = 120,
+  ruta = '/turno/enfermera/vivo', alOir?: (o: Oido) => void,
+): Promise<T> {
   return new Promise<T>((resolver, rechazar) => {
     const xhr = new XMLHttpRequest();
     let visto = 0;
@@ -139,7 +141,8 @@ function turnoVivo<T>(base: string, f: FormData, alDecidir: (d: DecisionTemprana
         hubo = true;
         let d: any = null;
         try { d = JSON.parse(ev.datos); } catch { continue; }
-        if (ev.evento === 'decision') alDecidir(d);
+        if (ev.evento === 'oido') alOir?.(d as Oido);
+        else if (ev.evento === 'decision') alDecidir(d);
         else if (ev.evento === 'resultado') fin(() => { xhr.abort(); resolver(d as T); });
         else if (ev.evento === 'error') fin(() => { xhr.abort(); rechazar(new Error(String(d?.error ?? 'error'))); });
       }
@@ -188,6 +191,48 @@ async function turnoConDecision(f: FormData, alDecidir: (d: DecisionTemprana) =>
   } catch (e) {
     // Sin la ruta viva (todavía no integrada) o caída antes del primer evento: la ruta de siempre.
     if (e instanceof SinRutaViva) return turno<RespuestaEnfermera>('/turno/enfermera', f);
+    throw e;
+  }
+}
+
+/** Lo primero que dice /turno/vivo (~1-2 s): quién habló y qué se le oyó. */
+export type Oido = { quien_hablo?: 'personal' | 'paciente'; idioma?: string; texto?: string; lado_por?: string };
+
+/** El servicio todavía no tiene la ruta manos libres: la app usa /idioma + la ruta de cada lado. */
+export class SinRutaAuto extends Error {}
+
+/**
+ * Manos libres (un solo llamado): audio de cualquiera de los dos → el servicio decide quién habló, lo oye y corre
+ * el intérprete. Vivo por SSE (`oido` → `decision` → `resultado`); sin la ruta viva, POST /turno; sin ninguna de
+ * las dos, `SinRutaAuto`. Devuelve el Resultado de siempre más `quien_hablo`.
+ */
+export async function turnoAuto<T extends { contexto?: unknown }>(
+  uri: string, rol: Rol,
+  eventos: { alOir?: (o: Oido) => void; alDecidir?: (d: DecisionTemprana) => void } = {},
+): Promise<T> {
+  const base = await leerServidor();
+  if (!base) throw new SinServidor('Falta la dirección del servicio');
+  const formulario = (paraXhr = false) => {
+    // XMLHttpRequest (la ruta viva) usa la red de React Native, que NO serializa el File de expo-file-system
+    // (llegaba vacío: «Cartesia 400: empty audio file», 25-oct 03:15) y sí la parte { uri, name, type }.
+    // fetch (la ruta normal) es al revés. Por eso cada una con su forma.
+    const f = paraXhr ? new FormData() : conAudio(uri);
+    if (paraXhr) f.append('audio', { uri, name: 'turno.wav', type: 'audio/wav' } as unknown as Blob);
+    f.append('rol', rol);
+    conContexto(f);
+    return f;
+  };
+  try {
+    const r = await turnoVivo<T>(base, formulario(true), eventos.alDecidir ?? (() => {}), 120, '/turno/vivo', eventos.alOir);
+    guardarContexto(r.contexto);
+    return r;
+  } catch (e) {
+    if (!(e instanceof SinRutaViva)) throw e;
+  }
+  try {
+    return await turno<T>('/turno', formulario());
+  } catch (e) {
+    if (e instanceof FalloServicio && /\b(404|405)\b/.test(e.tipo)) throw new SinRutaAuto();
     throw e;
   }
 }
