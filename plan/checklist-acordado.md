@@ -144,7 +144,7 @@
 | ✅ | Criterios con pesos y compuertas: `evals/CRITERIOS.md` | — |
 | ⏳ | Auditar el banco de ataques + registrar costo real por corrida + `puntuar.py` (sin gastar API) | 18:00 |
 | ✅ | Tiempo del crítico: p50 9 s → ~2,7 s, p95 34 s → ~3,6 s, misma precisión; turno completo p50 6,5 s · 🔁 ui-ux 17:00 | — |
-| ⬜ | Afinar dentro del tope de **$30** (ver estimación de lo gastado) | — |
+| ✅ | Corrida final medida: **$1,89** (856 llamadas a Sonnet, con caché; precios sin verificar) | — |
 
 ## Pendientes conocidos del intérprete
 
@@ -156,7 +156,8 @@
 
 | Qué | Número | Fuente |
 |---|---|---|
-| **Chaski integrado, crítico Sonnet, versión final** (205 casos, incluye agua/té) | **165 de 165 errores atrapados (100 %) · 4 de 40 frases correctas bloqueadas (10 %)** | `evals/ataques/resultados/chaski-2026-10-24-1606.json` |
+| **FINAL · banco auditado (952), corrida de 224, crítico rápido** | **183 de 184 atrapados (99,5 %), 100 % de los críticos · 8 de 40 correctas retenidas (20 %) · crítico p50 2,6 s / p95 3,4 s · $0,0084 por turno (precio sin verificar) · puntaje 95/100, pasa las 3 compuertas** | `evals/ataques/resultados/chaski-2026-10-24-1740.json` |
+| Antes (banco sin auditar, 205 casos) | 165 de 165 · 4 de 40 (10 %) | `…/chaski-2026-10-24-1606.json` |
 | Chaski, crítico Sonnet, antes de integrar (200 casos) | 160 de 160 · 3 de 40 (7,5 %) | `…/chaski-2026-10-24-1518.json` |
 | Chaski, crítico Haiku + código (misma muestra) | 153 de 160 (96 %) · 7 de 40 bloqueos falsos (18 %); falla en diagnósticos agregados (14/20) | `…/chaski-2026-10-24-1513.json` |
 | Claude como juez simple, Haiku | 150 de 160 (94 %) · 26 de 40 bloqueos falsos (65 %) | `…/juez_claude-2026-10-24-1513.json` |

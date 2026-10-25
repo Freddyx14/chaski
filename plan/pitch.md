@@ -116,8 +116,8 @@ exactly what didn't match. In a clinic, a confident wrong answer is worse than n
 "Meta's open speech models are the ears and the mouth; we're fine-tuning them on [N] phrases our families recorded
 yesterday [X% → Y% on a voice it never heard — ONLY if Ricardo's results file shows it; otherwise: 'we measured the
 baseline and the fine-tune is running']. Claude is the brain: Opus interprets, Sonnet checks. We seeded 165 errors —
-wrong doses, flipped negations, swapped medicines. Just asking Claude 'is this right?' catches them too, but blocks one in
-four correct sentences and can't tell you why. Chaski caught all 165, blocks one in ten, and always names what failed."
+wrong doses, flipped negations, swapped medicines. Just asking Claude 'is this right?' catches them too, but can't tell you why it blocked. Chaski caught every dose,
+negation and medicine error — 183 of 184 in total — in under three seconds, and always names what failed."
 
 **B6 · Close (2:35–3:00) · Freddy**
 [Show the summary screen.] "At the end the nurse gets a clinical note and the patient gets instructions to take home,
@@ -165,7 +165,7 @@ greeting + one sentence about her work at the 17:00 call, with her consent. If s
 | Question | One-breath answer |
 |---|---|
 | How do you know the Quechua is right? | Blind back-translation + a code check of drug, dose and frequency. And a native nurse reviewed the glossary and the screens |
-| What happens when it's wrong? | It refuses and tells the nurse which part failed. Show it. 165/165 seeded errors caught, 10% false blocks (`evals/ataques/resultados/chaski-2026-10-24-1606.json`) |
+| What happens when it's wrong? | It refuses and tells the nurse which part failed. Show it. 183/184 seeded errors caught, 100% of critical ones, 20% of correct sentences held back (half are weak family translations), critic 2.6 s (`evals/ataques/resultados/chaski-2026-10-24-1740.json`) |
 | Why Opus and Sonnet, not Haiku? | We measured: Opus picked the right action 98% with zero invented clinical data (Haiku 88%, Sonnet 94%). As critic, Sonnet caught 160/160 vs Haiku 96% with 18% false blocks. Anthropic suggested Haiku for speed; the numbers decided |
 | What if a bank phrase is wrong? | A phrase is only spoken after a native nurse reviews it. Today the reviewed set is [N]; the rest show as pending |
 | Where does Claude fail here? | It can sound fluent in Quechua and be wrong. So it never speaks unchecked and never fills in a dose |
