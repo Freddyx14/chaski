@@ -11,6 +11,11 @@ import { esReintentable, frasesConTag, type FraseBanco, type RespuestaEnfermera,
 
 export class SinServidor extends Error {}
 
+/** Un archivo local listo para FormData. El servicio lee el contenido; el nombre lleva la extensión. */
+function archivo(uri: string, _tipo: string): Blob {
+  return new File(uri) as unknown as Blob;
+}
+
 // El servicio va por ngrok gratuito, que a veces responde con una página de aviso en vez de la API.
 // Esta cabecera la salta; con otros túneles se ignora.
 const CABECERAS = { 'ngrok-skip-browser-warning': '1' };
@@ -36,8 +41,10 @@ async function pedirUnaVez<T>(base: string, ruta: string, cuerpo: FormData, segu
     r = await fetch(`${base}${ruta}`, { method: 'POST', body: cuerpo, signal: corte.signal, headers: CABECERAS });
   } catch (e) {
     const agotado = (e as Error)?.name === 'AbortError';
+    const detalle = String((e as Error)?.message ?? e).slice(0, 60);
+    console.warn('[chaski] fetch falló', ruta, detalle);
     // Un turno que se agotó NO se reintenta: repetirlo duplicaría la espera. Solo los cortes rápidos.
-    throw new FalloServicio(ruta, agotado ? `sin respuesta en ${segundos} s` : 'sin conexión', !agotado);
+    throw new FalloServicio(ruta, agotado ? `sin respuesta en ${segundos} s` : `sin conexión (${detalle})`, !agotado);
   } finally {
     clearTimeout(reloj);
   }
@@ -68,7 +75,9 @@ async function pedir<T>(ruta: string, cuerpo: FormData, segundos = 90): Promise<
 function conAudio(uri: string, nombre = 'turno.wav'): FormData {
   const f = new FormData();
   // React Native sube archivos locales así: { uri, name, type }.
-  f.append('audio', { uri, name: nombre, type: 'audio/wav' } as unknown as Blob);
+  // Expo SDK 58: su fetch ya no acepta la parte { uri, name, type } («Unsupported FormDataPart
+  // implementation», iPhone de Freddy, 25-oct 01:40). El File de expo-file-system es un Blob real.
+  f.append('audio', archivo(uri, 'audio/wav'), nombre);
   return f;
 }
 
@@ -240,7 +249,7 @@ export type Lectura = {
 /** Foto de la caja o la receta → Claude visión (F9). `dicho` es lo último que dijo la enfermera. */
 export function ver(uri: string, dicho: string) {
   const f = new FormData();
-  f.append('imagen', { uri, name: 'receta.jpg', type: 'image/jpeg' } as unknown as Blob);
+  f.append('imagen', archivo(uri, 'image/jpeg'), 'receta.jpg');
   if (dicho) f.append('dicho', dicho);
   return pedir<Lectura>('/ver', f, 60);
 }
