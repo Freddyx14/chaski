@@ -327,10 +327,14 @@ test('banco real: sin revisar o falta_quechua NUNCA se reproduce', () => {
   assert.equal(fraseRevisada({ ...real, quy: 'Maypitaq nanasunki?', tags: ['emergencia'], revisado: true }), true);
 });
 
-test('el banco real de hoy: ninguna frase de emergencia se puede reproducir todavía', () => {
+test('banco real: en emergencia solo se dice lo que la enfermera revisó', () => {
   const emerg = frasesConTag(bancoReal as FraseBanco[], 'emergencia');
   assert.ok(emerg.length >= 20);
-  assert.equal(emerg.filter(fraseRevisada).length, 0);
+  for (const f of emerg.filter(fraseRevisada)) {
+    assert.equal(f.revisado, true, `${f.id} se diría sin revisión`);
+    assert.ok(!(f.tags ?? []).some((x) => x === 'falta_quechua' || x === 'por_confirmar'), `${f.id} está por confirmar`);
+    assert.ok(f.quy && !f.quy.trim().startsWith('['), `${f.id} no tiene quechua`);
+  }
 });
 
 test('reintento automático solo para red caída o servicio reiniciándose', () => {

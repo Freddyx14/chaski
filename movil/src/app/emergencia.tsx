@@ -24,6 +24,8 @@ export default function Emergencia() {
   const [origen, setOrigen] = useState<'servicio' | 'local'>('local');
   const [sonando, setSonando] = useState<string | null>(null);
   const [fallo, setFallo] = useState<string | null>(null);
+  // La frase tocada, en grande: sin audio grabado todavía, la enfermera la lee o se la muestra al paciente.
+  const [grande, setGrande] = useState<FraseBanco | null>(null);
   const listos = useRef(new Map<string, Promise<{ uri: string; headers?: Record<string, string> }>>());
   const reproductor = useAudioPlayer(null);
   const estado = useAudioPlayerStatus(reproductor);
@@ -54,6 +56,7 @@ export default function Emergencia() {
       return;
     }
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setGrande(f);
     try {
       const fuente = await (listos.current.get(f.id) ?? audioDeFrase(f));
       reproductor.replace(fuente);
@@ -131,6 +134,25 @@ export default function Emergencia() {
         })}
       </ScrollView>
 
+      {grande && (
+        <Pressable style={e.velo} onPress={() => setGrande(null)} accessibilityRole="button" accessibilityLabel={t.cerrar}>
+          <Animated.View entering={sinMovimiento ? undefined : FadeInDown.springify().damping(18)} style={e.tarjetaGrande}>
+            <Text style={e.grandeEtiqueta}>{t.muestreleEsto}</Text>
+            <Text style={e.grandeQuy}>{grande.quy}</Text>
+            <Text style={e.grandeEs}>{grande.es}</Text>
+            {sonando === grande.id ? (
+              <View style={e.grandeFila}>
+                <Icono nombre="speaker.wave.3.fill" color={C.action} tam={18} />
+                <Text style={e.grandeNota}>{t.chaskiLoDice}</Text>
+              </View>
+            ) : fallo === grande.id ? (
+              <Text style={e.grandeNota}>{t.sinVozLeaUsted}</Text>
+            ) : null}
+            <Boton tipo="secundario" texto={t.cerrar} onPress={() => setGrande(null)} />
+          </Animated.View>
+        </Pressable>
+      )}
+
       <View style={e.pie}>
         {origen === 'local' && pendientes > 0 && (
           <Text style={e.nota}>{t.bancoLocal(pendientes)}</Text>
@@ -167,5 +189,12 @@ const e = StyleSheet.create({
   quy: { fontSize: ESCALA.chico, fontWeight: '600', color: C.quechua },
   pendiente: { fontSize: ESCALA.mini, color: C.inkTertiary },
   pie: { paddingHorizontal: 16, paddingBottom: 8, gap: 8 },
+  velo: { ...StyleSheet.absoluteFill, backgroundColor: 'rgba(24,34,31,0.45)', justifyContent: 'center', padding: 16 },
+  tarjetaGrande: { backgroundColor: C.surface, borderRadius: 28, padding: 24, gap: 14, borderWidth: 1, borderColor: C.border },
+  grandeEtiqueta: { fontSize: ESCALA.mini, fontWeight: '700', color: C.inkTertiary, letterSpacing: 0.6 },
+  grandeQuy: { fontSize: 34, fontWeight: '800', color: C.quechua, lineHeight: 42 },
+  grandeEs: { fontSize: ESCALA.cuerpo, color: C.inkSecondary },
+  grandeFila: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  grandeNota: { fontSize: ESCALA.chico, color: C.inkSecondary },
   nota: { fontSize: ESCALA.mini, color: C.inkTertiary, textAlign: 'center' },
 });
