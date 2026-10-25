@@ -20,7 +20,7 @@ RAIZ="$(cd "$(dirname "$0")/.." && pwd)"
 ssh_() { ssh -i "$LLAVE" -o ConnectTimeout=15 -o BatchMode=yes "$MAQUINA" "$@"; }
 
 echo "-- 1/6 creando carpetas"
-ssh_ "mkdir -p $DESTINO/servicio $DESTINO/voz $DESTINO/chaski $DESTINO/rimay $DESTINO/datos /opt/dlami/nvme/chaski/design/chaski"
+ssh_ "mkdir -p $DESTINO/servicio $DESTINO/voz $DESTINO/chaski $DESTINO/rimay $DESTINO/datos $DESTINO/memoria /opt/dlami/nvme/chaski/design/chaski"
 
 # /opt/dlami/nvme es efimero: se borra al parar la instancia. El etiquetador
 # escribe ahi las grabaciones nuevas, asi que bajarlas ANTES de copiar nada es
@@ -97,6 +97,11 @@ ssh_ "set -e
   export CHASKI_MODELO_CRITICO=claude-sonnet-5
   export CHASKI_PENSAR_TRADUCIR=medium
   export CHASKI_TRADUCIR_ANTICIPADO=1
+  # D44, memoria automatica. Vive FUERA de la carpeta chaski, que es lo que
+  # este script sincroniza: si quedara adentro, cada despliegue la borraria.
+  mkdir -p $DESTINO/memoria
+  export CHASKI_MEMORIA_AUTO=1
+  export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl
   export PYTHONPATH=$DESTINO
   setsid nohup ./venv/bin/uvicorn servicio.app:aplicacion --host 127.0.0.1 --port 8080 \
     > $DESTINO/orquestador.log 2>&1 < /dev/null &

@@ -526,3 +526,56 @@ webm   200   oído: «punchaymanta umay nanashqa»
 
 Misma transcripción en los tres. La app manda WAV y seguía funcionando, pero un iPhone graba .m4a y
 un navegador .webm: era un 500 esperando a que alguien probara desde otro lado.
+
+
+---
+
+## D44: memoria automática (dom 08:30)
+
+Puesta y probada. Vive **fuera** de lo que `desplegar.sh` sincroniza, que era el punto:
+
+```
+CHASKI_MEMORIA_AUTO=1
+CHASKI_MEMORIA_RUTA=/opt/dlami/nvme/chaski/orquestador/memoria/memoria_auto.jsonl
+```
+
+Comprobado que sobrevive: se corrió un turno, se volvió a desplegar, y la línea sigue ahí.
+
+```
+turno  →  memoria: 1 línea
+redespliegue  →  memoria: 1 línea
+```
+
+Para ver y aprobar, desde la instancia:
+
+```sh
+cd /opt/dlami/nvme/chaski/orquestador
+PYTHONPATH=$PWD ./venv/bin/python -m chaski.memoria
+PYTHONPATH=$PWD ./venv/bin/python -m chaski.memoria aprobar <ID>
+```
+
+### El turno volvió a ~8 s
+
+```
+estado dicho · motor claude · total 7649 ms
+```
+
+Con `CHASKI_EJEMPLOS` y la traducción anticipada activos, el turno queda donde lo mediste. Los 13.1 s
+de antes eran el despliegue viejo, sin esas dos.
+
+### Lo que quedó verificado después del último despliegue
+
+```
+GET  /salud                  200
+GET  /banco?tag=emergencia   200   24 frases con audio
+GET  /voces                  200   5 voces
+POST /turno/enfermera        200   motor claude, 7.6 s
+POST /turno/enfermera/vivo   200   decision + resultado
+POST /turno/paciente         200   wav, m4a y webm
+```
+
+### Dos cosas de tu documento que ya no aplican
+
+- **`/turno/paciente` con .webm y .m4a ya no da 500.** Los convierte con ffmpeg antes de reconocer.
+- **`chaski/` no se sincroniza con `--delete`** desde acá, así que la memoria no corría ese riesgo ni
+  antes. Igual la puse fuera: que dependa de un detalle de mi script es exactamente lo que no quieres.
