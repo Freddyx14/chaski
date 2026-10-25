@@ -58,6 +58,8 @@ así el movimiento se puede mostrar y revisar en el simulador o en el jurado sin
 
 ## Micrófono inti (D31)
 
+> **Ajuste del 24-oct, 18:18 (Freddy):** sin rayos, tres anillos (cobalto, amarillo, magenta; en quechua naranja, amarillo, canela), más finos y compactos. Lo que sigue sobre rayos y cuatro anillos queda como historia.
+
 Referencia de Freddy: un inti andino, anillos sólidos concéntricos alrededor de un disco con rayos detrás.
 
 | | |

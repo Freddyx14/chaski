@@ -1,10 +1,10 @@
-// El micrófono inti (D31): anillos concéntricos alrededor del botón, como un medallón de sol andino,
-// con rayos escalonados cortos detrás. Solo la paleta del producto, la misma del marco de Chaski.
+// El micrófono inti (D31): tres anillos concéntricos alrededor del botón, como un medallón de sol andino.
+// Sin rayos (Freddy, 24-oct 18:18: «solo círculo, un color menos, un poco más chico»). Paleta del producto.
 //
 // Está vivo, siempre con señales reales:
 //  - reposo:  los anillos respiran despacio, uno detrás del otro.
 //  - escucha: una onda sale del centro hacia afuera con el volumen del micrófono (el anillo de adentro primero).
-//  - piensa:  los rayos giran despacio y una luz recorre el anillo de afuera.
+//  - piensa:  una luz recorre el anillo de afuera.
 //  - habla:   los anillos laten con la envolvente de la voz (`pulso`).
 // El tinte dice de quién es el turno: castellano en la paleta normal, quechua en canela.
 // Con «Reducir movimiento» queda quieto; los anillos solo cambian de brillo con la voz.
@@ -14,19 +14,16 @@ import Animated, {
   cancelAnimation, Easing, Extrapolation, interpolate, useAnimatedStyle, useReducedMotion, useSharedValue,
   withRepeat, withTiming, type SharedValue,
 } from 'react-native-reanimated';
-import Svg, { Path } from 'react-native-svg';
 
-import { trazo, type Punto } from './geometria';
 import { UMBRALES } from './movimiento';
 import { C, M } from './tokens';
 
 export type ModoInti = 'reposo' | 'escucha' | 'piensa' | 'habla';
 
 // Ritmo de la referencia: anillos gruesos y finos alternados, con un aire de fondo entre cada uno.
-const GROSORES = [5, 9, 5, 9]; // de adentro hacia afuera
-const AIRE = 3;
-const PALETA = { castellano: [M.cobalto, M.amarillo, M.turquesa, M.magenta], quechua: [M.naranja, M.amarillo, C.quechua, M.naranja] };
-const RAYOS = 8;
+const GROSORES = [4, 7, 4]; // de adentro hacia afuera
+const AIRE = 2;
+const PALETA = { castellano: [M.cobalto, M.amarillo, M.magenta], quechua: [M.naranja, M.amarillo, C.quechua] };
 
 export function AnilloInti({ children, centro = 96, modo = 'reposo', nivel = 0, pulso, tinte = 'castellano' }: {
   children: ReactNode; centro?: number; modo?: ModoInti; nivel?: number; pulso?: number; tinte?: 'castellano' | 'quechua';
@@ -42,8 +39,7 @@ export function AnilloInti({ children, centro = 96, modo = 'reposo', nivel = 0, 
   let r = centro / 2 + aire;
   for (const g of grosores) { radios.push(r); r += g + aire; }
   const exterior = r - aire;
-  const largoRayo = Math.round(16 * escala);
-  const caja = 2 * (exterior + largoRayo + 4);
+  const caja = 2 * (exterior + 4);
 
   const senal = useSharedValue(0); // volumen del micrófono o de la voz, 0..1
   const fase = useSharedValue(0); // respiración / onda / giro
@@ -62,27 +58,13 @@ export function AnilloInti({ children, centro = 96, modo = 'reposo', nivel = 0, 
     if (modo === 'piensa') fase.value = withRepeat(withTiming(1, { duration: 6000, easing: Easing.linear }), -1, false);
   }, [modo, quieto, fase]);
 
-  const giro = useAnimatedStyle(() => ({
-    transform: [{ rotate: `${modo === 'piensa' && !quieto ? fase.value * 360 : 0}deg` }],
-  }));
-
   return (
     <View style={{ width: caja, height: caja, alignItems: 'center', justifyContent: 'center' }}>
-      {/* Rayos escalonados detrás del anillo de afuera: cortos y pocos. */}
-      <Animated.View style={[StyleSheet.absoluteFill, giro]}>
-        <Svg width={caja} height={caja}>
-          {Array.from({ length: RAYOS }).map((_, i) => (
-            <Path key={i} d={rayo(caja / 2, exterior - 2, largoRayo + 2, (360 / RAYOS) * i, 7 * escala)} fill={colores[i % 2 ? 1 : 3]} />
-          ))}
-        </Svg>
-      </Animated.View>
-      {/* El fondo del medallón tapa la base de los rayos. */}
-      <View style={[estilos.disco, { width: exterior * 2, height: exterior * 2, borderRadius: exterior }]} />
       {radios.map((rad, i) => (
         <Anillo key={i} i={i} radio={rad} grosor={grosores[i]} color={colores[i]} senal={senal} fase={fase}
           modo={modo} activa={activa} quieto={quieto} />
       ))}
-      {modo === 'piensa' && !quieto && <Luz radio={radios[3] + grosores[3] / 2} fase={fase} />}
+      {modo === 'piensa' && !quieto && <Luz radio={radios[radios.length - 1] + grosores[grosores.length - 1] / 2} fase={fase} />}
       {children}
     </View>
   );
@@ -122,24 +104,12 @@ function Anillo({ i, radio, grosor, color, senal, fase, modo, activa, quieto }: 
 /** Una luz que recorre el anillo de afuera mientras Chaski piensa. */
 function Luz({ radio, fase }: { radio: number; fase: SharedValue<number> }) {
   const estilo = useAnimatedStyle(() => {
-    const a = fase.value * 2 * Math.PI * 3 - Math.PI / 2; // tres vueltas por cada giro de los rayos
+    const a = fase.value * 2 * Math.PI * 3 - Math.PI / 2; // tres vueltas por ciclo
     return { transform: [{ translateX: Math.cos(a) * radio }, { translateY: Math.sin(a) * radio }] };
   });
   return <Animated.View pointerEvents="none" style={[estilos.luz, estilo]} />;
 }
 
-/** Un rayo escalonado: dos peldaños que se angostan hacia afuera, girado `grados` desde arriba. */
-function rayo(c: number, desde: number, largo: number, grados: number, ancho: number): string {
-  const mitad = largo / 2;
-  const pts: Punto[] = [
-    [-ancho, 0], [ancho, 0], [ancho, -mitad], [ancho / 2, -mitad], [ancho / 2, -largo],
-    [-ancho / 2, -largo], [-ancho / 2, -mitad], [-ancho, -mitad],
-  ].map(([x, y]) => [x, y - desde] as Punto);
-  const a = (grados * Math.PI) / 180;
-  return trazo(pts.map(([x, y]) => [c + x * Math.cos(a) - y * Math.sin(a), c + x * Math.sin(a) + y * Math.cos(a)]));
-}
-
 const estilos = StyleSheet.create({
-  disco: { position: 'absolute', backgroundColor: C.ground },
   luz: { position: 'absolute', width: 10, height: 10, borderRadius: 5, backgroundColor: C.surface, borderWidth: 2, borderColor: M.amarillo },
 });
