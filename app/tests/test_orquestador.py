@@ -430,3 +430,13 @@ def test_ensayo_y_fallas_de_sistema_siguen_siendo_bloqueo(monkeypatch):
     res2 = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
                        **r2.kw())
     assert res2.estado == "bloqueado"  # a broken step is not a doubt about the data
+
+
+def test_la_pregunta_tras_un_bloqueo_viene_con_la_voz_del_servicio(monkeypatch):
+    monkeypatch.setenv("CHASKI_REPREGUNTAR_AL_BLOQUEAR", "1")
+    r = Registro(auditoria_ok=False)
+    dichos = []
+    res = interpretar({"texto": PULIDO, "idioma": "spa", "rol": "personal"}, client=FakeClient(propuesta("traducir", PULIDO)),
+                      voz_fn=lambda t, a: dichos.append((t, a)) or b"RIFF", **r.kw())
+    assert res.accion == "repreguntar" and res.audio_wav_b64 == "UklGRg=="
+    assert dichos == [(res.texto_salida, "spa")]

@@ -389,7 +389,16 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
             contexto.repreguntas_seguidas.append(CONFIRMAR)
             ms["total"] = round((time.perf_counter() - t_total) * 1000, 1)
             para, idioma_salida, texto = pregunta
-            return Resultado(estado="dicho_con_aviso", accion="repreguntar" if para == "personal" else "no_entendi",
+            audio_b64 = None
+            if voz_fn:  # the same voice as every other turn, not the phone's system voice
+                try:
+                    t_voz = time.perf_counter()
+                    wav = voz_fn(texto, idioma_salida)
+                    ms["voz"] = round((time.perf_counter() - t_voz) * 1000, 1)
+                    audio_b64 = base64.b64encode(wav).decode() if wav else None
+                except Exception:  # noqa: BLE001  no voice is not a block: the text is still shown
+                    audio_b64 = None
+            return Resultado(audio_wav_b64=audio_b64, estado="dicho_con_aviso", accion="repreguntar" if para == "personal" else "no_entendi",
                              motivo=motivo, dato_faltante=_campo(motivo)[0], para=para, idioma_salida=idioma_salida,
                              texto_original=turno.texto, texto_pulido=d.texto_pulido if d else "", texto_salida=texto,
                              aviso=f"Chaski no lo dijo y pidió repetir: {motivo}", sembrada=sembrada, modelos=modelos,
