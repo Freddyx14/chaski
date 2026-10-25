@@ -26,6 +26,10 @@ const es = {
   explicaOtro: (otro: string, idioma: string) => `Ahora habla ${otro}, en ${idioma}. Chaski le dirá a usted lo que quiso decir.`,
   tocarHablar: 'Hablar',
   tocarTerminar: 'Terminar',
+  // Modo conversación: 1–2 palabras por estado (D42).
+  tocarPausar: 'Pausar',
+  hablandoAlPaciente: 'Hablando al paciente',
+  hablandoAlPersonal: 'Hablando al personal',
   habla: (quien: string, idioma: string) => `${quien} · ${idioma}`,
   usted: 'usted',
   elPaciente: 'el paciente',
@@ -155,6 +159,10 @@ const quechua: Textos = {
   explicaOtro: () => 'Kunanqa hampiqmi rimanqa. Chaskim runasimipi willasunki.',
   tocarHablar: 'Llapiy rimanaykipaq',
   tocarTerminar: 'Llapiy tukunaykipaq',
+  // Sin traducir a propósito: no se inventa quechua. En castellano hasta que la mamá de Freddy lo escriba.
+  tocarPausar: 'Pausar',
+  hablandoAlPaciente: 'Hablando al paciente',
+  hablandoAlPersonal: 'Hablando al personal',
   habla: (quien: string, idioma: string) => `${quien} rimachkan · ${idioma}`,
   usted: 'qam',
   elPersonal: 'hampiq',

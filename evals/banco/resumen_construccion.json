@@ -1,7 +1,7 @@
 {
  "total": 216,
  "por_fuente": {
-  "chaski-emergencia": 10,
+  "enfermera": 10,
   "cmp-semiologia-2020": 206
  },
  "por_tag": {
@@ -15,7 +15,6 @@
   "emergencia": 24,
   "estado_general": 8,
   "examen_fisico": 36,
-  "falta_quechua": 10,
   "fiebre": 2,
   "general": 11,
   "ginecologia": 9,
@@ -33,34 +32,1202 @@
   "trauma": 1,
   "urinario": 11
  },
- "emergencia_con_quechua": 14,
- "emergencia_falta_quechua": 10,
+ "emergencia_con_quechua": 24,
+ "emergencia_falta_quechua": 0,
  "cmp_filas_descartadas_por_parseo": 36,
- "familia_bloque_E_vistas": 6,
+ "familia_bloque_E_vistas": 298,
  "excluidas_por_fuga": [
   {
    "es": "¿Está bien, señora?",
-   "fuente": "familia p20"
+   "fuente": "familia p16"
   },
   {
    "es": "¡Estoy bien, señor!",
-   "fuente": "familia p20"
+   "fuente": "familia p16"
   },
   {
    "es": "Señor, ¿cómo está?",
-   "fuente": "familia p20"
+   "fuente": "familia p16"
   },
   {
    "es": "Señora, estoy bien",
-   "fuente": "familia p20"
+   "fuente": "familia p16"
   },
   {
    "es": "¿Cómo está, señor?",
-   "fuente": "familia p20"
+   "fuente": "familia p16"
   },
   {
    "es": "¿Cómo está, señora?",
-   "fuente": "familia p20"
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Cómo están, señoras?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Buenos días, doctor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Buenos días, doctora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Le recibo, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Les recibo, señoras",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Buenos días, señora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Buenos días, señores",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Buenos días, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Buenos días, señoras",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Adelante, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Adelante, señora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Adelante, señores",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Adelante, señoras",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Tome asiento",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Tomen asiento",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Qué desea, señora?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Qué desea, señor?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Para qué ha venido, señora?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Por qué ha venido, señor?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿En qué le puedo servir?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Qué puedo hacer por usted?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿En qué le puedo ayudar?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿En qué le podemos ayudar?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Puedo ayudarle?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Podemos ayudarle?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Le escucho, señora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Le escucharé, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Les escucharé",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "He venido para poner una denuncia",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "He venido a denunciar",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "He venido a hacer una consulta",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Deseo hablar con el juez",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Deseo hablar con el fiscal",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Deseo que me escuche el juez",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Deseo que me escuche el fiscal",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Necesito hablar con el fiscal",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Qué está esperando, señora?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Qué está buscando, señor?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Me puede ayudar, señor?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Me puede ayudar, señora?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Estoy buscando la Demuna",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Estoy buscando el Primer Juzgado",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Estoy esperando a mi hija, jefe",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Estoy esperando a mi abogado",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Yo hablo quechua, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Habla castellano, señora?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No hablo castellano.",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Habla quechua, doctor?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Sí, hablo quechua",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Sabe quechua, doctora?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Sí, sé quechua",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No sé quechua",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Prefiere usted hablar quechua o castellano?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Quién habla quechua aquí?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Quién habla castellano aquí?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Por favor, hábleme despacio",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Puede hablar más despacio?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Puede repetir?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Podría repetir eso?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Por favor, repita",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Tranquilícese, señora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Cálmese, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Cuénteme lo que le aflige",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Todo va a estar bien",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No se preocupe",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¡Ayúdeme!",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Le ayudaré",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Le vamos a ayudar",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Escuche",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Escúcheme, por favor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Por favor, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¡Qué bueno que ha venido!",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿A qué hora llega el comisario?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿A qué hora llega el fiscal?",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Inmediatamente",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "En este momento",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No puedo ayudarle, señora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Lo lamento mucho, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Lo lamento mucho",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Disculpe",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Perdóneme",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Perdón por llegar tarde",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Perdóneme, pero no puedo ir ahora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No puede hablar con él ahora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¡Gracias!",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¡Me ha ayudado!",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Gracias por su ayuda",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No hay de qué",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "No tiene por qué",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Nos vemos mañana, señor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Hasta otro día, señora",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¡Muchas gracias, señor!",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Espere un momento, por favor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "Esperen un momento, por favor",
+   "fuente": "familia p16"
+  },
+  {
+   "es": "¿Está bien, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¡Estoy bien, señor!",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Señor, ¿cómo está?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Señora, estoy bien",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Cómo está, señor?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Cómo está, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Cómo están, señoras?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Buenos días, doctor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Buenos días, doctora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Le recibo, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Les recibo, señoras",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Buenos días, señora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Buenos días, señores",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Buenos días, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Buenos días, señoras",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Adelante, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Adelante, señora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Adelante, señores",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Adelante, señoras",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Tome asiento",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Tomen asiento",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Qué desea, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Qué desea, señor?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Para qué ha venido, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Por qué ha venido, señor?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿En qué le puedo servir?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Qué puedo hacer por usted?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿En qué le puedo ayudar?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿En qué le podemos ayudar?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Puedo ayudarle?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Podemos ayudarle?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Le escucho, señora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Le escucharé, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Les escucharé",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "He venido para poner una denuncia",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "He venido a denunciar",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "He venido a hacer una consulta",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Deseo hablar con el juez",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Deseo hablar con el fiscal",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Deseo que me escuche el juez",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Deseo que me escuche el fiscal",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Necesito hablar con el fiscal",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Qué está esperando, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Qué está buscando, señor?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Me puede ayudar, señor?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Me puede ayudar, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Estoy buscando la Demuna",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Estoy buscando el Primer Juzgado",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Estoy esperando a mi hija, jefe",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Estoy esperando a mi abogado",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Yo hablo quechua, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Habla castellano, señora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No hablo castellano.",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Habla quechua, doctor?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Sí, hablo quechua",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Sabe quechua, doctora?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Sí, sé quechua",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No sé quechua",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Prefiere usted hablar quechua o castellano?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Quién habla quechua aquí?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Quién habla castellano aquí?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Por favor, hábleme despacio",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Puede hablar más despacio?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Puede repetir?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Podría repetir eso?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Por favor, repita",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Tranquilícese, señora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Cálmese, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Cuénteme lo que le aflige",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Todo va a estar bien",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No se preocupe",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¡Ayúdeme!",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Le ayudaré",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Le vamos a ayudar",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Escuche",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Escúcheme, por favor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Por favor, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¡Qué bueno que ha venido!",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿A qué hora llega el comisario?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿A qué hora llega el fiscal?",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Inmediatamente",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "En este momento",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No puedo ayudarle, señora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Lo lamento mucho, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Lo lamento mucho",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Disculpe",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Perdóneme",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Perdón por llegar tarde",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Perdóneme, pero no puedo ir ahora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No puede hablar con él ahora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¡Gracias!",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¡Me ha ayudado!",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Gracias por su ayuda",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No hay de qué",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "No tiene por qué",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Nos vemos mañana, señor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Hasta otro día, señora",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¡Muchas gracias, señor!",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Espere un momento, por favor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "Esperen un momento, por favor",
+   "fuente": "familia p18"
+  },
+  {
+   "es": "¿Está bien, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¡Estoy bien, señor!",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Señor, ¿cómo está?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Señora, estoy bien",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Cómo está, señor?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Cómo está, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Cómo están, señoras?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Buenos días, doctor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Buenos días, doctora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Le recibo, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Les recibo, señoras",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Buenos días, señora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Buenos días, señores",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Adelante, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Adelante, señora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Adelante, señores",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Adelante, señoras",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Tome asiento",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Tomen asiento",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Qué desea, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Qué desea, señor?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Para qué ha venido, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Por qué ha venido, señor?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿En qué le puedo servir?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Qué puedo hacer por usted?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿En qué le puedo ayudar?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿En qué le podemos ayudar?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Puedo ayudarle?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Podemos ayudarle?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Le escucho, señora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Le escucharé, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Les escucharé",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "He venido para poner una denuncia",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "He venido a denunciar",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "He venido a hacer una consulta",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Deseo hablar con el juez",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Deseo hablar con el fiscal",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Deseo que me escuche el juez",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Deseo que me escuche el fiscal",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Necesito hablar con el fiscal",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Qué está esperando, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Qué está buscando, señor?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Me puede ayudar, señor?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Me puede ayudar, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Estoy buscando la Demuna",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Estoy buscando el Primer Juzgado",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Estoy esperando a mi hija, jefe",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Estoy esperando a mi abogado",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Yo hablo quechua, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Habla castellano, señora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No hablo castellano.",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Habla quechua, doctor?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Sí, hablo quechua",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Sabe quechua, doctora?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Sí, sé quechua",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No sé quechua",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Prefiere usted hablar quechua o castellano?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Quién habla quechua aquí?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Quién habla castellano aquí?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Por favor, hábleme despacio",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Puede hablar más despacio?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Puede repetir?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿Podría repetir eso?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Por favor, repita",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Tranquilícese, señora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Cálmese, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Cuénteme lo que le aflige",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Todo va a estar bien",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No se preocupe",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¡Ayúdeme!",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Le ayudaré",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Le vamos a ayudar",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Escuche",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Escúcheme, por favor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Por favor, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¡Qué bueno que ha venido!",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿A qué hora llega el comisario?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¿A qué hora llega el fiscal?",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Inmediatamente",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "En este momento",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No puedo ayudarle, señora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Lo lamento mucho, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Lo lamento mucho",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Disculpe",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Perdóneme",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Perdón por llegar tarde",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Perdóneme, pero no puedo ir ahora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No puede hablar con él ahora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¡Gracias!",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¡Me ha ayudado!",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Gracias por su ayuda",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No hay de qué",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "No tiene por qué",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Nos vemos mañana, señor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Hasta otro día, señora",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "¡Muchas gracias, señor!",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Espere un momento, por favor",
+   "fuente": "familia p24"
+  },
+  {
+   "es": "Esperen un momento, por favor",
+   "fuente": "familia p24"
   }
  ],
  "manifest_leido": true

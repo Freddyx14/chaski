@@ -76,6 +76,68 @@ def banco(tag: str | None = Query(default=None)):
 La app ya manda `rol`, `modo_ensayo`, `rapido` y `con_audio`; FastAPI ignora los campos que la ruta no declara,
 así que no hace falta leerlos.
 
+## Manos libres: `POST /turno` y `POST /turno/vivo` (para pegar en `servicio/app.py`)
+
+La app de iOS graba hasta el silencio, manda el audio y reproduce lo que vuelve. Un solo llamado: Chaski detecta
+el idioma, decide quién habló (castellano → `personal`, quechua → `paciente`), corre el reconocedor de ese lado y
+después el mismo intérprete de siempre. Si el detector duda (confianza < 0,6) o se cae, **alterna**: le toca al
+otro lado del último que habló en `contexto.historial` (las líneas de Chaski no cuentan); sin historial, habla el
+personal. Un audio sin texto no es un error: vuelve `no_entendi`.
+
+```python
+def _detectar_idioma(audio: bytes, nombre: str) -> dict:
+    """El /idioma de la instancia (mms-lid-512, ~49 ms): {codigo: 'spa'|'quy', confianza}."""
+    import httpx
+
+    from servicio.flujo import INSTANCIA, _a_wav
+    with httpx.Client(timeout=30) as cli:
+        r = cli.post(f"{INSTANCIA}/idioma", files={"audio": ("turno.wav", _a_wav(audio, nombre), "audio/wav")})
+    r.raise_for_status()
+    return r.json()
+
+
+def _oidos_auto() -> dict:
+    from servicio.flujo import entender_castellano, entender_chanka
+    return {"detectar_idioma": _detectar_idioma, "oir_castellano": entender_castellano,
+            "oir_quechua": entender_chanka}
+
+
+@aplicacion.post("/turno")
+async def turno_auto(audio: UploadFile = File(...), contexto: str = Form("")):
+    """Manos libres: audio de cualquiera de los dos, Chaski decide quién habló y qué hacer."""
+    from chaski import servicio as interprete
+    try:
+        return interprete.turno_auto(await audio.read(), audio.filename or "turno.wav", contexto,
+                                     dependencias=_dependencias("claude"), voz_fn=_voz_para_chaski,
+                                     **_oidos_auto())
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
+@aplicacion.post("/turno/vivo")
+async def turno_auto_vivo(audio: UploadFile = File(...), contexto: str = Form("")):
+    """Lo mismo en vivo: `oido` (~1-2 s: quién habló y qué se oyó), `decision`, `resultado` (o `error`)."""
+    from fastapi.responses import StreamingResponse
+
+    from chaski import servicio as interprete
+    datos = await audio.read()  # se lee aquí: el generador corre después, fuera del async
+    return StreamingResponse(
+        interprete.turno_auto_eventos(datos, audio.filename or "turno.wav", contexto,
+                                      dependencias=_dependencias("claude"), voz_fn=_voz_para_chaski,
+                                      **_oidos_auto()),
+        media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
+```
+
+Sale lo mismo que `/turno/enfermera` más `quien_hablo` (`personal` | `paciente`), `idioma_detectado`,
+`confianza_idioma`, `lado_por` (`detector` | `alternancia`) y `ms` con `idioma` y `oir` agregados.
+
+Para verificar (con una grabación humana; con voz sintetizada el reconocedor quechua no sirve):
+
+```bash
+curl -s -F audio=@p16_C_001.wav -F contexto= "$URL/turno" | jq '{quien_hablo, lado_por, idioma_detectado, estado, texto_original, texto_salida, ms}'
+curl -sN -F audio=@p16_C_001.wav -F contexto= "$URL/turno/vivo"   # event: oido → decision → resultado
+```
+
 ## Qué entra
 
 - `contexto`: el JSON del `contexto` que devolvió el turno anterior (la app ya lo guarda y lo reenvía, con `modo`

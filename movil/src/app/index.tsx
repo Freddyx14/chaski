@@ -6,8 +6,8 @@ import {
 import { File, Paths } from 'expo-file-system';
 import * as Haptics from 'expo-haptics';
 import * as Speech from 'expo-speech';
-import { Redirect, router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useRef, useState } from 'react';
+import { Redirect, router, useFocusEffect, useLocalSearchParams } from 'expo-router';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -32,6 +32,8 @@ import Animated, {
 } from 'react-native-reanimated';
 
 import { GRABACION } from '@/chaski/grabacion';
+import { esperaParaEscuchar } from '@/chaski/conversacion';
+import { nuevoVad, pasoVad } from '@/chaski/vad';
 import { FRASE_NEGATIVA_DEMO, useEnsayo } from '@/chaski/ensayo';
 
 
@@ -161,6 +163,19 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   const ultimoAudio = useRef<string | null>(null);
   const ensayo = useEnsayo();
 
+  // Modo conversación (como el modo voz de ChatGPT): un toque y Chaski escucha, piensa, habla y vuelve a escuchar
+  // solo. El micrófono solo se abre en «grabando»; mientras piensa o suena audio queda cerrado.
+  const [conversa, setConversaEstado] = useState(false);
+  const conversaRef = useRef(false);
+  const setConversa = (v: boolean) => { conversaRef.current = v; setConversaEstado(v); };
+  const [ocupado, setOcupadoEstado] = useState(false);
+  const ocupadoRef = useRef(false);
+  const setOcupado = (v: boolean) => { ocupadoRef.current = v; setOcupadoEstado(v); };
+  const [hablandoSistema, setHablandoSistemaEstado] = useState(false);
+  const hablandoSistemaRef = useRef(false);
+  const setHablandoSistema = (v: boolean) => { hablandoSistemaRef.current = v; setHablandoSistemaEstado(v); };
+  const vadRef = useRef(nuevoVad(0));
+
   const grabadora = useAudioRecorder(GRABACION);
   const estadoGrabadora = useAudioRecorderState(grabadora, 80);
   const reproductor = useAudioPlayer(null, { updateInterval: 50 });
@@ -189,21 +204,92 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   const boca = hablando && (hablandoDemo ? (pulso ?? 0) > 0.25 : bocaAbierta(env, estadoReproductor.currentTime));
 
   // ---- grabar -----------------------------------------------------------------------------
-  async function empezar() {
+  async function empezar(auto = false) {
     reproductor.pause();
-    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    if (!auto) await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     await grabadora.prepareToRecordAsync();
     grabadora.record();
+    vadRef.current = nuevoVad(Date.now());
     setFase({ f: 'grabando' });
   }
 
+  /** El toque en el micrófono desde «listo»: prende el modo conversación. */
+  function conversar() {
+    setConversa(true);
+    empezar();
+  }
+
+  /** Apaga el modo conversación: corta lo que suene, descarta lo que se esté grabando y deja los botones de siempre. */
+  async function pausar() {
+    setConversa(false);
+    reproductor.pause();
+    Speech.stop();
+    setHablandoSistema(false);
+    if (fase.f === 'grabando') {
+      try { await grabadora.stop(); } catch {}
+      setFase({ f: 'listo' });
+    }
+  }
+
+  /** Tocar mientras Chaski habla: lo corta y, en conversación, vuelve a escuchar. */
+  function cortar() {
+    reproductor.pause();
+    Speech.stop();
+    setHablandoSistema(false);
+  }
+
+  // Al salir de la pantalla (receta, emergencia, resumen) la conversación se pausa: nadie graba en segundo plano.
+  useFocusEffect(useCallback(() => () => { if (conversaRef.current) pausar(); }, []));
+
+  // La detección de voz: cada lectura del nivel avanza el detector; al callarse quien habla, se manda el turno.
+  useEffect(() => {
+    if (!conversa || esDemo || fase.f !== 'grabando' || ocupadoRef.current) return;
+    const [s, ev] = pasoVad(vadRef.current, estadoGrabadora.metering, Date.now());
+    vadRef.current = s;
+    if (ev === 'fin') terminar();
+    else if (ev === 'reiniciar') {
+      // Nadie habló en un buen rato: grabación nueva (archivo chico) y piso de ruido recalibrado.
+      (async () => { try { await grabadora.stop(); } catch {} if (conversaRef.current) empezar(true); })();
+    }
+  }, [estadoGrabadora.metering, estadoGrabadora.durationMillis]);
+
+  // Vuelve a escuchar solo cuando terminó el turno y calló el audio, con un respiro para no oírse a sí mismo.
+  const sonando = hablando || hablandoSistema;
+  useEffect(() => {
+    if (!conversa || esDemo || ocupado) return;
+    const ms = esperaParaEscuchar({
+      f: fase.f,
+      vozLista: fase.f === 'dicho' ? fase.vozLista : undefined,
+      ensayo: (fase.f === 'dicho' || fase.f === 'bloqueado') && !!fase.ensayo,
+      deGrabacion: fase.f === 'error' && (fase.detalle ?? '').startsWith('grabación'),
+    }, sonando);
+    if (ms === null) return;
+    const id = setTimeout(() => {
+      if (!conversaRef.current || ocupadoRef.current || reproductor.playing || hablandoSistemaRef.current) return;
+      if (fase.f === 'bloqueado') setLado('castellano'); // tras un bloqueo, el personal lo dice de otra forma
+      empezar(true);
+    }, ms);
+    return () => clearTimeout(id);
+  }, [conversa, ocupado, fase, sonando]);
+
   async function terminar() {
+    setOcupado(true);
+    try {
+      await procesarGrabacion();
+    } finally {
+      setOcupado(false);
+    }
+  }
+
+  async function procesarGrabacion() {
     await grabadora.stop();
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const uri = grabadora.uri;
     if (!uri) return fallar(new GrabacionInvalida('sin archivo'));
     try {
       const revision = revisarGrabacion(await new File(uri).bytes());
+      // En conversación, un ruido que no era voz no merece una pantalla de error: se vuelve a escuchar.
+      if (!revision.ok && conversaRef.current) return empezar(true);
       if (!revision.ok) return fallar(new GrabacionInvalida(revision.motivo));
     } catch (e) {
       return fallar(new GrabacionInvalida(`no se pudo leer (${String((e as Error)?.message ?? e).slice(0, 40)})`));
@@ -304,6 +390,12 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       });
       setFase({ f: 'paciente', r });
       setLado('castellano');
+      // En conversación Chaski le DICE al personal lo que entendió (con la voz del servicio si vino).
+      if (conversaRef.current && r.castellano) {
+        const b64 = esResultado(crudo) && crudo.idioma_salida === 'spa' ? crudo.audio_wav_b64 : null;
+        if (b64) { try { return await reproducirB64(b64); } catch {} }
+        decirEnCastellano(r.castellano);
+      }
     } catch (e) {
       fallar(e);
     }
@@ -359,8 +451,12 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
   }
 
   function decirEnCastellano(texto: string) {
-    // Sin audio del servicio (Cartesia), la voz del sistema en castellano.
-    if (texto) Speech.speak(texto, { language: 'es-US', rate: 0.95 });
+    // Sin audio del servicio (Cartesia), la voz del sistema en castellano. Se sigue cuándo suena para no
+    // abrir el micrófono encima (modo conversación).
+    if (!texto) return;
+    setHablandoSistema(true);
+    const fin = () => setHablandoSistema(false);
+    Speech.speak(texto, { language: 'es-US', rate: 0.95, onDone: fin, onStopped: fin, onError: fin });
   }
 
   async function decir(quechua: string) {
@@ -405,10 +501,15 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
     setFase((p) => (p.f === 'error' ? { ...p, prueba: ok ? 'responde' : 'no_responde' } : p));
   }
 
-  function reintentar() {
+  async function reintentar() {
     const uri = ultimoAudio.current;
     if (!uri) return setFase({ f: 'listo' });
-    return lado === 'castellano' ? turnoDeLaEnfermera(uri) : turnoDelPaciente(uri);
+    setOcupado(true);
+    try {
+      await (lado === 'castellano' ? turnoDeLaEnfermera(uri) : turnoDelPaciente(uri));
+    } finally {
+      setOcupado(false);
+    }
   }
 
   // ---- qué se ve ----------------------------------------------------------------------------

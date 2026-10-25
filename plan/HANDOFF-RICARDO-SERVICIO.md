@@ -32,6 +32,7 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | Voz: castellano por Cartesia (Ximena), quechua `mama_freddy` en los dos sitios, `p24` de respaldo. Verificado por frecuencia, no por ausencia de error: castellano 24000 Hz, quechua 16000 Hz, 0 respaldos usados | 9e2075d |
 | [x] | D40 → D43 en `app.py`, `desplegar.sh` y `PARA-FREDDY.md` | 0ee64a9 |
 | [x] | `git pull` y desplegar da250b1. Verificado con grabaciones reales (dom 02:20): `p16_C_001.wav` → el reconocedor oye «pusaq urapi huk pastillata upyay», `estado dicho`, «Tome una pastilla a las ocho.», **sin paréntesis**. `p18_C_001.wav` → `dicho`, «Tome una pastilla cada ocho horas», sin paréntesis | 1f6b0a4 |
+<<<<<<< Updated upstream
 | [x] | `git pull` y desplegar 630a847 + ef3333c. Verificado (dom 02:45) forzando un bloqueo real con `confianza=0.3`: `estado dicho_con_aviso`, **`accion repreguntar`, `para personal`**, «No quiero decir un dato equivocado: un dato. ¿Me lo repite, por favor?», `motivo B1 … «una» (0.30)`, `paso_fallido guardas` | 1a13cf6 |
 
 > ⚠️ Freddy, dos cosas de esa verificación:
@@ -41,6 +42,10 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 >    bloqueo, tal como pediste. Sembrando una dosis cambiada sale `bloqueado` / `accion traducir` /
 >    `texto_salida` vacío. Para ver la repregunta hay que provocar un bloqueo de verdad; `confianza`
 >    baja es la forma más limpia.
+=======
+| [ ] | `git pull` y desplegar (dom 02:35, 630a847 + ef3333c: la pregunta ya viene con voz): **un bloqueo ahora pregunta antes de rendirse** (pedido de Freddy). Si una barrera o el crítico frena la traducción del personal, Chaski le pregunta en castellano «No quiero decir un dato equivocado: la dosis. ¿Me lo repite, por favor?»; si es del paciente, le pide repetir en quechua. Una sola vez; el ensayo y las fallas de sistema siguen siendo bloqueo (`CHASKI_REPREGUNTAR_AL_BLOQUEAR=1`, ya es el valor por defecto) | verificar: un turno bloqueado devuelve `accion: repreguntar`, `para: personal` |
+| [ ] | **Manos libres (dom, para la app de iOS):** `git pull`, pega en `servicio/app.py` las rutas `POST /turno` y `POST /turno/vivo` de la sección «Manos libres» de `app/chaski/PARA_RICARDO.md` (traen `_detectar_idioma` contra el `/idioma` de la instancia, `entender_castellano`, `entender_chanka`, `_voz_para_chaski` y `_dependencias("claude")`) y despliega. Un solo llamado: el audio entra, Chaski decide quién habló (detector; si duda o se cae, alterna con el último que habló) y responde | verificar con una grabación humana: `curl -F audio=@p16_C_001.wav -F contexto= $URL/turno` → `quien_hablo: paciente`, `lado_por: detector`, `estado` dicho; y `curl -N` a `/turno/vivo` da `oido` → `decision` → `resultado` |
+>>>>>>> Stashed changes
 
 
 > ✅ Pasos 1–6 hechos (cf9de8b). **Nuevo (dom 00:20): `git pull` y vuelve a desplegar** para que el servicio tome D41,
