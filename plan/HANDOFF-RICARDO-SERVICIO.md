@@ -36,6 +36,13 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | **Manos libres**: `POST /turno` y `POST /turno/vivo` pegadas y desplegadas. `p16_C_001.wav` → `quien_hablo paciente`, `lado_por detector`, `idioma_detectado quy` (0.986), `estado dicho_con_aviso`, oyó «pusaq urapi huk pastillata upyay». `/turno/vivo` da los tres eventos: `oido` → `decision` → `resultado` | 1f7c816 |
 | [x] | `git pull` y desplegar 07bb9d7. Regla 8 verificada con audio real de p16, tres frases de cortesía, las tres `dicho` / `traducir`: «¿Imapitaq yanapaykiman?» → «¿En qué le puedo ayudar?», «¿Yanapayta atiymanchu?» → «¿Podría ayudar?», «Cai Doctora yanapasunki» → «Esta doctora le va a ayudar.» Ninguna pidió repetir | 5ea9892 |
 | [x] | **Receta por voz**: `POST /receta` pegada y desplegada. Foto → `accion repreguntar`, `para personal`, «Leí: Paracetamol 500 mg, una tableta cada 8 horas…», `contexto.receta_pendiente` puesto y `modo receta`, con voz. Después «sí» por `/turno/enfermera` → `para paciente`, `idioma_salida quy`, «Upyay huk tableta Paracetamol 500 mg niqta, sapa pusaq horamanta.», motivo «receta leída de la foto, confirmada por el personal». Y «no, son dos tabletas» borra la pendiente y sigue como turno normal | afa5730 |
+| [x] | Arreglos de auditoría (8498191, ff84896, 6795247, b6554e2) desplegados. «killa» = mes verificado con audio real: `p16_N_063` → `dicho` «Va a regresar en un mes.», `p16_C_009` → `dicho` «Volverá dentro de un mes.» | fc03e84 |
+
+> ⚠️ No pude reproducir «urapi nanawan» → `repreguntar` al paciente: no hay grabación de esa
+> frase en `datos/crudo/`. Con `p16_C_001` y `confianza=0.3` el turno sale `dicho` / `traducir`
+> / `para personal` («A las ocho tome una pastilla.»), que es el camino del paciente repitiendo
+> una indicación, no el de un lado adivinado. Para probar C1 de verdad hace falta un audio donde
+> el detector dude; los nuestros salen a 0.98-1.00. Lo dejo dicho en vez de marcarlo verificado.
 | [ ] | `git pull` y desplegar (dom 03:45) los arreglos de la auditoría: 8498191 (C1: si el detector duda, tras una pregunta de Chaski responde el mismo; lado adivinado no puede llevar datos clínicos), ff84896 (aprobación atada al par revisado; la retraducción queda ciega con «ura»), 6795247 (el ensayo siempre muestra la barrera; negación agregada en el pulido se frena), b6554e2 (killa = mes en la retraducción), 3d4913b (la traducción anticipada solo si el pulido dice lo mismo; tope de espera) | verificar: «urapi nanawan» por /turno/paciente → `repreguntar` al paciente; «killapi kutimunki» → `dicho` «…en un mes» |
 
 > 🔴 **Freddy: el detector de idioma falla en 3 de 6 grabaciones reales, y falla con confianza alta.**
