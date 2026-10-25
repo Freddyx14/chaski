@@ -19,6 +19,8 @@
 | 7 | 16:06 | + concentración (500 mg), «en ayunas» = «sin comer», «kuska» = media | 165/165 | 4/40 (10 %) | ~9 s | Tres bloqueos falsos eran errores de nuestro modelo de hechos | `chaski-2026-10-24-1606.json` |
 | 8 | 17:40 | **Final**: banco auditado (952 casos), crítico rápido | **183/184 (99,5 %); 100 % de los críticos** | 8/40 (20 %)* | **2,6 s** (p95 3,4 s) | Sin «thinking» en la extracción y llamadas en paralelo: 3,5× más rápido sin perder precisión. **$0,0084 por turno** | `chaski-2026-10-24-1740.json` |
 
+| 9 | dom 03:14 | **Tras la auditoría de la noche** (C1, H1–H3, M1, M3, M5–M8) y la retraducción con sentido de calendario | **183/184 (99,5 %); 100 % de los críticos** | **7/40 (17,5 %)** | 2,6 s (p95 3,8 s) | Ningún arreglo de seguridad costó atrapados; bajó un bloqueo falso | `chaski-2026-10-25-0314.json` |
+
 \* El banco auditado tiene más frases de la familia (nueva participante). De las 7 «correctas» que retuvo, unas 3–4 son
 traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla del lado seguro: se calla y dice por qué.
 
