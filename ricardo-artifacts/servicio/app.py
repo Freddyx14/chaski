@@ -11,6 +11,7 @@ Arranque:
 """
 from __future__ import annotations
 
+import base64
 import json
 import os
 import sys
@@ -174,6 +175,243 @@ def _oidos_auto() -> dict:
             "oir_quechua": entender_chanka}
 
 
+# ----------------------------------------------------------------- opciones al bloquear
+
+CODIGOS_NLLB = {"spa": "spa_Latn", "quy": "quy_Latn"}
+
+AVISO_CONFIRMADA = (
+    "Lo confirmó una persona. Chaski no pudo comprobar el dato por su cuenta: la lectura de vuelta "
+    "está para revisarla antes de decir que sí."
+)
+
+
+def _mt_local(texto: str, desde: str, hacia: str) -> str:
+    """NLLB-1.3B en la instancia, una dirección. Si no responde devuelve vacío: una opción de menos, nunca un error."""
+    import httpx
+
+    from servicio.flujo import INSTANCIA
+    texto = (texto or "").strip()
+    if not texto:
+        return ""
+    try:
+        with httpx.Client(timeout=30) as cli:
+            r = cli.post(f"{INSTANCIA}/traducir",
+                         data={"texto": texto, "desde": CODIGOS_NLLB.get(desde, desde),
+                               "hacia": CODIGOS_NLLB.get(hacia, hacia)})
+        r.raise_for_status()
+        d = r.json()
+        return (d.get("traduccion") or d.get("texto") or "").strip()
+    except Exception as e:  # noqa: BLE001
+        print(f"opciones: NLLB no respondio ({type(e).__name__}: {e})", flush=True)
+        return ""
+
+
+def _texto_alternativa(a) -> str:
+    """Las n-mejores vienen como texto o como [texto, puntaje] (lo que devuelve /entender)."""
+    if isinstance(a, str):
+        return a.strip()
+    if isinstance(a, (list, tuple)) and a:
+        return str(a[0]).strip()
+    if isinstance(a, dict):
+        return str(a.get("texto") or a.get("text") or "").strip()
+    return ""
+
+
+def _degenerada(texto: str) -> bool:
+    """NLLB se traba y repite la misma palabra veinte veces. Una propuesta así no se ofrece."""
+    palabras = [w for w in (texto or "").lower().split() if w]
+    return len(palabras) >= 6 and len(set(palabras)) <= max(2, len(palabras) // 4)
+
+
+SISTEMA_LECTURA = (
+    "Eres el intérprete de una posta de salud de Pilpichaca (Huancavelica, Perú). Recibes la transcripción "
+    "CRUDA de un reconocedor de voz, que se equivoca sobre todo en los préstamos del castellano dichos dentro "
+    "de una frase en quechua chanka («para sitamulta» por «paracetamolta», «pastiya», «dotora», «presyun»). "
+    "Tu trabajo es decir cuál es la lectura más plausible y traducirla. "
+    "Responde SOLO un objeto JSON con estas claves: "
+    "`lectura` (la frase arreglada, en el MISMO idioma en que se oyó), "
+    "`traduccion` (esa lectura en el idioma pedido), "
+    "`cambio` (qué palabra arreglaste, o \"\" si no arreglaste ninguna), "
+    "`confianza` (\"alta\" | \"media\" | \"baja\"). "
+    "Pon `confianza` en \"baja\" si la transcripción es ruido, sílabas sueltas, o si para leerla tendrías que "
+    "inventar un número o un medicamento que no está. Nunca inventes una dosis ni una frecuencia."
+)
+
+
+def _lectura_de_chaski(crudo: str, origen: str, destino: str) -> dict | None:
+    """La lectura que Chaski propone de una transcripción rota, con Claude. None si no hay ninguna creíble.
+
+    Esto es lo que el NLLB local no puede hacer: NLLB traduce lo que le den, letra por letra, y de
+    «upshashkani para sitamulta» saca una frase inventada. El intérprete sí sabe que ahí dentro hay un
+    medicamento mal oído. Por eso la propuesta la hace Claude y NLLB queda de respaldo sin red.
+    """
+    import anthropic
+
+    nombre = {"spa": "castellano", "quy": "quechua chanka"}
+    try:
+        cli = anthropic.Anthropic()
+        r = cli.messages.create(
+            model=os.environ.get("CHASKI_MODELO_CRITICO", "claude-sonnet-5"),
+            # Sin pensar: con el presupuesto por defecto los 500 tokens se iban enteros en el bloque
+            # `thinking` y la respuesta volvía con stop_reason `max_tokens` y sin JSON.
+            max_tokens=600, thinking={"type": "disabled"}, system=SISTEMA_LECTURA,
+            messages=[{"role": "user", "content":
+                       f"Se oyó en {nombre.get(origen, origen)}: «{crudo}»\n"
+                       f"Tradúcela al {nombre.get(destino, destino)}."}])
+        texto = "".join(b.text for b in r.content if getattr(b, "type", "") == "text")
+        d = json.loads(texto[texto.index("{"):texto.rindex("}") + 1])
+    except Exception as e:  # noqa: BLE001  sin propuesta se sigue pidiendo repetir, que es lo de antes
+        print(f"opciones: lectura de Chaski falló ({type(e).__name__}: {e})", flush=True)
+        return None
+    if str(d.get("confianza", "")).lower() == "baja":
+        return None
+    if not str(d.get("traduccion", "")).strip():
+        return None
+    return d
+
+
+def _con_opciones(r, alternativas=None):
+    """Cuando Chaski bloquea, agrega `opciones`: repetir, o decir lo que él mismo propuso.
+
+    El caso que lo pide: una sola palabra en castellano dentro de una frase en chanka —un medicamento,
+    «presión», «control»— hace dudar al crítico y la consulta se traba en «¿me lo repite?». Con esto la
+    pantalla ya trae qué habría dicho Chaski y su lectura de vuelta, y la persona elige: repetir, o
+    decirlo igual. Confirmar NO verifica nada; lo dice una persona, y el aviso de `/confirmar` lo deja escrito.
+
+    No cambia ningún campo existente. `opciones` es un campo nuevo: una app que no lo lea sigue igual.
+    """
+    if not isinstance(r, dict) or r.get("opciones"):
+        return r
+    accion = r.get("accion")
+    # `no_entendi` llega con estado "dicho" (Chaski SÍ dijo su frase de disculpa) y es el caso que más
+    # traba la consulta, así que no se filtra por estado. Para `repreguntar` sí: una repregunta normal
+    # —«¿cada cuánto?»— es una pregunta de verdad que espera respuesta, no una frase que confirmar.
+    if accion == "repreguntar" and r.get("estado") not in ("bloqueado", "dicho_con_aviso"):
+        return r
+    if accion not in ("repreguntar", "no_entendi"):
+        return r
+
+    # Chaski le responde a quien acaba de hablar, así que `para` dice de qué idioma venía lo que se oyó.
+    origen = "spa" if r.get("para") == "personal" else "quy"
+    destino = "quy" if origen == "spa" else "spa"
+    # En `no_entendi`, `texto_pulido` es la disculpa de Chaski, no lo que dijo la persona: solo sirve el original.
+    base = ((r.get("texto_original") or "") if accion == "no_entendi"
+            else (r.get("texto_pulido") or r.get("texto_original") or "")).strip()
+
+    opciones = [{"id": "repetir", "etiqueta": "Que lo repita", "texto": None, "idioma": None,
+                 "glosa": None, "para": r.get("para"), "verificado": False}]
+
+    vistos = set()
+    para_quien = "paciente" if destino == "quy" else "personal"
+    if base:
+        lectura = _lectura_de_chaski(base, origen, destino)
+        if lectura:
+            propuesta = str(lectura["traduccion"]).strip()
+            vistos.add(propuesta.lower())
+            opciones.append({"id": "propuesta", "etiqueta": "Quise decir esto",
+                             "texto": propuesta, "idioma": destino,
+                             "glosa": str(lectura.get("lectura") or base).strip(),
+                             "origen": base, "cambio": str(lectura.get("cambio") or ""),
+                             "confianza": lectura.get("confianza"), "para": para_quien,
+                             "verificado": False,
+                             "motor": os.environ.get("CHASKI_MODELO_CRITICO", "claude-sonnet-5")})
+        else:  # sin red o sin lectura creíble: NLLB, y solo si no se traba repitiendo
+            propuesta = _mt_local(base, origen, destino)
+            glosa = _mt_local(propuesta, destino, origen) if propuesta else ""
+            if propuesta and not _degenerada(propuesta) and not _degenerada(glosa):
+                vistos.add(propuesta.lower())
+                opciones.append({"id": "propuesta", "etiqueta": "Quise decir esto",
+                                 "texto": propuesta, "idioma": destino, "glosa": glosa,
+                                 "origen": base, "para": para_quien,
+                                 "verificado": False, "motor": "nllb-1.3B"})
+
+    # Del lado del paciente las n-mejores del reconocedor son el resto de lecturas posibles de lo mismo.
+    for i, a in enumerate(alternativas or []):
+        texto = _texto_alternativa(a)
+        if not texto or texto.lower() == base.lower():
+            continue
+        traducida = _mt_local(texto, origen, destino)
+        if not traducida or traducida.lower() in vistos:
+            continue
+        vistos.add(traducida.lower())
+        if _degenerada(traducida):
+            continue
+        opciones.append({"id": f"alterna_{i}", "etiqueta": "O quizá dijo esto",
+                         "texto": traducida, "idioma": destino, "glosa": texto, "origen": texto,
+                         "para": para_quien, "verificado": False, "motor": "nllb-1.3B"})
+        if len(opciones) >= 4:
+            break
+
+    if len(opciones) == 1:  # solo quedó «repetir»: no hay nada que ofrecer, se deja como estaba
+        return r
+    r["opciones"] = opciones
+    return r
+
+
+def _con_opciones_sse(eventos, alternativas=None):
+    """Lo mismo sobre la ruta en vivo: solo toca el evento `resultado`, el resto pasa tal cual."""
+    for bloque in eventos:
+        if isinstance(bloque, str) and bloque.startswith("event: resultado"):
+            cabecera, _, resto = bloque.partition("\n")
+            datos = resto.strip()
+            if datos.startswith("data: "):
+                try:
+                    r = _con_opciones(json.loads(datos[len("data: "):]), alternativas)
+                    bloque = f"{cabecera}\ndata: {json.dumps(r, ensure_ascii=False)}\n\n"
+                except Exception as e:  # noqa: BLE001  un evento intacto vale más que un error
+                    print(f"opciones sse: {type(e).__name__}: {e}", flush=True)
+        yield bloque
+
+
+@aplicacion.post("/confirmar")
+def confirmar(texto: str = Form(...), idioma: str = Form("quy"), para: str = Form("paciente"),
+              contexto: str = Form(""), dicho: str = Form(""), lectura: str = Form("")):
+    """Dice una de las `opciones` que devolvió un turno bloqueado, tal cual, porque una persona la confirmó.
+
+    `texto` es lo que se va a decir y `idioma` en cuál ('quy' | 'spa'); `dicho` es lo que se había oído y
+    `lectura` cómo lo leyó Chaski al arreglarlo (el campo `glosa` de la opción), para que el historial se
+    quede con la frase buena y la consulta siga. No pasa por el crítico a propósito: ya pasó y
+    bloqueó. Quien responde por esta frase es quien tocó el botón, y eso va escrito en `aviso`.
+    """
+    from chaski.interprete import Contexto
+
+    texto = (texto or "").strip()
+    if not texto:
+        return JSONResponse({"error": "falta el texto a decir"}, status_code=400)
+    if idioma not in ("quy", "spa"):
+        return JSONResponse({"error": f"idioma desconocido: {idioma}"}, status_code=400)
+
+    t0 = time.perf_counter()
+    try:
+        ctx = Contexto.model_validate(json.loads(contexto)) if contexto.strip() else Contexto()
+    except Exception as e:  # noqa: BLE001
+        return JSONResponse({"error": f"contexto mal formado: {type(e).__name__}: {e}"}, status_code=400)
+
+    audio_b64 = None
+    try:
+        wav = _voz_para_chaski(texto, idioma)
+        audio_b64 = base64.b64encode(wav).decode() if wav else None
+    except Exception as e:  # noqa: BLE001  sin voz se muestra el texto igual
+        print(f"confirmar: sin voz ({type(e).__name__}: {e})", flush=True)
+
+    quien = "personal" if para == "paciente" else "paciente"
+    dicho = (lectura.strip() or dicho.strip())  # la lectura arreglada vale más en el historial que la rota
+    # El turno que bloqueó ya guardó lo que se oyó: sin esto la frase quedaba dos veces en el historial.
+    ya = ctx.historial[-2:] if ctx.historial else []
+    if dicho and not any(h.rol == quien and h.texto.strip() == dicho for h in ya):
+        ctx.agregar(quien, dicho)
+    ctx.agregar("chaski", texto)
+    ctx.repreguntas_seguidas.clear()  # se resolvió: la consulta sigue, no encadena otra repregunta
+
+    return {"estado": "dicho_con_aviso", "accion": "traducir", "motivo": "confirmada por una persona",
+            "dato_faltante": None, "frase_banco_id": None, "para": para, "idioma_salida": idioma,
+            "texto_original": dicho, "texto_pulido": dicho, "texto_salida": texto,
+            "audio_wav_b64": audio_b64, "audio": None, "aviso": AVISO_CONFIRMADA,
+            "confirmada": True, "sembrada": False, "modelos": {"principal": None, "critico": None},
+            "paso_fallido": None, "ms": {"total": round((time.perf_counter() - t0) * 1000, 1)},
+            "contexto": ctx.model_dump()}
+
+
 @aplicacion.post("/turno")
 async def turno_auto(audio: UploadFile = File(...), contexto: str = Form("")):
     """Manos libres: audio de cualquiera de los dos, Chaski decide quién habló y qué hacer.
@@ -185,9 +423,10 @@ async def turno_auto(audio: UploadFile = File(...), contexto: str = Form("")):
     """
     from chaski import servicio as interprete
     try:
-        return interprete.turno_auto(await audio.read(), audio.filename or "turno.wav",
-                                     contexto, dependencias=_dependencias("claude"),
-                                     voz_fn=_voz_para_chaski, **_oidos_auto())
+        return _con_opciones(
+            interprete.turno_auto(await audio.read(), audio.filename or "turno.wav",
+                                  contexto, dependencias=_dependencias("claude"),
+                                  voz_fn=_voz_para_chaski, **_oidos_auto()))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
@@ -201,9 +440,10 @@ async def turno_auto_vivo(audio: UploadFile = File(...), contexto: str = Form(""
     # Se lee aquí: el generador corre después, fuera del async.
     datos = await audio.read()
     return StreamingResponse(
-        interprete.turno_auto_eventos(datos, audio.filename or "turno.wav", contexto,
-                                      dependencias=_dependencias("claude"),
-                                      voz_fn=_voz_para_chaski, **_oidos_auto()),
+        _con_opciones_sse(
+            interprete.turno_auto_eventos(datos, audio.filename or "turno.wav", contexto,
+                                          dependencias=_dependencias("claude"),
+                                          voz_fn=_voz_para_chaski, **_oidos_auto())),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
@@ -222,11 +462,12 @@ async def turno_paciente(audio: UploadFile = File(...), contexto: str = Form("")
     from servicio.flujo import entender_chanka
     try:
         oido = entender_chanka(await audio.read(), audio.filename or "turno.wav")
-        return interprete.turno(oido.get("texto", ""), "quy", "paciente", contexto,
-                                json.dumps(oido.get("alternativas", []), ensure_ascii=False),
-                                oido.get("confianza"),
-                                dependencias=_dependencias(motor),
-                                voz_fn=_voz_para_chaski)
+        r = interprete.turno(oido.get("texto", ""), "quy", "paciente", contexto,
+                             json.dumps(oido.get("alternativas", []), ensure_ascii=False),
+                             oido.get("confianza"),
+                             dependencias=_dependencias(motor),
+                             voz_fn=_voz_para_chaski)
+        return _con_opciones(r, oido.get("alternativas"))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
@@ -248,10 +489,11 @@ def turno_enfermera(texto: str = Form(...), contexto: str = Form(""),
     """
     from chaski import servicio as interprete
     try:
-        return interprete.turno(texto, "spa", "personal", contexto, n_mejores,
-                                confianza, traduccion_sembrada,
-                                dependencias=_dependencias(motor),
-                                voz_fn=_voz_para_chaski)
+        return _con_opciones(
+            interprete.turno(texto, "spa", "personal", contexto, n_mejores,
+                             confianza, traduccion_sembrada,
+                             dependencias=_dependencias(motor),
+                             voz_fn=_voz_para_chaski))
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
@@ -270,8 +512,9 @@ def turno_enfermera_vivo(texto: str = Form(...), contexto: str = Form(""),
 
     from chaski import servicio as interprete
     return StreamingResponse(
-        interprete.turno_eventos(texto, "spa", "personal", contexto, n_mejores,
-                                 confianza, traduccion_sembrada),
+        _con_opciones_sse(
+            interprete.turno_eventos(texto, "spa", "personal", contexto, n_mejores,
+                                     confianza, traduccion_sembrada)),
         media_type="text/event-stream",
         headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
