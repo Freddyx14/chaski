@@ -176,3 +176,10 @@
 | Pacientes quechuahablantes / personal que habla quechua | 90 % / ~20 % | entrevista |
 | Consulta en castellano / en quechua | 30–40 min / hasta 1 h o más | entrevista |
 | Médicos que empiezan el SERUMS con al menos quechua o aimara básico | 14,4 % (84 de 584, encuesta 2016) | Bendezu-Quispe 2020 · `research/personal-salud-quechua.md` |
+
+## ⚠️ Pendiente después de la entrega: limpiar el repo público (dom 03:42)
+El repo se hizo público a pedido de Freddy («make it public, later we are gonna clean it»). Contiene audio real de la
+familia y sus voces clonadas: `ricardo-artifacts/reports/voz mama de freddy/` (2 audios reales), `…/voz papa de ricardo/`,
+`ricardo-artifacts/datos/crudo/*` (transcripciones), `reports/voces/*` y `reports/emergencia/*` (~130 audios sintéticos
+con voces de la familia). Limpieza: sacarlos del árbol y de la historia (o publicar una copia limpia sin historia y
+volver privado este). Dueño: Freddy decide cuándo; Ricardo avisado antes de reescribir historia.
