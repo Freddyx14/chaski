@@ -40,7 +40,7 @@ NLLB_TIMEOUT_S = 8.0
 # this prompt (evals/latencia/traductor_modos.py): `modelo` (Sonnet 5's own adaptive thinking) chrF++ 51.8, p50 5.6 s;
 # `medium` 45.6, 3.0 s; `no` 43.1, 1.7 s; `low` 41.3, 2.0 s. Then on three sets (evals/traduccion/comparar.py, 23:40):
 # `medium` 51.4 / 50.1 / 48.6 with 0 of 92 fixed terms damaged, and the full turn at p50 8.3 s against 17.1 s with
-# `modelo`. Decided by Freddy (D40, 23:38): `medium`, the same safety at half the time.
+# `modelo`. Decided by Freddy (D43, 23:38): `medium`, the same safety at half the time.
 PENSAR_TRADUCIR_VALIDOS = ("modelo", "no", "low", "medium", "high")
 
 

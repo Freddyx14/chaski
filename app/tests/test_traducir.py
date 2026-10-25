@@ -106,7 +106,7 @@ def test_mismo_idioma_no_llama_a_nadie():
 
 
 def test_pensar_por_defecto_es_medium(monkeypatch):
-    # D40: medium effort, 0/92 fixed terms damaged, full turn p50 8.3 s.
+    # D43: medium effort, 0/92 fixed terms damaged, full turn p50 8.3 s.
     monkeypatch.delenv("CHASKI_PENSAR_TRADUCIR", raising=False)
     c = FakeClient()
     traducir("Tome paracetamol", "spa", "quy", client=c, glosario=[])
