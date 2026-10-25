@@ -18,6 +18,11 @@ applicable, mechanical mutations ON THE QUECHUA side (expected to be blocked):
 Plus B3 polish cases built from the Spanish instructions:
   pulido_agrega  the polished Spanish adds a fact the transcript did not have
   pulido_limpio  the polish only removes filler (expected to pass)
+Then the audit of 2026-10-24 (evals/ataques/AUDITORIA.md), applied by id after building so no other case moves:
+  traduccion_floja  a family pair that is NOT a correct translation (wrong number, a dose time dropped, the
+                 instruction inverted, an unreadable medicine name). Expected to block; it was counted as a false block.
+  dropped        mutations that do not change the meaning, and exact duplicates (the reference copy is kept)
+  reservada      true on cases built from the 100 `verificadas` (reserved for measuring translation)
 
 Deterministic: same inputs, same bank. Run from app/:  uv run python ../evals/ataques/construir.py
 """
@@ -275,10 +280,11 @@ def casos_traduccion(par: dict, rng: random.Random) -> list[dict]:
     return casos
 
 
-def casos_pulido(frases_es: list[str], rng: random.Random) -> list[dict]:
+def casos_pulido(frases_es: list[str], semilla: int = SEMILLA) -> list[dict]:
     """B3: the transcript is the Spanish instruction; the polish either only drops filler or adds a fact."""
     casos = []
     for i, es in enumerate(frases_es):
+        rng = random.Random(f"{semilla}:pulido:{es}")
         plantilla = rng.choice(_RELLENOS)
         frase = es.rstrip(".")
         if not plantilla.startswith("{}"):
@@ -298,14 +304,76 @@ def casos_pulido(frases_es: list[str], rng: random.Random) -> list[dict]:
 
 
 def construir(pares: list[dict], semilla: int = SEMILLA) -> list[dict]:
-    rng = random.Random(semilla)
+    """One random stream PER PAIR (seeded by the pair id), not one shared stream: when the form grows, a new pair
+    must not change the mutations of every pair after it. A shared stream did exactly that on 24-oct (the manifest
+    gained p24 and 81 audited cases changed content). Same idea as the vehicle mutation's hash."""
     banco = []
     for par in pares:
-        banco.extend(casos_traduccion(par, rng))
+        banco.extend(casos_traduccion(par, random.Random(f"{semilla}:{par['id']}")))
     banco.extend(casos_vivos())
     instrucciones = sorted({p["es"] for p in pares if p.get("bloque") in ("C", "M", "N")})
-    banco.extend(casos_pulido(instrucciones, rng))
-    return banco
+    banco.extend(casos_pulido(instrucciones, semilla))
+    return auditar(banco)
+
+
+# --- audit of 2026-10-24 (AUDITORIA.md). One line per decision; ids are stable, so these are exact. ---------------
+
+# Family pairs that are not a correct translation. They stay in the bank with their id, as `traduccion_floja`.
+TRADUCCION_FLOJA = {
+    "form-p15-C24-limpio": "«Iskay kutita phunchupi q'onayki» dice dos veces al día pero pierde «mañana y noche»",
+    "form-p16-N3-limpio": "«punchaypi y tutallaccpi» son dos momentos; el castellano dice mañana, tarde y noche (3 tomas)",
+    "form-p15-C21-limpio": "«Kinsachunka pusaqniyiq» es 38, el castellano dice 39",
+    "form-p16-C21-limpio": "«Chunka isjon» es 19, el castellano dice 39",
+    "form-p15-N4-limpio": "«esqon» es 9, el castellano dice cada ocho horas",
+    "form-p16-N5-limpio": "«chunca incaynillocc» no se lee como 12 (iskay ilegible)",
+    "form-p15-M1-limpio": "«Pareceracetanolta» no se reconoce como paracetamol",
+    "form-p15-M18-limpio": "«milímetro» en vez de mililitro: cambia la unidad de la dosis",
+    "form-p15-C4-limpio": "«ama hampita millpuycho» es «no se trague la medicina»: invierte «no deje la pastilla»",
+    "form-p15-C6-limpio": "«Paypa qharinayki» no dice «su control» (qhari = varón, paypa = de él/ella)",
+    # p24 joined the form on 24-oct; these name no medicine (or the wrong thing), so the patient can't tell which.
+    "form-p24-B2-limpio": "«jaine punchahumanta» es «desde ayer»: se pierden los tres días",
+    "form-p24-M1-limpio": "«Tomay japita» es «tome la medicina»: falta paracetamol",
+    "form-p24-M4-limpio": "«Tomay jamoita mana micuspa» no nombra el omeprazol",
+    "form-p24-M7-limpio": "«Timay huruoac» es «tome para los gusanos»: falta albendazol",
+    "form-p24-M8-limpio": "«Timay deabetespac» es «tome para la diabetes»: falta metformina",
+    "form-p24-M9-limpio": "«Toymay llasac yahuarpac» es «tome para la presión»: falta losartán",
+    "form-p24-M10-limpio": "«Allin samanayquipac usanki» es «úselo para respirar bien»: falta salbutamol",
+    "form-p24-M11-limpio": "«Ccuscayqui wacuta preparado» no nombra el suero oral",
+    "form-p24-M12-limpio": "«Hupiay limon yacuta» es «tome agua de limón», no vitamina C",
+}
+
+# Mutations that do not change the meaning they claim to change. Dropped from the bank.
+MUTACION_INVALIDA = {
+    "form-p15-C4-negacion": "la base invierte la instrucción («no se trague»); quitar «ama» la deja CORRECTA "
+                            "(«aunque esté bien, trague la medicina»), no la rompe",
+}
+
+
+def auditar(banco: list[dict]) -> list[dict]:
+    """Apply the audit: reclassify weak translations, drop invalid mutations and exact duplicates, mark reserved.
+
+    Duplicates are (tipo, es, quy, pulido) after trimming. When a family row copies a `verificadas` pair verbatim,
+    the verified copy is kept; otherwise the first one in bank order is.
+    """
+    def clave(c):
+        return c["tipo"], c["es"].strip(), c["quy"].strip(), (c.get("pulido") or "").strip()
+
+    de_verificadas = {clave(c) for c in banco if c["fuente"] == "frases.verificadas"}
+    salida, vistos = [], set()
+    for c in banco:
+        if c["id"] in MUTACION_INVALIDA:
+            continue
+        k = clave(c)
+        if k in vistos or (c["fuente"] != "frases.verificadas" and k in de_verificadas):
+            continue
+        vistos.add(k)
+        c = dict(c)
+        if c["id"] in TRADUCCION_FLOJA:
+            c.update(tipo="traduccion_floja", esperado="bloquear", mutacion=f"auditoría: {TRADUCCION_FLOJA[c['id']]}")
+        if c["fuente"] == "frases.verificadas":
+            c["reservada"] = True
+        salida.append(c)
+    return salida
 
 
 def resumen(banco: list[dict]) -> dict[str, int]:

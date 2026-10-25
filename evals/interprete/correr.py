@@ -33,6 +33,9 @@ from types import SimpleNamespace
 
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI.parents[1] / "app"))
+sys.path.insert(0, str(AQUI.parent))
+
+from costo import ClienteConUso, imprimir_uso  # noqa: E402
 
 from chaski import critico  # noqa: E402
 from chaski.auditoria import Retraduccion  # noqa: E402
@@ -149,6 +152,7 @@ def percentil(valores: list[float], p: float) -> float | None:
 
 def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critico: str | None = MODELO_CRITICO) -> dict:
     filas, latencias, latencias_critico, latencias_turno = [], [], [], []
+    contador = ClienteConUso(client)  # counts response.usage per model; `client` stays raw for Oraculo.caso
     for caso in casos:
         if simulado:
             client.caso = caso
@@ -156,7 +160,7 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
         t0 = time.perf_counter()
         error, decision = None, None
         try:
-            decision = decidir(client, TurnoEntrada.model_validate(caso["turno"]), contexto, modelo=modelo)
+            decision = decidir(contador, TurnoEntrada.model_validate(caso["turno"]), contexto, modelo=modelo)
         except Exception as e:  # counted as a failure, the run continues
             error = f"{type(e).__name__}: {e}"
         ms = (time.perf_counter() - t0) * 1000
@@ -167,7 +171,7 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
                 and caso["turno"]["idioma"] == "spa"):
             t1 = time.perf_counter()
             try:
-                rc = critico.revisar(client, decision.texto_pulido, transcripcion=caso["turno"]["texto"],
+                rc = critico.revisar(contador, decision.texto_pulido, transcripcion=caso["turno"]["texto"],
                                      modelo=modelo_critico)
                 v = rc.veredicto
                 critica = {"ok": v.ok, "motivo": v.motivo if v.ok else f"{v.capa}: {v.motivo}", "ms_pasos": rc.ms}
@@ -187,6 +191,7 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
     for f in filas:
         por_cat.setdefault(f["categoria"], []).append(f)
     n = len(filas)
+    uso = contador.resumen()
     revisadas = [f for f in filas if f["critico"]]
     bloqueadas = [f for f in revisadas if not f["critico"]["ok"]]
     return {
@@ -199,6 +204,7 @@ def correr(casos: list[dict], client, modelo: str, simulado: bool, modelo_critic
         "violaciones_c7": [{"id": f["id"], "violaciones": f["violaciones"]} for f in filas if f["violaciones"]],
         "omisiones": [{"id": f["id"], "faltan": f["omisiones"]} for f in filas if f["omisiones"]],
         "errores": [{"id": f["id"], "error": f["error"]} for f in filas if f["error"]],
+        "uso": uso,
         "latencia_ms": {"p50": percentil(latencias, 50), "p95": percentil(latencias, 95),
                         "media": round(statistics.mean(latencias), 1) if latencias else None},
         "critico": None if not modelo_critico else {
@@ -270,6 +276,7 @@ def main(argv: list[str] | None = None) -> int:
               f"dejó pasar {len(k['dejo_pasar_violaciones'])}) · p50 {k['latencia_ms']['p50']} ms · p95 {k['latencia_ms']['p95']} ms")
         print(f"  turno revisado (principal + crítico): p50 {k['latencia_turno_ms']['p50']} ms · "
               f"p95 {k['latencia_turno_ms']['p95']} ms")
+    imprimir_uso(informe["uso"], informe["n"])
     print(f"  → {ruta}")
     return 0
 

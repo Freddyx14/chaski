@@ -34,6 +34,9 @@ from pydantic import BaseModel, Field
 
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI.parent.parent / "app"))
+sys.path.insert(0, str(AQUI.parent))
+
+from costo import ClienteConUso, imprimir_uso  # noqa: E402
 
 from chaski import critico  # noqa: E402
 from chaski.auditoria import Retraduccion  # noqa: E402
@@ -122,7 +125,11 @@ def percentil(valores: list[float], p: float) -> float | None:
 
 
 def evaluar(caso: dict, modo: str, client, modelo_critico: str, modelo_juez: str) -> dict:
-    """One case → {bloqueado, motivo, ms}. Any error blocks (fail closed), and the error is recorded."""
+    """One case → {bloqueado, motivo, ms}. Any error blocks (fail closed), and the error is recorded.
+
+    `ms` is the wall time of the whole check for this case (the critic's 3-4 calls in `chaski`). Cases run in a
+    thread pool, so under --hilos > 1 it includes waiting on the API's concurrency, as in production.
+    """
     t0 = time.perf_counter()
     salida = _evaluar(caso, modo, client, modelo_critico, modelo_juez)
     salida["ms"] = round((time.perf_counter() - t0) * 1000, 1)
@@ -233,12 +240,19 @@ def main(argv: list[str] | None = None, cliente=None) -> int:
         else:
             import anthropic
             cliente = anthropic.Anthropic()
+    # Every call goes through the counter, so the result records real tokens and cost, not the estimate.
+    contador = ClienteConUso(cliente)
 
     with ThreadPoolExecutor(max_workers=max(1, args.hilos)) as ex:
-        salidas = list(ex.map(lambda c: evaluar(c, args.modo, cliente, args.modelo_critico, modelo_juez), casos))
+        salidas = list(ex.map(lambda c: evaluar(c, args.modo, contador if cliente is not None else None,
+                                                  args.modelo_critico, modelo_juez), casos))
 
     res = resumir(casos, salidas)
     imprimir(res, args.modo + (" (simulado)" if args.simulado else ""))
+    uso = contador.resumen()
+    uso["costo_usd_por_turno"] = (round(uso["costo_usd_total"] / len(casos), 6)
+                                  if uso["costo_usd_total"] is not None and casos else None)
+    imprimir_uso(uso, len(casos))
     ahora = dt.datetime.now()
     args.salida.mkdir(parents=True, exist_ok=True)
     nombre = f"{args.modo}-{ahora:%Y-%m-%d-%H%M}{'-simulado' if args.simulado else ''}.json"
@@ -253,6 +267,7 @@ def main(argv: list[str] | None = None, cliente=None) -> int:
         "modelo_juez": modelo_juez if args.modo == "juez_claude" else None,
         "limite_por_tipo": args.limite,
         "llamadas_estimadas": n_llamadas,
+        "uso": uso,
         "resumen": res,
         "casos": [{"id": c["id"], "tipo": c["tipo"], "esperado": c["esperado"], **s} for c, s in zip(casos, salidas)],
     }
