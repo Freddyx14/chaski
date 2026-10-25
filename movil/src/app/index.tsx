@@ -316,6 +316,7 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
       setLado(hablo);
       setFase({ f: 'noentendi', d: ia, lado: hablo });
+      if (ia.quechua) { try { await decir(ia.quechua); } catch {} }
       return;
     }
     if (ia.tipo === 'pregunta') {
@@ -605,6 +606,7 @@ function TarjetaNoEntendi({ d, t }: { d: Extract<Interprete, { tipo: 'no_entendi
   return (
     <Animated.View entering={FadeInDown.springify().damping(18)} style={{ gap: 10, marginTop: 12, alignItems: 'center' }}>
       <Text style={e.titulo}>{t.noLeEntendi}</Text>
+      {d.quechua ? <Text style={[e.quechua, { textAlign: 'center' }]}>{d.quechua}</Text> : null}
       {d.motivo ? <Aviso tipo="warn" texto={d.motivo} /> : null}
     </Animated.View>
   );

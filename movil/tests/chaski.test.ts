@@ -313,6 +313,32 @@ test('repreguntar con el contrato nuevo usa texto_salida como quechua', () => {
   if (v.tipo === 'pregunta') assert.equal(v.quechua, "Hayk'aqmantataq?");
 });
 
+test('barrera en el turno del personal: repregunta en castellano con texto_salida, sin motivo técnico', () => {
+  const v = leerInterprete({ ...BASE_R, estado: 'dicho_con_aviso', accion: 'repreguntar', para: 'personal',
+    idioma_salida: 'spa', texto_pulido: 'Tome dos pastillas', texto_salida: 'No quiero decir un dato equivocado: la dosis. ¿Me lo repite, por favor?',
+    dato_faltante: 'dosis', paso_fallido: 'guardas', motivo: 'guardas: cambió un dato crítico: dosis' });
+  assert.equal(v.tipo, 'pregunta');
+  if (v.tipo === 'pregunta') {
+    assert.equal(v.para, 'personal');
+    assert.match(v.texto, /^No quiero decir/);
+    assert.equal(v.dato, 'dosis');
+    assert.equal(v.motivo, '');
+    assert.equal(v.audioB64, null);
+  }
+});
+
+test('barrera en el turno del paciente: no_entendi trae la disculpa en quechua para decirla', () => {
+  const v = leerInterprete({ ...BASE_R, estado: 'dicho_con_aviso', accion: 'no_entendi', para: 'paciente',
+    idioma_salida: 'quy', texto_salida: 'Pampachaway, ¿manachu kaqmanta rimariwaq?', paso_fallido: 'critico', motivo: 'crítico: x' });
+  assert.equal(v.tipo, 'no_entendi');
+  if (v.tipo === 'no_entendi') { assert.equal(v.quechua, 'Pampachaway, ¿manachu kaqmanta rimariwaq?'); assert.equal(v.motivo, ''); }
+});
+
+test('el segundo fallo sigue llegando como bloqueo', () => {
+  const v = leerInterprete({ ...BASE_R, estado: 'bloqueado', accion: 'repreguntar', texto_salida: '' });
+  assert.equal(v.tipo, 'traducir');
+});
+
 test('los pasos del «Pensando» avanzan con el tiempo y avisa si tarda', () => {
   assert.deepEqual([0, 3900, 4100, 13500, 30000].map(pasoPorTiempo), [0, 0, 1, 2, 2]);
   assert.equal(AVISO_LENTO_MS, 12000);

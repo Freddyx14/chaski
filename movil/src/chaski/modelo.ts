@@ -262,7 +262,7 @@ export type Interprete =
   | { tipo: 'pregunta'; para: 'personal' | 'paciente'; texto: string; quechua: string | null; motivo: string;
       dato: string | null; audioB64: string | null }
   | { tipo: 'respuesta'; texto: string; motivo: string; audioB64: string | null }
-  | { tipo: 'no_entendi'; motivo: string }
+  | { tipo: 'no_entendi'; motivo: string; quechua?: string | null }
   | { tipo: 'frase'; frase: FraseBanco };
 
 const ACCIONES: Accion[] = ['traducir', 'repreguntar', 'responder', 'no_entendi', 'usar_frase_banco'];
@@ -283,14 +283,17 @@ export function leerInterprete(
   if (!ACCIONES.includes(d.accion)) return { tipo: 'no_entendi', motivo: 'Respuesta del intérprete no reconocida' };
   const motivo = (d.motivo ?? '').trim();
   const nuevo = esResultado(r) ? r : null;
-  const texto = (d.texto_pulido ?? '').trim()
-    || (nuevo && nuevo.idioma_salida === 'spa' ? (nuevo.texto_salida ?? '').trim() : '');
+  // Con el contrato nuevo lo que se dice es texto_salida; texto_pulido puede ser la frase original pulida.
+  const salidaSpa = nuevo && nuevo.idioma_salida === 'spa' ? (nuevo.texto_salida ?? '').trim() : '';
+  const texto = salidaSpa || (d.texto_pulido ?? '').trim();
   const quechua = r.quechua || (nuevo && nuevo.idioma_salida === 'quy' ? nuevo.texto_salida || null : null);
   switch (d.accion) {
     case 'repreguntar':
       if (!texto && !quechua) return { tipo: 'no_entendi', motivo: motivo || 'Faltó la pregunta' };
       return {
-        tipo: 'pregunta', para: d.para ?? 'paciente', texto, quechua: quechua || null, motivo,
+        // Repregunta que nace de una barrera: el motivo es técnico; basta la pregunta y el dato que falta.
+        tipo: 'pregunta', para: d.para ?? 'paciente', texto, quechua: quechua || null,
+        motivo: nuevo?.paso_fallido ? '' : motivo,
         dato: d.dato_faltante ?? null, audioB64: d.audio_wav_b64 ?? null,
       };
     case 'responder':
@@ -306,7 +309,9 @@ export function leerInterprete(
       return { tipo: 'frase', frase };
     }
     default:
-      return { tipo: 'no_entendi', motivo: motivo || 'No se entendió con seguridad' };
+      // Si el servicio trae la disculpa en quechua (barrera en el turno del paciente), se le dice al paciente.
+      return { tipo: 'no_entendi', motivo: nuevo?.paso_fallido ? '' : (motivo || 'No se entendió con seguridad'),
+        quechua: quechua || null };
   }
 }
 
