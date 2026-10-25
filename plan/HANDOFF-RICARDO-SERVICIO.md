@@ -26,6 +26,7 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | Memoria fuera de lo que se sincroniza. Probado como importa: turno → redespliegue → la línea sigue. 6 líneas ahora | 0851178 |
 | [x] | Voz: castellano por Cartesia (Ximena), quechua `mama_freddy` en los dos sitios, `p24` de respaldo. Verificado por frecuencia, no por ausencia de error: castellano 24000 Hz, quechua 16000 Hz, 0 respaldos usados | 9e2075d |
 | [x] | D40 → D43 en `app.py`, `desplegar.sh` y `PARA-FREDDY.md` | 0ee64a9 |
+| [ ] | `git pull` y desplegar (dom 02:15, da250b1): el traductor quechua→castellano ya no escribe alternativas entre paréntesis («a las ocho (en la noche/debajo)», que el revisor frenaba como vía sublingual inventada), y la memoria ya no pierde una señal escrita antes que su turno | verificar: «pusaq urapi huk pastillata upyay» por /turno/paciente sale `dicho` |
 
 
 > ✅ Pasos 1–6 hechos (cf9de8b). **Nuevo (dom 00:20): `git pull` y vuelve a desplegar** para que el servicio tome D41,
