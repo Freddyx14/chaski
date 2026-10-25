@@ -238,3 +238,23 @@ Ella eligió el último (20:32) como el mejor. Archivos en `data/mama/` (no van 
 
 **Su nombre:** en los audios se presenta con nombre y apellido. En pantalla y subtítulos usar «enfermera de Pilpichaca»
 salvo que Freddy y ella decidan mostrar su nombre.
+
+
+## 12 · Video de la enfermera (pedido 19:00) y el reparto de los 3 minutos
+
+Freddy le pidió a su mamá grabar en **video horizontal** lo mismo que dijo en los audios, en 5 tomas cortas (guion
+enviado por WhatsApp): 1 saludo y quién es · **2 el problema** · 3 a quiénes atiende · 4 recibiendo a una paciente ·
+5 despedida. Subtítulos en inglés. **Puede salir su nombre** (Freddy, 18:59).
+
+**El pitch tiene 3:00 y ella ocupa solo 12–15 s** (la toma 2, el problema). El resto de sus tomas va al video de Devpost.
+
+| Bloque | Tiempo | Qué | De ella |
+|---|---|---|---|
+| B1 | 0:00–0:15 | **Toma 2 en video** (o el audio de 14 s si el video no llega), subtitulado | ✅ 12–15 s |
+| B1→B2 | 0:15–0:45 | Freddy: «Esa es mi mamá…», ★, ★c, ★s | — |
+| B3 | 0:45–1:30 | Consulta en los dos sentidos + modo emergencia con la voz entrenada con la suya | su voz (B) |
+| B4 | 1:30–2:00 | La negativa simulada | — |
+| B5 | 2:00–2:35 | Ricardo: ★★, A/B/C de voz, ★★★ | 3 s de su voz real en el A/B/C |
+| B6 | 2:35–3:00 | Resumen y palabras nuevas; cierre | — |
+
+**Video de Devpost (~2:30):** toma 1 → toma 2 → negativa → consulta y emergencia → A/B/C → toma 3 → toma 4 → toma 5.
