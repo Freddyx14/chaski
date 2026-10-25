@@ -114,7 +114,8 @@ advice/diagnosis, a polish that adds a fact. Next to each we put the number that
 | No guards (floor) | 0 / 160 (0 %) | 0 / 40 | `evals/ataques/resultados/sin_barreras-2026-10-24-1459.json` |
 | Naive Claude judge ("is this faithful? yes/no", Haiku 4.5) | 150 / 160 (94 %) | 26 / 40 (65 %) | `evals/ataques/resultados/juez_claude-2026-10-24-1513.json` |
 | Naive Claude judge, Sonnet 5 (same 205-case sample as Chaski) | 165 / 165 (100 %) | 11 / 40 (27.5 %) | `evals/ataques/resultados/juez_claude-2026-10-24-1644.json` |
-| **Chaski** (code guards + Sonnet 5 critic, integrated) | **165 / 165 (100 %)** | **4 / 40 (10 %)** | `evals/ataques/resultados/chaski-2026-10-24-1606.json` |
+| Chaski, before the bank audit (205 cases) | 165 / 165 (100 %) | 4 / 40 (10 %) | `evals/ataques/resultados/chaski-2026-10-24-1606.json` |
+| **Chaski, final** (audited 952-case bank, 224-case run, fast critic: p50 2.6 s, p95 3.4 s) | **183 / 184 (99.5 %); 100 % of dose, day, negation, medicine, unit and vehicle errors** | **8 / 40 (20 %)**, about half genuinely weak family translations | `evals/ataques/resultados/chaski-2026-10-24-1740.json` |
 
 A strong model asked "is this right?" catches the seeded errors too, but blocks more than one in four correct sentences and can't say which fact failed. Chaski blocks one in ten, and every block names the field (dose, negation, vehicle…) so the nurse knows what to fix. The weaker naive judge (Haiku) misses errors and blocks two thirds of correct sentences.
 The final run has 205 cases (20 per type, plus 5 `vehiculo`). The extra type came from a real failure: on 2026-10-24
