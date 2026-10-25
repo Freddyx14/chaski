@@ -1,0 +1,3257 @@
+{
+ "claude-sonnet-5": {
+  "familias": {
+   "chrf2": 58.89,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 5913,
+   "ms_p95": 9613,
+   "b4_frenadas": 0,
+   "costo_usd": null,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Yakuwan upyay, mana tewanchu."
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Jampiykiqa qanchis punchawpaqmi kanqa."
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Kaqmanta qhawanaykipaq lunes punchawmi kanqa."
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Mana mikhuspa hamuy."
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "Huk killamanta kutimuy."
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Sichus yawar lluqsimuptinqa, utqayllamanta hamuy."
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Sichus hatun ruphariyniyki kaptinqa, hamuy."
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "Wawa mana kuyukuptinqa, hamuy."
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "¿Hayk'aqmantam nanasunki?"
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "¿Maypin nanasunki?"
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "¿Ruphashankichu?"
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Presionniykita tupusaq."
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Hatunta samaykuy, ama hina kaspa."
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "Rupaynin kimsa chunka isqunniyuq gradom kachkan."
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Achkha yakuta quy."
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "Chawpi pastillallata, mana llapantachu."
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Iskay kutita sapa punchaw, tutamanta hinaspa tuta."
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "Resultadoqa kimsa punchawpim chayamunqa."
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta qallikuy"
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Omeprazolta chakisqallaykipi tomay."
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Sulfato ferrosota upyaykuy"
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Ácido fólico upyaykuy."
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta tomay."
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metforminata tomay"
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartanta upyaykuy"
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamolta apaykuy."
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamina C-ta upyaykuy."
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Jarabeta upyay."
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tabletata uqyaykuy"
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Huk ampollata churasqayki."
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Kimsa sut'uta churaykuy"
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Huk cucharitata jarabeta."
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "Pichqa pachak miligramos pastilla"
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Doctorqa qawasunkim."
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Doctoraqa qhawarisunkiña"
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Enfermeraqa sut'inchasunki"
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Obstetraqa qhawaykusunki."
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "Postaman riy."
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Payta hospitalman apasunchik."
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Presionniykita tupasqayki.​"
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Qamqa diabetesniyuqmi kanki."
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qamqa anemiayoqmi kanki."
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Controlniykipaq hamuy"
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kaymi recetayki"
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Hukmanta chunkakama yupaykuy."
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Simana punchawkunata niykuy, lunesmanta domingokama."
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "Pastillata tutamantapas, chawpi punchawpas, tutapas tomay."
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Pastillata hapiy sapa pusaq horamanta."
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Huk semanamanta kutimuy."
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Sapa pusaq horamanta huk pastillata tomay."
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Mikusqaykimanta pastillata uqyaykuy."
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Ama pastillata saqenkichu, allinta sintikuspaykipas."
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Carnéykita apamuy."
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "¿Huk pastillatachu hap'ichkanki?"
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "¿Imamantapas alergiayuqchu kanki?"
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "¿Hayk'a watayuqmi kanki?"
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofenota upyaykuy"
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilinata tomaykuy"
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Suero oralta qaray."
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "Pichqa mililitro jarabeta"
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Chawpi tableta"
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Pastillata sapa chunka iskayniyuq horapi tomaykuy."
+    }
+   ]
+  },
+  "familias_inv": {
+   "chrf2": 48.92,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 3186,
+   "ms_p95": 11312,
+   "b4_frenadas": null,
+   "costo_usd": null,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "No puedo tomar agua."
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "En siete días te tratarán"
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "Vendrás el día lunes para tu control"
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "No vienes habiendo comido."
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Volverás en un mes"
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "Si hay sangre, vendrás corriendo rápido."
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Cuando te agarre la fiebre, vendrás."
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "Si el bebé no se mueve, vendrás"
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "¿Cuándo duele?"
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "¿Dónde me duele?"
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "¿Tengo fiebre?"
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "Voy a tomarte la presión."
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Respira bien, sin preocuparte"
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Has estado con fiebre, 19."
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Tomas bastante agua"
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "Media pastilla, no la pastilla completa"
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "Toma dos, de día y cuando anochece."
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "En tres días llegará el resultado"
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Tomarás paracetamol"
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Tomarás el omeprazol sin haber comido."
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "Tomarás sulfato ferroso"
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "Debes tomar ácido fólico."
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "Tómate el albendazol"
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "Toma metformina"
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "Tómate el losartán"
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "Este salbutamol"
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "Tomar la vitamina [no se entiende]"
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Toma el jarabe"
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Tomarás la tableta."
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Te voy a poner la ampolla."
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "Échate tres gotas"
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "Echa el jarabe en una cucharita"
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "Pastilla de quinientos miligramos"
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "El doctor va a gritar."
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Esta doctora te ayudará"
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "La enfermera te va a avisar."
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "El obstetra te está llamando."
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "Vas a la posta."
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "Te voy a llevar al hospital"
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "Te voy a medir la presión."
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Resulta que tú tienes diabetes"
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "Usted tiene anemia"
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "Vendrás para tu control"
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí está tu receta"
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Contar desde uno hasta diez."
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Desde el mes, hasta aquel día,"
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Tomar la pastilla de día y en la noche nomás."
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Tomar la pastilla a las 8 horas"
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Regresarás en una semana"
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "A las 8 horas, toma una pastilla."
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Toma las pastillas después de comer"
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "No dejes la pastilla aunque estés bien."
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Traerás un poco de carne."
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "¿Qué pastilla tomó?"
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "No tengo ninguna alergia."
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "¿Cuántos años tienes?"
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Tomarás ibuprofeno"
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Tomarás amoxicilina"
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "Hoy el suero en su boca."
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "Cinco mililitros de jarabe"
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "Media tableta"
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Tomar la pastilla a las doce horas."
+    }
+   ]
+  },
+  "ricardo30": {
+   "chrf2": 50.27,
+   "n": 30,
+   "fallos_llamada": 0,
+   "ms_p50": 4022,
+   "ms_p95": 7065,
+   "b4_frenadas": 0,
+   "costo_usd": null,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "¿Allinllachu, mamáy?"
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "¡Allinllanmi kani, señor!"
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "Taytáy, ¿imaynallam kashanki?"
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Mamáy, allinmi kani."
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "Imaynallam kachkanki, taytáy?"
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "¿Imaynalla kachkanki, mamay?"
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "¿Imaynallam kachkankichik, mamakuna?"
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin p'unchaw, doctor"
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allin p'unchaw, doctora"
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Chaskikuyki, taytáy"
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Chaskiykichik, mamakuna"
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allin p'unchay, mamay"
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allin punchaw, taytakuna"
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allin tutamanta, tayta."
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Allin p'unchaw, mamakuna"
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Haykuy, taytáy"
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Haku, mamáy"
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Haykumuychik, taytakuna"
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Haykuykamuychik, mamakuna."
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Tiyaykuy."
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyaykuychik"
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "Imatan munanki, mamáy?"
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "¿Imatan munanki, taytáy?"
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "Imapaqtaq hamurqanki, señora?"
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "Imanaptinmi hamurqanki, taytáy?"
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "¿Imapitaq yanapaykichikta atiyman?"
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "¿Imapitaq yanapaykichikman?"
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "Imapitaq yanapaykichikta atiyman?"
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "¿Imapitaq yanapaykuykiman?"
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "¿Yanapaykichikmanchu?"
+    }
+   ]
+  }
+ },
+ "nllb-1.3B": {
+  "familias": {
+   "chrf2": 34.73,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 4119,
+   "ms_p95": 6179,
+   "b4_frenadas": 3,
+   "costo_usd": 0.0,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Yakuwan tomay, mana t'aqawanchu."
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Qanchis pʼunchaykunallaña onqoy kanqa."
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Lunes p'unchawmi controlanku"
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Noqawan tantakuychej."
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "Huk killa kutimuy"
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Yawar ch'akiy kaptinqa, usqhayllata kutiy."
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Sinchʼi fiebrewan onqosqa kaspaqa, hamuy"
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "Wawa mana k'umuykuspaqa, hamuy"
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "¿Hayk'aqmantataq ñak'arichkanki?"
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "¿Maypitaq ñak'arichkanki?"
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "¿Fiebreyoqchu kashan?"
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Presionta tʼukurisaj."
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Sinch'ita samarikamuy."
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "39 watayuq, unquywan."
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Allillanta ch'akichiy."
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "Chawpi hap'iy, mana tukuy hap'iychu"
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Sapa p'unchay iskay kuti, tutamanta tutakama."
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "3 pʼunchaykunallapi kutimunqa."
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta tomay."
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Manaraq mikhuspayki omeprazolta tomay."
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Sulfato ferrosota tomay."
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Folic acidta tomay."
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta tomay"
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metformina mikhunaykipaq"
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartán nisqata tomay."
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamol nisqata apaykachay"
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamin C mikhunaykipaq"
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Sirupata tomay."
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tabletata tomay."
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Payman uj ampulla churasaj."
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Kimsa ch'aqwata churay."
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Sirupa uj ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch'aki ch' ch'aki ch' ch'aki ch' ch'aki ch' ch'aki ch'"
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "Pichqa pachak milligramonayoq tabletata"
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Chay doctorqa qhawarichinqachá."
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Chay doctorqa yanapasonqachá."
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Yanapaqninqa sutʼita sutʼinchanqa."
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Optístaqa qhawarichinqachá."
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "Postalman ripuy"
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Payta hospitalman pusananchej tiyan."
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Presionta tʼukurisaj."
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Qanqa diabético kanki."
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qanqa anemiayoj kanki."
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Controlman haykuy"
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kayqa recetam"
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Ujmanta chunkacama cuentata churanayquipaj"
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Semana p'unchawmanta domingo p'unchawkama."
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "Pillutaqa tutamanta, tutamanta, tuta p'unchawmanta tomay."
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Sapa pusaq horamanta uj tabletata tomay."
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Semana qhepaman kutimuy"
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Sapa pusaj horaspi uj tabletata tomay."
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Manaraq mikhuspayki tomay."
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Allin sientekuspaykipas, ama chay pastillata saqeychu."
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Imashina rikuchishkata apamuy"
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "¿Piluta mikhunchu?"
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "¿Allergiakunchu?"
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "¿Hayka watayuqtaq?"
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofenota tomay."
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilina tomay."
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Oral serumta qoy"
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "Pichqa mililitro siropayoq"
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Chawpi tableta"
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Sapa 12 horamanta uj tabletata tomay."
+    }
+   ]
+  },
+  "familias_inv": {
+   "chrf2": 24.67,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 3133,
+   "ms_p95": 4475,
+   "b4_frenadas": null,
+   "costo_usd": 0.0,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "El agua potable no tiene sabor"
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "El séptimo día te traerá"
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "El lunes vendrá bajo tu control"
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "No puedes venir a comer"
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Vuelve a la luna"
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "En caso de circulación sanguínea"
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Si tienes fiebre"
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "Cuando un niño no te quiere"
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "¿Cuánto tiempo?"
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "¿Dónde está el agua?"
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "Cuando está lloviendo"
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "¿Cómo puedo manejar el estrés?"
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Respire bien y esté tranquilo"
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Tienes 19 millones de fibromioclastos"
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Tomar mucha agua"
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "En el interior, no en el interior"
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "Te lloro, de día y de noche"
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "Cuando lleguen los resultados al tercer día"
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Paracetamol en el oído"
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Si usted está tomando omeprazol"
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "El sulfato de hierro en su interior"
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "El ácido fólico en la boca"
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "El uso de albendazol"
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "El uso de la metformina"
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "El salmón de los lobos"
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "Salvaguardemos esto"
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "El consumo de vitamina c"
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Escucha el arabesco"
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Tomando una tableta"
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Lo que tienes que dar"
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "En el fondo hay tres pozos."
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "Un paraguas en un hueco"
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "Un poco más de un miligramo de pastilla"
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "Cuando el médico me dijo:"
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Este médico te ayudará"
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "Lo que dice Enfemer"
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "Una inyección de obstetram"
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "En el correo"
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "Llegar al hospital"
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "Cómo lidiar con el estrés"
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Si usted es diabético"
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "Si usted está enfermo de anemia"
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "El control está a su alcance"
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí tienes la receta"
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Desde el diez hasta el diez"
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Desde el amanecer hasta el amanecer,"
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Tomar pastillas durante el día y la noche"
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Tomar una pastilla a las ocho de la mañana"
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Vuelve dentro de una semana"
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "tomar una pastilla a las ocho de la mañana"
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Tome las últimas pastillas"
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "No use pastillas y tenga un buen sombrero"
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Llevas tu tarjeta"
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "¿Qué pastillas ha tomado?"
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "Alergias a los alimentos"
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "Sea cual sea su edad"
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Si usted está tomando ibuprofeno"
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Amoxicilina en su nariz"
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "La alegría en la boca"
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "Un milímetro y medio de parabólico"
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "Una tableta en el centro"
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Un poco de viento en una hora de diez pulgadas"
+    }
+   ]
+  },
+  "ricardo30": {
+   "chrf2": 24.15,
+   "n": 30,
+   "fallos_llamada": 0,
+   "ms_p50": 3470,
+   "ms_p95": 3960,
+   "b4_frenadas": 0,
+   "costo_usd": 0.0,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "¿Allinchu, señorita?"
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "¡Allinlla kashani, señor!"
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "¿Imaynataq kashan?"
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Mamay, allinpuni kani."
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "¿Imaynataq kashan?"
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "¿Imaynataq kashan?"
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "¿Imaynataq kanku?"
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin p'unchay, doctor."
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allin p'unchay, doctor."
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Uyarini, señor."
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Uyariykichej, señoras."
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allin p'unchay, señorita."
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allin p'unchay, señorkuna."
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allin p'unchay, señor."
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Allin p'unchay, señoras."
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Qhawarikuy, señor."
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Qhawarikuy, señorita."
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Qawasunchis, señorkuna."
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Qhawaychis, señoras."
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Tiyay"
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyaykuwaychis."
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "¿Imatataq munanki?"
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "¿Imatataq munanki?"
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "¿Imaraykutaj jamorqanki?"
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "¿Imaraykutaj jamorqanki?"
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "¿Imaynatan yanapasqayki?"
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "¿Imatataj ruwanman?"
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "¿Imaynatan yanapasqayki?"
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "¿Imaynatan yanapasunman?"
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "¿Iman yanapawasunman?"
+    }
+   ]
+  }
+ },
+ "gemini-3-flash": {
+  "familias": {
+   "chrf2": 51.64,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 1037,
+   "ms_p95": 1418,
+   "b4_frenadas": 4,
+   "costo_usd": 0.0099,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Yakullawan upyay, ama teyllawanqa."
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Qanchis punchawmi hampikunki."
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Lunes punchawmi qawachikunayki kanqa."
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Chiqan yarqaylla hamuy."
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "Huk killamanta kutimunki"
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Yawar hamuptinqa, chaypacha hamuy."
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Sichus nisyu rupayniyuq kanki chayqa, hamuy."
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "Wawa mana kuyukuptinqa, hamuy."
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "Haykapiqmantaq nanasunki?"
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "Maypitaq nanasunki?"
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "Ruphariyniyuqchu kachkanki?"
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Ñitiyniykitam pusaq."
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Ama hina kaspa, hatunta samariy"
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "Kimsa chunka isquyniyuq rupakuyniki kachkan."
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Achka yakuta qoy."
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "Chawpi pastillallata, ama llapantachu"
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Kimsa punchawpi iskay kutita, paqarinpi chaynallataq tutapi"
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "Kimsa punchawmantam yachaynin chayamunqa"
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta upyay"
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Omeprazolta mana manaraq imata mikuspa upyay"
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Sulfato ferroso nisqata upyay."
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Ácido fólico nisqata upyay."
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta upyay"
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metformina hampita upyay"
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartánta upyay"
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamol nisqata servichikuy."
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamina C nisqata upyay"
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Jarabetam upyanki"
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tabletata tomay"
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Hamputa churaykusqayki."
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Kimsa sutuyta churapay."
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Huk kucharacha yakuchan hampi"
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "pichqa pachak miligramos pastilla"
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Hamampikuqmi qawaykusunki."
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Doctora hamuspanmi qawamusunki."
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Willakuqniykiqa hamunqa enfermeram"
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Obstetra qawaykusunki."
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "Postaman riy"
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Hospitalman pusasqaykiku"
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Preyunda tupuykamusqayki."
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Qampa diabetes onqoyniykim kan."
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qamqa yawar pisi unquywanmi kachkanki."
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Hamuy controlnikiman"
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kayqa qillqasqa hampi qullqiyki."
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Hukmanta chunkakama yupay"
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Lunesmanta domingo punchawkama niway."
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "Hampita tutapayta, chawpi punchawta hinallataq tutayayta upyay."
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Pastillata qallpay pusaq hora sapa."
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Huk inti watapi kutimunki."
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Huk pastillata upyay pusaq horamanta."
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Mikuyta tukuruspayki pastillata upyay."
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Allinña kachkaspaykipas ama hampita saqiychu."
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Carnéykita apamuy"
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "¿Ima hampillatapas upyakuchkankichu?"
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "¿Imawanpas unqunkichu?"
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "Hayka watayuqtaq kanki?"
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofeno nisqata upyay"
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilinata upyay"
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Suero oraltapas qoy."
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "Pichqa mililitros jarabe"
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Kuskan tableta"
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Hampita chaskiy sapa chunka iskayniyuq hora."
+    }
+   ]
+  },
+  "familias_inv": {
+   "chrf2": 43.71,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 1341,
+   "ms_p95": 3915,
+   "b4_frenadas": null,
+   "costo_usd": 0.0059,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "No puedo tomar agua."
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "Te tratarás en 7 días."
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "Vendrás el día lunes para tu control."
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "No has venido comiendo"
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Volverás en un mes."
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "Si hay sangre corre rápido."
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Cuando te dé fiebre vendrás."
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "Si el bebé no se mueve, vendrás."
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "¿Desde cuándo duele?"
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "¿En dónde duele?"
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "Está con fiebre"
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "Voy a tomarte la presión."
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Respira bien sin desesperarte"
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Has estado con 19 de fiebre."
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Toma mucha agua"
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "Media pastilla, no la entera."
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "Frota dos veces, en el día y en la noche"
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "En 3 días llegará el resultado"
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Tomas paracetamol"
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Tomas omeprazol sin haber comido"
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "Tomas sulfato ferroso"
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "Toma tu ácido fólico."
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "Toma el albendazol."
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "Toma metformina"
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "Tomar la pastilla losartán."
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "Este salbutamol"
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "Toma vitamina C"
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Beber el jarabe"
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Vas a tomar la tableta."
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Te pondré la ampolla"
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "Echa tres gotas"
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "Dale el jarabe en una cucharadita"
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "Pastilla de 500 miligramos"
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "Doctor, me va a revisar."
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Esta doctora te ayudará"
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "La enfermera te avisará."
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "La obstetra te va a revisar"
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "Vas a la posta"
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "Te llevaré al hospital"
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "Mídeme la presión"
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Tú estás con diabetes."
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "Tú estás con anemia"
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "Has venido para tu control."
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí está tu receta"
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Contar del 1 al 10"
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Desde el lunes hasta el domingo,"
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Toma la pastilla de día y de noche."
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Tomar la pastilla a las 8."
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Regresa en 1 semana"
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "tomar una pastilla cada 8 horas"
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Tomar las pastillas después de la comida."
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "No dejes la pastilla aunque estés bien."
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Trae tu carnet."
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "¿Qué pastilla ha tomado?"
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "Cualquier cosa nos da alergia."
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "Cuántos años tienes"
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Tomas ibuprofeno"
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Tomas amoxicilina"
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "Pon el suero en su boca"
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "5 mililitros de jarabe"
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "Media pastilla"
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Toma la pastilla a las 11 horas."
+    }
+   ]
+  },
+  "ricardo30": {
+   "chrf2": 40.9,
+   "n": 30,
+   "fallos_llamada": 0,
+   "ms_p50": 1029,
+   "ms_p95": 1550,
+   "b4_frenadas": 0,
+   "costo_usd": 0.0047,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "Allillanchu kachkanki, mamay?"
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "Allinmi kachkani, taytay!"
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "Tayta, ¿allinllachu kachkanki?"
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Mamay, allinmi kachkani"
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "Allillanchu kachkanki tayta?"
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "Imaynallam kachkanki, señora?"
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "Allinllachu kachkankichik, mamakuna?"
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin pacha, doctor"
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allinllachu, doctora"
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Chaskiykim, taytáy"
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Chayaykamuychik mamaykuna"
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allinllachu punchaw, mamay"
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allinllachu, tayta mamakuna"
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allinllachu punchaw, taytay"
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Allin punchaw, mamaykuna"
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Yaykumuy taytacha"
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Yaykuykamuy, señora"
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Yaykumuychik, tayta mamakuna"
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Yaykuykamuychik, mamachakuna"
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Tiyaykullay"
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyaykuychik"
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "Imayllam, señora, ¿imatataq munanki?"
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "Imaynatam yanapaykiman taytáy?"
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "Imaymanampitaq hamurqanki, mamáy?"
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "Imaynamantataq hamurqanki, taytáy?"
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "Imaynapim yanapaykuykiman?"
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "Imaynatam yanapaykuman?"
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "¿Imapitaq yanapaykuman?"
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "Imaynatataq yanapaykullaykikum?"
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "¿Yanapaykullaykiman?"
+    }
+   ]
+  }
+ },
+ "gemini-3.8-flash": {
+  "familias": {
+   "chrf2": 63.78,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 8638,
+   "ms_p95": 19640,
+   "b4_frenadas": 1,
+   "costo_usd": 0.2363,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Yakuwan upyay, ama tiywanqa upyaychu."
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Qanchis punchawmi hampikunayki."
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Controlnikiqa lunes punchawmi."
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Mana mikusqalla hamunki."
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "Huk killamanta kutimunki."
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Yawar lluqsimuptinqa, chaylla hamuy."
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Llumpayta rupapakuptikiqa, hamuy."
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "Wawa mana kuyuptinqa, hamunki."
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "¿Haykapimantataq nanasunki?"
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "Maypitaq nanasunki?"
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "¿Rupapakunkichu?"
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Presionnikitam tupusqayki"
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Ukunta samaykuy."
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "Kimsa chunka isqunniyuqmi rupapakuchkan."
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Achka yakuta upyachiy."
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "Chawpi pastillata, manam huntasqatachu."
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Punchawpi iskay kuti, tutamanta tuta."
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "Resultadoqa kimsa punchawpim chayamunqa."
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta upyay"
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Manaraq imatapas mikuspa omeprazolta upiyay."
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Sulfato ferrosota upyay."
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Ácido fólicota upiy."
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta upyay."
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metforminata upyay"
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartanta upyay"
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamolta servikuy."
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamina C-ta upyay"
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Jarabeta upyaykuy."
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tabletata upyay."
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Huk ampollatam churapusayki."
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Kimsa sutuyta churapuy."
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Huk wisllacha jarabe"
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "Pichqa pachak miligramoyuq pastilla"
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Dokturmi qawasunki."
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Doctoram qawasunki."
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Enfermeraqa willasunkim."
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Obstetram qawaykusunki."
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "Postaman riy."
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Hospitalmanmi pusasunchik."
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Presionnikitam tupusqayki."
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Diabetes unquyniyuqmi kanki."
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qamqa anemiayuqmi kanki."
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Controlnikiman hamuy"
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kaypim recetayki kachkan."
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Hukmanta chunkakama yupay."
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Semanapa punchawninkunata niykuy, lunesmanta domingokama."
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "Tutamanta, tardepi hinallataq tutapi pastillata upyay."
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Pastillata pusaq hora sapa tomay."
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Huk semanapi kutimunki."
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Sapa pusaq horamanta huk pastillata tomay"
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Mikusqayki qepata pastillata upyay."
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Allinña tarikuspapas pastillata ama saqiychu."
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Carnéykita apamuy."
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "Ima pastillatapas tomachkankichu?"
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "¿Imallamanpas alergikachu kanki?"
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "Hayka watayuqtaq kanki?"
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofenota upyay"
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilinata tomay."
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Suero oralta qoykuy"
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "Pichqa mililitro jarabe"
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Chawpi tableta"
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Chunka iskayniyuq horamanta pastillata upyay."
+    }
+   ]
+  },
+  "familias_inv": {
+   "chrf2": 46.61,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 6944,
+   "ms_p95": 28341,
+   "b4_frenadas": null,
+   "costo_usd": 0.2656,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "Tomar agua, no con té."
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "Te tratas en 7 días"
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "El día lunes vendrás para tu control"
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "Vienes sin comer"
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Regresarás en un mes"
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "Si hay sangre, vienes corriendo rápido."
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Si hay fiebre, vienes"
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "Si el bebé no se mueve, vienes."
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "¿Cuándo duele?"
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "¿Dónde duele?"
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "¿Hay fiebre?"
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "Te tomaré la presión."
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Descansa bien sin preocuparte"
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Estás con 19 de fiebre"
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Le das mucha agua"
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "Media pastilla, no entera"
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "Das 2, en el día y al anochecer."
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "En 3 días llegará el resultado."
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Vas a tomar paracetamol"
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Tomarás omeprazol sin haber comido"
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "Tomas sulfato ferroso"
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "Tomo ácido fólico."
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "Tómate albendazol"
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "Toma metformina"
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "Toma el losartán"
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "Este salbutamol"
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "Toma vitamina C"
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Toma jarabe"
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Tomas la tableta"
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Te voy a poner la ampolla"
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "Echa 3 gotas"
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "Dale jarabe en 1 cucharita"
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "Pastilla de 500 miligramos"
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "El doctor revisará."
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Esta doctora te ayudará."
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "La enfermera te avisará"
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "La obstetra te revisará"
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "Vas a la posta"
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "Te llevaré al hospital"
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "Te voy a medir la presión"
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Tú estás con diabetes"
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "Tú estás con anemia"
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "Vendrás para tu control."
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí está tu receta."
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Cuenta del 1 al 10"
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Desde hace un mes, hasta el domingo,"
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Toma la pastilla de día y de noche"
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Toma la pastilla cada 8 horas"
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Regresarás en 1 semana"
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "Tomar 1 pastilla cada 8 horas"
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Tomar las pastillas después de comer."
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "No dejes la pastilla aunque estés bien."
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Traes tu carné"
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "No está tomando ninguna pastilla."
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "Algo nos da alergia"
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "¿Cuántos años tienes?"
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Tomas ibuprofeno"
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Tomas amoxicilina"
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "Dale suero por su boca"
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "5 mililitros de jarabe"
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "Media tableta"
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Toma la pastilla a las 12 horas."
+    }
+   ]
+  },
+  "ricardo30": {
+   "chrf2": 49.19,
+   "n": 30,
+   "fallos_llamada": 0,
+   "ms_p50": 6068,
+   "ms_p95": 14416,
+   "b4_frenadas": 0,
+   "costo_usd": 0.0778,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "¿Allillanchu kachkanki, mamay?"
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "Allillanmi kachkani, taytáy!"
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "Taytay, ¿imaynallam kachkanki?"
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Mamáy, allillanmi kachkani."
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "Allillanchu, taytáy?"
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "Imaynallam kachkanki, mamay?"
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "Imaynallam kachkankichik, mamakuna?"
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin punchaw, doctor."
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allin punchaw, doctora."
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Chaskiykim, taytáy"
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Chaskiykichik, mamakuna."
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allin punchaw, mamay"
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allin punchaw, taytakuna"
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allin punchaw, taytáy."
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Allin punchaw, mamakuna."
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Yaykumuy, taytay"
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Yaykumuy, mamay."
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Yaykukamuychik, taytakuna."
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Yaykumuychik, mamakuna."
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Tiyaykuy"
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyakuychik."
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "Imatataq munanki, mamay?"
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "Imatataq munanki, taytay?"
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "Imapaqtaq hamurqanki, mamay?"
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "Imanasqataq hamurqanki, taytáy?"
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "¿Imapitaq yanapaykusayki?"
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "¿Imatataq qampaq ruraykullayman?"
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "¿Imapitaq yanapaykiman?"
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "¿Imapitaq yanapaykikuman?"
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "Yanapaykuykimanchu?"
+    }
+   ]
+  }
+ },
+ "deepseek-v3.2": {
+  "familias": {
+   "chrf2": 39.96,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 1636,
+   "ms_p95": 4120,
+   "b4_frenadas": 5,
+   "costo_usd": 0.0119,
+   "salidas": [
+    {
+     "src": "Tómela con agua, no con té",
+     "hip": "Yakuwan upyachiy, ama téwan."
+    },
+    {
+     "src": "Son siete días de tratamiento",
+     "hip": "Kimsa huk watqa hampi kachun."
+    },
+    {
+     "src": "Su control es el lunes",
+     "hip": "Qamqa lunesmi controlchayki."
+    },
+    {
+     "src": "Venga en ayunas",
+     "hip": "Yarqasqa kachun."
+    },
+    {
+     "src": "Vuelva en un mes",
+     "hip": "kutimuy huk killa tukusqanmantawan."
+    },
+    {
+     "src": "Si hay sangrado, venga de inmediato",
+     "hip": "Yawarqa rikurisqan chayqa, kuyuylla hamuy."
+    },
+    {
+     "src": "Si tiene fiebre alta, venga",
+     "hip": "Sipas llakichaq kaspanki, jamuy."
+    },
+    {
+     "src": "Si el bebé no se mueve, venga",
+     "hip": "wawakuna mana kuyuchkaptinqa, hamuy."
+    },
+    {
+     "src": "¿Desde cuándo le duele?",
+     "hip": "¿Hayk'amantam nanayachin?"
+    },
+    {
+     "src": "¿Dónde le duele?",
+     "hip": "Maykipi nanankiman?"
+    },
+    {
+     "src": "¿Tiene fiebre?",
+     "hip": "¿P'achakuyta qhawankichu?"
+    },
+    {
+     "src": "Voy a tomarle la presión",
+     "hip": "Kanchaykita hapichkayki."
+    },
+    {
+     "src": "Respire hondo, por favor",
+     "hip": "Hawkalla samariy, allichay."
+    },
+    {
+     "src": "Tiene treinta y nueve de fiebre",
+     "hip": "Kimsa chunka isqonniyuq k'anchaqniykim."
+    },
+    {
+     "src": "Dele bastante líquido",
+     "hip": "Achkata upyaychikuy."
+    },
+    {
+     "src": "Media pastilla, no entera",
+     "hip": "kichilla pastilla, mana huntʼacha."
+    },
+    {
+     "src": "Dos veces al día, mañana y noche",
+     "hip": "Iskay kutilla, paqarin tutan"
+    },
+    {
+     "src": "El resultado llega en tres días",
+     "hip": "Haykʼachayqa kimsa punchawkunapi chayamun."
+    },
+    {
+     "src": "Tome paracetamol",
+     "hip": "Paracetamolta hapipunku."
+    },
+    {
+     "src": "Tome omeprazol en ayunas",
+     "hip": "Mana yacu upiaspa, omeprazolta upyay"
+    },
+    {
+     "src": "Tome sulfato ferroso",
+     "hip": "Sulfato ferroso huk’uychay."
+    },
+    {
+     "src": "Tome ácido fólico",
+     "hip": "Ácido fólicota hapiy"
+    },
+    {
+     "src": "Tome albendazol",
+     "hip": "Albendazolta hap’iy."
+    },
+    {
+     "src": "Tome metformina",
+     "hip": "Metforminata ukyay"
+    },
+    {
+     "src": "Tome losartán",
+     "hip": "Losartánta haway."
+    },
+    {
+     "src": "Use el salbutamol",
+     "hip": "Salbutamolta llank´achiy."
+    },
+    {
+     "src": "Tome vitamina C",
+     "hip": "Vitamina C haway."
+    },
+    {
+     "src": "Tome el jarabe",
+     "hip": "Huk jarabeta hap'ikuy."
+    },
+    {
+     "src": "Tome una tableta",
+     "hip": "Huk tableta hap'iy."
+    },
+    {
+     "src": "Le voy a poner una ampolla",
+     "hip": "Ampulla churasaq"
+    },
+    {
+     "src": "Póngale tres gotas",
+     "hip": "Kimsa chhulli churankichik"
+    },
+    {
+     "src": "Una cucharadita de jarabe",
+     "hip": "Huk malana kuchilla jarabe."
+    },
+    {
+     "src": "Pastilla de quinientos miligramos",
+     "hip": "Pichqa pachak miligramokunaq pillwa."
+    },
+    {
+     "src": "El doctor lo va a ver",
+     "hip": "Hanaccachu qanripaq ñuqay rik’usayku doctorta."
+    },
+    {
+     "src": "La doctora la va a atender",
+     "hip": "Doctora qanmanta qhawachun."
+    },
+    {
+     "src": "La enfermera le va a explicar",
+     "hip": "Hanaqlla wasichallaypi, hinaqmi chay hampiq willaqunkichis."
+    },
+    {
+     "src": "La obstetra la va a revisar",
+     "hip": "Hinata obstetrapas qamta hapipunqa."
+    },
+    {
+     "src": "Vaya a la posta",
+     "hip": "postaman riy"
+    },
+    {
+     "src": "Lo vamos a llevar al hospital",
+     "hip": "Hospitalman kutimusunchik."
+    },
+    {
+     "src": "Le voy a medir la presión",
+     "hip": "Ñuqaqa qamta willakusqayki muyuriq yawarniykita tupuchisqaykim."
+    },
+    {
+     "src": "Usted tiene diabetes",
+     "hip": "Qam diabetesniyki kachkan."
+    },
+    {
+     "src": "Usted tiene anemia",
+     "hip": "Qamqa anemiachayu kanki."
+    },
+    {
+     "src": "Venga a su control",
+     "hip": "Kutimusqa utqaylla kanki."
+    },
+    {
+     "src": "Aquí está su receta",
+     "hip": "Kaychiki kanki receptayki."
+    },
+    {
+     "src": "Cuente del uno al diez",
+     "hip": "Hukmanta chunka kama yupaychakuy."
+    },
+    {
+     "src": "Diga los días de la semana, del lunes al domingo",
+     "hip": "Killankunata willay, lunesmanta domingokama."
+    },
+    {
+     "src": "Tome la pastilla en la mañana, en la tarde y en la noche",
+     "hip": "P'unchaw ñuqanpi, qhipa p'unchawpi, tutapi p'istuta ukyakuy."
+    },
+    {
+     "src": "Tome la pastilla cada ocho horas",
+     "hip": "Pastilla-ta kinsa kuti punchawpi, pusaq (8) hora-pas-hina upyay."
+    },
+    {
+     "src": "Vuelva en una semana",
+     "hip": "Semanaq kutimuspayki."
+    },
+    {
+     "src": "Tome una pastilla cada ocho horas",
+     "hip": "Huk pastillata pusaq uraspi hukllatam hapiy."
+    },
+    {
+     "src": "Tome la pastilla después de comer",
+     "hip": "Mikhusqayki qhipa huk pastilla hapʼaykuy."
+    },
+    {
+     "src": "No deje la pastilla aunque se sienta bien",
+     "hip": "Ama hark’anchu pastillata, allin kaspapas sienteyki."
+    },
+    {
+     "src": "Traiga su carné",
+     "hip": "Karnétaykita apamuy."
+    },
+    {
+     "src": "¿Está tomando alguna pastilla?",
+     "hip": "¿Ima pildorataq takishanki?"
+    },
+    {
+     "src": "¿Es alérgica a algo?",
+     "hip": "Ima manataq allinyachu kanki?"
+    },
+    {
+     "src": "¿Cuántos años tiene?",
+     "hip": "Hayka watayuq kanki?"
+    },
+    {
+     "src": "Tome ibuprofeno",
+     "hip": "Ibuprofeno ñut'ay."
+    },
+    {
+     "src": "Tome amoxicilina",
+     "hip": "Amoxicilina tomay."
+    },
+    {
+     "src": "Dele suero oral",
+     "hip": "Ama pampapita pukllachu, sut’ita pukllachu."
+    },
+    {
+     "src": "Cinco mililitros de jarabe",
+     "hip": "pichqa mililitro de jarabe."
+    },
+    {
+     "src": "Media tableta",
+     "hip": "Kimsa kutita."
+    },
+    {
+     "src": "Tome la pastilla cada doce horas",
+     "hip": "Sapa chunka iskayniyuq horapi hampita mikuy"
+    }
+   ]
+  },
+  "familias_inv": {
+   "chrf2": 38.06,
+   "n": 62,
+   "fallos_llamada": 0,
+   "ms_p50": 1363,
+   "ms_p95": 2775,
+   "b4_frenadas": null,
+   "costo_usd": 0.0026,
+   "salidas": [
+    {
+     "src": "Upyay yacuta manan tehuancho",
+     "hip": "Debes tomar agua."
+    },
+    {
+     "src": "Qanchis punchaupi trataqunki",
+     "hip": "Siete días tiene su tratamiento"
+    },
+    {
+     "src": "Lunes punchauta  jamunki controlninkipa",
+     "hip": "El lunes viniste para tu control."
+    },
+    {
+     "src": "Manan micuspa jamunqui",
+     "hip": "No viene después de comer."
+    },
+    {
+     "src": "Killapi kutimunki",
+     "hip": "Regresa en un mes."
+    },
+    {
+     "src": "Yawar kaptinja currimunki apurauta",
+     "hip": "Si hay sangre, debes venir rápido."
+    },
+    {
+     "src": "Fiebre qaptencca jamunki",
+     "hip": "Fiebre qaptencca jamunki"
+    },
+    {
+     "src": "Wawa mana kuyuktincca jamunki",
+     "hip": "El bebé no se movía, así que viniste."
+    },
+    {
+     "src": "Jaykapitac nanan",
+     "hip": "Hasta cuándo duele."
+    },
+    {
+     "src": "Maypitacc nanan",
+     "hip": "Me duele el estómago."
+    },
+    {
+     "src": "Rupay cashcncho",
+     "hip": "Hace dos días."
+    },
+    {
+     "src": "Presioniykita tumaykusacc",
+     "hip": "Su presión voy a medir."
+    },
+    {
+     "src": "Allinta samaykuy amayuyakuspa",
+     "hip": "Respire bien sin cansarse"
+    },
+    {
+     "src": "Chunka isjon fibriyocc kashkanki",
+     "hip": "Tiene diez de fiebre"
+    },
+    {
+     "src": "Ashka yakuta junki",
+     "hip": "Toma mucha agua."
+    },
+    {
+     "src": "Chaupi pastillata, manam totalchata",
+     "hip": "A la mitad de la pastilla, no del todo."
+    },
+    {
+     "src": "Isqayta junki, punchaupi y tutayajpi",
+     "hip": "La tomo dos veces, por la mañana y por la noche."
+    },
+    {
+     "src": "Quimsa punchaupi resultado chayamuncca",
+     "hip": "El resultado llegará dentro de tres días."
+    },
+    {
+     "src": "Upianki parcetamolta",
+     "hip": "Tome media pastilla."
+    },
+    {
+     "src": "Upianki omeprazolta mana micuscca",
+     "hip": "Toma omeprazol sin haber comido."
+    },
+    {
+     "src": "Upianki sulfato ferrosota",
+     "hip": "Usted toma pastillas de sulfato ferroso."
+    },
+    {
+     "src": "Upiayki acido folicota",
+     "hip": "Tome su ácido fólico."
+    },
+    {
+     "src": "Upiaykuy albendazolta",
+     "hip": "Debo tomar albendazol."
+    },
+    {
+     "src": "Upiyakuy metforminata",
+     "hip": "Toma metformina"
+    },
+    {
+     "src": "Upiaykuy losartanta",
+     "hip": "Tome su losartán."
+    },
+    {
+     "src": "Kayta salbutamolta",
+     "hip": "la pastilla salbutamol"
+    },
+    {
+     "src": "Upyay vitaminata c",
+     "hip": "Que tome vitaminas c."
+    },
+    {
+     "src": "Upiyay jarabeta",
+     "hip": "Tome el jarabe"
+    },
+    {
+     "src": "Tabletata upianki",
+     "hip": "Toma la pastilla"
+    },
+    {
+     "src": "Churasayki apollata",
+     "hip": "Le pondré la inyección."
+    },
+    {
+     "src": "Kimsa gotata sotoykuy",
+     "hip": "Tres veces al día se toma."
+    },
+    {
+     "src": "Juk wisllachapi jarabeta juykuy",
+     "hip": "El vómito está saliendo hacia arriba en un solo chorro."
+    },
+    {
+     "src": "Piskcca pachac miligramuta Pastillata",
+     "hip": "Cada doscientos miligramos de pastilla."
+    },
+    {
+     "src": "Doctorme jawarincca",
+     "hip": "Doctor me llamó."
+    },
+    {
+     "src": "Cai Doctora yanapasunki",
+     "hip": "Esta Doctora te va a ayudar."
+    },
+    {
+     "src": "Enfemeram willasunki",
+     "hip": "Te dice la enfermera."
+    },
+    {
+     "src": "Obstetram jawarisunki",
+     "hip": "El obstetra te va a ver."
+    },
+    {
+     "src": "Rinki postata",
+     "hip": "Fui a la posta."
+    },
+    {
+     "src": "Hospitalman apasayki",
+     "hip": "El doctor va a verte."
+    },
+    {
+     "src": "Presionta medisayki",
+     "hip": "La presión mide"
+    },
+    {
+     "src": "Ham kashkanki diabetiswan",
+     "hip": "Tengo diabetes."
+    },
+    {
+     "src": "Ham kashkanki anemiawan",
+     "hip": "[No se entiende]"
+    },
+    {
+     "src": "Controlnikipacc jamunki",
+     "hip": "En el control he venido."
+    },
+    {
+     "src": "Caypi cashcan recetayki",
+     "hip": "Aquí está su receta."
+    },
+    {
+     "src": "Yupay jucmanta chuncacama",
+     "hip": "Yupay desde uno hasta diez"
+    },
+    {
+     "src": "Killamanta pacha, intichaycama,",
+     "hip": "Hace unos meses, hasta el mediodía,"
+    },
+    {
+     "src": "Upyay pastillata punchaypi y tutallaccpi",
+     "hip": "Tome pastilla en el día y en la noche"
+    },
+    {
+     "src": "Upyay pastillata pusacc horapi",
+     "hip": "Tome la pastilla a las ocho de la noche."
+    },
+    {
+     "src": "Cutimunki juk semanapi",
+     "hip": "Cortará dentro de una semana"
+    },
+    {
+     "src": "pusaq horapi juk pastillata upyay",
+     "hip": "Tome una pastilla a las ocho horas."
+    },
+    {
+     "src": "Mikuy qhipa pastillakunata japay",
+     "hip": "Después de comer toma las pastillas"
+    },
+    {
+     "src": "Amay pastillata dejaychu allin captiquipas",
+     "hip": "Yo tomo pastilla bien cuando estoy."
+    },
+    {
+     "src": "Carniquita apamunki",
+     "hip": "Tráeme carne"
+    },
+    {
+     "src": "Ima pastillata tomascanchu",
+     "hip": "¿Qué pastilla tomó?"
+    },
+    {
+     "src": "Imapas alergiaccunchi",
+     "hip": "Tenemos algún tipo de alergia."
+    },
+    {
+     "src": "Jaykataj watayki",
+     "hip": "¿Cuántos años tienes?"
+    },
+    {
+     "src": "Upianki ibuprofenota",
+     "hip": "Toma ibuprofeno."
+    },
+    {
+     "src": "Upianki amoxicilinata",
+     "hip": "Tome amoxicilina"
+    },
+    {
+     "src": "Joy sueruta siminpe",
+     "hip": "Me duele la cabeza en la parte alta."
+    },
+    {
+     "src": "Pichcca mililitruta jarabeta",
+     "hip": "5 mililitros de jarabe"
+    },
+    {
+     "src": "Chaupi tabletata",
+     "hip": "A media pastilla."
+    },
+    {
+     "src": "Upyay pasitillata chunca incaynillocc horapi",
+     "hip": "Tomar pastillas a las diez en punto de la noche."
+    }
+   ]
+  },
+  "ricardo30": {
+   "chrf2": 27.91,
+   "n": 30,
+   "fallos_llamada": 0,
+   "ms_p50": 1407,
+   "ms_p95": 2697,
+   "b4_frenadas": 0,
+   "costo_usd": 0.0038,
+   "salidas": [
+    {
+     "src": "¿Está bien, señora?",
+     "hip": "Allillanchu, señora?"
+    },
+    {
+     "src": "¡Estoy bien, señor!",
+     "hip": "Allillanmi kashani, tayta."
+    },
+    {
+     "src": "Señor, ¿cómo está?",
+     "hip": "Taytay, ¿imayna kashanki?"
+    },
+    {
+     "src": "Señora, estoy bien",
+     "hip": "Ñuqaqa allinmi kashani, señora."
+    },
+    {
+     "src": "¿Cómo está, señor?",
+     "hip": "Imaynallanchu, señor?"
+    },
+    {
+     "src": "¿Cómo está, señora?",
+     "hip": "¿Allillanchu, señora?"
+    },
+    {
+     "src": "¿Cómo están, señoras?",
+     "hip": "Imaynallan tiyankichik, señorakuna?"
+    },
+    {
+     "src": "Buenos días, doctor",
+     "hip": "Allin p’unchayta, doctorkuna"
+    },
+    {
+     "src": "Buenos días, doctora",
+     "hip": "Allin p'unchay, doctora."
+    },
+    {
+     "src": "Le recibo, señor",
+     "hip": "Recibisqayki, tayta."
+    },
+    {
+     "src": "Les recibo, señoras",
+     "hip": "Tiyaykusaykichik, mamakuna."
+    },
+    {
+     "src": "Buenos días, señora",
+     "hip": "Allin punchaw, señora."
+    },
+    {
+     "src": "Buenos días, señores",
+     "hip": "Allin p'unchay, taytakuna."
+    },
+    {
+     "src": "Buenos días, señor",
+     "hip": "Allin p’unchay, tayta."
+    },
+    {
+     "src": "Buenos días, señoras",
+     "hip": "Walin punchaw, mamakuna"
+    },
+    {
+     "src": "Adelante, señor",
+     "hip": "Ñawpaqman, señor"
+    },
+    {
+     "src": "Adelante, señora",
+     "hip": "Haykuy, ñuqay."
+    },
+    {
+     "src": "Adelante, señores",
+     "hip": "Yaykuychik, señorkuna."
+    },
+    {
+     "src": "Adelante, señoras",
+     "hip": "Yaykuchiy, mamakunallá."
+    },
+    {
+     "src": "Tome asiento",
+     "hip": "Sitakuy."
+    },
+    {
+     "src": "Tomen asiento",
+     "hip": "Tiyariykuy."
+    },
+    {
+     "src": "¿Qué desea, señora?",
+     "hip": "Imatatá munanki, mamay?"
+    },
+    {
+     "src": "¿Qué desea, señor?",
+     "hip": "Imaynatataq munankichu, señor?"
+    },
+    {
+     "src": "¿Para qué ha venido, señora?",
+     "hip": "Imaynatan kayman hamuwanki, señora?"
+    },
+    {
+     "src": "¿Por qué ha venido, señor?",
+     "hip": "Imanasqatag shamurqanki, tayta?"
+    },
+    {
+     "src": "¿En qué le puedo servir?",
+     "hip": "Ima serviciopi kusirqayki?"
+    },
+    {
+     "src": "¿Qué puedo hacer por usted?",
+     "hip": "¿Imaynataq yanapawaykimanta?"
+    },
+    {
+     "src": "¿En qué le puedo ayudar?",
+     "hip": "Imaynatan yanapayman."
+    },
+    {
+     "src": "¿En qué le podemos ayudar?",
+     "hip": "Imaypipas yanapaykuyta atinchik?"
+    },
+    {
+     "src": "¿Puedo ayudarle?",
+     "hip": "¿Yanapasqaykimanta?"
+    }
+   ]
+  }
+ }
+}

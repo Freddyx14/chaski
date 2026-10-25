@@ -18,6 +18,8 @@ import unicodedata
 from datetime import datetime
 from pathlib import Path
 
+import os
+
 import anthropic
 import httpx
 
@@ -39,6 +41,21 @@ def traducir_nllb(texto, de, a):
                    headers={"ngrok-skip-browser-warning": "1"}, timeout=60)
     r.raise_for_status()
     return TextoTraducido(texto=r.json()["traduccion"], de=de, a=a, motor="nllb", motor_pedido="nllb")
+
+
+def traducir_gemini(texto, de, a):
+    """Gemini 3 Flash through OpenRouter, with the product prompt and glossary (same as evals/traduccion/comparar.py)."""
+    from chaski import traducir as t
+    glos = "\n".join(f"- {x['castellano']} → {x['quechua']}" for x in t.cargar_glosario())
+    r = httpx.post("https://openrouter.ai/api/v1/chat/completions", timeout=120,
+                   headers={"Authorization": f"Bearer {os.environ['OPENROUTER_API_KEY']}"},
+                   json={"model": "google/gemini-3-flash-preview", "messages": [
+                       {"role": "system", "content": t.SISTEMA[(de, a)] + " Responde SOLO con la traducción, en una "
+                        "línea, sin comillas ni notas."},
+                       {"role": "user", "content": f"Glosario revisado por una hablante nativa:\n{glos}\n\n<texto>\n{texto}\n</texto>"}]})
+    r.raise_for_status()
+    return TextoTraducido(texto=r.json()["choices"][0]["message"]["content"].strip().strip('"'), de=de, a=a,
+                          motor="claude", motor_pedido="claude")
 
 
 def pct(xs, p):
@@ -73,7 +90,11 @@ def main():
     cli = anthropic.Anthropic()
     base = o.dependencias(cli)
     nllb = {**base, "traducir_fn": traducir_nllb}
-    setups = {"claude": (base, False), "claude_anticipado": (base, True), "nllb": (nllb, False), "nllb_anticipado": (nllb, True)}
+    gemini = {**base, "traducir_fn": traducir_gemini}
+    setups = {"claude": (base, False), "claude_anticipado": (base, True), "nllb": (nllb, False),
+              "nllb_anticipado": (nllb, True), "gemini_flash_anticipado": (gemini, True)}
+    solo = [x for x in sys.argv[1:] if x in setups]  # e.g. `gemini_flash_anticipado` to run one setup
+    setups = {k: v for k, v in setups.items() if not solo or k in solo}
     with fut.ThreadPoolExecutor(max_workers=4) as pool:
         res = dict(zip(setups, pool.map(lambda kv: correr(kv[0], casos, *kv[1]), setups.items())))
     for k, v in res.items():
