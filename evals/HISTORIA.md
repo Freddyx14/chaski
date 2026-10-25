@@ -52,6 +52,29 @@ traducciones flojas de verdad (le falta una palabra, agrega algo). Chaski falla 
 
 El 42,31 que se venía citando se midió **con el pensamiento apagado** y con otro prompt. El traductor del producto piensa y mide 51,8. Se cambia con `CHASKI_PENSAR_TRADUCIR`; por defecto queda el del modelo (primero la precisión).
 
+### 2c · Jev como respaldo para decidir la acción (24-oct, 22:55)
+
+Pedido de Freddy (22:50): medir Jev (TypeSafe) como respaldo, no como reemplazo. Una llamada por turno con preguntas
+tipadas (acción, dato faltante, frase del banco); a quién va se deduce en código. Mismos 48 escenarios que Opus.
+Archivo: `evals/jev/resultados/jev-20261024-2255.json` (script `evals/jev/correr.py`).
+
+| | Opus 5 (producto) | Jev |
+|---|---|---|
+| Acción correcta | 98–100 % | **83 % (40/48)** |
+| Tiempo p50 | 2,9 s | **0,4 s** (p95 1,8 s) |
+| Costo de los 48 | — | ~$0,002 (precio publicado por TypeSafe, sin verificar en la factura) |
+| Frase del banco correcta | — | 4/4 |
+| Dato faltante correcto | — | 1/3 |
+
+Por categoría acierta todo en basura, inyección, meta, paciente en quechua y banco. Falla donde más importa: en 3 de 3
+casos donde faltaba un dato crítico eligió traducir (`med-04`, `emer-01`, `asr-02`). Ahí las barreras no salvan,
+porque la traducción es fiel a una indicación incompleta.
+
+**Cascada por confianza:** si Jev decide solo cuando su confianza es ≥ 0,85, decide 16 de 48 turnos sin ningún error y
+Opus decide el resto: ~0,8 s menos en promedio. El umbral está ajustado sobre solo 48 casos, así que es una pista, no
+un número para el pitch. Veredicto: **no reemplaza a Opus**; sirve como respaldo si Opus falla, y como primer filtro
+cuando confía mucho.
+
 ## 3 · ¿Encuentra la frase verificada correcta? (RAG, 76 consultas)
 
 | Método | Acierta a la primera | Entre las 5 primeras |

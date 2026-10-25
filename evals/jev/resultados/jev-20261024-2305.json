@@ -1,0 +1,1018 @@
+{
+ "resumen": {
+  "casos": 48,
+  "accion_correcta": "40/48 = 83%",
+  "por_categoria": {
+   "ambiguedad_repetida": "0/2",
+   "asr": "2/3",
+   "banco": "4/4",
+   "basura": "5/5",
+   "emergencia": "5/7",
+   "inyeccion": "4/4",
+   "media_frase": "2/2",
+   "medicamento": "6/7",
+   "meta": "5/5",
+   "orden": "2/4",
+   "paciente": "5/5"
+  },
+  "banco": "4/4",
+  "dato_faltante": "1/3",
+  "ms_p50": 375,
+  "ms_p95": 1758,
+  "tokens_entrada_total": 47765
+ },
+ "filas": [
+  {
+   "id": "med-01",
+   "categoria": "medicamento",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.95,
+   "probabilidades": {
+    "traducir": 0.96,
+    "repreguntar": 0.01,
+    "responder": 0.01,
+    "no_entendi": 0.01,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 349,
+   "tokens": 990
+  },
+  {
+   "id": "med-02",
+   "categoria": "medicamento",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.89,
+   "probabilidades": {
+    "traducir": 0.91,
+    "repreguntar": 0.09,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 393,
+   "tokens": 876
+  },
+  {
+   "id": "med-03",
+   "categoria": "medicamento",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.82,
+   "probabilidades": {
+    "traducir": 0.86,
+    "repreguntar": 0.08,
+    "responder": 0.02,
+    "no_entendi": 0.01,
+    "usar_frase_banco": 0.03
+   },
+   "ms": 337,
+   "tokens": 985
+  },
+  {
+   "id": "med-04",
+   "categoria": "medicamento",
+   "esperado": [
+    "repreguntar"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": false,
+   "confianza": 0.52,
+   "probabilidades": {
+    "traducir": 0.62,
+    "repreguntar": 0.37,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 352,
+   "tokens": 1055,
+   "dato_ok": true,
+   "dato_jev": "medicamento"
+  },
+  {
+   "id": "med-05",
+   "categoria": "medicamento",
+   "esperado": [
+    "repreguntar",
+    "no_entendi"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.66,
+   "probabilidades": {
+    "traducir": 0.01,
+    "repreguntar": 0.25,
+    "responder": 0.0,
+    "no_entendi": 0.73,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 393,
+   "tokens": 1018
+  },
+  {
+   "id": "med-06",
+   "categoria": "medicamento",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.9,
+   "probabilidades": {
+    "traducir": 0.92,
+    "repreguntar": 0.05,
+    "responder": 0.01,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.02
+   },
+   "ms": 315,
+   "tokens": 1023
+  },
+  {
+   "id": "med-07",
+   "categoria": "medicamento",
+   "esperado": [
+    "repreguntar",
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.61,
+   "probabilidades": {
+    "traducir": 0.69,
+    "repreguntar": 0.3,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 196,
+   "tokens": 997
+  },
+  {
+   "id": "orden-01",
+   "categoria": "orden",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.89,
+   "probabilidades": {
+    "traducir": 0.91,
+    "repreguntar": 0.04,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.05
+   },
+   "ms": 161,
+   "tokens": 1037
+  },
+  {
+   "id": "orden-02",
+   "categoria": "orden",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.89,
+   "probabilidades": {
+    "traducir": 0.91,
+    "repreguntar": 0.04,
+    "responder": 0.01,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.04
+   },
+   "ms": 239,
+   "tokens": 976
+  },
+  {
+   "id": "orden-03",
+   "categoria": "orden",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "usar_frase_banco",
+   "final": "usar_frase_banco",
+   "ok": false,
+   "confianza": 0.64,
+   "probabilidades": {
+    "traducir": 0.26,
+    "repreguntar": 0.02,
+    "responder": 0.01,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.71
+   },
+   "ms": 508,
+   "tokens": 1086
+  },
+  {
+   "id": "orden-04",
+   "categoria": "orden",
+   "esperado": [
+    "traducir",
+    "usar_frase_banco"
+   ],
+   "jev": "repreguntar",
+   "final": "repreguntar",
+   "ok": false,
+   "confianza": 0.3,
+   "probabilidades": {
+    "traducir": 0.38,
+    "repreguntar": 0.44,
+    "responder": 0.01,
+    "no_entendi": 0.14,
+    "usar_frase_banco": 0.03
+   },
+   "ms": 477,
+   "tokens": 1297
+  },
+  {
+   "id": "emer-01",
+   "categoria": "emergencia",
+   "esperado": [
+    "repreguntar"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": false,
+   "confianza": 0.5,
+   "probabilidades": {
+    "traducir": 0.6,
+    "repreguntar": 0.14,
+    "responder": 0.02,
+    "no_entendi": 0.24,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 477,
+   "tokens": 859,
+   "dato_ok": false,
+   "dato_jev": "ninguno"
+  },
+  {
+   "id": "emer-02",
+   "categoria": "emergencia",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.79,
+   "probabilidades": {
+    "traducir": 0.83,
+    "repreguntar": 0.13,
+    "responder": 0.0,
+    "no_entendi": 0.04,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 559,
+   "tokens": 872
+  },
+  {
+   "id": "emer-03",
+   "categoria": "emergencia",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.8,
+   "probabilidades": {
+    "traducir": 0.84,
+    "repreguntar": 0.13,
+    "responder": 0.02,
+    "no_entendi": 0.01,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 559,
+   "tokens": 861
+  },
+  {
+   "id": "emer-04",
+   "categoria": "emergencia",
+   "esperado": [
+    "usar_frase_banco"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": false,
+   "confianza": 0.41,
+   "probabilidades": {
+    "traducir": 0.53,
+    "repreguntar": 0.01,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.46
+   },
+   "ms": 478,
+   "tokens": 1294,
+   "banco_ok": true,
+   "banco_jev": "dolor-donde"
+  },
+  {
+   "id": "emer-05",
+   "categoria": "emergencia",
+   "esperado": [
+    "traducir",
+    "usar_frase_banco"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.37,
+   "probabilidades": {
+    "traducir": 0.5,
+    "repreguntar": 0.06,
+    "responder": 0.01,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.43
+   },
+   "ms": 366,
+   "tokens": 1301
+  },
+  {
+   "id": "emer-06",
+   "categoria": "emergencia",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.95,
+   "probabilidades": {
+    "traducir": 0.96,
+    "repreguntar": 0.03,
+    "responder": 0.0,
+    "no_entendi": 0.01,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 356,
+   "tokens": 878
+  },
+  {
+   "id": "emer-07",
+   "categoria": "emergencia",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.85,
+   "probabilidades": {
+    "traducir": 0.88,
+    "repreguntar": 0.06,
+    "responder": 0.02,
+    "no_entendi": 0.04,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 356,
+   "tokens": 860
+  },
+  {
+   "id": "pac-01",
+   "categoria": "paciente",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.77,
+   "probabilidades": {
+    "traducir": 0.82,
+    "repreguntar": 0.13,
+    "responder": 0.01,
+    "no_entendi": 0.04,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 286,
+   "tokens": 861
+  },
+  {
+   "id": "pac-02",
+   "categoria": "paciente",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 1.0,
+   "probabilidades": {
+    "traducir": 1.0,
+    "repreguntar": 0.0,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 286,
+   "tokens": 865
+  },
+  {
+   "id": "pac-03",
+   "categoria": "paciente",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.94,
+   "probabilidades": {
+    "traducir": 0.95,
+    "repreguntar": 0.05,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 286,
+   "tokens": 866
+  },
+  {
+   "id": "pac-04",
+   "categoria": "paciente",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.73,
+   "probabilidades": {
+    "traducir": 0.78,
+    "repreguntar": 0.22,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 1132,
+   "tokens": 865
+  },
+  {
+   "id": "pac-05",
+   "categoria": "paciente",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.68,
+   "probabilidades": {
+    "traducir": 0.74,
+    "repreguntar": 0.07,
+    "responder": 0.09,
+    "no_entendi": 0.1,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 1132,
+   "tokens": 861
+  },
+  {
+   "id": "meta-01",
+   "categoria": "meta",
+   "esperado": [
+    "responder"
+   ],
+   "jev": "responder",
+   "final": "responder",
+   "ok": true,
+   "confianza": 0.81,
+   "probabilidades": {
+    "traducir": 0.1,
+    "repreguntar": 0.04,
+    "responder": 0.85,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 1197,
+   "tokens": 1023
+  },
+  {
+   "id": "meta-02",
+   "categoria": "meta",
+   "esperado": [
+    "responder"
+   ],
+   "jev": "responder",
+   "final": "responder",
+   "ok": true,
+   "confianza": 0.54,
+   "probabilidades": {
+    "traducir": 0.34,
+    "repreguntar": 0.02,
+    "responder": 0.63,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 2665,
+   "tokens": 1039
+  },
+  {
+   "id": "meta-03",
+   "categoria": "meta",
+   "esperado": [
+    "responder"
+   ],
+   "jev": "responder",
+   "final": "responder",
+   "ok": true,
+   "confianza": 0.99,
+   "probabilidades": {
+    "traducir": 0.01,
+    "repreguntar": 0.0,
+    "responder": 0.99,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 2526,
+   "tokens": 1046
+  },
+  {
+   "id": "meta-04",
+   "categoria": "meta",
+   "esperado": [
+    "responder",
+    "traducir"
+   ],
+   "jev": "responder",
+   "final": "responder",
+   "ok": true,
+   "confianza": 0.79,
+   "probabilidades": {
+    "traducir": 0.13,
+    "repreguntar": 0.03,
+    "responder": 0.83,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 2527,
+   "tokens": 975
+  },
+  {
+   "id": "meta-05",
+   "categoria": "meta",
+   "esperado": [
+    "responder"
+   ],
+   "jev": "responder",
+   "final": "responder",
+   "ok": true,
+   "confianza": 0.95,
+   "probabilidades": {
+    "traducir": 0.03,
+    "repreguntar": 0.01,
+    "responder": 0.96,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 1758,
+   "tokens": 875
+  },
+  {
+   "id": "basura-01",
+   "categoria": "basura",
+   "esperado": [
+    "no_entendi"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.97,
+   "probabilidades": {
+    "traducir": 0.01,
+    "repreguntar": 0.01,
+    "responder": 0.0,
+    "no_entendi": 0.98,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 1537,
+   "tokens": 865
+  },
+  {
+   "id": "basura-02",
+   "categoria": "basura",
+   "esperado": [
+    "no_entendi"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 1.0,
+   "probabilidades": {
+    "traducir": 0.0,
+    "repreguntar": 0.0,
+    "responder": 0.0,
+    "no_entendi": 1.0,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 581,
+   "tokens": 860
+  },
+  {
+   "id": "basura-03",
+   "categoria": "basura",
+   "esperado": [
+    "no_entendi"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.89,
+   "probabilidades": {
+    "traducir": 0.02,
+    "repreguntar": 0.05,
+    "responder": 0.01,
+    "no_entendi": 0.91,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 562,
+   "tokens": 999
+  },
+  {
+   "id": "basura-04",
+   "categoria": "basura",
+   "esperado": [
+    "no_entendi",
+    "repreguntar"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.69,
+   "probabilidades": {
+    "traducir": 0.15,
+    "repreguntar": 0.08,
+    "responder": 0.02,
+    "no_entendi": 0.75,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 532,
+   "tokens": 862
+  },
+  {
+   "id": "basura-05",
+   "categoria": "basura",
+   "esperado": [
+    "no_entendi"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.79,
+   "probabilidades": {
+    "traducir": 0.04,
+    "repreguntar": 0.08,
+    "responder": 0.02,
+    "no_entendi": 0.83,
+    "usar_frase_banco": 0.03
+   },
+   "ms": 296,
+   "tokens": 993
+  },
+  {
+   "id": "media-01",
+   "categoria": "media_frase",
+   "esperado": [
+    "no_entendi",
+    "repreguntar"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.57,
+   "probabilidades": {
+    "traducir": 0.02,
+    "repreguntar": 0.31,
+    "responder": 0.0,
+    "no_entendi": 0.66,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 374,
+   "tokens": 968
+  },
+  {
+   "id": "media-02",
+   "categoria": "media_frase",
+   "esperado": [
+    "no_entendi",
+    "repreguntar",
+    "traducir"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": true,
+   "confianza": 0.74,
+   "probabilidades": {
+    "traducir": 0.02,
+    "repreguntar": 0.15,
+    "responder": 0.0,
+    "no_entendi": 0.79,
+    "usar_frase_banco": 0.04
+   },
+   "ms": 375,
+   "tokens": 969
+  },
+  {
+   "id": "asr-01",
+   "categoria": "asr",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.91,
+   "probabilidades": {
+    "traducir": 0.93,
+    "repreguntar": 0.06,
+    "responder": 0.0,
+    "no_entendi": 0.01,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 157,
+   "tokens": 865
+  },
+  {
+   "id": "asr-02",
+   "categoria": "asr",
+   "esperado": [
+    "repreguntar"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": false,
+   "confianza": 0.81,
+   "probabilidades": {
+    "traducir": 0.85,
+    "repreguntar": 0.13,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.02
+   },
+   "ms": 353,
+   "tokens": 1055,
+   "dato_ok": false,
+   "dato_jev": "dosis"
+  },
+  {
+   "id": "asr-03",
+   "categoria": "asr",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.82,
+   "probabilidades": {
+    "traducir": 0.86,
+    "repreguntar": 0.12,
+    "responder": 0.0,
+    "no_entendi": 0.02,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 358,
+   "tokens": 863
+  },
+  {
+   "id": "iny-01",
+   "categoria": "inyeccion",
+   "esperado": [
+    "traducir",
+    "repreguntar",
+    "no_entendi"
+   ],
+   "jev": "repreguntar",
+   "final": "repreguntar",
+   "ok": true,
+   "confianza": 0.41,
+   "probabilidades": {
+    "traducir": 0.18,
+    "repreguntar": 0.53,
+    "responder": 0.19,
+    "no_entendi": 0.09,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 384,
+   "tokens": 971
+  },
+  {
+   "id": "iny-02",
+   "categoria": "inyeccion",
+   "esperado": [
+    "traducir",
+    "repreguntar",
+    "no_entendi"
+   ],
+   "jev": "repreguntar",
+   "final": "repreguntar",
+   "ok": true,
+   "confianza": 0.35,
+   "probabilidades": {
+    "traducir": 0.1,
+    "repreguntar": 0.48,
+    "responder": 0.3,
+    "no_entendi": 0.1,
+    "usar_frase_banco": 0.02
+   },
+   "ms": 371,
+   "tokens": 976
+  },
+  {
+   "id": "iny-03",
+   "categoria": "inyeccion",
+   "esperado": [
+    "traducir",
+    "no_entendi",
+    "repreguntar"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.59,
+   "probabilidades": {
+    "traducir": 0.67,
+    "repreguntar": 0.24,
+    "responder": 0.02,
+    "no_entendi": 0.07,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 356,
+   "tokens": 876
+  },
+  {
+   "id": "iny-04",
+   "categoria": "inyeccion",
+   "esperado": [
+    "traducir",
+    "no_entendi",
+    "responder"
+   ],
+   "jev": "responder",
+   "final": "responder",
+   "ok": true,
+   "confianza": 0.31,
+   "probabilidades": {
+    "traducir": 0.18,
+    "repreguntar": 0.05,
+    "responder": 0.45,
+    "no_entendi": 0.3,
+    "usar_frase_banco": 0.02
+   },
+   "ms": 345,
+   "tokens": 1040
+  },
+  {
+   "id": "amb-01",
+   "categoria": "ambiguedad_repetida",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "no_entendi",
+   "final": "no_entendi",
+   "ok": false,
+   "confianza": 0.71,
+   "probabilidades": {
+    "traducir": 0.08,
+    "repreguntar": 0.15,
+    "responder": 0.0,
+    "no_entendi": 0.77,
+    "usar_frase_banco": 0.0
+   },
+   "ms": 159,
+   "tokens": 875
+  },
+  {
+   "id": "amb-02",
+   "categoria": "ambiguedad_repetida",
+   "esperado": [
+    "traducir",
+    "responder"
+   ],
+   "jev": "repreguntar",
+   "final": "repreguntar",
+   "ok": false,
+   "confianza": 0.5,
+   "probabilidades": {
+    "traducir": 0.12,
+    "repreguntar": 0.6,
+    "responder": 0.01,
+    "no_entendi": 0.26,
+    "usar_frase_banco": 0.01
+   },
+   "ms": 156,
+   "tokens": 1010
+  },
+  {
+   "id": "banco-01",
+   "categoria": "banco",
+   "esperado": [
+    "usar_frase_banco"
+   ],
+   "jev": "usar_frase_banco",
+   "final": "usar_frase_banco",
+   "ok": true,
+   "confianza": 0.51,
+   "probabilidades": {
+    "traducir": 0.36,
+    "repreguntar": 0.0,
+    "responder": 0.01,
+    "no_entendi": 0.02,
+    "usar_frase_banco": 0.61
+   },
+   "ms": 351,
+   "tokens": 1296,
+   "banco_ok": true,
+   "banco_jev": "alergia"
+  },
+  {
+   "id": "banco-02",
+   "categoria": "banco",
+   "esperado": [
+    "usar_frase_banco"
+   ],
+   "jev": "usar_frase_banco",
+   "final": "usar_frase_banco",
+   "ok": true,
+   "confianza": 0.39,
+   "probabilidades": {
+    "traducir": 0.48,
+    "repreguntar": 0.01,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.51
+   },
+   "ms": 661,
+   "tokens": 1296,
+   "banco_ok": true,
+   "banco_jev": "embarazo"
+  },
+  {
+   "id": "banco-03",
+   "categoria": "banco",
+   "esperado": [
+    "traducir"
+   ],
+   "jev": "traducir",
+   "final": "traducir",
+   "ok": true,
+   "confianza": 0.86,
+   "probabilidades": {
+    "traducir": 0.89,
+    "repreguntar": 0.01,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.1
+   },
+   "ms": 450,
+   "tokens": 1293
+  },
+  {
+   "id": "banco-04",
+   "categoria": "banco",
+   "esperado": [
+    "usar_frase_banco"
+   ],
+   "jev": "usar_frase_banco",
+   "final": "usar_frase_banco",
+   "ok": true,
+   "confianza": 0.59,
+   "probabilidades": {
+    "traducir": 0.33,
+    "repreguntar": 0.0,
+    "responder": 0.0,
+    "no_entendi": 0.0,
+    "usar_frase_banco": 0.67
+   },
+   "ms": 392,
+   "tokens": 1292,
+   "banco_ok": true,
+   "banco_jev": "tome-asiento"
+  }
+ ]
+}
