@@ -73,15 +73,14 @@
 <text x="1662" y="543.9" font-size="11.0" fill="#4E4D45">No cambia ni agrega datos</text>
 <text x="1662" y="559.9" font-size="11.0" fill="#4E4D45">Si cambió algo, se usa</text>
 <text x="1662" y="575.8" font-size="11.0" fill="#4E4D45">lo dicho tal cual</text>
-<rect x="1340" y="495" width="240" height="124" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
+<rect x="1340" y="495" width="240" height="110" fill="#FFFFFF" stroke="#C8372F" stroke-width="2"/>
 <rect x="1340" y="495" width="240" height="4" fill="#C8372F"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMSIgZmlsbD0iI0Q5Nzc1NyIvPgogICAgICA8ZyBzdHJva2U9IiNGRkZGRkYiIHN0cm9rZS13aWR0aD0iMi4xIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICA8cGF0aCBkPSJNMTIgNC41djE1TTQuNSAxMmgxNU02LjcgNi43bDEwLjYgMTAuNk0xNy4zIDYuN0w2LjcgMTcuMyIvPjwvZz48L3N2Zz4=" x="1350" y="505" width="26" height="26"/>
-<text x="1382" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">Traductor</text>
-<text x="1382" y="543.9" font-size="11.0" fill="#4E4D45">Claude Sonnet 5, pensando:</text>
-<text x="1382" y="559.9" font-size="11.0" fill="#4E4D45">chrF++ 51,8</text>
-<text x="1382" y="575.8" font-size="11.0" fill="#4E4D45">Interruptor a NLLB-200 ajustado</text>
-<text x="1382" y="591.8" font-size="11.0" fill="#4E4D45">(25,8 → 31,7): gana el que mide</text>
-<text x="1382" y="607.7" font-size="11.0" fill="#4E4D45">mejor</text>
+<text x="1382" y="512.0" font-size="11.0" fill="#4E4D45" font-weight="700">Traductor · Claude Sonnet 5</text>
+<text x="1382" y="543.9" font-size="11.0" fill="#4E4D45">Esfuerzo medio, empieza mientras</text>
+<text x="1382" y="559.9" font-size="11.0" fill="#4E4D45">decide</text>
+<text x="1382" y="575.8" font-size="11.0" fill="#4E4D45">0/92 términos clave dañados</text>
+<text x="1382" y="591.8" font-size="11.0" fill="#4E4D45">NLLB-1.3B: modo sin conexión</text>
 <rect x="1060" y="495" width="240" height="110" fill="#FFFFFF" stroke="#8A4FBD" stroke-width="2"/>
 <rect x="1060" y="495" width="240" height="4" fill="#8A4FBD"/>
 <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMS41bDkgMy44djYuNGMwIDUuMy0zLjggOS05IDEwLjgtNS4yLTEuOC05LTUuNS05LTEwLjhWNS4zeiIKICAgICAgZmlsbD0iIzhBNEZCRCIvPjxwYXRoIGQ9Ik03LjUgMTIuMmwzIDMgNi02LjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0ZGRkZGRiIKICAgICAgc3Ryb2tlLXdpZHRoPSIyLjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjwvc3ZnPg==" x="1070" y="505" width="26" height="26"/>
@@ -170,8 +169,8 @@
 <text x="1650" y="188" font-size="11.0" fill="#8A4FBD" text-anchor="middle">usar frase</text>
 <path d="M1485 310 L1485 402 L1735 402 L1735 495" fill="none" stroke="#C8372F" stroke-width="2" marker-end="url(#mC8372F)"/>
 <text x="1610" y="396" font-size="11.0" fill="#C8372F" text-anchor="middle">traducir</text>
-<path d="M1620 550 L1600 550 L1600 557 L1580 557" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
-<path d="M1340 557 L1320 557 L1320 550 L1300 550" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1620 550 L1600 550 L1600 550 L1580 550" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
+<path d="M1340 550 L1320 550 L1320 550 L1300 550" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M1060 550 L1040 550 L1040 555 L1020 555" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M740 555 L720 555 L720 555 L700 555" fill="none" stroke="#8C8C7A" stroke-width="2" marker-end="url(#m8C8C7A)"/>
 <path d="M430 555 L400 555 L400 550 L370 550" fill="none" stroke="#C8372F" stroke-width="2" marker-end="url(#mC8372F)"/>

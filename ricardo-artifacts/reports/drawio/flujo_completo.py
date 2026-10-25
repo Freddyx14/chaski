@@ -59,7 +59,7 @@ f.caja("2 · Revisar antes de hablar (ante la duda, Chaski no habla)", BANDA, 40
 b23 = f.caja("B2 · B3 · El pulido\n\nNo cambia ni agrega datos\nSi cambió algo, se usa\nlo dicho tal cual",
              CAJA.format(b=MORADO), 1620, 495, 230, 110, icono="guarda")
 f.flecha(interp, b23, "traducir", f"strokeColor={ROJO};fontColor={ROJO};")
-trad = f.caja("Traductor\n\nClaude Sonnet 5, pensando: chrF++ 51,8\nInterruptor a NLLB-200 ajustado\n(25,8 → 31,7): gana el que mide mejor",
+trad = f.caja("Traductor · Claude Sonnet 5\n\nEsfuerzo medio, empieza mientras decide\n0/92 términos clave dañados\nNLLB-1.3B: modo sin conexión",
               CAJA.format(b=ROJO), 1340, 495, 240, 110, icono="claude")
 f.flecha(b23, trad)
 b4 = f.caja("B4 · Términos fijos\n\nNúmeros en chanka (pusaq = 8)\nmedicamento · unidad · negación\n«con agua» exige unu / yaku",

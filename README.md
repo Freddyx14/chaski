@@ -118,12 +118,12 @@ advice/diagnosis, a polish that adds a fact. Next to each we put the number that
 | Chaski, before the bank audit (205 cases) | 165 / 165 (100 %) | 4 / 40 (10 %) | `evals/ataques/resultados/chaski-2026-10-24-1606.json` |
 | **Chaski, final** (audited 952-case bank, 224-case run, fast critic: p50 2.6 s, p95 3.4 s) | **183 / 184 (99.5 %); 100 % of dose, day, negation, medicine, unit and vehicle errors** | **8 / 40 (20 %)**, about half genuinely weak family translations | `evals/ataques/resultados/chaski-2026-10-24-1740.json` |
 
-A strong model asked "is this right?" catches the seeded errors too, but blocks more than one in four correct sentences and can't say which fact failed. Chaski blocks one in ten, and every block names the field (dose, negation, vehicle…) so the nurse knows what to fix. The weaker naive judge (Haiku) misses errors and blocks two thirds of correct sentences.
-The final run has 205 cases (20 per type, plus 5 `vehiculo`). The extra type came from a real failure: on 2026-10-24
+A strong model asked "is this right?" catches the seeded errors too, but blocks more than one in four correct sentences and can't say which fact failed. Chaski blocked 8 of 40 correct sentences (20 %, about half of them genuinely weak family translations), and every block names the field (dose, negation, vehicle…) so the nurse knows what to fix. The weaker naive judge (Haiku) misses errors and blocks two thirds of correct sentences.
+The final run is 224 cases drawn from the audited 952-case bank. The extra type came from a real failure: on 2026-10-24
 a live audit let "Tómela con agua, no con té" through with the water lost ("unu" back-translated as "uno"), so we added
 the vehicle as a compared fact and the case to the bank (`evals/ataques/README.md`). Some "false blocks" are real
-errors in the family's own transcription, and the README lists them. The full bank has 790 cases. The full run with
-the final critic has not been done yet (`plan/checklist-acordado.md` §C).
+errors in the family's own transcription, and the README lists them. The audited bank has 952 cases; the final run
+sampled 224 of them (`evals/ataques/README.md`).
 
 ### Interpreter: did it pick the right action?
 
@@ -158,11 +158,11 @@ Source: `evals/banco/resultados/2026-10-24.json`.
 | Language ID, `facebook/mms-lid-512` | 6/6 on the synthetic test clips (`datos/prueba_minima/`), 49 ms median. Not yet measured on real clinic audio | `ricardo-artifacts/reports/arquitectura.md` |
 | Quechua ASR baseline, `omniASR_LLM_300M`, 175 clips from one family speaker held out of training | WER 68.9 % / CER 15.6 % as written. **54.1 % / 11.6 %** with spelling normalized on both sides. Loanwords 5/6 | `ricardo-artifacts/reports/asr.json`, `metricas.md` |
 | **Quechua ASR fine-tuned**: `mms-1b-all` quy + our adapter trained on the families' recordings (362 clips), same held-out speaker | **WER 53.9 % → 40.9 %** (normalized), a 24 % relative reduction; clips recognized perfectly **30 → 51 of 175**. Strict WER went 76.0 → 82.5 % because the model now writes normalized spelling; both are reported | commit `7b57a9b`, `ricardo-artifacts/` |
-| **Translation, NLLB-200 600M fine-tuned** vs Claude, 100 held-out verified pairs | NLLB 25.78 → **31.71** chrF++ after fine-tuning (MADLAD-400-3B zero-shot: 12.69); Claude Sonnet 5: **42.31** with thinking off, **51.8** as the product runs it. Claude keeps translating (decided by this measurement) | commit `bf4a788` |
+| **Translation: which model**, 62 unseen phrases written by the families (~4.8 references each), same prompt and glossary | chrF++ Spanish→Chanka: Claude Sonnet 5 **58.9** (full thinking) / **51.4** (medium effort, what the product runs, D40) · Gemini 3.8 Flash 63.8 · Gemini 3 Flash 51.6 · DeepSeek V3.2 40.0 · NLLB-1.3B 34.7. Fixed terms (number, negation, medicine, «con agua») damaged in 92 translations: Claude medium **0**, Gemini 3 Flash 4, NLLB 3. Our own NLLB fine-tune is **not claimed**: its score was contaminated (58 of its 100 evaluation phrases leaked into training, commit `2fac55f`) | `evals/traduccion/resultados/` |
 | **Quechua voice (MMS-TTS) fine-tuned** on four family speakers, including the nurse | Sounds like the speaker instead of a robot. A voice is for a patient to hear, so it is judged by a native speaker's blind test, not by our recognizer (a round trip through the recognizer, trained on human speech, scored the stock voice higher: 45.8 % vs 74.6–98.3 % WER; kept as a secondary note) | commit `ac1b924`, `ricardo-artifacts/reports/voces/` |
 | Quechua ASR speed | 1.71 s for 15.8 s of audio on an A10G, 3.41 GB GPU peak | `ricardo-artifacts/reports/arquitectura.md` |
 | Translation baseline (Sonnet 5, no fine-tuning) | chrF++ 42.31, BLEU 17.11, 30 pairs | `ricardo-artifacts/reports/traduccion.json` |
-| **Fine-tuned ASR, NLLB and TTS** | **Pending.** Trainers exist (`ricardo-artifacts/voz/ajustar_asr.py`), but no committed results file shows an improvement yet, so we don't claim one | — |
+| **Fine-tuned ASR, NLLB and TTS** | ASR: measured, WER 53.9 % → 40.9 % on a speaker the model never heard (`7b57a9b`). NLLB: fine-tune not claimed (contaminated evaluation, `2fac55f`); NLLB-1.3B stays as the offline mode. TTS: fine-tuned on the nurse's voice with her permission; judged by human ears in a blind test with her, result pending | `evals/HISTORIA.md` §4 |
 | Whether the Chanka sounds natural | Pending. No metric covers it. The nurse decides | `ricardo-artifacts/reports/metricas.md` |
 
 Both ASR numbers are reported on purpose. Quechua has no settled spelling, so the strict number is the
