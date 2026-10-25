@@ -225,10 +225,10 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
     reproductor.pause();
     Speech.stop();
     setHablandoSistema(false);
-    if (fase.f === 'grabando') {
+    if (grabadora.isRecording) {
       try { await grabadora.stop(); } catch {}
-      setFase({ f: 'listo' });
     }
+    setFase((p) => (p.f === 'grabando' ? { f: 'listo' } : p));
   }
 
   /** Tocar mientras Chaski habla: lo corta y, en conversación, vuelve a escuchar. */
@@ -519,8 +519,18 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
         : fase.f === 'bloqueado' || fase.f === 'error' || fase.f === 'noentendi' ? 'no_entendi'
         : fase.f === 'pregunta' || fase.f === 'respuesta' || fase.f === 'frase' ? (hablando ? 'hablando' : 'reposo')
           : fase.f === 'dicho' ? 'hablando'
-            : fase.f === 'paciente' ? 'escuchando'
+            : fase.f === 'paciente' ? (sonando ? 'hablando' : 'escuchando')
               : 'reposo';
+  // En conversación, las tarjetas de después de cada turno no piden toques: solo «Pausar».
+  const enConversacion = conversa && !esDemo
+    && ['dicho', 'bloqueado', 'paciente', 'pregunta', 'respuesta', 'noentendi', 'frase'].includes(fase.f)
+    && !((fase.f === 'dicho' || fase.f === 'bloqueado') && fase.ensayo);
+  // A quién le habla Chaski ahora (D42: dos palabras).
+  const hablaA: 'paciente' | 'personal' | null = !sonando ? null
+    : fase.f === 'dicho' || fase.f === 'frase' ? 'paciente'
+      : fase.f === 'pregunta' ? fase.d.para
+        : fase.f === 'noentendi' ? (fase.lado === 'quechua' ? 'paciente' : 'personal')
+          : fase.f === 'respuesta' || fase.f === 'paciente' ? 'personal' : null;
   const protagonista = fase.f === 'listo' || fase.f === 'dicho' || fase.f === 'bloqueado' || fase.f === 'error' || fase.f === 'pensando'
     || fase.f === 'pregunta' || fase.f === 'respuesta' || fase.f === 'noentendi' || fase.f === 'frase';
 
@@ -529,16 +539,20 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       <Encabezado t={t} />
       <ScrollView contentContainerStyle={e.cuerpo} bounces={false}>
         {protagonista ? (
-          <View style={e.centro}>
+          <Pressable style={e.centro} onPress={sonando ? cortar : undefined} disabled={!sonando}
+            accessibilityHint={sonando ? 'Toque para que Chaski deje de hablar' : undefined}>
             <Chaski estado={estadoChaski} tam={fase.f === 'listo' ? 240 : fase.f === 'dicho' ? 200 : 150} boca={boca} pulso={fase.f === 'dicho' || fase.f === 'pregunta' || fase.f === 'respuesta' || fase.f === 'frase' ? pulso : undefined} />
-          </View>
+            {conversa && hablaA ? (
+              <Text style={e.hablaA}>{hablaA === 'paciente' ? t.hablandoAlPaciente : t.hablandoAlPersonal}</Text>
+            ) : null}
+          </Pressable>
         ) : (
           <View style={e.filaChica}>
             <Chaski estado={estadoChaski} tam={112} />
             <View style={{ gap: 6, flex: 1 }}>
               <Etiqueta idioma={fase.f === 'paciente' ? 'quechua' : lado} />
               <Text style={e.secundario}>
-                {fase.f === 'grabando' ? t.escuchando : ''}
+                {fase.f === 'grabando' ? t.escuchando : conversa && hablaA === 'personal' ? t.hablandoAlPersonal : ''}
               </Text>
             </View>
           </View>
@@ -578,37 +592,40 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
       </ScrollView>
 
       <View style={e.pie}>
-        {fase.f === 'dicho' && (
+        {enConversacion && (
+          <Boton alto={56} tipo="secundario" icono="pause.fill" texto={t.tocarPausar} onPress={pausar} />
+        )}
+        {!enConversacion && fase.f === 'dicho' && (
           <View style={e.filaBotones}>
             <Boton tipo="secundario" icono="speaker.wave.2.fill" texto={t.repetirAudio} onPress={repetirAudio} deshabilitado={!fase.vozLista} flex />
             <Boton icono="mic.fill" texto={t.seguirConsulta} onPress={() => setFase({ f: 'listo' })} flex />
           </View>
         )}
-        {fase.f === 'bloqueado' && (
+        {!enConversacion && fase.f === 'bloqueado' && (
           <View style={{ gap: 8 }}>
             <Boton alto={56} texto={t.decirloOtraForma} icono="mic.fill" onPress={() => { setLado('castellano'); empezar(); }} />
             <Boton tipo="texto" texto={t.loExplicoYo} onPress={() => { setLado('castellano'); setFase({ f: 'listo' }); }} />
           </View>
         )}
-        {fase.f === 'paciente' && (
+        {!enConversacion && fase.f === 'paciente' && (
           <View style={e.filaBotones}>
             <Boton icono="mic.fill" texto={t.responder} onPress={() => { setLado('castellano'); empezar(); }} flex />
             <Boton tipo="secundario" texto={t.pedirQueRepita} onPress={() => { setLado('quechua'); setFase({ f: 'listo' }); }} flex />
           </View>
         )}
-        {(fase.f === 'pregunta' || fase.f === 'frase') && (
+        {!enConversacion && (fase.f === 'pregunta' || fase.f === 'frase') && (
           <View style={e.filaBotones}>
             <Boton tipo="secundario" icono="speaker.wave.2.fill" texto={t.repetirAudio} onPress={repetirAudio} flex />
             <Boton icono="mic.fill" texto={t.responder} onPress={() => { setLado(fase.f === 'pregunta' ? fase.lado : 'quechua'); empezar(); }} flex />
           </View>
         )}
-        {fase.f === 'respuesta' && (
+        {!enConversacion && fase.f === 'respuesta' && (
           <View style={e.filaBotones}>
             <Boton tipo="secundario" icono="speaker.wave.2.fill" texto={t.repetirAudio} onPress={() => decirEnCastellano(fase.d.texto)} flex />
             <Boton icono="mic.fill" texto={t.seguirConsulta} onPress={() => setFase({ f: 'listo' })} flex />
           </View>
         )}
-        {fase.f === 'noentendi' && (
+        {!enConversacion && fase.f === 'noentendi' && (
           <View style={{ gap: 8 }}>
             <Boton alto={56} icono="mic.fill" texto={t.repetir} onPress={() => { setLado(fase.lado); empezar(); }} />
             <Boton tipo="texto" texto={t.volver} onPress={() => setFase({ f: 'listo' })} />
@@ -649,7 +666,8 @@ function Consulta({ perfil, inicial, ladoInicial }: { perfil: Perfil; inicial?: 
             lado={lado}
             perfil={perfil}
             t={t}
-            onPress={fase.f === 'grabando' ? terminar : empezar}
+            conversa={conversa}
+            onPress={fase.f === 'grabando' ? (conversa ? pausar : terminar) : conversar}
             onCambiarLado={() => fase.f === 'listo' && setLado(siguienteLado(lado))}
             onReceta={() => router.push('/receta')}
             onResumen={() => router.push('/resumen')}
@@ -767,8 +785,8 @@ function Encabezado({ t }: { t: Textos }) {
   );
 }
 
-function Microfono({ grabando, nivel, lado, perfil, t, onPress, onCambiarLado, onReceta, onResumen }: {
-  grabando: boolean; nivel: number; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void; onResumen: () => void;
+function Microfono({ grabando, conversa, nivel, lado, perfil, t, onPress, onCambiarLado, onReceta, onResumen }: {
+  grabando: boolean; conversa: boolean; nivel: number; lado: Lado; perfil: Perfil; t: Textos; onPress: () => void; onCambiarLado: () => void; onReceta: () => void; onResumen: () => void;
 }) {
   return (
     <View style={{ alignItems: 'center', gap: 12 }}>
@@ -784,14 +802,14 @@ function Microfono({ grabando, nivel, lado, perfil, t, onPress, onCambiarLado, o
         <AnilloInti modo={grabando ? 'escucha' : 'reposo'} nivel={nivel} tinte={lado}>
         <Pressable
           accessibilityRole="button"
-          accessibilityLabel={grabando ? 'Terminar y traducir' : 'Empezar a hablar'}
+          accessibilityLabel={grabando ? (conversa ? 'Pausar la conversación' : 'Terminar y traducir') : 'Empezar a hablar'}
           onPress={onPress}
           style={({ pressed }) => [
             e.micro,
             { backgroundColor: grabando || pressed ? C.actionPressed : C.action },
             grabando && { borderWidth: 6, borderColor: C.actionTint },
           ]}>
-          <Icono nombre={grabando ? 'stop.fill' : 'mic.fill'} color={C.surface} tam={36} />
+          <Icono nombre={grabando ? (conversa ? 'pause.fill' : 'stop.fill') : 'mic.fill'} color={C.surface} tam={36} />
         </Pressable>
         </AnilloInti>
         <View style={e.lateral}>
@@ -803,7 +821,7 @@ function Microfono({ grabando, nivel, lado, perfil, t, onPress, onCambiarLado, o
           {!grabando && <Text style={e.lateralTexto}>{t.resumen}</Text>}
         </View>
       </View>
-      <Text style={e.microTexto}>{grabando ? t.tocarTerminar : t.tocarHablar}</Text>
+      <Text style={e.microTexto}>{grabando ? (conversa ? t.tocarPausar : t.tocarTerminar) : t.tocarHablar}</Text>
       <Pressable onPress={onCambiarLado} disabled={grabando} style={e.lado} accessibilityHint="Toque para cambiar quién habla">
         <Icono nombre="arrow.left.arrow.right" color={C.inkSecondary} tam={14} />
         <Text style={e.ladoTexto}>
@@ -1018,6 +1036,7 @@ const e = StyleSheet.create({
   revisado: { flexDirection: 'row', alignItems: 'center', gap: 8, alignSelf: 'center', backgroundColor: C.okTint, borderRadius: 18, paddingHorizontal: 16, paddingVertical: 8 },
   revisadoTexto: { fontSize: ESCALA.cuerpo, fontWeight: '700', color: C.ok },
   razon: { fontSize: ESCALA.cuerpo, color: C.inkSecondary, textAlign: 'center' },
+  hablaA: { marginTop: 6, fontSize: ESCALA.mini, fontWeight: '700', color: C.inkSecondary, textAlign: 'center' },
   oido: { fontSize: ESCALA.mini, color: C.inkTertiary, textAlign: 'center', paddingHorizontal: 16 },
   protegio: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'center', backgroundColor: C.actionTint, borderRadius: 14, paddingHorizontal: 12, paddingVertical: 6 },
   protegioTexto: { fontSize: ESCALA.mini, fontWeight: '700', color: C.action },
