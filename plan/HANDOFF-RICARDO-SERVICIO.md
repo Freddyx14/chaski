@@ -15,12 +15,17 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 
 ## Bandeja
 
+> Las cuatro primeras quedaron hechas antes de que existiera la Bandeja (dom 00:20–09:10). Dejo el
+> hash de cada una para que se pueda comprobar. Lo que encontré de paso y no estaba pedido:
+> `/turno/paciente` ya acepta .m4a y .webm (los convierte, antes daba 500), y el WAV de Cartesia
+> venía con cabecera de flujo —1,6 s declarando 89 478 s— que rompe a los reproductores que le creen.
+
 | | Tarea | Detalle |
 |---|---|---|
-| [ ] | `git pull` y desplegar: entran D41 (ejemplos de la enfermera), D44 (memoria automática) y el arreglo del traductor (6fa2cec) | nada más que tocar |
-| [ ] | Memoria fuera de la carpeta que se borra: en `desplegar.sh`, `mkdir -p $DESTINO/memoria` y `export CHASKI_MEMORIA_RUTA=$DESTINO/memoria/memoria_auto.jsonl` | si no, cada despliegue borra lo aprendido |
-| [ ] | Voz: el castellano por Cartesia sonic-3.6, el quechua con `mama_freddy` (en `_voz_para_chaski` Y en `/voz`), `p24` solo de respaldo | sección «🔊 Voz de Chaski» abajo |
-| [ ] | Renombrar D40 → D43 en los comentarios de `servicio/app.py` (~l.178), `servicio/desplegar.sh` (~l.92) y `servicio/PARA-FREDDY.md` (~l.416) | cosmético |
+| [x] | `git pull` y desplegar: D41, D44 y 6fa2cec (verificado dom 09:10: turno 8,2 s, `motor claude`, «Upyay huk paracetamol pastillata sapa pusaq horasmanta…») | 0851178 |
+| [x] | Memoria fuera de lo que se sincroniza. Probado como importa: turno → redespliegue → la línea sigue. 6 líneas ahora | 0851178 |
+| [x] | Voz: castellano por Cartesia (Ximena), quechua `mama_freddy` en los dos sitios, `p24` de respaldo. Verificado por frecuencia, no por ausencia de error: castellano 24000 Hz, quechua 16000 Hz, 0 respaldos usados | 9e2075d |
+| [x] | D40 → D43 en `app.py`, `desplegar.sh` y `PARA-FREDDY.md` | 0ee64a9 |
 
 
 > ✅ Pasos 1–6 hechos (cf9de8b). **Nuevo (dom 00:20): `git pull` y vuelve a desplegar** para que el servicio tome D41,
