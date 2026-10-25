@@ -479,6 +479,8 @@ def pulido_sin_terminos_nuevos(transcripcion: str, pulido: str) -> Veredicto:
         problemas.append(f"el pulido agrega la unidad «{u}»")
     if tiene_negacion_castellano(transcripcion) and not tiene_negacion_castellano(pulido):
         problemas.append("el pulido quitó una negación")
+    if tiene_negacion_castellano(pulido) and not tiene_negacion_castellano(transcripcion):
+        problemas.append("el pulido agregó una negación")  # audit M7: a «no» added is as dangerous as one removed
     if problemas:
         return bloqueo(capa, problemas[0], problemas)
     return pasa(capa)

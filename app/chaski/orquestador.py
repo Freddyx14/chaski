@@ -490,6 +490,13 @@ def interpretar(turno: TurnoEntrada | dict, contexto: Contexto | dict | None = N
             d = forzada
         else:
             d = decidir(client, turno_decidir, contexto, modelo=modelo)
+        if sembrada and d.accion != "traducir":
+            # Rehearsal shows the barrier on the seeded translation, whatever the interpreter would have done (audit
+            # M6: a repregunta silently skipped the seed and the demo showed «dicho» instead of the block).
+            otro: Idioma = "quy" if turno.idioma == "spa" else "spa"
+            d = d.model_copy(update={"accion": "traducir", "para": "paciente" if turno.rol == "personal" else "personal",
+                                     "idioma_salida": otro, "texto_pulido": turno.texto.strip(), "frase_banco_id": None,
+                                     "dato_faltante": None, "motivo": "ensayo: se revisa la traducción sembrada"})
         medir("decidir", t0)
         if memoria.activa() and forzada is None and not sembrada and contexto.historial:
             ultimo = contexto.historial[-1]

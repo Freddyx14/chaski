@@ -454,3 +454,11 @@ def test_motivo_de_b4_con_numero_o_agua_nombra_el_dato():
     from chaski.orquestador import _campo
     assert _campo("B4 términos fijos: número 8 no aparece en el quechua")[1] == "un número"
     assert _campo("B4 términos fijos: el castellano dice «con agua» y el quechua no lo nombra")[1] == "con qué se toma"
+
+
+def test_ensayo_siempre_revisa_la_traduccion_sembrada_aunque_el_interprete_repregunte():
+    r = Registro(guardas=[Veredicto(ok=False, motivo="B4: falta la negación")])
+    res = interpretar({"texto": "Tómela con agua, no con té", "idioma": "spa", "rol": "personal"},
+                      client=FakeClient(propuesta("repreguntar", "¿Qué medicamento?", dato="medicamento")),
+                      traduccion_forzada="Yakuwan upyay tewan", **r.kw())
+    assert res.estado == "bloqueado" and res.sembrada is True

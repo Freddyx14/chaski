@@ -309,3 +309,9 @@ def test_vehiculos_detectados():
     assert vehiculos_castellano("No te olvides la pastilla") == set()
     assert vehiculos_quechua("Unuwan upyaykuy, manan téwanchu") == {"agua", "te"}
     assert vehiculos_quechua("Tiyay, tawa pastillata upyay") == set()
+
+
+def test_b3_frena_una_negacion_agregada_en_el_pulido():
+    from chaski import guardas as g
+    v = g.pulido_sin_terminos_nuevos("tómelo con leche", "no lo tome con leche")
+    assert not v.ok and "agregó una negación" in v.motivo
