@@ -37,7 +37,12 @@ Así Freddy y las otras sesiones (loopmind-05, ui-ux, pitch-qa) te dejan trabajo
 | [x] | `git pull` y desplegar 07bb9d7. Regla 8 verificada con audio real de p16, tres frases de cortesía, las tres `dicho` / `traducir`: «¿Imapitaq yanapaykiman?» → «¿En qué le puedo ayudar?», «¿Yanapayta atiymanchu?» → «¿Podría ayudar?», «Cai Doctora yanapasunki» → «Esta doctora le va a ayudar.» Ninguna pidió repetir | 5ea9892 |
 | [x] | **Receta por voz**: `POST /receta` pegada y desplegada. Foto → `accion repreguntar`, `para personal`, «Leí: Paracetamol 500 mg, una tableta cada 8 horas…», `contexto.receta_pendiente` puesto y `modo receta`, con voz. Después «sí» por `/turno/enfermera` → `para paciente`, `idioma_salida quy`, «Upyay huk tableta Paracetamol 500 mg niqta, sapa pusaq horamanta.», motivo «receta leída de la foto, confirmada por el personal». Y «no, son dos tabletas» borra la pendiente y sigue como turno normal | afa5730 |
 | [x] | Arreglos de auditoría (8498191, ff84896, 6795247, b6554e2) desplegados. «killa» = mes verificado con audio real: `p16_N_063` → `dicho` «Va a regresar en un mes.», `p16_C_009` → `dicho` «Volverá dentro de un mes.» | fc03e84 |
-| [ ] | **URGENTE** `git pull` y desplegar (dom 03:45): la decisión con pensamiento «low» explícito. Hoy a veces gasta los 800 tokens pensando y no responde: «Le dio diarrea.» tardó 27 s en vivo y salió «no entendí». Con el arreglo: 98 % de acción correcta en 2,3 s. Si tienes `CHASKI_PENSAR_DECIDIR` en el entorno, que sea `low` o no esté | verificar: `/turno/vivo` con una frase corta → `decision` en < 5 s |
+| [x] | **URGENTE** desplegado: decisión con pensamiento «low». `CHASKI_PENSAR_DECIDIR` no está en el entorno, así que usa el valor por defecto. «Le dio diarrea.» ya no se cuelga: `decision` en 4,4–5,7 s (era 27 s y salía «no entendí»). Frases cortas: 2,3 s y 3,3 s | e486b39 |
+
+> ⚠️ Medido de extremo a extremo contra la URL pública, con la red y ngrok dentro. «Le dio
+> diarrea.» queda en **4,4–5,7 s**, tres intentos: por debajo del listón de 5 s solo a veces.
+> Las otras dos frases sí entran holgadas (2,3 s y 3,3 s). Lo digo tal cual en vez de marcar
+> «< 5 s» con el mejor intento: en el ensayo esa frase puede tardar 5 s y conviene saberlo.
 
 > ⚠️ No pude reproducir «urapi nanawan» → `repreguntar` al paciente: no hay grabación de esa
 > frase en `datos/crudo/`. Con `p16_C_001` y `confianza=0.3` el turno sale `dicho` / `traducir`
