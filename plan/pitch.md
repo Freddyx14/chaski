@@ -88,7 +88,7 @@ Three lengths of the same pitch: **30 s** (someone walking by, or a judge short 
 > `[brackets]` = stage direction or something we still need. Times are cumulative.
 
 **B1 · Hook (0:00–0:20) · Freddy**
-[Play Mom's recorded greeting in Quechua, 4 s — or Freddy says it.]
+[Play `data/mama/clips/saludo-peru-a-eeuu.mp3` (7 s): her own voice, «I greet you from Peru to the United States». Consent given 24-oct.]
 "That's my mother. She's a nurse at the health center in Pilpichaca, in the Andes of Huancavelica, Peru. Nine out of
 ten of her patients speak Quechua. Only about one in five of the staff do. Most of them come from the coast."
 
@@ -199,3 +199,16 @@ greeting + one sentence about her work at the 17:00 call, with her consent. If s
 | README: where Claude is used and why · Cartesia features · known limits · no keys | ui-ux session | 21:00 |
 | Rehearse 30 s / 3:00 / 2:00 with a timer, out loud, 3× each | Both | 22:00 |
 | Demo video, opening on the refusal moment | Freddy | Sun 05:00 |
+
+
+## 10 · Los audios de la mamá (24-oct, con su permiso)
+
+Viven en `data/mama/` (no se suben a git). Transcripción aproximada con Whisper (no entiende quechua bien: **confirmar el
+sentido con ella antes de subtitular**).
+
+| Clip | Dura | Qué dice (aproximado) | Dónde va |
+|---|---|---|---|
+| `clips/saludo-peru-a-eeuu.mp3` | 7 s | «Los saludo desde el Perú hasta los Estados Unidos» | **Abre el pitch** (B1) |
+| `clips/saludo-apertura-12s.mp3` | 12 s | «¿Cómo están, hermanos y hermanas? Aquí estoy, en Huancavelica, Perú, en la zona sanitaria de Pilpichaca; aquí trabajo y aquí hablo quechua» | Abre el **video** de Devpost |
+| `clips/atencion-casa-de-salud-29s.mp3` | 29 s | Cómo recibe a un paciente en quechua: «dígame con confianza qué siente… aquí la ayudo, en nuestra casa de salud de Pilpichaca… siéntese, como en su casa» | **Video**, bajo las imágenes de la posta: así suena la atención cuando alguien habla quechua. Es lo que Chaski busca que tenga todo paciente |
+| `clips/saludo-completo.mp3` · `atencion-en-quechua-completo.mp3` | 38 s · 67 s | Completos, normalizados | Respaldo |
