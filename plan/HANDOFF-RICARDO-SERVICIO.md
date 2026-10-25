@@ -92,6 +92,19 @@ def _voz_para_chaski(texto: str, idioma: str) -> bytes:
         return audio
 ```
 
+### Paso 2b · La ruta `/voz` también (importante)
+
+**La app pide la voz del quechua aparte, a `POST /voz`**, después de mostrar el texto. Hoy esa ruta llama a
+`decir_en_voz(texto)` con su valor por defecto (`p24`). Si solo cambias `_voz_para_chaski`, la voz del quechua
+**no cambia en la app**. En `/voz`, usa la misma variable:
+
+```python
+audio, ms = decir_en_voz(texto, voz=os.environ.get("CHASKI_VOZ_QUY", "p24"))
+```
+
+Lo que Chaski le dice al personal en castellano (repreguntar, responder): la app reproduce el `audio_wav_b64` del turno
+si viene, y si no viene usa la voz del iPhone. Así que con el Paso 2 alcanza, siempre que el turno devuelva ese audio.
+
 ### Paso 3 · Elegir la voz del quechua (lo decide Freddy)
 
 - `CHASKI_VOZ_QUY=mama_freddy` → la voz ajustada con la enfermera. **Recomendado si la prueba a ciegas con ella sale
@@ -107,12 +120,13 @@ def _voz_para_chaski(texto: str, idioma: str) -> bytes:
    escúchalo. Tiene que sonar a persona, no a robot. (Si `/voz` no recibe `idioma`, prueba con un turno real en
    el que Chaski repregunte.)
 3. Quechua: `curl -F "texto=Ama llakikuychu, kaypim kachkaniku." $URL/voz --output qu.wav`, con la voz elegida.
-4. **La app no cambia nada:** reproduce el `audio_wav_b64` que llega en el turno.
+4. **La app no cambia nada:** el quechua lo pide a `/voz` (Paso 2b) y el castellano lo toma del `audio_wav_b64` del turno.
 5. **Freddy prueba con el build 16** en TestFlight y confirma.
 
 | Hecho | Qué |
 |---|---|
 | [ ] | `voz_castellano` en `flujo.py` + `CHASKI_VOZ_ES` en la instancia |
 | [ ] | `_voz_para_chaski` con `CHASKI_VOZ_QUY` y respaldo |
+| [ ] | `/voz` con `CHASKI_VOZ_QUY` (Paso 2b) |
 | [ ] | Freddy eligió la voz del quechua (p24 o mama_freddy) |
 | [ ] | Desplegado, avisado por el grupo y probado con `curl` |
