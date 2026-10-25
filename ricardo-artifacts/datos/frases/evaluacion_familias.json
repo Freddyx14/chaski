@@ -1,0 +1,1035 @@
+{
+ "_nota": "Pares castellano/chanka escritos por las familias el 24-oct-2026. Ningun modelo publicado los ha visto, asi que miden sin sesgo. Cada frase trae VARIAS referencias, una por persona: cuando no hay una sola traduccion correcta, penalizar al modelo por elegir la de otra persona mide dialecto, no calidad.",
+ "frases": 62,
+ "referencias_por_frase": 4.8,
+ "pares": [
+  {
+   "castellano": "Tómela con agua, no con té",
+   "referencias": [
+    "Upyay yacuta manan tehuancho",
+    "yakupurawan tumanki ama hora yakuwan tumankichu",
+    "Yakuwan upyay, ama tewan upyaychu.",
+    "Yakuwan upyay mana tiwanchu",
+    "Hupiay yacuan ,  ama  jorauan"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Son siete días de tratamiento",
+   "referencias": [
+    "Qanchis punchaupi trataqunki",
+    "qanchis punchaw tomanki",
+    "Qanchis punchawmi hampikuy.",
+    "Hampikuyqa qanchus p'unchawmi",
+    "Janchis punchau  upianqui hupiar"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Su control es el lunes",
+   "referencias": [
+    "Lunes punchauta  jamunki controlninkipa",
+    "lunista kutimunki doctorman",
+    "Lunes punchawmi controlniykipa hamunki.",
+    "Qhawachikunaykiqa killachawmi",
+    "Jamunque  killachay punchau"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Venga en ayunas",
+   "referencias": [
+    "Manan micuspa jamunqui",
+    "ama mikuspayki hamunki",
+    "Yarqayman hamuy.",
+    "Mana mikuspa hamuy",
+    "Jamunqui ama miscusca"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Vuelva en un mes",
+   "referencias": [
+    "Killapi kutimunki",
+    "huk killamanta kutimunki",
+    "Huk killapi kutimuy.",
+    "hukya pasaktin kutimuy",
+    "Cutimunki hucc killapi"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Si hay sangrado, venga de inmediato",
+   "referencias": [
+    "Yawar kaptinja currimunki apurauta",
+    "yawar hamutinqa apurayman hamunki",
+    "Yawar chayamuptin , usqhaylla hamuy.",
+    "yawar lluqsinman chayqa uskayllata hamuy",
+    "Yahuar kaptin jamunki apurayman"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Si tiene fiebre alta, venga",
+   "referencias": [
+    "Fiebre qaptencca jamunki",
+    "rupaspaykiqa hamunki bibochaman",
+    "Hatun rupay kaptin hamuy.",
+    "sinchi rupayniyuq kaspaqa hamuy",
+    "Rupariy captun jamunqui apurayman"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Si el bebé no se mueve, venga",
+   "referencias": [
+    "Wawa mana kuyuktincca jamunki",
+    "mana wawa kuyuritinqa hamunki",
+    "Wawa mana kuyuriptin , hamuy.",
+    "wawayki mana kuyukuptinqa hamuy",
+    "Mana yahua cuyuptin jamunqui apurayman"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "¿Desde cuándo le duele?",
+   "referencias": [
+    "Jaykapitac nanan",
+    "imaymantam nanasuranki",
+    "Haykap pachamanta nanachkan?",
+    "haykamantatak nanasunki",
+    "Jaycapamanta Maypit  nanasunki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "¿Dónde le duele?",
+   "referencias": [
+    "Maypitacc nanan",
+    "maypitaq nanasunki",
+    "Maypim nanasunki?",
+    "maypitaq nanansunki",
+    "Manpitac nanasunki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "¿Tiene fiebre?",
+   "referencias": [
+    "Rupay cashcncho",
+    "huaputachu rupachkanki",
+    "Rupayniyuqchu kanki?",
+    "rupayniyuqchu kanki",
+    "Ruparichcankichu"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Voy a tomarle la presión",
+   "referencias": [
+    "Presioniykita tumaykusacc",
+    "surprisivuniki tomasqayki",
+    "Presionniykita tupusayki.",
+    "yawar presionikita tupuskanki",
+    "Tomasjaiki llasacc  wahuarta"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Respire hondo, por favor",
+   "referencias": [
+    "Allinta samaykuy amayuyakuspa",
+    "samanayki ukukama",
+    "Samarikuy sinchita, ama hina kaspa.",
+    "huk uta samay ama hinakaspa",
+    "Samary allimta"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tiene treinta y nueve de fiebre",
+   "referencias": [
+    "Chunka isjon fibriyocc kashkanki",
+    "suqa suqtayuq rupachkanki",
+    "Kimsachunka isqunniyuq fiebre.",
+    "kimsa chunka iskun grado rupayniyuqmi kanki",
+    "Ruparin  kinsa chunca hiscuniocc"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Dele bastante líquido",
+   "referencias": [
+    "Ashka yakuta junki",
+    "waputa yakuta supayta tumanayki",
+    "Achka yakuta upyay.",
+    "akata upyachiy",
+    "Achcca yacuta upiay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Media pastilla, no entera",
+   "referencias": [
+    "Chaupi pastillata, manam totalchata",
+    "partillata chay pastillata tumanki",
+    "Chawpi pastilla, manam huntasqachu.",
+    "chawpi pastillaya mana tukuyninchu",
+    "Chaupi jampita hupiay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Dos veces al día, mañana y noche",
+   "referencias": [
+    "Isqayta junki, punchaupi y tutayajpi",
+    "chiskaybista kunanki ukpunchawpi tatardin temprano",
+    "Iskay kuti punchawpi, tutamanta chaymanta tuta.",
+    "sapa punchaw iskay kutita tutamanta chaymanta tutapaq",
+    "Iscay cutita upiay, paccarin y tutay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "El resultado llega en tres días",
+   "referencias": [
+    "Quimsa punchaupi resultado chayamuncca",
+    "pimsa punchamantam chayamunqa chay resultado",
+    "Kimsa punchawpi chayamunqa.",
+    "kimsa punchawpas aptin resultadoka chayamunka",
+    "Qinsa puchahumanta janmunja yachanapac"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome paracetamol",
+   "referencias": [
+    "Upianki parcetamolta",
+    "hampita tumanki",
+    "Paracetamolta upyay.",
+    "paracetamolta upyay",
+    "Tomay japita"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome omeprazol en ayunas",
+   "referencias": [
+    "Upianki omeprazolta mana micuscca",
+    "tomanki omeprazol mana mikuspayki",
+    "Omeprazolta yarqayniyuq upyay.",
+    "mana mikuspa omeprazol upyay",
+    "Tomay jamoita mana micuspa"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome sulfato ferroso",
+   "referencias": [
+    "Upianki sulfato ferrosota",
+    "tomanki sulfato ferroso",
+    "Sulfato ferrosota upyay.",
+    "sulfato ferrosota upyay",
+    "Tomay sulfato ferroso"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome ácido fólico",
+   "referencias": [
+    "Upiayki acido folicota",
+    "tomanki acido folico",
+    "Acido folicota upyay.",
+    "acido folicota upyay",
+    "Tomay acido folico"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome albendazol",
+   "referencias": [
+    "Upiaykuy albendazolta",
+    "tomanki albendazol",
+    "Albendazota upyay.",
+    "alvendazolta upyay",
+    "Timay huruoac"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome metformina",
+   "referencias": [
+    "Upiyakuy metforminata",
+    "tomanki metformina",
+    "Metforminata upyay.",
+    "metforminata upyay",
+    "Timay deabetespac"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome losartán",
+   "referencias": [
+    "Upiaykuy losartanta",
+    "tomanki losartan",
+    "Losartanta upyay.",
+    "losartanta upyay",
+    "Toymay llasac yahuarpac"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Use el salbutamol",
+   "referencias": [
+    "Kayta salbutamolta",
+    "churakunki salbutamol",
+    "Salbutamolta llamkachiy.",
+    "salbutamolta yaqa achi",
+    "Allin samanayquipac usanki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome vitamina C",
+   "referencias": [
+    "Upyay vitaminata c",
+    "tomanki vitaminata c",
+    "Vitamina C - ta upyay.",
+    "vitamina ceta upyay",
+    "Hupiay limon yacuta"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome el jarabe",
+   "referencias": [
+    "Upiyay jarabeta",
+    "tomanki jarabeta",
+    "Jarabeta upyay.",
+    "jarabeta upyay",
+    "Upiay jarbita"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome una tableta",
+   "referencias": [
+    "Tabletata upianki",
+    "tomanki huk tabletata",
+    "Huk tabletata upyay.",
+    "huk tabletata upyay",
+    "Upiay  hucc tabletata"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Le voy a poner una ampolla",
+   "referencias": [
+    "Churasayki apollata",
+    "ñuqaqa churasaq huk ampullata",
+    "Ampollata churasayki.",
+    "hukan puyata churasqayki",
+    "Churasccaiki hucc ampullata"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Póngale tres gotas",
+   "referencias": [
+    "Kimsa gotata sotoykuy",
+    "churanki kimsa gutata",
+    "Kimsa sututa churay.",
+    "kimsagotata churay",
+    "Churasunki quinsa  sutuyta"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Una cucharadita de jarabe",
+   "referencias": [
+    "Juk wisllachapi jarabeta juykuy",
+    "qonki huk cucharadita de jarabe",
+    "Huk uchuy wisllachapi jarabeta upyay.",
+    "huk cucharitata haraveta upyay",
+    "Hucc wisllachapi  upianki jabita"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Pastilla de quinientos miligramos",
+   "referencias": [
+    "Piskcca pachac miligramuta Pastillata",
+    "pichqa chunka miligramos",
+    "Pichqa pachak miligramo pastilla.",
+    "pichqa pachak miligramoyuq pastilla",
+    "Upianqu 500 miligramos"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "El doctor lo va a ver",
+   "referencias": [
+    "Doctorme jawarincca",
+    "canpi hawasunki",
+    "Doctorqa qawasunki.",
+    "doctorka kawasukaykim",
+    "Jahuasunqui jampicc"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "La doctora la va a atender",
+   "referencias": [
+    "Cai Doctora yanapasunki",
+    "Cai doktora hampisunki",
+    "Doctoraqa qamtaña atendesunki.",
+    "doctoraka kawasunkim",
+    "Japinaccamayuc  jahuasunki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "La enfermera le va a explicar",
+   "referencias": [
+    "Enfemeram willasunki",
+    "Enfemeram yachachisunki",
+    "Enfermeraqa qamta yachachisunki.",
+    "enfermeraka sud inchasunkim",
+    "Japinac  suthity"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "La obstetra la va a revisar",
+   "referencias": [
+    "Obstetram jawarisunki",
+    "wak obstetraw hawasunki",
+    "Obstetraqa qamta qawarisunki.",
+    "obstetraka kawasunkim",
+    "Japinac  tacchuisunki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Vaya a la posta",
+   "referencias": [
+    "Rinki postata",
+    "rinayki postata",
+    "Puestoman riy.",
+    "postaman riy",
+    "Rinki jampina huasima"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Lo vamos a llevar al hospital",
+   "referencias": [
+    "Hospitalman apasayki",
+    "qamta hapa",
+    "Hospitalman apasunchik.",
+    "hospitalman apasakku",
+    "Apasjaikiko jampina huasiman"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Le voy a medir la presión",
+   "referencias": [
+    "Presionta medisayki",
+    "hamuy ñuqa precionnikita qawasaq",
+    "Presionniykita tupusayki.",
+    "yawar presionninkita tupuskayki",
+    "Llasacc wahuarta jahuasac"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Usted tiene diabetes",
+   "referencias": [
+    "Ham kashkanki diabetiswan",
+    "qamqa diabeteswan mikanki",
+    "Qam diabetesniyuq kanki.",
+    "diabetes sunquyniyuqmi kanki",
+    "Japac  honjoiniki  deanetes"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Usted tiene anemia",
+   "referencias": [
+    "Ham kashkanki anemiawan",
+    "samqa aniyawanmi kanki",
+    "Qam anemiyayuq kanki.",
+    "anemia yuqmi kanki",
+    "Jampac  ccasawi kanki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Venga a su control",
+   "referencias": [
+    "Controlnikipacc jamunki",
+    "hamanayki controlnikiman",
+    "Controlniykiman hamuy",
+    "kawachikuynaykiman hamuy",
+    "Jamunqui  patachay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Aquí está su receta",
+   "referencias": [
+    "Caypi cashcan recetayki",
+    "kaymi riqsitayki",
+    "Kaypi kachkan recetayki.",
+    "kaymi resetaykika",
+    "Kaypi cachcan recetayki"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Cuente del uno al diez",
+   "referencias": [
+    "Yupay jucmanta chuncacama",
+    "yupanki asta chunkakama",
+    "Hukmanta chunka kama yupay.",
+    "hukmanta chunkakama yupay",
+    "Yupay huccmanta chuncacamam"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Diga los días de la semana, del lunes al domingo",
+   "referencias": [
+    "Killamanta pacha, intichaycama,",
+    "rimanki imay punchaw kachkanchik lunesmanta domingokama",
+    "Lunesmanta domingokama punchawkunata niy.",
+    "simanapa punchawninkunata niy killachawmanta inti chawkama",
+    "Killachay atypachay chascachay juyllurvhay illapachay cuychipachay intichay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome la pastilla en la mañana, en la tarde y en la noche",
+   "referencias": [
+    "Upyay pastillata punchaypi y tutallaccpi",
+    "sumanki chay pastillata paqarin tuta ipunchaw",
+    "Pastillata upyay tutamanta, chawpi punchawpi, chaymanta tutapi.",
+    "tutamanta chisipaq tutapaqpas pastillata upyay",
+    "Upiay paccary  sucllayllay tutapay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome la pastilla cada ocho horas",
+   "referencias": [
+    "Upyay pastillata pusacc horapi",
+    "sapa pusaq uramanta",
+    "Pastillata upyay , sapa pusaq horaspim.",
+    "sapa pusak urapa saktin pastillata upyay",
+    "Upiay pusacc ura"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Vuelva en una semana",
+   "referencias": [
+    "Cutimunki juk semanapi",
+    "semanaman potemon kik",
+    "Huk semanapi kutimuy.",
+    "qlubsimana pasaktin kutimuy",
+    "Cutimunki  semana"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome una pastilla cada ocho horas",
+   "referencias": [
+    "pusaq horapi juk pastillata upyay",
+    "Sapa pusaq horamanta huk pastillata upyana",
+    "Huk pastillata upyay, sapa pusaq horaspi",
+    "Sapa pusaq ura pasaqtin, huk pastillata upyay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19"
+   ]
+  },
+  {
+   "castellano": "Tome la pastilla después de comer",
+   "referencias": [
+    "Mikuy qhipa pastillakunata japay",
+    "tukuy pay quiñichiy pastillata tumanki mikurunmi quiñaspayki",
+    "Mikuyta tukuruspa, pastillata upyay",
+    "Mikuruspa pastillata upyay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19"
+   ]
+  },
+  {
+   "castellano": "No deje la pastilla aunque se sienta bien",
+   "referencias": [
+    "Amay pastillata dejaychu allin captiquipas",
+    "Allinña kachkaspapas, ama pastillata saqiychu.",
+    "Allinchakuspapas, ama pastillata upyayta saqiychu",
+    "Ama sajunquihu sanocaspapas"
+   ],
+   "personas": [
+    "p16",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Traiga su carné",
+   "referencias": [
+    "Carniquita apamunki",
+    "sutikita apamunki papilpi",
+    "Carnéykita apamuy.",
+    "Apamunki carnetniquita"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "¿Está tomando alguna pastilla?",
+   "referencias": [
+    "Ima pastillata tomascanchu",
+    "Ima pastillatapas upyachkankichu?",
+    "pastillatachu upyashanki",
+    "Upiankichu remediota"
+   ],
+   "personas": [
+    "p16",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "¿Es alérgica a algo?",
+   "referencias": [
+    "Imapas alergiaccunchi",
+    "Imapas alergiayuqchu kanki?",
+    "imamantapas alergiayuqchu kanki",
+    "Jampita tomaptiqui  punqupacunki"
+   ],
+   "personas": [
+    "p16",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "¿Cuántos años tiene?",
+   "referencias": [
+    "Jaykataj watayki",
+    "Hayka watayuq kanki?",
+    "hayka watayuqtaq kanki",
+    "Jaica huatayuc kanki"
+   ],
+   "personas": [
+    "p16",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome ibuprofeno",
+   "referencias": [
+    "Upianki ibuprofenota",
+    "tomanki ibuprofenota",
+    "Ibuprofenota upyay.",
+    "ibuprofenota upyay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19"
+   ]
+  },
+  {
+   "castellano": "Tome amoxicilina",
+   "referencias": [
+    "Upianki amoxicilinata",
+    "tomanki amoxicilinata",
+    "Amoxicilinata upyay.",
+    "amoxicilinata upyay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19"
+   ]
+  },
+  {
+   "castellano": "Dele suero oral",
+   "referencias": [
+    "Joy sueruta siminpe",
+    "hunki suero oral",
+    "Suero oralta quykuy.",
+    "Ccuscayqui wacuta preparado"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Cinco mililitros de jarabe",
+   "referencias": [
+    "Pichcca mililitruta jarabeta",
+    "pichqa mililitrosta de jarabeta qunki",
+    "Pichqa mililitro jarabeta upyay.",
+    "pik ka mililitro jarabeta upyay"
+   ],
+   "personas": [
+    "p16",
+    "p17",
+    "p18",
+    "p19"
+   ]
+  },
+  {
+   "castellano": "Media tableta",
+   "referencias": [
+    "Chaupi tabletata",
+    "Chawpi tableta.",
+    "chawpi tabletalla",
+    "Partispa media tabletata upianki"
+   ],
+   "personas": [
+    "p16",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  },
+  {
+   "castellano": "Tome la pastilla cada doce horas",
+   "referencias": [
+    "Upyay pasitillata chunca incaynillocc horapi",
+    "Pastillata upyay, sapa chunka iskayniyuq horaspim.",
+    "sapa chunka iskayniyuk ura pasaptin pastillata upyay",
+    "Upiy pastillata sapa chuca iscayniyuc ratuta"
+   ],
+   "personas": [
+    "p16",
+    "p18",
+    "p19",
+    "p24"
+   ]
+  }
+ ]
+}

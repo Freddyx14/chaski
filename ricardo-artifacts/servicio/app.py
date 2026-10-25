@@ -244,6 +244,36 @@ async def medicamento(imagen: UploadFile = File(...), dicho: str = Form(""),
     return salida
 
 
+@aplicacion.get("/emergencia")
+def emergencia(voz: str = "p24"):
+    """Las frases de emergencia con la URL de su audio ya generado.
+
+    Lo que le falta al banco de Freddy es el campo `audio`. Aquí va resuelto:
+    las 24 frases están sintetizadas en las cinco voces y servidas como
+    archivos, así que la app toca y suena, sin esperar a ningún modelo.
+    """
+    carpeta = AQUI.parent / "reports" / "emergencia"
+    lista = carpeta / "frases.json"
+    if not lista.exists():
+        return JSONResponse({"error": "todavía no se generaron"}, status_code=404)
+    frases = json.loads(lista.read_text(encoding="utf-8"))
+    disponibles = sorted(d.name for d in carpeta.iterdir() if d.is_dir())
+    elegida = voz if voz in disponibles else "base"
+    for f in frases:
+        f["audio"] = f"/emergencia/audio/{elegida}/{f['id']}.mp3"
+    return {"voz": elegida, "voces": disponibles, "frases": frases}
+
+
+@aplicacion.get("/emergencia/audio/{voz}/{nombre}")
+def emergencia_audio(voz: str, nombre: str):
+    ruta = (AQUI.parent / "reports" / "emergencia" / voz / nombre).resolve()
+    raiz = (AQUI.parent / "reports" / "emergencia").resolve()
+    # Que el nombre pedido no se salga de la carpeta.
+    if raiz not in ruta.parents or not ruta.exists():
+        return JSONResponse({"error": "no existe"}, status_code=404)
+    return FileResponse(ruta, media_type="audio/mpeg")
+
+
 @aplicacion.get("/voces")
 def voces():
     """Las voces de Chaski que se pueden pedir. Reenvía al servicio de voz."""
@@ -396,6 +426,37 @@ def ruta_voz(texto: str = Form(...), voz: str = Form("p24")):
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
     return Response(content=audio, media_type="audio/wav", headers={"X-Ms": str(ms)})
+
+
+@aplicacion.post("/mt")
+def mt(texto: str = Form(...), desde: str = Form("spa_Latn"),
+       hacia: str = Form("quy_Latn")):
+    """Traducción local con NLLB-1.3B, sin Claude y sin salir a internet.
+
+    Medido sobre las 62 frases que tradujeron las familias el 24-oct, que
+    ningún modelo publicado ha visto:
+
+    | motor | chrF++ | una petición |
+    |---|---|---|
+    | claude-sonnet-5 | 44.55 | 1496 ms |
+    | **nllb-1.3B** | **34.72** | **565 ms** |
+    | nllb-600M | 28.58 | 346 ms |
+
+    Claude traduce mejor; NLLB responde antes y no depende de la red. Esta ruta
+    es la rápida; `/traducir` sigue siendo la de Claude con auditoría.
+
+    Funciona en las dos direcciones: `desde`/`hacia` son códigos de NLLB
+    (`spa_Latn`, `quy_Latn`).
+    """
+    import httpx
+
+    from servicio.flujo import INSTANCIA
+    try:
+        with httpx.Client(timeout=120) as cli:
+            return cli.post(f"{INSTANCIA}/traducir",
+                            data={"texto": texto, "desde": desde, "hacia": hacia}).json()
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
 
 
 @aplicacion.post("/traducir")

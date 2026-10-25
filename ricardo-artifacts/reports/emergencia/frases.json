@@ -1,0 +1,122 @@
+[
+ {
+  "id": "emg-dolor-donde",
+  "es": "¿Dónde le duele?",
+  "quy": "¿Mayta nanan?"
+ },
+ {
+  "id": "emg-dolor-que",
+  "es": "¿Qué es lo que le duele?",
+  "quy": "¿Imaykin nanan?"
+ },
+ {
+  "id": "emg-senale",
+  "es": "Señale con el dedo",
+  "quy": "Dedoykiwan willaway"
+ },
+ {
+  "id": "emg-desde-cuando",
+  "es": "¿Desde cuándo está enfermo?",
+  "quy": "¿Haykakmanta onqoska kashanky?"
+ },
+ {
+  "id": "emg-alergia",
+  "es": "¿Es alérgico a algún medicamento?",
+  "quy": "¿Ruparin pukyupakunki?"
+ },
+ {
+  "id": "emg-embarazo",
+  "es": "¿Está embarazada?",
+  "quy": "¿Wiksayuq kachkanki?"
+ },
+ {
+  "id": "emg-acompanante",
+  "es": "¿Vino con alguien?",
+  "quy": "¿Piwantaq hamunki?"
+ },
+ {
+  "id": "emg-familia-aqui",
+  "es": "¿Tiene familia aquí?",
+  "quy": "¿Kanchu familiayki kaypi?"
+ },
+ {
+  "id": "emg-respira",
+  "es": "¿Puede respirar bien?",
+  "quy": "¿Allintachu samanki?"
+ },
+ {
+  "id": "emg-fiebre",
+  "es": "¿Tiene fiebre o escalofríos?",
+  "quy": "¿Rupaychu japisunki o chirichu?"
+ },
+ {
+  "id": "emg-vomito",
+  "es": "¿Vomitó?",
+  "quy": "¿Kutichi?"
+ },
+ {
+  "id": "emg-medicamento-tomo",
+  "es": "¿Tomó algún medicamento?",
+  "quy": "¿Upyarankichu huk medicinata?"
+ },
+ {
+  "id": "emg-caida",
+  "es": "¿Se cayó o se golpeó?",
+  "quy": "¿Wichiruspa imaykita takakurunki?"
+ },
+ {
+  "id": "emg-cabeza",
+  "es": "¿Le duele la cabeza?",
+  "quy": "¿Umayki nanan?"
+ },
+ {
+  "id": "emg-abdomen",
+  "es": "¿Le duele el abdomen?",
+  "quy": "¿Wiksachu nanan?"
+ },
+ {
+  "id": "emg-mareos",
+  "es": "¿Tiene mareos?",
+  "quy": "¿Umayki muyusunkichu?"
+ },
+ {
+  "id": "emg-nombre",
+  "es": "¿Cómo te llamas?",
+  "quy": "¿Iman sutiyki?"
+ },
+ {
+  "id": "emg-edad",
+  "es": "¿Cuántos años tienes?",
+  "quy": "¿Hayqa huatayoc kanki?"
+ },
+ {
+  "id": "emg-presion",
+  "es": "Voy a tomarle la presión.",
+  "quy": "Presinniykita kawasac imainas cashan chayta."
+ },
+ {
+  "id": "emg-via",
+  "es": "Voy a ponerle una vía.",
+  "quy": "Churasqayki sueruta."
+ },
+ {
+  "id": "emg-suero",
+  "es": "Le voy a poner suero.",
+  "quy": "Suerota churasayki."
+ },
+ {
+  "id": "emg-no-moverse",
+  "es": "No trate de moverse.",
+  "quy": "Ama cuyunkichu."
+ },
+ {
+  "id": "emg-no-miedo",
+  "es": "No debe tener miedo.",
+  "quy": "Ama manchacunkichu."
+ },
+ {
+  "id": "emg-tranquilo",
+  "es": "No se preocupe, estamos aquí para ayudarle.",
+  "quy": "Ama llakikuychu, kaypim kachkaniku."
+ }
+]

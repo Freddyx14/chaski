@@ -319,3 +319,93 @@ hay que medirla con personas antes.
 
 Mi recomendación para el modo emergencia: usar **la grabación real** donde exista, y `base` donde no.
 Es donde una palabra mal oída cuesta más, y ahí el número manda sobre el timbre.
+
+
+---
+
+## Todo lo nuevo en una página (sáb 24-oct, noche)
+
+Mismo dominio de siempre. Las cinco rutas nuevas están probadas contra la URL pública.
+
+### `/mt` — traducir sin Claude, en las dos direcciones
+
+```sh
+POST /mt  -F "texto=Tome una pastilla cada ocho horas"
+{"texto":"Sapa pusaj horaspi uj tabletata tomay.","ms":306}
+
+POST /mt  -F "texto=Sapa pusaq horapi huk pastillata upyay" \
+          -F "desde=quy_Latn" -F "hacia=spa_Latn"
+{"texto":"Toma una pastilla cada ocho horas","ms":252}
+```
+
+NLLB-200-1.3B en la instancia. **Sin red, sin costo por llamada, 2.6× más rápido que Claude.**
+
+`/traducir` sigue siendo Claude con auditoría. Las dos están: el botón para cambiar es decisión tuya.
+
+### `/voces` y `/voz` — cinco voces
+
+```sh
+GET  /voces
+{"voces":["base","mama_freddy","p16","p24","papa_ricardo"],"por_defecto":"p24"}
+
+POST /voz  -F "texto=Allinllanchu mamay" -F "voz=p16" -o voz.wav
+```
+
+### `/emergencia` — el banco con el audio ya resuelto
+
+Lo que le faltaba a tu `banco.json` era el campo `audio`. Aquí viene lleno:
+
+```sh
+GET /emergencia?voz=p24
+{"voz":"p24",
+ "voces":["base","mama_freddy","p16","p24","papa_ricardo"],
+ "frases":[{"id":"emg-dolor-donde","es":"¿Dónde le duele?","quy":"¿Mayta nanan?",
+            "audio":"/emergencia/audio/p24/emg-dolor-donde.mp3"}, …]}
+```
+
+Las 24 están sintetizadas en las cinco voces: **120 archivos ya generados**. La app toca y suena, sin
+esperar a ningún modelo. Cambiar `?voz=` cambia las URL de golpe.
+
+### `/medicamento` — foto a quechua en una llamada
+
+`/ver` + traducción auditada + voz, para que el teléfono no encadene tres peticiones.
+
+---
+
+## Por qué NLLB y no Claude, con los números
+
+Medido sobre **62 frases que las familias tradujeron el 24-oct**. Ningún modelo publicado las ha
+visto, y cada una lleva **4.8 referencias** —una por persona— así que nadie pierde puntos por elegir
+la variante de otro hablante.
+
+| motor | chrF++ | una petición | dónde corre |
+|---|---|---|---|
+| claude-sonnet-5 | **44.55** | 1496 ms | nube |
+| **nllb-1.3B** | 34.72 | **565 ms** | nuestra GPU |
+| nllb-600M | 28.58 | 346 ms | nuestra GPU |
+
+Claude traduce mejor. NLLB responde antes y no depende de la red.
+
+**Lo que hace aceptable el cambio: la auditoría no depende del traductor.** Lo que salga de NLLB pasa
+por la misma comparación de dosis, horas y días que lo de Claude. Un traductor más flojo con la misma
+guarda no puede decir una dosis equivocada — dirá menos cosas, porque bloqueará más seguido.
+
+### Lo que probamos y descartamos
+
+| modelo | qué pasó |
+|---|---|
+| `nllb-600M` ajustado por nosotros | **el número estaba contaminado**: nuestro filtro dejó pasar 58 de las 100 frases de evaluación al entrenamiento. Descartado |
+| `madlad-400-3B` | chrF++ 12.69 sin entrenar, muy por debajo |
+| `Thermostatic/rosettia-chanka-4b` | el checkpoint no carga: `lm_head`, `embed_tokens` y `norm` salen MISSING y escupe ruido. Y 5233 ms por frase, 3.5× más lento que Claude |
+| `makitty/QuechuaGPT-chanka-4B-lora-v2` | HTTP 401, es privado |
+
+### 🔴 Dos cosas del banco que son tuyas
+
+```
+emg-alergia   ¿Es alérgico a algún medicamento?   →   ¿Ruparin pukyupakunki?
+```
+
+`rupay` es calor o fiebre. Eso no parece decir «alérgico». Hay otras entradas con `quy` vacío.
+
+**El texto antes que la voz:** una voz perfecta diciendo algo equivocado es peor que una robótica
+diciéndolo bien. Esas frases las tiene que ver tu mamá antes de que suenen en una posta.

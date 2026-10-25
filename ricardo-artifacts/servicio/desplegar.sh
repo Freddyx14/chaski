@@ -57,6 +57,9 @@ rsync -az --delete -e "ssh -i $LLAVE -o BatchMode=yes" \
   "$RAIZ/../app/rimay/" "$MAQUINA:$DESTINO/rimay/"
 # Sin --delete y con --update, por lo mismo que la bajada.
 rsync -az --update -e "ssh -i $LLAVE -o BatchMode=yes" "$RAIZ/datos/" "$MAQUINA:$DESTINO/datos/"
+# Los audios del modo emergencia los sirve el orquestador, asi que viajan con el.
+rsync -az --update -e "ssh -i $LLAVE -o BatchMode=yes" \
+  "$RAIZ/reports/emergencia/" "$MAQUINA:$DESTINO/reports/emergencia/" 2>/dev/null || true
 # El avatar de Chaski. `app.py` lo busca en ../design/chaski relativo a su cwd,
 # así que del lado de la instancia cuelga de /opt/dlami/nvme/chaski/design.
 # Copia de solo lectura del diseño de Freddy: no se edita aquí.

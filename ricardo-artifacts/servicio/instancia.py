@@ -212,6 +212,47 @@ async def entender(audio: UploadFile = File(...), lengua: str = Form("quy_Latn")
             "trozos": len(trozos), "segundos": round(time.perf_counter() - t0, 2)}
 
 
+def traductor(tarjeta: str = "facebook/nllb-200-distilled-1.3B"):
+    """NLLB en la GPU. Se queda cargado entre llamadas."""
+    clave = f"mt::{tarjeta}"
+    if clave not in _modelos:
+        from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+        _modelos[clave + "_tok"] = AutoTokenizer.from_pretrained(tarjeta, src_lang="spa_Latn")
+        _modelos[clave] = AutoModelForSeq2SeqLM.from_pretrained(
+            tarjeta, torch_dtype=torch.float16).to(DISPOSITIVO).eval()
+    return _modelos[clave + "_tok"], _modelos[clave]
+
+
+@aplicacion.post("/traducir")
+def traducir(texto: str = Form(...), hacia: str = Form("quy_Latn"),
+             desde: str = Form("spa_Latn"),
+             modelo: str = Form("facebook/nllb-200-distilled-1.3B")):
+    """Traduce con NLLB, en la instancia y sin salir a internet.
+
+    Medido sobre las frases de las familias —que ningun modelo publicado ha
+    visto— contra Claude:
+
+        claude-sonnet-5   chrF++ 44.55   1496 ms
+        nllb-1.3B         chrF++ 34.72    565 ms
+        nllb-600M         chrF++ 28.58    346 ms
+
+    Claude traduce mejor y NLLB responde antes. Cual conviene depende de si lo
+    que falta es calidad o espera; por eso estan los dos y se elige por ruta.
+    Lo que no cambia es la auditoria: lo que salga de aqui pasa por la misma
+    comparacion de dosis y horas que lo de Claude.
+    """
+    tok, m = traductor(modelo)
+    tok.src_lang = desde
+    t0 = time.perf_counter()
+    x = tok(texto, return_tensors="pt").to(DISPOSITIVO)
+    with torch.no_grad():
+        y = m.generate(**x, forced_bos_token_id=tok.convert_tokens_to_ids(hacia),
+                       max_new_tokens=96, num_beams=4)
+    return {"texto": tok.batch_decode(y, skip_special_tokens=True)[0],
+            "modelo": modelo, "desde": desde, "hacia": hacia,
+            "ms": round((time.perf_counter() - t0) * 1000, 1)}
+
+
 @aplicacion.get("/voces")
 def voces():
     """Qué voces se pueden pedir en `/hablar`."""
