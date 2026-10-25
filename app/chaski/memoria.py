@@ -70,8 +70,13 @@ def senal(id_: str, estado: str) -> None:
 
 
 def leer() -> dict[str, dict]:
-    """Fold the log: {id: entry with its last `estado` and how many times it was confirmed}."""
+    """Fold the log: {id: entry with its last `estado` and how many times it was confirmed}.
+
+    Writes run in background threads, so a turn's signal can land in the file before the turn itself. Signals are
+    therefore applied after every turn is known, in file order, instead of being dropped when they come first.
+    """
     entradas: dict[str, dict] = {}
+    senales: list[dict] = []
     if not ruta().exists():
         return entradas
     for linea in ruta().read_text(encoding="utf-8").splitlines():
@@ -81,14 +86,17 @@ def leer() -> dict[str, dict]:
             continue
         if e.get("tipo") == "turno":
             previa = entradas.get(e["id"], {})
-            entradas[e["id"]] = {**e, "estado": previa.get("estado", "pendiente"),
-                                 "confirmaciones": previa.get("confirmaciones", 0), "usos": previa.get("usos", 0) + 1}
-        elif e.get("tipo") == "senal" and e.get("id") in entradas:
-            x = entradas[e["id"]]
-            if x["estado"] != "aprobada":  # an approval is final; later doubts are kept as a count
-                x["estado"] = e["estado"]
-            if e["estado"] == "confirmada":
-                x["confirmaciones"] += 1
+            entradas[e["id"]] = {**e, "estado": "pendiente", "confirmaciones": 0, "usos": previa.get("usos", 0) + 1}
+        elif e.get("tipo") == "senal":
+            senales.append(e)
+    for e in senales:
+        x = entradas.get(e.get("id"))
+        if x is None:
+            continue
+        if x["estado"] != "aprobada":  # an approval is final; later doubts are kept as a count
+            x["estado"] = e["estado"]
+        if e["estado"] == "confirmada":
+            x["confirmaciones"] += 1
     return entradas
 
 

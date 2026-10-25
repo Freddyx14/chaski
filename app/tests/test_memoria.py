@@ -88,3 +88,9 @@ def test_apagada_no_escribe(monkeypatch):
                 client=Cliente(dec("traducir", "Tome la pastilla.")), **deps())
     esperar()
     assert memoria.leer() == {}
+
+
+def test_una_senal_escrita_antes_que_su_turno_no_se_pierde():
+    memoria.senal(memoria.clave("personal", "Tome agua"), "confirmada")
+    memoria.guardar_turno("personal", "Tome agua", "Tome agua", "Tome agua.", "Yakuta upyay.", "spa", "quy")
+    assert list(memoria.leer().values())[0]["estado"] == "confirmada"
