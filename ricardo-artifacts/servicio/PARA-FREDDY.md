@@ -256,3 +256,66 @@ Pasa por `/turno/enfermera` como cualquier otro texto, así que la auditoría la
 No deduce una dosis del nombre del medicamento ni de lo que suele indicarse. Si no está escrita,
 `posologia_de: "falta"` y los campos en null. Una dosis inventada que suena razonable es el peor
 error que este sistema puede cometer, y es el que más fácil pasa desapercibido.
+
+
+---
+
+## Las cuatro voces de Chaski (sáb 24-oct, noche)
+
+Hay cuatro voces entrenadas más la de fábrica. Se eligen por nombre, en la misma ruta de siempre.
+
+```sh
+curl …/voces
+{"voces":["base","mama_freddy","p16","p24","papa_ricardo"],"por_defecto":"p24"}
+
+curl -X POST …/voz -F "texto=Sapa pusaq horapi huk pastillata upyay" -F "voz=p16" -o voz.wav
+```
+
+`voz` también funciona en `/hablar` del servicio de voz. Si pides una que no existe, responde con
+`base` en vez de dar error: en una demo es mejor una voz robótica que un 500.
+
+| voz | quién | datos | fuente |
+|---|---|---|---|
+| `base` | Meta, sin entrenar | — | `facebook/mms-tts-quy` |
+| `p24` | familiar de Freddy | 165 clips · 13.7 min | formulario, texto verificado |
+| `p16` | papá de Ricardo | 175 clips · 11.4 min | formulario, texto verificado |
+| `mama_freddy` | mamá de Freddy | 13 clips · 1.6 min | WhatsApp, texto automático |
+| `papa_ricardo` | papá de Ricardo | 15 clips · 0.6 min | WhatsApp, texto automático |
+
+Las dos últimas parten del checkpoint de `p24`, no del modelo de fábrica. Con 1.6 y 0.6 minutos es
+probable que suenen más a `p24` que a la persona nueva: el ajuste no tuvo con qué moverlas mucho.
+
+Los audios para comparar están en `ricardo-artifacts/reports/voces/<voz>/`, con el A/B/C de tu §11:
+`*_A_base.mp3` (Meta), `*_B_ajustada.mp3` (esa voz) y `C_real.mp3` (la persona), para las frases
+`dosis`, `control`, `alarma` y `saludo`.
+
+### 🔴 La medición no respalda «la voz ajustada se entiende mejor»
+
+La prueba de ida y vuelta que pediste —las 24 frases de emergencia pasadas por cada voz y luego por
+el reconocimiento ajustado— salió al revés:
+
+| voz | WER de ida y vuelta |
+|---|---|
+| **base (Meta)** | **45.8 %** |
+| p16 | 74.6 % |
+| p24 | 89.8 % |
+| papa_ricardo | 93.2 % |
+| mama_freddy | 98.3 % |
+
+**La voz de fábrica es la más entendible y las ajustadas lo son menos.** Es exactamente el fallo
+silencioso que esta prueba existía para encontrar: suena más a la persona y se entiende peor.
+
+Dos cosas antes de sacar conclusiones:
+
+- Mide **inteligible para nuestro reconocedor**, que se entrenó con voces humanas reales. El habla
+  sintética le queda fuera de dominio, y las ajustadas puede que se le hayan ido más lejos. Una
+  persona podría ordenarlas distinto — por eso la prueba a ciegas con tu mamá sigue siendo la que
+  decide.
+- El texto del banco no está en la ortografía normalizada con la que entrenamos el reconocedor.
+
+Lo que sí se puede afirmar sin riesgo: **A suena a robot y B suena a persona**, y eso se oye en los
+mp3. Lo que **no** se puede afirmar todavía es que B se entienda mejor. Si en el pitch va esa frase,
+hay que medirla con personas antes.
+
+Mi recomendación para el modo emergencia: usar **la grabación real** donde exista, y `base` donde no.
+Es donde una palabra mal oída cuesta más, y ahí el número manda sobre el timbre.

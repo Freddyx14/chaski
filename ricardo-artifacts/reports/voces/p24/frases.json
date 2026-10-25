@@ -1,0 +1,11 @@
+{
+ "persona": "p24",
+ "modelo": "/opt/dlami/nvme/chaski/modelos/tts-p24",
+ "real": "datos/crudo/p24/p24_N_058.wav",
+ "frases": {
+  "dosis": "Sapa pusaq horapi huk pastillata upyay",
+  "control": "Controlniykiqa lunesmi kanqa",
+  "alarma": "Wawacha mana kuyukuptinqa, kaymanmi hamuykunki",
+  "saludo": "Allinllanchu mamay, imaynallam kachkanki"
+ }
+}

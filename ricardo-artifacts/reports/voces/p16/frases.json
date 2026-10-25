@@ -1,0 +1,11 @@
+{
+ "persona": "p16",
+ "modelo": "/opt/dlami/nvme/chaski/modelos/tts-p16",
+ "real": "datos/crudo/p16/p16_E_164.wav",
+ "frases": {
+  "dosis": "Sapa pusaq horapi huk pastillata upyay",
+  "control": "Controlniykiqa lunesmi kanqa",
+  "alarma": "Wawacha mana kuyukuptinqa, kaymanmi hamuykunki",
+  "saludo": "Allinllanchu mamay, imaynallam kachkanki"
+ }
+}

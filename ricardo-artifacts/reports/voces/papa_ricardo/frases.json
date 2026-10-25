@@ -1,0 +1,11 @@
+{
+ "persona": "papa_ricardo",
+ "modelo": "/opt/dlami/nvme/chaski/modelos/tts-papa_ricardo",
+ "real": "datos/crudo/papa_ricardo/trozos/papa_ricardo_001.wav",
+ "frases": {
+  "dosis": "Sapa pusaq horapi huk pastillata upyay",
+  "control": "Controlniykiqa lunesmi kanqa",
+  "alarma": "Wawacha mana kuyukuptinqa, kaymanmi hamuykunki",
+  "saludo": "Allinllanchu mamay, imaynallam kachkanki"
+ }
+}

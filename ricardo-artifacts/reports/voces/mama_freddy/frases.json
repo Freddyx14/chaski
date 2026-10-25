@@ -1,0 +1,11 @@
+{
+ "persona": "mama_freddy",
+ "modelo": "/opt/dlami/nvme/chaski/modelos/tts-mama_freddy",
+ "real": "datos/crudo/mama_freddy/trozos/mama_freddy_001.wav",
+ "frases": {
+  "dosis": "Sapa pusaq horapi huk pastillata upyay",
+  "control": "Controlniykiqa lunesmi kanqa",
+  "alarma": "Wawacha mana kuyukuptinqa, kaymanmi hamuykunki",
+  "saludo": "Allinllanchu mamay, imaynallam kachkanki"
+ }
+}

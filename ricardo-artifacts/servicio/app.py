@@ -244,6 +244,19 @@ async def medicamento(imagen: UploadFile = File(...), dicho: str = Form(""),
     return salida
 
 
+@aplicacion.get("/voces")
+def voces():
+    """Las voces de Chaski que se pueden pedir. Reenvía al servicio de voz."""
+    import httpx
+
+    from servicio.flujo import INSTANCIA
+    try:
+        with httpx.Client(timeout=20) as cli:
+            return cli.get(f"{INSTANCIA}/voces").json()
+    except Exception as e:
+        return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
+
+
 @aplicacion.get("/corregir")
 def pagina_corregir():
     return FileResponse(AQUI / "static" / "corregir.html")
@@ -375,11 +388,11 @@ def corpus_exportar(persona: str = Form("")):
 
 
 @aplicacion.post("/voz")
-def voz(texto: str = Form(...)):
+def ruta_voz(texto: str = Form(...), voz: str = Form("p24")):
     """Solo la voz, para pedirla DESPUÉS de mostrar el texto."""
     from servicio.flujo import decir_en_voz
     try:
-        audio, ms = decir_en_voz(texto)
+        audio, ms = decir_en_voz(texto, voz)
     except Exception as e:
         return JSONResponse({"error": f"{type(e).__name__}: {e}"}, status_code=500)
     return Response(content=audio, media_type="audio/wav", headers={"X-Ms": str(ms)})

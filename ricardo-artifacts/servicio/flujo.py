@@ -183,11 +183,12 @@ def turno_de_la_enfermera(texto_es: str, modo_ensayo: bool = True,
             "total_ms": round(auditoria_ms + (hablar_ms or 0), 1)}
 
 
-def decir_en_voz(texto_quechua: str) -> tuple[bytes, float]:
+def decir_en_voz(texto_quechua: str, voz: str = "p24") -> tuple[bytes, float]:
     """Solo la voz. La página la pide aparte, cuando ya mostró el texto."""
     with httpx.Client(timeout=300) as cli:
         t0 = time.perf_counter()
-        voz = cli.post(f"{INSTANCIA}/hablar", data={"texto": texto_quechua})
+        voz = cli.post(f"{INSTANCIA}/hablar",
+                       data={"texto": texto_quechua, "voz": voz})
     return voz.content, round((time.perf_counter() - t0) * 1000, 1)
 
 

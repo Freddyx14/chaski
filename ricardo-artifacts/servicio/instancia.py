@@ -31,7 +31,10 @@ _modelos: dict = {}
 # Los dos modelos que ajustamos. Si el archivo no esta, cada funcion cae al
 # modelo de fabrica en vez de fallar: asi el servicio arranca igual en una
 # maquina donde todavia no se copiaron los pesos.
-AQUI = Path(__file__).resolve().parent.parent
+# Este archivo vive en `servicio/` en el repo y suelto en la raiz de la
+# instancia. Se busca `modelos/` en los dos sitios en vez de suponer uno.
+_aqui = Path(__file__).resolve().parent
+AQUI = _aqui if (_aqui / "modelos").exists() else _aqui.parent
 RUTA_ASR_ADAPTADOR = AQUI / "modelos" / "asr-chanka" / "adaptador_mejor.pt"
 RUTA_TTS_AJUSTADA = AQUI / "modelos" / "tts-p24"
 
@@ -54,18 +57,31 @@ def lid():
     return _modelos["lid_ext"], _modelos["lid"]
 
 
-def tts(ajustada: bool = True):
-    """La voz. `ajustada` usa la entrenada con p24; si no esta, cae a la de fabrica."""
+def voces_disponibles() -> dict:
+    """Las voces que hay en disco. `base` siempre esta; las demas si se entrenaron."""
+    salida = {"base": "facebook/mms-tts-quy"}
+    for carpeta in sorted((AQUI / "modelos").glob("tts-*")):
+        if (carpeta / "model.safetensors").exists() or (carpeta / "pytorch_model.bin").exists():
+            salida[carpeta.name.removeprefix("tts-")] = str(carpeta)
+    return salida
+
+
+def tts(voz: str = "p24"):
+    """Carga una voz por nombre y la deja en memoria.
+
+    Si la pedida no existe se cae a `base` en vez de fallar: en una demo es
+    preferible una voz robotica a un 500.
+    """
     from transformers import AutoTokenizer, VitsModel
 
-    ruta = RUTA_TTS_AJUSTADA if ajustada and RUTA_TTS_AJUSTADA.exists() else None
-    clave = "tts_ajustada" if ruta else "tts"
+    disponibles = voces_disponibles()
+    nombre = voz if voz in disponibles else "base"
+    clave = f"tts::{nombre}"
     if clave not in _modelos:
-        tarjeta = str(ruta) if ruta else "facebook/mms-tts-quy"
+        tarjeta = disponibles[nombre]
         _modelos[clave + "_tok"] = AutoTokenizer.from_pretrained(tarjeta)
         _modelos[clave] = VitsModel.from_pretrained(tarjeta).to(DISPOSITIVO).eval()
-        _modelos[clave + "_nombre"] = "chaski-voz-p24" if ruta else "facebook/mms-tts-quy"
-    return _modelos[clave + "_tok"], _modelos[clave], _modelos[clave + "_nombre"]
+    return _modelos[clave + "_tok"], _modelos[clave], nombre
 
 
 def asr_ajustado():
@@ -196,10 +212,16 @@ async def entender(audio: UploadFile = File(...), lengua: str = Form("quy_Latn")
             "trozos": len(trozos), "segundos": round(time.perf_counter() - t0, 2)}
 
 
+@aplicacion.get("/voces")
+def voces():
+    """Qué voces se pueden pedir en `/hablar`."""
+    return {"voces": sorted(voces_disponibles()), "por_defecto": "p24"}
+
+
 @aplicacion.post("/hablar")
-def hablar(texto: str = Form(...), ajustada: bool = Form(True)):
-    """`ajustada` (por defecto) usa la voz entrenada con p24."""
-    tokenizador, modelo, nombre = tts(ajustada)
+def hablar(texto: str = Form(...), voz: str = Form("p24")):
+    """`voz` elige cuál habla: base, p24, p16, mama_freddy, papa_ricardo."""
+    tokenizador, modelo, nombre = tts(voz)
     entrada = tokenizador(texto, return_tensors="pt").to(DISPOSITIVO)
     t0 = time.perf_counter()
     with torch.no_grad():
