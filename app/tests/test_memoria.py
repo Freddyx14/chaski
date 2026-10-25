@@ -68,8 +68,24 @@ def test_solo_lo_aprobado_es_ejemplo(monkeypatch):
     memoria.guardar_turno("personal", "Tome agua", "Tome agua", "Tome agua.", "Yakuta upyay.", "spa", "quy")
     assert banco.ejemplos_revisados("tome agua", "spa") == []
     (e,) = memoria.leer().values()
-    memoria.senal(e["id"], "aprobada")
+    memoria.aprobar(e["id"])
     assert banco.ejemplos_revisados("tome agua", "spa") == [{"es": "Tome agua.", "quy": "Yakuta upyay."}]
+
+
+def test_la_aprobacion_es_del_par_revisado_no_de_la_frase():
+    memoria.guardar_turno("personal", "Tome agua", "Tome agua", "Tome agua.", "Yakuta upyay.", "spa", "quy")
+    (e,) = memoria.leer().values()
+    memoria.aprobar(e["id"])
+    # the same sentence later, with another (unreviewed) translation
+    memoria.guardar_turno("personal", "Tome agua", "Tome agua", "Tome agua.", "OTRA TRADUCCION", "spa", "quy")
+    assert memoria.aprobadas() == [{"es": "Tome agua.", "quy": "Yakuta upyay."}]
+
+
+def test_una_aprobacion_vieja_sin_copia_no_se_usa():
+    memoria.guardar_turno("personal", "Tome agua", "Tome agua", "Tome agua.", "Yakuta upyay.", "spa", "quy")
+    (e,) = memoria.leer().values()
+    memoria.senal(e["id"], "aprobada")  # an approval event without the copy of the pair
+    assert memoria.aprobadas() == []
 
 
 def test_un_error_de_memoria_no_rompe_el_turno(monkeypatch):

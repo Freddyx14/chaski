@@ -69,6 +69,17 @@ def senal(id_: str, estado: str) -> None:
     _escribir({"tipo": "senal", "id": id_, "estado": estado})
 
 
+def aprobar(id_: str) -> dict | None:
+    """Approve the pair the reviewer is looking at NOW. The approval carries a copy of that exact pair, and only the
+    copy becomes an example (audit H1: approving by id let a later, different translation of the same sentence
+    inherit the approval unreviewed)."""
+    e = leer().get(id_)
+    if not e or not e.get("quy"):
+        return None
+    _escribir({"tipo": "senal", "id": id_, "estado": "aprobada", "es": e["es"], "quy": e["quy"]})
+    return {"es": e["es"], "quy": e["quy"]}
+
+
 def leer() -> dict[str, dict]:
     """Fold the log: {id: entry with its last `estado` and how many times it was confirmed}.
 
@@ -93,6 +104,8 @@ def leer() -> dict[str, dict]:
         x = entradas.get(e.get("id"))
         if x is None:
             continue
+        if e["estado"] == "aprobada" and e.get("quy"):
+            x["aprobada_es"], x["aprobada_quy"] = e.get("es", ""), e["quy"]
         if x["estado"] != "aprobada":  # an approval is final; later doubts are kept as a count
             x["estado"] = e["estado"]
         if e["estado"] == "confirmada":
@@ -101,7 +114,8 @@ def leer() -> dict[str, dict]:
 
 
 def aprobadas() -> list[dict]:
-    return [{"es": e["es"], "quy": e["quy"]} for e in leer().values() if e["estado"] == "aprobada" and e["quy"]]
+    return [{"es": e["aprobada_es"], "quy": e["aprobada_quy"]} for e in leer().values()
+            if e["estado"] == "aprobada" and e.get("aprobada_quy")]
 
 
 def candidatas() -> list[dict]:
@@ -112,8 +126,9 @@ def candidatas() -> list[dict]:
 
 def _main(argv: list[str]) -> None:
     if argv[:1] == ["aprobar"] and len(argv) == 2:
-        senal(argv[1], "aprobada")
-        print(f"aprobada {argv[1]}: desde el próximo turno es un ejemplo del traductor")
+        par = aprobar(argv[1])
+        print(f"aprobada {argv[1]}: {par['es']} → {par['quy']}; desde el próximo turno es un ejemplo"
+              if par else f"no existe {argv[1]} o no tiene quechua")
         return
     for e in candidatas():
         print(f"{e['id']}  ×{e['confirmaciones']} confirmada · {e['usos']} usos  |  {e['es']}  →  {e['quy']}")

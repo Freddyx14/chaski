@@ -74,7 +74,7 @@ SISTEMA_RETRADUCIR = (
     "Traduces al castellano, de forma literal, un texto en quechua. "
     "No corrijas, no mejores y no completes: si el texto dice algo raro, tradúcelo raro. "
     "Las palabras de tiempo se traducen con su sentido de calendario, no el literal: killa = mes (no «luna»), "
-    "wata = año, p'unchaw / punchaw = día, semana = semana, ura / hora con un número = hora. "
+    "wata = año, p'unchaw / punchaw = día, semana = semana. "
     f"Si no entiendes una parte, escribe {MARCA_NO_ENTIENDO} en su lugar."
 )
 
