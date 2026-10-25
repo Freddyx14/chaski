@@ -1,6 +1,6 @@
 # Chaski — fuente de verdad (SOT)
 
-> **Versión SOT-18 · sábado 24 de octubre de 2026, 19:45 PT**
+> **Versión SOT-19 · domingo 25 de octubre de 2026, 00:45 PT**
 >
 > **Regla:** toda decisión nueva entra aquí primero. Si otro documento contradice este, **gana este** y el otro
 > está desactualizado. La página visual (`plan/chaski-visual.html`, https://claude.ai/artifact/4E7Si4gN9mpF34eha55jpH)
@@ -8,6 +8,7 @@
 
 ### Qué cambió en cada versión (léelo primero, Ricardo)
 
+- **SOT-19 (dom 00:45).** **UI simple (D42)**: la app es para personas con poca experiencia digital. Poco texto, una acción por pantalla, etiquetas de 1 a 3 palabras; la auditoría es una sola línea «✓ Revisado» y el bloqueo es «No lo dije» + un motivo.
 - **SOT-18 (sáb 19:45).** **Chaski sin fondo (D40)**: la vicuña va recortada sobre el fondo de la app, sin el marco escalonado, en toda la app. Videos en HEVC con transparencia.
 - **SOT-19 (dom 00:20).** **Las frases de la enfermera entran al traductor como ejemplos (D41)**: el primer ladrillo del foso. `plan/foso.md`.
 - **SOT-18 (sáb 23:38).** **Traduce Claude Sonnet 5 con esfuerzo medio (D40)**, decidido por Freddy con `/options` tras medir cinco traductores en los mismos sets. NLLB sigue como modo sin conexión y para el ajuste de Ricardo.
@@ -172,6 +173,7 @@ Licencias: Omnilingual y Siminchik libres; MMS-TTS y MMS-LID no comerciales (bie
 | D20 | sáb 00:33 | **El avatar es una vicuña**, juguetona y animada, con otro nombre | Elección de Freddy |
 | D25 | sáb 08:35 | **El cuadernillo pide escribir la frase en quechua y leer en voz alta exactamente lo escrito** (75 frases, foto de cada hoja + una nota de voz por frase). Traducción: **NLLB-200 de Meta** (`facebook/nllb-200-distilled-600M`, incluye `quy_Latn`, licencia no comercial) ajustado con esos pares | Traducir, entender y hablar necesitan **texto escrito**: con solo voz habría que transcribir ~450 audios. Así cada persona trae su texto y su audio alineados. Omnilingual MT (Meta, mar-2026) no tiene pesos publicados |
 | D40 | sáb 19:01 | **Chaski sin fondo, sobre el fondo de la app, en toda la app**; reemplaza el marco escalonado de L (D29/D31) para el avatar. Recorte local con BiRefNet (rembg); los loops van en HEVC con alfa (`avatar/loops/*-alfa.mov`), las imágenes en `avatar/estados-alfa/`. El marco queda en el código con `&marco=1` | Freddy lo vio en la app y lo eligió: más limpio, Chaski se integra a la pantalla y la experiencia se siente mejor |
+| D42 | dom 00:25 | **UI simple para personas con poca experiencia digital: poco texto, una acción por pantalla.** Etiquetas de 1–3 palabras, sin párrafos explicativos, un botón principal grande; «Pensando» es una sola línea que cambia; la auditoría y el crítico son un solo «✓ Revisado»; el bloqueo es «No lo dije» + un motivo + «Dígalo de otra forma». La identidad (D29/D31/D40 de Chaski sin fondo) no cambia | Pedido de Freddy: la usan personas que casi no usan tecnología |
 | D41 | dom 00:20 | **El traductor recibe como ejemplos las 5 frases revisadas por la enfermera más parecidas** (`CHASKI_EJEMPLOS=1`). Es el primer paso del foso: cada frase que ella revise mejora la siguiente traducción | 62 frases de las familias, con filtro contra fugas: es→qu 52,6 → 56,0; qu→es 49,1 → 56,0; turno completo 20/20 dichos en 8,0 s (antes 19/20, 8,3 s). Pedido de Freddy: «lets build this moat» (`plan/foso.md`, `evals/moat/`) |
 | D40 | sáb 23:38 | **El traductor es Claude Sonnet 5 con esfuerzo medio** (`CHASKI_PENSAR_TRADUCIR=medium`), con la traducción anticipada mientras Opus decide. NLLB queda como modo sin conexión | Medido en los mismos 3 sets (`evals/traduccion/comparar.py`): 0/92 términos fijos dañados (Gemini 3 Flash 4, NLLB 3), la mejor lectura de lo que dice el paciente (qu→es 50,1; Gemini 43,7) y el turno completo en 8,3 s (Gemini 8,6; Claude pensando 17,1). Primero la seguridad médica, sin perder velocidad. Decidido por Freddy |
 | D39 | sáb 16:20 | **Intérprete: Opus 5 principal, Sonnet 5 crítico** (por variable de entorno) | Opus acertó el 98 % sin inventar datos; Sonnet como crítico atrapó 165/165 con un 10 % de bloqueos falsos. Anthropic sugirió Haiku, pero mandan las mediciones. Confirmado por Freddy |
