@@ -173,7 +173,8 @@ export default function Pantalla() {
   const ladoInicial = q.lado === 'quechua' || q.lado === 'castellano' ? q.lado : undefined;
   // `?conversar=1` abre la consulta ya en modo conversación (pruebas en el simulador sin tocar la pantalla).
   return <Consulta key={(ladoInicial ?? 'consulta') + (q.conversar ?? '') + (q.repeticion ?? '')} perfil={perfil}
-    ladoInicial={ladoInicial} conversarAlAbrir={q.conversar === '1'} repeticion={q.repeticion === '1'} />;
+    ladoInicial={ladoInicial} conversarAlAbrir={q.conversar === '1'}
+    repeticion={q.repeticion === '1' || process.env.EXPO_PUBLIC_REPETICION === '1'} />;
 }
 
 function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir, repeticion }: {
@@ -243,7 +244,9 @@ function Consulta({ perfil, inicial, ladoInicial, conversarAlAbrir, repeticion }
     const dormir = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
     (async () => {
       await dormir(1500);
+      console.log('[repeticion] empieza', REPETICION.length);
       for (const uri of REPETICION) {
+        console.log('[repeticion]', uri.split('/').pop());
         if (!vivo) return;
         setOcupado(true);
         try {
